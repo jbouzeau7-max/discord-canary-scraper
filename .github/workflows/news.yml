@@ -1,0 +1,45 @@
+name: News · Actus
+
+# Actus générales — 17 catégories (monde, foot, tech, gaming, cinéma, F1, NBA,
+# science, crypto, rap, IA, anime, tennis, MMA, auto...) ; filtre : var NEWS_CATEGORIES
+# via flux RSS publics — 1 actu = 1 message, plafonds anti-spam dans src/news.js.
+# Actif seulement si le secret NEWS_WEBHOOK_URL existe.
+# Déclenchement : cron 10 min, manuel, ou bot via repository_dispatch trigger-news.
+
+on:
+  schedule:
+    - cron: '*/10 * * * *'
+  workflow_dispatch:
+  repository_dispatch:
+    types: [trigger-news]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: news
+  cancel-in-progress: false
+
+jobs:
+  news:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 1
+
+      - uses: ./.github/actions/setup
+
+      - name: Actus — 17 catégories
+        env:
+          NEWS_WEBHOOK_URL: ${{ secrets.NEWS_WEBHOOK_URL }}
+          NEWS_CATEGORIES: ${{ vars.NEWS_CATEGORIES }}
+        run: node src/news.js
+
+      - name: Save seen ids
+        if: always()
+        env:
+          COMMIT_SOFT_FAIL: '1'
+        run: |
+          scripts/commit-state.sh "news: seen" data/seen_news.json

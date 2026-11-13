@@ -1,0 +1,38 @@
+name: News · Photos de profil
+
+# Régénère media/news-*.png (photos de profil des webhooks Actus) quand le
+# script change. Rendu déterministe (Pillow + emoji Noto 3D épinglés).
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - scripts/gen_news_avatars.py
+      - .github/workflows/news-avatars.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: news-avatars
+  cancel-in-progress: false
+
+jobs:
+  avatars:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 1
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Génère les avatars
+        run: |
+          python -m pip install --quiet pillow
+          python scripts/gen_news_avatars.py
+      - name: Commit media
+        run: |
+          scripts/commit-state.sh "media: photos de profil Actus" media

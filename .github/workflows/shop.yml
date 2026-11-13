@@ -1,0 +1,50 @@
+name: Shop
+
+on:
+  schedule:
+    - cron: '*/15 * * * *'
+  workflow_dispatch:
+  repository_dispatch:
+    types: [trigger-shop]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: shop
+  cancel-in-progress: false
+
+jobs:
+  shop:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 1
+
+      - uses: ./.github/actions/setup
+
+      - name: Shop scraper
+        id: shop
+        env:
+          SHOP_WEBHOOK_URL: ${{ secrets.SHOP_WEBHOOK_URL }}
+          DISCORD_USER_TOKEN: ${{ secrets.DISCORD_USER_TOKEN }}
+          DISCORD_USER_TOKEN_2: ${{ secrets.DISCORD_USER_TOKEN_2 }}
+          DISCORD_USER_TOKEN_3: ${{ secrets.DISCORD_USER_TOKEN_3 }}
+          DISCORD_USER_TOKEN_4: ${{ secrets.DISCORD_USER_TOKEN_4 }}
+          DISCORD_USER_TOKEN_5: ${{ secrets.DISCORD_USER_TOKEN_5 }}
+          ORBIT_BOT_NAME: Datamining
+          ORBIT_AVATAR_URL: ${{ vars.ORBIT_AVATAR_URL || format('https://cdn.jsdelivr.net/gh/{0}@main/media/datamining-avatar.png', github.repository) }}
+        run: node src/shop.js
+
+      - name: Save shop state
+        if: always() && steps.shop.outcome != 'cancelled'
+        env:
+          COMMIT_SOFT_FAIL: '1'
+        run: |
+          scripts/commit-state.sh "shop: state" data/shop_items.json data/shop_fallback.json
+
+      - name: Fail if shop step failed
+        if: always() && steps.shop.outcome == 'failure'
+        run: exit 1
