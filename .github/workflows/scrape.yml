@@ -1,0 +1,46 @@
+name: Scrape Discord Canary
+
+on:
+  schedule:
+    - cron: '*/5 * * * *'
+  workflow_dispatch:
+  repository_dispatch:
+    types: [trigger-scraping]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: canary-scrape
+  cancel-in-progress: false
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 1
+
+      - uses: ./.github/actions/setup
+
+      - name: Scrape
+        id: scrape
+        env:
+          DISCORD_USER_TOKEN: ${{ secrets.DISCORD_USER_TOKEN }}
+          DISCORD_USER_TOKEN_2: ${{ secrets.DISCORD_USER_TOKEN_2 }}
+          DISCORD_USER_TOKEN_3: ${{ secrets.DISCORD_USER_TOKEN_3 }}
+          DISCORD_USER_TOKEN_4: ${{ secrets.DISCORD_USER_TOKEN_4 }}
+          DISCORD_USER_TOKEN_5: ${{ secrets.DISCORD_USER_TOKEN_5 }}
+          WEBHOOK_URL: ${{ secrets.WEBHOOK_URL }}
+          ORBIT_BOT_NAME: Datamining
+          ORBIT_AVATAR_URL: ${{ vars.ORBIT_AVATAR_URL || format('https://cdn.jsdelivr.net/gh/{0}@main/media/datamining-avatar.png', github.repository) }}
+        run: node src/index.js
+
+      - name: Commit state
+        if: always() && steps.scrape.outcome != 'cancelled'
+        env:
+          COMMIT_SOFT_FAIL: '1'
+        run: |
+          scripts/commit-state.sh "scrape: state" data/
