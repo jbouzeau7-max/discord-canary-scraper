@@ -1,15 +1,38 @@
 node_modules/
+npm-shrinkwrap.json
+yarn.lock
+
+# working download cache (re-fetched each run)
+assets/
+
+# full chunk dumps are huge — published via GitHub Releases instead
+builds/*/files/
+
+# local zip artifacts
+canary-*-chunks.zip
+*.zip
+
+# env / secrets
 .env
 .env.*
-!.env.example
-*.log
+*.pem
+
+# OS / editor
 .DS_Store
-chunks/
-css/
-media/
-builds/
-data/
-!.gitkeep
+.idea/
+.vscode/
+
+# générations de données temporaires (publish_data.js)
+data/.generations/
+*.tmp-*
+
+# mobile datamine working directory
+.mobile_datamine/
+
+# coverage reports
 coverage/
 .nyc_output/
-*.tgz
+
+# Python bytecode
+__pycache__/
+*.pyc
