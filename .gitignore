@@ -1,0 +1,15 @@
+node_modules/
+.env
+.env.*
+!.env.example
+*.log
+.DS_Store
+chunks/
+css/
+media/
+builds/
+data/
+!.gitkeep
+coverage/
+.nyc_output/
+*.tgz
