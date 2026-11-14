@@ -1,5 +1,5 @@
 name: Setup Node + deps
-description: Node 22 + npm install (auto-drops broken lockfile)
+description: Node 22 + npm ci à partir du lockfile versionné
 inputs:
   node-version:
     description: Version de Node
@@ -10,11 +10,6 @@ runs:
     - uses: actions/setup-node@v5
       with:
         node-version: ${{ inputs.node-version }}
-    - name: npm install
+    - name: npm ci
       shell: bash
-      run: |
-        if [ -f package-lock.json ] && grep -q 'sha512-example' package-lock.json 2>/dev/null; then
-          echo "Removing invalid package-lock.json"
-          rm -f package-lock.json
-        fi
-        npm install --no-audit --no-fund
+      run: npm ci --no-audit --no-fund

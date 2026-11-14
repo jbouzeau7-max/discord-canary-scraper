@@ -42,27 +42,16 @@ jobs:
           node-version: ${{ matrix.node }}
 
       - name: Install dependencies
-        run: |
-          # Drop broken lockfiles (placeholder integrities break npm)
-          if [ -f package-lock.json ] && grep -q 'sha512-example' package-lock.json 2>/dev/null; then
-            echo "Removing invalid package-lock.json"
-            rm -f package-lock.json
-          fi
-          npm install --no-audit --no-fund
+        run: npm ci --no-audit --no-fund
 
       - name: Syntax check
         run: npm run check
 
       - name: Lint
-        run: npm run lint || echo "lint warnings tolerated for now"
+        run: npm run lint
 
       - name: Unit tests
-        run: |
-          if ls test/*.test.js >/dev/null 2>&1; then
-            npm test
-          else
-            echo "No tests yet — skip"
-          fi
+        run: npm test
 
   workflows:
     name: Lint workflows
@@ -75,7 +64,7 @@ jobs:
       - name: actionlint
         run: |
           bash <(curl -sSfL https://raw.githubusercontent.com/rhysd/actionlint/v1.7.7/scripts/download-actionlint.bash) 1.7.7
-          ./actionlint -color || true
+          ./actionlint -color
 
   python:
     name: Python scripts
