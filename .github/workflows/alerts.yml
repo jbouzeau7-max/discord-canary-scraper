@@ -1,0 +1,36 @@
+name: Alerts
+
+on:
+  schedule:
+    - cron: '*/30 * * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: alerts
+  cancel-in-progress: false
+
+jobs:
+  alerts:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 1
+
+      - uses: ./.github/actions/setup
+
+      - name: Health / alerts check
+        env:
+          WEBHOOK_URL: ${{ secrets.WEBHOOK_URL }}
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+        run: |
+          echo "Alerts workflow placeholder"
+          if [ -f data/last_run_meta.json ]; then
+            cat data/last_run_meta.json
+          else
+            echo "No last_run_meta.json yet"
+          fi
