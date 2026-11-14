@@ -57,6 +57,36 @@ test('push simple + suppression dans un dossier', () => {
   assert.ok(fs.existsSync(path.join(b, 'builds/2/f')));
 });
 
+test('réindexe une écriture tardive dans un fichier du périmètre', () => {
+  const { a, b } = setup();
+  const hook = path.join(a, '.git', 'hooks', 'pre-commit');
+  const marker = path.join(a, '.git', 'late-write-done');
+  fs.writeFileSync(hook, `#!/bin/sh\nif [ ! -f "${marker}" ]; then\n  : > "${marker}"\n  printf '{"v":2}\\n' > data/s.json\nfi\n`);
+  fs.chmodSync(hook, 0o755);
+  sh(a, `echo '{"v":1}' > data/s.json`);
+
+  const output = sh(a, `${SCRIPT} "state" data/s.json`);
+  assert.match(output, /push OK/);
+  sh(b, 'git pull -q');
+  assert.equal(fs.readFileSync(path.join(b, 'data/s.json'), 'utf8').trim(), '{"v":2}');
+});
+
+test('autostash permet le rebase si un fichier hors périmètre reste unstaged', () => {
+  const { a, b } = setup();
+  const hook = path.join(a, '.git', 'hooks', 'pre-commit');
+  const marker = path.join(a, '.git', 'late-write-done');
+  fs.writeFileSync(hook, `#!/bin/sh\nif [ ! -f "${marker}" ]; then\n  : > "${marker}"\n  echo late > other.txt\nfi\n`);
+  fs.chmodSync(hook, 0o755);
+  sh(a, `echo '{"v":1}' > data/s.json`);
+
+  const output = sh(a, `${SCRIPT} "state" data/s.json`);
+  assert.match(output, /push OK/);
+  assert.equal(fs.readFileSync(path.join(a, 'other.txt'), 'utf8').trim(), 'late');
+  sh(b, 'git pull -q');
+  assert.equal(fs.readFileSync(path.join(b, 'data/s.json'), 'utf8').trim(), '{"v":1}');
+  assert.equal(fs.readFileSync(path.join(b, 'other.txt'), 'utf8').trim(), 'base');
+});
+
 test('conflit sur le même fichier : échec fermé, état distant conservé', () => {
   const { a, b } = setup();
   const recoveryPatch = path.join(path.dirname(a), 'recovery.patch');
@@ -112,4 +142,5 @@ test('les workflows n’ignorent pas les échecs de persistance d’état', () =
   assert.match(scrape, /COMMIT_RECOVERY_PATCH:/);
   assert.match(scrape, /actions\/upload-artifact@v4/);
   assert.match(scrape, /scrape-state-recovery-\$\{\{ github\.run_id \}\}/);
+  assert.match(scrape, /scrape-state-recovery\.patch\*/);
 });

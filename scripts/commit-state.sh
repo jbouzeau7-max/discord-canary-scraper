@@ -135,6 +135,8 @@ LOCAL_COMMIT="$(git rev-parse HEAD)"
 save_recovery_patch() {
   local commit="${1:-$LOCAL_COMMIT}"
   local tmp="${RECOVERY_PATCH}.tmp.$$"
+  local worktree_patch="${RECOVERY_PATCH}.worktree"
+  local worktree_tmp="${worktree_patch}.tmp.$$"
   mkdir -p "$(dirname "$RECOVERY_PATCH")"
   if git format-patch -1 --stdout "$commit" > "$tmp"; then
     mv -f -- "$tmp" "$RECOVERY_PATCH"
@@ -144,12 +146,45 @@ save_recovery_patch() {
     echo "::warning::commit-state: impossible de créer le patch de récupération"
     return 1
   fi
+  if git diff --quiet HEAD --; then
+    rm -f -- "$worktree_patch" "$worktree_tmp"
+  elif git diff HEAD --binary > "$worktree_tmp"; then
+    mv -f -- "$worktree_tmp" "$worktree_patch"
+    echo "commit-state: changements non commités sauvegardés: $worktree_patch"
+  else
+    rm -f -- "$worktree_tmp"
+    echo "::warning::commit-state: impossible de créer le patch des changements non commités"
+    return 1
+  fi
 }
+
+# Certains producteurs font une dernière écriture atomique après le premier
+# git add/commit. Reprend jusqu'à trois fois les changements du périmètre
+# demandé avant le rebase afin de ne pas laisser l'état data/ unstaged.
+for settle_attempt in 1 2 3; do
+  stage "$@"
+  if git diff --cached --quiet; then
+    break
+  fi
+  if ! prune_timestamp_only || git diff --cached --quiet; then
+    break
+  fi
+  git commit -q --amend --no-edit
+  LOCAL_COMMIT="$(git rev-parse HEAD)"
+done
+
+pending_target_changes="$(git diff --name-only -- "$@")"
+if [ -n "$pending_target_changes" ]; then
+  save_recovery_patch "$LOCAL_COMMIT" || true
+  echo "::error::commit-state: changements non indexés persistants dans les chemins demandés"
+  printf '%s\n' "$pending_target_changes"
+  exit 1
+fi
 
 for i in $(seq 1 "$MAX"); do
   git fetch -q origin "$BRANCH"
   REMOTE_HEAD="$(git rev-parse --verify FETCH_HEAD)"
-  if rebase_output="$(git rebase "$REMOTE_HEAD" 2>&1)"; then
+  if rebase_output="$(git rebase --autostash "$REMOTE_HEAD" 2>&1)"; then
     LOCAL_COMMIT="$(git rev-parse HEAD)"
     if git push -q origin "HEAD:$BRANCH"; then
       echo "commit-state: push OK (tentative $i) — $MSG"
@@ -157,8 +192,8 @@ for i in $(seq 1 "$MAX"); do
     fi
   else
     conflict_paths="$(git diff --name-only --diff-filter=U 2>/dev/null || true)"
-    save_recovery_patch "$LOCAL_COMMIT" || true
     git rebase --abort 2>/dev/null || true
+    save_recovery_patch "$LOCAL_COMMIT" || true
     echo "::error::commit-state: rebase impossible sur origin/$BRANCH ($REMOTE_HEAD); aucun reset ni ecrasement distant effectue"
     if [ -n "$conflict_paths" ]; then
       echo "commit-state: chemins en conflit:"
