@@ -1,0 +1,197 @@
+{
+  "scrapedAt": "2026-11-14T23:26:56.127Z",
+  "count": 4,
+  "experiments": [
+    {
+      "id": "2022-07_voice_in_threads",
+      "type": "guild",
+      "title": "2022-07_voice_in_threads",
+      "fingerprint": "1:100.00",
+      "treatments": [
+        {
+          "bucket": 1,
+          "label": "Variant 1",
+          "pct": 100
+        }
+      ],
+      "revision": 0,
+      "recent": false,
+      "hash": 944104242,
+      "source": "discord",
+      "hasGlobalPct": true,
+      "quality": "exact"
+    },
+    {
+      "id": "2022-11_default_disable_mass_mention",
+      "type": "guild",
+      "title": "2022-11_default_disable_mass_mention",
+      "fingerprint": "-1:100.00|1:100.00",
+      "treatments": [
+        {
+          "bucket": -1,
+          "label": "None",
+          "pct": 100
+        },
+        {
+          "bucket": 1,
+          "label": "Variant 1",
+          "pct": 100
+        }
+      ],
+      "revision": 0,
+      "recent": false,
+      "hash": 2462216785,
+      "source": "discord",
+      "hasGlobalPct": true,
+      "quality": "exact"
+    },
+    {
+      "id": "2023-02_guest_voice_invites",
+      "type": "guild",
+      "title": "2023-02_guest_voice_invites",
+      "fingerprint": "-1:100.00|1:100.00",
+      "treatments": [
+        {
+          "bucket": -1,
+          "label": "None",
+          "pct": 100
+        },
+        {
+          "bucket": 1,
+          "label": "Variant 1",
+          "pct": 100
+        }
+      ],
+      "revision": 1,
+      "recent": false,
+      "hash": 1727857487,
+      "source": "discord",
+      "hasGlobalPct": true,
+      "quality": "exact"
+    },
+    {
+      "id": "2025-08_default_invite_expiration_guild",
+      "type": "guild",
+      "title": "2025-08_default_invite_expiration_guild",
+      "fingerprint": "-1:5.00|2:95.00",
+      "treatments": [
+        {
+          "bucket": -1,
+          "label": "None",
+          "pct": 5
+        },
+        {
+          "bucket": 2,
+          "label": "Variant 2",
+          "pct": 95
+        }
+      ],
+      "revision": 1,
+      "recent": true,
+      "hash": 1508002362,
+      "source": "discord",
+      "hasGlobalPct": true,
+      "quality": "exact"
+    }
+  ],
+  "announced": {
+    "2022-07_voice_in_threads": "1:100.00",
+    "2022-11_default_disable_mass_mention": "-1:100.00|1:100.00",
+    "2023-02_guest_voice_invites": "-1:100.00|1:100.00",
+    "2025-08_default_invite_expiration_guild": "-1:5.00|2:95.00"
+  },
+  "ackExperiments": [
+    {
+      "id": "2022-07_voice_in_threads",
+      "type": "guild",
+      "title": "2022-07_voice_in_threads",
+      "fingerprint": "1:100.00",
+      "treatments": [
+        {
+          "bucket": 1,
+          "label": "Variant 1",
+          "pct": 100
+        }
+      ],
+      "revision": 0,
+      "recent": false,
+      "hash": 944104242,
+      "source": "discord",
+      "hasGlobalPct": true,
+      "quality": "exact"
+    },
+    {
+      "id": "2022-11_default_disable_mass_mention",
+      "type": "guild",
+      "title": "2022-11_default_disable_mass_mention",
+      "fingerprint": "-1:100.00|1:100.00",
+      "treatments": [
+        {
+          "bucket": -1,
+          "label": "None",
+          "pct": 100
+        },
+        {
+          "bucket": 1,
+          "label": "Variant 1",
+          "pct": 100
+        }
+      ],
+      "revision": 0,
+      "recent": false,
+      "hash": 2462216785,
+      "source": "discord",
+      "hasGlobalPct": true,
+      "quality": "exact"
+    },
+    {
+      "id": "2023-02_guest_voice_invites",
+      "type": "guild",
+      "title": "2023-02_guest_voice_invites",
+      "fingerprint": "-1:100.00|1:100.00",
+      "treatments": [
+        {
+          "bucket": -1,
+          "label": "None",
+          "pct": 100
+        },
+        {
+          "bucket": 1,
+          "label": "Variant 1",
+          "pct": 100
+        }
+      ],
+      "revision": 1,
+      "recent": false,
+      "hash": 1727857487,
+      "source": "discord",
+      "hasGlobalPct": true,
+      "quality": "exact"
+    },
+    {
+      "id": "2025-08_default_invite_expiration_guild",
+      "type": "guild",
+      "title": "2025-08_default_invite_expiration_guild",
+      "fingerprint": "-1:5.00|2:95.00",
+      "treatments": [
+        {
+          "bucket": -1,
+          "label": "None",
+          "pct": 5
+        },
+        {
+          "bucket": 2,
+          "label": "Variant 2",
+          "pct": 95
+        }
+      ],
+      "revision": 1,
+      "recent": true,
+      "hash": 1508002362,
+      "source": "discord",
+      "hasGlobalPct": true,
+      "quality": "exact"
+    }
+  ],
+  "pctPrecision": 2
+}

@@ -1,21 +1,46 @@
 {
- "generatedAt": "2026-11-12T08:10:19.546Z",
+ "generatedAt": "2026-11-14T23:26:57.578Z",
  "semantics": "couverture de l'espace de buckets (gist agnonotdev) — ni une proportion d'utilisateurs, ni une mesure d'accès réel ; multi-populations = couverture projetée non pondérée",
  "source": {
   "gistId": "e3e99062983e6bd0feaef833f14fd931",
   "htmlUrl": "https://gist.github.com/agnonotdev/e3e99062983e6bd0feaef833f14fd931",
-  "updatedAt": "2026-11-11T13:17:11Z",
-  "revision": "04a881dde8ce9f1b7c0eba2b7e737773d1c21b25"
+  "updatedAt": "2026-11-14T15:49:02Z",
+  "revision": "6d5357d8dc9a85dec1eb17f3d75ec01dfc43d330"
  },
  "stats": {
-  "total": 1036,
-  "user": 352,
-  "userData": 160,
-  "guild": 38,
-  "unclassified": 646,
-  "noData": 264
+  "total": 1043,
+  "user": 290,
+  "userData": 118,
+  "guild": 33,
+  "unclassified": 720,
+  "noData": 262
  },
  "experiments": [
+  {
+   "id": "2026-11-soundboard-upsells-brand-refresh",
+   "title": "2026-11-soundboard-upsells-brand-refresh",
+   "type": "user",
+   "hasData": true,
+   "totalsAvailable": true,
+   "ambiguous": false,
+   "projected": false,
+   "flags": [],
+   "treatmentPct": 25,
+   "projectedTreatmentPct": null,
+   "controlPct": 25,
+   "notEligiblePct": 0,
+   "unassignedPct": 50,
+   "byVariant": {
+    "0": {
+     "pct": 25,
+     "role": "control"
+    },
+    "1": {
+     "pct": 25,
+     "role": "treatment"
+    }
+   }
+  },
   {
    "id": "2026-11-screen-share-dtx",
    "title": "2026-11-screen-share-dtx",
@@ -215,6 +240,31 @@
    }
   },
   {
+   "id": "2026-10-shop-sku-nitro-upsell-refresh",
+   "title": "2026-10-shop-sku-nitro-upsell-refresh",
+   "type": "user",
+   "hasData": true,
+   "totalsAvailable": true,
+   "ambiguous": false,
+   "projected": false,
+   "flags": [],
+   "treatmentPct": 25,
+   "projectedTreatmentPct": null,
+   "controlPct": 25,
+   "notEligiblePct": 0,
+   "unassignedPct": 50,
+   "byVariant": {
+    "0": {
+     "pct": 25,
+     "role": "control"
+    },
+    "1": {
+     "pct": 25,
+     "role": "treatment"
+    }
+   }
+  },
+  {
    "id": "2026-10-shop-marketing-fatigue",
    "title": "2026-10-shop-marketing-fatigue",
    "type": "user",
@@ -330,22 +380,26 @@
    }
   },
   {
-   "id": "2026-10-purchase-history",
-   "title": "2026-10-purchase-history",
+   "id": "2026-10-profile-nitro-upsell-refresh",
+   "title": "2026-10-profile-nitro-upsell-refresh",
    "type": "user",
    "hasData": true,
    "totalsAvailable": true,
    "ambiguous": false,
    "projected": false,
    "flags": [],
-   "treatmentPct": 100,
+   "treatmentPct": 25,
    "projectedTreatmentPct": null,
-   "controlPct": 0,
+   "controlPct": 25,
    "notEligiblePct": 0,
-   "unassignedPct": 0,
+   "unassignedPct": 50,
    "byVariant": {
+    "0": {
+     "pct": 25,
+     "role": "control"
+    },
     "1": {
-     "pct": 100,
+     "pct": 25,
      "role": "treatment"
     }
    }
@@ -648,18 +702,18 @@
    "ambiguous": false,
    "projected": false,
    "flags": [],
-   "treatmentPct": 5,
+   "treatmentPct": 50,
    "projectedTreatmentPct": null,
-   "controlPct": 5,
+   "controlPct": 50,
    "notEligiblePct": 0,
-   "unassignedPct": 90,
+   "unassignedPct": 0,
    "byVariant": {
     "0": {
-     "pct": 5,
+     "pct": 50,
      "role": "control"
     },
     "1": {
-     "pct": 5,
+     "pct": 50,
      "role": "treatment"
     }
    }
@@ -819,6 +873,31 @@
    "byVariant": {}
   },
   {
+   "id": "2026-10-collectibles-upgraded-search",
+   "title": "2026-10-collectibles-upgraded-search",
+   "type": "user",
+   "hasData": true,
+   "totalsAvailable": true,
+   "ambiguous": false,
+   "projected": false,
+   "flags": [],
+   "treatmentPct": 50,
+   "projectedTreatmentPct": null,
+   "controlPct": 50,
+   "notEligiblePct": 0,
+   "unassignedPct": 0,
+   "byVariant": {
+    "0": {
+     "pct": 50,
+     "role": "control"
+    },
+    "1": {
+     "pct": 50,
+     "role": "treatment"
+    }
+   }
+  },
+  {
    "id": "2026-10-collectibles-marketing-client-cache",
    "title": "2026-10-collectibles-marketing-client-cache",
    "type": "user",
@@ -949,6 +1028,31 @@
     },
     "1": {
      "pct": 10,
+     "role": "treatment"
+    }
+   }
+  },
+  {
+   "id": "2026-10-bulk-nitro-gifting-discounts",
+   "title": "2026-10-bulk-nitro-gifting-discounts",
+   "type": "user",
+   "hasData": true,
+   "totalsAvailable": true,
+   "ambiguous": false,
+   "projected": false,
+   "flags": [],
+   "treatmentPct": 20,
+   "projectedTreatmentPct": null,
+   "controlPct": 20,
+   "notEligiblePct": 0,
+   "unassignedPct": 60,
+   "byVariant": {
+    "0": {
+     "pct": 20,
+     "role": "control"
+    },
+    "1": {
+     "pct": 20,
      "role": "treatment"
     }
    }
@@ -1243,31 +1347,6 @@
    }
   },
   {
-   "id": "2026-09-stream-zero-vad-leading",
-   "title": "2026-09-stream-zero-vad-leading",
-   "type": "user",
-   "hasData": true,
-   "totalsAvailable": true,
-   "ambiguous": false,
-   "projected": false,
-   "flags": [],
-   "treatmentPct": 10,
-   "projectedTreatmentPct": null,
-   "controlPct": 10,
-   "notEligiblePct": 0,
-   "unassignedPct": 80,
-   "byVariant": {
-    "0": {
-     "pct": 10,
-     "role": "control"
-    },
-    "1": {
-     "pct": 10,
-     "role": "treatment"
-    }
-   }
-  },
-  {
    "id": "2026-09-soundboard-quick-action",
    "title": "2026-09-soundboard-quick-action",
    "type": "user",
@@ -1418,22 +1497,25 @@
    "byVariant": {}
   },
   {
-   "id": "2026-09-server-onboarding-setup-progress",
-   "title": "2026-09-server-onboarding-setup-progress",
+   "id": "2026-09-safety-warning-age-text",
+   "title": "2026-09-safety-warning-age-text",
    "type": "user",
-   "hasData": false,
-   "totalsAvailable": false,
+   "hasData": true,
+   "totalsAvailable": true,
    "ambiguous": false,
    "projected": false,
-   "flags": [
-    "no_data"
-   ],
-   "treatmentPct": null,
+   "flags": [],
+   "treatmentPct": 100,
    "projectedTreatmentPct": null,
-   "controlPct": null,
-   "notEligiblePct": null,
-   "unassignedPct": null,
-   "byVariant": {}
+   "controlPct": 0,
+   "notEligiblePct": 0,
+   "unassignedPct": 0,
+   "byVariant": {
+    "1": {
+     "pct": 100,
+     "role": "treatment"
+    }
+   }
   },
   {
    "id": "2026-09-safety-flows-legacy-required-actions",
@@ -1732,50 +1814,8 @@
    }
   },
   {
-   "id": "2026-09-new-horizontal-scroll-shared",
-   "title": "2026-09-new-horizontal-scroll-shared",
-   "type": "user",
-   "hasData": true,
-   "totalsAvailable": true,
-   "ambiguous": false,
-   "projected": false,
-   "flags": [],
-   "treatmentPct": 100,
-   "projectedTreatmentPct": null,
-   "controlPct": 0,
-   "notEligiblePct": 0,
-   "unassignedPct": 0,
-   "byVariant": {
-    "1": {
-     "pct": 100,
-     "role": "treatment"
-    }
-   }
-  },
-  {
    "id": "2026-09-multi-sku-embed-rendering",
    "title": "2026-09-multi-sku-embed-rendering",
-   "type": "user",
-   "hasData": true,
-   "totalsAvailable": true,
-   "ambiguous": false,
-   "projected": false,
-   "flags": [],
-   "treatmentPct": 100,
-   "projectedTreatmentPct": null,
-   "controlPct": 0,
-   "notEligiblePct": 0,
-   "unassignedPct": 0,
-   "byVariant": {
-    "1": {
-     "pct": 100,
-     "role": "treatment"
-    }
-   }
-  },
-  {
-   "id": "2026-09-mobile-sticker-picker-upsell-restyle",
-   "title": "2026-09-mobile-sticker-picker-upsell-restyle",
    "type": "user",
    "hasData": true,
    "totalsAvailable": true,
@@ -2180,27 +2220,6 @@
    "byVariant": {}
   },
   {
-   "id": "2026-09-application-test-mode-quick-access",
-   "title": "2026-09-application-test-mode-quick-access",
-   "type": "user",
-   "hasData": true,
-   "totalsAvailable": true,
-   "ambiguous": false,
-   "projected": false,
-   "flags": [],
-   "treatmentPct": 100,
-   "projectedTreatmentPct": null,
-   "controlPct": 0,
-   "notEligiblePct": 0,
-   "unassignedPct": 0,
-   "byVariant": {
-    "1": {
-     "pct": 100,
-     "role": "treatment"
-    }
-   }
-  },
-  {
    "id": "2026-09-agc2-mobile",
    "title": "2026-09-agc2-mobile",
    "type": "user",
@@ -2351,71 +2370,8 @@
    }
   },
   {
-   "id": "2026-08-top-soundboard-sounds-mobile",
-   "title": "2026-08-top-soundboard-sounds-mobile",
-   "type": "user",
-   "hasData": true,
-   "totalsAvailable": true,
-   "ambiguous": false,
-   "projected": false,
-   "flags": [],
-   "treatmentPct": 100,
-   "projectedTreatmentPct": null,
-   "controlPct": 0,
-   "notEligiblePct": 0,
-   "unassignedPct": 0,
-   "byVariant": {
-    "1": {
-     "pct": 100,
-     "role": "treatment"
-    }
-   }
-  },
-  {
-   "id": "2026-08-top-soundboard-sounds",
-   "title": "2026-08-top-soundboard-sounds",
-   "type": "user",
-   "hasData": true,
-   "totalsAvailable": true,
-   "ambiguous": false,
-   "projected": false,
-   "flags": [],
-   "treatmentPct": 100,
-   "projectedTreatmentPct": null,
-   "controlPct": 0,
-   "notEligiblePct": 0,
-   "unassignedPct": 0,
-   "byVariant": {
-    "1": {
-     "pct": 100,
-     "role": "treatment"
-    }
-   }
-  },
-  {
    "id": "2026-08-tiny-bronco",
    "title": "2026-08-tiny-bronco",
-   "type": "user",
-   "hasData": true,
-   "totalsAvailable": true,
-   "ambiguous": false,
-   "projected": false,
-   "flags": [],
-   "treatmentPct": 100,
-   "projectedTreatmentPct": null,
-   "controlPct": 0,
-   "notEligiblePct": 0,
-   "unassignedPct": 0,
-   "byVariant": {
-    "1": {
-     "pct": 100,
-     "role": "treatment"
-    }
-   }
-  },
-  {
-   "id": "2026-08-timestamp-autocomplete-mobile",
-   "title": "2026-08-timestamp-autocomplete-mobile",
    "type": "user",
    "hasData": true,
    "totalsAvailable": true,
@@ -2477,27 +2433,6 @@
    }
   },
   {
-   "id": "2026-08-scheduled-messages",
-   "title": "2026-08-scheduled-messages",
-   "type": "user",
-   "hasData": true,
-   "totalsAvailable": true,
-   "ambiguous": false,
-   "projected": false,
-   "flags": [],
-   "treatmentPct": 100,
-   "projectedTreatmentPct": null,
-   "controlPct": 0,
-   "notEligiblePct": 0,
-   "unassignedPct": 0,
-   "byVariant": {
-    "2": {
-     "pct": 100,
-     "role": "treatment"
-    }
-   }
-  },
-  {
    "id": "2026-08-rive-web-perf",
    "title": "2026-08-rive-web-perf",
    "type": "user",
@@ -2521,24 +2456,6 @@
      "role": "treatment"
     }
    }
-  },
-  {
-   "id": "2026-08-profile-read-state-v1",
-   "title": "2026-08-profile-read-state-v1",
-   "type": "user",
-   "hasData": false,
-   "totalsAvailable": false,
-   "ambiguous": false,
-   "projected": false,
-   "flags": [
-    "no_data"
-   ],
-   "treatmentPct": null,
-   "projectedTreatmentPct": null,
-   "controlPct": null,
-   "notEligiblePct": null,
-   "unassignedPct": null,
-   "byVariant": {}
   },
   {
    "id": "2026-08-profile-embed-share-button",
@@ -2583,24 +2500,6 @@
    }
   },
   {
-   "id": "2026-08-premium-gifting-gogo-promotion",
-   "title": "2026-08-premium-gifting-gogo-promotion",
-   "type": "user",
-   "hasData": false,
-   "totalsAvailable": false,
-   "ambiguous": false,
-   "projected": false,
-   "flags": [
-    "no_data"
-   ],
-   "treatmentPct": null,
-   "projectedTreatmentPct": null,
-   "controlPct": null,
-   "notEligiblePct": null,
-   "unassignedPct": null,
-   "byVariant": {}
-  },
-  {
    "id": "2026-08-no-fill-logging",
    "title": "2026-08-no-fill-logging",
    "type": "user",
@@ -2616,27 +2515,6 @@
    "unassignedPct": 0,
    "byVariant": {
     "2": {
-     "pct": 100,
-     "role": "treatment"
-    }
-   }
-  },
-  {
-   "id": "2026-08-nitro-tenure-badge-withheld-state",
-   "title": "2026-08-nitro-tenure-badge-withheld-state",
-   "type": "user",
-   "hasData": true,
-   "totalsAvailable": true,
-   "ambiguous": false,
-   "projected": false,
-   "flags": [],
-   "treatmentPct": 100,
-   "projectedTreatmentPct": null,
-   "controlPct": 0,
-   "notEligiblePct": 0,
-   "unassignedPct": 0,
-   "byVariant": {
-    "1": {
      "pct": 100,
      "role": "treatment"
     }
@@ -2661,52 +2539,6 @@
    "byVariant": {}
   },
   {
-   "id": "2026-08-mobile-soundboard-sound-preview-menu",
-   "title": "2026-08-mobile-soundboard-sound-preview-menu",
-   "type": "user",
-   "hasData": true,
-   "totalsAvailable": true,
-   "ambiguous": false,
-   "projected": false,
-   "flags": [],
-   "treatmentPct": 50,
-   "projectedTreatmentPct": null,
-   "controlPct": 50,
-   "notEligiblePct": 0,
-   "unassignedPct": 0,
-   "byVariant": {
-    "0": {
-     "pct": 50,
-     "role": "control"
-    },
-    "1": {
-     "pct": 50,
-     "role": "treatment"
-    }
-   }
-  },
-  {
-   "id": "2026-08-mobile-emoji-picker-upsell-restyle",
-   "title": "2026-08-mobile-emoji-picker-upsell-restyle",
-   "type": "user",
-   "hasData": true,
-   "totalsAvailable": true,
-   "ambiguous": false,
-   "projected": false,
-   "flags": [],
-   "treatmentPct": 100,
-   "projectedTreatmentPct": null,
-   "controlPct": 0,
-   "notEligiblePct": 0,
-   "unassignedPct": 0,
-   "byVariant": {
-    "1": {
-     "pct": 100,
-     "role": "treatment"
-    }
-   }
-  },
-  {
    "id": "2026-08-mark-channel-unread",
    "title": "2026-08-mark-channel-unread",
    "type": "user",
@@ -2723,31 +2555,6 @@
    "notEligiblePct": null,
    "unassignedPct": null,
    "byVariant": {}
-  },
-  {
-   "id": "2026-08-guilds-bar-media-state-store",
-   "title": "2026-08-guilds-bar-media-state-store",
-   "type": "user",
-   "hasData": true,
-   "totalsAvailable": true,
-   "ambiguous": false,
-   "projected": false,
-   "flags": [],
-   "treatmentPct": 10,
-   "projectedTreatmentPct": null,
-   "controlPct": 10,
-   "notEligiblePct": 0,
-   "unassignedPct": 80,
-   "byVariant": {
-    "0": {
-     "pct": 10,
-     "role": "control"
-    },
-    "1": {
-     "pct": 10,
-     "role": "treatment"
-    }
-   }
   },
   {
    "id": "2026-08-gsh-subs-activity-bar",
@@ -2768,35 +2575,6 @@
    "byVariant": {}
   },
   {
-   "id": "2026-08-gift-recipient-display-name-search",
-   "title": "2026-08-gift-recipient-display-name-search",
-   "type": "user",
-   "hasData": true,
-   "totalsAvailable": true,
-   "ambiguous": false,
-   "projected": false,
-   "flags": [],
-   "treatmentPct": 75,
-   "projectedTreatmentPct": null,
-   "controlPct": 0,
-   "notEligiblePct": 0,
-   "unassignedPct": 25,
-   "byVariant": {
-    "1": {
-     "pct": 25,
-     "role": "treatment"
-    },
-    "2": {
-     "pct": 25,
-     "role": "treatment"
-    },
-    "3": {
-     "pct": 25,
-     "role": "treatment"
-    }
-   }
-  },
-  {
    "id": "2026-08-game-mode",
    "title": "2026-08-game-mode",
    "type": "user",
@@ -2815,47 +2593,8 @@
    "byVariant": {}
   },
   {
-   "id": "2026-08-game-community-add-server-entry",
-   "title": "2026-08-game-community-add-server-entry",
-   "type": "user",
-   "hasData": true,
-   "totalsAvailable": true,
-   "ambiguous": false,
-   "projected": false,
-   "flags": [],
-   "treatmentPct": 100,
-   "projectedTreatmentPct": null,
-   "controlPct": 0,
-   "notEligiblePct": 0,
-   "unassignedPct": 0,
-   "byVariant": {
-    "2": {
-     "pct": 100,
-     "role": "treatment"
-    }
-   }
-  },
-  {
    "id": "2026-08-forward-age-restricted-destinations",
    "title": "2026-08-forward-age-restricted-destinations",
-   "type": "user",
-   "hasData": false,
-   "totalsAvailable": false,
-   "ambiguous": false,
-   "projected": false,
-   "flags": [
-    "no_data"
-   ],
-   "treatmentPct": null,
-   "projectedTreatmentPct": null,
-   "controlPct": null,
-   "notEligiblePct": null,
-   "unassignedPct": null,
-   "byVariant": {}
-  },
-  {
-   "id": "2026-08-favorites-server",
-   "title": "2026-08-favorites-server",
    "type": "user",
    "hasData": false,
    "totalsAvailable": false,
@@ -2921,31 +2660,6 @@
     },
     "3": {
      "pct": 25,
-     "role": "treatment"
-    }
-   }
-  },
-  {
-   "id": "2026-08-compress-logs",
-   "title": "2026-08-compress-logs",
-   "type": "user",
-   "hasData": true,
-   "totalsAvailable": true,
-   "ambiguous": false,
-   "projected": false,
-   "flags": [],
-   "treatmentPct": 50,
-   "projectedTreatmentPct": null,
-   "controlPct": 50,
-   "notEligiblePct": 0,
-   "unassignedPct": 0,
-   "byVariant": {
-    "0": {
-     "pct": 50,
-     "role": "control"
-    },
-    "1": {
-     "pct": 50,
      "role": "treatment"
     }
    }
@@ -3051,27 +2765,6 @@
    }
   },
   {
-   "id": "2026-07-you-bar-guild-tag",
-   "title": "2026-07-you-bar-guild-tag",
-   "type": "user",
-   "hasData": true,
-   "totalsAvailable": true,
-   "ambiguous": false,
-   "projected": false,
-   "flags": [],
-   "treatmentPct": 100,
-   "projectedTreatmentPct": null,
-   "controlPct": 0,
-   "notEligiblePct": 0,
-   "unassignedPct": 0,
-   "byVariant": {
-    "1": {
-     "pct": 100,
-     "role": "treatment"
-    }
-   }
-  },
-  {
    "id": "2026-07-wishlist-direct-to-gifting",
    "title": "2026-07-wishlist-direct-to-gifting",
    "type": "user",
@@ -3135,27 +2828,6 @@
    }
   },
   {
-   "id": "2026-07-smag-mobile-wishlist-suggestions",
-   "title": "2026-07-smag-mobile-wishlist-suggestions",
-   "type": "user",
-   "hasData": true,
-   "totalsAvailable": true,
-   "ambiguous": false,
-   "projected": false,
-   "flags": [],
-   "treatmentPct": 100,
-   "projectedTreatmentPct": null,
-   "controlPct": 0,
-   "notEligiblePct": 0,
-   "unassignedPct": 0,
-   "byVariant": {
-    "1": {
-     "pct": 100,
-     "role": "treatment"
-    }
-   }
-  },
-  {
    "id": "2026-07-smag-dm-sidebar-nitro-recommendation",
    "title": "2026-07-smag-dm-sidebar-nitro-recommendation",
    "type": "user",
@@ -3172,27 +2844,6 @@
    "notEligiblePct": null,
    "unassignedPct": null,
    "byVariant": {}
-  },
-  {
-   "id": "2026-07-shop-this-look-mobile",
-   "title": "2026-07-shop-this-look-mobile",
-   "type": "user",
-   "hasData": true,
-   "totalsAvailable": true,
-   "ambiguous": false,
-   "projected": false,
-   "flags": [],
-   "treatmentPct": 100,
-   "projectedTreatmentPct": null,
-   "controlPct": 0,
-   "notEligiblePct": 0,
-   "unassignedPct": 0,
-   "byVariant": {
-    "1": {
-     "pct": 100,
-     "role": "treatment"
-    }
-   }
   },
   {
    "id": "2026-07-renewable-end-date-sort",
@@ -3370,19 +3021,22 @@
    "id": "2026-07-onyx",
    "title": "2026-07-onyx",
    "type": "user",
-   "hasData": false,
-   "totalsAvailable": false,
+   "hasData": true,
+   "totalsAvailable": true,
    "ambiguous": false,
    "projected": false,
-   "flags": [
-    "no_data"
-   ],
-   "treatmentPct": null,
+   "flags": [],
+   "treatmentPct": 100,
    "projectedTreatmentPct": null,
-   "controlPct": null,
-   "notEligiblePct": null,
-   "unassignedPct": null,
-   "byVariant": {}
+   "controlPct": 0,
+   "notEligiblePct": 0,
+   "unassignedPct": 0,
+   "byVariant": {
+    "1": {
+     "pct": 100,
+     "role": "treatment"
+    }
+   }
   },
   {
    "id": "2026-07-nvenc-reconstructed-frames",
@@ -3406,60 +3060,6 @@
    }
   },
   {
-   "id": "2026-07-mobile-emoji-suggestions",
-   "title": "2026-07-mobile-emoji-suggestions",
-   "type": "user",
-   "hasData": true,
-   "totalsAvailable": true,
-   "ambiguous": false,
-   "projected": false,
-   "flags": [],
-   "treatmentPct": 30,
-   "projectedTreatmentPct": null,
-   "controlPct": 10,
-   "notEligiblePct": 0,
-   "unassignedPct": 60,
-   "byVariant": {
-    "0": {
-     "pct": 10,
-     "role": "control"
-    },
-    "1": {
-     "pct": 10,
-     "role": "treatment"
-    },
-    "2": {
-     "pct": 10,
-     "role": "treatment"
-    },
-    "3": {
-     "pct": 10,
-     "role": "treatment"
-    }
-   }
-  },
-  {
-   "id": "2026-07-mobile-boosting-optimizations",
-   "title": "2026-07-mobile-boosting-optimizations",
-   "type": "user",
-   "hasData": true,
-   "totalsAvailable": true,
-   "ambiguous": false,
-   "projected": false,
-   "flags": [],
-   "treatmentPct": 100,
-   "projectedTreatmentPct": null,
-   "controlPct": 0,
-   "notEligiblePct": 0,
-   "unassignedPct": 0,
-   "byVariant": {
-    "4": {
-     "pct": 100,
-     "role": "treatment"
-    }
-   }
-  },
-  {
    "id": "2026-07-manual-age-assurance-fallback",
    "title": "2026-07-manual-age-assurance-fallback",
    "type": "user",
@@ -3476,27 +3076,6 @@
    "notEligiblePct": null,
    "unassignedPct": null,
    "byVariant": {}
-  },
-  {
-   "id": "2026-07-krisp-cpu-disablement",
-   "title": "2026-07-krisp-cpu-disablement",
-   "type": "user",
-   "hasData": true,
-   "totalsAvailable": true,
-   "ambiguous": false,
-   "projected": false,
-   "flags": [],
-   "treatmentPct": 100,
-   "projectedTreatmentPct": null,
-   "controlPct": 0,
-   "notEligiblePct": 0,
-   "unassignedPct": 0,
-   "byVariant": {
-    "1": {
-     "pct": 100,
-     "role": "treatment"
-    }
-   }
   },
   {
    "id": "2026-07-ios-attribution",
@@ -3556,39 +3135,6 @@
    "byVariant": {}
   },
   {
-   "id": "2026-07-custom-typing-indicator",
-   "title": "2026-07-custom-typing-indicator",
-   "type": "user",
-   "hasData": true,
-   "totalsAvailable": true,
-   "ambiguous": false,
-   "projected": false,
-   "flags": [],
-   "treatmentPct": 90,
-   "projectedTreatmentPct": null,
-   "controlPct": 10,
-   "notEligiblePct": 0,
-   "unassignedPct": 0,
-   "byVariant": {
-    "0": {
-     "pct": 10,
-     "role": "control"
-    },
-    "1": {
-     "pct": 50,
-     "role": "treatment"
-    },
-    "2": {
-     "pct": 10,
-     "role": "treatment"
-    },
-    "3": {
-     "pct": 30,
-     "role": "treatment"
-    }
-   }
-  },
-  {
    "id": "2026-07-custom-app-store-overlay",
    "title": "2026-07-custom-app-store-overlay",
    "type": "user",
@@ -3610,19 +3156,22 @@
    "id": "2026-07-cobalt",
    "title": "2026-07-cobalt",
    "type": "user",
-   "hasData": false,
-   "totalsAvailable": false,
+   "hasData": true,
+   "totalsAvailable": true,
    "ambiguous": false,
    "projected": false,
-   "flags": [
-    "no_data"
-   ],
-   "treatmentPct": null,
+   "flags": [],
+   "treatmentPct": 100,
    "projectedTreatmentPct": null,
-   "controlPct": null,
-   "notEligiblePct": null,
-   "unassignedPct": null,
-   "byVariant": {}
+   "controlPct": 0,
+   "notEligiblePct": 0,
+   "unassignedPct": 0,
+   "byVariant": {
+    "1": {
+     "pct": 100,
+     "role": "treatment"
+    }
+   }
   },
   {
    "id": "2026-07-clips-on-profile-viewer",
@@ -3851,24 +3400,6 @@
    }
   },
   {
-   "id": "2026-06-systemwide-echo-cancellation-for-people-who-refuse-to-wear-headphones",
-   "title": "2026-06-systemwide-echo-cancellation-for-people-who-refuse-to-wear-headphones",
-   "type": "user",
-   "hasData": false,
-   "totalsAvailable": false,
-   "ambiguous": false,
-   "projected": false,
-   "flags": [
-    "no_data"
-   ],
-   "treatmentPct": null,
-   "projectedTreatmentPct": null,
-   "controlPct": null,
-   "notEligiblePct": null,
-   "unassignedPct": null,
-   "byVariant": {}
-  },
-  {
    "id": "2026-06-server-ladder",
    "title": "2026-06-server-ladder",
    "type": "user",
@@ -3998,73 +3529,6 @@
    }
   },
   {
-   "id": "2026-06-mobile-server-tag",
-   "title": "2026-06-mobile-server-tag",
-   "type": "user",
-   "hasData": true,
-   "totalsAvailable": true,
-   "ambiguous": false,
-   "projected": false,
-   "flags": [],
-   "treatmentPct": 100,
-   "projectedTreatmentPct": null,
-   "controlPct": 0,
-   "notEligiblePct": 0,
-   "unassignedPct": 0,
-   "byVariant": {
-    "1": {
-     "pct": 100,
-     "role": "treatment"
-    }
-   }
-  },
-  {
-   "id": "2026-06-mobile-media-viewer-share",
-   "title": "2026-06-mobile-media-viewer-share",
-   "type": "user",
-   "hasData": true,
-   "totalsAvailable": true,
-   "ambiguous": false,
-   "projected": false,
-   "flags": [],
-   "treatmentPct": 10,
-   "projectedTreatmentPct": null,
-   "controlPct": 10,
-   "notEligiblePct": 0,
-   "unassignedPct": 80,
-   "byVariant": {
-    "0": {
-     "pct": 10,
-     "role": "control"
-    },
-    "1": {
-     "pct": 10,
-     "role": "treatment"
-    }
-   }
-  },
-  {
-   "id": "2026-06-improved-shop-loading",
-   "title": "2026-06-improved-shop-loading",
-   "type": "user",
-   "hasData": true,
-   "totalsAvailable": true,
-   "ambiguous": false,
-   "projected": false,
-   "flags": [],
-   "treatmentPct": 100,
-   "projectedTreatmentPct": null,
-   "controlPct": 0,
-   "notEligiblePct": 0,
-   "unassignedPct": 0,
-   "byVariant": {
-    "1": {
-     "pct": 100,
-     "role": "treatment"
-    }
-   }
-  },
-  {
    "id": "2026-06-hero-shelf-ad-tile",
    "title": "2026-06-hero-shelf-ad-tile",
    "type": "user",
@@ -4083,73 +3547,6 @@
    "byVariant": {}
   },
   {
-   "id": "2026-06-gummy-bears",
-   "title": "2026-06-gummy-bears",
-   "type": "user",
-   "hasData": true,
-   "totalsAvailable": true,
-   "ambiguous": false,
-   "projected": false,
-   "flags": [],
-   "treatmentPct": 100,
-   "projectedTreatmentPct": null,
-   "controlPct": 0,
-   "notEligiblePct": 0,
-   "unassignedPct": 0,
-   "byVariant": {
-    "1": {
-     "pct": 100,
-     "role": "treatment"
-    }
-   }
-  },
-  {
-   "id": "2026-06-gifting-badge-desktop",
-   "title": "2026-06-gifting-badge-desktop",
-   "type": "user",
-   "hasData": true,
-   "totalsAvailable": true,
-   "ambiguous": false,
-   "projected": false,
-   "flags": [],
-   "treatmentPct": 100,
-   "projectedTreatmentPct": null,
-   "controlPct": 0,
-   "notEligiblePct": 0,
-   "unassignedPct": 0,
-   "byVariant": {
-    "1": {
-     "pct": 100,
-     "role": "treatment"
-    }
-   }
-  },
-  {
-   "id": "2026-06-gift-acom-order",
-   "title": "2026-06-gift-acom-order",
-   "type": "user",
-   "hasData": true,
-   "totalsAvailable": true,
-   "ambiguous": false,
-   "projected": false,
-   "flags": [],
-   "treatmentPct": 25,
-   "projectedTreatmentPct": null,
-   "controlPct": 25,
-   "notEligiblePct": 0,
-   "unassignedPct": 50,
-   "byVariant": {
-    "0": {
-     "pct": 25,
-     "role": "control"
-    },
-    "1": {
-     "pct": 25,
-     "role": "treatment"
-    }
-   }
-  },
-  {
    "id": "2026-06-game-server-hosting-in-shop",
    "title": "2026-06-game-server-hosting-in-shop",
    "type": "user",
@@ -4166,27 +3563,6 @@
    "notEligiblePct": null,
    "unassignedPct": null,
    "byVariant": {}
-  },
-  {
-   "id": "2026-06-dont-badge-muted-vcs",
-   "title": "2026-06-dont-badge-muted-vcs",
-   "type": "user",
-   "hasData": true,
-   "totalsAvailable": true,
-   "ambiguous": false,
-   "projected": false,
-   "flags": [],
-   "treatmentPct": 100,
-   "projectedTreatmentPct": null,
-   "controlPct": 0,
-   "notEligiblePct": 0,
-   "unassignedPct": 0,
-   "byVariant": {
-    "1": {
-     "pct": 100,
-     "role": "treatment"
-    }
-   }
   },
   {
    "id": "2026-06-desktop-tti-http-cdt",
@@ -4279,24 +3655,6 @@
    "byVariant": {}
   },
   {
-   "id": "2026-06-battlenet-social-sdk-migration",
-   "title": "2026-06-battlenet-social-sdk-migration",
-   "type": "user",
-   "hasData": false,
-   "totalsAvailable": false,
-   "ambiguous": false,
-   "projected": false,
-   "flags": [
-    "no_data"
-   ],
-   "treatmentPct": null,
-   "projectedTreatmentPct": null,
-   "controlPct": null,
-   "notEligiblePct": null,
-   "unassignedPct": null,
-   "byVariant": {}
-  },
-  {
    "id": "2026-06-av1-encode-linux",
    "title": "2026-06-av1-encode-linux",
    "type": "user",
@@ -4331,27 +3689,6 @@
    "notEligiblePct": null,
    "unassignedPct": null,
    "byVariant": {}
-  },
-  {
-   "id": "2026-05-use-ad-analytics-interface",
-   "title": "2026-05-use-ad-analytics-interface",
-   "type": "user",
-   "hasData": true,
-   "totalsAvailable": true,
-   "ambiguous": false,
-   "projected": false,
-   "flags": [],
-   "treatmentPct": 100,
-   "projectedTreatmentPct": null,
-   "controlPct": 0,
-   "notEligiblePct": 0,
-   "unassignedPct": 0,
-   "byVariant": {
-    "5": {
-     "pct": 100,
-     "role": "treatment"
-    }
-   }
   },
   {
    "id": "2026-05-spatial-audio-for-voice",
@@ -4426,27 +3763,6 @@
    "byVariant": {}
   },
   {
-   "id": "2026-05-mana-type-consolidation",
-   "title": "2026-05-mana-type-consolidation",
-   "type": "user",
-   "hasData": true,
-   "totalsAvailable": true,
-   "ambiguous": false,
-   "projected": false,
-   "flags": [],
-   "treatmentPct": 100,
-   "projectedTreatmentPct": null,
-   "controlPct": 0,
-   "notEligiblePct": 0,
-   "unassignedPct": 0,
-   "byVariant": {
-    "1": {
-     "pct": 100,
-     "role": "treatment"
-    }
-   }
-  },
-  {
    "id": "2026-05-ios-video-stabilization",
    "title": "2026-05-ios-video-stabilization",
    "type": "user",
@@ -4509,18 +3825,18 @@
    "ambiguous": false,
    "projected": false,
    "flags": [],
-   "treatmentPct": 10,
+   "treatmentPct": 17.5,
    "projectedTreatmentPct": null,
-   "controlPct": 10,
+   "controlPct": 17.5,
    "notEligiblePct": 0,
-   "unassignedPct": 80,
+   "unassignedPct": 65,
    "byVariant": {
     "0": {
-     "pct": 10,
+     "pct": 17.5,
      "role": "control"
     },
     "1": {
-     "pct": 10,
+     "pct": 17.5,
      "role": "treatment"
     }
    }
@@ -4542,27 +3858,6 @@
    "notEligiblePct": null,
    "unassignedPct": null,
    "byVariant": {}
-  },
-  {
-   "id": "2026-05-disable-camera-simulcast",
-   "title": "2026-05-disable-camera-simulcast",
-   "type": "user",
-   "hasData": true,
-   "totalsAvailable": true,
-   "ambiguous": false,
-   "projected": false,
-   "flags": [],
-   "treatmentPct": 100,
-   "projectedTreatmentPct": null,
-   "controlPct": 0,
-   "notEligiblePct": 0,
-   "unassignedPct": 0,
-   "byVariant": {
-    "1": {
-     "pct": 100,
-     "role": "treatment"
-    }
-   }
   },
   {
    "id": "2026-05-dice-roll-slash-command",
@@ -4619,24 +3914,6 @@
    "byVariant": {}
   },
   {
-   "id": "2026-05-bounty-stale-refresh-quest-home",
-   "title": "2026-05-bounty-stale-refresh-quest-home",
-   "type": "user",
-   "hasData": false,
-   "totalsAvailable": false,
-   "ambiguous": false,
-   "projected": false,
-   "flags": [
-    "no_data"
-   ],
-   "treatmentPct": null,
-   "projectedTreatmentPct": null,
-   "controlPct": null,
-   "notEligiblePct": null,
-   "unassignedPct": null,
-   "byVariant": {}
-  },
-  {
    "id": "2026-05-av1-bitrate-tuning",
    "title": "2026-05-av1-bitrate-tuning",
    "type": "user",
@@ -4664,24 +3941,6 @@
   {
    "id": "2026-05-app-store-overlay-feature-gate",
    "title": "2026-05-app-store-overlay-feature-gate",
-   "type": "user",
-   "hasData": false,
-   "totalsAvailable": false,
-   "ambiguous": false,
-   "projected": false,
-   "flags": [
-    "no_data"
-   ],
-   "treatmentPct": null,
-   "projectedTreatmentPct": null,
-   "controlPct": null,
-   "notEligiblePct": null,
-   "unassignedPct": null,
-   "byVariant": {}
-  },
-  {
-   "id": "2026-05-age-restricted-application-commands",
-   "title": "2026-05-age-restricted-application-commands",
    "type": "user",
    "hasData": false,
    "totalsAvailable": false,
@@ -4924,24 +4183,6 @@
    "byVariant": {}
   },
   {
-   "id": "2026-04-icymi-staff-only",
-   "title": "2026-04-icymi-staff-only",
-   "type": "user",
-   "hasData": false,
-   "totalsAvailable": false,
-   "ambiguous": false,
-   "projected": false,
-   "flags": [
-    "no_data"
-   ],
-   "treatmentPct": null,
-   "projectedTreatmentPct": null,
-   "controlPct": null,
-   "notEligiblePct": null,
-   "unassignedPct": null,
-   "byVariant": {}
-  },
-  {
    "id": "2026-04-http-request-sample",
    "title": "2026-04-http-request-sample",
    "type": "user",
@@ -5066,66 +4307,6 @@
    "notEligiblePct": null,
    "unassignedPct": null,
    "byVariant": {}
-  },
-  {
-   "id": "2026-04-declarative-notif-settings",
-   "title": "2026-04-declarative-notif-settings",
-   "type": "user",
-   "hasData": true,
-   "totalsAvailable": true,
-   "ambiguous": false,
-   "projected": false,
-   "flags": [],
-   "treatmentPct": 100,
-   "projectedTreatmentPct": null,
-   "controlPct": 0,
-   "notEligiblePct": 0,
-   "unassignedPct": 0,
-   "byVariant": {
-    "1": {
-     "pct": 100,
-     "role": "treatment"
-    }
-   }
-  },
-  {
-   "id": "2026-04-composed-quest-player",
-   "title": "2026-04-composed-quest-player",
-   "type": "user",
-   "hasData": false,
-   "totalsAvailable": false,
-   "ambiguous": false,
-   "projected": false,
-   "flags": [
-    "no_data"
-   ],
-   "treatmentPct": null,
-   "projectedTreatmentPct": null,
-   "controlPct": null,
-   "notEligiblePct": null,
-   "unassignedPct": null,
-   "byVariant": {}
-  },
-  {
-   "id": "2026-04-collectibles-profile-frames-purchase",
-   "title": "2026-04-collectibles-profile-frames-purchase",
-   "type": "user",
-   "hasData": true,
-   "totalsAvailable": true,
-   "ambiguous": false,
-   "projected": false,
-   "flags": [],
-   "treatmentPct": 15,
-   "projectedTreatmentPct": null,
-   "controlPct": 0,
-   "notEligiblePct": 0,
-   "unassignedPct": 85,
-   "byVariant": {
-    "1": {
-     "pct": 15,
-     "role": "treatment"
-    }
-   }
   },
   {
    "id": "2026-04-browser-transceiver-padding-removal",
@@ -5257,27 +4438,6 @@
    "byVariant": {}
   },
   {
-   "id": "2026-03-nitro-acom-subscription",
-   "title": "2026-03-nitro-acom-subscription",
-   "type": "user",
-   "hasData": true,
-   "totalsAvailable": true,
-   "ambiguous": false,
-   "projected": false,
-   "flags": [],
-   "treatmentPct": 100,
-   "projectedTreatmentPct": null,
-   "controlPct": 0,
-   "notEligiblePct": 0,
-   "unassignedPct": 0,
-   "byVariant": {
-    "1": {
-     "pct": 100,
-     "role": "treatment"
-    }
-   }
-  },
-  {
    "id": "2026-03-new-server-boost-system-messages",
    "title": "2026-03-new-server-boost-system-messages",
    "type": "user",
@@ -5323,53 +4483,6 @@
    "notEligiblePct": null,
    "unassignedPct": null,
    "byVariant": {}
-  },
-  {
-   "id": "2026-03-mobile-quest-home-red-dot-notification",
-   "title": "2026-03-mobile-quest-home-red-dot-notification",
-   "type": "user",
-   "hasData": false,
-   "totalsAvailable": false,
-   "ambiguous": false,
-   "projected": false,
-   "flags": [
-    "no_data"
-   ],
-   "treatmentPct": null,
-   "projectedTreatmentPct": null,
-   "controlPct": null,
-   "notEligiblePct": null,
-   "unassignedPct": null,
-   "byVariant": {}
-  },
-  {
-   "id": "2026-03-message-bookmarks",
-   "title": "2026-03-message-bookmarks",
-   "type": "user",
-   "hasData": true,
-   "totalsAvailable": true,
-   "ambiguous": false,
-   "projected": false,
-   "flags": [],
-   "treatmentPct": 10,
-   "projectedTreatmentPct": null,
-   "controlPct": 5,
-   "notEligiblePct": 0,
-   "unassignedPct": 85,
-   "byVariant": {
-    "0": {
-     "pct": 5,
-     "role": "control"
-    },
-    "1": {
-     "pct": 5,
-     "role": "treatment"
-    },
-    "2": {
-     "pct": 5,
-     "role": "treatment"
-    }
-   }
   },
   {
    "id": "2026-03-media-play-metrics",
@@ -5483,84 +4596,6 @@
    }
   },
   {
-   "id": "2026-03-icymi-staff-debugging-utility",
-   "title": "2026-03-icymi-staff-debugging-utility",
-   "type": "user",
-   "hasData": false,
-   "totalsAvailable": false,
-   "ambiguous": false,
-   "projected": false,
-   "flags": [
-    "no_data"
-   ],
-   "treatmentPct": null,
-   "projectedTreatmentPct": null,
-   "controlPct": null,
-   "notEligiblePct": null,
-   "unassignedPct": null,
-   "byVariant": {}
-  },
-  {
-   "id": "2026-03-icymi-desktop",
-   "title": "2026-03-icymi-desktop",
-   "type": "user",
-   "hasData": false,
-   "totalsAvailable": false,
-   "ambiguous": false,
-   "projected": false,
-   "flags": [
-    "no_data"
-   ],
-   "treatmentPct": null,
-   "projectedTreatmentPct": null,
-   "controlPct": null,
-   "notEligiblePct": null,
-   "unassignedPct": null,
-   "byVariant": {}
-  },
-  {
-   "id": "2026-03-friend-request-message",
-   "title": "2026-03-friend-request-message",
-   "type": "user",
-   "hasData": true,
-   "totalsAvailable": true,
-   "ambiguous": false,
-   "projected": false,
-   "flags": [],
-   "treatmentPct": 100,
-   "projectedTreatmentPct": null,
-   "controlPct": 0,
-   "notEligiblePct": 0,
-   "unassignedPct": 0,
-   "byVariant": {
-    "1": {
-     "pct": 100,
-     "role": "treatment"
-    }
-   }
-  },
-  {
-   "id": "2026-03-denormalized-perks-access-read",
-   "title": "2026-03-denormalized-perks-access-read",
-   "type": "user",
-   "hasData": true,
-   "totalsAvailable": true,
-   "ambiguous": false,
-   "projected": false,
-   "flags": [],
-   "treatmentPct": 100,
-   "projectedTreatmentPct": null,
-   "controlPct": 0,
-   "notEligiblePct": 0,
-   "unassignedPct": 0,
-   "byVariant": {
-    "2": {
-     "pct": 100,
-     "role": "treatment"
-    }
-   }
-  },
-  {
    "id": "2026-03-debug-experiment",
    "title": "2026-03-debug-experiment",
    "type": "user",
@@ -5617,24 +4652,6 @@
   {
    "id": "2026-03-content-inventory-memberlist-and-ranker",
    "title": "2026-03-content-inventory-memberlist-and-ranker",
-   "type": "user",
-   "hasData": false,
-   "totalsAvailable": false,
-   "ambiguous": false,
-   "projected": false,
-   "flags": [
-    "no_data"
-   ],
-   "treatmentPct": null,
-   "projectedTreatmentPct": null,
-   "controlPct": null,
-   "notEligiblePct": null,
-   "unassignedPct": null,
-   "byVariant": {}
-  },
-  {
-   "id": "2026-03-clips-experiment",
-   "title": "2026-03-clips-experiment",
    "type": "user",
    "hasData": false,
    "totalsAvailable": false,
@@ -5725,66 +4742,6 @@
   {
    "id": "2026-02-wgc-dirty-regions-all",
    "title": "2026-02-wgc-dirty-regions-all",
-   "type": "user",
-   "hasData": false,
-   "totalsAvailable": false,
-   "ambiguous": false,
-   "projected": false,
-   "flags": [
-    "no_data"
-   ],
-   "treatmentPct": null,
-   "projectedTreatmentPct": null,
-   "controlPct": null,
-   "notEligiblePct": null,
-   "unassignedPct": null,
-   "byVariant": {}
-  },
-  {
-   "id": "2026-02-silence-warning-aggression",
-   "title": "2026-02-silence-warning-aggression",
-   "type": "user",
-   "hasData": true,
-   "totalsAvailable": true,
-   "ambiguous": false,
-   "projected": false,
-   "flags": [],
-   "treatmentPct": 100,
-   "projectedTreatmentPct": null,
-   "controlPct": 0,
-   "notEligiblePct": 0,
-   "unassignedPct": 0,
-   "byVariant": {
-    "1": {
-     "pct": 100,
-     "role": "treatment"
-    }
-   }
-  },
-  {
-   "id": "2026-02-referral-reminder-dc",
-   "title": "2026-02-referral-reminder-dc",
-   "type": "user",
-   "hasData": true,
-   "totalsAvailable": true,
-   "ambiguous": false,
-   "projected": false,
-   "flags": [],
-   "treatmentPct": 0.4,
-   "projectedTreatmentPct": null,
-   "controlPct": 0,
-   "notEligiblePct": 0,
-   "unassignedPct": 99.6,
-   "byVariant": {
-    "1": {
-     "pct": 0.4,
-     "role": "treatment"
-    }
-   }
-  },
-  {
-   "id": "2026-02-pubsub-bulk-ban-users",
-   "title": "2026-02-pubsub-bulk-ban-users",
    "type": "user",
    "hasData": false,
    "totalsAvailable": false,
@@ -5987,27 +4944,6 @@
    }
   },
   {
-   "id": "2026-02-go-live-video-preset-resolution",
-   "title": "2026-02-go-live-video-preset-resolution",
-   "type": "user",
-   "hasData": true,
-   "totalsAvailable": true,
-   "ambiguous": false,
-   "projected": false,
-   "flags": [],
-   "treatmentPct": 100,
-   "projectedTreatmentPct": null,
-   "controlPct": 0,
-   "notEligiblePct": 0,
-   "unassignedPct": 0,
-   "byVariant": {
-    "1": {
-     "pct": 100,
-     "role": "treatment"
-    }
-   }
-  },
-  {
    "id": "2026-02-go-live-hdr",
    "title": "2026-02-go-live-hdr",
    "type": "user",
@@ -6151,24 +5087,6 @@
    "byVariant": {}
   },
   {
-   "id": "2026-02-content-classification-presence-filter",
-   "title": "2026-02-content-classification-presence-filter",
-   "type": "user",
-   "hasData": false,
-   "totalsAvailable": false,
-   "ambiguous": false,
-   "projected": false,
-   "flags": [
-    "no_data"
-   ],
-   "treatmentPct": null,
-   "projectedTreatmentPct": null,
-   "controlPct": null,
-   "notEligiblePct": null,
-   "unassignedPct": null,
-   "byVariant": {}
-  },
-  {
    "id": "2026-02-capture-target-window",
    "title": "2026-02-capture-target-window",
    "type": "user",
@@ -6212,27 +5130,6 @@
    "byVariant": {}
   },
   {
-   "id": "2026-02-activity-privacy-matching",
-   "title": "2026-02-activity-privacy-matching",
-   "type": "user",
-   "hasData": true,
-   "totalsAvailable": true,
-   "ambiguous": false,
-   "projected": false,
-   "flags": [],
-   "treatmentPct": 0,
-   "projectedTreatmentPct": null,
-   "controlPct": 21,
-   "notEligiblePct": 0,
-   "unassignedPct": 79,
-   "byVariant": {
-    "0": {
-     "pct": 21,
-     "role": "control"
-    }
-   }
-  },
-  {
    "id": "2026-01-wmf-gpu-encode-intel",
    "title": "2026-01-wmf-gpu-encode-intel",
    "type": "user",
@@ -6269,27 +5166,6 @@
    "byVariant": {}
   },
   {
-   "id": "2026-01-less-personalized-ads",
-   "title": "2026-01-less-personalized-ads",
-   "type": "user",
-   "hasData": true,
-   "totalsAvailable": true,
-   "ambiguous": false,
-   "projected": false,
-   "flags": [],
-   "treatmentPct": 10,
-   "projectedTreatmentPct": null,
-   "controlPct": 0,
-   "notEligiblePct": 0,
-   "unassignedPct": 90,
-   "byVariant": {
-    "1": {
-     "pct": 10,
-     "role": "treatment"
-    }
-   }
-  },
-  {
    "id": "2026-01-ios-push-notif-json-fix",
    "title": "2026-01-ios-push-notif-json-fix",
    "type": "user",
@@ -6324,31 +5200,6 @@
    "notEligiblePct": null,
    "unassignedPct": null,
    "byVariant": {}
-  },
-  {
-   "id": "2026-01-favorites-server",
-   "title": "2026-01-favorites-server",
-   "type": "user",
-   "hasData": true,
-   "totalsAvailable": true,
-   "ambiguous": false,
-   "projected": false,
-   "flags": [],
-   "treatmentPct": 10,
-   "projectedTreatmentPct": null,
-   "controlPct": 10,
-   "notEligiblePct": 0,
-   "unassignedPct": 80,
-   "byVariant": {
-    "0": {
-     "pct": 10,
-     "role": "control"
-    },
-    "2": {
-     "pct": 10,
-     "role": "treatment"
-    }
-   }
   },
   {
    "id": "2026-01-bug-reporter",
@@ -6451,53 +5302,6 @@
    "byVariant": {}
   },
   {
-   "id": "2025-12-orb-redemption-thru-orders",
-   "title": "2025-12-orb-redemption-thru-orders",
-   "type": "user",
-   "hasData": false,
-   "totalsAvailable": false,
-   "ambiguous": false,
-   "projected": false,
-   "flags": [
-    "no_data"
-   ],
-   "treatmentPct": null,
-   "projectedTreatmentPct": null,
-   "controlPct": null,
-   "notEligiblePct": null,
-   "unassignedPct": null,
-   "byVariant": {}
-  },
-  {
-   "id": "2025-12-nitro-s-rewards",
-   "title": "2025-12-nitro-s-rewards",
-   "type": "user",
-   "hasData": true,
-   "totalsAvailable": true,
-   "ambiguous": false,
-   "projected": false,
-   "flags": [],
-   "treatmentPct": 20,
-   "projectedTreatmentPct": null,
-   "controlPct": 10,
-   "notEligiblePct": 0,
-   "unassignedPct": 70,
-   "byVariant": {
-    "0": {
-     "pct": 10,
-     "role": "control"
-    },
-    "1": {
-     "pct": 10,
-     "role": "treatment"
-    },
-    "2": {
-     "pct": 10,
-     "role": "treatment"
-    }
-   }
-  },
-  {
    "id": "2025-12-katsudon",
    "title": "2025-12-katsudon",
    "type": "user",
@@ -6532,27 +5336,6 @@
    "notEligiblePct": null,
    "unassignedPct": null,
    "byVariant": {}
-  },
-  {
-   "id": "2025-12-09-ptt-education",
-   "title": "2025-12-09-ptt-education",
-   "type": "user",
-   "hasData": true,
-   "totalsAvailable": true,
-   "ambiguous": false,
-   "projected": false,
-   "flags": [],
-   "treatmentPct": 100,
-   "projectedTreatmentPct": null,
-   "controlPct": 0,
-   "notEligiblePct": 0,
-   "unassignedPct": 0,
-   "byVariant": {
-    "2": {
-     "pct": 100,
-     "role": "treatment"
-    }
-   }
   },
   {
    "id": "2025-11-video-end-card-v2",
@@ -6638,27 +5421,6 @@
    "byVariant": {}
   },
   {
-   "id": "2025-11-hide-manual-link",
-   "title": "2025-11-hide-manual-link",
-   "type": "user",
-   "hasData": true,
-   "totalsAvailable": true,
-   "ambiguous": false,
-   "projected": false,
-   "flags": [],
-   "treatmentPct": 100,
-   "projectedTreatmentPct": null,
-   "controlPct": 0,
-   "notEligiblePct": 0,
-   "unassignedPct": 0,
-   "byVariant": {
-    "1": {
-     "pct": 100,
-     "role": "treatment"
-    }
-   }
-  },
-  {
    "id": "2025-11-global-frame-pool-lock",
    "title": "2025-11-global-frame-pool-lock",
    "type": "user",
@@ -6700,27 +5462,6 @@
    "notEligiblePct": null,
    "unassignedPct": null,
    "byVariant": {}
-  },
-  {
-   "id": "2025-11_tida_webform",
-   "title": "2025-11_tida_webform",
-   "type": "user",
-   "hasData": true,
-   "totalsAvailable": true,
-   "ambiguous": false,
-   "projected": false,
-   "flags": [],
-   "treatmentPct": 100,
-   "projectedTreatmentPct": null,
-   "controlPct": 0,
-   "notEligiblePct": 0,
-   "unassignedPct": 0,
-   "byVariant": {
-    "1": {
-     "pct": 100,
-     "role": "treatment"
-    }
-   }
   },
   {
    "id": "2025-10-mana-date-inputs",
@@ -6775,27 +5516,6 @@
    "notEligiblePct": null,
    "unassignedPct": null,
    "byVariant": {}
-  },
-  {
-   "id": "2025-10-friend-request-alerts-v2",
-   "title": "2025-10-friend-request-alerts-v2",
-   "type": "user",
-   "hasData": true,
-   "totalsAvailable": true,
-   "ambiguous": false,
-   "projected": false,
-   "flags": [],
-   "treatmentPct": 100,
-   "projectedTreatmentPct": null,
-   "controlPct": 0,
-   "notEligiblePct": 0,
-   "unassignedPct": 0,
-   "byVariant": {
-    "1": {
-     "pct": 100,
-     "role": "treatment"
-    }
-   }
   },
   {
    "id": "2025-10-force-sdr-emojis-stickers",
@@ -7062,24 +5782,6 @@
   {
    "id": "2025-04-desktop-refresh-fast-follows",
    "title": "2025-04-desktop-refresh-fast-follows",
-   "type": "user",
-   "hasData": false,
-   "totalsAvailable": false,
-   "ambiguous": false,
-   "projected": false,
-   "flags": [
-    "no_data"
-   ],
-   "treatmentPct": null,
-   "projectedTreatmentPct": null,
-   "controlPct": null,
-   "notEligiblePct": null,
-   "unassignedPct": null,
-   "byVariant": {}
-  },
-  {
-   "id": "2025-01-allow-nonstaff-to-preview-app-collections",
-   "title": "2025-01-allow-nonstaff-to-preview-app-collections",
    "type": "user",
    "hasData": false,
    "totalsAvailable": false,
