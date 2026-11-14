@@ -44,6 +44,5 @@ jobs:
       - name: Save quest state
         if: always() && steps.quests.outcome != 'cancelled'
         env:
-          COMMIT_SOFT_FAIL: '1'
         run: |
-          bash scripts/commit-state.sh "quests: state" data/quests.json || true
+          bash scripts/commit-state.sh "quests: state" data/quests.json

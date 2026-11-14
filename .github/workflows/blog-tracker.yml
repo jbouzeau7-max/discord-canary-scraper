@@ -37,6 +37,5 @@ jobs:
       - name: Save state
         if: always() && steps.track.outcome != 'cancelled'
         env:
-          COMMIT_SOFT_FAIL: '1'
         run: |
-          bash scripts/commit-state.sh "blog-tracker: state" data/blog_tracker.json || true
+          bash scripts/commit-state.sh "blog-tracker: state" data/blog_tracker.json

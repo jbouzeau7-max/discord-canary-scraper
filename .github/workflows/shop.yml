@@ -37,6 +37,5 @@ jobs:
       - name: Save state
         if: always() && steps.shop.outcome != 'cancelled'
         env:
-          COMMIT_SOFT_FAIL: '1'
         run: |
-          bash scripts/commit-state.sh "shop: state" data/shop_items.json || true
+          bash scripts/commit-state.sh "shop: state" data/shop_items.json

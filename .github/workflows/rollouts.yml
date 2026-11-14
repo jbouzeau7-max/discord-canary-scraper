@@ -42,6 +42,5 @@ jobs:
       - name: Save state
         if: always() && steps.rollouts.outcome != 'cancelled'
         env:
-          COMMIT_SOFT_FAIL: '1'
         run: |
-          bash scripts/commit-state.sh "rollouts: state" data/ || true
+          bash scripts/commit-state.sh "rollouts: state" data/

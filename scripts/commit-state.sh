@@ -5,11 +5,11 @@
 #
 # - fichiers : ajoutes avec -f (meme s'ils sont ignores)
 # - dossiers : ajoutes avec -A (suppressions incluses, .gitignore respecte)
-# - conflit au rebase : on repart de origin/main (reset --hard) et on reaplique
-#   UNIQUEMENT les chemins de cet etat -> jamais d'ecrasement des autres fichiers
+# - conflit au rebase : echec ferme, sans reset ni reapplication d'un dossier
+#   potentiellement perime qui ecraserait des fichiers ajoutes a distance
 # - JSON : ignore les changements purement metadonnees (scrapedAt, updatedAt...)
 #
-# Env : COMMIT_MAX_ATTEMPTS (8), COMMIT_SOFT_FAIL=1 -> exit 0 si push impossible.
+# Env : COMMIT_MAX_ATTEMPTS (8).
 set -euo pipefail
 
 MSG="${1:?message de commit requis}"
@@ -22,9 +22,6 @@ BRANCH="${COMMIT_BRANCH:-main}"
 git config user.name >/dev/null 2>&1 || git config user.name "github-actions[bot]"
 git config user.email >/dev/null 2>&1 || git config user.email "github-actions[bot]@users.noreply.github.com"
 
-SNAP="$(mktemp -d)"
-trap 'rm -rf "$SNAP"' EXIT
-
 stage() {
   for p in "$@"; do
     if [ -d "$p" ]; then
@@ -33,24 +30,6 @@ stage() {
       git add -f -- "$p"
     elif git ls-files --error-unmatch -- "$p" >/dev/null 2>&1; then
       git add -A -- "$p"
-    fi
-  done
-}
-
-snapshot() {
-  for p in "$@"; do
-    [ -e "$p" ] || continue
-    mkdir -p "$SNAP/$(dirname "$p")"
-    cp -a "$p" "$SNAP/$p"
-  done
-}
-
-restore() {
-  for p in "$@"; do
-    if [ -e "$SNAP/$p" ]; then
-      rm -rf "$p"
-      mkdir -p "$(dirname "$p")"
-      cp -a "$SNAP/$p" "$p"
     fi
   done
 }
@@ -149,7 +128,6 @@ if git diff --cached --quiet; then
   exit 0
 fi
 
-snapshot "$@"
 git commit -q -m "$MSG"
 
 for i in $(seq 1 "$MAX"); do
@@ -160,32 +138,13 @@ for i in $(seq 1 "$MAX"); do
       exit 0
     fi
   else
-    echo "commit-state: conflit — reapplication de l'etat sur origin/$BRANCH"
     git rebase --abort 2>/dev/null || true
-    git reset -q --hard "origin/$BRANCH"
-    restore "$@"
-    stage "$@"
-    if git diff --cached --quiet; then
-      echo "commit-state: etat deja identique sur origin"
-      exit 0
-    fi
-    if ! prune_timestamp_only; then
-      echo "commit-state: uniquement des timestamps apres conflit — pas de commit"
-      exit 0
-    fi
-    if git diff --cached --quiet; then
-      echo "commit-state: aucun changement utile apres conflit"
-      exit 0
-    fi
-    git commit -q -m "$MSG"
-    if git push -q origin "HEAD:$BRANCH"; then
-      echo "commit-state: push OK apres conflit (tentative $i)"
-      exit 0
-    fi
+    echo "::error::commit-state: conflit avec origin/$BRANCH; aucun reset ni ecrasement distant effectue"
+    echo "commit-state: le commit local reste dans le workspace; relancer le producteur apres synchronisation"
+    exit 1
   fi
   sleep $(( i * 2 ))
 done
 
 echo "::error::commit-state: push impossible apres $MAX tentatives — $MSG"
-if [ "${COMMIT_SOFT_FAIL:-0}" = "1" ]; then exit 0; fi
 exit 1

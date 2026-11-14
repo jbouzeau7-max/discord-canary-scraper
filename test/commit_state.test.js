@@ -5,7 +5,7 @@
  */
 const test = require('node:test');
 const assert = require('node:assert/strict');
-const { execFileSync } = require('child_process');
+const { execFileSync, spawnSync } = require('child_process');
 const fs = require('fs');
 const os = require('os');
 const path = require('path');
@@ -18,6 +18,14 @@ function sh(cwd, cmd, env = {}) {
     env: { ...process.env, GIT_TERMINAL_PROMPT: '0', ...env },
     encoding: 'utf8',
     stdio: ['ignore', 'pipe', 'pipe'],
+  });
+}
+
+function run(cwd, cmd, env = {}) {
+  return spawnSync('bash', ['-c', cmd], {
+    cwd,
+    env: { ...process.env, GIT_TERMINAL_PROMPT: '0', ...env },
+    encoding: 'utf8',
   });
 }
 
@@ -49,15 +57,27 @@ test('push simple + suppression dans un dossier', () => {
   assert.ok(fs.existsSync(path.join(b, 'builds/2/f')));
 });
 
-test('conflit : garde NOTRE état sans écraser les autres fichiers distants', () => {
+test('conflit sur le même fichier : échec fermé, état distant conservé', () => {
   const { a, b } = setup();
   sh(b, `echo '{"v":"remote"}' > data/s.json && echo remote > other.txt && git commit -qam remote && git push -q`);
   sh(a, `echo '{"v":"local"}' > data/s.json`);
-  const out = sh(a, `${SCRIPT} "state" data/s.json`);
-  assert.match(out, /push OK/);
-  sh(b, 'git pull -q');
-  assert.equal(fs.readFileSync(path.join(b, 'data/s.json'), 'utf8').trim(), '{"v":"local"}');
+  const result = run(a, `${SCRIPT} "state" data/s.json`);
+  assert.notEqual(result.status, 0, result.stdout + result.stderr);
+  assert.match(result.stdout + result.stderr, /conflit/i);
+  assert.equal(fs.readFileSync(path.join(b, 'data/s.json'), 'utf8').trim(), '{"v":"remote"}');
   assert.equal(fs.readFileSync(path.join(b, 'other.txt'), 'utf8').trim(), 'remote');
+});
+
+test('conflit avec un chemin dossier : ne supprime jamais un fichier distant ajouté', () => {
+  const { a, b } = setup();
+  sh(b, `echo '{"v":"remote"}' > data/s.json && echo remote > data/remote.json && git add data && git commit -qm remote && git push -q`);
+  sh(a, `echo '{"v":"local"}' > data/s.json && echo local > data/local.json`);
+  const result = run(a, `${SCRIPT} "state" data`);
+  assert.notEqual(result.status, 0, result.stdout + result.stderr);
+  assert.match(result.stdout + result.stderr, /conflit/i);
+  assert.equal(fs.readFileSync(path.join(b, 'data/s.json'), 'utf8').trim(), '{"v":"remote"}');
+  assert.equal(fs.readFileSync(path.join(b, 'data/remote.json'), 'utf8').trim(), 'remote');
+  assert.ok(!fs.existsSync(path.join(b, 'data/local.json')));
 });
 
 test('commit concurrent sur un autre fichier → simple rebase', () => {
@@ -68,4 +88,16 @@ test('commit concurrent sur un autre fichier → simple rebase', () => {
   sh(b, 'git pull -q');
   assert.equal(fs.readFileSync(path.join(b, 'other.txt'), 'utf8').trim(), 'remote');
   assert.equal(fs.readFileSync(path.join(b, 'data/s.json'), 'utf8').trim(), '{"v":2}');
+});
+
+test('les workflows n’ignorent pas les échecs de persistance d’état', () => {
+  const dir = path.join(__dirname, '..', '.github', 'workflows');
+  for (const file of fs.readdirSync(dir).filter((name) => name.endsWith('.yml'))) {
+    const source = fs.readFileSync(path.join(dir, file), 'utf8');
+    if (!source.includes('scripts/commit-state.sh')) continue;
+    assert.ok(!source.includes('COMMIT_SOFT_FAIL'), `${file} ne doit pas masquer un conflit`);
+    for (const line of source.split('\n').filter((row) => row.includes('scripts/commit-state.sh'))) {
+      assert.ok(!line.includes('|| true'), `${file} ne doit pas ignorer l'échec de commit-state`);
+    }
+  }
 });

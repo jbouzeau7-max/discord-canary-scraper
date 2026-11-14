@@ -43,6 +43,5 @@ jobs:
       - name: Save seen
         if: always() && steps.xwatch.outcome != 'cancelled'
         env:
-          COMMIT_SOFT_FAIL: '1'
         run: |
-          bash scripts/commit-state.sh "x-watch: seen" data/seen_x_posts.json || true
+          bash scripts/commit-state.sh "x-watch: seen" data/seen_x_posts.json

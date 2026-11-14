@@ -35,6 +35,5 @@ jobs:
 
       - name: Commit media
         env:
-          COMMIT_SOFT_FAIL: '1'
         run: |
-          bash scripts/commit-state.sh "media: photos de profil Actus" media || true
+          bash scripts/commit-state.sh "media: photos de profil Actus" media
