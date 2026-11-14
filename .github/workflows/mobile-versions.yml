@@ -1,23 +1,24 @@
-name: Mobile Versions
+name: Mobile Versions + Experiments
 
 on:
   schedule:
+    # Deux contrôles horaires décalés pour réduire l’attente maximale des builds mobiles.
     - cron: '15,45 * * * *'
   workflow_dispatch:
   repository_dispatch:
-    types: [trigger-mobile]
+    types: [trigger-mobile, trigger-mobile-versions]
 
 permissions:
   contents: write
 
 concurrency:
-  group: mobile-versions
+  group: mobile-scrape
   cancel-in-progress: false
 
 jobs:
   mobile:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 40
     steps:
       - uses: actions/checkout@v5
         with:
@@ -26,14 +27,47 @@ jobs:
       - uses: ./.github/actions/setup
 
       - name: Mobile versions
-        id: mobile
+        id: versions
         env:
-          MOBILE_WEBHOOK_URL: ${{ secrets.MOBILE_WEBHOOK_URL }}
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          MOBILE_WEBHOOK_URL: ${{ secrets.MOBILE_WEBHOOK_URL }}
+          # API GitHub pour éviter le quota anonyme sur les sources Android.
+          GITHUB_TOKEN: ${{ github.token }}
           ORBIT_BOT_NAME: Datamining
         run: node src/mobile_versions.js
 
-      - name: Save state
-        if: always() && steps.mobile.outcome != 'cancelled'
+      - name: Commit versions state
+        if: always() && steps.versions.outcome == 'success'
+        run: bash scripts/commit-state.sh "mobile versions" data/mobile_versions.json data/external_versions.json
+
+      - name: Mobile experiments from client files
+        id: files
+        if: always() && steps.versions.outcome != 'cancelled'
+        env:
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          MOBILE_DATAMINE_REPO: ${{ secrets.MOBILE_DATAMINE_REPO }}
+          ORBIT_BOT_NAME: Datamining
+        run: node src/mobile_from_files.js
+
+      - name: Commit mobile experiments state
+        if: always() && steps.files.outcome == 'success'
         run: |
-          bash scripts/commit-state.sh "mobile: state" data/mobile_versions.json data/mobile_experiments.json
+          bash scripts/commit-state.sh "mobile files: experiments state" data/mobile_experiments.json data/known_mobile_experiment_ids.json
+
+      - name: Experiment rollouts
+        id: rollouts
+        if: always() && steps.versions.outcome != 'cancelled'
+        env:
+          EXP_FP_SAMPLES: '50'
+          EXP_FP_DELAY_MS: '5000'
+        run: node src/experiment_rollouts.js
+
+      - name: Commit experiment rollouts state
+        if: always() && steps.rollouts.outcome == 'success'
+        run: bash scripts/commit-state.sh "experiment rollouts" data/experiment_rollouts.json
+
+      - name: Fail if a collector failed
+        if: always() && (steps.versions.outcome == 'failure' || steps.files.outcome == 'failure' || steps.rollouts.outcome == 'failure')
+        run: |
+          echo "versions=${{ steps.versions.outcome }} files=${{ steps.files.outcome }} rollouts=${{ steps.rollouts.outcome }}"
+          exit 1
