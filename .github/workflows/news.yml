@@ -35,6 +35,5 @@ jobs:
 
       - name: Save seen
         if: always() && steps.news.outcome != 'cancelled'
-        env:
         run: |
           bash scripts/commit-state.sh "news: seen" data/seen_news.json

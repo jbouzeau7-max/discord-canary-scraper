@@ -96,6 +96,7 @@ test('les workflows n’ignorent pas les échecs de persistance d’état', () =
     const source = fs.readFileSync(path.join(dir, file), 'utf8');
     if (!source.includes('scripts/commit-state.sh')) continue;
     assert.ok(!source.includes('COMMIT_SOFT_FAIL'), `${file} ne doit pas masquer un conflit`);
+    assert.doesNotMatch(source, /^\s+env:\s*\n\s+run:/m, `${file} ne doit pas contenir un env vide`);
     for (const line of source.split('\n').filter((row) => row.includes('scripts/commit-state.sh'))) {
       assert.ok(!line.includes('|| true'), `${file} ne doit pas ignorer l'échec de commit-state`);
     }

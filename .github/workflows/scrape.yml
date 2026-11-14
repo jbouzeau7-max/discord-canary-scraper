@@ -40,6 +40,5 @@ jobs:
 
       - name: Commit state
         if: always() && steps.scrape.outcome != 'cancelled'
-        env:
         run: |
           bash scripts/commit-state.sh "scrape: state" data/

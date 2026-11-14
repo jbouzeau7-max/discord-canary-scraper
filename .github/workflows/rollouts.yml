@@ -41,6 +41,5 @@ jobs:
 
       - name: Save state
         if: always() && steps.rollouts.outcome != 'cancelled'
-        env:
         run: |
           bash scripts/commit-state.sh "rollouts: state" data/

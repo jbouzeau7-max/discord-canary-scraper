@@ -36,6 +36,5 @@ jobs:
 
       - name: Save state
         if: always() && steps.shop.outcome != 'cancelled'
-        env:
         run: |
           bash scripts/commit-state.sh "shop: state" data/shop_items.json

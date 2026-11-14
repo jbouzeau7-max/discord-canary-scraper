@@ -43,6 +43,5 @@ jobs:
 
       - name: Save quest state
         if: always() && steps.quests.outcome != 'cancelled'
-        env:
         run: |
           bash scripts/commit-state.sh "quests: state" data/quests.json

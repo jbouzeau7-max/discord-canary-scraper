@@ -35,6 +35,5 @@ jobs:
 
       - name: Save state
         if: always() && steps.mobile.outcome != 'cancelled'
-        env:
         run: |
           bash scripts/commit-state.sh "mobile: state" data/mobile_versions.json data/mobile_experiments.json

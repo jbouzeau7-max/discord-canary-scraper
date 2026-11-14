@@ -42,6 +42,5 @@ jobs:
 
       - name: Save seen
         if: always() && steps.xwatch.outcome != 'cancelled'
-        env:
         run: |
           bash scripts/commit-state.sh "x-watch: seen" data/seen_x_posts.json
