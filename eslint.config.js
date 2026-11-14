@@ -1,28 +1,34 @@
-export default [
+// Config ESLint (flat config, ESLint 9). Lancer : npm run lint
+const globals = require('globals');
+
+module.exports = [
   {
+    ignores: [
+      'node_modules/**',
+      'builds/**',
+      'assets/**',
+      'data/**',
+      'chunks/**',
+      'css/**',
+      // Worker Cloudflare (module ESM, hors périmètre lint Node CommonJS)
+      'relay/**',
+      // Fragment injecté dans quests.js (pas un module autonome)
+      'scripts/build_quest_v2_snippet.js',
+    ],
+  },
+  {
+    files: ['**/*.js'],
     languageOptions: {
       ecmaVersion: 2022,
-      sourceType: "module",
+      sourceType: 'commonjs',
       globals: {
-        console: "readonly",
-        process: "readonly",
-        Buffer: "readonly",
-        __dirname: "readonly",
-        __filename: "readonly",
-        module: "readonly",
-        require: "readonly",
-        exports: "readonly",
-        setTimeout: "readonly",
-        clearTimeout: "readonly",
-        setInterval: "readonly",
-        clearInterval: "readonly",
-        fetch: "readonly",
-        URL: "readonly",
-        URLSearchParams: "readonly"
-      }
+        ...globals.node,
+        ...globals.es2021,
+      },
     },
     rules: {
-      "no-unused-vars": ["warn", { "argsIgnorePattern": "^_" }]
-    }
-  }
+      'no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
+      'no-console': 'off',
+    },
+  },
 ];
