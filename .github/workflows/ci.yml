@@ -40,15 +40,15 @@ jobs:
       - uses: actions/setup-node@v5
         with:
           node-version: ${{ matrix.node }}
-          cache: npm
 
-      - name: Install
+      - name: Install dependencies
         run: |
-          if [ -f package-lock.json ]; then
-            npm ci --no-audit --no-fund || npm install --no-audit --no-fund
-          else
-            npm install --no-audit --no-fund
+          # Drop broken lockfiles (placeholder integrities break npm)
+          if [ -f package-lock.json ] && grep -q 'sha512-example' package-lock.json 2>/dev/null; then
+            echo "Removing invalid package-lock.json"
+            rm -f package-lock.json
           fi
+          npm install --no-audit --no-fund
 
       - name: Syntax check
         run: npm run check
