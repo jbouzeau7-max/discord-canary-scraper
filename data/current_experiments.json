@@ -1,7 +1,7 @@
 {
-  "runId": "2026-11-14T20-26-49-660Z_673832_wi6ceh",
-  "buildNumber": "673832",
-  "updatedAt": "2026-11-14T20:26:49.660Z",
+  "runId": "2026-11-14T23-32-55-043Z_673836_lww1ct",
+  "buildNumber": "673836",
+  "updatedAt": "2026-11-14T23:32:55.043Z",
   "count": 397,
   "experiments": [
     {
@@ -165,10 +165,11 @@
         "value": null
       },
       "userPercentage": {
-        "status": "unknown",
-        "value": null
+        "status": "provided",
+        "value": 100,
+        "source": "gist_user_rollouts"
       },
-      "fingerprint": "8bcfcd4a6948e70579de61e19783e3b3e166886283a29b092307a9f24342805b"
+      "fingerprint": "0cd9dbbd8476fd389b35345188f18f509ea0d0a057347329933743ca52bd5a30"
     },
     {
       "id": "2022-01_threads",
@@ -245,14 +246,15 @@
         "source": "discord"
       },
       "guildPercentage": {
-        "status": "unknown",
-        "value": null
+        "status": "provided",
+        "value": 100,
+        "source": "apex_rollouts"
       },
       "userPercentage": {
         "status": "unknown",
         "value": null
       },
-      "fingerprint": "a673cf1be6e90b216bc57ac5a1f72deb612cf8a905737dd3ac6c191929504531"
+      "fingerprint": "0eccff52c20a7ea056b13cbd81d93f16d4e3fca9aac372462475bca6bab6da26"
     },
     {
       "id": "2022-11_default_disable_mass_mention",
@@ -295,14 +297,15 @@
         "source": "discord"
       },
       "guildPercentage": {
-        "status": "unknown",
-        "value": null
+        "status": "provided",
+        "value": 100,
+        "source": "apex_rollouts"
       },
       "userPercentage": {
         "status": "unknown",
         "value": null
       },
-      "fingerprint": "a0d02767aa118888281de888ba20e967882ad6314c5b4ce1a07b54bca9e5f0d2"
+      "fingerprint": "e370650c96aef1e88ce03c5aa510ec71725053d8843fdc9c4bfcaee1f471a34d"
     },
     {
       "id": "2023-02_guest_voice_invites",
@@ -345,14 +348,15 @@
         "source": "discord"
       },
       "guildPercentage": {
-        "status": "unknown",
-        "value": null
+        "status": "provided",
+        "value": 100,
+        "source": "apex_rollouts"
       },
       "userPercentage": {
         "status": "unknown",
         "value": null
       },
-      "fingerprint": "e46bad854ec580b321d0f1cf7d6c3c25fe65d14ebd6564e701453f4869f70068"
+      "fingerprint": "d5698589407bc86f9817d4a9e3290dc663fbc8401b541efafd584674d56e3d79"
     },
     {
       "id": "2023-09_iar_dsa_webform",
@@ -409,10 +413,11 @@
         "value": null
       },
       "userPercentage": {
-        "status": "unknown",
-        "value": null
+        "status": "provided",
+        "value": 100,
+        "source": "gist_user_rollouts"
       },
-      "fingerprint": "b3160666770ef851958aac5284b6a15f41f487e4c11e94094097f722afd236aa"
+      "fingerprint": "71ad4e0c580055aabf368341b2a910dabd79a88953f5738ca9daeb0705010e05"
     },
     {
       "id": "2023-09_iar_user_reporting",
@@ -459,10 +464,11 @@
         "value": null
       },
       "userPercentage": {
-        "status": "unknown",
-        "value": null
+        "status": "provided",
+        "value": 100,
+        "source": "gist_user_rollouts"
       },
-      "fingerprint": "c063adde6e10f2ec5647153bab09f963a26c5fe7feaf8ec9b0dbc206c4f7d02b"
+      "fingerprint": "a130508d61fab6f0e4cb8a05d41424604b03fb2f623b0c40cfc493231a7c8e8e"
     },
     {
       "id": "2024-06_rtc_pacer__simulcast",
@@ -945,14 +951,15 @@
         "source": "discord"
       },
       "guildPercentage": {
-        "status": "unknown",
-        "value": null
+        "status": "provided",
+        "value": 95,
+        "source": "apex_rollouts"
       },
       "userPercentage": {
         "status": "unknown",
         "value": null
       },
-      "fingerprint": "c656da25d782fe62e35352803579cf71814894a651b9f4eebd3e8d2e64fdcf3e"
+      "fingerprint": "921762a56a393840947708c555949d1d4240db8ef4cac8b23f22748b762f0143"
     },
     {
       "id": "2025-08_portkey_enabled",
@@ -1359,10 +1366,11 @@
         "value": null
       },
       "userPercentage": {
-        "status": "unknown",
-        "value": null
+        "status": "provided",
+        "value": 100,
+        "source": "gist_user_rollouts"
       },
-      "fingerprint": "e463c124ca8c41e1680ca73aa492ced814757476e3a58094a6b15585b79a6518"
+      "fingerprint": "dd6d621e0143f6cb75187c3baa0e9d33600b3d65c1fe6e6949e90ec43d7616cb"
     },
     {
       "id": "2025-09-video-qoe-metrics-tracking",
@@ -1411,10 +1419,11 @@
         "value": null
       },
       "userPercentage": {
-        "status": "unknown",
-        "value": null
+        "status": "provided",
+        "value": 1,
+        "source": "gist_user_rollouts"
       },
-      "fingerprint": "dbcfdbf50b070615762ad5084f28d8091b3c0c442ac881e0c276a5ae2d44bca7"
+      "fingerprint": "f15ed6d7b7553dcdcdb9e285599606968b3764aee9883ed76adc05b529927b2b"
     },
     {
       "id": "2025-10_community_account_link_onboarding",
@@ -1847,10 +1856,11 @@
         "value": null
       },
       "userPercentage": {
-        "status": "unknown",
-        "value": null
+        "status": "provided",
+        "value": 10,
+        "source": "gist_user_rollouts"
       },
-      "fingerprint": "58dbb217e2150931547700662d9ce02685928fcc7b0e57b7cf742b2654e26432"
+      "fingerprint": "a51d8379f1eee0d0b54771ec8a16ee73a9fad064e8382a9f9a4b5ef68f75e5db"
     },
     {
       "id": "2025-11-mana-context-menu",
@@ -1967,10 +1977,11 @@
         "value": null
       },
       "userPercentage": {
-        "status": "unknown",
-        "value": null
+        "status": "provided",
+        "value": 66,
+        "source": "gist_user_rollouts"
       },
-      "fingerprint": "d0dd775aa26de3da2310574e8cd846ca6824ee890e4b6d8c801bf11120421d6e"
+      "fingerprint": "d863cffc319dc088c8e5b2edc4cd2c894ebcb229db53cc0453765e4f0da36799"
     },
     {
       "id": "2025-11-shockbyte-degraded",
@@ -2379,10 +2390,11 @@
         "value": null
       },
       "userPercentage": {
-        "status": "unknown",
-        "value": null
+        "status": "provided",
+        "value": 100,
+        "source": "gist_user_rollouts"
       },
-      "fingerprint": "928b9efe0203a29e2fd818adefcb3f38a2ca0c99534339bb166bdad13a214609"
+      "fingerprint": "e6be13fc4c4e5dcf60bdc03fd9dc065918c562eedfc36e7226f729219b4cb780"
     },
     {
       "id": "2025-12-windows-audio-effects",
@@ -2467,10 +2479,11 @@
         "value": null
       },
       "userPercentage": {
-        "status": "unknown",
-        "value": null
+        "status": "provided",
+        "value": 10,
+        "source": "gist_user_rollouts"
       },
-      "fingerprint": "8574a79a8ef0dce54223ea3a5d00e50c05d7ce2bed8a0a18a5a2387d18ffba5e"
+      "fingerprint": "e8b4d4a3369e58ec7c78da18862f142306b92a53633da7ded7dbcb78a6d60063"
     },
     {
       "id": "2026-01-bug-reporter",
@@ -2939,10 +2952,11 @@
         "value": null
       },
       "userPercentage": {
-        "status": "unknown",
-        "value": null
+        "status": "provided",
+        "value": 20,
+        "source": "gist_user_rollouts"
       },
-      "fingerprint": "b3876c4b843a7096f9957389cb91c3f90f214e88a66f78d0c0084fcd4b086f35"
+      "fingerprint": "3afeae32e44acb75810870683b080be9bd6f4ba5eab953425c903214e96a682e"
     },
     {
       "id": "2026-02-desktop-new-user-onboarding",
@@ -3037,10 +3051,11 @@
         "value": null
       },
       "userPercentage": {
-        "status": "unknown",
-        "value": null
+        "status": "provided",
+        "value": 20,
+        "source": "gist_user_rollouts"
       },
-      "fingerprint": "ac6bf9aaf9ab90e2ef6612f6b46d357d65e526f28583895c65be3fdb70597736"
+      "fingerprint": "021393feb36c76864a7908dbf60ccad1c1aed7db91ae38e8877edb32fa7c3bbe"
     },
     {
       "id": "2026-02-friends-list",
@@ -3175,10 +3190,11 @@
         "value": null
       },
       "userPercentage": {
-        "status": "unknown",
-        "value": null
+        "status": "provided",
+        "value": 100,
+        "source": "gist_user_rollouts"
       },
-      "fingerprint": "8c4056a5d93f1e9d21ecbd00048f593ae65d033c3cc73678cd84d712700b5f2f"
+      "fingerprint": "bd259d183c45d32d89fb88e64a3e100bb41d9dfd7c8d8c2aed6f1b5809f46090"
     },
     {
       "id": "2026-02-gifting-modal-redesign",
@@ -3221,10 +3237,11 @@
         "value": null
       },
       "userPercentage": {
-        "status": "unknown",
-        "value": null
+        "status": "provided",
+        "value": 50,
+        "source": "gist_user_rollouts"
       },
-      "fingerprint": "2659cb4af54de42de5aea4f137a49499e74d03fdb5b2c0a5b58dd252d1ce7903"
+      "fingerprint": "0227c560d880d2a00b237dce637fd73e0417170294140b7f154c710e557b0263"
     },
     {
       "id": "2026-02-go-live-hdr",
@@ -3319,10 +3336,11 @@
         "value": null
       },
       "userPercentage": {
-        "status": "unknown",
-        "value": null
+        "status": "provided",
+        "value": 10,
+        "source": "gist_user_rollouts"
       },
-      "fingerprint": "c5f9bdc49cce41e7ed6ad46c74f6e4966b288a2f7c238835836516ab6b1f3718"
+      "fingerprint": "8825e140d4b30105871b66110b8cf0397c2945b0efbbfe1d975c47152046e84a"
     },
     {
       "id": "2026-02-lazy-load-all-images",
@@ -3365,10 +3383,11 @@
         "value": null
       },
       "userPercentage": {
-        "status": "unknown",
-        "value": null
+        "status": "provided",
+        "value": 30,
+        "source": "gist_user_rollouts"
       },
-      "fingerprint": "45f1610a277391dafc9a40162711889cdc979f1a6f18b32d6ab0cbf51ed9724a"
+      "fingerprint": "9ea0ca022f31334114893288345e2b0f71f126a0d8d5695f3c628be779b1c030"
     },
     {
       "id": "2026-02-longer-group-dm-invites",
@@ -3675,10 +3694,11 @@
         "value": null
       },
       "userPercentage": {
-        "status": "unknown",
-        "value": null
+        "status": "provided",
+        "value": 2,
+        "source": "gist_user_rollouts"
       },
-      "fingerprint": "fd1fd19523189e01af93d32f34773f4ab8b5abdfd1c0d135ee3fd6dcf3414415"
+      "fingerprint": "fcaeca7cc72648d7a3a2e029cd6ac9809c3f4a21beea3a053d6ba82b5fbb59dc"
     },
     {
       "id": "2026-02-process-boost-on-voice",
@@ -3739,10 +3759,11 @@
         "value": null
       },
       "userPercentage": {
-        "status": "unknown",
-        "value": null
+        "status": "provided",
+        "value": 10,
+        "source": "gist_user_rollouts"
       },
-      "fingerprint": "c63ae5e5154032bd242d909f7a9a1fa60789f88765ff618517c2f83fa8474dbe"
+      "fingerprint": "67476d998eebed1ce584186565e7e8a2779c2d707fab13e5060f80d4991da77f"
     },
     {
       "id": "2026-02-wgc-dirty-regions-all",
@@ -4387,10 +4408,11 @@
         "value": null
       },
       "userPercentage": {
-        "status": "unknown",
-        "value": null
+        "status": "provided",
+        "value": 10,
+        "source": "gist_user_rollouts"
       },
-      "fingerprint": "e18db436747a85fbea596c02132c0e95197cf03e313687c7c9b8b6185fa69c7a"
+      "fingerprint": "963589e72c97aa927027718869945904a7f566604188d4de6af47814f4f29c9f"
     },
     {
       "id": "2026-03-ios-audio-interrupt-handling",
@@ -4527,10 +4549,11 @@
         "value": null
       },
       "userPercentage": {
-        "status": "unknown",
-        "value": null
+        "status": "provided",
+        "value": 10,
+        "source": "gist_user_rollouts"
       },
-      "fingerprint": "1483bfbad8a99cc1d3430239b822ce3a6645f3960c11e98b98ab493b46b420d2"
+      "fingerprint": "4be7af0f9f01ec05804baac7a62be5d03bccf9e7744a65ddcd66be1b3f0e215a"
     },
     {
       "id": "2026-03-media-play-metrics",
@@ -4579,10 +4602,11 @@
         "value": null
       },
       "userPercentage": {
-        "status": "unknown",
-        "value": null
+        "status": "provided",
+        "value": 10,
+        "source": "gist_user_rollouts"
       },
-      "fingerprint": "10a1a853d42f0d870b67f82bd78fee794829eadae0e42391d1db8a3073f49e55"
+      "fingerprint": "45bf02e204d869d266f24bbefeaaa043397306b44880859a7f2806705e057f94"
     },
     {
       "id": "2026-03-mobile-hermes-occupancy-target",
@@ -4737,10 +4761,11 @@
         "value": null
       },
       "userPercentage": {
-        "status": "unknown",
-        "value": null
+        "status": "provided",
+        "value": 10,
+        "source": "gist_user_rollouts"
       },
-      "fingerprint": "3aaadf686e662c82a22ccb6aab009cb982cfd05ca17fade7ae3d793ba3cb67c3"
+      "fingerprint": "4ffc3d85265e6bc65d5ec4fcc2cdbf03625fcf80cdbd5e495222fbf718dae6e7"
     },
     {
       "id": "2026-03-overlay-default-keybind",
@@ -5413,10 +5438,11 @@
         "value": null
       },
       "userPercentage": {
-        "status": "unknown",
-        "value": null
+        "status": "provided",
+        "value": 100,
+        "source": "gist_user_rollouts"
       },
-      "fingerprint": "d468cd48c4f03dedcdaeaed77ea412b06bb7fee1ec324681c563b81ce38c3dc9"
+      "fingerprint": "add18c5ee5cff1243fe1047fb40f0669a40c223505ecf24d1d989e30735370e0"
     },
     {
       "id": "2026-04-desktop-notification-center",
@@ -5909,10 +5935,11 @@
         "value": null
       },
       "userPercentage": {
-        "status": "unknown",
-        "value": null
+        "status": "provided",
+        "value": 50,
+        "source": "gist_user_rollouts"
       },
-      "fingerprint": "a502a7378b1189008c778a44e71ba0fb2cfc245b19978376d6bad88d8693e808"
+      "fingerprint": "44174ebcbf3ca6a005dee5d5f944de281ac7c720f8ecedab8203f50acaf336ef"
     },
     {
       "id": "2026-04-overlay-streamer-mode",
@@ -6059,10 +6086,11 @@
         "value": null
       },
       "userPercentage": {
-        "status": "unknown",
-        "value": null
+        "status": "provided",
+        "value": 100,
+        "source": "gist_user_rollouts"
       },
-      "fingerprint": "21d59bfc4e0e02eaf2b0a2c76983ab581de6fcd99058dc65a87116457b5fbe94"
+      "fingerprint": "9721563b287555d7e61a22cf1abb345f110580dfcd733c0c36f75820989c36ec"
     },
     {
       "id": "2026-04-server-boost-copy-1440p",
@@ -6571,10 +6599,11 @@
         "value": null
       },
       "userPercentage": {
-        "status": "unknown",
-        "value": null
+        "status": "provided",
+        "value": 42,
+        "source": "gist_user_rollouts"
       },
-      "fingerprint": "761452777591b6327bc0da500b9a6924fd4032eecb58ebc36b6c2b785f3c2c8f"
+      "fingerprint": "08d64ce95386315f4639822e1c252d111634dab7dcee30284934d35ddc6948d8"
     },
     {
       "id": "2026-05-clips-media-comments",
@@ -6807,10 +6836,11 @@
         "value": null
       },
       "userPercentage": {
-        "status": "unknown",
-        "value": null
+        "status": "provided",
+        "value": 17.5,
+        "source": "gist_user_rollouts"
       },
-      "fingerprint": "67378def017a556830f1912c5971b49ad639e9d83969c4a2251397ba1eb3eae7"
+      "fingerprint": "f87880d756feff214fef87640a56e3e44c5ce21073bd9878e9dd67cb87728646"
     },
     {
       "id": "2026-05-electron-multilang-spellcheck",
@@ -7937,10 +7967,11 @@
         "value": null
       },
       "userPercentage": {
-        "status": "unknown",
-        "value": null
+        "status": "provided",
+        "value": 1,
+        "source": "gist_user_rollouts"
       },
-      "fingerprint": "8a1b1a0b5cbf045f1b87491b7fa57f0cdca1d588922c1127e295976ebc1803c4"
+      "fingerprint": "9f9fb903fda3b1a1b9f325f0608cfde1546835f89f7b3739283344fd7c64a4a1"
     },
     {
       "id": "2026-06-orbs-holdout",
@@ -8465,10 +8496,11 @@
         "value": null
       },
       "userPercentage": {
-        "status": "unknown",
-        "value": null
+        "status": "provided",
+        "value": 0.5,
+        "source": "gist_user_rollouts"
       },
-      "fingerprint": "cabf534632239b4f2a45fc5000383c99a68082121dbe3a4658f3ab03fd1d2edd"
+      "fingerprint": "41c9a615ba7b05591ebd1175a9cea5eeb26506a55f20ceb41717eda313d853fb"
     },
     {
       "id": "2026-06-use-new-badge-image-source",
@@ -8609,10 +8641,11 @@
         "value": null
       },
       "userPercentage": {
-        "status": "unknown",
-        "value": null
+        "status": "provided",
+        "value": 0,
+        "source": "gist_user_rollouts"
       },
-      "fingerprint": "e6d44e50c7a9efc48a7f534489ff79f83df0257b7d76cef838ff48b423905266"
+      "fingerprint": "8a059d4b217ad4148b6e5f30c411faa61b9727b7fb2b5f266560b31313069973"
     },
     {
       "id": "2026-06-web-vitals-monitoring",
@@ -9105,10 +9138,11 @@
         "value": null
       },
       "userPercentage": {
-        "status": "unknown",
-        "value": null
+        "status": "provided",
+        "value": 100,
+        "source": "gist_user_rollouts"
       },
-      "fingerprint": "a332319ed2c938fa17925441624cddbba8e2ac2e6289e6a1ee563575aad0304e"
+      "fingerprint": "414713a94f4b97ad03831451b88e1a0b9dc6570f1f7f789316dc88851a1085b8"
     },
     {
       "id": "2026-07-custom-app-store-overlay",
@@ -9249,10 +9283,11 @@
         "value": null
       },
       "userPercentage": {
-        "status": "unknown",
-        "value": null
+        "status": "provided",
+        "value": 100,
+        "source": "gist_user_rollouts"
       },
-      "fingerprint": "74299528d5d76a80cd2da60ce483ecd33a7908486172f6de1a1b8e4a632094a6"
+      "fingerprint": "5a7cc14ac7b15226d26611652a347a978eadd086503764ab7cea44ef68662bf2"
     },
     {
       "id": "2026-07-ios-attribution",
@@ -9387,10 +9422,11 @@
         "value": null
       },
       "userPercentage": {
-        "status": "unknown",
-        "value": null
+        "status": "provided",
+        "value": 100,
+        "source": "gist_user_rollouts"
       },
-      "fingerprint": "71bb644a39a76f7ebcb45d71a773adc7db6d5008816aaa96a6da85e9e27d1397"
+      "fingerprint": "d32f1be0debb91f5680cefc2e158e3f00abe61d6ce145b521ad4588c3260022e"
     },
     {
       "id": "2026-07-onyx",
@@ -9439,10 +9475,11 @@
         "value": null
       },
       "userPercentage": {
-        "status": "unknown",
-        "value": null
+        "status": "provided",
+        "value": 100,
+        "source": "gist_user_rollouts"
       },
-      "fingerprint": "e0fe298628088fbae046de5d3cc8a0cb313c8fb72aafbc3c863c0691ca3f79d8"
+      "fingerprint": "d520b739f613953e3aab80d0c6052cad92bb5063a2913b4d7a4627e84f1505cf"
     },
     {
       "id": "2026-07-orbchievements",
@@ -9485,10 +9522,11 @@
         "value": null
       },
       "userPercentage": {
-        "status": "unknown",
-        "value": null
+        "status": "provided",
+        "value": 30,
+        "source": "gist_user_rollouts"
       },
-      "fingerprint": "9488b9948b2dab583bb89daff23ab848d8c6cd73796f75490fe110dcfa72806c"
+      "fingerprint": "996df2d10e363d5666201cd155e00b8faaed99e7f16a09cd805938c2a4776e08"
     },
     {
       "id": "2026-07-parental-consent-warning-fetch",
@@ -9761,10 +9799,11 @@
         "value": null
       },
       "userPercentage": {
-        "status": "unknown",
-        "value": null
+        "status": "provided",
+        "value": 0,
+        "source": "gist_user_rollouts"
       },
-      "fingerprint": "18df652c1bc01c028e479c9d1e8619d0496d6060839ee544e251d0411451fb58"
+      "fingerprint": "570c0158ca844476450326182d724621ca099e53fb529ef0715beb3ce31cb3f5"
     },
     {
       "id": "2026-07-reduce-leave-call-gpu",
@@ -10003,10 +10042,11 @@
         "value": null
       },
       "userPercentage": {
-        "status": "unknown",
-        "value": null
+        "status": "provided",
+        "value": 100,
+        "source": "gist_user_rollouts"
       },
-      "fingerprint": "3e2aa029a588d840c61ca2acd53d8f42ef1d1ef28ae49898c831728152861b1b"
+      "fingerprint": "a23d612f196cd49d6cad437a06216dffa1fe09db9e4c1c8905b40ed0d6c17ed0"
     },
     {
       "id": "2026-07-unobtrusive-device-suggestions",
@@ -10049,10 +10089,11 @@
         "value": null
       },
       "userPercentage": {
-        "status": "unknown",
-        "value": null
+        "status": "provided",
+        "value": 100,
+        "source": "gist_user_rollouts"
       },
-      "fingerprint": "b0c0d469bd5b38cfa3265ff3876305157b4f4b5171edbdccceb1cf08d1d7a839"
+      "fingerprint": "30873dba07a1eeddde46ddb92d395a5bdfee7a5081836605df81f755be74a1f3"
     },
     {
       "id": "2026-07-vibegrations-guild",
@@ -10219,10 +10260,11 @@
         "value": null
       },
       "userPercentage": {
-        "status": "unknown",
-        "value": null
+        "status": "provided",
+        "value": 100,
+        "source": "gist_user_rollouts"
       },
-      "fingerprint": "aee9df848e603f5099ad0258a8d4c4fee9be9c198dbd3f46ad32189daa184d19"
+      "fingerprint": "a219463c2f615b3a318de047a4659c33953cc430643b586f5ea7ea97164102a0"
     },
     {
       "id": "2026-08-ad-topic-opt-out-client",
@@ -10289,10 +10331,11 @@
         "value": null
       },
       "userPercentage": {
-        "status": "unknown",
-        "value": null
+        "status": "provided",
+        "value": 100,
+        "source": "gist_user_rollouts"
       },
-      "fingerprint": "1da67547b3b25f51f7e72e8c35a7ec02a7ed766d2ca8933825c673a8677965b4"
+      "fingerprint": "8d09efa76fcba7e88bccea1e936a0030cd32f519febdcec06f211ce65a48fcef"
     },
     {
       "id": "2026-08-android-jank-per-screen",
@@ -10585,10 +10628,11 @@
         "value": null
       },
       "userPercentage": {
-        "status": "unknown",
-        "value": null
+        "status": "provided",
+        "value": 100,
+        "source": "gist_user_rollouts"
       },
-      "fingerprint": "d23377db58392e863c2719b7e787388c7cd3a9b7708cc7aa58a73dcb66f1d3c5"
+      "fingerprint": "ba479fd7fec3c7d0f8c81caec7bb9a2112e8a1b7eb3611979e64645b22b27274"
     },
     {
       "id": "2026-08-bounties-mobile-quest-bar",
@@ -10759,10 +10803,11 @@
         "value": null
       },
       "userPercentage": {
-        "status": "unknown",
-        "value": null
+        "status": "provided",
+        "value": 75,
+        "source": "gist_user_rollouts"
       },
-      "fingerprint": "7e3bb7e8eaac5196c5d678f7a52e51534e80aa88a1768f53db1568a56235049f"
+      "fingerprint": "f7e287ecf5c8bf9c93c680c814b5ef9b2fc951e5946b1d494923d1a6fff35327"
     },
     {
       "id": "2026-08-dont-close-chat",
@@ -10805,10 +10850,11 @@
         "value": null
       },
       "userPercentage": {
-        "status": "unknown",
-        "value": null
+        "status": "provided",
+        "value": 100,
+        "source": "gist_user_rollouts"
       },
-      "fingerprint": "892984a25fb8dd3fbfc8f52d30586a21baf96578c5f35c3cf40ccfd1316332cb"
+      "fingerprint": "feb5a286fb22fc1fdc89e9e5d18c461e4da58695af507b7c6eebabd245144ecb"
     },
     {
       "id": "2026-08-forward-age-restricted-destinations",
@@ -11133,10 +11179,11 @@
         "value": null
       },
       "userPercentage": {
-        "status": "unknown",
-        "value": null
+        "status": "provided",
+        "value": 100,
+        "source": "gist_user_rollouts"
       },
-      "fingerprint": "4eca9517ebb91299c65260c612fc97d1569b89ceecab6002a1d9b37d20d4a245"
+      "fingerprint": "d5a1b683a27bbea3ee58dfc7c781a7dd8b07bd138aa19bf3348273093d47c18c"
     },
     {
       "id": "2026-08-profile-embed-rendering",
@@ -11179,10 +11226,11 @@
         "value": null
       },
       "userPercentage": {
-        "status": "unknown",
-        "value": null
+        "status": "provided",
+        "value": 100,
+        "source": "gist_user_rollouts"
       },
-      "fingerprint": "17dc94f04fa0278c31709588edce71bec5f091cbec387d02ff81eb529cc1e28b"
+      "fingerprint": "1f4863abcd5dae9051dcb84f191ee8e43242e5a071c9f31851d0f0f18ebd9a1f"
     },
     {
       "id": "2026-08-profile-embed-share-button",
@@ -11225,10 +11273,11 @@
         "value": null
       },
       "userPercentage": {
-        "status": "unknown",
-        "value": null
+        "status": "provided",
+        "value": 100,
+        "source": "gist_user_rollouts"
       },
-      "fingerprint": "229a1c8c5ef7280a25207071e4d425b45f60c8be857c68977a90691c75e6b535"
+      "fingerprint": "6d731f7f985547a889287858c2cc604c7381073da3c7d280e0574a0e594ae152"
     },
     {
       "id": "2026-08-rive-web-perf",
@@ -11271,10 +11320,11 @@
         "value": null
       },
       "userPercentage": {
-        "status": "unknown",
-        "value": null
+        "status": "provided",
+        "value": 50,
+        "source": "gist_user_rollouts"
       },
-      "fingerprint": "6130c8ec191fd600d3b84c0627ae004e9a1939a68dcd6f40b78764fa18bf5745"
+      "fingerprint": "32f70550a8a5ad7350c1c56f54503cbb4feba44031be4a27773ee447fc9f9086"
     },
     {
       "id": "2026-08-show-expressive-modal-subtitle-alt",
@@ -11317,10 +11367,11 @@
         "value": null
       },
       "userPercentage": {
-        "status": "unknown",
-        "value": null
+        "status": "provided",
+        "value": 100,
+        "source": "gist_user_rollouts"
       },
-      "fingerprint": "bf2731bf4c07836ad612491cb6281ac1169de51172b352714cc8ade6ac8a806f"
+      "fingerprint": "c807af39edce87b1a10d5ed5c1da02289019e51bb003ad4cdfcc5349b0be9f6b"
     },
     {
       "id": "2026-08-social-layer-storefront-mobile-embed",
@@ -11415,10 +11466,11 @@
         "value": null
       },
       "userPercentage": {
-        "status": "unknown",
-        "value": null
+        "status": "provided",
+        "value": 10,
+        "source": "gist_user_rollouts"
       },
-      "fingerprint": "c850820e0330d714b779b6833157e1616a7cc362c45e2e194a121252a0462ef7"
+      "fingerprint": "44b18b17733445b9cb74d086108fcf1d0269b45e40adf55880fb75e8d1b4380c"
     },
     {
       "id": "2026-08-tiny-bronco",
@@ -11467,10 +11519,11 @@
         "value": null
       },
       "userPercentage": {
-        "status": "unknown",
-        "value": null
+        "status": "provided",
+        "value": 100,
+        "source": "gist_user_rollouts"
       },
-      "fingerprint": "26af882753bcbb6c98a31b901de218ba074c3e8b324cf77d1589e11f0bd90c94"
+      "fingerprint": "63ac4f562f298cfee4c1340d58626d7f80c79bae2cd0b7d4aed72b82fa95dd0f"
     },
     {
       "id": "2026-08-user-bio-max-length",
@@ -11519,10 +11572,11 @@
         "value": null
       },
       "userPercentage": {
-        "status": "unknown",
-        "value": null
+        "status": "provided",
+        "value": 100,
+        "source": "gist_user_rollouts"
       },
-      "fingerprint": "dd345991ef2c8b027fae2373941786234b2477eb71a3289344fa3f8c2db2fb21"
+      "fingerprint": "5f69595361211038067b2003a3690fc5e1b0d9e7239b9319649521db34d5385c"
     },
     {
       "id": "2026-08-video-guard",
@@ -11669,10 +11723,11 @@
         "value": null
       },
       "userPercentage": {
-        "status": "unknown",
-        "value": null
+        "status": "provided",
+        "value": 100,
+        "source": "gist_user_rollouts"
       },
-      "fingerprint": "ce02c5be63adaeacfd56b61010216db10deeee5ea5061732061f5acb46ab2665"
+      "fingerprint": "33580d1d0fa4ef7fb4faf32787b32dc8f2c4d262556d43d8ef40baa43e2f4672"
     },
     {
       "id": "2026-08-web-filter-tag-group-migration",
@@ -12141,10 +12196,11 @@
         "value": null
       },
       "userPercentage": {
-        "status": "unknown",
-        "value": null
+        "status": "provided",
+        "value": 100,
+        "source": "gist_user_rollouts"
       },
-      "fingerprint": "02023b9b92e7bf7ff761d0f99c9748e5c580e7e2cc75e41a66796705b209d35d"
+      "fingerprint": "ec5151c9424559cd914d1cfa3c21b91526b405c8b316c466d2109af5b4e1de35"
     },
     {
       "id": "2026-09-connected-thread-sidebar",
@@ -12297,10 +12353,11 @@
         "value": null
       },
       "userPercentage": {
-        "status": "unknown",
-        "value": null
+        "status": "provided",
+        "value": 1,
+        "source": "gist_user_rollouts"
       },
-      "fingerprint": "5eff64b0ef434ea393caa6fce9de56e614d74ba38be024083ed48097c751edf5"
+      "fingerprint": "bbb441ec7dc90a16e26a89718cd2b10c80c068b1c8051823bb59b562bd247851"
     },
     {
       "id": "2026-09-desktop-tti-shader-cache",
@@ -12447,10 +12504,11 @@
         "value": null
       },
       "userPercentage": {
-        "status": "unknown",
-        "value": null
+        "status": "provided",
+        "value": 100,
+        "source": "gist_user_rollouts"
       },
-      "fingerprint": "29e553e4a05db99e93ec3a72ec164a620266edd2ed6a15b13f06f32ed2ae2816"
+      "fingerprint": "084976ac52592332a0822d9d563fb1c0d53030b3cb27a836d32ab7f79ceffe26"
     },
     {
       "id": "2026-09-edit-profile-collectibles-ordering",
@@ -12499,10 +12557,11 @@
         "value": null
       },
       "userPercentage": {
-        "status": "unknown",
-        "value": null
+        "status": "provided",
+        "value": 50,
+        "source": "gist_user_rollouts"
       },
-      "fingerprint": "b71797e5e5deb468ef3df9ebf18892957b922dbba0e410f1aed679c1f417773e"
+      "fingerprint": "4ccf8b11fc91a637b1c5fb1740d590a0d1a2f93d8a58ee45fa0d1d4136811488"
     },
     {
       "id": "2026-09-friends-sidebar",
@@ -12565,10 +12624,11 @@
         "value": null
       },
       "userPercentage": {
-        "status": "unknown",
-        "value": null
+        "status": "provided",
+        "value": 5,
+        "source": "gist_user_rollouts"
       },
-      "fingerprint": "f416b6f3ddad02e62615b2d56f620cb953edd62c5d5903ca624dfd1658ff9e73"
+      "fingerprint": "7503de897148e3162ecbd2b78136fede54a34dcc3be41304eb27745228849469"
     },
     {
       "id": "2026-09-game-profiles-v3-communities-tab",
@@ -12613,10 +12673,11 @@
         "value": null
       },
       "userPercentage": {
-        "status": "unknown",
-        "value": null
+        "status": "provided",
+        "value": 100,
+        "source": "gist_user_rollouts"
       },
-      "fingerprint": "64db701064602b377fd8e2894374055ca1c2db7a266c4eb1b23f10a3d7d79d72"
+      "fingerprint": "5c8d9d594c543c2ad000efa2c79a3d938084415e4cbd2e1908616bc047039ea6"
     },
     {
       "id": "2026-09-game-search-row",
@@ -12665,10 +12726,11 @@
         "value": null
       },
       "userPercentage": {
-        "status": "unknown",
-        "value": null
+        "status": "provided",
+        "value": 35,
+        "source": "gist_user_rollouts"
       },
-      "fingerprint": "fb7f61fd884824facc17df27b40864365f16396d17eded860283573522b64de5"
+      "fingerprint": "e30cded12e3f62289dd5e40be190168230308b238b95199ed7555d4f47358598"
     },
     {
       "id": "2026-09-gifting-badge-coachmark-audience",
@@ -12933,10 +12995,11 @@
         "value": null
       },
       "userPercentage": {
-        "status": "unknown",
-        "value": null
+        "status": "provided",
+        "value": 15,
+        "source": "gist_user_rollouts"
       },
-      "fingerprint": "bbcfeb0de87dbafb0c1a96a0e3e829db9b0e964067611c4e598b018b30e50224"
+      "fingerprint": "b62da3e929e0319c5de8d740d0d4b0907847b7fa2bdf8f2d2667b2fcf6d42b51"
     },
     {
       "id": "2026-09-invite-expiring-soon",
@@ -13221,10 +13284,11 @@
         "value": null
       },
       "userPercentage": {
-        "status": "unknown",
-        "value": null
+        "status": "provided",
+        "value": 10,
+        "source": "gist_user_rollouts"
       },
-      "fingerprint": "01953085ce81900d89bbd43ae240a0168feb60681bd3f2f4c4b29e7969ce9d2c"
+      "fingerprint": "b8af32a0b99db4c0495c57b39f9fe8687e2b95da77ad68d9f9bf16befa69703d"
     },
     {
       "id": "2026-09-mobile-quest-reward-button-to-secondary-button",
@@ -13365,10 +13429,11 @@
         "value": null
       },
       "userPercentage": {
-        "status": "unknown",
-        "value": null
+        "status": "provided",
+        "value": 100,
+        "source": "gist_user_rollouts"
       },
-      "fingerprint": "7ee82c5be58223864dd1f3ffeba07cffad6376853e1c2bd6146cd37252f1580d"
+      "fingerprint": "6df93cbdb2b545e5a3174790a9ee8d2b9b2fa44acc13dc311ab8c18977224992"
     },
     {
       "id": "2026-09-new-orb-reward-visuals",
@@ -13435,10 +13500,11 @@
         "value": null
       },
       "userPercentage": {
-        "status": "unknown",
-        "value": null
+        "status": "provided",
+        "value": 100,
+        "source": "gist_user_rollouts"
       },
-      "fingerprint": "5b94a145adc0c5c424d03ac8eb406a5760eb38b294f8ec80391d0bab46ef1dcf"
+      "fingerprint": "00a0d5fb5d6fec1fcb8adb842d9497e04ef4cb6d96ef949b3cc9f9c961f19e1a"
     },
     {
       "id": "2026-09-nitro-file-upload-rollout",
@@ -13481,10 +13547,11 @@
         "value": null
       },
       "userPercentage": {
-        "status": "unknown",
-        "value": null
+        "status": "provided",
+        "value": 100,
+        "source": "gist_user_rollouts"
       },
-      "fingerprint": "50c3433941df2bd02a22ee77c83de7acf7399006ed1ae91f5d5c3df334c08ae2"
+      "fingerprint": "8a27353331a851e910c1bb482fefddf7194b7328762405b43be3ffbdcc54c0b7"
     },
     {
       "id": "2026-09-non-nitro-file-upload-marketing",
@@ -13533,10 +13600,11 @@
         "value": null
       },
       "userPercentage": {
-        "status": "unknown",
-        "value": null
+        "status": "provided",
+        "value": 100,
+        "source": "gist_user_rollouts"
       },
-      "fingerprint": "07a086b1c4a87044c534c24457fabf88b91a71a5c56a69bf07e13eb6c955fc4e"
+      "fingerprint": "feb208d64574aa9891a574de98f4c2794935af4e9739d51cf0aa17e88e9510ba"
     },
     {
       "id": "2026-09-orbs-hero-carousel",
@@ -13585,10 +13653,11 @@
         "value": null
       },
       "userPercentage": {
-        "status": "unknown",
-        "value": null
+        "status": "provided",
+        "value": 50,
+        "source": "gist_user_rollouts"
       },
-      "fingerprint": "f9e839e21ce13f6dea7d772ecd6ec52e2e991042b49b7c63ac4c03a6f9a7c687"
+      "fingerprint": "00b5c445f15b7d7d6a065fdd70e0dfe07e8b482919bc4cd368f6a9478b05ad6a"
     },
     {
       "id": "2026-09-profile-link-fetch",
@@ -13631,10 +13700,11 @@
         "value": null
       },
       "userPercentage": {
-        "status": "unknown",
-        "value": null
+        "status": "provided",
+        "value": 50,
+        "source": "gist_user_rollouts"
       },
-      "fingerprint": "5429865a34ca020149cc1090acce121954f7b13852edbac5d7bd98028588a103"
+      "fingerprint": "1eda20c7e54bd6bf5d5f194e6fe7e8bce18c14b045e81d8e52862c7979926c9e"
     },
     {
       "id": "2026-09-profile-widget-empty-state-suggestions",
@@ -13689,10 +13759,11 @@
         "value": null
       },
       "userPercentage": {
-        "status": "unknown",
-        "value": null
+        "status": "provided",
+        "value": 10,
+        "source": "gist_user_rollouts"
       },
-      "fingerprint": "362f3dcfd81b1e6af01a1d1dcce2eab708792abd4a1d0de0306a197ffa07921d"
+      "fingerprint": "93e41dff83f55170639219a103833d7c232cbc05c205f3b46756920e9eb49cb6"
     },
     {
       "id": "2026-09-quest-home-bounties-feature-gate",
@@ -13781,10 +13852,11 @@
         "value": null
       },
       "userPercentage": {
-        "status": "unknown",
-        "value": null
+        "status": "provided",
+        "value": 100,
+        "source": "gist_user_rollouts"
       },
-      "fingerprint": "692768d0856382b0878d41164fc80356486308422d7813c15e07823d71682d01"
+      "fingerprint": "d4a40f8708aa04b90c2ad026ef2e7c232e39ba732a5f2994575038ed1dcb1738"
     },
     {
       "id": "2026-09-referral-profile-contextual-menu-upsell",
@@ -13927,10 +13999,11 @@
         "value": null
       },
       "userPercentage": {
-        "status": "unknown",
-        "value": null
+        "status": "provided",
+        "value": 50,
+        "source": "gist_user_rollouts"
       },
-      "fingerprint": "6c08964c16a99d497594ab165a18ad8996efddcbc3a76c8362154fb04064756e"
+      "fingerprint": "a1397f5a507002cfad8e254ef47ef2d86d22efd401e18e1d9c72cf6fdf51bd94"
     },
     {
       "id": "2026-09-request-to-stream-new-entry-point",
@@ -14167,10 +14240,11 @@
         "value": null
       },
       "userPercentage": {
-        "status": "unknown",
-        "value": null
+        "status": "provided",
+        "value": 100,
+        "source": "gist_user_rollouts"
       },
-      "fingerprint": "cd6b5f551c46d0e431c32308fa4036b2b444fe64d4fdecef53c51644efe6f64c"
+      "fingerprint": "83f76f04c4766e169d1b0ce75309af7a5b0334fd8e27759fbb0a438d118c7dbf"
     },
     {
       "id": "2026-09-server-tooltip-notification-context",
@@ -14399,10 +14473,11 @@
         "value": null
       },
       "userPercentage": {
-        "status": "unknown",
-        "value": null
+        "status": "provided",
+        "value": 75,
+        "source": "gist_user_rollouts"
       },
-      "fingerprint": "629c6fe91b24739b3a198bf687cb0320b1704dc5b934ed3446ab9dd62098b637"
+      "fingerprint": "ff25f35ad2e83f9456cc3c3eb80f0f9bd60ce294beb0986156152a5dbc7a8710"
     },
     {
       "id": "2026-09-silp-direct-to-discoverable",
@@ -14457,10 +14532,11 @@
         "value": null
       },
       "userPercentage": {
-        "status": "unknown",
-        "value": null
+        "status": "provided",
+        "value": 0,
+        "source": "gist_user_rollouts"
       },
-      "fingerprint": "20fb893b9d0ae75c6ae84f50434b02694b83fa9b2b67b0f61a27d6eb1bac6c18"
+      "fingerprint": "7911279a602f8b097007224f59565b3bd49d1f27dac1382d1eee48f0f4f4e0b2"
     },
     {
       "id": "2026-09-single-cpu-copy",
@@ -14503,10 +14579,11 @@
         "value": null
       },
       "userPercentage": {
-        "status": "unknown",
-        "value": null
+        "status": "provided",
+        "value": 100,
+        "source": "gist_user_rollouts"
       },
-      "fingerprint": "7c232b0ca3b1f731b1fa9260fb6be35a1f615bf7d17a9a11f53e1b6f7e146970"
+      "fingerprint": "56cb9ee7dbe075505e70f35647a6acae5d7bf8f7ff368d5b6ac989a77e34a770"
     },
     {
       "id": "2026-09-soundboard-echo",
@@ -14613,10 +14690,11 @@
         "value": null
       },
       "userPercentage": {
-        "status": "unknown",
-        "value": null
+        "status": "provided",
+        "value": 95,
+        "source": "gist_user_rollouts"
       },
-      "fingerprint": "162c9b85715aaaa88da5b777e6e55ec61b209e149ab93434a1c9ac0589bf0951"
+      "fingerprint": "1268025c02c4b9cc70a3c18da7f63394209d09fad9d6de7e4ca9e6dbd4714b9c"
     },
     {
       "id": "2026-09-three-month-nitro-gifting",
@@ -14661,10 +14739,11 @@
         "value": null
       },
       "userPercentage": {
-        "status": "unknown",
-        "value": null
+        "status": "provided",
+        "value": 20,
+        "source": "gist_user_rollouts"
       },
-      "fingerprint": "a754f59db8c6b4a623b9b2259ac98f805b371be2d4943669840adfcccdf7f1d1"
+      "fingerprint": "85238e3da0d3f78153fb45e70c2cbcbf7eab13d1412b71b033e38db45d279354"
     },
     {
       "id": "2026-09-try-display-name-style",
@@ -14715,10 +14794,11 @@
         "value": null
       },
       "userPercentage": {
-        "status": "unknown",
-        "value": null
+        "status": "provided",
+        "value": 26.66,
+        "source": "gist_user_rollouts"
       },
-      "fingerprint": "902db01da59a39a63cc891a8c3d5c9f046fe22478236c125afa9c85e7fcda714"
+      "fingerprint": "e97ff93fedbf3383bd4550566b209264237e694f8adefb2e27c775884de3a7bf"
     },
     {
       "id": "2026-09-update-email-settings-copy-subtext",
@@ -14871,10 +14951,11 @@
         "value": null
       },
       "userPercentage": {
-        "status": "unknown",
-        "value": null
+        "status": "provided",
+        "value": 15,
+        "source": "gist_user_rollouts"
       },
-      "fingerprint": "fcca02cb62f8124c18f713f2f752b94ebaac19c139f61b98e65b1ba9d03cb8b6"
+      "fingerprint": "3703aed036c8d76297dbb2655a0c8bff38c99c4c52f92842d7e53ea373d397fc"
     },
     {
       "id": "2026-09-web-sticker-picker-upsell-restyle",
@@ -14919,10 +15000,11 @@
         "value": null
       },
       "userPercentage": {
-        "status": "unknown",
-        "value": null
+        "status": "provided",
+        "value": 50,
+        "source": "gist_user_rollouts"
       },
-      "fingerprint": "1227d7bd17b198847a0fc017a47f76413d30e7dbe1e6916c0d690aa7797a1a60"
+      "fingerprint": "fb1a432b073c59d605ce19437513a5eeaa23406622b75b3db7d247eccf64b3bb"
     },
     {
       "id": "2026-09-windows-native-premap",
@@ -15017,10 +15099,11 @@
         "value": null
       },
       "userPercentage": {
-        "status": "unknown",
-        "value": null
+        "status": "provided",
+        "value": 100,
+        "source": "gist_user_rollouts"
       },
-      "fingerprint": "654fcb33f9ae9638ff3582e9da3987870e809362dd487cd3510432248a897cd4"
+      "fingerprint": "7f9ca8570f6a9b3ba7db1cb1acd5730e7c322215b49c18c11d1d7d8ec0145f04"
     },
     {
       "id": "2026-09-youtube-3p-nagbar",
@@ -15063,10 +15146,11 @@
         "value": null
       },
       "userPercentage": {
-        "status": "unknown",
-        "value": null
+        "status": "provided",
+        "value": 100,
+        "source": "gist_user_rollouts"
       },
-      "fingerprint": "f965d27f1e1eecede2679cb5d83ceab442fc62b3f480ff307186ee6e11a2b060"
+      "fingerprint": "daaeaead858dabd26dc0c86db062291eeefbad4218e312ee8a9fc11979c3fc17"
     },
     {
       "id": "2026-10-add-server-join-first",
@@ -15235,10 +15319,11 @@
         "value": null
       },
       "userPercentage": {
-        "status": "unknown",
-        "value": null
+        "status": "provided",
+        "value": 50,
+        "source": "gist_user_rollouts"
       },
-      "fingerprint": "452e553b9bf8ef8d7ffa7fa0b6b1a3f04e5618487bce524c7bd2a48fc6dd4ec8"
+      "fingerprint": "3a8d6eb3876b06bd980330280923732eea584da0e7a92e845a223bace8497945"
     },
     {
       "id": "2026-10-avx512-entropy-histogram",
@@ -15287,10 +15372,11 @@
         "value": null
       },
       "userPercentage": {
-        "status": "unknown",
-        "value": null
+        "status": "provided",
+        "value": 15,
+        "source": "gist_user_rollouts"
       },
-      "fingerprint": "51ff03f3420ec145308c769d5df176d8b746464b5f85df97655d298a5479fd4e"
+      "fingerprint": "fac7209d66f39321636693e00dfb4433232b2fbfd960d205b6b09902fee4e1c4"
     },
     {
       "id": "2026-10-badge-directory-updates",
@@ -15339,10 +15425,11 @@
         "value": null
       },
       "userPercentage": {
-        "status": "unknown",
-        "value": null
+        "status": "provided",
+        "value": 100,
+        "source": "gist_user_rollouts"
       },
-      "fingerprint": "5dfeea91f4ad9284d054d9fe3317cea9f089ec9f07bd00b2e1f5a0702533dcff"
+      "fingerprint": "f1322ccc74bee39ea4a2a25a21be694dfc8c5b5a1c84cfb621f11f436b54b848"
     },
     {
       "id": "2026-10-badges-unread-state",
@@ -15593,10 +15680,11 @@
         "value": null
       },
       "userPercentage": {
-        "status": "unknown",
-        "value": null
+        "status": "provided",
+        "value": 20,
+        "source": "gist_user_rollouts"
       },
-      "fingerprint": "025618bc7522bdd6f871d67c210d0675a3afe4e1e0d01a6f1950232c1f094333"
+      "fingerprint": "2f5e2ac8f20dbdbc7ad98a6a9c360bc1e2696cee3d53799a6347f09b8b02d13a"
     },
     {
       "id": "2026-10-camp-in-dm",
@@ -15685,10 +15773,11 @@
         "value": null
       },
       "userPercentage": {
-        "status": "unknown",
-        "value": null
+        "status": "provided",
+        "value": 10,
+        "source": "gist_user_rollouts"
       },
-      "fingerprint": "f7b1c7083795e7c58dd1b28a69ad77bb20e3b0c0450aeb1487ec6bfac03f1d1d"
+      "fingerprint": "504decffdc596f2aca1ec3b3cf2807d82e063d9f5f630653b39254559b881169"
     },
     {
       "id": "2026-10-clips-default-on-geo",
@@ -15783,10 +15872,11 @@
         "value": null
       },
       "userPercentage": {
-        "status": "unknown",
-        "value": null
+        "status": "provided",
+        "value": 100,
+        "source": "gist_user_rollouts"
       },
-      "fingerprint": "063c6773340e1ec671798160b352a040def2c879bd59b84e64ca6fe73c99b732"
+      "fingerprint": "49316170f84564fe9b1bc6d8d32dee2268a13ecab3c494ed31e4bfcc7ed46ec6"
     },
     {
       "id": "2026-10-code-blurple",
@@ -15835,10 +15925,11 @@
         "value": null
       },
       "userPercentage": {
-        "status": "unknown",
-        "value": null
+        "status": "provided",
+        "value": 100,
+        "source": "gist_user_rollouts"
       },
-      "fingerprint": "984911e38729942107430b88d04982c279eebc30f38f94aed62dad7418928e02"
+      "fingerprint": "092c73a89f58e66db53b1369aa7692b917f76f5d4247fea8b9d0fc459abf0735"
     },
     {
       "id": "2026-10-code-blurple-marketing-holdout",
@@ -15887,10 +15978,11 @@
         "value": null
       },
       "userPercentage": {
-        "status": "unknown",
-        "value": null
+        "status": "provided",
+        "value": 95,
+        "source": "gist_user_rollouts"
       },
-      "fingerprint": "8f14a0c71885480d693cd26be7da72d700cfd7bad3c827d5541cf01389ad7fd3"
+      "fingerprint": "88ec75451b7a082673ee94b36644c22a84f5b0b0a52d70ba1d750a8851fa3446"
     },
     {
       "id": "2026-10-code-blurple-teaser",
@@ -16043,10 +16135,11 @@
         "value": null
       },
       "userPercentage": {
-        "status": "unknown",
-        "value": null
+        "status": "provided",
+        "value": 50,
+        "source": "gist_user_rollouts"
       },
-      "fingerprint": "01766ee2e189f95580c1865fc4db1b9900979a57edcde18bd8c38460b4a2438e"
+      "fingerprint": "62ef27b505109daf37626bad02b58eff126634ffecc3b151368b68cbfec13c92"
     },
     {
       "id": "2026-10-collectibles-marketing-client-cache",
@@ -16217,10 +16310,11 @@
         "value": null
       },
       "userPercentage": {
-        "status": "unknown",
-        "value": null
+        "status": "provided",
+        "value": 50,
+        "source": "gist_user_rollouts"
       },
-      "fingerprint": "af6e7501f932ab60b17540ef037048da88d0633eccaaa39a36e053f57abd1e7d"
+      "fingerprint": "20945eabb55e97682c52f7116601e61650be20392e61135de12acf3526418825"
     },
     {
       "id": "2026-10-conjure-mcp-ui",
@@ -16559,10 +16653,11 @@
         "value": null
       },
       "userPercentage": {
-        "status": "unknown",
-        "value": null
+        "status": "provided",
+        "value": 50,
+        "source": "gist_user_rollouts"
       },
-      "fingerprint": "31f572c1b66019e409bb6a1c91ef9cbf732b1ebc9bf1105e8790603ec110efaf"
+      "fingerprint": "a0b471e17561ccc5db9240aa7e0bd34cece17aa8f0c3cb17445423712f20a50a"
     },
     {
       "id": "2026-10-desktop-general-perf",
@@ -16629,10 +16724,11 @@
         "value": null
       },
       "userPercentage": {
-        "status": "unknown",
-        "value": null
+        "status": "provided",
+        "value": 50,
+        "source": "gist_user_rollouts"
       },
-      "fingerprint": "b1c8d36ee752af80557389690c5ef3a825e18fb8947b7aad0744bb6cdf6425da"
+      "fingerprint": "01748d045e0ffd7c3b8f2aff7a07819c1c8bce10a067e17b1bbf69a28c65e8fc"
     },
     {
       "id": "2026-10-desktop-tti-perf",
@@ -16681,10 +16777,11 @@
         "value": null
       },
       "userPercentage": {
-        "status": "unknown",
-        "value": null
+        "status": "provided",
+        "value": 50,
+        "source": "gist_user_rollouts"
       },
-      "fingerprint": "eed054c142f7c0c556fbdb1b120c6885e05067e19410a67821701058160ab394"
+      "fingerprint": "d9087622864c6395222cab71630d05d8d4608d5e2905ce0cf7a4d7e0060da5af"
     },
     {
       "id": "2026-10-e2e-latency-measurement",
@@ -16865,10 +16962,11 @@
         "value": null
       },
       "userPercentage": {
-        "status": "unknown",
-        "value": null
+        "status": "provided",
+        "value": 15,
+        "source": "gist_user_rollouts"
       },
-      "fingerprint": "31514f5e06d22a6b9db4ae7d1868d93fb58a7cbccde83494b8fc8737935a9253"
+      "fingerprint": "f3c4bed61d95983d00cfce54f8d6964e1c90e15b3c62e07e18a880fd4adc02cd"
     },
     {
       "id": "2026-10-express-checkout",
@@ -16915,10 +17013,11 @@
         "value": null
       },
       "userPercentage": {
-        "status": "unknown",
-        "value": null
+        "status": "provided",
+        "value": 50,
+        "source": "gist_user_rollouts"
       },
-      "fingerprint": "ba91ee6bd50be2ba33dd6c596afd451631e56be779f12b11244bf70dd163adb6"
+      "fingerprint": "e19abb2d1ea0da13590e587a152e79e57282c2589b587c7ae83b347cc92c2ca9"
     },
     {
       "id": "2026-10-fix-soundboard-muting-iconography",
@@ -16957,10 +17056,11 @@
         "value": null
       },
       "userPercentage": {
-        "status": "unknown",
-        "value": null
+        "status": "provided",
+        "value": 10,
+        "source": "gist_user_rollouts"
       },
-      "fingerprint": "8f2d29378b7b20eee73d81e8323627cdaafc6684b82baf6d7d9eac970c95db50"
+      "fingerprint": "96ae855a5fca75a6d62e3e45182fd10e9ef18718f157864e15690a9b813fba97"
     },
     {
       "id": "2026-10-fractional-nitro-pricing",
@@ -17011,10 +17111,11 @@
         "value": null
       },
       "userPercentage": {
-        "status": "unknown",
-        "value": null
+        "status": "provided",
+        "value": 20,
+        "source": "gist_user_rollouts"
       },
-      "fingerprint": "a6fd062e217eea883b76188a5e6387b613ea1648abb2f17ec448277dbb4b59bb"
+      "fingerprint": "4053c1702047481209221f1de0efd1f808e6cb4c744bb1b7153a18ada46134f3"
     },
     {
       "id": "2026-10-game-discovery",
@@ -17115,10 +17216,11 @@
         "value": null
       },
       "userPercentage": {
-        "status": "unknown",
-        "value": null
+        "status": "provided",
+        "value": 50,
+        "source": "gist_user_rollouts"
       },
-      "fingerprint": "15090f5f0470f0c1a91d947b159435f76a7c7b57ab5fb2c35a9da78a8da2a21e"
+      "fingerprint": "e0bcd84673a7536c4584291c0e0f499210c3660e8d4ddfe28f17102d82d66327"
     },
     {
       "id": "2026-10-gdm-duration-timer",
@@ -17167,10 +17269,11 @@
         "value": null
       },
       "userPercentage": {
-        "status": "unknown",
-        "value": null
+        "status": "provided",
+        "value": 8.5,
+        "source": "gist_user_rollouts"
       },
-      "fingerprint": "114cb3a3d17bd65ed1e7d7a63b19fdbc5bde3bbc7cf3459f10635db819ccfe3a"
+      "fingerprint": "407bd31f063c962ebbbe9a96e1c12285143ad674dfb1ca8e493d614f500db320"
     },
     {
       "id": "2026-10-gift-cards-in-app-marketing",
@@ -17411,10 +17514,11 @@
         "value": null
       },
       "userPercentage": {
-        "status": "unknown",
-        "value": null
+        "status": "provided",
+        "value": 50,
+        "source": "gist_user_rollouts"
       },
-      "fingerprint": "30c8a246c278c6d20659bf308adc718b74da27b6158e43807dec9fcce80bfda3"
+      "fingerprint": "651bee26b9c897e6398e65d8846913e1800fb3799f76357488a589d1bf070939"
     },
     {
       "id": "2026-10-hd-streaming-contextual-referrals",
@@ -17529,10 +17633,11 @@
         "value": null
       },
       "userPercentage": {
-        "status": "unknown",
-        "value": null
+        "status": "provided",
+        "value": 100,
+        "source": "gist_user_rollouts"
       },
-      "fingerprint": "fde0724f4086cfc774c1216df5ef312819a2ccf64efdbcd8833ec45fd95be06c"
+      "fingerprint": "ced11510fbe821f30685a02db9d5ae5d0bcaea70d11577b0891b14a4d22239af"
     },
     {
       "id": "2026-10-macaron-non-sub-marketing",
@@ -17581,10 +17686,11 @@
         "value": null
       },
       "userPercentage": {
-        "status": "unknown",
-        "value": null
+        "status": "provided",
+        "value": 90.5,
+        "source": "gist_user_rollouts"
       },
-      "fingerprint": "c89e4be78467eb986288413d3d8e4e7232737cf459da720e15defeb327f18a36"
+      "fingerprint": "8f237ff4a62ffe1a32d1d5b354871a8eaae94bebe6a9d57cf14a4129ca9a8ccd"
     },
     {
       "id": "2026-10-mana-badge-refresh",
@@ -17783,10 +17889,11 @@
         "value": null
       },
       "userPercentage": {
-        "status": "unknown",
-        "value": null
+        "status": "provided",
+        "value": 50,
+        "source": "gist_user_rollouts"
       },
-      "fingerprint": "aaf642110a5a501773cf839bb858229106f0eed77d3277ecd54eb305955b3cab"
+      "fingerprint": "708e07fa12072f611525caacb11f17c81fd2ac43fc131b66244310b7ba5634f2"
     },
     {
       "id": "2026-10-nitro-settings-marketing-page-refresh",
@@ -17887,10 +17994,11 @@
         "value": null
       },
       "userPercentage": {
-        "status": "unknown",
-        "value": null
+        "status": "provided",
+        "value": 50,
+        "source": "gist_user_rollouts"
       },
-      "fingerprint": "5ce45cac57f9974997f2319393d78a605ed6ac334b9e1fe633ea65b30c3a7bbf"
+      "fingerprint": "584112daa79c653bb8bb38a6722c656f910a3c8a605d4dbc178d620068525277"
     },
     {
       "id": "2026-10-orbchievements-mobile",
@@ -18147,10 +18255,11 @@
         "value": null
       },
       "userPercentage": {
-        "status": "unknown",
-        "value": null
+        "status": "provided",
+        "value": 100,
+        "source": "gist_user_rollouts"
       },
-      "fingerprint": "b2671a47e27a291c86458c7d574921b7b65cb9da59b549974358f5539d06219f"
+      "fingerprint": "c5f7946d01cbf94d6246a7e67c04eab8145f9f65ccc98ff531b71f7188d2c6c9"
     },
     {
       "id": "2026-10-pinot-member-notice",
@@ -18285,10 +18394,11 @@
         "value": null
       },
       "userPercentage": {
-        "status": "unknown",
-        "value": null
+        "status": "provided",
+        "value": 30,
+        "source": "gist_user_rollouts"
       },
-      "fingerprint": "e7e9854c3a6d70a46fb8610b7d19d67af3672215d0b4c8192723c8519577d4b8"
+      "fingerprint": "be899ac351fb7a6bf27e40418e7fa4ebf5851c942aaaaf2a9beea924b7577201"
     },
     {
       "id": "2026-10-profile-nitro-upsell-refresh",
@@ -18337,10 +18447,11 @@
         "value": null
       },
       "userPercentage": {
-        "status": "unknown",
-        "value": null
+        "status": "provided",
+        "value": 25,
+        "source": "gist_user_rollouts"
       },
-      "fingerprint": "3580e29485a35d9e3918db45c73b9413da4e4764b064ec002acc79117b79fc56"
+      "fingerprint": "944b5856f2e4ee3f654d16872d6e7526c2839de4206a5cc2f777f0b13a281415"
     },
     {
       "id": "2026-10-profile-read-state",
@@ -18417,10 +18528,11 @@
         "value": null
       },
       "userPercentage": {
-        "status": "unknown",
-        "value": null
+        "status": "provided",
+        "value": 50,
+        "source": "gist_user_rollouts"
       },
-      "fingerprint": "34cae9cf47acf062834a0e179e4ba72d9284798169309c46cfce7a5f25d81f27"
+      "fingerprint": "4ee8ac8f3f2f1eb93f7b65b3971b46b0ff3bbda0bd6d2f17b6f44387d8b82ce3"
     },
     {
       "id": "2026-10-remove-quests-from-discovery",
@@ -18469,10 +18581,11 @@
         "value": null
       },
       "userPercentage": {
-        "status": "unknown",
-        "value": null
+        "status": "provided",
+        "value": 50,
+        "source": "gist_user_rollouts"
       },
-      "fingerprint": "15d829a40b8a0b0dc5b144002e287e3563208787a9003cc5f1c81bdc11bc2eff"
+      "fingerprint": "c8cdc07032dda81cb160922820990897f0d24652a6e0d336e5cfdf389d0e6c36"
     },
     {
       "id": "2026-10-request-to-stream-non-games",
@@ -18757,10 +18870,11 @@
         "value": null
       },
       "userPercentage": {
-        "status": "unknown",
-        "value": null
+        "status": "provided",
+        "value": 45.44,
+        "source": "gist_user_rollouts"
       },
-      "fingerprint": "5833a15f3bdbbfb4aa86a1530be1f208f65473e3401898cfaa49854b9f4f1833"
+      "fingerprint": "6e451f28aa764e87e4c526aa7d2a31f98ea72e188251af55700daf7766bfdd8e"
     },
     {
       "id": "2026-10-shop-marketing-fatigue",
@@ -18855,10 +18969,11 @@
         "value": null
       },
       "userPercentage": {
-        "status": "unknown",
-        "value": null
+        "status": "provided",
+        "value": 25,
+        "source": "gist_user_rollouts"
       },
-      "fingerprint": "c6803619a968ba196c5dcd36cd4802032c4fc2f70f0c871c2449c8911f10d2b2"
+      "fingerprint": "c8bea8e82bb8b5b776f1c892911a8f3c5290b1ce1072a4b7b8162fe2b6891dcc"
     },
     {
       "id": "2026-10-shop-twelve-days-promo",
@@ -18955,10 +19070,11 @@
         "value": null
       },
       "userPercentage": {
-        "status": "unknown",
-        "value": null
+        "status": "provided",
+        "value": 100,
+        "source": "gist_user_rollouts"
       },
-      "fingerprint": "5cd1bf5bd63e21f2b82c3a5cf4fcd10bf13872170ac76ee54710cac610393e33"
+      "fingerprint": "5850c5523066f9927ff073a5cc644d51779457c503493169267c9b0bbb06253c"
     },
     {
       "id": "2026-10-social-layer-storefront-mobile-multi-sku-embed",
@@ -19053,10 +19169,11 @@
         "value": null
       },
       "userPercentage": {
-        "status": "unknown",
-        "value": null
+        "status": "provided",
+        "value": 10,
+        "source": "gist_user_rollouts"
       },
-      "fingerprint": "cb48906c949d4030905bbd55bee69e71393ecb9c2ea46d4baaaa6672559494a8"
+      "fingerprint": "41529f3af7ef554f634af1e9a039cde109f578f719436a95d8cbfd46cf38666b"
     },
     {
       "id": "2026-10-soundboard-new-sounds-badge",
@@ -19099,10 +19216,11 @@
         "value": null
       },
       "userPercentage": {
-        "status": "unknown",
-        "value": null
+        "status": "provided",
+        "value": 10,
+        "source": "gist_user_rollouts"
       },
-      "fingerprint": "204b3714798ac6e44205c860d2561581acc21f3823de89db231ade732c5d909f"
+      "fingerprint": "32dfba3192ffff54c955b7566563a1e6fa8612be439cdf3473b122c4cec42199"
     },
     {
       "id": "2026-10-stage-unified-call",
@@ -19281,10 +19399,11 @@
         "value": null
       },
       "userPercentage": {
-        "status": "unknown",
-        "value": null
+        "status": "provided",
+        "value": 64.5,
+        "source": "gist_user_rollouts"
       },
-      "fingerprint": "e65dca5103fd3c5a13b99d75aeb7e5d86878541ddd1882849bcadcd9fe97a646"
+      "fingerprint": "4a9b42cf35be1437fbfc172908eead6b8afc9d046bdda95c149e9c095def61c6"
     },
     {
       "id": "2026-10-video-player-playback-speed",
@@ -19529,10 +19648,11 @@
         "value": null
       },
       "userPercentage": {
-        "status": "unknown",
-        "value": null
+        "status": "provided",
+        "value": 16,
+        "source": "gist_user_rollouts"
       },
-      "fingerprint": "ca770474a1f47b681dc61a2070b171de128aa9b4b8a8cbcaa3732c387e796011"
+      "fingerprint": "dc8b66e000a72a60ab598d6f1e7c29d09f8531af5579c100e408932592e1c984"
     },
     {
       "id": "2026-10-windows-playout-buffer-duration",
@@ -20595,10 +20715,11 @@
         "value": null
       },
       "userPercentage": {
-        "status": "unknown",
-        "value": null
+        "status": "provided",
+        "value": 10,
+        "source": "gist_user_rollouts"
       },
-      "fingerprint": "ea82013a5b8077c7977b0efafeb9c43866f68b93f5220ed2e4bd3827cde504f4"
+      "fingerprint": "a98e82167619530e949939e858e5c0167f34c934e058e09a960df4348ca8dbcb"
     },
     {
       "id": "2026-11-shop-this-look-full-profile-button",
@@ -20689,10 +20810,11 @@
         "value": null
       },
       "userPercentage": {
-        "status": "unknown",
-        "value": null
+        "status": "provided",
+        "value": 25,
+        "source": "gist_user_rollouts"
       },
-      "fingerprint": "12dea01107aa0c5287c847ccbe6d08eb93f8228cdd5600412a833a243e9e26fb"
+      "fingerprint": "1a9082f8e825a638a9dc4eacf56d8225f76b1434e1e0c5127425a71bdb07eebe"
     },
     {
       "id": "2026-11-subscription-management-settings-brand-refresh",
