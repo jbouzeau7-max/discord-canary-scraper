@@ -61,34 +61,91 @@ async function loadState(dataDir) {
   const experiments = normalizeExperiments(experimentsRaw || findings);
   console.log('Loaded baseline experiments:', experiments.length);
 
+  // Explicit initiatives /Legacy heuristics
   const explicitInit = Boolean(meta && typeof meta === 'object' && meta.initialized === true && Number(meta.schemaVersion || 0) >= 2);
   const legacyInit =
     Boolean(meta && typeof meta === 'object' && meta.initialized) ||
-    experiments.length > 0 ||
-    (build && build.buildNumber);
+    experiments.length > 10 ||
+    Object.keys(strings || {}).length > 50 ||
+    !!(build && typeof build === 'object' && build.buildNumber && build.buildNumber !== 'unknown');
+
+  // Soft consistency check across stamped files (warn only — do not wipe baseline).
+  const stamps = [
+    build && typeof build === 'object' && build.runId,
+    experimentsRaw && typeof experimentsRaw === 'object' && experimentsRaw.runId,
+    meta && typeof meta === 'object' && meta.runId,
+  ].filter(Boolean);
+  if (stamps.length >= 2 && new Set(stamps).size > 1) {
+    console.warn(
+      'STATE_STAMP_MISMATCH: state files may come from different runs',
+      { stamps: [...new Set(stamps)] },
+    );
+  }
 
   return {
-    build,
-    experiments,
-    strings: strings || {},
-    routes: routes || {},
-    meta: meta || {},
     initialized: explicitInit || legacyInit,
+    build: build && typeof build === 'object' && !Array.isArray(build) ? build : null,
+    experiments,
+    strings:
+      strings && typeof strings === 'object' && !Array.isArray(strings) ? strings : {},
+    routes: routes && typeof routes === 'object' && !Array.isArray(routes) ? routes : {},
+    meta: meta && typeof meta === 'object' && !Array.isArray(meta) ? meta : {},
   };
 }
 
-async function saveState(dataDir, state, opts = {}) {
+/**
+ * Write a coherent generation of state files:
+ *  1) write all JSON into .state_staging/<runId>/
+ *  2) atomic-move each into dataDir
+ * So a crash mid-write cannot leave experiments.json from run A and strings.json from run B.
+ */
+async function saveState(dataDir, state) {
   await fs.ensureDir(dataDir);
-  const buildNumber = opts.buildNumber != null ? opts.buildNumber : (state.build && state.build.buildNumber);
-  const runId = opts.runId || makeRunId(buildNumber);
+
+  const buildNumber =
+    state.build && state.build.buildNumber != null
+      ? String(state.build.buildNumber)
+      : null;
+  if (!buildNumber || buildNumber === 'unknown') {
+    throw new Error('saveState refused: missing or unknown buildNumber');
+  }
+
+  const runId = state.runId || makeRunId(buildNumber);
   const stampCtx = { runId, buildNumber };
+  const stagingRoot = path.join(dataDir, '.state_staging');
+  const staging = path.join(stagingRoot, runId);
+  await fs.emptyDir(staging);
 
-  const staging = path.join(dataDir, `.staging-${process.pid}-${Date.now()}`);
-  await fs.ensureDir(staging);
+  const buildOut = stamp(
+    {
+      buildNumber,
+      versionHash: (state.build && state.build.versionHash) || null,
+      releaseChannel: (state.build && state.build.releaseChannel) || 'canary',
+      scrapedAt: (state.build && state.build.scrapedAt) || new Date().toISOString(),
+      assetCount: Array.isArray(state.build && state.build.assets)
+        ? state.build.assets.length
+        : (state.build && state.build.assetCount) || null,
+      cssCount: Array.isArray(state.build && state.build.cssAssets)
+        ? state.build.cssAssets.length
+        : (state.build && state.build.cssCount) || null,
+    },
+    stampCtx,
+  );
 
-  const buildOut = stamp(state.build || { buildNumber }, stampCtx);
-  const expPayload = stamp({ experiments: state.experiments || [] }, stampCtx);
+  const expPayload = stamp(
+    {
+      scrapedAt: new Date().toISOString(),
+      totals: { all: (state.experiments || []).length },
+      experiments: state.experiments || [],
+    },
+    stampCtx,
+  );
 
+  // strings/routes: wrap if plain map so we can stamp without breaking consumers that expect a map.
+  // Keep flat map on disk for backward compat, but write a companion .meta is heavy —
+  // instead embed _meta only in meta.json and stamp buildNumber/runId on exp/build.
+  // For strings/routes we write the map as-is AND rely on meta.json + build.json for stamps.
+  // Additional stamp files keep a generation marker.
   const genMarker = stamp(
     {
       files: [
@@ -118,6 +175,7 @@ async function saveState(dataDir, state, opts = {}) {
     stampCtx,
   );
 
+  // Write everything into staging first
   await writeJsonAtomic(path.join(staging, 'build.json'), buildOut);
   await writeJsonAtomic(path.join(staging, 'experiments.json'), expPayload);
   await writeJsonAtomic(path.join(staging, 'findings.json'), expPayload);
@@ -126,6 +184,7 @@ async function saveState(dataDir, state, opts = {}) {
   await writeJsonAtomic(path.join(staging, 'meta.json'), metaOut);
   await writeJsonAtomic(path.join(staging, 'state_generation.json'), genMarker);
 
+  // Atomic promote: move each staged file into dataDir
   const names = [
     'build.json',
     'experiments.json',
@@ -141,6 +200,7 @@ async function saveState(dataDir, state, opts = {}) {
     await fs.move(from, to, { overwrite: true });
   }
 
+  // Cleanup staging for this run (best-effort)
   try {
     await fs.remove(staging);
   } catch {}

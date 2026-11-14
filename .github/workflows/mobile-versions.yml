@@ -2,7 +2,7 @@ name: Mobile Versions
 
 on:
   schedule:
-    - cron: '*/15 * * * *'
+    - cron: '15,45 * * * *'
   workflow_dispatch:
   repository_dispatch:
     types: [trigger-mobile]

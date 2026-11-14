@@ -63,6 +63,7 @@ async function archiveBuildChunks({ build, assetsDir, buildsDir }) {
           : 'chunk',
     };
 
+    // Always keep web.* next to manifest (for git)
     if (entry.kind === 'web') {
       const dest = path.join(outDir, name);
       try {
@@ -75,10 +76,12 @@ async function archiveBuildChunks({ build, assetsDir, buildsDir }) {
     } else if (COPY_ALL) {
       const dest = path.join(filesDir, name);
       try {
+        // skip if already same size
         if (await fs.pathExists(dest)) {
           const dst = await fs.stat(dest);
           if (dst.size === st.size) {
             entry.archived = true;
+            copied++;
           } else {
             await fs.copy(src, dest, { overwrite: true });
             entry.archived = true;
@@ -115,6 +118,7 @@ async function archiveBuildChunks({ build, assetsDir, buildsDir }) {
 
   await writeJsonAtomic(path.join(outDir, 'manifest.json'), manifest, 2);
 
+  // Latest pointer
   await writeJsonAtomic(
     path.join(buildsDir, 'latest.json'),
     {
@@ -160,6 +164,7 @@ async function pruneOldBuilds(buildsDir, keep) {
   }
 }
 
+/** Write a marker file listing zip path for the workflow */
 async function writeZipHint(buildsDir, buildNumber, manifest) {
   await writeJsonAtomic(
     path.join(buildsDir, 'zip-hint.json'),

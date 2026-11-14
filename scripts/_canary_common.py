@@ -19,30 +19,43 @@ import urllib.error
 import urllib.request
 from pathlib import Path
 
+# ── Constants ──────────────────────────────────────────────
 CANARY_URLS = (
     "https://canary.discord.com/app",
     "https://canary.discord.com/login",
+    "https://canary.discord.com/channels/@me",
 )
+
 DEFAULT_UA = (
-    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
-    "(KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36"
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+    "AppleWebKit/537.36 (KHTML, like Gecko) "
+    "Chrome/131.0.0.0 Safari/537.36"
 )
-DEFAULT_REPO = os.environ.get("GITHUB_REPO", "jbouzeau7-max/discord-canary-scraper")
+
+BUILD_RE = re.compile(r'"BUILD_NUMBER"\s*:\s*"?(\d+)"?')
+HASH_RE = re.compile(r'"VERSION_HASH"\s*:\s*"([a-f0-9]{8,})"', re.I)
+
+DEFAULT_REPO = "jbouzeau7-max/discord-canary-scraper"
 DEFAULT_EVENT = "trigger-scraping"
 
-BUILD_RE = re.compile(r"BUILD_NUMBER[\"']?\s*[:=]\s*[\"']?(\d{4,12})")
-HASH_RE = re.compile(r"VERSION_HASH[\"']?\s*[:=]\s*[\"']([a-f0-9]{7,40})", re.I)
 
-
+# ── HTTP ───────────────────────────────────────────────────
 def http_get(url: str, timeout: int = 20, ua: str = DEFAULT_UA) -> str:
-    req = urllib.request.Request(url, headers={"User-Agent": ua, "Accept": "text/html"})
+    """Fetch URL and return decoded text."""
+    req = urllib.request.Request(
+        url, headers={"User-Agent": ua, "Accept": "text/html"}
+    )
     with urllib.request.urlopen(req, timeout=timeout) as res:
         return res.read().decode("utf-8", errors="replace")
 
 
-def http_post_json(url: str, payload: dict, headers: dict, timeout: int = 30) -> tuple:
-    data = json.dumps(payload).encode("utf-8")
-    req = urllib.request.Request(url, data=data, headers=headers, method="POST")
+def http_post_json(url: str, body: dict, headers: dict, timeout: int = 30) -> tuple:
+    """POST JSON and return (status_code, response_text)."""
+    data = json.dumps(body).encode("utf-8")
+    req = urllib.request.Request(
+        url, data=data, method="POST",
+        headers={**headers, "Content-Type": "application/json"},
+    )
     try:
         with urllib.request.urlopen(req, timeout=timeout) as res:
             return res.status, ""
@@ -53,7 +66,9 @@ def http_post_json(url: str, payload: dict, headers: dict, timeout: int = 30) ->
         return 0, str(e)
 
 
+# ── Canary build extraction ────────────────────────────────
 def get_canary_build(ua: str = DEFAULT_UA, timeout: int = 20) -> tuple:
+    """Fetch canary.discord.com and return (build_number, version_hash) or (None, None)."""
     for url in CANARY_URLS:
         try:
             html = http_get(url, timeout=timeout, ua=ua)
@@ -66,7 +81,9 @@ def get_canary_build(ua: str = DEFAULT_UA, timeout: int = 20) -> tuple:
     return None, None
 
 
+# ── State file I/O ─────────────────────────────────────────
 def read_state(state_file) -> str | None:
+    """Read last known build number from state file."""
     p = Path(state_file) if not isinstance(state_file, Path) else state_file
     try:
         if p.exists():
@@ -77,6 +94,7 @@ def read_state(state_file) -> str | None:
 
 
 def write_state(state_file, build: str) -> None:
+    """Write build number to state file (atomic-ish: write then flush)."""
     p = Path(state_file) if not isinstance(state_file, Path) else state_file
     try:
         p.parent.mkdir(parents=True, exist_ok=True)
@@ -87,6 +105,7 @@ def write_state(state_file, build: str) -> None:
         pass
 
 
+# ── GitHub Actions dispatch ────────────────────────────────
 def dispatch_github_actions(
     token: str,
     repo: str = DEFAULT_REPO,
@@ -94,6 +113,9 @@ def dispatch_github_actions(
     ua: str = DEFAULT_UA,
     timeout: int = 30,
 ) -> tuple:
+    """Dispatch a GitHub Actions repository_dispatch event.
+    Returns (success: bool, message: str).
+    """
     if not token or len(token) < 20:
         return False, "TOKEN manquant (GITHUB_TOKEN ou GH_TOKEN)"
     url = f"https://api.github.com/repos/{repo}/dispatches"

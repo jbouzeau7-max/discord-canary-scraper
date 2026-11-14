@@ -11,7 +11,7 @@ Usage:
   python3 scripts/canary_trigger.py
 
 Vars optionnelles:
-  GITHUB_REPO=kmljkjj/discord-canary-scraper
+  GITHUB_REPO=jbouzeau7-max/discord-canary-scraper
   INTERVAL=20          # secondes entre checks (20 recommandé)
   DISPATCH_EVENT=trigger-scraping
 """

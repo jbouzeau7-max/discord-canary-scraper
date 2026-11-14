@@ -16,18 +16,32 @@ const DEFAULT_BOT_NAME = process.env.ORBIT_BOT_NAME || 'Datamining';
 /** Default avatar URL for webhook messages. */
 const DEFAULT_AVATAR_URL =
   process.env.ORBIT_AVATAR_URL ||
-  'https://cdn.jsdelivr.net/gh/kmljkjj/discord-canary-scraper@main/media/datamining-avatar.png';
+  'https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/72x72/1f9ea.png';
 
 /** Default avatar for mobile/blog/quest scripts. */
 const DEFAULT_MOBILE_AVATAR =
   process.env.ORBIT_BOT_AVATAR ||
   'https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/72x72/1f50d.png';
 
+/**
+ * Promise-based sleep.
+ * @param {number} ms - milliseconds to wait
+ * @returns {Promise<void>}
+ */
 function sleep(ms) {
   const n = Number(ms);
   return new Promise((r) => setTimeout(r, Number.isFinite(n) && n > 0 ? n : 0));
 }
 
+/**
+ * Lit une variable d'environnement numérique de façon sûre.
+ * Une valeur vide, non numérique ou infinie retombe sur `fallback`
+ * (avant : `Number('abc' || 32)` → NaN → 0 worker / boucles cassées).
+ * @param {string} name
+ * @param {number} fallback
+ * @param {{min?: number, max?: number, int?: boolean}} [opts]
+ * @returns {number}
+ */
 function envNumber(name, fallback, opts = {}) {
   const raw = process.env[name];
   let v = raw == null || String(raw).trim() === '' ? NaN : Number(raw);
@@ -38,6 +52,11 @@ function envNumber(name, fallback, opts = {}) {
   return v;
 }
 
+/**
+ * Redact Discord tokens and JWTs from error messages before logging.
+ * @param {string|Error} msg - message or error to redact
+ * @returns {string} redacted message
+ */
 function redactSecrets(msg) {
   return String(msg || '')
     .replace(/[\w-]{20,}\.[\w-]{5,}\.[\w-]{10,}/g, '[REDACTED_JWT]')
@@ -45,6 +64,13 @@ function redactSecrets(msg) {
     .replace(/Bot\s+[\w.-]{20,}/gi, 'Bot [REDACTED]');
 }
 
+/**
+ * Load Discord user tokens from environment variables.
+ * Checks DISCORD_USER_TOKENS (comma/newline/semicolon separated),
+ * DISCORD_USER_TOKEN_1..10, DISCORD_USER_TOKEN, DISCORD_TOKEN.
+ * @param {number} [maxIndex=10] - max token index to check
+ * @returns {string[]} array of unique non-empty tokens
+ */
 function loadTokens(maxIndex = 10) {
   const out = [];
   const seen = new Set();
@@ -64,22 +90,41 @@ function loadTokens(maxIndex = 10) {
   return out;
 }
 
+/**
+ * Get the first available Discord user token from environment.
+ * Shorthand for loadTokens()[0].
+ * @returns {string|null}
+ */
 function firstToken() {
   const tokens = loadTokens();
   return tokens.length > 0 ? tokens[0] : null;
 }
 
+/**
+ * Keep the `max` most recently inserted ids of a Set / array (insertion order).
+ * Replaces the former `[...set].sort().slice(-max)` pattern, which evicted ids
+ * by lexicographic order (hashes → random eviction) and caused re-notifications.
+ * @param {Iterable<string>} ids
+ * @param {number} max
+ * @returns {string[]}
+ */
 function trimRecent(ids, max) {
   const arr = [...new Set(Array.from(ids || [], String))];
   return max > 0 && arr.length > max ? arr.slice(arr.length - max) : arr;
 }
 
+/**
+ * ISO string for a date-ish value, or `fallback` when missing/unparseable.
+ * `new Date(bad).toISOString()` throws RangeError and used to abort whole runs
+ * on a single malformed feed date.
+ */
 function safeIso(v, fallback = null) {
   if (v == null || v === '') return fallback;
   const d = new Date(v);
   return Number.isFinite(d.getTime()) ? d.toISOString() : fallback;
 }
 
+/** Trim sorted ids in place to `max`, keeping keys present in `current` first. */
 function capKnownIds(ids, max, current) {
   if (ids.length <= max) return ids;
   const cur = current || {};
