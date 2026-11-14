@@ -18,29 +18,50 @@ async function loadData() {
 
 function normalize(raw) {
   const list = Array.isArray(raw?.experiments) ? raw.experiments : Array.isArray(raw) ? raw : [];
-  return list.map((e) => ({
-    id: e.id || e.name || 'unknown',
-    type: String(e.type || 'unknown').toLowerCase(),
-  }));
+  return list
+    .filter((entry) => entry && typeof entry === 'object')
+    .map((entry) => ({
+      id: String(entry.id ?? entry.name ?? 'unknown').slice(0, 1000),
+      type: String(entry.type || 'unknown').toLowerCase().slice(0, 80),
+    }));
+}
+
+function setText(id, value) {
+  const el = document.getElementById(id);
+  if (el) el.textContent = String(value);
 }
 
 function render() {
+  if (!grid) return;
   const q = (searchInput?.value || '').trim().toLowerCase();
-  const list = all.filter((e) => {
-    if (filter !== 'all' && e.type !== filter) return false;
+  const list = all.filter((entry) => {
+    if (filter !== 'all' && entry.type !== filter) return false;
     if (!q) return true;
-    return e.id.toLowerCase().includes(q);
+    return entry.id.toLowerCase().includes(q);
   });
   if (metaEl) metaEl.textContent = list.length + ' / ' + all.length;
-  document.getElementById('stat-total').textContent = String(all.length);
-  document.getElementById('stat-user').textContent = String(all.filter((e) => e.type === 'user').length);
-  document.getElementById('stat-guild').textContent = String(all.filter((e) => e.type === 'guild').length);
-  grid.innerHTML = list.map((e) => `
-    <article class="card">
-      <h3>${e.id}</h3>
-      <span class="badge">${e.type}</span>
-    </article>
-  `).join('') || '<p>Aucun experiment.</p>';
+  setText('stat-total', all.length);
+  setText('stat-user', all.filter((entry) => entry.type === 'user').length);
+  setText('stat-guild', all.filter((entry) => entry.type === 'guild').length);
+
+  const cards = list.map((entry) => {
+    const article = document.createElement('article');
+    article.className = 'card';
+    const title = document.createElement('h3');
+    title.textContent = entry.id;
+    const badge = document.createElement('span');
+    badge.className = 'badge';
+    badge.textContent = entry.type;
+    article.append(title, badge);
+    return article;
+  });
+
+  if (cards.length === 0) {
+    const empty = document.createElement('p');
+    empty.textContent = 'Aucun experiment.';
+    cards.push(empty);
+  }
+  grid.replaceChildren(...cards);
 }
 
 loadData().then((raw) => {
@@ -48,13 +69,17 @@ loadData().then((raw) => {
   render();
 }).catch(() => {
   if (metaEl) metaEl.textContent = 'Données indisponibles';
-  grid.innerHTML = '<p>Pas de data/experiments.json pour le moment.</p>';
+  if (grid) {
+    const message = document.createElement('p');
+    message.textContent = 'Pas de data/experiments.json pour le moment.';
+    grid.replaceChildren(message);
+  }
 });
 
 searchInput?.addEventListener('input', render);
 document.querySelectorAll('.chip').forEach((btn) => {
   btn.addEventListener('click', () => {
-    document.querySelectorAll('.chip').forEach((b) => b.classList.remove('active'));
+    document.querySelectorAll('.chip').forEach((button) => button.classList.remove('active'));
     btn.classList.add('active');
     filter = btn.dataset.filter || 'all';
     render();
