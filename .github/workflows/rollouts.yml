@@ -1,23 +1,88 @@
 name: Rollouts %
 
+# UN SEUL workflow pour tous les % (utilisateurs + serveurs).
+#
+# - Mode « fast » (cron + dispatch, défaut) : src/rollouts_fast.js sonde
+#   toutes les 5 s pendant ~29 min, sondes guild + gist en parallèle :
+#     % serveurs     → wire Discord /experiments (authentifié) → apex_rollouts.js
+#     % utilisateurs → gist agnonotdev (CDN raw, hors quota)   → gist_user_rollouts.js
+#   Notification envoyée AVANT le commit (positions/comparaison/commit en
+#   arrière-plan). cron */5 + garde/concurrency → un run attend toujours en relais.
+# - Mode « diagnostic » (dispatch manuel uniquement) : échantillonnage
+#   propre src/rollouts_watch.js (ancien rollouts-watch.yml / user-rollouts.yml).
+#
+# Remplace : rollouts-fast.yml, apex-rollouts.yml, gist-user-rollouts.yml,
+# rollouts-watch.yml, user-rollouts.yml, rollouts-notify-test.yml.
+
 on:
   schedule:
-    - cron: '*/5 * * * *'
+    - cron: "*/5 * * * *"
   workflow_dispatch:
+    inputs:
+      mode:
+        description: "fast = surveillance temps réel (défaut) · diagnostic = échantillonnage % user"
+        type: choice
+        default: fast
+        options: [fast, diagnostic]
   repository_dispatch:
-    types: [trigger-rollouts, trigger-user-rollouts]
+    types:
+      - trigger-rollouts
+      - trigger-rollouts-fast
+      - trigger-apex-rollouts
+      - trigger-gist-user-rollouts
+      - trigger-user-rollouts
 
 permissions:
   contents: write
 
-concurrency:
-  group: rollouts
-  cancel-in-progress: false
-
 jobs:
-  rollouts:
+  # Garde anti-tempête : les déclencheurs externes (cron, repository_dispatch,
+  # ~1/min) ne servent à rien si un watcher tourne déjà avec assez de marge :
+  # sans cette garde, ils s'empilent en « pending » et s'annulent entre eux
+  # (GitHub ne garde qu'UN run en attente par groupe) — y compris le run
+  # lancé à la main. Un clic manuel (workflow_dispatch) passe TOUJOURS.
+  guard:
+    if: github.event_name != 'workflow_dispatch' || inputs.mode != 'diagnostic'
     runs-on: ubuntu-latest
-    timeout-minutes: 35
+    timeout-minutes: 2
+    permissions:
+      actions: read
+    outputs:
+      run: ${{ steps.g.outputs.run }}
+    steps:
+      - id: g
+        env:
+          GH_TOKEN: ${{ github.token }}
+          EVENT: ${{ github.event_name }}
+          REPO: ${{ github.repository }}
+          SELF: ${{ github.run_id }}
+        run: |
+          if [ "$EVENT" = "workflow_dispatch" ]; then echo "run=true" >> "$GITHUB_OUTPUT"; exit 0; fi
+          # Relais : on ne lance un watcher que si aucun n'attend déjà et que le
+          # watcher en cours (~29 min) a plus de 25 min (il va bientôt finir).
+          skip=0
+          for id in $(gh api "repos/$REPO/actions/workflows/rollouts.yml/runs?per_page=30" \
+                        --jq ".workflow_runs[] | select(.id != $SELF and .status != \"completed\") | .id" 2>/dev/null); do
+            n=$(gh api "repos/$REPO/actions/runs/$id/jobs" --jq '[.jobs[] | select(.name == "fast" and .status != "completed")
+                  | select(.status != "in_progress" or ((now - (.started_at | fromdateiso8601)) < 1500))] | length' 2>/dev/null || echo 0)
+            skip=$((skip + ${n:-0}))
+          done
+          if [ "$skip" -gt 0 ]; then
+            echo "Watcher déjà actif ou en relais → skip"; echo "run=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "run=true" >> "$GITHUB_OUTPUT"
+          fi
+
+  fast:
+    needs: guard
+    if: needs.guard.outputs.run == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    concurrency:
+      group: rollouts-fast
+      # Clic manuel = prend la main tout de suite (annule le watcher en cours,
+      # qui sera remplacé par celui-ci) au lieu d'attendre jusqu'à 29 min.
+      cancel-in-progress: ${{ github.event_name == 'workflow_dispatch' }}
     steps:
       - uses: actions/checkout@v5
         with:
@@ -25,21 +90,81 @@ jobs:
 
       - uses: ./.github/actions/setup
 
-      - name: Rollouts fast probe
-        id: rollouts
+      - name: Syntax check
+        run: |
+          for f in src/rollouts_fast.js src/apex_rollouts.js src/gist_user_rollouts.js \
+                   src/user_rollout_positions.js src/user_rollout_comparison.js; do
+            node --check "$f"
+          done
+
+      - name: Watch rollouts (5 s)
         env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GIST_TOKEN: ${{ secrets.GIST_TOKEN }}
+          DISCORD_TOKEN: ${{ secrets.DISCORD_TOKEN }}
+          DISCORD_USER_TOKENS: ${{ secrets.DISCORD_USER_TOKENS }}
           DISCORD_USER_TOKEN: ${{ secrets.DISCORD_USER_TOKEN }}
           DISCORD_USER_TOKEN_1: ${{ secrets.DISCORD_USER_TOKEN_1 }}
           DISCORD_USER_TOKEN_2: ${{ secrets.DISCORD_USER_TOKEN_2 }}
           DISCORD_USER_TOKEN_3: ${{ secrets.DISCORD_USER_TOKEN_3 }}
           DISCORD_USER_TOKEN_4: ${{ secrets.DISCORD_USER_TOKEN_4 }}
           DISCORD_USER_TOKEN_5: ${{ secrets.DISCORD_USER_TOKEN_5 }}
-          WEBHOOK_URL: ${{ secrets.WEBHOOK_URL }}
+          UR_WEBHOOK: ${{ secrets.UR_WEBHOOK }}
+          USER_ROLLOUT_WEBHOOK_URL: ${{ secrets.USER_ROLLOUT_WEBHOOK_URL }}
+          APEX_WEBHOOK_URL: ${{ secrets.APEX_WEBHOOK_URL }}
+          ROLLOUT_WEBHOOK_URL: ${{ secrets.ROLLOUT_WEBHOOK_URL }}
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          APEX_MIN_PCT_DELTA: "0.01"
+          APEX_RECENT_YEAR: "2025"
+          GIST_ROLLOUT_MIN_PCT_DELTA: "0.05"
+          ROLLOUTS_FAST_WATCH_MS: "1740000"
+          ROLLOUTS_FAST_TICK_MS: "5000"
+          ROLLOUTS_FAST_RETRY_MS: "60000"
           ORBIT_BOT_NAME: Datamining
         run: node src/rollouts_fast.js
 
-      - name: Save state
-        if: always() && steps.rollouts.outcome != 'cancelled'
-        run: |
-          bash scripts/commit-state.sh "rollouts: state" data/
+  diagnostic:
+    if: github.event_name == 'workflow_dispatch' && inputs.mode == 'diagnostic'
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    concurrency:
+      group: rollouts-watch
+      cancel-in-progress: false
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 1
+
+      - uses: ./.github/actions/setup
+
+      - name: Sampling % user (diagnostic, ~19 min)
+        id: rollouts
+        env:
+          DISCORD_TOKEN: ${{ secrets.DISCORD_TOKEN }}
+          DISCORD_USER_TOKENS: ${{ secrets.DISCORD_USER_TOKENS }}
+          DISCORD_USER_TOKEN: ${{ secrets.DISCORD_USER_TOKEN }}
+          DISCORD_USER_TOKEN_1: ${{ secrets.DISCORD_USER_TOKEN_1 }}
+          DISCORD_USER_TOKEN_2: ${{ secrets.DISCORD_USER_TOKEN_2 }}
+          DISCORD_USER_TOKEN_3: ${{ secrets.DISCORD_USER_TOKEN_3 }}
+          DISCORD_USER_TOKEN_4: ${{ secrets.DISCORD_USER_TOKEN_4 }}
+          DISCORD_USER_TOKEN_5: ${{ secrets.DISCORD_USER_TOKEN_5 }}
+          DISCORD_USER_TOKEN_6: ${{ secrets.DISCORD_USER_TOKEN_6 }}
+          DISCORD_USER_TOKEN_7: ${{ secrets.DISCORD_USER_TOKEN_7 }}
+          DISCORD_USER_TOKEN_8: ${{ secrets.DISCORD_USER_TOKEN_8 }}
+          DISCORD_USER_TOKEN_9: ${{ secrets.DISCORD_USER_TOKEN_9 }}
+          DISCORD_USER_TOKEN_10: ${{ secrets.DISCORD_USER_TOKEN_10 }}
+          UR_WEBHOOK: ${{ secrets.UR_WEBHOOK }}
+          USER_ROLLOUT_WEBHOOK_URL: ${{ secrets.USER_ROLLOUT_WEBHOOK_URL }}
+          APEX_WEBHOOK_URL: ${{ secrets.APEX_WEBHOOK_URL }}
+          ROLLOUT_WEBHOOK_URL: ${{ secrets.ROLLOUT_WEBHOOK_URL }}
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          APEX_MIN_PCT_DELTA: "1"
+          USER_ROLLOUT_SAMPLES: "120"
+          USER_ROLLOUT_CONCURRENCY: "2"
+          USER_ROLLOUT_DELAY_MS: "150"
+          USER_ROLLOUT_MIN_OK: "30"
+          USER_ROLLOUT_MAX_MS: "45000"
+          USER_ROLLOUT_WINDOW_H: "4"
+          USER_ROLLOUT_NOTIFY_HASH: "1"
+          ORBIT_BOT_NAME: Datamining
+        run: node src/rollouts_watch.js

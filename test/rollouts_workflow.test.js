@@ -1,0 +1,35 @@
+'use strict';
+
+const test = require('node:test');
+const assert = require('node:assert/strict');
+const fs = require('node:fs');
+const path = require('node:path');
+
+const workflowPath = path.join(__dirname, '..', '.github', 'workflows', 'rollouts.yml');
+const workflow = fs.readFileSync(workflowPath, 'utf8');
+
+test('workflow Rollouts : cadence rapide, dispatch rétrocompatibles et deux modes', () => {
+  assert.match(workflow, /cron:\s*["']?\*\/5 \* \* \* \*["']?/);
+  for (const type of ['trigger-rollouts', 'trigger-rollouts-fast', 'trigger-apex-rollouts', 'trigger-gist-user-rollouts', 'trigger-user-rollouts']) {
+    assert.match(workflow, new RegExp(`- ${type}\\b`));
+  }
+  assert.match(workflow, /node src\/rollouts_fast\.js/);
+  assert.match(workflow, /node src\/rollouts_watch\.js/);
+  assert.match(workflow, /group: rollouts-fast/);
+  assert.match(workflow, /^  guard:/m);
+  assert.match(workflow, /^  diagnostic:/m);
+});
+
+test('workflow Rollouts injecte les canaux et jetons requis par les collecteurs user et guild', () => {
+  for (const name of [
+    'GITHUB_TOKEN', 'GIST_TOKEN', 'DISCORD_TOKEN', 'DISCORD_USER_TOKENS',
+    'DISCORD_USER_TOKEN', 'DISCORD_USER_TOKEN_1', 'DISCORD_USER_TOKEN_5',
+    'DISCORD_USER_TOKEN_10', 'USER_ROLLOUT_WEBHOOK_URL', 'APEX_WEBHOOK_URL',
+    'ROLLOUT_WEBHOOK_URL', 'UR_WEBHOOK', 'DISCORD_WEBHOOK_URL',
+  ]) {
+    assert.ok(
+      workflow.includes(name + ': ${{ secrets.' + name + ' }}'),
+      `${name} doit être transmis au workflow`,
+    );
+  }
+});
