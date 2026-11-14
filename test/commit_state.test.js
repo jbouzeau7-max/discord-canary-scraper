@@ -59,11 +59,18 @@ test('push simple + suppression dans un dossier', () => {
 
 test('conflit sur le même fichier : échec fermé, état distant conservé', () => {
   const { a, b } = setup();
+  const recoveryPatch = path.join(path.dirname(a), 'recovery.patch');
   sh(b, `echo '{"v":"remote"}' > data/s.json && echo remote > other.txt && git commit -qam remote && git push -q`);
   sh(a, `echo '{"v":"local"}' > data/s.json`);
-  const result = run(a, `${SCRIPT} "state" data/s.json`);
+  const result = run(a, `${SCRIPT} "state" data/s.json`, {
+    COMMIT_RECOVERY_PATCH: recoveryPatch,
+  });
   assert.notEqual(result.status, 0, result.stdout + result.stderr);
   assert.match(result.stdout + result.stderr, /conflit/i);
+  assert.match(result.stdout + result.stderr, /data\/s\.json/);
+  assert.ok(fs.existsSync(recoveryPatch), 'le commit local doit laisser un patch récupérable');
+  assert.match(fs.readFileSync(recoveryPatch, 'utf8'), /"local"/);
+  assert.equal(fs.readFileSync(path.join(a, 'data/s.json'), 'utf8').trim(), '{"v":"local"}');
   assert.equal(fs.readFileSync(path.join(b, 'data/s.json'), 'utf8').trim(), '{"v":"remote"}');
   assert.equal(fs.readFileSync(path.join(b, 'other.txt'), 'utf8').trim(), 'remote');
 });
@@ -101,4 +108,8 @@ test('les workflows n’ignorent pas les échecs de persistance d’état', () =
       assert.ok(!line.includes('|| true'), `${file} ne doit pas ignorer l'échec de commit-state`);
     }
   }
+  const scrape = fs.readFileSync(path.join(dir, 'scrape.yml'), 'utf8');
+  assert.match(scrape, /COMMIT_RECOVERY_PATCH:/);
+  assert.match(scrape, /actions\/upload-artifact@v4/);
+  assert.match(scrape, /scrape-state-recovery-\$\{\{ github\.run_id \}\}/);
 });

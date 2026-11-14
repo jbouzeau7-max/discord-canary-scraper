@@ -18,6 +18,7 @@ shift
 
 MAX="${COMMIT_MAX_ATTEMPTS:-8}"
 BRANCH="${COMMIT_BRANCH:-main}"
+RECOVERY_PATCH="${COMMIT_RECOVERY_PATCH:-${RUNNER_TEMP:-${TMPDIR:-/tmp}}/commit-state-recovery.patch}"
 
 git config user.name >/dev/null 2>&1 || git config user.name "github-actions[bot]"
 git config user.email >/dev/null 2>&1 || git config user.email "github-actions[bot]@users.noreply.github.com"
@@ -129,22 +130,48 @@ if git diff --cached --quiet; then
 fi
 
 git commit -q -m "$MSG"
+LOCAL_COMMIT="$(git rev-parse HEAD)"
+
+save_recovery_patch() {
+  local commit="${1:-$LOCAL_COMMIT}"
+  local tmp="${RECOVERY_PATCH}.tmp.$$"
+  mkdir -p "$(dirname "$RECOVERY_PATCH")"
+  if git format-patch -1 --stdout "$commit" > "$tmp"; then
+    mv -f -- "$tmp" "$RECOVERY_PATCH"
+    echo "commit-state: patch local sauvegardé pour récupération: $RECOVERY_PATCH"
+  else
+    rm -f -- "$tmp"
+    echo "::warning::commit-state: impossible de créer le patch de récupération"
+    return 1
+  fi
+}
 
 for i in $(seq 1 "$MAX"); do
   git fetch -q origin "$BRANCH"
-  if git rebase -q "origin/$BRANCH" >/dev/null 2>&1; then
+  REMOTE_HEAD="$(git rev-parse --verify FETCH_HEAD)"
+  if rebase_output="$(git rebase "$REMOTE_HEAD" 2>&1)"; then
+    LOCAL_COMMIT="$(git rev-parse HEAD)"
     if git push -q origin "HEAD:$BRANCH"; then
       echo "commit-state: push OK (tentative $i) — $MSG"
       exit 0
     fi
   else
+    conflict_paths="$(git diff --name-only --diff-filter=U 2>/dev/null || true)"
+    save_recovery_patch "$LOCAL_COMMIT" || true
     git rebase --abort 2>/dev/null || true
-    echo "::error::commit-state: conflit avec origin/$BRANCH; aucun reset ni ecrasement distant effectue"
-    echo "commit-state: le commit local reste dans le workspace; relancer le producteur apres synchronisation"
+    echo "::error::commit-state: rebase impossible sur origin/$BRANCH ($REMOTE_HEAD); aucun reset ni ecrasement distant effectue"
+    if [ -n "$conflict_paths" ]; then
+      echo "commit-state: chemins en conflit:"
+      printf '%s\n' "$conflict_paths"
+    else
+      echo "commit-state: détail git rebase: ${rebase_output:-aucun détail fourni}"
+    fi
+    echo "commit-state: le runner est éphémère; récupérer le patch avant de relancer le producteur"
     exit 1
   fi
   sleep $(( i * 2 ))
 done
 
+save_recovery_patch "$LOCAL_COMMIT" || true
 echo "::error::commit-state: push impossible apres $MAX tentatives — $MSG"
 exit 1

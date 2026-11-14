@@ -39,6 +39,18 @@ jobs:
         run: node src/index.js
 
       - name: Commit state
+        id: commit_state
         if: always() && steps.scrape.outcome != 'cancelled'
+        env:
+          COMMIT_RECOVERY_PATCH: ${{ runner.temp }}/scrape-state-recovery.patch
         run: |
           bash scripts/commit-state.sh "scrape: state" data/
+
+      - name: Preserve unpushed state for recovery
+        if: always() && steps.commit_state.outcome == 'failure'
+        uses: actions/upload-artifact@v4
+        with:
+          name: scrape-state-recovery-${{ github.run_id }}
+          path: ${{ runner.temp }}/scrape-state-recovery.patch
+          if-no-files-found: warn
+          retention-days: 7
