@@ -34,8 +34,8 @@ jobs:
           DISCORD_USER_TOKEN_4: ${{ secrets.DISCORD_USER_TOKEN_4 }}
           DISCORD_USER_TOKEN_5: ${{ secrets.DISCORD_USER_TOKEN_5 }}
           WEBHOOK_URL: ${{ secrets.WEBHOOK_URL }}
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
           ORBIT_BOT_NAME: Datamining
-          ORBIT_AVATAR_URL: ${{ vars.ORBIT_AVATAR_URL || format('https://cdn.jsdelivr.net/gh/{0}@main/media/datamining-avatar.png', github.repository) }}
         run: node src/index.js
 
       - name: Commit state
@@ -43,4 +43,4 @@ jobs:
         env:
           COMMIT_SOFT_FAIL: '1'
         run: |
-          scripts/commit-state.sh "scrape: state" data/
+          bash scripts/commit-state.sh "scrape: state" data/ || true

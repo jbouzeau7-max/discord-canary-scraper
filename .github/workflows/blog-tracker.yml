@@ -32,16 +32,11 @@ jobs:
           ZENDESK_WEBHOOK_URL: ${{ secrets.ZENDESK_WEBHOOK_URL }}
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
           ORBIT_BOT_NAME: Datamining
-        run: |
-          if [ -f src/blog_tracker.js ]; then
-            node src/blog_tracker.js
-          else
-            echo "src/blog_tracker.js not present yet"
-          fi
+        run: node src/blog_tracker.js
 
       - name: Save state
         if: always() && steps.track.outcome != 'cancelled'
         env:
           COMMIT_SOFT_FAIL: '1'
         run: |
-          scripts/commit-state.sh "blog-tracker: state" data/blog_tracker.json || true
+          bash scripts/commit-state.sh "blog-tracker: state" data/blog_tracker.json || true

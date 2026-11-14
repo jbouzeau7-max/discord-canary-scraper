@@ -39,16 +39,11 @@ jobs:
           ORBIT_BOT_NAME: Datamining
           QUESTS_WATCH_MS: "270000"
           QUESTS_POLL_MS: "30000"
-        run: |
-          if [ -f src/quests.js ]; then
-            node src/quests.js
-          else
-            echo "src/quests.js not present yet"
-          fi
+        run: node src/quests.js
 
       - name: Save quest state
         if: always() && steps.quests.outcome != 'cancelled'
         env:
           COMMIT_SOFT_FAIL: '1'
         run: |
-          scripts/commit-state.sh "quests: state" data/quests.json || true
+          bash scripts/commit-state.sh "quests: state" data/quests.json || true

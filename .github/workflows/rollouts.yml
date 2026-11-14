@@ -1,7 +1,5 @@
 name: Rollouts %
 
-# Mode fast : src/rollouts_fast.js sonde périodiquement les % utilisateurs + serveurs.
-
 on:
   schedule:
     - cron: '*/5 * * * *'
@@ -46,4 +44,4 @@ jobs:
         env:
           COMMIT_SOFT_FAIL: '1'
         run: |
-          scripts/commit-state.sh "rollouts: state" data/ || true
+          bash scripts/commit-state.sh "rollouts: state" data/ || true
