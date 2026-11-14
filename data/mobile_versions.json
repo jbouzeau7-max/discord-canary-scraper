@@ -1,0 +1,297 @@
+{
+  "scrapedAt": "2026-11-14T23:57:44.596Z",
+  "channels": [
+    {
+      "platform": "ios",
+      "channel": "stable",
+      "version": "353.0",
+      "build": null,
+      "size": "229.4 MB",
+      "requires": "iOS 16.0+",
+      "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/08/c2/e9/08c2e9b8-5a7a-aad2-fbd5-f58e7810ff0b/AppIcon-0-0-1x_U007epad-0-1-0-85-220.png/512x512bb.jpg",
+      "releaseDate": "2026-11-09T19:34:18Z",
+      "releaseNotes": "We’ve been hard at work making Discord better for you. This includes bug fixes and performance enhancements. For more detailed information, go to your profile in the app and scroll down to “What’s New”.",
+      "source": "itunes_lookup",
+      "storeUrl": "https://apps.apple.com/app/id985746746",
+      "available": true,
+      "checkedAt": "2026-11-14T23:57:44.596Z"
+    },
+    {
+      "platform": "ios",
+      "channel": "beta",
+      "version": null,
+      "available": false,
+      "note": "OTA not ahead of App Store",
+      "storeUrl": "https://testflight.apple.com/join/gdE4pRzI",
+      "checkedAt": "2026-11-14T23:57:44.596Z",
+      "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/08/c2/e9/08c2e9b8-5a7a-aad2-fbd5-f58e7810ff0b/AppIcon-0-0-1x_U007epad-0-1-0-85-220.png/512x512bb.jpg"
+    },
+    {
+      "platform": "android",
+      "channel": "stable",
+      "version": "353.11",
+      "build": "35301100484752",
+      "commit": "65ba7f273c9a76bd8f7a5120ff85e0e8bdc4d143",
+      "releaseName": "discord_android@353.11.484752-0+35301100484752",
+      "source": "discord_ota_manifest",
+      "storeUrl": "https://play.google.com/store/apps/details?id=com.discord",
+      "available": true,
+      "checkedAt": "2026-11-14T23:57:44.596Z",
+      "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/08/c2/e9/08c2e9b8-5a7a-aad2-fbd5-f58e7810ff0b/AppIcon-0-0-1x_U007epad-0-1-0-85-220.png/512x512bb.jpg"
+    },
+    {
+      "platform": "android",
+      "channel": "beta",
+      "version": null,
+      "available": false,
+      "note": "No OTA version ahead of stable",
+      "storeUrl": "https://play.google.com/store/apps/details?id=com.discord",
+      "checkedAt": "2026-11-14T23:57:44.596Z",
+      "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/08/c2/e9/08c2e9b8-5a7a-aad2-fbd5-f58e7810ff0b/AppIcon-0-0-1x_U007epad-0-1-0-85-220.png/512x512bb.jpg"
+    },
+    {
+      "platform": "android",
+      "channel": "alpha",
+      "version": "355.5",
+      "build": null,
+      "commit": null,
+      "releaseName": null,
+      "source": "datamining_commits",
+      "storeUrl": "https://play.google.com/store/apps/details?id=com.discord",
+      "available": true,
+      "note": "Track-labeled on datamining_commits",
+      "checkedAt": "2026-11-14T23:57:44.596Z",
+      "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/08/c2/e9/08c2e9b8-5a7a-aad2-fbd5-f58e7810ff0b/AppIcon-0-0-1x_U007epad-0-1-0-85-220.png/512x512bb.jpg"
+    }
+  ],
+  "otaIndex": {
+    "ios": [
+      {
+        "version": "353.0",
+        "build": "123112",
+        "commit": "e2967e36bfdf78cd2e049d7a158aac802d9b5f45",
+        "releaseName": null
+      },
+      {
+        "version": "352.1",
+        "build": "123113",
+        "commit": "13bbbe3d6dffc360a7037165486982e8a9559586",
+        "releaseName": null
+      },
+      {
+        "version": "352.0",
+        "build": "123111",
+        "commit": "5bc72151345b775fd881708d83ab52669522e1a6",
+        "releaseName": null
+      },
+      {
+        "version": "351.0",
+        "build": "121489",
+        "commit": "9831b62555c4042d03d99fb6a98c2ef1c42fb773",
+        "releaseName": null
+      },
+      {
+        "version": "350.0",
+        "build": "120054",
+        "commit": "074763c097ee2ccd5651e87cabb18244f5fe8cf4",
+        "releaseName": null
+      },
+      {
+        "version": "349.0",
+        "build": "115241",
+        "commit": "b8f2908dd3aa20f28ec7a4707c31f892b38ea508",
+        "releaseName": null
+      },
+      {
+        "version": "348.0",
+        "build": "114931",
+        "commit": "0cb357cfaee1a3e37c4f3f362ee948d92877d74b",
+        "releaseName": null
+      },
+      {
+        "version": "347.0",
+        "build": "114274",
+        "commit": "f0bfb42d275d901867fcab83a1e4c136339df154",
+        "releaseName": null
+      },
+      {
+        "version": "346.0",
+        "build": "114113",
+        "commit": "ae0014cb3ae98c705e5608e533aea89f01fd9db3",
+        "releaseName": null
+      },
+      {
+        "version": "345.0",
+        "build": "112811",
+        "commit": "2a5f63c9b43f131276aa4542d6cd4afcfa79fc9b",
+        "releaseName": null
+      },
+      {
+        "version": "344.1",
+        "build": "112418",
+        "commit": "388e77f3315da7d4b076ec58b2066971eb20ce93",
+        "releaseName": null
+      },
+      {
+        "version": "344.0",
+        "build": "112390",
+        "commit": "b9d5565eb6de1e24aae2d0b56caccd3fc5f80aa5",
+        "releaseName": null
+      },
+      {
+        "version": "343.0",
+        "build": "112391",
+        "commit": "b700a7213bdf0597ac859579619da7657f6e8ef2",
+        "releaseName": null
+      },
+      {
+        "version": "342.0",
+        "build": "110289",
+        "commit": "580fc8920fda5b0bae6a95e644be25b15fc50053",
+        "releaseName": null
+      },
+      {
+        "version": "341.0",
+        "build": "109453",
+        "commit": "d564b40ffda458284aeb0a45a1478c4e47b8d9f5",
+        "releaseName": null
+      },
+      {
+        "version": "340.0",
+        "build": "108193",
+        "commit": "119f0f70dd21fd65f5c018e6530c8b5bf19c3aab",
+        "releaseName": null
+      },
+      {
+        "version": "339.0",
+        "build": "107896",
+        "commit": "6098b5717df661dea5c05286c3f75be68d1b14f3",
+        "releaseName": null
+      },
+      {
+        "version": "338.0",
+        "build": "107718",
+        "commit": "58af6169e38a1e7e04da96db8bc40e96224d7de2",
+        "releaseName": null
+      }
+    ],
+    "android": [
+      {
+        "version": "353.11",
+        "build": "35301100484752",
+        "commit": "65ba7f273c9a76bd8f7a5120ff85e0e8bdc4d143",
+        "releaseName": "discord_android@353.11.484752-0+35301100484752"
+      },
+      {
+        "version": "352.17",
+        "build": "35201700484749",
+        "commit": "37d41e65be4925e9ffc4a91b8ecbe5c64e7af652",
+        "releaseName": "discord_android@352.17.484749-0+35201700484749"
+      },
+      {
+        "version": "351.11",
+        "build": "35101100477592",
+        "commit": "73c9b6793b48a9453ad7b01ed7c5a105547e76a5",
+        "releaseName": "discord_android@351.11.477592-0+35101100477592"
+      },
+      {
+        "version": "350.8",
+        "build": "35000800470035",
+        "commit": "1412a79ce6c710cb0ba95631b70c3a5f6e9b9c35",
+        "releaseName": "discord_android@350.8.470035-0+35000800470035"
+      },
+      {
+        "version": "349.9",
+        "build": "34900900458755",
+        "commit": "c30c8ce4ae888b34516245156c6cab2b50fa74bd",
+        "releaseName": "discord_android@349.9.458755-0+34900900458755"
+      },
+      {
+        "version": "348.10",
+        "build": "34801000455140",
+        "commit": "3d21f03e310a05d5b0112f3edf95ac1765f0d9d1",
+        "releaseName": "discord_android@348.10.455140-0+34801000455140"
+      },
+      {
+        "version": "347.12",
+        "build": "34701200449686",
+        "commit": "7064a0dd81579fec1192be85c906759902a70e09",
+        "releaseName": "discord_android@347.12.449686-0+34701200449686"
+      },
+      {
+        "version": "346.13",
+        "build": "34601300444005",
+        "commit": "1f9a897535599a0596f0000fcdafc07592930161",
+        "releaseName": "discord_android@346.13.444005-0+34601300444005"
+      },
+      {
+        "version": "345.9",
+        "build": "34500900441845",
+        "commit": "e4e5ff777d7f4567f294bb9574a02a0d1dcdcd7f",
+        "releaseName": "discord_android@345.9.441845-0+34500900441845"
+      },
+      {
+        "version": "344.13",
+        "build": "34401300441846",
+        "commit": "d92b64791e447e828fbe7e93cd2f67beef6d539a",
+        "releaseName": "discord_android@344.13.441846-0+34401300441846"
+      },
+      {
+        "version": "343.12",
+        "build": "34301200441847",
+        "commit": "5ecb04fcd1988a1d42c386c24479f1ad5ce65232",
+        "releaseName": "discord_android@343.12.441847-0+34301200441847"
+      },
+      {
+        "version": "342.16",
+        "build": "34201600429411",
+        "commit": "2a89181816b84dddeb7e8270359ba60608ef6bea",
+        "releaseName": "discord_android@342.16.429411-0+34201600429411"
+      },
+      {
+        "version": "341.13",
+        "build": "34101300421213",
+        "commit": "8d4c97c70b45649c9908607c9cdc2aa38bea581e",
+        "releaseName": "discord_android@341.13.421213-0+34101300421213"
+      },
+      {
+        "version": "340.14",
+        "build": "34001400419206",
+        "commit": "cb2e600e3ee2bb8d578d4e01b5e41b220a2c070a",
+        "releaseName": "discord_android@340.14.419206-0+34001400419206"
+      },
+      {
+        "version": "340.13",
+        "build": "34001300417141",
+        "commit": "214fb8e700e04812b40b4e5e8993d15752144a68",
+        "releaseName": "discord_android@340.13.417141-0+34001300417141"
+      },
+      {
+        "version": "339.11",
+        "build": "33901100417140",
+        "commit": "8cb8e21ab6c34bf672864aec41b6491c71044326",
+        "releaseName": "discord_android@339.11.417140-0+33901100417140"
+      },
+      {
+        "version": "338.13",
+        "build": "33801300415080",
+        "commit": "79ffa91415af4023d965c872568b7c311fd914b0",
+        "releaseName": "discord_android@338.13.415080-0+33801300415080"
+      }
+    ]
+  },
+  "sources": {
+    "dataminingCommits": true,
+    "discordMinVersion": "388"
+  },
+  "history": [],
+  "previousScrapedAt": null,
+  "notifiedFingerprints": [
+    "ios|stable|353.0",
+    "android|stable|353.11",
+    "android|alpha|355.5"
+  ],
+  "changes": [],
+  "paused": false,
+  "notifyOk": true
+}

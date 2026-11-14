@@ -1,0 +1,21 @@
+{
+  "updatedAt": "2026-11-14T23:57:44.596Z",
+  "sources": {
+    "dataminingCommits": {
+      "url": "https://api.github.com/repos/Wumpus-Central/discord-mobile-datamining/commits?per_page=100",
+      "lastAccessible": true
+    }
+  },
+  "android": {
+    "beta": null,
+    "alpha": {
+      "version": "355.5",
+      "track": "alpha",
+      "date": "2026-11-14T13:39:06Z",
+      "source": "datamining_commits"
+    }
+  },
+  "ios": {
+    "beta": null
+  }
+}
