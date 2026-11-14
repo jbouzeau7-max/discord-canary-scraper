@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Experiments — Discord Canary</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <nav class="nav">
+    <a class="nav-brand" href="index.html">Canary Lab</a>
+    <div class="nav-links">
+      <a class="active" href="index.html">Experiments</a>
+      <a href="shop.html">Boutique</a>
+      <a href="status.html">Statut</a>
+      <a href="mobile.html">Mobile</a>
+      <a href="rollouts.html">Rollouts</a>
+    </div>
+  </nav>
+  <div class="wrap">
+    <header class="header">
+      <h1>Experiments</h1>
+      <p class="subtitle">Discord Canary · données du scraper</p>
+      <div class="stats">
+        <div class="stat"><span id="stat-total">—</span><span>Total</span></div>
+        <div class="stat"><span id="stat-user">—</span><span>User</span></div>
+        <div class="stat"><span id="stat-guild">—</span><span>Guild</span></div>
+      </div>
+    </header>
+    <section class="toolbar">
+      <input id="search" type="search" placeholder="Rechercher…" />
+      <div class="filters">
+        <button class="chip active" data-filter="all">Tous</button>
+        <button class="chip" data-filter="user">User</button>
+        <button class="chip" data-filter="guild">Guild</button>
+      </div>
+      <div id="meta">Chargement…</div>
+    </section>
+    <main class="grid" id="grid"></main>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
