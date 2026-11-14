@@ -1,0 +1,46 @@
+name: Mobile Versions
+
+on:
+  schedule:
+    - cron: '*/15 * * * *'
+  workflow_dispatch:
+  repository_dispatch:
+    types: [trigger-mobile]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: mobile-versions
+  cancel-in-progress: false
+
+jobs:
+  mobile:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 1
+
+      - uses: ./.github/actions/setup
+
+      - name: Mobile versions
+        id: mobile
+        env:
+          MOBILE_WEBHOOK_URL: ${{ secrets.MOBILE_WEBHOOK_URL }}
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          ORBIT_BOT_NAME: Datamining
+        run: |
+          if [ -f src/mobile_versions.js ]; then
+            node src/mobile_versions.js
+          else
+            echo "src/mobile_versions.js not present yet"
+          fi
+
+      - name: Save state
+        if: always() && steps.mobile.outcome != 'cancelled'
+        env:
+          COMMIT_SOFT_FAIL: '1'
+        run: |
+          scripts/commit-state.sh "mobile: state" data/mobile_versions.json data/mobile_experiments.json || true

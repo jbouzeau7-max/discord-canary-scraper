@@ -1,0 +1,54 @@
+name: Discord Quests
+
+on:
+  schedule:
+    - cron: '*/5 * * * *'
+  workflow_dispatch:
+  repository_dispatch:
+    types: [trigger-quests]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: discord-quests
+  cancel-in-progress: false
+
+jobs:
+  quests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 1
+
+      - uses: ./.github/actions/setup
+
+      - name: Track Discord quests
+        id: quests
+        env:
+          QUEST_WEBHOOK_URL: ${{ secrets.QUEST_WEBHOOK_URL }}
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          DISCORD_USER_TOKEN: ${{ secrets.DISCORD_USER_TOKEN }}
+          DISCORD_USER_TOKEN_1: ${{ secrets.DISCORD_USER_TOKEN_1 }}
+          DISCORD_USER_TOKEN_2: ${{ secrets.DISCORD_USER_TOKEN_2 }}
+          DISCORD_USER_TOKEN_3: ${{ secrets.DISCORD_USER_TOKEN_3 }}
+          DISCORD_USER_TOKEN_4: ${{ secrets.DISCORD_USER_TOKEN_4 }}
+          DISCORD_USER_TOKEN_5: ${{ secrets.DISCORD_USER_TOKEN_5 }}
+          ORBIT_BOT_NAME: Datamining
+          QUESTS_WATCH_MS: "270000"
+          QUESTS_POLL_MS: "30000"
+        run: |
+          if [ -f src/quests.js ]; then
+            node src/quests.js
+          else
+            echo "src/quests.js not present yet"
+          fi
+
+      - name: Save quest state
+        if: always() && steps.quests.outcome != 'cancelled'
+        env:
+          COMMIT_SOFT_FAIL: '1'
+        run: |
+          scripts/commit-state.sh "quests: state" data/quests.json || true
