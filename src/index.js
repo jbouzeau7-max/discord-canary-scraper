@@ -1,16 +1,24 @@
 /**
- * Canary Pulse — entrypoint (scrape Discord Canary build + assets).
- * Full original index.js is larger; this version wires the modules already present.
+ * Canary Pulse — entrypoint
+ * Scrape Discord Canary build, download assets, extract experiments/routes/strings, save state.
  */
 const fs = require('fs-extra');
 const path = require('path');
 const { fetchBuild } = require('./lib/canary');
+const { analyzeAssets } = require('./lib/extract');
 const { loadState, saveState, makeRunId } = require('./lib/state');
 const { writeJsonAtomic } = require('./lib/atomic');
-const { redactSecrets, sleep } = require('./lib/utils');
+const { archiveBuildChunks } = require('./lib/archive_chunks');
+const { publishFlatChunks } = require('./lib/flat_chunks');
+const { processDismissibleContent } = require('./lib/dismissible_content');
+const { redactSecrets } = require('./lib/utils');
 
-const DATA = path.join(__dirname, '..', 'data');
-const ASSETS = path.join(__dirname, '..', 'assets');
+const ROOT = path.join(__dirname, '..');
+const DATA = path.join(ROOT, 'data');
+const ASSETS = path.join(ROOT, 'assets');
+const BUILDS = path.join(ROOT, 'builds');
+const CHUNKS = path.join(ROOT, 'chunks');
+const CSS = path.join(ROOT, 'css');
 
 async function main() {
   const started = Date.now();
@@ -18,6 +26,7 @@ async function main() {
 
   await fs.ensureDir(DATA);
   await fs.ensureDir(ASSETS);
+  await fs.ensureDir(BUILDS);
 
   let build;
   try {
@@ -29,43 +38,87 @@ async function main() {
   }
 
   console.log('Build', build.buildNumber, build.versionHash);
-  console.log('JS assets:', build.assets.length, '| CSS:', (build.cssAssets || []).length);
+  console.log('JS assets:', build.assets.length);
 
   const runId = makeRunId(build.buildNumber);
   const prev = await loadState(DATA);
 
-  // Persist build metadata
+  const extracted = await analyzeAssets(build, {
+    assetsDir: ASSETS,
+    forceRefresh: true,
+  });
+
+  console.log(
+    'Extracted experiments:',
+    extracted.experiments.length,
+    '| routes:',
+    Object.keys(extracted.routes).length,
+    '| strings:',
+    Object.keys(extracted.strings).length,
+  );
+
   await writeJsonAtomic(path.join(DATA, 'build.json'), {
     buildNumber: build.buildNumber,
     versionHash: build.versionHash,
     releaseChannel: build.releaseChannel,
     assetCount: build.assets.length,
-    cssCount: (build.cssAssets || []).length,
     scrapedAt: build.scrapedAt,
     runId,
   });
+
+  await saveState(
+    DATA,
+    {
+      build: {
+        buildNumber: build.buildNumber,
+        versionHash: build.versionHash,
+      },
+      experiments: extracted.experiments,
+      strings: extracted.strings,
+      routes: extracted.routes,
+    },
+    { runId, buildNumber: build.buildNumber },
+  );
+
+  try {
+    await archiveBuildChunks({ build, assetsDir: ASSETS, buildsDir: BUILDS });
+  } catch (e) {
+    console.warn('archive failed:', e.message);
+  }
+
+  try {
+    await publishFlatChunks({
+      assetsDir: ASSETS,
+      chunksDir: CHUNKS,
+      cssDir: CSS,
+      infoPath: path.join(ROOT, 'info.json'),
+      build,
+    });
+  } catch (e) {
+    console.warn('flat_chunks failed:', e.message);
+  }
+
+  try {
+    const disc = await processDismissibleContent({
+      assetsDir: ASSETS,
+      dataDir: DATA,
+    });
+    console.log('Dismissible content:', disc.count, 'added', disc.added.length);
+  } catch (e) {
+    console.warn('dismissible failed:', e.message);
+  }
 
   await writeJsonAtomic(path.join(DATA, 'last_run_meta.json'), {
     ok: true,
     buildNumber: build.buildNumber,
     versionHash: build.versionHash,
-    experiments: (prev.experiments || []).length,
-    strings: Object.keys(prev.strings || {}).length,
-    routes: Object.keys(prev.routes || {}).length,
+    experiments: extracted.experiments.length,
+    strings: Object.keys(extracted.strings).length,
+    routes: Object.keys(extracted.routes).length,
     durationMs: Date.now() - started,
+    downloadStats: extracted.downloadStats,
     runId,
   });
-
-  // Keep previous experiments if any; full extract pipeline needs extract.js
-  await saveState(DATA, {
-    build: {
-      buildNumber: build.buildNumber,
-      versionHash: build.versionHash,
-    },
-    experiments: prev.experiments || [],
-    strings: prev.strings || {},
-    routes: prev.routes || {},
-  }, { runId, buildNumber: build.buildNumber });
 
   console.log('Done in', ((Date.now() - started) / 1000).toFixed(1), 's');
 }
