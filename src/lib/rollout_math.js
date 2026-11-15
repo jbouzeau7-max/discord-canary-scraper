@@ -204,26 +204,94 @@ function stableChangeFingerprint(parts) {
 }
 
 /**
- * JSON stable récursif (clés triées à TOUS les niveaux).
- * L'ancien `JSON.stringify(parts, Object.keys(parts).sort())` appliquait le
- * tableau de clés aux objets imbriqués : {a:{x:1},b:2} sérialisait {"a":{}}
- * et deux payloads différents produisaient la MÊME empreinte.
+ * Sérialisation canonique typée : clés triées, types distincts et cycles
+ * bornés. Un encodage JSON brut confondait null/undefined/NaN et pouvait
+ * donc fusionner deux changements différents sous le même fingerprint.
  */
 function stableStringify(value) {
-  const seen = new WeakSet();
-  const walk = (v) => {
-    if (v === null || typeof v !== 'object') {
-      if (typeof v === 'number' && !Number.isFinite(v)) return null;
-      return v === undefined ? null : v;
+  const hasExtendedValue = (v, active = new WeakSet()) => {
+    if (v === null) return false;
+    const kind = typeof v;
+    if (kind === 'undefined' || kind === 'bigint' || kind === 'symbol' || kind === 'function') return true;
+    if (kind === 'number') return !Number.isFinite(v) || Object.is(v, -0);
+    if (kind !== 'object') return false;
+    if (active.has(v)) return true;
+    if (v instanceof Date || Buffer.isBuffer(v) || ArrayBuffer.isView(v) || v instanceof ArrayBuffer || v instanceof Map || v instanceof Set) return true;
+    const proto = Object.getPrototypeOf(v);
+    if (proto !== null && proto !== Object.prototype && !Array.isArray(v)) return true;
+    active.add(v);
+    let extended = false;
+    if (Array.isArray(v)) {
+      for (let i = 0; i < v.length; i++) {
+        if (!Object.prototype.hasOwnProperty.call(v, i) || hasExtendedValue(v[i], active)) {
+          extended = true;
+          break;
+        }
+      }
+    } else {
+      for (const key of Object.keys(v)) {
+        if (hasExtendedValue(v[key], active)) {
+          extended = true;
+          break;
+        }
+      }
     }
-    if (seen.has(v)) return null;
-    seen.add(v);
-    if (Array.isArray(v)) return v.map(walk);
-    const out = {};
-    for (const k of Object.keys(v).sort()) out[k] = walk(v[k]);
-    return out;
+    active.delete(v);
+    return extended;
   };
-  return JSON.stringify(walk(value));
+  if (!hasExtendedValue(value)) {
+    const canonicalJson = (v) => {
+      if (Array.isArray(v)) return v.map(canonicalJson);
+      if (v && typeof v === 'object') {
+        const out = {};
+        for (const key of Object.keys(v).sort()) out[key] = canonicalJson(v[key]);
+        return out;
+      }
+      return v;
+    };
+    return JSON.stringify(canonicalJson(value));
+  }
+
+  const active = new WeakMap();
+  let nextCycleId = 0;
+  const encode = (v) => {
+    if (v === null) return ['null'];
+    switch (typeof v) {
+      case 'undefined': return ['undefined'];
+      case 'string': return ['string', v];
+      case 'boolean': return ['boolean', v];
+      case 'number':
+        return ['number', Number.isNaN(v) ? 'NaN' : v === Infinity ? 'Infinity' : v === -Infinity ? '-Infinity' : Object.is(v, -0) ? '-0' : String(v)];
+      case 'bigint': return ['bigint', String(v)];
+      case 'symbol': return ['symbol', v.description == null ? '' : v.description];
+      case 'function': return ['function', v.name || ''];
+      default: break;
+    }
+
+    if (active.has(v)) return ['cycle', active.get(v)];
+    const cycleId = nextCycleId++;
+    active.set(v, cycleId);
+    try {
+      if (v instanceof Date) return ['date', Number.isNaN(v.getTime()) ? 'invalid' : v.toISOString()];
+      if (Buffer.isBuffer(v)) return ['buffer', v.toString('base64')];
+      if (ArrayBuffer.isView(v)) return ['typed_array', v.constructor.name, Array.from(v, encode)];
+      if (v instanceof ArrayBuffer) return ['array_buffer', Buffer.from(v).toString('base64')];
+      if (Array.isArray(v)) {
+        const items = Array.from({ length: v.length }, (_, i) =>
+          Object.prototype.hasOwnProperty.call(v, i) ? encode(v[i]) : ['hole'],
+        );
+        return ['array', items];
+      }
+      if (v instanceof Map) return ['map', [...v].map(([k, val]) => [encode(k), encode(val)])];
+      if (v instanceof Set) return ['set', [...v].map(encode)];
+      const proto = Object.getPrototypeOf(v);
+      const type = proto === null ? 'null_object' : proto === Object.prototype ? 'object' : `instance:${proto && proto.constructor ? proto.constructor.name : ''}`;
+      return [type, Object.keys(v).sort().map((k) => [k, encode(v[k])])];
+    } finally {
+      active.delete(v);
+    }
+  };
+  return JSON.stringify(encode(value));
 }
 
 function normalizeRanges(ranges) {

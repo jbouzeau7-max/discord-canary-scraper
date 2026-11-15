@@ -219,8 +219,23 @@ function pruneWindow(raw, now) {
     }
     if (Object.keys(nb).length) pos[hashS] = { rev: src && src.rev != null ? src.rev : null, b: nb };
   }
-  const samples = (Array.isArray(w.samples) ? w.samples : [])
-    .filter((x) => x && typeof x.f === 'string' && Number.isFinite(x.t) && x.t >= cutoff && x.a && typeof x.a === 'object')
+  const samplesByFingerprint = new Map();
+  for (const sample of Array.isArray(w.samples) ? w.samples : []) {
+    if (
+      !sample ||
+      typeof sample.f !== 'string' ||
+      !/^\d{5,25}$/.test(sample.f) ||
+      !Number.isFinite(sample.t) ||
+      sample.t < cutoff ||
+      !sample.a ||
+      typeof sample.a !== 'object' ||
+      Array.isArray(sample.a)
+    ) continue;
+    const previous = samplesByFingerprint.get(sample.f);
+    if (!previous || sample.t >= previous.t) samplesByFingerprint.set(sample.f, sample);
+  }
+  const samples = [...samplesByFingerprint.values()]
+    .sort((a, b) => a.t - b.t)
     .slice(-SAMPLE_CAP);
   const since = w.since && typeof w.since === 'object' ? { ...w.since } : {};
   return { batches, pos, samples, since };
@@ -556,48 +571,58 @@ async function fetchAssignments(extraHeaders = {}, withGuild = false, attempt = 
  * byHash : hash → Map(bucket → positions[]) ; byRev : hash → revision ;
  * samples : échantillons individuels (V15, cf. sampleRecord).
  */
-async function sampleFingerprints(n, concurrency) {
+async function sampleFingerprints(n, concurrency, deps = {}) {
+  const requestAssignments = deps.fetchAssignments || fetchAssignments;
+  const wait = deps.sleep || sleep;
+  const random = deps.random || Math.random;
+  const now = deps.now || Date.now;
   const byHash = new Map();
   const byRev = new Map();
   const samples = [];
   const seenFp = new Set();
   let ok = 0;
   let fail = 0;
+  let duplicates = 0;
   let next = 0;
-  const deadline = Date.now() + MAX_MS;
+  const deadline = now() + MAX_MS;
   let stopReason = null;
 
   async function worker() {
     while (true) {
       const my = next++;
       if (my >= n) break;
-      if (!stopReason && Date.now() > deadline) stopReason = 'budget';
+      if (!stopReason && now() > deadline) stopReason = 'budget';
       if (stopReason) break;
       if (rateLimit.consecutive429 > 15) {
         fail++;
         continue;
       }
       try {
-        const delay = rateLimit.dynamicDelayMs + Math.floor(Math.random() * 150);
-        await sleep(delay);
-        const { assignments, fingerprint } = await fetchAssignments({
+        const delay = rateLimit.dynamicDelayMs + Math.floor(random() * 150);
+        await wait(delay);
+        const { assignments, fingerprint } = await requestAssignments({
           'X-Request-Id': crypto.randomBytes(16).toString('hex'),
           'User-Agent': UAS[my % UAS.length],
         });
-        // V14 : validation stricte + dédoublonnage (cf. recordAssignments).
-        recordAssignments(byHash, byRev, assignments);
         // V15 : échantillon individuel (fingerprint + assignments) pour la
-        // mesure exacte. Un fingerprint déjà vu n'est pas recompté.
-        const rec = sampleRecord(fingerprint, assignments, Date.now());
-        if (rec && !seenFp.has(rec.f)) {
+        // mesure exacte. Un fingerprint déjà vu n'est pas recompté, y compris
+        // dans les compteurs k/n utilisés par l'estimation.
+        const rec = sampleRecord(fingerprint, assignments, now());
+        if (rec && seenFp.has(rec.f)) {
+          duplicates++;
+          continue;
+        }
+        if (rec) {
           seenFp.add(rec.f);
           samples.push(rec);
         }
+        // V14 : validation stricte + dédoublonnage par réponse.
+        recordAssignments(byHash, byRev, assignments);
         ok++;
       } catch (e) {
         fail++;
         if (String(e.message).includes('429')) {
-          await sleep(rateLimit.waitMs());
+          await wait(rateLimit.waitMs());
         } else if (fail <= 6) {
           console.warn('sample fail', e.message);
         }
@@ -607,8 +632,8 @@ async function sampleFingerprints(n, concurrency) {
   }
 
   await Promise.all(Array.from({ length: concurrency }, () => worker()));
-  console.log('Samples ok', ok, 'fail', fail, 'hashes', byHash.size, '429s', rateLimit.consecutive429, stopReason ? '· early stop: ' + stopReason : '(all ' + n + ')');
-  return { byHash, byRev, ok, fail, samples };
+  console.log('Samples ok', ok, 'fail', fail, 'duplicates', duplicates, 'hashes', byHash.size, '429s', rateLimit.consecutive429, stopReason ? '· early stop: ' + stopReason : '(all ' + n + ')');
+  return { byHash, byRev, ok, fail, samples, duplicates };
 }
 
 /**
@@ -624,7 +649,7 @@ function sampleRecord(fingerprint, assignments, ts) {
     const hash = Number(x[0]);
     const bucket = Number(x[2]);
     const pos = Number(x[5]);
-    if (!Number.isFinite(hash) || !Number.isInteger(bucket) || bucket < -1) continue;
+    if (!Number.isSafeInteger(hash) || hash < 0 || hash > 0xffffffff || !Number.isInteger(bucket) || bucket < -1) continue;
     if (!Number.isInteger(pos) || pos < 0 || pos >= SCALE) continue;
     if (a[String(hash)]) continue;
     a[String(hash)] = [bucket, pos];
@@ -686,10 +711,10 @@ function recordAssignments(byHash, byRev, assignments) {
     const rev = a[1] == null ? null : Number(a[1]);
     const bucket = Number(a[2]);
     const hr = Number(a[5]);
-    if (!Number.isFinite(hash) || seenInResponse.has(hash)) continue;
-    seenInResponse.add(hash);
+    if (!Number.isSafeInteger(hash) || hash < 0 || hash > 0xffffffff || seenInResponse.has(hash)) continue;
     if (!Number.isFinite(bucket) || bucket < -1 || !Number.isInteger(bucket)) continue;
     if (!Number.isFinite(hr) || hr < 0 || hr >= SCALE || !Number.isInteger(hr)) continue;
+    seenInResponse.add(hash);
     if (rev != null && Number.isFinite(rev)) {
       // Changement de revision AU MILIEU du run : les observations de
       // l'ancienne configuration sont jetées (pas mélangées avec la nouvelle).
@@ -1330,6 +1355,7 @@ module.exports = {
   classifyChange,
   ackSnapshot,
   recordAssignments,
+  sampleFingerprints,
   sampleRecord,
   userPosition,
   exactForExperiment,
