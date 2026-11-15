@@ -11,7 +11,7 @@ test('chaque type de notification fournit son nom et son avatar aux messages', a
   const opts = { identity: 'quests', minGapMs: 0, fetchImpl: async (_url, req) => { sent.push(JSON.parse(req.body)); return reply; } };
   await sendWebhook('https://example.com/webhook', { content: 'hello', username: 'ancien' }, opts);
   assert.equal(sent[0].username, 'Datamining · Quêtes');
-  assert.match(sent[0].avatar_url, /^https:\/\/files\.manuscdn\.com\/.*\.jpg$/);
+  assert.match(sent[0].avatar_url, /^https:\/\/files\.manuscdn\.com\/.*\.png$/);
   assert.equal(sent[0].content, 'hello');
 });
 
@@ -20,7 +20,7 @@ test('les messages Components V2 conservent leur identité', async () => {
   const opts = { identity: 'mobile', minGapMs: 0, fetchImpl: async (_url, req) => { sent = JSON.parse(req.body); return reply; } };
   await sendEmbeds('https://example.com/webhook', { username: 'ancien' }, [{ title: 'Une version' }], opts);
   assert.equal(sent.username, 'Datamining · Mobile');
-  assert.match(sent.avatar_url, /^https:\/\/files\.manuscdn\.com\/.*\.jpg$/);
+  assert.match(sent.avatar_url, /^https:\/\/files\.manuscdn\.com\/.*\.png$/);
   assert.equal(sent.flags, 32768);
 });
 
@@ -29,7 +29,7 @@ test('identités actus : toutes définies et partagent la photo de marque', () =
   const { CATEGORY } = require('../src/news');
   const avatars = new Set(Object.values(IDENTITIES).map(([, avatar]) => avatar));
   assert.equal(avatars.size, 1);
-  assert.match([...avatars][0], /^https:\/\/files\.manuscdn\.com\/.*\.jpg$/);
+  assert.match([...avatars][0], /^https:\/\/files\.manuscdn\.com\/.*\.png$/);
   for (const [cat, c] of Object.entries(CATEGORY)) {
     const id = webhookIdentity(c.identity);
     assert.ok(id.username.startsWith('Datamining · Actus · '), cat);

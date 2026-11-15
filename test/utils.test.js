@@ -63,7 +63,7 @@ test('DEFAULT_BOT_NAME est une chaîne non vide', () => {
 
 test('DEFAULT_AVATAR_URL est une URL valide', () => {
   assert.ok(DEFAULT_AVATAR_URL.startsWith('https://'));
-  assert.match(DEFAULT_AVATAR_URL, /^https:\/\/files\.manuscdn\.com\/.*\.jpg$/);
+  assert.match(DEFAULT_AVATAR_URL, /^https:\/\/files\.manuscdn\.com\/.*\.png$/);
   assert.ok(!DEFAULT_AVATAR_URL.includes('kmljkjj/discord-canary-scraper'));
 });
 
