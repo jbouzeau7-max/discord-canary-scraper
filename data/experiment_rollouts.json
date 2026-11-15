@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-11-15T11:16:42.493Z",
+  "fetchedAt": "2026-11-15T11:23:20.407Z",
   "sources": {
     "discordApi": {
       "url": "https://discord.com/api/v9/experiments",
@@ -20,6 +20,7 @@
       "status": "full_rollout",
       "coverage": 10000,
       "populations": 1,
+      "dataStatus": "complete",
       "filters": [
         "feature:feature_1183251248"
       ],
@@ -49,6 +50,7 @@
       "status": "full_rollout",
       "coverage": 10000,
       "populations": 2,
+      "dataStatus": "complete",
       "filters": [
         "feature:feature_1183251248; id_range:[[3399957344,5000],[1238858341,null]]",
         "all"
@@ -84,6 +86,7 @@
       "status": "not_started",
       "coverage": 0,
       "populations": 1,
+      "dataStatus": "complete",
       "filters": [
         "feature:feature_1183251248"
       ],
@@ -99,6 +102,37 @@
       "type": "guild",
       "title": "Guest Voice Invites",
       "source": "discord_api + local_match"
+    },
+    {
+      "hash": 3633668656,
+      "name": null,
+      "revision": 2,
+      "percentage": 100,
+      "status": "full_rollout",
+      "coverage": 10000,
+      "populations": 1,
+      "dataStatus": "complete",
+      "filters": [
+        "all"
+      ],
+      "treatmentRanges": [
+        [
+          0,
+          10000
+        ]
+      ],
+      "allRanges": [
+        [
+          0,
+          10000,
+          1
+        ]
+      ],
+      "id": null,
+      "type": "guild",
+      "title": "hash_3633668656",
+      "source": "discord_api",
+      "note": "No local experiment ID match for this hash"
     }
   ],
   "userExperiments": [],
@@ -111,6 +145,7 @@
       "status": "full_rollout",
       "coverage": 10000,
       "populations": 1,
+      "dataStatus": "complete",
       "filters": [
         "feature:feature_1183251248"
       ],
@@ -140,6 +175,7 @@
       "status": "full_rollout",
       "coverage": 10000,
       "populations": 2,
+      "dataStatus": "complete",
       "filters": [
         "feature:feature_1183251248; id_range:[[3399957344,5000],[1238858341,null]]",
         "all"
@@ -175,6 +211,7 @@
       "status": "not_started",
       "coverage": 0,
       "populations": 1,
+      "dataStatus": "complete",
       "filters": [
         "feature:feature_1183251248"
       ],
@@ -190,6 +227,37 @@
       "type": "guild",
       "title": "Guest Voice Invites",
       "source": "discord_api"
+    },
+    {
+      "hash": 3633668656,
+      "name": null,
+      "revision": 2,
+      "percentage": 100,
+      "status": "full_rollout",
+      "coverage": 10000,
+      "populations": 1,
+      "dataStatus": "complete",
+      "filters": [
+        "all"
+      ],
+      "treatmentRanges": [
+        [
+          0,
+          10000
+        ]
+      ],
+      "allRanges": [
+        [
+          0,
+          10000,
+          1
+        ]
+      ],
+      "id": null,
+      "type": "guild",
+      "title": "hash_3633668656",
+      "source": "discord_api",
+      "note": "No local experiment ID match for this hash"
     },
     {
       "hash": 3013881204,
@@ -258,17 +326,17 @@
       "title": "hash_704914099",
       "percentage": 0,
       "status": "not_started",
-      "samples": 5,
+      "samples": 4,
       "enrolled": 0,
       "treatmentDistribution": {
-        "0": 5
+        "0": 4
       },
       "source": "fingerprint_sampling",
       "note": "No local experiment ID match for this hash",
-      "fpSamples": 5,
+      "fpSamples": 4,
       "fpEnrolled": 0,
       "fpTreatmentDist": {
-        "0": 5
+        "0": 4
       }
     },
     {
@@ -278,17 +346,17 @@
       "title": "hash_1144304849",
       "percentage": 0,
       "status": "not_started",
-      "samples": 2,
+      "samples": 1,
       "enrolled": 0,
       "treatmentDistribution": {
-        "0": 2
+        "0": 1
       },
       "source": "fingerprint_sampling",
       "note": "No local experiment ID match for this hash",
-      "fpSamples": 2,
+      "fpSamples": 1,
       "fpEnrolled": 0,
       "fpTreatmentDist": {
-        "0": 2
+        "0": 1
       }
     },
     {
@@ -4223,12 +4291,12 @@
     }
   ],
   "summary": {
-    "total": 401,
-    "guild": 40,
+    "total": 402,
+    "guild": 41,
     "user": 361,
-    "withPercentage": 8,
+    "withPercentage": 9,
     "withoutPercentage": 393,
-    "fullRollout": 4,
+    "fullRollout": 5,
     "partial": 0,
     "notStarted": 4,
     "fpSampled": 5
