@@ -1,11 +1,11 @@
 {
   "schemaVersion": 1,
   "buildNumber": "673868",
-  "ts": 1794775147393,
+  "ts": 1794775212233,
   "status": "notify_failed",
   "ok": false,
   "reason": "WEBHOOK_MISSING",
-  "durationMs": 10003,
+  "durationMs": 9930,
   "experiments": 397,
   "strings": 29083,
   "routes": 1120,
@@ -14,7 +14,7 @@
     "downloaded": 6702,
     "skipped": 0,
     "failed": 2,
-    "retried": 72,
+    "retried": 64,
     "http429": 0,
     "http5xx": 0
   }
