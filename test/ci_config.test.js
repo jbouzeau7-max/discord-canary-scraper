@@ -31,3 +31,11 @@ test('les contrôles lint, tests et actionlint ne sont pas masqués dans le CI',
   assert.doesNotMatch(ci, /npm test[^\n]*\|\|/);
   assert.doesNotMatch(ci, /actionlint -color[^\n]*\|\|/);
 });
+
+test('le workflow scrape utilise WEBHOOK_URL si le secret Discord dédié manque', () => {
+  const scrape = read('.github/workflows/scrape.yml');
+  assert.match(
+    scrape,
+    /DISCORD_WEBHOOK_URL:\s*\$\{\{\s*secrets\.DISCORD_WEBHOOK_URL\s*\|\|\s*secrets\.WEBHOOK_URL\s*\}\}/,
+  );
+});
