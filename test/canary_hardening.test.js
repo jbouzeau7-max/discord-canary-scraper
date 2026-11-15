@@ -142,3 +142,29 @@ test('fetchAppHtml : page challenge Cloudflare retentée', async () => {
   assert.match(html, /web\.123/);
   assert.equal(calls, 2);
 });
+
+test('fetchAppHtml : script jsd Cloudflare (présent sur toute page normale) ≠ challenge → aucun retry', async () => {
+  const { isCompleteAppHtml } = require('../src/lib/canary');
+  const real =
+    HTML_OK +
+    "<script>var u='/cdn-cgi/challenge-platform/scripts/jsd/main.js?ray=abc',a=document.createElement('script');</script>";
+  assert.equal(isCompleteAppHtml(real), true);
+  let calls = 0;
+  const t0 = Date.now();
+  const html = await fetchAppHtml(3, async () => {
+    calls++;
+    return res(200, real);
+  });
+  assert.equal(calls, 1, 'une page valide ne doit jamais être retentée');
+  assert.ok(Date.now() - t0 < 300, 'aucune attente de retry');
+  assert.match(html, /web\.123/);
+});
+
+test('isCompleteAppHtml : interstitiels et pages sans build numérique refusés', () => {
+  const { isCompleteAppHtml } = require('../src/lib/canary');
+  assert.equal(isCompleteAppHtml('<html>Just a moment... BUILD_NUMBER</html>'), false);
+  assert.equal(isCompleteAppHtml('<script>window._cf_chl_opt={};</script>"BUILD_NUMBER":"671591"'), false);
+  assert.equal(isCompleteAppHtml('<html>BUILD_NUMBER</html>'), false);
+  assert.equal(isCompleteAppHtml(''), false);
+  assert.equal(isCompleteAppHtml(null), false);
+});

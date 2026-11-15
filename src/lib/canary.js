@@ -78,10 +78,7 @@ async function fetchAppHtml(attempts = HTML_ATTEMPTS, fetchImpl = fetch) {
       });
       if (res.ok) {
         const html = await res.text();
-        // Une page de challenge Cloudflare contient parfois le mot BUILD_NUMBER
-        // dans un script injecté : on la traite comme incomplète.
-        const challenge = /cf-challenge|Just a moment\.\.\.|challenge-platform/i.test(html);
-        if ((/BUILD_NUMBER/.test(html) && !challenge) || i + 1 >= attempts) return html;
+        if (isCompleteAppHtml(html) || i + 1 >= attempts) return html;
         lastErr = new Error('canary app HTML sans BUILD_NUMBER (' + html.length + ' octets)');
       } else {
         lastErr = new Error('canary app HTTP ' + res.status);
@@ -103,6 +100,24 @@ async function fetchAppHtml(attempts = HTML_ATTEMPTS, fetchImpl = fetch) {
     }
   }
   throw lastErr || new Error('canary app fetch failed');
+}
+
+/**
+ * La page est-elle la vraie app (et non un interstitiel Cloudflare) ?
+ *
+ * Cloudflare injecte son script de télémétrie `/cdn-cgi/challenge-platform/
+ * scripts/jsd/main.js` dans TOUTES les pages servies normalement : le chercher
+ * classait chaque réponse valide comme « challenge » → 2 retries inutiles
+ * (~4,5 s perdues à CHAQUE run, avant toute détection). On se fie donc au
+ * contenu : un BUILD_NUMBER numérique réellement parsable, et aucun marqueur
+ * propre à un interstitiel (titre « Just a moment... », _cf_chl_opt, cf-challenge).
+ */
+function isCompleteAppHtml(html) {
+  const s = String(html || '');
+  if (!/BUILD_NUMBER/.test(s)) return false;
+  if (/cf-challenge|Just a moment\.\.\.|_cf_chl_opt|challenge-error-text/i.test(s)) return false;
+  const bn = parseGlobalEnv(s).BUILD_NUMBER;
+  return !!bn && /^\d{4,12}$/.test(String(bn));
 }
 
 /**
@@ -220,6 +235,7 @@ function score(url) {
 }
 
 module.exports = {
+  isCompleteAppHtml,
   fetchBuild,
   fetchAppHtml,
   extractAssetUrls,
