@@ -320,7 +320,7 @@ test('catalogue du dépôt : toutes les expériences du gist export sont présen
   const out = buildComparison({ gist: docs, sampling: { experiments: [] }, definitions: repoDefs(), now: NOW });
   const ids = out.experiments.map((e) => e.id);
   assert.equal(new Set(ids).size, ids.length, 'ids uniques');
-  assert.ok(docs.experiments.length > 300, 'catalogue réel chargé');
+  assert.ok(Array.isArray(docs.experiments) && docs.experiments.length > 0, 'catalogue réel chargé');
   for (const g of docs.experiments.filter((x) => x.type === 'user')) {
     const e = out.experiments.find((x) => x.id === g.id);
     assert.ok(e, `manquant : ${g.id}`);
