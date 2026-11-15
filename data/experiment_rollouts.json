@@ -1,0 +1,4236 @@
+{
+  "fetchedAt": "2026-11-14T23:57:54.495Z",
+  "sources": {
+    "discordApi": {
+      "url": "https://discord.com/api/v9/experiments",
+      "count": 4
+    },
+    "fingerprintSampling": {
+      "samples": 50,
+      "uniqueHashes": 5,
+      "matched": 1
+    }
+  },
+  "guildExperiments": [
+    {
+      "hash": 944104242,
+      "name": null,
+      "revision": 0,
+      "percentage": 100,
+      "status": "full_rollout",
+      "coverage": 10000,
+      "populations": 1,
+      "filters": [
+        "feature:feature_1183251248"
+      ],
+      "treatmentRanges": [
+        [
+          0,
+          10000
+        ]
+      ],
+      "allRanges": [
+        [
+          0,
+          10000,
+          1
+        ]
+      ],
+      "id": "2022-07_voice_in_threads",
+      "type": "guild",
+      "title": "Voice in Threads",
+      "source": "discord_api + local_match"
+    },
+    {
+      "hash": 2462216785,
+      "name": null,
+      "revision": 0,
+      "percentage": 100,
+      "status": "full_rollout",
+      "coverage": 10000,
+      "populations": 2,
+      "filters": [
+        "feature:feature_1183251248; id_range:[[3399957344,5000],[1238858341,null]]",
+        "all"
+      ],
+      "treatmentRanges": [
+        [
+          0,
+          10000
+        ]
+      ],
+      "allRanges": [
+        [
+          0,
+          10000,
+          -1
+        ],
+        [
+          0,
+          10000,
+          1
+        ]
+      ],
+      "id": "2022-11_default_disable_mass_mention",
+      "type": "guild",
+      "title": "Disable mass mentions for communities by default",
+      "source": "discord_api + local_match"
+    },
+    {
+      "hash": 1727857487,
+      "name": null,
+      "revision": 1,
+      "percentage": 0,
+      "status": "not_started",
+      "coverage": 0,
+      "populations": 1,
+      "filters": [
+        "feature:feature_1183251248"
+      ],
+      "treatmentRanges": [],
+      "allRanges": [
+        [
+          0,
+          10000,
+          -1
+        ]
+      ],
+      "id": "2023-02_guest_voice_invites",
+      "type": "guild",
+      "title": "Guest Voice Invites",
+      "source": "discord_api + local_match"
+    }
+  ],
+  "userExperiments": [],
+  "matchedExperiments": [
+    {
+      "hash": 944104242,
+      "name": null,
+      "revision": 0,
+      "percentage": 100,
+      "status": "full_rollout",
+      "coverage": 10000,
+      "populations": 1,
+      "filters": [
+        "feature:feature_1183251248"
+      ],
+      "treatmentRanges": [
+        [
+          0,
+          10000
+        ]
+      ],
+      "allRanges": [
+        [
+          0,
+          10000,
+          1
+        ]
+      ],
+      "id": "2022-07_voice_in_threads",
+      "type": "guild",
+      "title": "Voice in Threads",
+      "source": "discord_api"
+    },
+    {
+      "hash": 2462216785,
+      "name": null,
+      "revision": 0,
+      "percentage": 100,
+      "status": "full_rollout",
+      "coverage": 10000,
+      "populations": 2,
+      "filters": [
+        "feature:feature_1183251248; id_range:[[3399957344,5000],[1238858341,null]]",
+        "all"
+      ],
+      "treatmentRanges": [
+        [
+          0,
+          10000
+        ]
+      ],
+      "allRanges": [
+        [
+          0,
+          10000,
+          -1
+        ],
+        [
+          0,
+          10000,
+          1
+        ]
+      ],
+      "id": "2022-11_default_disable_mass_mention",
+      "type": "guild",
+      "title": "Disable mass mentions for communities by default",
+      "source": "discord_api"
+    },
+    {
+      "hash": 1727857487,
+      "name": null,
+      "revision": 1,
+      "percentage": 0,
+      "status": "not_started",
+      "coverage": 0,
+      "populations": 1,
+      "filters": [
+        "feature:feature_1183251248"
+      ],
+      "treatmentRanges": [],
+      "allRanges": [
+        [
+          0,
+          10000,
+          -1
+        ]
+      ],
+      "id": "2023-02_guest_voice_invites",
+      "type": "guild",
+      "title": "Guest Voice Invites",
+      "source": "discord_api"
+    },
+    {
+      "hash": 3013881204,
+      "id": null,
+      "type": "user",
+      "title": "hash_3013881204",
+      "percentage": 100,
+      "status": "full_rollout",
+      "samples": 50,
+      "enrolled": 50,
+      "treatmentDistribution": {
+        "1": 50
+      },
+      "source": "fingerprint_sampling",
+      "note": "No local experiment ID match for this hash",
+      "fpSamples": 50,
+      "fpEnrolled": 50,
+      "fpTreatmentDist": {
+        "1": 50
+      }
+    },
+    {
+      "hash": 2180379513,
+      "id": "2023-09_iar_user_reporting",
+      "type": "user",
+      "title": "Safety Experience IAR User Reporting",
+      "percentage": 100,
+      "status": "full_rollout",
+      "samples": 50,
+      "enrolled": 50,
+      "treatmentDistribution": {
+        "4": 50
+      },
+      "source": "fingerprint_sampling",
+      "note": null,
+      "fpSamples": 50,
+      "fpEnrolled": 50,
+      "fpTreatmentDist": {
+        "4": 50
+      }
+    },
+    {
+      "hash": 4055210228,
+      "id": null,
+      "type": "user",
+      "title": "hash_4055210228",
+      "percentage": 0,
+      "status": "not_started",
+      "samples": 50,
+      "enrolled": 0,
+      "treatmentDistribution": {
+        "0": 50
+      },
+      "source": "fingerprint_sampling",
+      "note": "No local experiment ID match for this hash",
+      "fpSamples": 50,
+      "fpEnrolled": 0,
+      "fpTreatmentDist": {
+        "0": 50
+      }
+    },
+    {
+      "hash": 1144304849,
+      "id": null,
+      "type": "user",
+      "title": "hash_1144304849",
+      "percentage": 0,
+      "status": "not_started",
+      "samples": 4,
+      "enrolled": 0,
+      "treatmentDistribution": {
+        "0": 4
+      },
+      "source": "fingerprint_sampling",
+      "note": "No local experiment ID match for this hash",
+      "fpSamples": 4,
+      "fpEnrolled": 0,
+      "fpTreatmentDist": {
+        "0": 4
+      }
+    },
+    {
+      "hash": 704914099,
+      "id": null,
+      "type": "user",
+      "title": "hash_704914099",
+      "percentage": 0,
+      "status": "not_started",
+      "samples": 2,
+      "enrolled": 0,
+      "treatmentDistribution": {
+        "0": 2
+      },
+      "source": "fingerprint_sampling",
+      "note": "No local experiment ID match for this hash",
+      "fpSamples": 2,
+      "fpEnrolled": 0,
+      "fpTreatmentDist": {
+        "0": 2
+      }
+    },
+    {
+      "id": "2021-02_staff_qc_debugging",
+      "hash": 2847059306,
+      "type": "user",
+      "title": "Display QS scores in results. Not a real experiment",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2021-10_runtime_accessibility_system",
+      "hash": 3654722494,
+      "type": "user",
+      "title": "Runtime Accessibility System",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2021-12_inferno_spam_redaction",
+      "hash": 4179344527,
+      "type": "user",
+      "title": "Inferno Spam Redaction",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2022-01_threads",
+      "hash": 2179276881,
+      "type": "user",
+      "title": "Allow logged out users",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2023-09_iar_dsa_webform",
+      "hash": 1438986391,
+      "type": "user",
+      "title": "Safety Experience Unauthenticated Report Form",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2024-06_rtc_pacer__simulcast",
+      "hash": 175769529,
+      "type": "user",
+      "title": "RTC Pacer & Golive Simulcast",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2025-04-desktop-refresh-fast-follows",
+      "hash": 1106655296,
+      "type": "user",
+      "title": "2025-04-desktop-refresh-fast-follows",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2025-04-native-markdown",
+      "hash": 3233257942,
+      "type": "user",
+      "title": "2025-04-native-markdown",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2025-05-search-results-feedback",
+      "hash": 2650658357,
+      "type": "user",
+      "title": "2025-05-search-results-feedback",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2025-06_native_intents",
+      "hash": 1334871875,
+      "type": "user",
+      "title": "Native Intents",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2025-08_default_invite_expiration_guild",
+      "hash": 3641561375,
+      "type": "guild",
+      "title": "Default Invite Expiration Guild",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "No rollout data found in the Discord API."
+    },
+    {
+      "id": "2025-08_portkey_enabled",
+      "hash": 2387166525,
+      "type": "guild",
+      "title": "GameServer Enabled",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "No rollout data found in the Discord API."
+    },
+    {
+      "id": "2025-08-browser-hevc",
+      "hash": 1383723996,
+      "type": "user",
+      "title": "2025-08-browser-hevc",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2025-08-voice-user-affinity",
+      "hash": 3699201952,
+      "type": "user",
+      "title": "2025-08-voice-user-affinity",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2025-09_hotwheels_nvidia_boost",
+      "hash": 1121174225,
+      "type": "user",
+      "title": "Next iteration of the activity feed ranking model.",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2025-09-image-attachment-mezzanine-v2",
+      "hash": 881712821,
+      "type": "user",
+      "title": "2025-09-image-attachment-mezzanine-v2",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2025-09-overlay-state-tracking",
+      "hash": 2936421639,
+      "type": "user",
+      "title": "2025-09-overlay-state-tracking",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2025-09-sensitive-content-self-harm",
+      "hash": 2596838604,
+      "type": "user",
+      "title": "2025-09-sensitive-content-self-harm",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2025-09-server-nsfw-level",
+      "hash": 4002674565,
+      "type": "user",
+      "title": "2025-09-server-nsfw-level",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2025-09-video-qoe-metrics-tracking",
+      "hash": 1718882904,
+      "type": "user",
+      "title": "2025-09-video-qoe-metrics-tracking",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2025-10_community_account_link_onboarding",
+      "hash": 144588339,
+      "type": "guild",
+      "title": "Community Account Linking",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "No rollout data found in the Discord API."
+    },
+    {
+      "id": "2025-10-collectibles-custom-cursors",
+      "hash": 1389684577,
+      "type": "user",
+      "title": "2025-10-collectibles-custom-cursors",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2025-10-desktop-communication-notifications-emoji",
+      "hash": 476219609,
+      "type": "user",
+      "title": "2025-10-desktop-communication-notifications-emoji",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2025-10-force-sdr-emojis-stickers",
+      "hash": 4283014892,
+      "type": "user",
+      "title": "2025-10-force-sdr-emojis-stickers",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2025-10-go-live-auto-quality",
+      "hash": 226888389,
+      "type": "user",
+      "title": "2025-10-go-live-auto-quality",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2025-10-low-latency-rate-control",
+      "hash": 2690564147,
+      "type": "user",
+      "title": "2025-10-low-latency-rate-control",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2025-10-mana-date-inputs",
+      "hash": 511860492,
+      "type": "user",
+      "title": "Calendar",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2025-11-age-verification-expressive-everywhere",
+      "hash": 4253348650,
+      "type": "user",
+      "title": "2025-11-age-verification-expressive-everywhere",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2025-11-global-frame-pool-lock",
+      "hash": 626789988,
+      "type": "user",
+      "title": "2025-11-global-frame-pool-lock",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2025-11-mana-context-menu",
+      "hash": 113804605,
+      "type": "user",
+      "title": "2025-11-mana-context-menu",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2025-11-overlay-chat",
+      "hash": 3677933284,
+      "type": "user",
+      "title": "2025-11-overlay-chat",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2025-11-shockbyte-degraded",
+      "hash": 1354269155,
+      "type": "user",
+      "title": "2025-11-shockbyte-degraded",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2025-11-video-end-card-v2",
+      "hash": 25677644,
+      "type": "user",
+      "title": "2025-11-video-end-card-v2",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2025-12_voice_channel_hoisting",
+      "hash": 2268936098,
+      "type": "guild",
+      "title": "Voice Channel Hoisting",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "No rollout data found in the Discord API."
+    },
+    {
+      "id": "2025-12-hdr-accessibility-setting",
+      "hash": 1930176083,
+      "type": "user",
+      "title": "2025-12-hdr-accessibility-setting",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2025-12-katsudon",
+      "hash": 928529144,
+      "type": "user",
+      "title": "2025-12-katsudon",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2025-12-proportional-vad-indicator",
+      "hash": 707740452,
+      "type": "user",
+      "title": "2025-12-proportional-vad-indicator",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2025-12-quest-cta-refactor-rollout",
+      "hash": 1573281470,
+      "type": "user",
+      "title": "2025-12-quest-cta-refactor-rollout",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2025-12-windows-audio-effects",
+      "hash": 2014061816,
+      "type": "user",
+      "title": "2025-12-windows-audio-effects",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2025-12-wmf-gpu-encode",
+      "hash": 2212366758,
+      "type": "user",
+      "title": "2025-12-wmf-gpu-encode",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-01-bug-reporter",
+      "hash": 132028798,
+      "type": "user",
+      "title": "2026-01-bug-reporter",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-01-friends-in-server",
+      "hash": 2424783045,
+      "type": "user",
+      "title": "2026-01-friends-in-server",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-01-ios-push-notif-json-fix",
+      "hash": 4086254591,
+      "type": "user",
+      "title": "2026-01-ios-push-notif-json-fix",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-01-voice-dares-v0",
+      "hash": 2196117017,
+      "type": "user",
+      "title": "2026-01-voice-dares-v0",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-01-wmf-gpu-encode-intel",
+      "hash": 2058996475,
+      "type": "user",
+      "title": "2026-01-wmf-gpu-encode-intel",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-02_game_claim_coachmark",
+      "hash": 2534870185,
+      "type": "guild",
+      "title": "Game Claim Coachmark",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "No rollout data found in the Discord API."
+    },
+    {
+      "id": "2026-02_hangout_window",
+      "hash": 3972085047,
+      "type": "guild",
+      "title": "Hangout Window",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "No rollout data found in the Discord API."
+    },
+    {
+      "id": "2026-02_past_vc_activity_messages",
+      "hash": 922906114,
+      "type": "guild",
+      "title": "Past VC Activity Messages",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "No rollout data found in the Discord API."
+    },
+    {
+      "id": "2026-02-announcement-composer",
+      "hash": 2988495041,
+      "type": "user",
+      "title": "2026-02-announcement-composer",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-02-capture-target-window",
+      "hash": 701072586,
+      "type": "user",
+      "title": "2026-02-capture-target-window",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-02-desktop-new-user-onboarding",
+      "hash": 281704564,
+      "type": "user",
+      "title": "2026-02-desktop-new-user-onboarding",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-02-expiring-powerup-coachmark",
+      "hash": 1282176639,
+      "type": "user",
+      "title": "2026-02-expiring-powerup-coachmark",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-02-friends-list",
+      "hash": 208675351,
+      "type": "user",
+      "title": "2026-02-friends-list",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-02-game-server-tab-always-on",
+      "hash": 1884502284,
+      "type": "user",
+      "title": "2026-02-game-server-tab-always-on",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-02-gift-cards",
+      "hash": 400058345,
+      "type": "user",
+      "title": "2026-02-gift-cards",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-02-gifting-modal-redesign",
+      "hash": 370292051,
+      "type": "user",
+      "title": "2026-02-gifting-modal-redesign",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-02-go-live-hdr",
+      "hash": 3017368913,
+      "type": "user",
+      "title": "2026-02-go-live-hdr",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-02-join-game-community-cta",
+      "hash": 3088395754,
+      "type": "user",
+      "title": "2026-02-join-game-community-cta",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-02-lazy-load-all-images",
+      "hash": 1322139766,
+      "type": "user",
+      "title": "2026-02-lazy-load-all-images",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-02-longer-group-dm-invites",
+      "hash": 1466818723,
+      "type": "user",
+      "title": "2026-02-longer-group-dm-invites",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-02-mana-playground-access",
+      "hash": 3634494525,
+      "type": "user",
+      "title": "2026-02-mana-playground-access",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-02-mobile-volume-output-slider-removal",
+      "hash": 869964968,
+      "type": "user",
+      "title": "2026-02-mobile-volume-output-slider-removal",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-02-non-dm-gifting-modal-redesign",
+      "hash": 485646842,
+      "type": "user",
+      "title": "2026-02-non-dm-gifting-modal-redesign",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-02-premium-offer-reminder-xp",
+      "hash": 2206332554,
+      "type": "user",
+      "title": "2026-02-premium-offer-reminder-xp",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-02-private-channel-hiding",
+      "hash": 764569958,
+      "type": "user",
+      "title": "2026-02-private-channel-hiding",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-02-process-boost-on-voice",
+      "hash": 2179278777,
+      "type": "user",
+      "title": "2026-02-process-boost-on-voice",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-02-wgc-dirty-regions-all",
+      "hash": 110813836,
+      "type": "user",
+      "title": "2026-02-wgc-dirty-regions-all",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-03_guild_official_messages",
+      "hash": 3747270261,
+      "type": "guild",
+      "title": "Guild Official Messages",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "No rollout data found in the Discord API."
+    },
+    {
+      "id": "2026-03_voice_badge",
+      "hash": 1177718622,
+      "type": "guild",
+      "title": "Display Voice Channel Badge",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "No rollout data found in the Discord API."
+    },
+    {
+      "id": "2026-03-age-verification-google-wallet",
+      "hash": 1446254062,
+      "type": "user",
+      "title": "2026-03-age-verification-google-wallet",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-03-app-guild-validation",
+      "hash": 1492095053,
+      "type": "guild",
+      "title": "2026-03-app-guild-validation",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "No rollout data found in the Discord API."
+    },
+    {
+      "id": "2026-03-audio-effects-probe",
+      "hash": 2792322112,
+      "type": "user",
+      "title": "2026-03-audio-effects-probe",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-03-block-purchases",
+      "hash": 3882661754,
+      "type": "user",
+      "title": "2026-03-block-purchases",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-03-churro",
+      "hash": 2323283534,
+      "type": "user",
+      "title": "2026-03-churro",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-03-content-inventory-memberlist-and-ranker",
+      "hash": 2939868717,
+      "type": "user",
+      "title": "2026-03-content-inventory-memberlist-and-ranker",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-03-conversation-highlighting-utility",
+      "hash": 485610171,
+      "type": "user",
+      "title": "2026-03-conversation-highlighting-utility",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-03-croissant",
+      "hash": 1066661833,
+      "type": "user",
+      "title": "2026-03-croissant",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-03-debug-experiment",
+      "hash": 1153589514,
+      "type": "user",
+      "title": "2026-03-debug-experiment",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-03-image-load-metrics",
+      "hash": 3355255429,
+      "type": "user",
+      "title": "2026-03-image-load-metrics",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-03-ios-audio-interrupt-handling",
+      "hash": 1952747502,
+      "type": "user",
+      "title": "2026-03-ios-audio-interrupt-handling",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-03-krisp-stats-collection",
+      "hash": 1743711347,
+      "type": "user",
+      "title": "2026-03-krisp-stats-collection",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-03-l-3pp",
+      "hash": 1696410586,
+      "type": "user",
+      "title": "2026-03-l-3pp",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-03-media-play-metrics",
+      "hash": 3929126958,
+      "type": "user",
+      "title": "2026-03-media-play-metrics",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-03-mobile-hermes-occupancy-target",
+      "hash": 3048514814,
+      "type": "user",
+      "title": "2026-03-mobile-hermes-occupancy-target",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-03-muted-video-quest-new-defaults",
+      "hash": 85320219,
+      "type": "user",
+      "title": "2026-03-muted-video-quest-new-defaults",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-03-new-server-boost-system-messages",
+      "hash": 4063988887,
+      "type": "user",
+      "title": "2026-03-new-server-boost-system-messages",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-03-overlay-default-keybind",
+      "hash": 2148060109,
+      "type": "user",
+      "title": "2026-03-overlay-default-keybind",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-03-soundmoji-rendering",
+      "hash": 4253073408,
+      "type": "user",
+      "title": "2026-03-soundmoji-rendering",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-03-soundmoji-sending",
+      "hash": 1442825995,
+      "type": "user",
+      "title": "2026-03-soundmoji-sending",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-03-steelseries-3p-recurring",
+      "hash": 1423387680,
+      "type": "user",
+      "title": "2026-03-steelseries-3p-recurring",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-03-surface-direct-renderer",
+      "hash": 3384235111,
+      "type": "user",
+      "title": "2026-03-surface-direct-renderer",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-03-video-capture-device-no-reuse",
+      "hash": 2921484291,
+      "type": "user",
+      "title": "2026-03-video-capture-device-no-reuse",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-03-wysiwyg-user-profile-editing",
+      "hash": 3781879222,
+      "type": "user",
+      "title": "2026-03-wysiwyg-user-profile-editing",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-04_application_identity_linked_roles",
+      "hash": 3262307579,
+      "type": "guild",
+      "title": "Application Identity Linked Roles",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "No rollout data found in the Discord API."
+    },
+    {
+      "id": "2026-04_guild_verification_role",
+      "hash": 2555045592,
+      "type": "guild",
+      "title": "Guild Verification Role",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "No rollout data found in the Discord API."
+    },
+    {
+      "id": "2026-04_server_theme",
+      "hash": 4233234519,
+      "type": "guild",
+      "title": "Server Theme",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "No rollout data found in the Discord API."
+    },
+    {
+      "id": "2026-04_voice_call_trigger_point",
+      "hash": 1350319550,
+      "type": "guild",
+      "title": "Voice Call Trigger Point Experiment",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "No rollout data found in the Discord API."
+    },
+    {
+      "id": "2026-04_voice_user_duration",
+      "hash": 4294382796,
+      "type": "guild",
+      "title": "Voice User Duration",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "No rollout data found in the Discord API."
+    },
+    {
+      "id": "2026-04-browser-transceiver-padding-removal",
+      "hash": 3547665816,
+      "type": "user",
+      "title": "2026-04-browser-transceiver-padding-removal",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-04-desktop-notification-center",
+      "hash": 1108309047,
+      "type": "user",
+      "title": "2026-04-desktop-notification-center",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-04-desktop-tti-v8-cache",
+      "hash": 4249425147,
+      "type": "user",
+      "title": "2026-04-desktop-tti-v8-cache",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-04-ensure-received-messages-added-in-order",
+      "hash": 2786707127,
+      "type": "user",
+      "title": "2026-04-ensure-received-messages-added-in-order",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-04-gift-promotion-reminder",
+      "hash": 3484943316,
+      "type": "user",
+      "title": "2026-04-gift-promotion-reminder",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-04-gifting-badge",
+      "hash": 3228917960,
+      "type": "user",
+      "title": "2026-04-gifting-badge",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-04-hide-view-full-profile-button",
+      "hash": 1622868822,
+      "type": "user",
+      "title": "2026-04-hide-view-full-profile-button",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-04-http-request-sample",
+      "hash": 1061329232,
+      "type": "user",
+      "title": "2026-04-http-request-sample",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-04-inappropriate-conversations-default-on",
+      "hash": 183954735,
+      "type": "user",
+      "title": "2026-04-inappropriate-conversations-default-on",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-04-inappropriate-conversations-prescan",
+      "hash": 674627417,
+      "type": "user",
+      "title": "2026-04-inappropriate-conversations-prescan",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-04-one-day-fractional-nitro",
+      "hash": 3332393228,
+      "type": "user",
+      "title": "2026-04-one-day-fractional-nitro",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-04-overlay-streamer-mode",
+      "hash": 3839901964,
+      "type": "user",
+      "title": "2026-04-overlay-streamer-mode",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-04-quests-premium-orb-multiplier-marketing",
+      "hash": 2780924158,
+      "type": "user",
+      "title": "2026-04-quests-premium-orb-multiplier-marketing",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-04-safety-flows",
+      "hash": 3396731820,
+      "type": "user",
+      "title": "2026-04-safety-flows",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-04-server-boost-copy-1440p",
+      "hash": 1819107439,
+      "type": "user",
+      "title": "2026-04-server-boost-copy-1440p",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-04-topical-navigation-staff-control",
+      "hash": 642281150,
+      "type": "user",
+      "title": "2026-04-topical-navigation-staff-control",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-04-upcoming-server-event",
+      "hash": 206026873,
+      "type": "user",
+      "title": "2026-04-upcoming-server-event",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-04-user-profile-performance-analytics",
+      "hash": 2566621136,
+      "type": "user",
+      "title": "2026-04-user-profile-performance-analytics",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-04-video-hook-dx12",
+      "hash": 589515555,
+      "type": "user",
+      "title": "2026-04-video-hook-dx12",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-04-voice-gateway-protocol-version",
+      "hash": 4047143619,
+      "type": "user",
+      "title": "2026-04-voice-gateway-protocol-version",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-05_default_invite_expiration_guild_web",
+      "hash": 1508002362,
+      "type": "guild",
+      "title": "Default Invite Expiration Guild Web",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "No rollout data found in the Discord API."
+    },
+    {
+      "id": "2026-05_voice_channel_list_invite_embed",
+      "hash": 2599801232,
+      "type": "guild",
+      "title": "Voice Channel List Invite Embed",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "No rollout data found in the Discord API."
+    },
+    {
+      "id": "2026-05-app-store-overlay-feature-gate",
+      "hash": 1657947504,
+      "type": "user",
+      "title": "2026-05-app-store-overlay-feature-gate",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-05-av1-bitrate-tuning",
+      "hash": 1108239443,
+      "type": "user",
+      "title": "2026-05-av1-bitrate-tuning",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-05-clips-media-comments",
+      "hash": 482837223,
+      "type": "user",
+      "title": "2026-05-clips-media-comments",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-05-device-form-factor-indicators",
+      "hash": 2059222623,
+      "type": "user",
+      "title": "2026-05-device-form-factor-indicators",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-05-dice-roll-slash-command",
+      "hash": 382389445,
+      "type": "user",
+      "title": "2026-05-dice-roll-slash-command",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-05-distributed-clips",
+      "hash": 91343840,
+      "type": "user",
+      "title": "2026-05-distributed-clips",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-05-dvp-for-attachments",
+      "hash": 4077156428,
+      "type": "user",
+      "title": "2026-05-dvp-for-attachments",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-05-electron-multilang-spellcheck",
+      "hash": 4110996112,
+      "type": "user",
+      "title": "2026-05-electron-multilang-spellcheck",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-05-frontier-tuning",
+      "hash": 1828521372,
+      "type": "guild",
+      "title": "2026-05-frontier-tuning",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "No rollout data found in the Discord API."
+    },
+    {
+      "id": "2026-05-global-soundboard-wheel-popout",
+      "hash": 795144205,
+      "type": "user",
+      "title": "2026-05-global-soundboard-wheel-popout",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-05-ios-video-stabilization",
+      "hash": 2132411797,
+      "type": "user",
+      "title": "2026-05-ios-video-stabilization",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-05-quest-home-tile-redesign",
+      "hash": 1713637932,
+      "type": "user",
+      "title": "2026-05-quest-home-tile-redesign",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-05-screenshare-picker-wgc",
+      "hash": 1817617487,
+      "type": "user",
+      "title": "2026-05-screenshare-picker-wgc",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-05-server-theme-user",
+      "hash": 1606884390,
+      "type": "user",
+      "title": "2026-05-server-theme-user",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-05-spatial-audio-for-voice",
+      "hash": 3214466147,
+      "type": "user",
+      "title": "2026-05-spatial-audio-for-voice",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-06_guild_rooms",
+      "hash": 3030912869,
+      "type": "guild",
+      "title": "Guild Rooms",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "No rollout data found in the Discord API."
+    },
+    {
+      "id": "2026-06-age-verification-incode",
+      "hash": 2801278631,
+      "type": "user",
+      "title": "2026-06-age-verification-incode",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-06-av1-encode-linux",
+      "hash": 703548887,
+      "type": "user",
+      "title": "2026-06-av1-encode-linux",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-06-chat-bar-customization",
+      "hash": 2990474339,
+      "type": "user",
+      "title": "2026-06-chat-bar-customization",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-06-clickstream-analytics",
+      "hash": 2751161445,
+      "type": "user",
+      "title": "2026-06-clickstream-analytics",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-06-clips-secondary-entrypoints",
+      "hash": 2821661297,
+      "type": "user",
+      "title": "2026-06-clips-secondary-entrypoints",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-06-content-classification-embedded-activity-filter",
+      "hash": 3994309503,
+      "type": "user",
+      "title": "2026-06-content-classification-embedded-activity-filter",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-06-desktop-tti-http-cdt",
+      "hash": 1720341337,
+      "type": "user",
+      "title": "2026-06-desktop-tti-http-cdt",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-06-game-invites-channel",
+      "hash": 2587967235,
+      "type": "guild",
+      "title": "2026-06-game-invites-channel",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "No rollout data found in the Discord API."
+    },
+    {
+      "id": "2026-06-game-server-hosting-in-shop",
+      "hash": 3974310247,
+      "type": "user",
+      "title": "2026-06-game-server-hosting-in-shop",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-06-hero-shelf-ad-tile",
+      "hash": 4219173574,
+      "type": "user",
+      "title": "2026-06-hero-shelf-ad-tile",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-06-nitro-gdm-cap-increase",
+      "hash": 2042191071,
+      "type": "user",
+      "title": "2026-06-nitro-gdm-cap-increase",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-06-orbs-holdout",
+      "hash": 3567301860,
+      "type": "user",
+      "title": "2026-06-orbs-holdout",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-06-otp-orders-phase-1",
+      "hash": 3843305590,
+      "type": "user",
+      "title": "2026-06-otp-orders-phase-1",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-06-post-call-survey-assets",
+      "hash": 3539403417,
+      "type": "user",
+      "title": "2026-06-post-call-survey-assets",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-06-quest-fetch-reconnect-jitter",
+      "hash": 1494508644,
+      "type": "user",
+      "title": "2026-06-quest-fetch-reconnect-jitter",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-06-quest-home-layout-visual-tweaks",
+      "hash": 4096506689,
+      "type": "user",
+      "title": "2026-06-quest-home-layout-visual-tweaks",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-06-server-ladder",
+      "hash": 2234844965,
+      "type": "user",
+      "title": "2026-06-server-ladder",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-06-server-theme-apex-shadow",
+      "hash": 2092655299,
+      "type": "guild",
+      "title": "2026-06-server-theme-apex-shadow",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "No rollout data found in the Discord API."
+    },
+    {
+      "id": "2026-06-topical-navigation-guild",
+      "hash": 1945502063,
+      "type": "guild",
+      "title": "2026-06-topical-navigation-guild",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "No rollout data found in the Discord API."
+    },
+    {
+      "id": "2026-06-upscale-small-captured-frames",
+      "hash": 3145434105,
+      "type": "user",
+      "title": "2026-06-upscale-small-captured-frames",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-06-use-new-badge-image-source",
+      "hash": 358445144,
+      "type": "user",
+      "title": "2026-06-use-new-badge-image-source",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-06-user-profile-sidebar-redesign",
+      "hash": 354902319,
+      "type": "user",
+      "title": "2026-06-user-profile-sidebar-redesign",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-06-web-translate-dom-guard",
+      "hash": 2872938852,
+      "type": "user",
+      "title": "2026-06-web-translate-dom-guard",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-06-web-vitals-monitoring",
+      "hash": 3332567261,
+      "type": "user",
+      "title": "2026-06-web-vitals-monitoring",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-06-wmf-cpu-encode-intel",
+      "hash": 3470680745,
+      "type": "user",
+      "title": "2026-06-wmf-cpu-encode-intel",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-07-app-channels",
+      "hash": 2834320160,
+      "type": "guild",
+      "title": "2026-07-app-channels",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "No rollout data found in the Discord API."
+    },
+    {
+      "id": "2026-07-attachment-image-ladder",
+      "hash": 1771668590,
+      "type": "user",
+      "title": "2026-07-attachment-image-ladder",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-07-autoclipping-default-override",
+      "hash": 2367578050,
+      "type": "user",
+      "title": "2026-07-autoclipping-default-override",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-07-call-of-duty-3pp-expired",
+      "hash": 2449276955,
+      "type": "user",
+      "title": "2026-07-call-of-duty-3pp-expired",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-07-clips-game-events-on-player",
+      "hash": 3098460155,
+      "type": "user",
+      "title": "2026-07-clips-game-events-on-player",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-07-clips-on-profile-setter",
+      "hash": 1626374014,
+      "type": "user",
+      "title": "2026-07-clips-on-profile-setter",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-07-clips-on-profile-viewer",
+      "hash": 4175135380,
+      "type": "user",
+      "title": "2026-07-clips-on-profile-viewer",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-07-cobalt",
+      "hash": 3549807439,
+      "type": "user",
+      "title": "2026-07-cobalt",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-07-custom-app-store-overlay",
+      "hash": 2495784603,
+      "type": "user",
+      "title": "2026-07-custom-app-store-overlay",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-07-desktop-channel-tabs",
+      "hash": 3762073653,
+      "type": "user",
+      "title": "2026-07-desktop-channel-tabs",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-07-expressive-modal-v2",
+      "hash": 288560285,
+      "type": "user",
+      "title": "2026-07-expressive-modal-v2",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-07-ios-attribution",
+      "hash": 2849777128,
+      "type": "user",
+      "title": "2026-07-ios-attribution",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-07-manual-age-assurance-fallback",
+      "hash": 1550266745,
+      "type": "user",
+      "title": "2026-07-manual-age-assurance-fallback",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-07-nvenc-reconstructed-frames",
+      "hash": 1856371433,
+      "type": "user",
+      "title": "2026-07-nvenc-reconstructed-frames",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-07-onyx",
+      "hash": 651428578,
+      "type": "user",
+      "title": "2026-07-onyx",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-07-orbchievements",
+      "hash": 2185542098,
+      "type": "user",
+      "title": "2026-07-orbchievements",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-07-parental-consent-warning-fetch",
+      "hash": 1439671021,
+      "type": "user",
+      "title": "2026-07-parental-consent-warning-fetch",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-07-personal-widget",
+      "hash": 2369760879,
+      "type": "user",
+      "title": "2026-07-personal-widget",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-07-premium-group-expansion-announcement",
+      "hash": 1553031989,
+      "type": "user",
+      "title": "2026-07-premium-group-expansion-announcement",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-07-premium-referral-incentives",
+      "hash": 3763295187,
+      "type": "user",
+      "title": "2026-07-premium-referral-incentives",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-07-quest-home-default-banner-removal",
+      "hash": 2218267423,
+      "type": "user",
+      "title": "2026-07-quest-home-default-banner-removal",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-07-reduce-leave-call-gpu",
+      "hash": 3928868217,
+      "type": "user",
+      "title": "2026-07-reduce-leave-call-gpu",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-07-reject-with-error-kill-switch",
+      "hash": 518608413,
+      "type": "user",
+      "title": "2026-07-reject-with-error-kill-switch",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-07-renewable-end-date-sort",
+      "hash": 4190322001,
+      "type": "user",
+      "title": "2026-07-renewable-end-date-sort",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-07-smag-dm-sidebar-nitro-recommendation",
+      "hash": 487148539,
+      "type": "user",
+      "title": "2026-07-smag-dm-sidebar-nitro-recommendation",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-07-typing-users-css-dots",
+      "hash": 3799678243,
+      "type": "user",
+      "title": "2026-07-typing-users-css-dots",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-07-unobtrusive-device-suggestions",
+      "hash": 348936748,
+      "type": "user",
+      "title": "2026-07-unobtrusive-device-suggestions",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-07-vibegrations-guild",
+      "hash": 2906847044,
+      "type": "guild",
+      "title": "2026-07-vibegrations-guild",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "No rollout data found in the Discord API."
+    },
+    {
+      "id": "2026-07-vibegrations-user",
+      "hash": 2779831427,
+      "type": "user",
+      "title": "2026-07-vibegrations-user",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-07-wishlist-direct-to-gifting",
+      "hash": 3055752814,
+      "type": "user",
+      "title": "2026-07-wishlist-direct-to-gifting",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-08-ad-topic-opt-out-client",
+      "hash": 2593057186,
+      "type": "user",
+      "title": "2026-08-ad-topic-opt-out-client",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-08-android-jank-per-screen",
+      "hash": 2713147971,
+      "type": "user",
+      "title": "2026-08-android-jank-per-screen",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-08-android-rn-reparenting-flag",
+      "hash": 3386450035,
+      "type": "user",
+      "title": "2026-08-android-rn-reparenting-flag",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-08-audio-fidelity",
+      "hash": 2450604586,
+      "type": "user",
+      "title": "2026-08-audio-fidelity",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-08-automontage",
+      "hash": 2593468368,
+      "type": "user",
+      "title": "2026-08-automontage",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-08-badge-management",
+      "hash": 3093904580,
+      "type": "user",
+      "title": "2026-08-badge-management",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-08-bounties-mobile-quest-bar",
+      "hash": 2746896667,
+      "type": "user",
+      "title": "2026-08-bounties-mobile-quest-bar",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-08-dcf-new-user-cooldown",
+      "hash": 1449900715,
+      "type": "user",
+      "title": "2026-08-dcf-new-user-cooldown",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-08-dont-close-chat",
+      "hash": 1989079247,
+      "type": "user",
+      "title": "2026-08-dont-close-chat",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-08-forward-age-restricted-destinations",
+      "hash": 36711157,
+      "type": "user",
+      "title": "2026-08-forward-age-restricted-destinations",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-08-game-mode",
+      "hash": 3719136239,
+      "type": "user",
+      "title": "2026-08-game-mode",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-08-gsh-subs-activity-bar",
+      "hash": 3607082038,
+      "type": "user",
+      "title": "2026-08-gsh-subs-activity-bar",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-08-ios-objc-composed-image-cache",
+      "hash": 732459532,
+      "type": "user",
+      "title": "2026-08-ios-objc-composed-image-cache",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-08-mark-channel-unread",
+      "hash": 3078683323,
+      "type": "user",
+      "title": "2026-08-mark-channel-unread",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-08-mute-aware-noise-cancellation",
+      "hash": 3937878727,
+      "type": "user",
+      "title": "2026-08-mute-aware-noise-cancellation",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-08-no-fill-logging",
+      "hash": 4189865450,
+      "type": "user",
+      "title": "2026-08-no-fill-logging",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-08-profile-embed-rendering",
+      "hash": 4129306389,
+      "type": "user",
+      "title": "2026-08-profile-embed-rendering",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-08-profile-embed-share-button",
+      "hash": 317783909,
+      "type": "user",
+      "title": "2026-08-profile-embed-share-button",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-08-rive-web-perf",
+      "hash": 481154963,
+      "type": "user",
+      "title": "2026-08-rive-web-perf",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-08-show-expressive-modal-subtitle-alt",
+      "hash": 4043893458,
+      "type": "user",
+      "title": "2026-08-show-expressive-modal-subtitle-alt",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-08-social-layer-storefront-mobile-embed",
+      "hash": 4189411739,
+      "type": "user",
+      "title": "2026-08-social-layer-storefront-mobile-embed",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-08-split-payments",
+      "hash": 2967956755,
+      "type": "user",
+      "title": "2026-08-split-payments",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-08-tiny-bronco",
+      "hash": 2315498013,
+      "type": "user",
+      "title": "2026-08-tiny-bronco",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-08-user-bio-max-length",
+      "hash": 1242012908,
+      "type": "user",
+      "title": "2026-08-user-bio-max-length",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-08-video-guard",
+      "hash": 3022613762,
+      "type": "user",
+      "title": "2026-08-video-guard",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-08-virtual-backgrounds-ios",
+      "hash": 3404201136,
+      "type": "user",
+      "title": "2026-08-virtual-backgrounds-ios",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-08-vq-remaining-time-truncation",
+      "hash": 2137733343,
+      "type": "user",
+      "title": "2026-08-vq-remaining-time-truncation",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-08-web-filter-tag-group-migration",
+      "hash": 2756289576,
+      "type": "user",
+      "title": "2026-08-web-filter-tag-group-migration",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-09-a11y-chassis-target-size",
+      "hash": 3012809029,
+      "type": "user",
+      "title": "2026-09-a11y-chassis-target-size",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-09-activity-go-live",
+      "hash": 2496443722,
+      "type": "user",
+      "title": "2026-09-activity-go-live",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-09-agc2-mobile",
+      "hash": 2725641019,
+      "type": "user",
+      "title": "2026-09-agc2-mobile",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-09-autoclips",
+      "hash": 173300045,
+      "type": "user",
+      "title": "2026-09-autoclips",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-09-automod-application-rules",
+      "hash": 2447332408,
+      "type": "guild",
+      "title": "2026-09-automod-application-rules",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "No rollout data found in the Discord API."
+    },
+    {
+      "id": "2026-09-build-a-bear",
+      "hash": 1843790552,
+      "type": "user",
+      "title": "2026-09-build-a-bear",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-09-build-a-bear-cards",
+      "hash": 2255079292,
+      "type": "user",
+      "title": "2026-09-build-a-bear-cards",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-09-clips-editor-image-track",
+      "hash": 2229714232,
+      "type": "user",
+      "title": "2026-09-clips-editor-image-track",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-09-connected-thread-sidebar",
+      "hash": 2609879681,
+      "type": "user",
+      "title": "2026-09-connected-thread-sidebar",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-09-declarative-notification-settings-redesign",
+      "hash": 1097211905,
+      "type": "user",
+      "title": "2026-09-declarative-notification-settings-redesign",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-09-default-emojis",
+      "hash": 2285512203,
+      "type": "user",
+      "title": "2026-09-default-emojis",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-09-desktop-tti-shader-cache",
+      "hash": 279651138,
+      "type": "user",
+      "title": "2026-09-desktop-tti-shader-cache",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-09-desktop-tti-update-check-deadline",
+      "hash": 2903328370,
+      "type": "user",
+      "title": "2026-09-desktop-tti-update-check-deadline",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-09-desktop-voice-message-recording",
+      "hash": 1939708181,
+      "type": "user",
+      "title": "2026-09-desktop-voice-message-recording",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-09-edit-profile-collectibles-ordering",
+      "hash": 2123326678,
+      "type": "user",
+      "title": "2026-09-edit-profile-collectibles-ordering",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-09-friends-sidebar",
+      "hash": 4104334858,
+      "type": "user",
+      "title": "2026-09-friends-sidebar",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-09-game-profiles-v3-communities-tab",
+      "hash": 44506454,
+      "type": "user",
+      "title": "2026-09-game-profiles-v3-communities-tab",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-09-game-search-row",
+      "hash": 340017572,
+      "type": "user",
+      "title": "2026-09-game-search-row",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-09-gifting-badge-coachmark-audience",
+      "hash": 3719940914,
+      "type": "user",
+      "title": "2026-09-gifting-badge-coachmark-audience",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-09-guild-spaces",
+      "hash": 4201393060,
+      "type": "guild",
+      "title": "2026-09-guild-spaces",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "No rollout data found in the Discord API."
+    },
+    {
+      "id": "2026-09-halloween-wishlisting-animation",
+      "hash": 2925045667,
+      "type": "user",
+      "title": "2026-09-halloween-wishlisting-animation",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-09-hexagon-campaign-client",
+      "hash": 2646394310,
+      "type": "user",
+      "title": "2026-09-hexagon-campaign-client",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-09-invite-accept-age-group-errors",
+      "hash": 2089015883,
+      "type": "user",
+      "title": "2026-09-invite-accept-age-group-errors",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-09-invite-expiring-soon",
+      "hash": 2179831849,
+      "type": "user",
+      "title": "2026-09-invite-expiring-soon",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-09-ios-callkit-connected-on-rtc",
+      "hash": 137783234,
+      "type": "user",
+      "title": "2026-09-ios-callkit-connected-on-rtc",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-09-linked-game-org-invites-dev",
+      "hash": 4056747830,
+      "type": "user",
+      "title": "2026-09-linked-game-org-invites-dev",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-09-linked-guilds",
+      "hash": 1285576556,
+      "type": "guild",
+      "title": "2026-09-linked-guilds",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "No rollout data found in the Discord API."
+    },
+    {
+      "id": "2026-09-linux-gpu-decode",
+      "hash": 388390375,
+      "type": "user",
+      "title": "2026-09-linux-gpu-decode",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-09-mobile-quest-home-sort-priority",
+      "hash": 520271088,
+      "type": "user",
+      "title": "2026-09-mobile-quest-home-sort-priority",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-09-mobile-quest-reward-button-to-secondary-button",
+      "hash": 2523916745,
+      "type": "user",
+      "title": "2026-09-mobile-quest-reward-button-to-secondary-button",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-09-mobile-request-to-stream",
+      "hash": 1658838297,
+      "type": "guild",
+      "title": "2026-09-mobile-request-to-stream",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "No rollout data found in the Discord API."
+    },
+    {
+      "id": "2026-09-multi-sku-embed-rendering",
+      "hash": 3733834381,
+      "type": "user",
+      "title": "2026-09-multi-sku-embed-rendering",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-09-new-orb-reward-visuals",
+      "hash": 2576805737,
+      "type": "user",
+      "title": "2026-09-new-orb-reward-visuals",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-09-nitro-file-upload-rollout",
+      "hash": 981354709,
+      "type": "user",
+      "title": "2026-09-nitro-file-upload-rollout",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-09-non-nitro-file-upload-marketing",
+      "hash": 2217911162,
+      "type": "user",
+      "title": "2026-09-non-nitro-file-upload-marketing",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-09-orbs-hero-carousel",
+      "hash": 3708024214,
+      "type": "user",
+      "title": "2026-09-orbs-hero-carousel",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-09-profile-link-fetch",
+      "hash": 216814844,
+      "type": "user",
+      "title": "2026-09-profile-link-fetch",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-09-profile-widget-empty-state-suggestions",
+      "hash": 3463472513,
+      "type": "user",
+      "title": "2026-09-profile-widget-empty-state-suggestions",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-09-quest-home-bounties-feature-gate",
+      "hash": 3619982516,
+      "type": "user",
+      "title": "2026-09-quest-home-bounties-feature-gate",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-09-quest-mobile-bar-secondary-cta",
+      "hash": 1154563519,
+      "type": "user",
+      "title": "2026-09-quest-mobile-bar-secondary-cta",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-09-referral-profile-contextual-menu-upsell",
+      "hash": 2107778686,
+      "type": "user",
+      "title": "2026-09-referral-profile-contextual-menu-upsell",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-09-registration-email-opt-in-copy",
+      "hash": 2934888880,
+      "type": "user",
+      "title": "2026-09-registration-email-opt-in-copy",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-09-request-to-stream-go-live-modal",
+      "hash": 1012650856,
+      "type": "user",
+      "title": "2026-09-request-to-stream-go-live-modal",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-09-request-to-stream-new-entry-point",
+      "hash": 2515942123,
+      "type": "user",
+      "title": "2026-09-request-to-stream-new-entry-point",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-09-rust-3p",
+      "hash": 2440513648,
+      "type": "user",
+      "title": "2026-09-rust-3p",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-09-safety-flows-legacy-required-actions",
+      "hash": 4192724634,
+      "type": "user",
+      "title": "2026-09-safety-flows-legacy-required-actions",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-09-safety-warning-age-text",
+      "hash": 1632561022,
+      "type": "user",
+      "title": "2026-09-safety-warning-age-text",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-09-server-tooltip-notification-context",
+      "hash": 2736938570,
+      "type": "user",
+      "title": "2026-09-server-tooltip-notification-context",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-09-silp-app-opened-direct-to-discoverable",
+      "hash": 1945316123,
+      "type": "user",
+      "title": "2026-09-silp-app-opened-direct-to-discoverable",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-09-silp-cta-copy-tests",
+      "hash": 2095734783,
+      "type": "user",
+      "title": "2026-09-silp-cta-copy-tests",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-09-silp-desktop-app-upsell",
+      "hash": 211827156,
+      "type": "user",
+      "title": "download_discord_app",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-09-silp-direct-to-discoverable",
+      "hash": 1721444236,
+      "type": "user",
+      "title": "2026-09-silp-direct-to-discoverable",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-09-single-cpu-copy",
+      "hash": 811338196,
+      "type": "user",
+      "title": "2026-09-single-cpu-copy",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-09-soundboard-echo",
+      "hash": 1564205367,
+      "type": "guild",
+      "title": "2026-09-soundboard-echo",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "No rollout data found in the Discord API."
+    },
+    {
+      "id": "2026-09-soundboard-quick-action",
+      "hash": 2848664599,
+      "type": "user",
+      "title": "2026-09-soundboard-quick-action",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-09-three-month-nitro-gifting",
+      "hash": 1644794275,
+      "type": "user",
+      "title": "2026-09-three-month-nitro-gifting",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-09-try-display-name-style",
+      "hash": 3244363438,
+      "type": "user",
+      "title": "2026-09-try-display-name-style",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-09-update-email-settings-copy-subtext",
+      "hash": 680101207,
+      "type": "user",
+      "title": "2026-09-update-email-settings-copy-subtext",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-09-video-background-profile-fetch",
+      "hash": 4172964090,
+      "type": "user",
+      "title": "2026-09-video-background-profile-fetch",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-09-voice-connect-feedback",
+      "hash": 4142779735,
+      "type": "user",
+      "title": "2026-09-voice-connect-feedback",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-09-web-sticker-picker-upsell-restyle",
+      "hash": 541436062,
+      "type": "user",
+      "title": "2026-09-web-sticker-picker-upsell-restyle",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-09-windows-native-premap",
+      "hash": 1221223677,
+      "type": "user",
+      "title": "2026-09-windows-native-premap",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-09-youtube-3p",
+      "hash": 697234470,
+      "type": "user",
+      "title": "2026-09-youtube-3p",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-09-youtube-3p-nagbar",
+      "hash": 3485209992,
+      "type": "user",
+      "title": "2026-09-youtube-3p-nagbar",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-10-add-server-join-first",
+      "hash": 3810560064,
+      "type": "user",
+      "title": "2026-10-add-server-join-first",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-10-android-chat-preinflation",
+      "hash": 3976434403,
+      "type": "user",
+      "title": "2026-10-android-chat-preinflation",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-10-android-ui-manager-constants-cache",
+      "hash": 2086438229,
+      "type": "user",
+      "title": "2026-10-android-ui-manager-constants-cache",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-10-animated-shop-bundle-previews",
+      "hash": 4101712434,
+      "type": "user",
+      "title": "2026-10-animated-shop-bundle-previews",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-10-avx512-entropy-histogram",
+      "hash": 4214309324,
+      "type": "user",
+      "title": "2026-10-avx512-entropy-histogram",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-10-badge-directory-updates",
+      "hash": 1475570113,
+      "type": "user",
+      "title": "2026-10-badge-directory-updates",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-10-badges-unread-state",
+      "hash": 3864328341,
+      "type": "user",
+      "title": "2026-10-badges-unread-state",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-10-bloons-bf-deal",
+      "hash": 187066402,
+      "type": "user",
+      "title": "2026-10-bloons-bf-deal",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-10-bounties-desktop-quest-bar",
+      "hash": 250127443,
+      "type": "user",
+      "title": "2026-10-bounties-desktop-quest-bar",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-10-build-a-bear-qa",
+      "hash": 3685320748,
+      "type": "user",
+      "title": "2026-10-build-a-bear-qa",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-10-bulk-nitro-gifting-discounts",
+      "hash": 2214031646,
+      "type": "user",
+      "title": "2026-10-bulk-nitro-gifting-discounts",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-10-camp-in-dm",
+      "hash": 2819528729,
+      "type": "user",
+      "title": "2026-10-camp-in-dm",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-10-clickable-hero-banner",
+      "hash": 25428798,
+      "type": "user",
+      "title": "2026-10-clickable-hero-banner",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-10-clips-default-on-geo",
+      "hash": 744374971,
+      "type": "user",
+      "title": "2026-10-clips-default-on-geo",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-10-cod-relink",
+      "hash": 3509277331,
+      "type": "user",
+      "title": "2026-10-cod-relink",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-10-code-blurple",
+      "hash": 1664530717,
+      "type": "user",
+      "title": "2026-10-code-blurple",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-10-code-blurple-marketing-holdout",
+      "hash": 1231876075,
+      "type": "user",
+      "title": "2026-10-code-blurple-marketing-holdout",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-10-code-blurple-teaser",
+      "hash": 399863367,
+      "type": "user",
+      "title": "2026-10-code-blurple-teaser",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-10-code-blurple-teaser-marketing",
+      "hash": 676532447,
+      "type": "user",
+      "title": "2026-10-code-blurple-teaser-marketing",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-10-collectibles-interactive-jumble-bar",
+      "hash": 2085941310,
+      "type": "user",
+      "title": "2026-10-collectibles-interactive-jumble-bar",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-10-collectibles-marketing-client-cache",
+      "hash": 903517929,
+      "type": "user",
+      "title": "2026-10-collectibles-marketing-client-cache",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-10-collectibles-storefront-pricing-integration",
+      "hash": 3645669535,
+      "type": "user",
+      "title": "2026-10-collectibles-storefront-pricing-integration",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-10-collectibles-upgraded-search",
+      "hash": 3863905904,
+      "type": "user",
+      "title": "2026-10-collectibles-upgraded-search",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-10-conjure-mcp-ui",
+      "hash": 3245012025,
+      "type": "user",
+      "title": "2026-10-conjure-mcp-ui",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-10-contextual-referrals-gdm-member-list",
+      "hash": 3686146306,
+      "type": "user",
+      "title": "2026-10-contextual-referrals-gdm-member-list",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-10-contextual-referrals-server-channel-member-list",
+      "hash": 753842192,
+      "type": "user",
+      "title": "2026-10-contextual-referrals-server-channel-member-list",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-10-contextual-referrals-user-dm-sidebar",
+      "hash": 1248048616,
+      "type": "user",
+      "title": "2026-10-contextual-referrals-user-dm-sidebar",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-10-desktop-conjure-native-preview-view",
+      "hash": 2634436183,
+      "type": "user",
+      "title": "2026-10-desktop-conjure-native-preview-view",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-10-desktop-game-perf",
+      "hash": 348160615,
+      "type": "user",
+      "title": "2026-10-desktop-game-perf",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-10-desktop-general-perf",
+      "hash": 3682159590,
+      "type": "user",
+      "title": "2026-10-desktop-general-perf",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-10-desktop-tti-perf",
+      "hash": 3066054628,
+      "type": "user",
+      "title": "2026-10-desktop-tti-perf",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-10-e2e-latency-measurement",
+      "hash": 44949578,
+      "type": "user",
+      "title": "2026-10-e2e-latency-measurement",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-10-embedded-app-frame-policy",
+      "hash": 3084765265,
+      "type": "user",
+      "title": "2026-10-embedded-app-frame-policy",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-10-embedded-app-shim-v2",
+      "hash": 1325891843,
+      "type": "user",
+      "title": "2026-10-embedded-app-shim-v2",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-10-embedded-app-storage-access",
+      "hash": 2113699285,
+      "type": "user",
+      "title": "2026-10-embedded-app-storage-access",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-10-express-checkout",
+      "hash": 3598508017,
+      "type": "user",
+      "title": "2026-10-express-checkout",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-10-fix-soundboard-muting-iconography",
+      "hash": 4202792289,
+      "type": "user",
+      "title": "2026-10-fix-soundboard-muting-iconography",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-10-fractional-nitro-pricing",
+      "hash": 2456798901,
+      "type": "user",
+      "title": "2026-10-fractional-nitro-pricing",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-10-game-discovery",
+      "hash": 53709442,
+      "type": "user",
+      "title": "2026-10-game-discovery",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-10-game-exit-promo-rust",
+      "hash": 2659676127,
+      "type": "user",
+      "title": "2026-10-game-exit-promo-rust",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-10-gdm-duration-timer",
+      "hash": 3477309199,
+      "type": "user",
+      "title": "2026-10-gdm-duration-timer",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-10-gift-cards-in-app-marketing",
+      "hash": 683780585,
+      "type": "user",
+      "title": "2026-10-gift-cards-in-app-marketing",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-10-gifted-subscriptions",
+      "hash": 3762915228,
+      "type": "user",
+      "title": "2026-10-gifted-subscriptions",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-10-gsh-change-payment-method",
+      "hash": 3410370293,
+      "type": "user",
+      "title": "2026-10-gsh-change-payment-method",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-10-guild-bulk-role-actions",
+      "hash": 2651567811,
+      "type": "guild",
+      "title": "2026-10-guild-bulk-role-actions",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "No rollout data found in the Discord API."
+    },
+    {
+      "id": "2026-10-guild-tooltip-lazy-content",
+      "hash": 1056221119,
+      "type": "user",
+      "title": "2026-10-guild-tooltip-lazy-content",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-10-hd-streaming-contextual-referrals",
+      "hash": 3327724070,
+      "type": "user",
+      "title": "2026-10-hd-streaming-contextual-referrals",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-10-macaron",
+      "hash": 2368433424,
+      "type": "user",
+      "title": "2026-10-macaron",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-10-macaron-non-sub-marketing",
+      "hash": 2232565109,
+      "type": "user",
+      "title": "2026-10-macaron-non-sub-marketing",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-10-mana-badge-refresh",
+      "hash": 6234811,
+      "type": "user",
+      "title": "2026-10-mana-badge-refresh",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-10-meta-quest-app-upsell-coachmark",
+      "hash": 1971846361,
+      "type": "user",
+      "title": "2026-10-meta-quest-app-upsell-coachmark",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-10-native-markdown-setting",
+      "hash": 1150221120,
+      "type": "user",
+      "title": "2026-10-native-markdown-setting",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-10-nitro-home-badge-directory",
+      "hash": 3989650841,
+      "type": "user",
+      "title": "2026-10-nitro-home-badge-directory",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-10-nitro-settings-marketing-page-refresh",
+      "hash": 2553695835,
+      "type": "user",
+      "title": "2026-10-nitro-settings-marketing-page-refresh",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-10-nitro-tab-remove-account-age-restriction",
+      "hash": 2519174151,
+      "type": "user",
+      "title": "2026-10-nitro-tab-remove-account-age-restriction",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-10-orbchievements-mobile",
+      "hash": 4096457432,
+      "type": "user",
+      "title": "2026-10-orbchievements-mobile",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-10-overlay-native-window-rendering",
+      "hash": 185402519,
+      "type": "user",
+      "title": "2026-10-overlay-native-window-rendering",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-10-pinot-admin",
+      "hash": 4034054128,
+      "type": "guild",
+      "title": "2026-10-pinot-admin",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "No rollout data found in the Discord API."
+    },
+    {
+      "id": "2026-10-pinot-channel-discoverable",
+      "hash": 3316103669,
+      "type": "guild",
+      "title": "2026-10-pinot-channel-discoverable",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "No rollout data found in the Discord API."
+    },
+    {
+      "id": "2026-10-pinot-member",
+      "hash": 2275742042,
+      "type": "user",
+      "title": "2026-10-pinot-member",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-10-pinot-member-notice",
+      "hash": 1587754668,
+      "type": "guild",
+      "title": "2026-10-pinot-member-notice",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "No rollout data found in the Discord API."
+    },
+    {
+      "id": "2026-10-pinot-summary-management",
+      "hash": 897175337,
+      "type": "guild",
+      "title": "2026-10-pinot-summary-management",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "No rollout data found in the Discord API."
+    },
+    {
+      "id": "2026-10-profile-default-tab-with-content",
+      "hash": 1908672925,
+      "type": "user",
+      "title": "2026-10-profile-default-tab-with-content",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-10-profile-nitro-upsell-refresh",
+      "hash": 1815647669,
+      "type": "user",
+      "title": "2026-10-profile-nitro-upsell-refresh",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-10-profile-read-state",
+      "hash": 1603282817,
+      "type": "user",
+      "title": "2026-10-profile-read-state",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-10-referral-refresh-notification",
+      "hash": 1761537201,
+      "type": "user",
+      "title": "2026-10-referral-refresh-notification",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-10-remove-quests-from-discovery",
+      "hash": 3418608626,
+      "type": "user",
+      "title": "2026-10-remove-quests-from-discovery",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-10-request-to-stream-non-games",
+      "hash": 3423600723,
+      "type": "guild",
+      "title": "2026-10-request-to-stream-non-games",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "No rollout data found in the Discord API."
+    },
+    {
+      "id": "2026-10-rust-bf-deal",
+      "hash": 102685613,
+      "type": "user",
+      "title": "2026-10-rust-bf-deal",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-10-server-tag-upsell-on-guild-profile",
+      "hash": 217306918,
+      "type": "user",
+      "title": "2026-10-server-tag-upsell-on-guild-profile",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-10-server-tag-upsell-on-profile",
+      "hash": 2107871281,
+      "type": "user",
+      "title": "2026-10-server-tag-upsell-on-profile",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-10-sfp-bloons-orb-split-tender",
+      "hash": 2330899520,
+      "type": "user",
+      "title": "2026-10-sfp-bloons-orb-split-tender",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-10-shop-marketing-fatigue",
+      "hash": 185055962,
+      "type": "user",
+      "title": "2026-10-shop-marketing-fatigue",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-10-shop-sku-nitro-upsell-refresh",
+      "hash": 563739763,
+      "type": "user",
+      "title": "2026-10-shop-sku-nitro-upsell-refresh",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-10-shop-twelve-days-promo",
+      "hash": 3328079488,
+      "type": "user",
+      "title": "2026-10-shop-twelve-days-promo",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-10-slayer-storefront-single-sku-wide-header",
+      "hash": 2815590856,
+      "type": "user",
+      "title": "2026-10-slayer-storefront-single-sku-wide-header",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-10-social-layer-storefront-mobile-multi-sku-embed",
+      "hash": 3218461925,
+      "type": "user",
+      "title": "2026-10-social-layer-storefront-mobile-multi-sku-embed",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-10-soundboard-mute-indicator",
+      "hash": 549099094,
+      "type": "user",
+      "title": "2026-10-soundboard-mute-indicator",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-10-soundboard-new-sounds-badge",
+      "hash": 2094783262,
+      "type": "user",
+      "title": "2026-10-soundboard-new-sounds-badge",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-10-stage-unified-call",
+      "hash": 2224434251,
+      "type": "guild",
+      "title": "2026-10-stage-unified-call",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "No rollout data found in the Discord API."
+    },
+    {
+      "id": "2026-10-stage-unified-call-user",
+      "hash": 2731098581,
+      "type": "user",
+      "title": "2026-10-stage-unified-call-user",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-10-uimanager-experiments",
+      "hash": 3557489608,
+      "type": "user",
+      "title": "2026-10-uimanager-experiments",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-10-user-profile-widget-suggestions",
+      "hash": 472083720,
+      "type": "user",
+      "title": "2026-10-user-profile-widget-suggestions",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-10-video-player-playback-speed",
+      "hash": 1147043352,
+      "type": "user",
+      "title": "2026-10-video-player-playback-speed",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-10-voice-quality-scoring",
+      "hash": 302786783,
+      "type": "user",
+      "title": "2026-10-voice-quality-scoring",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-10-web-screen-share-audio",
+      "hash": 1270334976,
+      "type": "user",
+      "title": "2026-10-web-screen-share-audio",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-10-web-streaming-optimizations",
+      "hash": 2004834486,
+      "type": "user",
+      "title": "2026-10-web-streaming-optimizations",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-10-windows-playout-buffer-duration",
+      "hash": 2463579009,
+      "type": "user",
+      "title": "2026-10-windows-playout-buffer-duration",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-11-apex-launch-latch",
+      "hash": 3356545810,
+      "type": "user",
+      "title": "2026-11-apex-launch-latch",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-11-autoclips-ea-upsell",
+      "hash": 3769825614,
+      "type": "user",
+      "title": "2026-11-autoclips-ea-upsell",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-11-console-connection-coachmark",
+      "hash": 2011052583,
+      "type": "user",
+      "title": "2026-11-console-connection-coachmark",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-11-cross-platform-game-bar",
+      "hash": 3430913257,
+      "type": "user",
+      "title": "2026-11-cross-platform-game-bar",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-11-cti-desktop-viewer",
+      "hash": 1336306137,
+      "type": "user",
+      "title": "2026-11-cti-desktop-viewer",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-11-game-exit-promo-bloons",
+      "hash": 1382843298,
+      "type": "user",
+      "title": "2026-11-game-exit-promo-bloons",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-11-linux-steam-sku-detection",
+      "hash": 3788255873,
+      "type": "user",
+      "title": "2026-11-linux-steam-sku-detection",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-11-mac-steam-sku-detection",
+      "hash": 3801886515,
+      "type": "user",
+      "title": "2026-11-mac-steam-sku-detection",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-11-nitro-upload-badge",
+      "hash": 2216648750,
+      "type": "user",
+      "title": "2026-11-nitro-upload-badge",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-11-notify-friends-on-custom-status-update",
+      "hash": 4164406021,
+      "type": "user",
+      "title": "2026-11-notify-friends-on-custom-status-update",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-11-pass-the-controller",
+      "hash": 1752606703,
+      "type": "guild",
+      "title": "2026-11-pass-the-controller",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "No rollout data found in the Discord API."
+    },
+    {
+      "id": "2026-11-payment-element-accordion-layout",
+      "hash": 2896253659,
+      "type": "user",
+      "title": "2026-11-payment-element-accordion-layout",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-11-profile-embed-rendering-mobile",
+      "hash": 1964273220,
+      "type": "user",
+      "title": "2026-11-profile-embed-rendering-mobile",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-11-quest-home-tile-single-elements",
+      "hash": 635338598,
+      "type": "user",
+      "title": "2026-11-quest-home-tile-single-elements",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-11-return-full-quest-status-in-decision",
+      "hash": 681027080,
+      "type": "user",
+      "title": "2026-11-return-full-quest-status-in-decision",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-11-screen-share-dtx",
+      "hash": 136227870,
+      "type": "user",
+      "title": "2026-11-screen-share-dtx",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-11-shop-this-look-full-profile-button",
+      "hash": 203334276,
+      "type": "user",
+      "title": "2026-11-shop-this-look-full-profile-button",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-11-soundboard-upsells-brand-refresh",
+      "hash": 3579903793,
+      "type": "user",
+      "title": "2026-11-soundboard-upsells-brand-refresh",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-11-subscription-management-settings-brand-refresh",
+      "hash": 2399019735,
+      "type": "user",
+      "title": "2026-11-subscription-management-settings-brand-refresh",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-11-waterwheels-discover",
+      "hash": 2563831382,
+      "type": "user",
+      "title": "2026-11-waterwheels-discover",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-11-wishlist-countdown",
+      "hash": 2657255774,
+      "type": "user",
+      "title": "2026-11-wishlist-countdown",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-11-wishlist-countdown-mobile",
+      "hash": 493178281,
+      "type": "user",
+      "title": "2026-11-wishlist-countdown-mobile",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    }
+  ],
+  "summary": {
+    "total": 401,
+    "guild": 40,
+    "user": 361,
+    "withPercentage": 8,
+    "withoutPercentage": 393,
+    "fullRollout": 4,
+    "partial": 0,
+    "notStarted": 4,
+    "fpSampled": 5
+  }
+}
