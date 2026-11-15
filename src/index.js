@@ -164,12 +164,9 @@ function computeExpDiff(findingsExps, lastExp, knownExp, opts) {
 
   // Guard: not enough data for a reliable diff (same thresholds as before)
   if (extractedExpCount < MIN_EXP_FOR_DIFF || lastExpCount < 40) {
-    // Extract partiel : on CONSERVE les snapshots précédents absents du run.
-    // Avant, nextExpSnap remplaçait tout : une extraction à 50 expériences
-    // écrasait une baseline de 400 → les runs suivants comparaient contre un
-    // état tronqué et les modifications des expériences disparues étaient
-    // perdues jusqu'à leur réapparition.
-    const preserved = { ...(lastExp || {}), ...(nextExpSnap || {}) };
+    // Ne pas acquitter non plus les ids présents dans un extract incomplet :
+    // leurs modifications/ajouts seraient sinon perdus avant le prochain diff fiable.
+    const preserved = { ...(lastExp || {}) };
     return {
       expDiff: {
         added: [],
@@ -568,6 +565,8 @@ async function main() {
   const nextRt = { ...(findings.routes || {}) };
   const extractedStrCount = Object.keys(extractedStrings).length;
   const extractedRtCount = Object.keys(nextRt).length;
+  const nextStringsSnap = selectNextMapBaseline(lastStr, extractedStrings, MIN_STRINGS_FOR_DIFF);
+  const nextRoutesSnap = selectNextMapBaseline(lastRt, nextRt, MIN_ROUTES_FOR_DIFF);
   const extractedExpCount = (findings.experiments || []).length;
 
   console.log(
@@ -652,9 +651,9 @@ async function main() {
     rtDiff.added = {};
     rtDiff.modified = {};
     rtDiff.removed = {};
-    // marquer comme connus pour ne pas les annoncer au run suivant
-    for (const k of Object.keys(extractedStrings)) knownStr.add(k);
-    for (const k of Object.keys(nextRt)) knownRt.add(k);
+    // Seul un snapshot assez complet peut servir de seed et être marqué connu.
+    for (const k of Object.keys(nextStringsSnap)) knownStr.add(k);
+    for (const k of Object.keys(nextRoutesSnap)) knownRt.add(k);
   }
 
   if (!isNewBuild && needsExtractSeed) {
@@ -974,15 +973,15 @@ async function main() {
       ...stamp,
       extractVersion: STR_RT_EXTRACT_VERSION,
       updatedAt: tsIso,
-      count: Object.keys(extractedStrings || {}).length,
-      data: extractedStrings || {},
+      count: Object.keys(nextStringsSnap || {}).length,
+      data: nextStringsSnap || {},
     },
     'last_extract_routes.json': {
       ...stamp,
       extractVersion: STR_RT_EXTRACT_VERSION,
       updatedAt: tsIso,
-      count: Object.keys(nextRt || {}).length,
-      data: nextRt || {},
+      count: Object.keys(nextRoutesSnap || {}).length,
+      data: nextRoutesSnap || {},
     },
     'current_experiments.json': {
       ...stamp,
@@ -1154,6 +1153,26 @@ function computeMapDiff(last, extracted, opts = {}) {
   return { added, modified, removed };
 }
 
+/**
+ * Keep the last trusted baseline when a map extraction is below its minimum
+ * coverage. Promoting a partial map would silently consume unseen changes.
+ */
+function selectNextMapBaseline(last, extracted, minCurrentCount) {
+  const previous =
+    last && typeof last === 'object' && !Array.isArray(last) ? last : {};
+  const current =
+    extracted && typeof extracted === 'object' && !Array.isArray(extracted)
+      ? extracted
+      : {};
+  const required =
+    typeof minCurrentCount === 'number' &&
+    Number.isFinite(minCurrentCount) &&
+    minCurrentCount >= 0
+      ? Math.floor(minCurrentCount)
+      : Infinity;
+  return Object.keys(current).length >= required ? current : previous;
+}
+
 async function markBuild(buildNumber, file = ANNOUNCED) {
   let data = { builds: [] };
   try {
@@ -1196,6 +1215,7 @@ module.exports = {
   computeExpDiff,
   mergeExp,
   computeMapDiff,
+  selectNextMapBaseline,
   expSnapshot,
   loadLastMap,
   loadKnownIds,

@@ -46,7 +46,8 @@ test('computeExpDiff : extract partiel n\'ajoute pas de faux nouveaux', () => {
   const lastExp = snapMap(100);
   const current = Array.from({ length: 5 }, (_, i) => exp(1000 + i));
   const { nextExpSnap } = computeExpDiff(current, lastExp, new Set());
-  assert.equal(Object.keys(nextExpSnap).length, 105);
+  assert.deepEqual(nextExpSnap, lastExp);
+  assert.equal(Object.keys(nextExpSnap).length, 100);
 });
 
 test('computeExpDiff : extract complet détecte ajout et modification', () => {

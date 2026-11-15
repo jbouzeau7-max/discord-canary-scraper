@@ -291,9 +291,12 @@ async function downloadList(urls, assetsDir, force, opts = {}) {
     jobs.length,
   );
 
-  if (jobs.length >= 5) {
+  if (jobs.length > 0) {
     const okRatio = (n + skip) / jobs.length;
-    if (okRatio < MIN_DOWNLOAD_SUCCESS_RATIO) {
+    // Avec 1–4 fichiers, un seul échec peut enlever une locale ou un chunk
+    // essentiel tout en passant un seuil de ratio configuré trop bas.
+    const smallBatchFailed = jobs.length < 5 && fail > 0;
+    if (smallBatchFailed || okRatio < MIN_DOWNLOAD_SUCCESS_RATIO) {
       throw new Error(
         'EXTRACTION_ERROR: download success ratio ' +
           okRatio.toFixed(2) +

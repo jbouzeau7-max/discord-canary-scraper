@@ -62,12 +62,15 @@ test('downloadList : 404 non retenté, fichier absent', async () => {
   resetDownloadStats();
   const dir = await tmpDir();
   let calls = 0;
-  await downloadList([URL_A], dir, true, {
-    fetch: async () => {
-      calls++;
-      return res(404, Buffer.from('nope'));
-    },
-  });
+  await assert.rejects(
+    downloadList([URL_A], dir, true, {
+      fetch: async () => {
+        calls++;
+        return res(404, Buffer.from('nope'));
+      },
+    }),
+    /download success ratio/,
+  );
   assert.equal(calls, 1);
   assert.equal(await fs.pathExists(path.join(dir, 'web.aaa.js')), false);
   assert.equal(getDownloadStats().failed, 1);
@@ -94,9 +97,12 @@ test('downloadList : corps HTML refusé (même pour un .css)', async () => {
   resetDownloadStats();
   const dir = await tmpDir();
   const html = Buffer.from('<!DOCTYPE html><html><body>blocked</body></html>');
-  await downloadList(['https://cdn.test/assets/app.zzz.css'], dir, true, {
-    fetch: async () => res(200, html),
-  });
+  await assert.rejects(
+    downloadList(['https://cdn.test/assets/app.zzz.css'], dir, true, {
+      fetch: async () => res(200, html),
+    }),
+    /download success ratio/,
+  );
   assert.equal(await fs.pathExists(path.join(dir, 'app.zzz.css')), false);
   assert.equal(getDownloadStats().failed, 1);
 });
@@ -184,7 +190,10 @@ test('downloadList : contenu trop volumineux rejeté sans écriture', async () =
   resetDownloadStats();
   const dir = await tmpDir();
   const big = Buffer.alloc(13 * 1024 * 1024, 1);
-  await downloadList([URL_B], dir, true, { fetch: async () => res(200, big) });
+  await assert.rejects(
+    downloadList([URL_B], dir, true, { fetch: async () => res(200, big) }),
+    /download success ratio/,
+  );
   assert.equal(await fs.pathExists(path.join(dir, 'chunk.bbb.js')), false);
   assert.equal(getDownloadStats().failed, 1);
 });
