@@ -740,7 +740,9 @@ function classifyAndroidChannels(storeVersion, otaVersions, externalBeta, extern
       note: externalAlpha.date ? `Track-labeled on ${externalAlpha.source}` : 'Track-labeled version',
     });
   } else {
-    const alphaCand = ahead.find((v) => !otaBeta || v.version !== otaBeta.version);
+    const selectedBetaVersion =
+      channels.find((channel) => channel.channel === 'beta' && channel.version)?.version || null;
+    const alphaCand = ahead.find((v) => v.version !== selectedBetaVersion);
     if (alphaCand) {
       channels.push(otaEntry(alphaCand, 'OTA en avance sur la stable (alpha inférée)', 'alpha'));
     } else {

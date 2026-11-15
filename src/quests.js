@@ -1071,7 +1071,7 @@ async function fetchOfficialQuests(regionMap, options = {}) {
         console.warn('official quests request failed:', status || 'network/retry exhausted');
         // A network/rate-limit failure affects this endpoint, not credentials;
         // do not fan the same request out across every account token.
-        if (!status || status === 429 || status >= 500) break;
+        if (!status || status === 429 || status >= 500) return [];
         continue;
       }
 

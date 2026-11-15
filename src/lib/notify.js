@@ -149,9 +149,9 @@ function normalizeExpDiff(diff) {
 function normalizeMapDiff(diff) {
   if (diff && (diff.added || diff.modified || diff.removed)) {
     return {
-      added: diff.added && typeof diff.added === 'object' ? diff.added : {},
-      modified: diff.modified && typeof diff.modified === 'object' ? diff.modified : {},
-      removed: diff.removed && typeof diff.removed === 'object' ? diff.removed : {},
+      added: diff.added && typeof diff.added === 'object' && !Array.isArray(diff.added) ? diff.added : {},
+      modified: diff.modified && typeof diff.modified === 'object' && !Array.isArray(diff.modified) ? diff.modified : {},
+      removed: diff.removed && typeof diff.removed === 'object' && !Array.isArray(diff.removed) ? diff.removed : {},
     };
   }
   return { added: {}, modified: {}, removed: {} };
