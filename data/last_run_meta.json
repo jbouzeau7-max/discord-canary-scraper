@@ -1,11 +1,12 @@
 {
   "schemaVersion": 1,
+  "runId": "2026-11-15T20-42-27-899Z_673868_30ejbq",
   "buildNumber": "673868",
-  "ts": 1794775283127,
-  "status": "notify_failed",
-  "ok": false,
-  "reason": "WEBHOOK_MISSING",
-  "durationMs": 7928,
+  "ts": 1794775347953,
+  "status": "success",
+  "ok": true,
+  "versionHash": "4cd032a7423317f7ec517096610b7b655970f2bb",
+  "durationMs": 15867,
   "experiments": 397,
   "strings": 29083,
   "routes": 1120,
@@ -14,7 +15,7 @@
     "downloaded": 6702,
     "skipped": 0,
     "failed": 2,
-    "retried": 68,
+    "retried": 80,
     "http429": 0,
     "http5xx": 0
   }
