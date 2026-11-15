@@ -136,7 +136,8 @@ async function loadLocalDefs() {
     if (!(await fs.pathExists(file))) continue;
     try {
       const j = await fs.readJson(file);
-      for (const e of pick(j) || []) {
+      const picked = pick(j);
+      for (const e of Array.isArray(picked) ? picked : []) {
         if (!e || typeof e !== 'object') continue;
         put(e.id || e.name, e.type || e.kind, e.label || e.title);
       }
@@ -181,7 +182,11 @@ async function fetchGistMeta(id, token) {
     throw new Error('gist ' + id + ' HTTP ' + res.status + (detail ? ' — ' + detail : ''));
   }
   const j = await res.json();
-  const file = j.files && Object.values(j.files)[0];
+  const files = j && j.files && typeof j.files === 'object' ? Object.values(j.files) : [];
+  const file =
+    files.find((f) => f && f.raw_url && /\.json$/i.test(String(f.filename || ''))) ||
+    files.find((f) => f && f.raw_url) ||
+    null;
   if (!file || !file.raw_url) throw new Error('gist ' + id + ' sans raw_url');
   return {
     gistId: id,
@@ -284,7 +289,8 @@ async function fetchGists(token) {
  * Retourne { byId, typeCounts, list }.
  */
 function computeAll(gistData, defs) {
-  const byId = {};
+  // null-prototype : un id « __proto__ » ne doit pas polluer la table.
+  const byId = Object.create(null);
   const typeCounts = { user: 0, guild: 0, unclassified: 0 };
   const list = [];
   for (const raw of gistData) {
@@ -670,7 +676,12 @@ async function main(deps = {}) {
   }
   // acknowledged : { id: ackEntry } — dernier état NOTIFIÉ avec succès.
   const acknowledged =
-    prev && prev.acknowledged && typeof prev.acknowledged === 'object' ? prev.acknowledged : null;
+    prev &&
+    prev.acknowledged &&
+    typeof prev.acknowledged === 'object' &&
+    !Array.isArray(prev.acknowledged)
+      ? prev.acknowledged
+      : null;
   // v2 (union des populations) : changement de FORMULE de calcul — les
   // deltas seraient des artefacts de recalcul, pas des changements réels.
   // Re-baseline silencieuse, enregistrée dans l'état.
@@ -679,7 +690,13 @@ async function main(deps = {}) {
 
   // 2) Lecture du gist canonique (+ miroir).
   const fetched = await fetchGistsFn(process.env.GITHUB_TOKEN || null);
-  if (!fetched || fetched.error || !fetched.source || !Array.isArray(fetched.data)) {
+  if (
+    !fetched ||
+    fetched.error ||
+    !fetched.source ||
+    typeof fetched.source !== 'object' ||
+    !Array.isArray(fetched.data)
+  ) {
     const why =
       (fetched && (fetched.error || (!fetched.source && 'réponse sans source'))) ||
       (!Array.isArray(fetched && fetched.data) && 'data non tableau') ||
@@ -732,7 +749,7 @@ async function main(deps = {}) {
 
   // 5) Diff contre acknowledged — SEULS les type 'user' sont notifiés
   //    (guild = apex wire à part ; type inconnu = suivi, pas de notification).
-  const notifiable = {};
+  const notifiable = Object.create(null);
   const allCurIds = new Set(list.map((e) => e.id));
   for (const e of list) {
     if (e.type === 'user') notifiable[e.id] = e;
@@ -797,7 +814,7 @@ async function main(deps = {}) {
   let newAcknowledged;
   if (isFirst) {
     // baseline silencieuse (entrées compactes, type user uniquement)
-    newAcknowledged = {};
+    newAcknowledged = Object.create(null);
     for (const [id, e] of Object.entries(notifiable)) newAcknowledged[id] = ackEntry(e);
   } else {
     newAcknowledged = { ...(acknowledged || {}) };
@@ -862,6 +879,15 @@ async function main(deps = {}) {
   );
   log('État écrit:', stateFile, '· livrés:', delivered, '/', changes.length);
 
+  if (delivered < changes.length) {
+    return {
+      ok: false,
+      reason: 'webhook_failed',
+      changes: changes.length,
+      delivered,
+      migrated,
+    };
+  }
   return { ok: true, changes: changes.length, delivered, migrated };
 }
 

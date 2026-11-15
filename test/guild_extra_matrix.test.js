@@ -4,7 +4,7 @@ const test = require('node:test');
 const assert = require('node:assert/strict');
 const { describeFilters, fallbackGuildRollouts } = require('../src/experiment_rollouts');
 
-test('describeFilters : restitue les filtres de feature, de membres et de plage d’ID', () => {
+test('describeFilters : restitue les filtres de feature, de plage d’ID et de membres', () => {
   const filters = [
     [1604612045, [[12, 'guild_discovery'], [13, 7], 'legacy-feature']],
     [2404720969, [10, 100]],
@@ -15,7 +15,7 @@ test('describeFilters : restitue les filtres de feature, de membres et de plage 
 
   assert.equal(
     describeFilters(filters),
-    'feature:guild_discovery,feature_13,legacy-feature; member_count:[10,100]; id_range:{"min":1000,"max":2000}; filter_987654321; filter_invalide',
+    'feature:guild_discovery,feature_13,legacy-feature; id_range:[10,100]; member_count:{"min":1000,"max":2000}; filter_987654321; filter_invalide',
   );
 });
 

@@ -1,6 +1,7 @@
 'use strict';
 const fs = require('fs-extra');
 const path = require('path');
+const { writeJsonAtomic } = require('./atomic');
 const STATE = 'dismissible_content.json';
 
 // Discord compile l'enum TypeScript DismissibleContent en :
@@ -58,12 +59,25 @@ function diffDismissible(cur, prev) {
   const added = {}, removed = {}, modified = {};
   cur = cur || {};
   prev = prev || {};
+  const hasOwn = (obj, key) => Object.prototype.hasOwnProperty.call(obj, key);
+  const setOwn = (obj, key, value) => {
+    if (key === '__proto__') {
+      Object.defineProperty(obj, key, {
+        value,
+        enumerable: true,
+        configurable: true,
+        writable: true,
+      });
+    } else {
+      obj[key] = value;
+    }
+  };
   for (const [k, v] of Object.entries(cur)) {
-    if (!(k in prev)) added[k] = v;
-    else if (Number(prev[k]) !== Number(v)) modified[k] = { from: prev[k], to: v };
+    if (!hasOwn(prev, k)) setOwn(added, k, v);
+    else if (Number(prev[k]) !== Number(v)) setOwn(modified, k, { from: prev[k], to: v });
   }
   for (const [k, v] of Object.entries(prev)) {
-    if (!(k in cur)) removed[k] = v;
+    if (!hasOwn(cur, k)) setOwn(removed, k, v);
   }
   return { added, removed, modified };
 }
@@ -83,14 +97,13 @@ async function loadState(dataDir) {
 
 async function saveState(dataDir, data, buildNumber) {
   const fp = path.join(dataDir, STATE);
-  const tmp = fp + '.tmp';
-  await fs.writeJson(tmp, {
+  const safeData = data && typeof data === 'object' && !Array.isArray(data) ? data : {};
+  await writeJsonAtomic(fp, {
     updatedAt: new Date().toISOString(),
     buildNumber: buildNumber != null ? String(buildNumber) : null,
-    count: Object.keys(data || {}).length,
-    data: data || {},
-  }, { spaces: 2 });
-  await fs.move(tmp, fp, { overwrite: true });
+    count: Object.keys(safeData).length,
+    data: safeData,
+  });
 }
 
 async function notifyDismissible({ webhookUrl, buildNumber, diff }) {
@@ -121,8 +134,7 @@ async function processDismissibleContent({ dataDir, current, buildNumber, webhoo
   let notified = false;
   if (!isSeed && prevCount >= 10 && (nAdd || nRem || nMod)) {
     if (!webhookUrl) {
-      console.log('Dismissible Content: no webhook — baseline updated');
-      await saveState(dataDir, cur, buildNumber);
+      console.log('Dismissible Content: no webhook — baseline kept for retry');
       return { notified: false, diff, count };
     }
     console.log('Dismissible Content diff', { added: nAdd, removed: nRem, modified: nMod });

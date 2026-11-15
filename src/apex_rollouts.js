@@ -102,11 +102,20 @@ function decodeGuildWire(tuple, hashMap) {
   // Un format inattendu (objet au lieu de tableau) ne doit pas faire perdre
   // TOUTES les expériences guild : on ignore simplement la partie illisible.
   const pops = Array.isArray(tuple[3]) ? tuple[3] : [];
-  const ovs = tuple[4] || [];
+  const ovs = Array.isArray(tuple[4]) ? tuple[4] : [];
+  const getMapped = (h) => {
+    if (!hashMap) return null;
+    if (typeof hashMap.get === 'function') {
+      return hashMap.get(Number(h)) || hashMap.get(String(h)) || null;
+    }
+    if (typeof hashMap === 'object') {
+      return hashMap[Number(h)] || hashMap[String(h)] || null;
+    }
+    return null;
+  };
   let id =
     (typeof key === 'string' && key.trim() && key) ||
-    hashMap.get(Number(hash)) ||
-    hashMap.get(String(hash)) ||
+    getMapped(hash) ||
     'hash:' + hash;
 
   const byBucket = new Map();
@@ -115,8 +124,8 @@ function decodeGuildWire(tuple, hashMap) {
     const positions = Array.isArray(pop[0]) ? pop[0] : [];
     for (const pos of positions) {
       if (!Array.isArray(pos)) continue;
-      const bucket = pos[0];
-      if (!Number.isFinite(Number(bucket))) continue;
+      const bucket = Number(pos[0]);
+      if (!Number.isFinite(bucket)) continue;
       const ranges = Array.isArray(pos[1]) ? pos[1] : [];
       if (!byBucket.has(bucket)) byBucket.set(bucket, { bucket, label: tLabel(bucket), intervals: [] });
       for (const r of ranges) {
@@ -137,10 +146,13 @@ function decodeGuildWire(tuple, hashMap) {
     .sort((a, b) => (a.bucket ?? 9999) - (b.bucket ?? 9999));
 
   let ovCount = 0;
-  if (Array.isArray(ovs)) {
-    for (const o of ovs) {
-      if (o && typeof o === 'object') ovCount += (o.k || o.ids || []).length || 0;
-      else if (Array.isArray(o)) ovCount += (o[1] || []).length || 0;
+  for (const o of ovs) {
+    // Tester Array.isArray AVANT typeof object : un tableau est un objet,
+    // l'ancien ordre comptait donc toujours 0 pour le format [bucket, ids].
+    if (Array.isArray(o)) ovCount += Array.isArray(o[1]) ? o[1].length : 0;
+    else if (o && typeof o === 'object') {
+      const ids = Array.isArray(o.k) ? o.k : Array.isArray(o.ids) ? o.ids : [];
+      ovCount += ids.length;
     }
   }
   const fingerprint = treatments.map((t) => t.bucket + ':' + Number(t.pct).toFixed(2)).join('|');
@@ -229,7 +241,7 @@ async function fetchDiscordGuild(hashMap, deps = {}) {
   const fetchImpl = deps.fetch || fetch;
   const wait = deps.sleep || sleep;
   const rounds = deps.fetchRounds || FETCH_ROUNDS;
-  const tokenList = deps.tokens || USER_TOKENS;
+  const tokenList = Array.isArray(deps.tokens) ? deps.tokens : USER_TOKENS;
   const urls = [
     'https://canary.discord.com/api/v9/experiments?with_guild_experiments=true',
     'https://discord.com/api/v9/experiments?with_guild_experiments=true',
@@ -287,22 +299,32 @@ async function fetchDiscordGuild(hashMap, deps = {}) {
 }
 
 function pctKey(e) {
-  return (e.treatments || [])
-    .filter((t) => t && t.pct != null)
+  return (Array.isArray(e && e.treatments) ? e.treatments : [])
+    .filter((t) => t && t.pct != null && Number.isFinite(Number(t.pct)))
     .map((t) => t.bucket + ':' + Number(t.pct).toFixed(2))
     .sort()
     .join('|');
 }
 
 function diffExperiments(prev, next) {
-  const pMap = new Map(prev.map((e) => [e.id, e]));
-  const nMap = new Map(next.map((e) => [e.id, e]));
+  const pMap = new Map(
+    (Array.isArray(prev) ? prev : [])
+      .filter((e) => e && e.id)
+      .map((e) => [e.id, e]),
+  );
+  const nMap = new Map(
+    (Array.isArray(next) ? next : [])
+      .filter((e) => e && e.id)
+      .map((e) => [e.id, e]),
+  );
   const added = [],
     removed = [],
     changed = [];
   for (const [id, n] of nMap) {
     if (!n.hasGlobalPct || String(id).startsWith('hash:')) continue;
-    const treatments = (n.treatments || []).filter((t) => t && t.pct != null);
+    const treatments = (Array.isArray(n.treatments) ? n.treatments : []).filter(
+      (t) => t && t.pct != null,
+    );
     if (!treatments.length) continue;
     const p = pMap.get(id);
     if (!p) {
@@ -310,7 +332,12 @@ function diffExperiments(prev, next) {
       continue;
     }
     const deltas = [];
-    const pt = new Map((p.treatments || []).map((t) => [String(t.bucket ?? t.label), t]));
+    const pt = new Map(
+      (Array.isArray(p.treatments) ? p.treatments : []).map((t) => [
+        String(t.bucket ?? t.label),
+        t,
+      ]),
+    );
     let maxAbs = 0;
     const seen = new Set();
     const finite = (v) => (v != null && v !== '' && Number.isFinite(Number(v)) ? Number(v) : 0);
@@ -479,7 +506,11 @@ async function main(deps = {}) {
     previous = { experiments: [], announced: {} };
   }
   const announced =
-    previous.announced && typeof previous.announced === 'object' ? { ...previous.announced } : {};
+    previous.announced &&
+    typeof previous.announced === 'object' &&
+    !Array.isArray(previous.announced)
+      ? { ...previous.announced }
+      : {};
   const prev = Array.isArray(previous.experiments) ? previous.experiments : [];
   const isFirst = !prev.length;
 
@@ -530,7 +561,12 @@ async function main(deps = {}) {
   let ackList = Array.isArray(previous.ackExperiments)
     ? previous.ackExperiments.slice()
     : null;
-  const ackMapFrom = (list) => new Map((list || []).map((e) => [e.id, e]));
+  const ackMapFrom = (list) =>
+    new Map(
+      (Array.isArray(list) ? list : [])
+        .filter((e) => e && e.id)
+        .map((e) => [e.id, e]),
+    );
 
   async function writeState(announcedMap, ackExperiments) {
     await writeJsonAtomic(
@@ -615,7 +651,7 @@ async function main(deps = {}) {
   if (!hasWebhook) {
     await writeState(announced, ackList);
     console.warn('No webhook - state saved without advancing acknowledged');
-    return { ok: true, changes: changes.length, delivered: 0, noWebhook: true };
+    return fail(2, 'webhook_missing');
   }
 
   // V14 : envoi par lots de 10 embeds ; ackExperiments n'avance que pour les

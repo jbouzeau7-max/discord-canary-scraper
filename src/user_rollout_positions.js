@@ -46,10 +46,20 @@ function parseSample(j) {
  */
 function processSamples(prev, samples, names) {
   const next = {};
-  for (const [k, v] of Object.entries(prev || {})) next[k] = { hash: v.hash, ...P.normalize(v) };
+  for (const [k, v] of Object.entries(prev || {})) {
+    next[k] = { hash: v && v.hash, ...P.normalize(v) };
+  }
   const diagnostics = [];
   const seen = new Set();
-  const uniq = samples.filter((s) => s && !seen.has(s.id) && seen.add(s.id));
+  const list = Array.isArray(samples) ? samples : [];
+  const uniq = list.filter(
+    (s) =>
+      s &&
+      typeof s === 'object' &&
+      Array.isArray(s.assignments) &&
+      !seen.has(s.id) &&
+      seen.add(s.id),
+  );
   for (const name of [...new Set(names)]) {
     const hash = murmur3(name);
     const rows = uniq.map((s) => {
@@ -109,10 +119,12 @@ async function sample(count, deps) {
 /** Noms suivis : expériences nommées déjà publiées + noms connus (gist/définitions) vus sur le wire. */
 function trackedNames(comparison, known, prev, samples) {
   const names = new Set(Object.keys(prev || {}));
-  for (const e of (comparison && comparison.experiments) || []) if (e && e.id && !e.id.startsWith('hash:')) names.add(e.id);
+  for (const e of Array.isArray(comparison && comparison.experiments) ? comparison.experiments : []) {
+    if (e && e.id && !e.id.startsWith('hash:')) names.add(e.id);
+  }
   const byHash = new Map();
-  for (const n of known) { const h = murmur3(n); byHash.set(h, byHash.has(h) ? null : n); }
-  for (const s of samples) for (const a of s.assignments) {
+  for (const n of Array.isArray(known) ? known : []) { const h = murmur3(n); byHash.set(h, byHash.has(h) ? null : n); }
+  for (const s of Array.isArray(samples) ? samples : []) for (const a of Array.isArray(s && s.assignments) ? s.assignments : []) {
     const n = Array.isArray(a) && byHash.get(a[0]);
     if (n) names.add(n);
   }
@@ -122,10 +134,10 @@ function trackedNames(comparison, known, prev, samples) {
 async function knownNames() {
   const out = new Set();
   const docs = await readJson(path.join(DATA, 'gist_user_rollouts_docs.json'), {});
-  for (const e of docs.experiments || []) if (e && e.id && e.type === 'user') out.add(e.id);
+  for (const e of Array.isArray(docs && docs.experiments) ? docs.experiments : []) if (e && e.id && e.type === 'user') out.add(e.id);
   for (const f of ['experiments.json', 'mobile_experiments.json']) {
     const j = await readJson(path.join(DATA, f), {});
-    for (const e of (j && j.experiments) || []) if (e && (e.id || e.name) && (e.type === 'user' || e.kind === 'user')) out.add(e.id || e.name);
+    for (const e of Array.isArray(j && j.experiments) ? j.experiments : []) if (e && (e.id || e.name) && (e.type === 'user' || e.kind === 'user')) out.add(e.id || e.name);
   }
   return [...out];
 }
@@ -133,7 +145,13 @@ async function knownNames() {
 async function main(deps = {}) {
   const file = deps.out || path.join(DATA, 'user_rollout_positions.json');
   const prevFile = await readJson(file, {});
-  const prev = (prevFile && prevFile.experiments) || {};
+  const prev =
+    prevFile &&
+    prevFile.experiments &&
+    typeof prevFile.experiments === 'object' &&
+    !Array.isArray(prevFile.experiments)
+      ? prevFile.experiments
+      : {};
   const comparison = deps.comparison !== undefined ? deps.comparison : await readJson(path.join(DATA, 'user_rollout_comparison.json'), {});
   const known = deps.knownNames || await knownNames();
   const count = deps.samples ?? num(process.env.POSITIONS_SAMPLES, 150);

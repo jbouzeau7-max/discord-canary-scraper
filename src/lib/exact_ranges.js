@@ -43,7 +43,16 @@ function snapBoundary(lo, hi) {
 function inferExactRanges(points, scale = DEFAULT_SCALE, opts = {}) {
   const maxRuns = opts.maxRuns ?? 16;
   const pts = (points || [])
-    .filter((p) => p && Number.isInteger(p.pos) && p.pos >= 0 && p.pos < scale && Number.isFinite(Number(p.label)))
+    .filter(
+      (p) =>
+        p &&
+        Number.isInteger(p.pos) &&
+        p.pos >= 0 &&
+        p.pos < scale &&
+        p.label != null &&
+        p.label !== '' &&
+        Number.isFinite(Number(p.label)),
+    )
     .map((p) => ({ pos: p.pos, label: Number(p.label) }))
     .sort((a, b) => a.pos - b.pos);
   if (pts.length < 20) return null;

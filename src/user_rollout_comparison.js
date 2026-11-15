@@ -50,7 +50,10 @@ async function main(deps = {}) {
   const defs = [];
   for (const [file, pick] of [['experiments.json', (j) => j.experiments], ['mobile_experiments.json', (j) => j.experiments], ['apex_experiments.json', (j) => (Array.isArray(j) ? j : [])]]) {
     const j = await readJson(file, null);
-    for (const e of (j && pick(j)) || []) if (e && (e.id || e.name)) defs.push({ id: e.id || e.name, type: e.type || e.kind, title: e.label || e.title });
+    const picked = j && pick(j);
+    for (const e of Array.isArray(picked) ? picked : []) {
+      if (e && (e.id || e.name)) defs.push({ id: e.id || e.name, type: e.type || e.kind, title: e.label || e.title });
+    }
   }
   let rawGist = [];
   let gist = gistDocs;

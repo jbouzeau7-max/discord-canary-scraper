@@ -33,12 +33,31 @@ const DATA_KEYS = {
 };
 
 function intervalsToPct(intervals) {
-  if (!intervals || !intervals.length) return 0;
+  if (!Array.isArray(intervals) || !intervals.length) return 0;
+  const valid = [];
+  for (const r of intervals) {
+    let a;
+    let b;
+    if (Array.isArray(r) && r.length >= 2) {
+      a = Number(r[0]);
+      b = Number(r[1]);
+    } else if (r && typeof r === 'object') {
+      a = Number(r.start ?? r.s);
+      b = Number(r.end ?? r.e);
+    } else {
+      continue;
+    }
+    if (!Number.isFinite(a) || !Number.isFinite(b) || b <= a) continue;
+    // Les plages Discord sont dans [0, SCALE). Une borne hors espace ne doit
+    // pas gonfler le pourcentage (9500–20000 vaut 5 %, pas 100 %).
+    a = Math.max(0, Math.min(SCALE, a));
+    b = Math.max(0, Math.min(SCALE, b));
+    if (b > a) valid.push([a, b]);
+  }
+  if (!valid.length) return 0;
   // Fusion demi-ouverte AVANT sommation : sans ça, deux plages qui se
   // chevauchent (ou se touchent) étaient comptées deux fois → % surestimé.
-  const merged = mergeIntervalsHalfOpen(
-    intervals.map((r) => [Number(r.start ?? r.s ?? r[0]), Number(r.end ?? r.e ?? r[1])]),
-  );
+  const merged = mergeIntervalsHalfOpen(valid);
   let c = 0;
   for (const [a, b] of merged) {
     if (Number.isFinite(a) && Number.isFinite(b) && b > a) c += b - a;
@@ -50,12 +69,14 @@ function parsePopulation(population) {
   if (!Array.isArray(population)) return { buckets: {}, filters: [], treatments: [] };
   const buckets = {};
   const treatments = [];
-  const positions = population[0] || [];
+  const positions = Array.isArray(population[0]) ? population[0] : [];
   for (const bucket of positions) {
     if (!Array.isArray(bucket)) continue;
     const id = bucket[0];
-    const ranges = (bucket[1] || []).map((r) => {
+    const rawRanges = Array.isArray(bucket[1]) ? bucket[1] : [];
+    const ranges = rawRanges.map((r) => {
       if (Array.isArray(r)) return { start: Number(r[0]), end: Number(r[1]) };
+      if (!r || typeof r !== 'object') return { start: NaN, end: NaN };
       return { start: Number(r.s ?? r.start), end: Number(r.e ?? r.end) };
     });
     const key = String(id);
@@ -73,7 +94,7 @@ function parsePopulation(population) {
   treatments.sort((a, b) => (a.bucket ?? 9999) - (b.bucket ?? 9999));
 
   const filters = [];
-  for (const filter of population[1] || []) {
+  for (const filter of Array.isArray(population[1]) ? population[1] : []) {
     if (!Array.isArray(filter)) continue;
     const typeId = filter[0];
     const typeName = FILTER_TYPES[typeId] || FILTER_TYPES[String(typeId)] || 'unknown_filter';
@@ -120,14 +141,18 @@ function decodeGuildExperiment(tuple, hashMap) {
   const hash = tuple[0];
   const key = tuple[1];
   const revision = tuple[2];
-  const populationsRaw = tuple[3] || [];
-  const overridesArr = tuple[4] || [];
+  // Un objet/chaîne là où Discord envoie un tableau ne doit pas faire perdre
+  // toute la collection : on ignore la partie illisible.
+  const populationsRaw = Array.isArray(tuple[3]) ? tuple[3] : [];
+  const overridesArr = Array.isArray(tuple[4]) ? tuple[4] : [];
   const overridesFormattedRaw = tuple[5];
 
-  let id =
-    (typeof key === 'string' && key.trim() && key) ||
-    (hashMap && (hashMap.get(Number(hash)) || hashMap.get(String(hash)))) ||
-    null;
+  const mapped = hashMap && typeof hashMap.get === 'function'
+    ? hashMap.get(Number(hash)) || hashMap.get(String(hash))
+    : hashMap && typeof hashMap === 'object'
+      ? hashMap[Number(hash)] || hashMap[String(hash)]
+      : null;
+  let id = (typeof key === 'string' && key.trim() && key) || mapped || null;
 
   const populations = populationsRaw.map(parsePopulation);
   const overridesFormatted = Array.isArray(overridesFormattedRaw)

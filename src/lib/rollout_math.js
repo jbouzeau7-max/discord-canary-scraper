@@ -62,9 +62,13 @@ function mergeIntervalsHalfOpen(intervals) {
 }
 
 function intervalsCoverage(intervals, scale = DEFAULT_SCALE) {
-  const merged = mergeIntervals(intervals);
+  const limit = Number(scale);
+  if (!Number.isFinite(limit) || limit <= 0) return 0;
+  const merged = mergeIntervals(intervals)
+    .map(([a, b]) => [Math.max(0, a), Math.min(limit - 1, b)])
+    .filter(([a, b]) => b >= a);
   const raw = merged.reduce((sum, [a, b]) => sum + (b - a + 1), 0);
-  return Math.min(scale, Math.max(0, raw));
+  return Math.min(limit, Math.max(0, raw));
 }
 
 function coveragePercent(intervals, scale = DEFAULT_SCALE) {
@@ -243,7 +247,10 @@ function stableStringify(value) {
     const canonicalJson = (v) => {
       if (Array.isArray(v)) return v.map(canonicalJson);
       if (v && typeof v === 'object') {
-        const out = {};
+        // Object.create(null) : une clé « __proto__ » restait une propriété
+        // de prototype et disparaissait de JSON.stringify → collision
+        // d'empreintes pour deux objets différents.
+        const out = Object.create(null);
         for (const key of Object.keys(v).sort()) out[key] = canonicalJson(v[key]);
         return out;
       }
@@ -452,7 +459,9 @@ function reconstructBucketRanges(positions, scale = DEFAULT_SCALE) {
     const hi = c[c.length - 1];
     const cm = c.length;
     if (cm < 2) {
-      ranges.push([lo, hi]);
+      // Un point isolé couvre au moins une position ; [lo, lo] était filtré
+      // par mergeIntervalsHalfOpen (b <= a) et disparaissait du total.
+      ranges.push([lo, Math.min(scale, lo + 1)]);
       continue;
     }
     // Pas d'ordre moyen → élargissement symétrique sans biais d'extrêmes.

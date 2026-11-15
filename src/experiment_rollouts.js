@@ -157,23 +157,40 @@ function describeFilters(filters) {
   const parts = [];
   for (const f of filters) {
     if (!Array.isArray(f) || f.length < 1 || f[0] == null) continue;
-    const type = f[0];
+    const rawType = f[0];
+    const type = Number(rawType);
     if (type === 1604612045) {
-      // Feature filter
-      const rawFeatures = Array.isArray(f[1]) ? f[1] : [];
-      const features = rawFeatures.map((ff) => {
-        if (Array.isArray(ff) && ff.length >= 2) {
-          return typeof ff[1] === 'string' ? ff[1] : `feature_${ff[0]}`;
+      // Discord imbrique les features : [1604612045, [[1183251248, ["COMMUNITY"]]]]
+      // (et parfois [12, "guild_discovery"] dans les anciens gists).
+      const collect = (v) => {
+        if (typeof v === 'string') return [v];
+        if (!Array.isArray(v)) return [];
+        if (v.length >= 2 && typeof v[1] === 'string') return [v[1]];
+        if (
+          v.length >= 2 &&
+          Array.isArray(v[1]) &&
+          v[1].every((x) => typeof x === 'string')
+        ) {
+          return v[1];
         }
-        return String(ff);
-      });
+        if (
+          v.length >= 2 &&
+          v[0] != null &&
+          typeof v[0] !== 'object' &&
+          typeof v[1] !== 'object'
+        ) {
+          return [`feature_${v[0]}`];
+        }
+        return v.flatMap(collect);
+      };
+      const features = collect(f[1]);
       parts.push('feature:' + features.join(','));
     } else if (type === 2404720969) {
-      parts.push('member_count:' + JSON.stringify(f[1]));
-    } else if (type === 2918402255) {
       parts.push('id_range:' + JSON.stringify(f[1]));
+    } else if (type === 2918402255) {
+      parts.push('member_count:' + JSON.stringify(f[1]));
     } else {
-      parts.push(`filter_${type}`);
+      parts.push(`filter_${Number.isFinite(type) ? type : rawType}`);
     }
   }
   return parts.join('; ') || 'all';
@@ -207,7 +224,9 @@ function fallbackGuildRollouts(previous, fresh) {
     const list = cur.map((e) => {
       if (e.dataStatus !== 'malformed') return e;
       const old = identityKeys(e).map((key) => previousByKey.get(key)).find(Boolean);
-      if (!old || old.percentage == null) return e;
+      // Sans baseline exploitable, une entrée malformée ne doit pas être
+      // publiée comme un rollout à 0 % / inconnu : on la retire.
+      if (!old || old.percentage == null) return null;
       const preserved = { ...old };
       for (const key of ['id', 'hash', 'name', 'revision', 'title', 'type']) {
         if (e[key] != null) preserved[key] = e[key];
@@ -216,8 +235,10 @@ function fallbackGuildRollouts(previous, fresh) {
       preserved.currentDataStatus = 'malformed';
       preserved.stale = true;
       return preserved;
-    });
-    return { list, stale: false };
+    }).filter(Boolean);
+    if (list.length) return { list, stale: false };
+    const validPrev = prev.filter((e) => e.percentage != null);
+    return validPrev.length ? { list: validPrev, stale: true } : { list: [], stale: false };
   }
   if (prev.length) return { list: prev, stale: true };
   return { list: [], stale: false };
@@ -401,7 +422,8 @@ async function main() {
       const exps = d.experiments || d;
       if (Array.isArray(exps)) {
         for (const e of exps) {
-          if (!localExperiments.find((le) => le.id === e.id)) {
+          if (!e || typeof e !== 'object') continue;
+          if (!localExperiments.find((le) => le && le.id === e.id)) {
             localExperiments.push(e);
           }
         }
@@ -414,6 +436,7 @@ async function main() {
   // Build hash → ID map from local experiments
   const localHashMap = new Map();
   for (const exp of localExperiments) {
+    if (!exp || typeof exp !== 'object') continue;
     const id = String(exp.id || '');
     if (!id) continue;
     const hash = murmur3(id);

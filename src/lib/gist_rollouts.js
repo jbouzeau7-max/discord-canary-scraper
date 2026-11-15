@@ -112,9 +112,10 @@ function computeVariantEntry(entry) {
   if (!valid.length) return null; // entrée illisible → non comptée
   const { length, hasOverlap, merged } = unionIntervals(valid);
   const variant = entry.variant == null ? null : Number(entry.variant);
+  const role = String(entry.role || 'unknown').trim().toLowerCase() || 'unknown';
   return {
     variant: Number.isFinite(variant) ? variant : null,
-    role: String(entry.role || 'unknown'),
+    role,
     positions: length,
     pct: positionsToPct(length),
     ranges: merged.map((iv) => [iv.lo, iv.hi]),
@@ -362,6 +363,8 @@ function keyOf(entry) {
  * baisse à zéro).
  */
 function diffExperiments(prevById, curById, minDeltaPct = 0.05, curAllIds = null) {
+  prevById = prevById && typeof prevById === 'object' ? prevById : {};
+  curById = curById && typeof curById === 'object' ? curById : {};
   const changes = [];
   const prevIds = new Set(Object.keys(prevById));
   const curIds = new Set(Object.keys(curById));
@@ -470,15 +473,24 @@ function mirrorStatus(primaryData, mirrorData) {
   const norm = (data) =>
     JSON.stringify(
       [...(Array.isArray(data) ? data : [])]
-        .map((e) => [e && e.id, e && e.variants])
+        .filter((e) => e && e.id)
+        .map((e) => [e.id, e.variants])
         .sort((a, b) => String(a[0]).localeCompare(String(b[0]))),
     );
   if (norm(primaryData) === norm(mirrorData)) {
     return { diverged: false, divergingIds: [] };
   }
   const divergingIds = [];
-  const pm = new Map((Array.isArray(primaryData) ? primaryData : []).map((e) => [e.id, e]));
-  const mm = new Map((Array.isArray(mirrorData) ? mirrorData : []).map((e) => [e.id, e]));
+  const pm = new Map(
+    (Array.isArray(primaryData) ? primaryData : [])
+      .filter((e) => e && e.id)
+      .map((e) => [e.id, e]),
+  );
+  const mm = new Map(
+    (Array.isArray(mirrorData) ? mirrorData : [])
+      .filter((e) => e && e.id)
+      .map((e) => [e.id, e]),
+  );
   for (const id of new Set([...pm.keys(), ...mm.keys()])) {
     if (JSON.stringify(pm.get(id)) !== JSON.stringify(mm.get(id))) divergingIds.push(id);
   }

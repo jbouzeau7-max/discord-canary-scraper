@@ -57,8 +57,12 @@ function measured(e, gist, at, now) {
     sum += t.sampleCount;
   }
   if (sum > n) return { ...base, status: 'invalid' };
-  const roles = gist && gist.byVariant || {};
-  const roleConflict = gist && (gist.flags || []).some((f) => ['role_conflict', 'unknown_role', 'invalid_ranges'].includes(f));
+  const roles = gist && gist.byVariant && typeof gist.byVariant === 'object' ? gist.byVariant : {};
+  const roleConflict = Boolean(
+    gist &&
+    Array.isArray(gist.flags) &&
+    gist.flags.some((f) => ['role_conflict', 'unknown_role', 'invalid_ranges'].includes(f)),
+  );
   // Sans mapping communautaire exploitable, ne pas assimiler les buckets >0 à un traitement.
   const treatmentIds = !roleConflict && gist && gist.hasData
     ? Object.entries(roles).filter(([, v]) => v.role === 'treatment').map(([b]) => Number(b))
@@ -187,7 +191,9 @@ function buildComparison({ gist = {}, rawGist = [], sampling = {}, definitions =
     const coverage = g ? { ...g, verified: false, updatedAt: gist.source?.updatedAt || null,
       fetchedAt: gist.generatedAt || null, revision: gist.source?.revision || null,
       htmlUrl: gist.source?.htmlUrl || null,
-      sourceRanges: raw ? raw.variants.map((v) => ({ variant: v.variant, role: v.role, ranges: v.ranges })) : null,
+      sourceRanges: raw && Array.isArray(raw.variants)
+        ? raw.variants.map((v) => ({ variant: v.variant, role: v.role, ranges: v.ranges }))
+        : null,
       freshness: freshness(gist.source?.updatedAt, now, 72) } : null;
     // Même si le % est hors IC, ce n'est pas la preuve d'un gist faux : audience,
     // date et révision Discord ne sont pas garanties identiques.

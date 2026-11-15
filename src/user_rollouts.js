@@ -306,6 +306,16 @@ const outageSustained = () => Number(process.env.USER_ROLLOUT_OUTAGE_SUSTAINED) 
  * Une absence qui se prolonge jusqu'à la fin de la fenêtre (retrait réel) n'est pas exclue.
  * @returns {Map<number, Set<number>>} hash → indices de lots à ne pas compter
  */
+function sameOutageMap(a, b) {
+  if (a.size !== b.size) return false;
+  for (const [hash, set] of a) {
+    const other = b.get(hash);
+    if (!other || other.size !== set.size) return false;
+    for (const idx of set) if (!other.has(idx)) return false;
+  }
+  return true;
+}
+
 function detectOutages(win) {
   const P0 = outageP0();
   const SUSTAINED = outageSustained();
@@ -331,7 +341,10 @@ function detectOutages(win) {
       });
       if (set.size) next.set(hash, set);
     }
-    const same = next.size === skip.size && [...next].every(([h, s]) => skip.has(h) && skip.get(h).size === s.size);
+    // Comparer les INDICES, pas seulement le cardinal : deux ensembles de
+    // même taille mais de contenu différent doivent déclencher une passe
+    // supplémentaire, sinon l'exclusion d'interruption reste fausse.
+    const same = sameOutageMap(next, skip);
     skip = next;
     if (same) break;
   }
@@ -747,7 +760,7 @@ function fingerprintOf(treatments) {
 
 async function fetchTokenSnapshot(defs) {
   if (!TOKENS.length) return [];
-  const out = [];
+  const out = new Map();
   const list = TOKENS.slice(0, 10);
   const runOffset = Math.floor(Date.now() / (20 * 60 * 1000));
   for (let i = 0; i < list.length; i++) {
@@ -760,19 +773,28 @@ async function fetchTokenSnapshot(defs) {
       for (const a of data.assignments || []) {
         if (!Array.isArray(a) || a.length < 3) continue;
         const hash = Number(a[0]);
+        const revision = a[1] == null ? null : Number(a[1]);
+        const bucket = Number(a[2]);
+        const hashResult = a[5] == null ? null : Number(a[5]);
+        if (!Number.isSafeInteger(hash) || hash < 0 || hash > 0xffffffff) continue;
+        if (revision != null && !Number.isFinite(revision)) continue;
+        if (!Number.isFinite(bucket) || !Number.isInteger(bucket) || bucket < -1) continue;
+        if (hashResult != null && (!Number.isFinite(hashResult) || hashResult < 0)) continue;
         const meta = defs.get(hash) || {
           id: 'hash:' + hash,
           type: 'user',
           title: 'hash:' + hash,
         };
-        out.push({
+        // Plusieurs jetons peuvent voir le même hash ; on ne garde qu'une
+        // entrée (la dernière observée) pour ne pas doubler les notifications.
+        out.set(hash, {
           hash,
           id: meta.id,
           title: meta.title,
           type: meta.type,
-          revision: a[1],
-          bucket: a[2],
-          hash_result: a[5],
+          revision,
+          bucket,
+          hash_result: hashResult,
         });
       }
       await sleep(200);
@@ -780,7 +802,7 @@ async function fetchTokenSnapshot(defs) {
       console.warn('Token snapshot fail:', redactSecrets(e.message));
     }
   }
-  return out;
+  return [...out.values()];
 }
 
 // ─── Embeds — format sobre, sans emojis ─────────────────────────────────────
@@ -1350,6 +1372,7 @@ module.exports = {
   pruneWindow,
   windowAggregate,
   detectOutages,
+  sameOutageMap,
   buildNextWindow,
   fingerprintOf,
   classifyChange,

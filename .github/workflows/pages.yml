@@ -31,7 +31,9 @@ jobs:
       - name: Sync data into docs
         run: |
           mkdir -p docs/data
-          for f in experiments findings routes build last_run_meta mobile_versions mobile_experiments experiment_rollouts; do
+          # Doit couvrir TOUS les JSON chargés par docs/*.js. user_rollouts
+          # (rollouts.js) et shop_items (shop.js) manquaient → 404.
+          for f in experiments findings routes build last_run_meta mobile_versions mobile_experiments experiment_rollouts user_rollouts shop_items; do
             if [ -f "data/$f.json" ]; then cp "data/$f.json" "docs/data/$f.json"; fi
           done
 

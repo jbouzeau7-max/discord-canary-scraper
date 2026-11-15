@@ -205,10 +205,13 @@ function commit(files, msg) {
       child = spawnAsync('bash', ['scripts/commit-state.sh', msg, ...files], { cwd: ROOT, env: { ...process.env, COMMIT_SOFT_FAIL: '1' }, stdio: 'inherit' });
     } catch (e) {
       console.warn('commit-state fail:', String((e && e.message) || e).slice(0, 80));
-      return resolve();
+      return resolve({ code: 1 });
     }
-    child.on('error', (e) => { console.warn('commit-state fail:', String((e && e.message) || e).slice(0, 80)); resolve(); });
-    child.on('close', () => resolve());
+    child.on('error', (e) => {
+      console.warn('commit-state fail:', String((e && e.message) || e).slice(0, 80));
+      resolve({ code: 1 });
+    });
+    child.on('close', (code) => resolve({ code: typeof code === 'number' ? code : 1 }));
   });
 }
 
@@ -238,6 +241,7 @@ function spawnStep(step, spawnImpl = spawnAsync) {
 let commitChain = Promise.resolve();
 let committing = null;
 let activeMain = 0;
+let commitFailures = 0;
 const idleWaiters = [];
 function mainStart() {
   activeMain++;
@@ -259,13 +263,20 @@ function queueCommit(files, msg, impl = commit) {
       committing = new Promise((r) => { release = r; });
       await whenMainIdle();
       try {
-        await impl(files, msg);
+        const result = await impl(files, msg);
+        if (result && typeof result === 'object' && result.code !== 0) {
+          commitFailures++;
+          console.warn(`commit-state: échec (exit ${result.code}) — ${msg}`);
+        }
       } finally {
         committing = null;
         release();
       }
     })
-    .catch(() => {});
+    .catch((e) => {
+      commitFailures++;
+      console.warn('commit-state: exception —', String((e && e.message) || e).slice(0, 80));
+    });
   return commitChain;
 }
 
@@ -333,6 +344,7 @@ async function readGistId() {
 }
 
 async function main(deps = {}) {
+  commitFailures = 0;
   const now = deps.now || (() => Date.now());
   const wait = deps.sleep || sleep;
   const run = deps.runTracker || ((name, opts) => runTracker(name, opts));
@@ -361,7 +373,14 @@ async function main(deps = {}) {
     const revBefore = st.user.rev;
     const ok = await run('user', { refresh: first });
     log.push({ tick: ticks, tracker: 'user', reason, ok });
-    if (ok) { st.user.okSig = revBefore; st.user.lastFailAt = 0; } else { st.user.lastFailAt = now(); failures++; }
+    if (ok) {
+      // Si la première sonde n'avait pas encore de révision, acquitter la
+      // révision courante ; sinon le tracker se relancerait à chaque tick.
+      // Si le gist a changé PENDANT le tracker, on garde l'ancienne valeur :
+      // le prochain tick détecte le changement et relance correctement.
+      st.user.okSig = revBefore || st.user.rev || null;
+      st.user.lastFailAt = 0;
+    } else { st.user.lastFailAt = now(); failures++; }
   };
 
   while (now() < deadline && !(maxTicks > 0 && ticks >= maxTicks)) {
@@ -404,11 +423,13 @@ async function main(deps = {}) {
   if (pending.size) await Promise.allSettled([...pending]);
   await commitChain;
   console.log(`Rollouts FAST terminé — ${ticks} ticks, ${log.length} passes, ${failures} échec(s)`);
-  return { ticks, log, failures };
+  return { ticks, log, failures, commitFailures };
 }
 
 if (require.main === module) {
-  main().then((r) => { if (r.failures && !r.log.some((x) => x.ok)) process.exitCode = 1; }).catch((e) => { console.error(e); process.exit(1); });
+  main().then((r) => {
+    if (r.commitFailures || (r.failures && !r.log.some((x) => x.ok))) process.exitCode = 1;
+  }).catch((e) => { console.error(e); process.exit(1); });
 }
 
 module.exports = {
