@@ -12,16 +12,16 @@ const DEFAULT_UA =
 
 /** Default bot name shown on Discord webhook messages. */
 const DEFAULT_BOT_NAME = process.env.ORBIT_BOT_NAME || 'Datamining';
-
+const PHOTO_AVATAR_URL =
+  'https://files.manuscdn.com/user_upload_by_module/session_file/310519664084355346/RFnXUVVwsFHgiVNu.jpg';
 /** Default avatar URL for webhook messages. */
 const DEFAULT_AVATAR_URL =
   process.env.ORBIT_AVATAR_URL ||
-  'https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/72x72/1f9ea.png';
-
+  PHOTO_AVATAR_URL;
 /** Default avatar for mobile/blog/quest scripts. */
 const DEFAULT_MOBILE_AVATAR =
   process.env.ORBIT_BOT_AVATAR ||
-  'https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/72x72/1f50d.png';
+  PHOTO_AVATAR_URL;
 
 /**
  * Promise-based sleep.

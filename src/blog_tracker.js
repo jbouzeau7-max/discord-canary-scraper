@@ -37,7 +37,7 @@ const {
   chunkIntoMessages,
 } = require('./lib/components_v2');
 const { writeJsonAtomic } = require('./lib/atomic');
-const { sleep, DEFAULT_UA } = require('./lib/utils');
+const { sleep, DEFAULT_UA, DEFAULT_AVATAR_URL } = require('./lib/utils');
 
 const DATA_DIR = path.join(__dirname, '..', 'data');
 const STATE_FILE = path.join(DATA_DIR, 'blog_tracker.json');
@@ -56,7 +56,7 @@ const BOT_NAME =
 const AVATAR =
   process.env.ORBIT_AVATAR_URL ||
   process.env.WEBHOOK_AVATAR_URL ||
-  'https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/72x72/1f4f0.png';
+  DEFAULT_AVATAR_URL;
 
 const BLOG_RSS = 'https://discord.com/blog/rss.xml';
 
