@@ -264,11 +264,14 @@ function parseRangeStrings(rawRanges) {
  * → 15 + 10 + 25 = 50%).
  */
 function rangesPercentExclusive(intervals, scale = DEFAULT_SCALE) {
-  if (!scale || scale <= 0) return 0;
-  const merged = mergeIntervalsHalfOpen(intervals);
+  const limit = Number(scale);
+  if (!Number.isFinite(limit) || limit <= 0) return 0;
+  const merged = mergeIntervalsHalfOpen(intervals)
+    .map(([a, b]) => [Math.max(0, a), Math.min(limit, b)])
+    .filter(([a, b]) => b > a);
   if (!merged.length) return 0;
   const covered = merged.reduce((sum, [a, b]) => sum + (b - a), 0);
-  return Math.round((Math.min(Math.max(covered, 0), scale) / scale) * 10000) / 100;
+  return Math.round((covered / limit) * 10000) / 100;
 }
 
 // ─── Estimation binomiale honnête ───────────────────────────────────────────

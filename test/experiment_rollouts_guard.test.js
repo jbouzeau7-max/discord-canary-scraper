@@ -58,9 +58,10 @@ test('parseGuildExperiment : tuples invalides → null sans lever', () => {
   assert.equal(parseGuildExperiment(null), null);
   assert.equal(parseGuildExperiment([]), null);
   assert.equal(parseGuildExperiment([1, 2, 3]), null);
-  assert.equal(parseGuildExperiment([1, 'x', 1, 'not-an-array']).percentage, 0);
+  assert.equal(parseGuildExperiment([1, 'x', 1, 'not-an-array']).percentage, null);
   const weird = parseGuildExperiment([1, 'x', 1, [[null, 'x'], [42]]]);
-  assert.equal(weird.percentage, 0);
+  assert.equal(weird.percentage, null);
+  assert.equal(weird.dataStatus, 'malformed');
 });
 
 test('parseGuildExperiment : plages inversées ou nulles ignorées', () => {
@@ -71,11 +72,23 @@ test('parseGuildExperiment : plages inversées ou nulles ignorées', () => {
 test('fallbackGuildRollouts : fresh non vide gagne, jamais stale', () => {
   const r = fallbackGuildRollouts({ guildExperiments: [{ id: 'old' }] }, [{ id: 'new' }]);
   assert.deepEqual(r, { list: [{ id: 'new' }], stale: false });
+  const hashOnly = fallbackGuildRollouts(null, [{ hash: 42, id: null, percentage: 5 }]);
+  assert.equal(hashOnly.list[0].hash, 42, 'les expériences sans nom restent suivies par hash');
 });
 
 test('fallbackGuildRollouts : panne API conserve les données précédentes', () => {
   const r = fallbackGuildRollouts({ guildExperiments: [{ id: 'old' }] }, []);
   assert.deepEqual(r, { list: [{ id: 'old' }], stale: true });
+  const previous = {
+    guildExperiments: [{ id: 'kept', hash: 123, percentage: 25, status: 'partial', treatmentRanges: [[0, 2500]] }],
+  };
+  const malformed = [{ id: 'kept', hash: 123, percentage: null, status: 'unknown', dataStatus: 'malformed' }];
+  const partial = fallbackGuildRollouts(previous, malformed);
+  assert.equal(partial.stale, false, 'la réponse globale reste fraîche');
+  assert.equal(partial.list[0].percentage, 25, 'le dernier pourcentage valide est préservé');
+  assert.equal(partial.list[0].dataStatus, 'stale_preserved');
+  assert.equal(partial.list[0].currentDataStatus, 'malformed');
+  assert.deepEqual(partial.list[0].treatmentRanges, [[0, 2500]], 'les plages partielles ne remplacent pas la baseline');
 });
 
 test('fallbackGuildRollouts : premier run sans données → vide non stale', () => {

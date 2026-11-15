@@ -42,9 +42,12 @@ test('parseGuildExperiment : 0 %, bucket None (-1) / Control (0), données vides
     2,
     [[[[1, [{ s: -500, e: 2500 }, [2000, 5000], { start: 9500, end: 25000 }, { s: 500, e: 100 }, null, 'bad']]], []]],
   ]);
-  // [0, 5000) + [9500, 10000) = 5500 positions = 55 %
-  assert.equal(clamped.percentage, 55);
+  // Les positions valides restent visibles pour le diagnostic, mais les plages
+  // hors bornes / malformées interdisent de publier un pourcentage incomplet.
+  assert.equal(clamped.percentage, null);
   assert.equal(clamped.coverage, 5500);
+  assert.equal(clamped.status, 'unknown');
+  assert.equal(clamped.dataStatus, 'malformed');
 
   assert.equal(parseGuildExperiment(null), null);
   assert.equal(parseGuildExperiment([1, 2]), null);

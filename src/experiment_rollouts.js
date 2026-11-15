@@ -67,7 +67,9 @@ function parseGuildExperiment(ge) {
   const hash = Number.isFinite(Number(ge[0])) ? Number(ge[0]) : ge[0];
   const name = ge[1];
   const revision = ge[2];
-  const populations = Array.isArray(ge[3]) ? ge[3] : [];
+  const populationsValid = Array.isArray(ge[3]);
+  const populations = populationsValid ? ge[3] : [];
+  let dataValid = populationsValid;
 
   // Collect all bucket ranges for treatment buckets (bucket > 0)
   const treatmentRanges = [];
@@ -75,17 +77,26 @@ function parseGuildExperiment(ge) {
   const filtersByPop = [];
 
   for (const pop of populations) {
-    if (!Array.isArray(pop)) continue;
-    const positions = Array.isArray(pop[0]) ? pop[0] : [];
+    if (!Array.isArray(pop) || !Array.isArray(pop[0]) || (pop[1] != null && !Array.isArray(pop[1]))) {
+      dataValid = false;
+      continue;
+    }
+    const positions = pop[0];
     const filters = Array.isArray(pop[1]) ? pop[1] : [];
     const filterDesc = describeFilters(filters);
     filtersByPop.push(filterDesc);
 
     for (const pos of positions) {
-      if (!Array.isArray(pos)) continue;
+      if (!Array.isArray(pos) || pos.length < 2 || !Array.isArray(pos[1])) {
+        dataValid = false;
+        continue;
+      }
       const bucket = Number(pos[0]);
-      if (!Number.isFinite(bucket)) continue;
-      const rollouts = Array.isArray(pos[1]) ? pos[1] : [];
+      if (!Number.isInteger(bucket)) {
+        dataValid = false;
+        continue;
+      }
+      const rollouts = pos[1];
       for (const r of rollouts) {
         let start, end;
         if (Array.isArray(r) && r.length >= 2) {
@@ -97,7 +108,11 @@ function parseGuildExperiment(ge) {
         } else {
           continue;
         }
-        if (!Number.isFinite(start) || !Number.isFinite(end)) continue;
+        if (!Number.isFinite(start) || !Number.isFinite(end) || end <= start) {
+          dataValid = false;
+          continue;
+        }
+        if (start < 0 || end > SCALE) dataValid = false;
         const a = Math.max(0, Math.min(SCALE, start));
         const b = Math.max(0, Math.min(SCALE, end));
         if (b <= a) continue;
@@ -112,7 +127,7 @@ function parseGuildExperiment(ge) {
   // Exact half-open [0, SCALE) coverage without off-by-one or gap-filling
   const merged = mergeIntervalsHalfOpen(treatmentRanges);
   const coverage = merged.reduce((sum, [a, b]) => sum + (b - a), 0);
-  const pct = rangesPercentExclusive(merged, SCALE);
+  const pct = dataValid ? rangesPercentExclusive(merged, SCALE) : null;
 
   // Determine rollout status
   let status = 'unknown';
@@ -130,6 +145,7 @@ function parseGuildExperiment(ge) {
     status,
     coverage,
     populations: populations.length,
+    dataStatus: dataValid ? 'complete' : 'malformed',
     filters: filtersByPop,
     treatmentRanges: merged,
     allRanges,
@@ -172,11 +188,37 @@ function describeFilters(filters) {
  * @returns {{ list: Array, stale: boolean }}
  */
 function fallbackGuildRollouts(previous, fresh) {
+  const identityKeys = (e) => {
+    if (!e || typeof e !== 'object') return [];
+    const keys = [];
+    if (e.id) keys.push('id:' + String(e.id));
+    if (e.hash != null && String(e.hash).trim()) keys.push('hash:' + String(e.hash));
+    return keys;
+  };
   const prev = previous && Array.isArray(previous.guildExperiments)
-    ? previous.guildExperiments.filter((e) => e && e.id)
+    ? previous.guildExperiments.filter((e) => identityKeys(e).length)
     : [];
-  const cur = Array.isArray(fresh) ? fresh.filter((e) => e && e.id) : [];
-  if (cur.length) return { list: cur, stale: false };
+  const cur = Array.isArray(fresh) ? fresh.filter((e) => identityKeys(e).length) : [];
+  if (cur.length) {
+    const previousByKey = new Map();
+    for (const e of prev) {
+      for (const key of identityKeys(e)) previousByKey.set(key, e);
+    }
+    const list = cur.map((e) => {
+      if (e.dataStatus !== 'malformed') return e;
+      const old = identityKeys(e).map((key) => previousByKey.get(key)).find(Boolean);
+      if (!old || old.percentage == null) return e;
+      const preserved = { ...old };
+      for (const key of ['id', 'hash', 'name', 'revision', 'title', 'type']) {
+        if (e[key] != null) preserved[key] = e[key];
+      }
+      preserved.dataStatus = 'stale_preserved';
+      preserved.currentDataStatus = 'malformed';
+      preserved.stale = true;
+      return preserved;
+    });
+    return { list, stale: false };
+  }
   if (prev.length) return { list: prev, stale: true };
   return { list: [], stale: false };
 }
