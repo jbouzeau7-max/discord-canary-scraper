@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-11-15T16:24:08.198Z",
+  "fetchedAt": "2026-11-15T20:40:09.960Z",
   "sources": {
     "discordApi": {
       "url": "https://discord.com/api/v9/experiments",
@@ -22,7 +22,7 @@
       "populations": 1,
       "dataStatus": "complete",
       "filters": [
-        "feature:feature_1183251248"
+        "feature:VOICE_IN_THREADS"
       ],
       "treatmentRanges": [
         [
@@ -52,7 +52,7 @@
       "populations": 2,
       "dataStatus": "complete",
       "filters": [
-        "feature:feature_1183251248; id_range:[[3399957344,5000],[1238858341,null]]",
+        "feature:COMMUNITY; member_count:[[3399957344,5000],[1238858341,null]]",
         "all"
       ],
       "treatmentRanges": [
@@ -88,7 +88,7 @@
       "populations": 1,
       "dataStatus": "complete",
       "filters": [
-        "feature:feature_1183251248"
+        "feature:GUILD_ONBOARDING_HAS_PROMPTS"
       ],
       "treatmentRanges": [],
       "allRanges": [
@@ -147,7 +147,7 @@
       "populations": 1,
       "dataStatus": "complete",
       "filters": [
-        "feature:feature_1183251248"
+        "feature:VOICE_IN_THREADS"
       ],
       "treatmentRanges": [
         [
@@ -177,7 +177,7 @@
       "populations": 2,
       "dataStatus": "complete",
       "filters": [
-        "feature:feature_1183251248; id_range:[[3399957344,5000],[1238858341,null]]",
+        "feature:COMMUNITY; member_count:[[3399957344,5000],[1238858341,null]]",
         "all"
       ],
       "treatmentRanges": [
@@ -213,7 +213,7 @@
       "populations": 1,
       "dataStatus": "complete",
       "filters": [
-        "feature:feature_1183251248"
+        "feature:GUILD_ONBOARDING_HAS_PROMPTS"
       ],
       "treatmentRanges": [],
       "allRanges": [
@@ -326,17 +326,17 @@
       "title": "hash_1144304849",
       "percentage": 0,
       "status": "not_started",
-      "samples": 4,
+      "samples": 2,
       "enrolled": 0,
       "treatmentDistribution": {
-        "0": 4
+        "0": 2
       },
       "source": "fingerprint_sampling",
       "note": "No local experiment ID match for this hash",
-      "fpSamples": 4,
+      "fpSamples": 2,
       "fpEnrolled": 0,
       "fpTreatmentDist": {
-        "0": 4
+        "0": 2
       }
     },
     {
