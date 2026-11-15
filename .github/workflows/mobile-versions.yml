@@ -36,8 +36,11 @@ jobs:
           ORBIT_BOT_NAME: Datamining
         run: node src/mobile_versions.js
 
+      # Aussi après un échec d'envoi : l'état écrit acquitte les releases déjà
+      # livrées (pas de doublon) et garde l'ancienne version de celles qui ont
+      # échoué (redétectées au run suivant). Sans écriture, rien n'est commité.
       - name: Commit versions state
-        if: always() && steps.versions.outcome == 'success'
+        if: always() && steps.versions.outcome != 'cancelled'
         run: bash scripts/commit-state.sh "mobile versions" data/mobile_versions.json data/external_versions.json
 
       - name: Mobile experiments from client files

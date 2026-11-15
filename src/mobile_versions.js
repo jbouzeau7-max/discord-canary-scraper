@@ -782,10 +782,27 @@ async function collectAll() {
   // Center the OTA search around the iOS stable major (or a fallback)
   const centerMajor = iosStoreVersion ? parseVersion(iosStoreVersion)[0] : 346;
 
+  // Les sources restantes sont indépendantes les unes des autres : elles sont
+  // lancées ENSEMBLE puis consommées dans l'ordre d'origine (mêmes logs, même
+  // logique de repli). Avant : 7 étapes réseau en série, la plus lente
+  // retardait toutes les suivantes et donc la notification.
+  const settle = (p) => p.then((value) => ({ value }), (error) => ({ error }));
+  const take = async (task) => {
+    const r = await task;
+    if (r.error) throw r.error;
+    return r.value;
+  };
+  const iosOtaTask = settle(probeOta('ios', centerMajor));
+  const androidOtaTask = settle(probeOta('android', centerMajor));
+  const androidStoreTask = settle(androidFromStores());
+  const aptoideTask = settle(androidFromAptoide());
+  const datamineTask = settle(androidFromDataminingRepo());
+  const minVersionTask = settle(discordMinVersion());
+
   // 2. iOS OTA probe
   let iosOta = [];
   try {
-    iosOta = await probeOta('ios', centerMajor);
+    iosOta = await take(iosOtaTask);
     otaIndex.ios = iosOta.slice(0, 30);
     console.log('iOS OTA versions found:', iosOta.length);
     if (iosOta[0]) console.log('iOS OTA latest', iosOta[0].version, iosOta[0].build);
@@ -796,7 +813,7 @@ async function collectAll() {
   // 3. Android OTA probe
   let androidOta = [];
   try {
-    androidOta = await probeOta('android', centerMajor);
+    androidOta = await take(androidOtaTask);
     otaIndex.android = androidOta.slice(0, 40);
     console.log('Android OTA versions found:', androidOta.length);
     if (androidOta[0]) console.log('Android OTA latest', androidOta[0].version, androidOta[0].build);
@@ -807,7 +824,7 @@ async function collectAll() {
   // 4. Android store version
   let androidStoreVersion = null;
   try {
-    const androidStore = await androidFromStores();
+    const androidStore = await take(androidStoreTask);
     if (androidStore) {
       androidStoreVersion = androidStore.version;
       console.log('Android store', androidStoreVersion, androidStore.source);
@@ -820,7 +837,7 @@ async function collectAll() {
   let externalBeta = null;
   let externalAlpha = null;
   let savedExternalData = await loadExternalVersions();
-  const aptoideData = await androidFromAptoide();
+  const aptoideData = await take(aptoideTask).catch(() => null);
   if (aptoideData) {
     sources.aptoide = true;
     if (aptoideData.beta) {
@@ -865,7 +882,7 @@ async function collectAll() {
   // 5bis. Source Android beta/alpha indépendante des stores qui bloquent souvent
   // les scrapers. La sélection par version évite de régresser si un miroir
   // annonce une version plus récente.
-  const datamineData = await androidFromDataminingRepo();
+  const datamineData = await take(datamineTask).catch(() => null);
   if (datamineData) {
     sources.dataminingCommits = true;
     externalBeta = preferNewerTrackVersion(externalBeta, datamineData.beta);
@@ -915,7 +932,7 @@ async function collectAll() {
   }
 
   // 7. Discord min version (informational)
-  const minVersion = await discordMinVersion();
+  const minVersion = await take(minVersionTask).catch(() => null);
   if (minVersion) {
     console.log('Discord Android min version:', minVersion);
     sources.discordMinVersion = minVersion;
@@ -1278,15 +1295,58 @@ function sortChanges(changes) {
  */
 async function notify(changes) {
   if (!WEBHOOK_URL || !changes.length) return;
-  const ordered = sortChanges(changes);
-
-  if (ordered.length > 1) {
-    await postComponents(buildSummaryComponents(ordered), 0x5865f2);
-  }
-  for (const ch of ordered) {
-    await postComponents(buildReleaseComponents(ch), colorFor(ch.channel.channel));
-  }
+  const r = await deliverChanges(changes);
+  if (r.error) throw r.error;
 }
+
+/**
+ * Envoie les releases une par une et rapporte précisément ce qui est parti.
+ * Avant : un échec sur la 3e release faisait rejouer les 2 premières au run
+ * suivant (doublons), car rien n'indiquait lesquelles étaient déjà livrées.
+ * @returns {Promise<{sent:object[],failed:object[],error:Error|null}>}
+ */
+async function deliverChanges(changes, post = postComponents) {
+  const ordered = sortChanges(changes || []);
+  const sent = [];
+  if (!ordered.length) return { sent, failed: [], error: null };
+  try {
+    if (ordered.length > 1) await post(buildSummaryComponents(ordered), 0x5865f2);
+    for (const ch of ordered) {
+      await post(buildReleaseComponents(ch), colorFor(ch.channel.channel));
+      sent.push(ch);
+    }
+  } catch (error) {
+    const done = new Set(sent);
+    return { sent, failed: ordered.filter((ch) => !done.has(ch)), error };
+  }
+  return { sent, failed: [], error: null };
+}
+
+/**
+ * Remet l'ancienne version des canaux dont la notification a échoué, pour que
+ * le run suivant les redétecte même si cet état est enregistré. Sans cela la
+ * nouvelle version était écrite sans avoir été annoncée : jamais renvoyée.
+ */
+function holdBackFailedChannels(snapshot, failed) {
+  const byKey = new Map((failed || []).map((ch) => [channelKey(ch.channel), ch]));
+  if (!byKey.size) return snapshot;
+  snapshot.channels = (snapshot.channels || [])
+    .map((c) => {
+      const ch = byKey.get(channelKey(c));
+      if (!ch) return c;
+      return ch.previous || null; // canal inédit : retiré, il sera « new » au prochain run
+    })
+    .filter(Boolean);
+  return snapshot;
+}
+
+const changeSummary = (c) => ({
+  type: c.type,
+  key: channelKey(c.channel),
+  from: c.previous?.version || null,
+  to: c.channel.version,
+  build: c.channel.build || null,
+});
 
 // ── Main ──────────────────────────────────────────────
 
@@ -1340,29 +1400,39 @@ async function main() {
       if (fp) { notified.delete(fp); notified.add(fp); }
     }
   } else if (willNotify) {
-    try {
-      await notify(changes);
-    } catch (e) {
+    const record = (list) => {
+      for (const ch of list) {
+        if (ch.fp) notified.add(ch.fp);
+        history.unshift({
+          at: snapshot.scrapedAt,
+          key: channelKey(ch.channel),
+          from: ch.previous?.version || null,
+          to: ch.channel.version,
+          build: ch.channel.build || null,
+        });
+      }
+    };
+    const outcome = await deliverChanges(changes);
+    if (outcome.error) {
+      // Livrées : acquittées (pas de doublon). Échouées : ancienne version
+      // conservée (pas de perte), elles repartent au prochain run.
+      const delivered = new Set(outcome.sent);
+      record(changes.filter((ch) => delivered.has(ch)));
+      holdBackFailedChannels(snapshot, outcome.failed);
       snapshot.history = history.slice(0, 100);
       snapshot.previousScrapedAt = previous?.scrapedAt || null;
       snapshot.notifiedFingerprints = trimRecent(notified, 2000);
-      snapshot.changes = [];
+      snapshot.changes = outcome.sent.map(changeSummary);
       snapshot.paused = false;
       snapshot.notifyOk = false;
       await writeJsonAtomic(STATE_FILE, snapshot, 2);
-      console.warn('NOTIFY_FAIL:', e.message, '- fingerprints NOT advanced');
+      console.warn(
+        'NOTIFY_FAIL:', outcome.error.message,
+        `- ${outcome.sent.length} livrée(s) et acquittée(s), ${outcome.failed.length} à renvoyer au prochain run`,
+      );
       process.exit(2);
     }
-    for (const ch of changes) {
-      if (ch.fp) notified.add(ch.fp);
-      history.unshift({
-        at: snapshot.scrapedAt,
-        key: channelKey(ch.channel),
-        from: ch.previous?.version || null,
-        to: ch.channel.version,
-        build: ch.channel.build || null,
-      });
-    }
+    record(changes);
     for (const c of snapshot.channels) {
       const fp = versionFingerprint(c);
       if (fp) { notified.delete(fp); notified.add(fp); }
@@ -1378,15 +1448,7 @@ async function main() {
   snapshot.history = history.slice(0, 100);
   snapshot.previousScrapedAt = previous?.scrapedAt || null;
   snapshot.notifiedFingerprints = trimRecent(notified, 2000);
-  snapshot.changes = willNotify
-    ? changes.map((c) => ({
-        type: c.type,
-        key: channelKey(c.channel),
-        from: c.previous?.version || null,
-        to: c.channel.version,
-        build: c.channel.build || null,
-      }))
-    : [];
+  snapshot.changes = willNotify ? changes.map(changeSummary) : [];
   snapshot.paused = false;
   snapshot.notifyOk = true;
 
@@ -1414,6 +1476,9 @@ module.exports = {
   selectIosBetaFallback,
   classifyIosChannels,
   detectChanges,
+  notify,
+  deliverChanges,
+  holdBackFailedChannels,
   preserveUnavailableChannels,
   buildReleaseComponents,
   buildSummaryComponents,
