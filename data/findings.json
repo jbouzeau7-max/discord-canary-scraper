@@ -1,9 +1,9 @@
 {
-  "runId": "2026-11-16T20-11-40-157Z_674348_5p8e12",
-  "buildNumber": "674348",
-  "scrapedAt": "2026-11-16T20:11:40.157Z",
+  "runId": "2026-11-16T20-17-39-274Z_674355_2uea3y",
+  "buildNumber": "674355",
+  "scrapedAt": "2026-11-16T20:17:39.274Z",
   "totals": {
-    "all": 396
+    "all": 395
   },
   "experiments": [
     {
@@ -2449,23 +2449,6 @@
       "variations": {
         "1": {
           "enabled": true
-        }
-      },
-      "variationCount": 1,
-      "source": "discord"
-    },
-    {
-      "id": "2026-04-hide-view-full-profile-button",
-      "type": "user",
-      "kind": "user",
-      "label": null,
-      "system": "apex",
-      "defaultConfig": {
-        "showButton": true
-      },
-      "variations": {
-        "1": {
-          "showButton": false
         }
       },
       "variationCount": 1,

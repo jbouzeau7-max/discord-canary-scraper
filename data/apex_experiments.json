@@ -1757,19 +1757,6 @@
   },
   {
     "kind": "user",
-    "name": "2026-04-hide-view-full-profile-button",
-    "defaultConfig": {
-      "showButton": true
-    },
-    "variations": {
-      "1": {
-        "showButton": false
-      }
-    },
-    "label": null
-  },
-  {
-    "kind": "user",
     "name": "2026-04-http-request-sample",
     "defaultConfig": {
       "sampleRate": 0
