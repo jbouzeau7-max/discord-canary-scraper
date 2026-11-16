@@ -3393,13 +3393,6 @@
   },
   {
     "kind": "user",
-    "name": "2026-08-ios-objc-composed-image-cache",
-    "defaultConfig": null,
-    "variations": null,
-    "label": null
-  },
-  {
-    "kind": "user",
     "name": "2026-08-mark-channel-unread",
     "defaultConfig": {
       "enabled": false
@@ -5379,6 +5372,13 @@
         "enabled": true
       }
     },
+    "label": null
+  },
+  {
+    "kind": "user",
+    "name": "2026-10-ios-jank-per-screen",
+    "defaultConfig": null,
+    "variations": null,
     "label": null
   },
   {

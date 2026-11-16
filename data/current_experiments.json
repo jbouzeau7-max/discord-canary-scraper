@@ -1,7 +1,7 @@
 {
-  "runId": "2026-11-16T19-59-41-186Z_674318_lhl9y4",
-  "buildNumber": "674318",
-  "updatedAt": "2026-11-16T19:59:41.186Z",
+  "runId": "2026-11-16T20-04-37-990Z_674333_o0m48b",
+  "buildNumber": "674333",
+  "updatedAt": "2026-11-16T20:04:37.990Z",
   "count": 396,
   "experiments": [
     {
@@ -10955,40 +10955,6 @@
       "fingerprint": "c94cca6defb377a3ece2036f7bc2c332abd6482f44230d1fa824ea546a6a96fb"
     },
     {
-      "id": "2026-08-ios-objc-composed-image-cache",
-      "kind": "user",
-      "type": "user",
-      "system": "apex",
-      "label": null,
-      "title": null,
-      "description": null,
-      "defaultConfig": null,
-      "variations": null,
-      "treatments": null,
-      "variationSource": null,
-      "variationCount": 0,
-      "raw": {
-        "id": "2026-08-ios-objc-composed-image-cache",
-        "type": "user",
-        "kind": "user",
-        "label": null,
-        "system": "apex",
-        "defaultConfig": null,
-        "variations": null,
-        "variationCount": 0,
-        "source": "discord"
-      },
-      "guildPercentage": {
-        "status": "unknown",
-        "value": null
-      },
-      "userPercentage": {
-        "status": "unknown",
-        "value": null
-      },
-      "fingerprint": "6b4231d6e876c84ccfc3127b0fabe86389372b590e28d7241431a6d7d7e86537"
-    },
-    {
       "id": "2026-08-mark-channel-unread",
       "kind": "user",
       "type": "user",
@@ -17532,6 +17498,40 @@
         "value": null
       },
       "fingerprint": "499024414631041510eca62a37e88342fb025d8c8f03cc0a35365dcec92cb60d"
+    },
+    {
+      "id": "2026-10-ios-jank-per-screen",
+      "kind": "user",
+      "type": "user",
+      "system": "apex",
+      "label": null,
+      "title": null,
+      "description": null,
+      "defaultConfig": null,
+      "variations": null,
+      "treatments": null,
+      "variationSource": null,
+      "variationCount": 0,
+      "raw": {
+        "id": "2026-10-ios-jank-per-screen",
+        "type": "user",
+        "kind": "user",
+        "label": null,
+        "system": "apex",
+        "defaultConfig": null,
+        "variations": null,
+        "variationCount": 0,
+        "source": "discord"
+      },
+      "guildPercentage": {
+        "status": "unknown",
+        "value": null
+      },
+      "userPercentage": {
+        "status": "unknown",
+        "value": null
+      },
+      "fingerprint": "1d31b1b5310aafc76f04a46baacd73cb79aae3b48fe9421c6f1108919674c974"
     },
     {
       "id": "2026-10-macaron",
