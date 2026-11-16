@@ -90,6 +90,11 @@ const MIN_DELTA_PCT = envNumber('GIST_ROLLOUT_MIN_PCT_DELTA', 0.05, { min: 0 });
 // API gist : timeout court — si elle traîne (quota anonyme partagé des
 // runners), le repli CDN raw répond en < 1 s.
 const GIST_API_TIMEOUT_MS = envNumber('GIST_API_TIMEOUT_MS', 6000, { min: 500 });
+// GIST_NOTIFY_UNCLASSIFIED=1 : notifie aussi les expériences de type INCONNU
+// (~2/3 du gist, absentes de nos scrapes), étiquetées « [type inconnu] ».
+// Activé dans rollouts.yml ; désactivé par défaut (comportement historique).
+const NOTIFY_UNCLASSIFIED = process.env.GIST_NOTIFY_UNCLASSIFIED === '1';
+const NOTIFY_SCOPE_VERSION = NOTIFY_UNCLASSIFIED ? 2 : 1;
 const STALE_H = envNumber('GIST_ROLLOUT_STALE_H', 72, { min: 1 });
 // Discord accepte jusqu'à 10 embeds par message : regrouper les changements
 // user réduit les aller-retours sans acquitter un lot qui n'a pas été livré.
@@ -146,9 +151,58 @@ async function loadLocalDefs() {
       }
     } catch (_) {}
   }
+  // Registre persistant des types : une expérience retirée du client garde
+  // son type connu (avant : 690/1043 expériences du gist « type inconnu »
+  // → jamais notifiées, dont des user/guild déjà vus dans un ancien build).
+  // Les defs du build courant restent prioritaires.
+  const registry = await loadTypeRegistry();
+  let fromRegistry = 0;
+  for (const [id, r] of Object.entries(registry)) {
+    const cur = defs.get(id);
+    if (cur && cur.type) continue;
+    if (r && (r.type === 'user' || r.type === 'guild')) {
+      defs.set(id, { type: r.type, title: (cur && cur.title !== id && cur.title) || r.title || id, fromRegistry: true });
+      fromRegistry++;
+    }
+  }
+  await saveTypeRegistry(registry, defs);
   const log = process.env.GIST_ROLLOUT_TEST_QUIET === '1' ? () => {} : console.log;
-  log('Local experiment defs:', defs.size, 'ids');
+  log('Local experiment defs:', defs.size, 'ids', fromRegistry ? '(dont ' + fromRegistry + ' via registre historique)' : '');
   return defs;
+}
+
+const TYPE_REGISTRY = path.join(DATA, 'experiment_types.json');
+
+async function loadTypeRegistry(file = TYPE_REGISTRY) {
+  try {
+    const j = await fs.readJson(file);
+    const t = j && j.types && typeof j.types === 'object' && !Array.isArray(j.types) ? j.types : {};
+    return Object.assign(Object.create(null), t);
+  } catch {
+    return Object.create(null);
+  }
+}
+
+/** Ajoute au registre les types établis par le build courant (jamais d'effacement). */
+async function saveTypeRegistry(registry, defs, file = TYPE_REGISTRY) {
+  let added = 0;
+  for (const [id, d] of defs) {
+    if (!d || d.fromRegistry || (d.type !== 'user' && d.type !== 'guild')) continue;
+    const r = registry[id];
+    if (!r || r.type !== d.type || (d.title && d.title !== id && r.title !== d.title)) {
+      registry[id] = { type: d.type, title: d.title && d.title !== id ? d.title : (r && r.title) || undefined };
+      added++;
+    }
+  }
+  if (!added && (await fs.pathExists(file))) return 0;
+  try {
+    const sorted = {};
+    for (const id of Object.keys(registry).sort()) sorted[id] = registry[id];
+    await writeJsonAtomic(file, { version: 1, updatedAt: new Date().toISOString(), count: Object.keys(sorted).length, types: sorted }, 1);
+  } catch {
+    /* registre best-effort */
+  }
+  return added;
 }
 
 // ─── Lecture des gists ──────────────────────────────────────────────────────
@@ -764,7 +818,7 @@ async function main(deps = {}) {
   const notifiable = Object.create(null);
   const allCurIds = new Set(list.map((e) => e.id));
   for (const e of list) {
-    if (e.type === 'user') notifiable[e.id] = e;
+    if (e.type === 'user' || (NOTIFY_UNCLASSIFIED && e.type === 'unclassified')) notifiable[e.id] = e;
   }
   // curAllIds = catalogue complet : une expérience toujours au gist mais
   // reclassée hors user n'est PAS un retrait du gist.
@@ -795,6 +849,20 @@ async function main(deps = {}) {
       'Formule v' + SEMANTICS_VERSION + ' (union) : ' + migrated +
         ' expérience(s) prouvées inchangées ré-acquittée(s) en silence ; acquittements valides conservés, vrais changements notifiés.',
     );
+  }
+  // Périmètre v2 : les expériences de type INCONNU (absentes de nos scrapes,
+  // ~2/3 du gist) sont désormais notifiées aussi, étiquetées « type inconnu ».
+  // Migration unique : tout ce qui entre dans le périmètre sans acquittement
+  // est acquitté en silence (pas de flood), puis diff normal.
+  let scopeBaselined = 0;
+  if (acknowledged && !isFirst && (prev.notifyScopeVersion || 1) < NOTIFY_SCOPE_VERSION) {
+    for (const [id, e] of Object.entries(notifiable)) {
+      if (!(id in acknowledged)) {
+        acknowledged[id] = ackEntry(e);
+        scopeBaselined++;
+      }
+    }
+    log('Périmètre v' + NOTIFY_SCOPE_VERSION + ' (types inconnus notifiés) :', scopeBaselined, 'expérience(s) acquittée(s) en silence.');
   }
   const changes = isFirst
     ? []
@@ -845,6 +913,7 @@ async function main(deps = {}) {
     version: 1,
     schemaVersion: 1,
     semanticsVersion: SEMANTICS_VERSION,
+    notifyScopeVersion: NOTIFY_SCOPE_VERSION,
     runId: new Date().toISOString().replace(/[-:.]/g, '').slice(0, 15) + '_gist',
     scrapedAt: new Date().toISOString(),
     source: {
@@ -868,6 +937,7 @@ async function main(deps = {}) {
       delivered,
       firstRun: isFirst,
       semanticsMigrated: migrated,
+      scopeBaselined,
     },
     history: capHistory([
       ...(prev && Array.isArray(prev.history) ? prev.history : []),
@@ -938,4 +1008,4 @@ if (require.main === module) {
     });
 }
 
-module.exports = { main, computeAll, buildEmbed, writeReport, writeDocsExport, loadLocalDefs, ackEntry, config: { MIN_DELTA_PCT, STALE_H } };
+module.exports = { main, loadTypeRegistry, saveTypeRegistry, computeAll, buildEmbed, writeReport, writeDocsExport, loadLocalDefs, ackEntry, config: { MIN_DELTA_PCT, STALE_H } };
