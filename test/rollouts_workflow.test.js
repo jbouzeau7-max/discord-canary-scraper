@@ -45,3 +45,9 @@ test('les workflows ne publient que les données validées', () => {
   assert.match(scrape, /COMMIT_RECOVERY_PATCH:/);
   assert.match(pages, /node scripts\/validate-data-generation\.js/);
 });
+
+test('le validateur Pages utilise le module natif sans charger publish_data et ses deps npm', () => {
+  const validator = fs.readFileSync(path.join(__dirname, '..', 'scripts', 'validate-data-generation.js'), 'utf8');
+  assert.match(validator, /generation_validation/);
+  assert.doesNotMatch(validator, /publish_data/);
+});

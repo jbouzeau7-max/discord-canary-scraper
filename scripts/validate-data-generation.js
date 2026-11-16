@@ -2,7 +2,7 @@
 'use strict';
 
 const path = require('path');
-const { validateCurrentGeneration } = require('../src/lib/publish_data');
+const { validateCurrentGeneration } = require('../src/lib/generation_validation');
 
 validateCurrentGeneration(path.join(__dirname, '..', 'data'))
   .then((result) => {
