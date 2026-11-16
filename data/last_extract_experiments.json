@@ -1,8 +1,8 @@
 {
-  "runId": "2026-11-16T20-45-24-924Z_674409_0mpnwn",
-  "buildNumber": "674409",
-  "updatedAt": "2026-11-16T20:45:24.924Z",
-  "count": 395,
+  "runId": "2026-11-16T20-47-29-626Z_674413_20iesf",
+  "buildNumber": "674413",
+  "updatedAt": "2026-11-16T20:47:29.626Z",
+  "count": 396,
   "data": {
     "2021-02_staff_qc_debugging": {
       "id": "2021-02_staff_qc_debugging",
@@ -7519,6 +7519,50 @@
       },
       "system": "apex",
       "fp": "95282bb7c3c3e9d3411e8d7256eb8479e6babfad2e5af1a1e3a1688a965b6641"
+    },
+    "2026-11-ad-refresh-immediate-on-focus": {
+      "id": "2026-11-ad-refresh-immediate-on-focus",
+      "type": "user",
+      "kind": "user",
+      "label": null,
+      "variationCount": 10,
+      "variations": {
+        "0": {
+          "enabled": false
+        },
+        "1": {
+          "enabled": false
+        },
+        "2": {
+          "enabled": true
+        },
+        "3": {
+          "enabled": true
+        },
+        "4": {
+          "enabled": true
+        },
+        "5": {
+          "enabled": true
+        },
+        "6": {
+          "enabled": true
+        },
+        "7": {
+          "enabled": true
+        },
+        "8": {
+          "enabled": true
+        },
+        "9": {
+          "enabled": true
+        }
+      },
+      "defaultConfig": {
+        "enabled": false
+      },
+      "system": "apex",
+      "fp": "800a0e86475a14e1880c318578f69e4a8d01a0a383088cb8f564d91dbc7b9496"
     },
     "2026-11-apex-launch-latch": {
       "id": "2026-11-apex-launch-latch",
