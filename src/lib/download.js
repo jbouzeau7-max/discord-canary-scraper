@@ -89,10 +89,61 @@ function looksLikeHtml(buf) {
   return /^\s*<(!DOCTYPE|html|HTML)/.test(head);
 }
 
+// Pool de chunks immuables : les noms Discord contiennent un hash de contenu
+// (ex. 121502cfb199a1f6.js, 996907.7aa24c2a1735af5c.js). Au lieu de les
+// supprimer entre deux scrapes, on les déplace dans un pool et on les reprend
+// au build suivant → seuls les chunks réellement nouveaux sont téléchargés.
+// assetsDir reste vidé (pas de chunk périmé scanné) ; le pool ne contient que
+// les fichiers du build précédent (pas de croissance illimitée).
+const ASSET_POOL = process.env.ASSET_POOL !== '0';
+const IMMUTABLE_RE = /(?:^|[.-])[a-f0-9]{16,}\.(?:js|css)$/i;
+const poolDirFor = (assetsDir) => path.resolve(assetsDir) + '.pool';
+const isImmutableName = (name) => IMMUTABLE_RE.test(name) && !/^web\./i.test(name) && !name.includes('.part');
+
 async function clearAssetsDir(assetsDir) {
   await fs.ensureDir(assetsDir);
+  let pooled = 0;
+  if (ASSET_POOL) {
+    const pool = poolDirFor(assetsDir);
+    try {
+      await fs.emptyDir(pool);
+      const names = await fs.readdir(assetsDir);
+      await Promise.all(
+        names.filter(isImmutableName).map(async (f) => {
+          try {
+            await fs.rename(path.join(assetsDir, f), path.join(pool, f));
+            pooled++;
+          } catch {}
+        }),
+      );
+    } catch (e) {
+      console.warn('asset pool disabled this run:', e.message);
+    }
+  }
   await fs.emptyDir(assetsDir);
-  console.log('assetsDir cleared');
+  console.log('assetsDir cleared' + (pooled ? ' (pooled ' + pooled + ' immutable chunks)' : ''));
+}
+
+/** Reprend un chunk immuable depuis le pool (true si réutilisé). */
+async function takeFromPool(assetsDir, name, fp) {
+  if (!ASSET_POOL || !isImmutableName(name)) return false;
+  const src = path.join(poolDirFor(assetsDir), name);
+  try {
+    const st = await fs.stat(src);
+    if (st.size <= 64) return false;
+    const fh = await fs.promises.open(src, 'r');
+    const headBuf = Buffer.alloc(80);
+    try {
+      await fh.read(headBuf, 0, 80, 0);
+    } finally {
+      await fh.close();
+    }
+    if (looksLikeHtml(headBuf)) return false;
+    await fs.promises.rename(src, fp);
+    return true;
+  } catch {
+    return false;
+  }
 }
 
 async function assertWebBundle(assetsDir) {
@@ -143,6 +194,7 @@ async function downloadList(urls, assetsDir, force, opts = {}) {
   let retried = 0;
   let http429 = 0;
   let http5xx = 0;
+  let pooledHits = 0;
   let i = 0;
 
   async function downloadOne(job) {
@@ -171,6 +223,12 @@ async function downloadList(urls, assetsDir, force, opts = {}) {
           return true;
         }
       }
+    }
+
+    if (!force && (await takeFromPool(assetsDir, job.name, fp))) {
+      skip++;
+      pooledHits++;
+      return true;
     }
 
     let lastErr = null;
@@ -289,6 +347,7 @@ async function downloadList(urls, assetsDir, force, opts = {}) {
     http5xx,
     'jobs',
     jobs.length,
+    ...(pooledHits ? ['pooled', pooledHits] : []),
   );
 
   if (jobs.length > 0) {
@@ -316,6 +375,8 @@ module.exports = {
   downloadList,
   assertWebBundle,
   clearAssetsDir,
+  isImmutableName,
+  poolDirFor,
   getDownloadStats,
   resetDownloadStats,
   DOWNLOAD_CONCURRENCY,
