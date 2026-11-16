@@ -3,15 +3,15 @@
  "schemaVersion": 1,
  "semanticsVersion": 2,
  "notifyScopeVersion": 2,
- "runId": "20261116T225221_gist",
- "scrapedAt": "2026-11-16T22:52:21.966Z",
+ "runId": "20261116T225824_gist",
+ "scrapedAt": "2026-11-16T22:58:24.277Z",
  "source": {
   "gistId": "e3e99062983e6bd0feaef833f14fd931",
   "htmlUrl": "https://gist.github.com/agnonotdev/e3e99062983e6bd0feaef833f14fd931",
   "rawUrl": "https://gist.githubusercontent.com/agnonotdev/e3e99062983e6bd0feaef833f14fd931/raw/b923057d6a9b5a02da41838892fa2640f9acf809/rollouts-tag.json",
   "updatedAt": "2026-11-16T22:52:00Z",
   "revision": "a48817bd020cd93c27294753aea58bde1a37d7be",
-  "fetchedAt": "2026-11-16T22:52:21.966Z",
+  "fetchedAt": "2026-11-16T22:58:24.277Z",
   "fallback": false,
   "rawFallback": false,
   "canonicalId": null
@@ -21455,19 +21455,13 @@
   }
  },
  "lastRun": {
-  "changes": 3,
-  "delivered": 3,
+  "changes": 0,
+  "delivered": 0,
   "firstRun": false,
   "semanticsMigrated": 0,
   "scopeBaselined": 0
  },
  "history": [
-  {
-   "at": "2026-11-16T04:26:22.194Z",
-   "revision": "6d5357d8dc9a85dec1eb17f3d75ec01dfc43d330",
-   "changes": 0,
-   "delivered": 0
-  },
   {
    "at": "2026-11-16T04:55:31.739Z",
    "revision": "6d5357d8dc9a85dec1eb17f3d75ec01dfc43d330",
@@ -21761,6 +21755,12 @@
    "revision": "a48817bd020cd93c27294753aea58bde1a37d7be",
    "changes": 3,
    "delivered": 3
+  },
+  {
+   "at": "2026-11-16T22:58:24.277Z",
+   "revision": "a48817bd020cd93c27294753aea58bde1a37d7be",
+   "changes": 0,
+   "delivered": 0
   }
  ]
 }
