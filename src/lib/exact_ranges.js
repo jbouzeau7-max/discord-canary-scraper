@@ -19,15 +19,19 @@ const SNAP_STEPS = [1000, 500, 250, 100, 50, 25, 10, 5, 1];
  * les valeurs « rondes » (Discord configure ses rollouts en 0-500, 0-1000…).
  */
 function snapBoundary(lo, hi) {
+  if (!Number.isFinite(lo) || !Number.isFinite(hi)) return hi;
   const mid = (lo + hi) / 2;
   for (const step of SNAP_STEPS) {
     const first = Math.floor(lo / step) * step + step; // plus petit multiple > lo
     if (first > hi) continue;
-    let best = first;
-    for (let v = first; v <= hi; v += step) {
-      if (Math.abs(v - mid) < Math.abs(best - mid)) best = v;
-    }
-    return best;
+    // Forme close (O(1)) : l'ancienne boucle v += step était O(hi/step) et
+    // bloquait le process sur des bornes énormes/aberrantes.
+    const last = Math.floor(hi / step) * step;
+    const clamp = (v) => Math.min(last, Math.max(first, v));
+    const below = clamp(Math.floor(mid / step) * step);
+    const above = clamp(below + step);
+    // Égalité → plus petit multiple (comportement historique).
+    return Math.abs(above - mid) < Math.abs(below - mid) ? above : below;
   }
   return hi;
 }
@@ -41,8 +45,9 @@ function snapBoundary(lo, hi) {
  *   (rollout filtré par plateforme/âge du compte… → repli sur k/n).
  */
 function inferExactRanges(points, scale = DEFAULT_SCALE, opts = {}) {
+  opts = opts && typeof opts === 'object' ? opts : {};
   const maxRuns = opts.maxRuns ?? 16;
-  const pts = (points || [])
+  const pts = (Array.isArray(points) ? points : [])
     .filter(
       (p) =>
         p &&
