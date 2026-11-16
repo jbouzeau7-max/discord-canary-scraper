@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-11-16T20:14:56.816Z",
+  "fetchedAt": "2026-11-16T20:21:38.439Z",
   "sources": {
     "discordApi": {
       "url": "https://discord.com/api/v9/experiments",
@@ -7,7 +7,7 @@
     },
     "fingerprintSampling": {
       "samples": 50,
-      "uniqueHashes": 5,
+      "uniqueHashes": 4,
       "matched": 1
     }
   },
@@ -320,10 +320,10 @@
       }
     },
     {
-      "hash": 1144304849,
+      "hash": 704914099,
       "id": null,
       "type": "user",
-      "title": "hash_1144304849",
+      "title": "hash_704914099",
       "percentage": 0,
       "status": "not_started",
       "samples": 3,
@@ -337,26 +337,6 @@
       "fpEnrolled": 0,
       "fpTreatmentDist": {
         "0": 3
-      }
-    },
-    {
-      "hash": 704914099,
-      "id": null,
-      "type": "user",
-      "title": "hash_704914099",
-      "percentage": 0,
-      "status": "not_started",
-      "samples": 1,
-      "enrolled": 0,
-      "treatmentDistribution": {
-        "0": 1
-      },
-      "source": "fingerprint_sampling",
-      "note": "No local experiment ID match for this hash",
-      "fpSamples": 1,
-      "fpEnrolled": 0,
-      "fpTreatmentDist": {
-        "0": 1
       }
     },
     {
@@ -1394,16 +1374,6 @@
       "hash": 3228917960,
       "type": "user",
       "title": "2026-04-gifting-badge",
-      "percentage": null,
-      "status": "no_rollout_data",
-      "source": "client_bundle",
-      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
-    },
-    {
-      "id": "2026-04-hide-view-full-profile-button",
-      "hash": 1622868822,
-      "type": "user",
-      "title": "2026-04-hide-view-full-profile-button",
       "percentage": null,
       "status": "no_rollout_data",
       "source": "client_bundle",
@@ -4281,14 +4251,14 @@
     }
   ],
   "summary": {
-    "total": 401,
+    "total": 399,
     "guild": 41,
-    "user": 360,
-    "withPercentage": 9,
-    "withoutPercentage": 392,
+    "user": 358,
+    "withPercentage": 8,
+    "withoutPercentage": 391,
     "fullRollout": 5,
     "partial": 0,
-    "notStarted": 4,
-    "fpSampled": 5
+    "notStarted": 3,
+    "fpSampled": 4
   }
 }
