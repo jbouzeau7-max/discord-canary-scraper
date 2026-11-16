@@ -1,8 +1,8 @@
 {
-  "schemaVersion": 1,
-  "runId": "2026-11-16T23-55-06-723Z_674829_rn2ryq",
-  "buildNumber": "674829",
-  "publishedAt": "2026-11-16T23:55:06.868Z",
+  "schemaVersion": 2,
+  "runId": "2026-11-16T23-57-25-560Z_674832_ow540o",
+  "buildNumber": "674832",
+  "publishedAt": "2026-11-16T23:57:25.704Z",
   "files": [
     "apex_experiments.json",
     "build.json",
@@ -21,5 +21,23 @@
     "routes.json",
     "strings.json"
   ],
-  "generationDir": ".generations/2026-11-16T23-55-06-723Z_674829_rn2ryq"
+  "checksums": {
+    "apex_experiments.json": "4c797ae55c05cceaf7c90cb047acb24655f091afe2e7bbb443c80513c58e058d",
+    "build.json": "6e24cc80b4a5c0920bf328437a8eb7d760f316e848cce76696cf914e447996ce",
+    "current_experiments.json": "6d9a3cd2b904accb687117c882cd07e91d187b639571ffd585405c886ea2a155",
+    "experiments.json": "f5d90ea8282621bce5d9e6e2951705f680ba3c1a6853f4d039083d516adf0b11",
+    "findings.json": "2b844549d37cf7a20e8d23d7ef713d3ee2be94813ff740d682e0a3a10daf852a",
+    "known_experiment_ids.json": "92dcb6e8c9c9097180345d82e5cf718d9234b37f914f187b4e979a2e4378ee1d",
+    "known_route_keys.json": "500ea12bc5d7556afaef13c05188fb45f98a117f64d8e6b6528f2cdab2b1510f",
+    "known_string_keys.json": "1266ecdac09f1c87f0c279f026c08fb3d005e900b15a46bb0418c0c6441eaeb8",
+    "last_extract_experiments.json": "c20ef1c3db9e05482abd1599ac3f4bcda2fe329a7f3c6bf204dfed521a081bdd",
+    "last_extract_routes.json": "9339f75793270c070d858d824850f0c9d6c71b2f6064c6cdc5d679ae1d79f8fc",
+    "last_extract_strings.json": "7986d10a2fa0eff85c34680530e9904cda40518b0fb027e439f354738558fe72",
+    "last_run_meta.json": "649c5f823f31cca8ef25f0854d707b0cb9c362b25758579ecb1a2a819f977dd2",
+    "meta.json": "57f288a90bfa7a3be07f9cabf4cfe58583369d6d01868613e8aa7fd301e5fc56",
+    "removed_experiments.json": "fbf7cbccb0cbf3a3271e446d14384c20253831f2032eced3201bc29b19bd3d95",
+    "routes.json": "e16e6d5f1d3ef8d76268c2b7c260bad98e91f22ffddc7ce34695996c5a71cce3",
+    "strings.json": "f5d3acacfce420ca59b086a83a97c7ca84398581d92a853124148825dfddde60"
+  },
+  "generationDir": ".generations/2026-11-16T23-57-25-560Z_674832_ow540o"
 }
