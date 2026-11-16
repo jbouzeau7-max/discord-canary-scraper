@@ -8,6 +8,7 @@ const {
   downloadList,
   resetDownloadStats,
   getDownloadStats,
+  retryAfterMs,
 } = require('../src/lib/download');
 
 const JS = Buffer.from('!function(){console.log("discord chunk");}();'.repeat(10));
@@ -105,6 +106,39 @@ test('downloadList : corps HTML refusé (même pour un .css)', async () => {
   );
   assert.equal(await fs.pathExists(path.join(dir, 'app.zzz.css')), false);
   assert.equal(getDownloadStats().failed, 1);
+});
+
+test('downloadList : HTTP 206 sans requête Range est rejeté sans retry', async () => {
+  resetDownloadStats();
+  const dir = await tmpDir();
+  let calls = 0;
+  await assert.rejects(
+    downloadList([URL_A], dir, true, {
+      fetch: async () => { calls++; return res(206, JS, { 'content-range': 'bytes 0-20/100' }); },
+    }),
+    /download success ratio/,
+  );
+  assert.equal(calls, 1);
+  assert.equal(await fs.pathExists(path.join(dir, 'web.aaa.js')), false);
+});
+
+test('downloadList : Content-Length identity incohérent rejette un corps tronqué', async () => {
+  resetDownloadStats();
+  const dir = await tmpDir();
+  await assert.rejects(
+    downloadList([URL_A], dir, true, {
+      fetch: async () => res(200, JS, { 'content-length': String(JS.length + 1), 'content-encoding': 'identity' }),
+    }),
+    /download success ratio/,
+  );
+  assert.equal(await fs.pathExists(path.join(dir, 'web.aaa.js')), false);
+});
+
+test('retryAfterMs accepte les secondes et les dates HTTP', () => {
+  const now = Date.parse('2026-11-17T00:00:00Z');
+  assert.equal(retryAfterMs('1.25', now), 1250);
+  assert.equal(retryAfterMs('Tue, 17 Nov 2026 00:00:03 GMT', now), 3000);
+  assert.equal(retryAfterMs('invalid', now), 0);
 });
 
 test('downloadList : noms de fichiers dupliqués → un seul téléchargement', async () => {

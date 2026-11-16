@@ -35,5 +35,13 @@ test('les workflows utilisent des sources publiques et n’injectent aucun jeton
       `${name} doit être transmis au workflow`,
     );
   }
-  assert.match(fs.readFileSync(path.join(workflowDir, 'shop.yml'), 'utf8'), /data\/shop_fallback\.json/);
+  assert.match(fs.readFileSync(path.join(workflowDir, 'shop.yml'), 'utf8'), /data\/shop_itemshop\.json/);
+});
+
+test('les workflows ne publient que les données validées', () => {
+  const scrape = fs.readFileSync(path.join(workflowDir, 'scrape.yml'), 'utf8');
+  const pages = fs.readFileSync(path.join(workflowDir, 'pages.yml'), 'utf8');
+  assert.match(scrape, /if: success\(\) && github\.event_name == 'workflow_dispatch' && inputs\.once == true/);
+  assert.match(scrape, /COMMIT_RECOVERY_PATCH:/);
+  assert.match(pages, /node scripts\/validate-data-generation\.js/);
 });

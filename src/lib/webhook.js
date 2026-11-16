@@ -126,14 +126,20 @@ function retryAfterMs(res, json) {
     const v = res && res.headers && res.headers.get(name);
     return v == null || v === '' ? NaN : Number(v);
   };
+  const retryHeader = res && res.headers && res.headers.get('retry-after');
+  const retryHeaderSeconds = retryHeader == null || retryHeader === '' ? NaN : Number(retryHeader);
+  const retryHeaderMs = Number.isFinite(retryHeaderSeconds) && retryHeaderSeconds >= 0
+    ? retryHeaderSeconds * 1000
+    : Number.isFinite(Date.parse(retryHeader))
+      ? Math.max(0, Date.parse(retryHeader) - Date.now())
+      : NaN;
   const candidates = [
-    json && Number(json.retry_after),
-    h('retry-after'),
-    h('x-ratelimit-reset-after'),
+    json && Number(json.retry_after) * 1000,
+    retryHeaderMs,
+    h('x-ratelimit-reset-after') * 1000,
   ].filter((n) => Number.isFinite(n) && n >= 0);
   if (!candidates.length) return 0;
-  // Discord renvoie des secondes (float)
-  return Math.ceil(Math.max(...candidates) * 1000);
+  return Math.ceil(Math.max(...candidates));
 }
 
 /** Longueur « comptée » par Discord pour la limite de 6000 caractères. */
@@ -192,7 +198,7 @@ async function _sendWebhook(url, body, options = {}) {
       data = { ...data, components: [textDisplay(mentionText(roles)), ...data.components], allowed_mentions: allowedMentions(roles) };
     }
   }
-  if (data && typeof data === 'object' && !data.allowed_mentions && (data.components || data.embeds)) {
+  if (data && typeof data === 'object' && !data.allowed_mentions) {
     data = { ...data, allowed_mentions: { parse: [] } };
   }
   if (data && typeof data === 'object' && process.env.WEBHOOK_KEEP_EMOJI !== '1') {

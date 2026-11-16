@@ -1,16 +1,6 @@
-/**
- * Discord Shop / Collectibles tracker
- * Source: public itemshop.gg feed (no Discord account authentication)
- *
- * Message (Components V2, sobre) :
- *   Boutique Discord • NEW item
- *   ### [Nom de l'item](https://discord.com/shop)
- *   [image]
- *   — rien d'autre —
- *
- * Env:
- *   SHOP_WEBHOOK_URL | DISCORD_WEBHOOK_URL
- */
+'use strict';
+
+/** Discord Shop / Collectibles tracker via the documented itemshop.gg API. */
 const fetch = require('node-fetch');
 const fs = require('fs-extra');
 const path = require('path');
@@ -22,96 +12,268 @@ const {
   chunkIntoMessages,
 } = require('./lib/components_v2');
 const { writeJsonAtomic } = require('./lib/atomic');
-const { sleep, redactSecrets, DEFAULT_UA, DEFAULT_BOT_NAME: BOT, DEFAULT_AVATAR_URL: AVATAR } = require('./lib/utils');
+const {
+  sleep,
+  redactSecrets,
+  DEFAULT_BOT_NAME: BOT,
+  DEFAULT_AVATAR_URL: AVATAR,
+} = require('./lib/utils');
 
 const DATA = path.join(__dirname, '..', 'data');
-
-// Source publique itemshop.gg — données moins riches (nom + type, pas d'id
-// Discord ni d'image), mais le suivi fonctionne sans authentification de compte.
-const FALLBACK_URL = 'https://itemshop.gg/discord';
-const FALLBACK_STATE = path.join(DATA, 'shop_fallback.json');
-const FALLBACK_MIN_ITEMS = 10;
-const FALLBACK_TYPES = ['Bundle', 'Avatar Decoration', 'Profile Effect', 'Nameplate', 'Profile Frame', 'Avatar Frame', 'Clan Tag'];
-
-// Webhooks candidats : si le premier a été supprimé (404 Unknown Webhook), on bascule sur le suivant.
-const WEBHOOKS = [...new Set([process.env.SHOP_WEBHOOK_URL, process.env.DISCORD_WEBHOOK_URL].map((u) => String(u || '').trim()).filter(Boolean))];
-let WEBHOOK = WEBHOOKS[0] || null;
-
-const SHOP_COLOR = 0x5865f2;
+const SHOP_API_URL = 'https://itemshop.gg/api/v1/shop/discord';
+const SHOP_STATE = path.join(DATA, 'shop_itemshop.json');
 const SHOP_URL = 'https://discord.com/shop';
-// Pas de deep-link public par item (SPA) → le titre pointe vers la boutique.
+const DEFAULT_ATTRIBUTION_URL = 'https://itemshop.gg/discord';
+const SHOP_COLOR = 0x5865f2;
 const MAX_NOTIFY_PER_RUN = 20;
 const ANNOUNCED_KEEP_DAYS = 90;
+const API_MAX_BYTES = 8 * 1024 * 1024;
+const API_RETRIES = 3;
+const API_MAX_RETRY_AFTER_MS = 5 * 60 * 1000;
 
-function escapeMdTitle(t) {
-  return String(t || 'Item')
+// Le 1er webhook 404 bascule sur le webhook de secours, sans perdre l'item.
+const WEBHOOKS = [...new Set(
+  [process.env.SHOP_WEBHOOK_URL, process.env.DISCORD_WEBHOOK_URL]
+    .map((url) => String(url || '').trim())
+    .filter(Boolean),
+)];
+let WEBHOOK = WEBHOOKS[0] || null;
+
+function escapeMdTitle(value) {
+  return String(value || 'Item')
+    .replace(/[\r\n]+/g, ' ')
     .slice(0, 200)
-    .replace(/\[/g, '\\[')
-    .replace(/\]/g, '\\]');
+    .replace(/[\\`*_{}\[\]()#+.!|>~-]/g, '\\$&');
 }
-function pickImage(obj) {
-  if (!obj || typeof obj !== 'object') return null;
-  const keys = ['featured_block_url', 'catalog_banner_url', 'hero_banner_url', 'mobile_banner_url', 'logo_url', 'pdp_bg_url', 'thumbnail', 'image', 'asset'];
-  for (const key of keys) {
-    const value = obj[key];
-    if (typeof value === 'string' && /^https?:\/\//i.test(value)) return value;
+
+function httpsUrl(value) {
+  if (typeof value !== 'string' || !value.trim()) return null;
+  try {
+    const url = new URL(value);
+    return url.protocol === 'https:' ? url.toString() : null;
+  } catch {
+    return null;
   }
-  if (Array.isArray(obj.items) && obj.items[0] && typeof obj.items[0].asset === 'string') {
-    const asset = obj.items[0].asset;
-    if (/^https?:\/\//i.test(asset)) return asset;
-    return 'https://cdn.discordapp.com/avatar-decoration-presets/' + asset.replace(/^\//, '') + '.png';
-  }
-  if (obj.sku_id) return 'https://cdn.discordapp.com/media/v1/collectibles-shop/' + obj.sku_id + '/static';
-  return null;
 }
-function pickImageCandidates(obj) {
-  const out = [];
-  const add = (url) => { if (url && !out.includes(url)) out.push(url); };
-  if (!obj || typeof obj !== 'object') return out;
-  for (const item of (Array.isArray(obj.items) ? obj.items : [])) {
-    const asset = item && typeof item.asset === 'string' ? item.asset.trim() : '';
-    if (!asset) continue;
-    if (/^https?:\/\//i.test(asset)) add(asset);
-    else if (asset.includes('/')) add('https://cdn.discordapp.com/assets/collectibles/' + asset.replace(/^\/+|\/+$/g, '') + '/static.png');
-    else add('https://cdn.discordapp.com/avatar-decoration-presets/' + asset + '.png');
-  }
-  const direct = pickImage({ ...obj, items: undefined, sku_id: undefined });
-  if (direct) add(direct);
-  if (obj.sku_id) add('https://cdn.discordapp.com/media/v1/collectibles-shop/' + obj.sku_id + '/static');
-  return out;
+
+function attributionUrl(value) {
+  const safe = httpsUrl(value);
+  if (!safe) return null;
+  const host = new URL(safe).hostname.toLowerCase();
+  return host === 'itemshop.gg' || host.endsWith('.itemshop.gg') ? safe : null;
 }
-function buildItemComponents(item) {
+
+function retryAfterMs(value, now = Date.now()) {
+  const raw = String(value == null ? '' : value).trim();
+  if (!raw) return 0;
+  const seconds = Number(raw);
+  if (Number.isFinite(seconds) && seconds >= 0) return Math.ceil(seconds * 1000);
+  const date = Date.parse(raw);
+  return Number.isFinite(date) ? Math.max(0, date - now) : 0;
+}
+
+function discardBody(response) {
+  try {
+    if (response && response.body && typeof response.body.destroy === 'function') {
+      response.body.destroy();
+    } else if (response && response.body && typeof response.body.resume === 'function') {
+      response.body.resume();
+    }
+  } catch {}
+}
+
+async function readBodyLimited(response, maxBytes) {
+  if (response.body && typeof response.body[Symbol.asyncIterator] === 'function') {
+    const chunks = [];
+    let bytes = 0;
+    try {
+      for await (const chunk of response.body) {
+        const buffer = Buffer.isBuffer(chunk) ? chunk : Buffer.from(chunk);
+        bytes += buffer.length;
+        if (bytes > maxBytes) {
+          discardBody(response);
+          throw new Error('itemshop.gg API response exceeds size limit');
+        }
+        chunks.push(buffer);
+      }
+    } catch (error) {
+      discardBody(response);
+      throw error;
+    }
+    return Buffer.concat(chunks).toString('utf8');
+  }
+  const text = await response.text();
+  if (Buffer.byteLength(text, 'utf8') > maxBytes) {
+    throw new Error('itemshop.gg API response exceeds size limit');
+  }
+  return text;
+}
+
+/** Validate the full API envelope and normalize only purchasable items. */
+function normalizeShopPayload(payload) {
+  const data = payload && payload.data;
+  const meta = payload && payload.meta;
+  if (!data || typeof data !== 'object' || data.game !== 'discord') {
+    throw new Error('itemshop.gg API: unexpected game or missing data');
+  }
+  if (data.stale !== false) {
+    throw new Error('itemshop.gg API: shop is stale or freshness is unspecified');
+  }
+  if (!Array.isArray(data.sections) || !Number.isInteger(data.itemCount) || data.itemCount < 0) {
+    throw new Error('itemshop.gg API: invalid sections or itemCount');
+  }
+  const sourceUrl = attributionUrl(meta && meta.attribution && meta.attribution.url);
+  if (!sourceUrl) throw new Error('itemshop.gg API: missing or invalid attribution URL');
+
+  const totalItems = data.sections.reduce((total, section) => {
+    if (!section || typeof section !== 'object') throw new Error('itemshop.gg API: invalid section');
+    if (section.items != null && !Array.isArray(section.items)) {
+      throw new Error('itemshop.gg API: invalid section items');
+    }
+    return total + (section.items || []).length;
+  }, 0);
+  if (totalItems !== data.itemCount) {
+    throw new Error(`itemshop.gg API: itemCount mismatch (${data.itemCount} != ${totalItems})`);
+  }
+
+  const items = [];
+  const seen = new Set();
+  for (const section of data.sections) {
+    if (section.upcoming === true) continue;
+    for (const item of section.items || []) {
+      if (!item || typeof item !== 'object' || typeof item.name !== 'string' || !item.name.trim()) {
+        throw new Error('itemshop.gg API: invalid item record');
+      }
+      if (item.soldOut === true) continue;
+      const identity = item.itemKey || item.id || `${item.name}|${item.type || ''}`;
+      const key = String(identity).trim();
+      if (!key) throw new Error('itemshop.gg API: empty item identity');
+      if (seen.has(key)) continue;
+      seen.add(key);
+      const price = item.price && typeof item.price === 'object' ? item.price : null;
+      let priceLabel = price && typeof price.label === 'string' ? price.label : '';
+      if (!priceLabel && price && price.amount != null && Number.isFinite(Number(price.amount))) {
+        priceLabel = `${price.amount}${price.currency ? ` ${price.currency}` : ''}`;
+      }
+      const image = item.images && (httpsUrl(item.images.card) || httpsUrl(item.images.render));
+      items.push({
+        key,
+        name: item.name.trim().slice(0, 200),
+        type: typeof item.type === 'string' ? item.type.trim().slice(0, 100) : '',
+        image,
+        priceLabel: String(priceLabel || '').trim().slice(0, 80),
+      });
+    }
+  }
+
+  const shopDate = typeof data.shopDate === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(data.shopDate)
+    ? data.shopDate
+    : null;
+  if (!shopDate) throw new Error('itemshop.gg API: invalid shopDate');
+  return {
+    game: 'discord',
+    shopDate,
+    itemCount: data.itemCount,
+    items,
+    attributionUrl: sourceUrl,
+    stale: false,
+  };
+}
+
+async function fetchShopSnapshot({ fetchImpl = fetch, etag = null, sleepImpl = sleep } = {}) {
+  const headers = {
+    'User-Agent': 'discord-canary-scraper/1.0 (+https://github.com/jbouzeau7-max/discord-canary-scraper)',
+    Accept: 'application/json',
+  };
+  if (etag) headers['If-None-Match'] = etag;
+
+  for (let attempt = 0; attempt < API_RETRIES; attempt++) {
+    const response = await fetchImpl(SHOP_API_URL, { headers, timeout: 25000 });
+    if (response.status === 304) {
+      return { notModified: true, etag: response.headers && response.headers.get('etag') || etag };
+    }
+    if (response.status === 429 || response.status >= 500) {
+      discardBody(response);
+      if (attempt + 1 >= API_RETRIES) throw new Error(`itemshop.gg API HTTP ${response.status}`);
+      const requested = retryAfterMs(response.headers && response.headers.get('retry-after'));
+      if (requested > API_MAX_RETRY_AFTER_MS) {
+        throw new Error('itemshop.gg API Retry-After exceeds this run budget; defer to next scheduled run');
+      }
+      const wait = requested || Math.min(30000, 1000 * (2 ** attempt));
+      await sleepImpl(wait);
+      continue;
+    }
+    if (!response.ok) {
+      discardBody(response);
+      throw new Error(`itemshop.gg API HTTP ${response.status}`);
+    }
+
+    const contentLength = Number(response.headers && response.headers.get('content-length'));
+    if (Number.isFinite(contentLength) && contentLength > API_MAX_BYTES) {
+      discardBody(response);
+      throw new Error(`itemshop.gg API response too large (${contentLength} bytes)`);
+    }
+    const text = await readBodyLimited(response, API_MAX_BYTES);
+    let payload;
+    try {
+      payload = JSON.parse(text);
+    } catch (error) {
+      throw new Error('itemshop.gg API returned invalid JSON: ' + error.message);
+    }
+    const snapshot = normalizeShopPayload(payload);
+    return {
+      ...snapshot,
+      notModified: false,
+      etag: response.headers && response.headers.get('etag') || etag,
+    };
+  }
+  throw new Error('itemshop.gg API: retry budget exhausted');
+}
+
+function buildItemComponents(item, sourceUrl = DEFAULT_ATTRIBUTION_URL) {
   const components = [
-    textDisplay('Boutique Discord • NEW item'),
+    textDisplay('Boutique Discord • NOUVEL ITEM'),
     textDisplay(`### [${escapeMdTitle(item.name)}](${SHOP_URL})`),
   ];
-  const gallery = mediaGalleryFromUrls(item.image && /^https?:\/\//i.test(String(item.image)) ? [item.image] : []);
-  if (gallery) components.push(gallery);
+  const summary = [item.type, item.priceLabel].filter(Boolean).map(escapeMdTitle).join(' · ');
+  if (summary) components.push(textDisplay('-# ' + summary));
+  if (item.image) {
+    const gallery = mediaGalleryFromUrls([item.image]);
+    if (gallery) components.push(gallery);
+  }
+  const source = attributionUrl(sourceUrl) || DEFAULT_ATTRIBUTION_URL;
+  components.push(textDisplay(`-# Data from [itemshop.gg](${source})`));
   return components;
 }
 
-/**
- * « Boutique Discord • NEW item » : titre cliquable + image, rien d'autre.
- */
-function buildItemComponents(item) {
-  const comps = [
-    textDisplay('Boutique Discord • NEW item'),
-    textDisplay(`### [${escapeMdTitle(item.name)}](${SHOP_URL})`),
-  ];
-  const gallery = mediaGalleryFromUrls(
-    item.image && /^https?:\/\//i.test(String(item.image)) ? [item.image] : [],
-  );
-  if (gallery) comps.push(gallery);
-  return comps;
+/** Résout les formes d’asset Discord déjà présentes dans les métadonnées. */
+function pickImageCandidates(item) {
+  const candidates = [];
+  const add = (url) => {
+    const safe = httpsUrl(url);
+    if (safe && !candidates.includes(safe)) candidates.push(safe);
+  };
+  if (!item || typeof item !== 'object') return candidates;
+  for (const entry of Array.isArray(item.items) ? item.items : []) {
+    const asset = entry && typeof entry.asset === 'string' ? entry.asset.trim() : '';
+    if (!asset) continue;
+    if (/^https:\/\//i.test(asset)) add(asset);
+    else if (asset.includes('/')) {
+      add('https://cdn.discordapp.com/assets/collectibles/' + asset.replace(/^\/+|\/+$/g, '') + '/static.png');
+    } else {
+      add('https://cdn.discordapp.com/avatar-decoration-presets/' + asset + '.png');
+    }
+  }
+  if (item.sku_id) add('https://cdn.discordapp.com/media/v1/collectibles-shop/' + item.sku_id + '/static');
+  return candidates;
 }
 
-/** Envoie des composants Components V2 sur la webhook. */
-async function postComponents(comps) {
+async function postComponents(components) {
   if (!WEBHOOK) return false;
-  const messages = chunkIntoMessages(comps, SHOP_COLOR, true);
+  const messages = chunkIntoMessages(components, SHOP_COLOR, true);
   for (const componentsMsg of messages) {
     for (;;) {
-      const r = await sendWebhook(
+      const response = await sendWebhook(
         withComponentsUrl(WEBHOOK),
         {
           username: BOT.slice(0, 80),
@@ -121,182 +283,139 @@ async function postComponents(comps) {
         },
         { identity: 'shop', label: 'shop' },
       );
-      if (r.ok) break;
-      // Webhook supprimée → webhook suivante (sans perdre le message)
-      const idx = WEBHOOKS.indexOf(WEBHOOK);
-      if (r.status === 404 && idx >= 0 && idx + 1 < WEBHOOKS.length) {
+      if (response.ok) break;
+      const index = WEBHOOKS.indexOf(WEBHOOK);
+      if (response.status === 404 && index >= 0 && index + 1 < WEBHOOKS.length) {
         console.warn('shop webhook 404 (supprimée) → bascule sur la webhook de secours');
-        WEBHOOK = WEBHOOKS[idx + 1];
+        WEBHOOK = WEBHOOKS[index + 1];
         continue;
       }
-      console.warn('shop webhook fail', r.status, (r.text || '').slice(0, 160));
+      console.warn('shop webhook fail', response.status, (response.text || '').slice(0, 160));
       return false;
     }
   }
   return true;
 }
 
-// ── Mode dégradé : source publique itemshop.gg ────────
-
-/**
- * itemshop.gg publie la boutique du jour ; sa page de boutique est accessible publiquement.
- * Données moins riches (nom + type, pas d'id Discord ni d'image) mais la
- * veille continue — messages marqués « source publique ».
- */
-function htmlToLines(html) {
-  return String(html || '')
-    .replace(/<script[\s\S]*?<\/script>/gi, ' ')
-    .replace(/<style[\s\S]*?<\/style>/gi, ' ')
-    .replace(/<[^>]+>/g, '\n')
-    .replace(/&nbsp;/gi, ' ')
-    .replace(/&amp;/gi, '&')
-    .replace(/&quot;/gi, '"')
-    .replace(/&#39;|&#x27;/g, "'")
-    .replace(/&lt;/g, '<')
-    .replace(/&gt;/g, '>')
-    .split('\n')
-    .map((l) => l.trim())
-    .filter(Boolean);
-}
-
-/**
- * Parse la page itemshop.gg : motif « nom / type / prix » par item.
- * La clé (nom|type) distingue les homonymes multi-types (ex: « Deadpool »
- * déco ET nameplate).
- * @param {string} html - HTML brut de la page publique
- * @returns {Array<{key:string,name:string,type:string,source:string}>}
- */
-function parseFallbackShop(html) {
-  const lines = htmlToLines(html);
-  const junk = /^(advertisement|add the bot|discord alerts|today'?s shop|past rotations|discord shop today)$/i;
-  const priceLike = /^\d[\d.,]*\s*(usd|eur)?$/i;
-  const out = new Map();
-  for (let i = 1; i < lines.length; i++) {
-    const type = lines[i];
-    if (!FALLBACK_TYPES.includes(type)) continue;
-    const name = lines[i - 1];
-    if (!name || FALLBACK_TYPES.includes(name) || junk.test(name)) continue;
-    if (name.length < 2 || name.length > 120) continue;
-    if (/^https?:\/\//i.test(name) || priceLike.test(name)) continue;
-    const key = name + '|' + type;
-    if (!out.has(key)) out.set(key, { key, name, type, source: 'itemshop' });
-  }
-  return [...out.values()];
-}
-
-/** Récupère la boutique du jour depuis itemshop.gg (avec garde-fou de parse). */
-async function fetchFallbackShop() {
-  const res = await fetch(FALLBACK_URL, {
-    headers: { 'User-Agent': DEFAULT_UA, Accept: 'text/html,*/*' },
-    timeout: 25000,
-  });
-  if (!res.ok) throw new Error('itemshop.gg HTTP ' + res.status);
-  const items = parseFallbackShop(await res.text());
-  if (items.length < FALLBACK_MIN_ITEMS) {
-    throw new Error('itemshop.gg parse suspect (' + items.length + ' items) — page peut-être changée');
-  }
-  return items;
-}
-
-/** Message sobre (nom + type + lien boutique), sans image : la source n'en fournit pas. */
-function buildFallbackComponents(item) {
-  return [
-    textDisplay('Boutique Discord • NEW item (source publique)'),
-    textDisplay('### [' + escapeMdTitle(item.name) + '](' + SHOP_URL + ')'),
-    textDisplay('_' + item.type + ' — itemshop.gg_'),
-  ];
-}
-
-/** Purge les entrées announced de plus de keepDays jours. */
-function pruneAnnounced(announced, keepDays) {
-  const cutoff = Date.now() - keepDays * 86400000;
-  for (const [id, ts] of Object.entries(announced)) {
-    if (Date.parse(ts || '') < cutoff) delete announced[id];
+function pruneAnnounced(announced, keepDays, now = Date.now()) {
+  const cutoff = now - keepDays * 86400000;
+  for (const [id, timestamp] of Object.entries(announced)) {
+    const parsed = Date.parse(timestamp || '');
+    if (!Number.isFinite(parsed) || parsed < cutoff) delete announced[id];
   }
 }
 
-/**
- * Veille de secours : catalogage itemshop.gg par clé nom|type, état dédié
- * (data/shop_fallback.json), seed silencieux puis notifications des nouveautés.
- */
-async function runFallbackMode() {
-  let items;
+async function loadState(statePath) {
   try {
-    items = await fetchFallbackShop();
-  } catch (e) {
-    console.error('Fallback source failed:', redactSecrets(e.message));
-    process.exit(1);
-  }
-  console.log('Fallback items (itemshop.gg):', items.length);
+    const state = await fs.readJson(statePath);
+    if (state && typeof state === 'object' && !Array.isArray(state)) return state;
+  } catch {}
+  return { schemaVersion: 2, initialized: false, announced: {}, etag: null };
+}
 
-  let prev = { announced: {} };
-  if (await fs.pathExists(FALLBACK_STATE)) {
-    try {
-      prev = await fs.readJson(FALLBACK_STATE);
-    } catch (_) {}
-  }
-  const announced = Object.assign({}, prev.announced || {});
-  const now = new Date().toISOString();
-  const isFirst = Object.keys(announced).length === 0;
-  if (isFirst) {
-    for (const it of items) announced[it.key] = now;
-    await writeJsonAtomic(FALLBACK_STATE, { count: items.length, announced }, 2);
-    console.log('Fallback seed', items.length, 'items — no notify on first run');
-    return;
-  }
-
-  const newItems = items.filter((it) => !announced[it.key]);
-  console.log('Fallback new items:', newItems.length);
-  if (!newItems.length) {
-    pruneAnnounced(announced, ANNOUNCED_KEEP_DAYS);
-    await writeJsonAtomic(FALLBACK_STATE, { count: items.length, announced }, 2);
-    console.log('No new shop items (fallback)');
-    return;
+async function runShopTracker({
+  fetchImpl = fetch,
+  sleepImpl = sleep,
+  statePath = SHOP_STATE,
+  notify = postComponents,
+  now = () => new Date(),
+} = {}) {
+  const previous = await loadState(statePath);
+  const previousEtag = typeof previous.etag === 'string' ? previous.etag : null;
+  const snapshot = await fetchShopSnapshot({ fetchImpl, etag: previousEtag, sleepImpl });
+  if (snapshot.notModified) {
+    if (previous.initialized !== true) {
+      throw new Error('itemshop.gg returned 304 without an initialized local baseline');
+    }
+    console.log('itemshop.gg shop unchanged (ETag 304)');
+    return { ok: true, unchanged: true, notified: 0 };
   }
 
-  // Même granularité d'échec que le mode officiel : un item non envoyé sera
-  // re-notifié au prochain run (clé absente de announced).
-  const batch = newItems.slice(0, MAX_NOTIFY_PER_RUN);
+  const nowValue = now();
+  const currentTime = (nowValue instanceof Date ? nowValue : new Date(nowValue)).toISOString();
+  const canReuseBaseline = previous.schemaVersion === 2 && previous.initialized === true &&
+    previous.announced && typeof previous.announced === 'object' && !Array.isArray(previous.announced);
+  const announced = canReuseBaseline ? { ...previous.announced } : {};
+  if (!canReuseBaseline) {
+    for (const item of snapshot.items) announced[item.key] = currentTime;
+    await writeJsonAtomic(statePath, {
+      schemaVersion: 2,
+      source: 'itemshop.gg API',
+      initialized: true,
+      etag: snapshot.etag,
+      shopDate: snapshot.shopDate,
+      itemCount: snapshot.itemCount,
+      announced,
+      lastSyncAt: currentTime,
+    }, 2);
+    console.log('shop API baseline seeded silently', snapshot.items.length, 'items');
+    return { ok: true, seeded: true, notified: 0 };
+  }
+
+  const fresh = snapshot.items.filter((item) => !announced[item.key]);
+  console.log('itemshop.gg current items:', snapshot.items.length, 'new:', fresh.length);
+  if (!fresh.length) {
+    pruneAnnounced(announced, ANNOUNCED_KEEP_DAYS, Date.parse(currentTime));
+    await writeJsonAtomic(statePath, {
+      ...previous,
+      schemaVersion: 2,
+      source: 'itemshop.gg API',
+      initialized: true,
+      etag: snapshot.etag,
+      shopDate: snapshot.shopDate,
+      itemCount: snapshot.itemCount,
+      announced,
+      lastSyncAt: currentTime,
+      lastNew: [],
+      pendingNew: [],
+    }, 2);
+    return { ok: true, notified: 0, pending: 0 };
+  }
+
+  const batch = fresh.slice(0, MAX_NOTIFY_PER_RUN);
   const notified = [];
   const pending = [];
   let failed = 0;
-  for (const it of batch) {
-    let ok = false;
+  for (const item of batch) {
+    let sent = false;
     try {
-      ok = await postComponents(buildFallbackComponents(it));
-    } catch (e) {
-      console.warn('notify error', redactSecrets(e.message || e));
+      sent = await notify(buildItemComponents(item, snapshot.attributionUrl));
+    } catch (error) {
+      console.warn('shop notify error', redactSecrets(error.message || error));
     }
-    if (ok) {
-      announced[it.key] = now;
-      notified.push(it.key);
-      console.log('sent', it.name);
+    if (sent) {
+      announced[item.key] = currentTime;
+      notified.push(item.key);
+      console.log('sent shop item', item.name);
     } else {
       failed++;
-      pending.push(it.key);
-      console.warn('NOTIFY_FAIL shop fallback', it.key);
+      pending.push(item.key);
+      console.warn('NOTIFY_FAIL shop API', item.key);
     }
-    await sleep(300);
+    await sleepImpl(300);
   }
-  for (const it of newItems.slice(MAX_NOTIFY_PER_RUN)) pending.push(it.key);
-  if (newItems.length > MAX_NOTIFY_PER_RUN) {
-    console.log('Pending (next run):', newItems.length - MAX_NOTIFY_PER_RUN);
-  }
-  if (failed > 0) process.exitCode = 2;
-  pruneAnnounced(announced, ANNOUNCED_KEEP_DAYS);
-  await writeJsonAtomic(
-    FALLBACK_STATE,
-    { count: items.length, announced, lastNew: notified, pendingNew: pending },
-    2,
-  );
-  console.log('Shop done (fallback) — announced', notified.length, 'failed', failed, 'pending', pending.length);
+  for (const item of fresh.slice(MAX_NOTIFY_PER_RUN)) pending.push(item.key);
+  pruneAnnounced(announced, ANNOUNCED_KEEP_DAYS, Date.parse(currentTime));
+  await writeJsonAtomic(statePath, {
+    ...previous,
+    schemaVersion: 2,
+    source: 'itemshop.gg API',
+    initialized: true,
+    etag: snapshot.etag,
+    shopDate: snapshot.shopDate,
+    itemCount: snapshot.itemCount,
+    announced,
+    lastSyncAt: currentTime,
+    lastNew: notified,
+    pendingNew: pending,
+  }, 2);
+  console.log('Shop API done — announced', notified.length, 'failed', failed, 'pending', pending.length);
+  return { ok: failed === 0, notified: notified.length, failed, pending: pending.length };
 }
-
-// ── Main ──────────────────────────────────────────────
 
 async function main() {
   await fs.ensureDir(DATA);
-  console.log('Discord Shop tracker — source publique itemshop.gg, sans authentification de compte');
+  console.log('Discord Shop tracker — official itemshop.gg JSON API, no Discord account authentication');
   console.log(
     'Webhook:',
     WEBHOOK
@@ -305,14 +424,27 @@ async function main() {
         : 'DISCORD_WEBHOOK_URL (fallback)'
       : 'MISSING',
   );
-  await runFallbackMode();
+  return runShopTracker();
 }
 
 if (require.main === module) {
-  main().catch((e) => {
-    console.error(redactSecrets(e.message || e));
-    process.exit(1);
-  });
+  main()
+    .then((result) => {
+      if (result && result.ok === false) process.exitCode = 2;
+    })
+    .catch((error) => {
+      console.error(redactSecrets(error.message || error));
+      process.exitCode = 1;
+    });
 }
 
-module.exports = { main, parseFallbackShop, buildFallbackComponents, pickImageCandidates, buildItemComponents };
+module.exports = {
+  main,
+  normalizeShopPayload,
+  fetchShopSnapshot,
+  buildItemComponents,
+  pickImageCandidates,
+  retryAfterMs,
+  runShopTracker,
+  SHOP_API_URL,
+};

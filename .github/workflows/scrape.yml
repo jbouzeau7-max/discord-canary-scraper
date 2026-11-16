@@ -46,6 +46,7 @@ jobs:
           # sert encore l'ancien build, on attend (≤25 s) au lieu d'un FAST SKIP.
           EXPECTED_BUILD: ${{ github.event.client_payload.build }}
           ONCE: ${{ github.event_name == 'workflow_dispatch' && inputs.once && '1' || '0' }}
+          COMMIT_RECOVERY_PATCH: ${{ runner.temp }}/scrape-state-recovery.patch
         run: |
           if [ "$ONCE" = "1" ]; then
             if [ -n "$EXPECTED_BUILD" ]; then node src/lib/expected_build.js; fi
@@ -56,14 +57,14 @@ jobs:
 
       - name: Commit state
         id: commit_state
-        if: always() && steps.scrape.outcome != 'cancelled'
+        if: success() && github.event_name == 'workflow_dispatch' && inputs.once == true
         env:
           COMMIT_RECOVERY_PATCH: ${{ runner.temp }}/scrape-state-recovery.patch
         run: |
           bash scripts/commit-state.sh "scrape: state" data/
 
       - name: Preserve unpushed state for recovery
-        if: always() && steps.commit_state.outcome == 'failure'
+        if: always() && (steps.commit_state.outcome == 'failure' || steps.scrape.outcome == 'failure')
         uses: actions/upload-artifact@v4
         with:
           name: scrape-state-recovery-${{ github.run_id }}

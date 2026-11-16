@@ -6,6 +6,7 @@ const os = require('os');
 const {
   publishDataGeneration,
   readCurrentGeneration,
+  validateCurrentGeneration,
   POINTER_FILE,
 } = require('../src/lib/publish_data');
 
@@ -28,8 +29,39 @@ test('successful publish writes all files + pointer', async () => {
   assert.ok(await fs.pathExists(path.join(dir, 'build.json')));
   assert.ok(await fs.pathExists(path.join(dir, POINTER_FILE)));
   const ptr = await readCurrentGeneration(dir);
+  assert.equal(ptr.schemaVersion, 2);
   assert.equal(ptr.buildNumber, '12345');
   assert.equal(ptr.files.length, 3);
+  assert.ok(ptr.checksums['build.json']);
+  assert.equal((await validateCurrentGeneration(dir)).checked, 3);
+  await fs.remove(dir);
+});
+
+test('generation validation detects a mixed or modified top-level file', async () => {
+  const dir = await tmpDir();
+  await publishDataGeneration(dir, {
+    runId: 'run-checksum',
+    buildNumber: '42',
+    files: {
+      'build.json': { runId: 'run-checksum', buildNumber: '42' },
+      'meta.json': { runId: 'run-checksum', buildNumber: '42' },
+    },
+  });
+  await fs.writeJson(path.join(dir, 'meta.json'), { runId: 'other', buildNumber: '42' });
+  await assert.rejects(() => validateCurrentGeneration(dir), /checksum mismatch: meta\.json/);
+  await fs.remove(dir);
+});
+
+test('legacy generation validation detects a runId mixed from another scrape', async () => {
+  const dir = await tmpDir();
+  await fs.writeJson(path.join(dir, 'build.json'), { runId: 'new-run', buildNumber: '42' });
+  await fs.writeJson(path.join(dir, POINTER_FILE), {
+    schemaVersion: 1,
+    runId: 'old-run',
+    buildNumber: '42',
+    files: ['build.json'],
+  });
+  await assert.rejects(() => validateCurrentGeneration(dir), /runId mismatch/);
   await fs.remove(dir);
 });
 

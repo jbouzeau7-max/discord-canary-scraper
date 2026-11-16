@@ -45,12 +45,22 @@ function getDownloadStats() {
   return { ...stats };
 }
 
+function retryAfterMs(value, now = Date.now()) {
+  const raw = String(value == null ? '' : value).trim();
+  if (!raw) return 0;
+  const seconds = Number(raw);
+  if (Number.isFinite(seconds) && seconds >= 0) return Math.ceil(seconds * 1000);
+  const date = Date.parse(raw);
+  return Number.isFinite(date) ? Math.max(0, date - now) : 0;
+}
+
 function resetDownloadStats() {
   stats = emptyStats();
 }
 
 async function readBodyWithLimit(res, maxBytes) {
-  const cl = Number(res.headers.get('content-length') || 0);
+  const rawLength = res.headers.get('content-length');
+  const cl = rawLength == null || rawLength === '' ? 0 : Number(rawLength);
   if (cl > 0 && cl > maxBytes) {
     destroyBody(res);
     throw new Error('content-length too large: ' + cl);
@@ -67,7 +77,12 @@ async function readBodyWithLimit(res, maxBytes) {
       }
       chunks.push(buf);
     }
-    return Buffer.concat(chunks);
+    const body = Buffer.concat(chunks);
+    const encoding = String(res.headers.get('content-encoding') || '').toLowerCase();
+    if (cl > 0 && (!encoding || encoding === 'identity') && body.length !== cl) {
+      throw new Error(`content-length mismatch: expected ${cl}, received ${body.length}`);
+    }
+    return body;
   }
   const buf = await res.buffer();
   if (buf && buf.length > maxBytes) {
@@ -245,8 +260,12 @@ async function downloadList(urls, assetsDir, force, opts = {}) {
         if (res.status === 429) {
           http429++;
           destroyBody(res);
-          const ra = Number(res.headers.get('retry-after') || 0);
-          const wait = Number.isFinite(ra) && ra > 0 ? Math.min(60_000, ra * 1000) : Math.min(30_000, 500 * 2 ** attempt);
+          const ra = retryAfterMs(res.headers.get('retry-after'));
+          if (ra > 60_000) {
+            lastErr = 'HTTP 429 Retry-After exceeds retry budget';
+            break;
+          }
+          const wait = ra > 0 ? ra : Math.min(30_000, 500 * 2 ** attempt);
           console.warn('DL 429', job.name, 'wait', wait + 'ms');
           await pause(attempt, wait);
           lastErr = 'HTTP 429';
@@ -260,6 +279,11 @@ async function downloadList(urls, assetsDir, force, opts = {}) {
           await pause(attempt, wait);
           lastErr = 'HTTP ' + res.status;
           continue;
+        }
+        if (res.status === 206) {
+          lastErr = 'unexpected HTTP 206 partial content';
+          destroyBody(res);
+          break;
         }
         if (!res.ok) {
           lastErr = 'HTTP ' + res.status;
@@ -379,5 +403,6 @@ module.exports = {
   poolDirFor,
   getDownloadStats,
   resetDownloadStats,
+  retryAfterMs,
   DOWNLOAD_CONCURRENCY,
 };

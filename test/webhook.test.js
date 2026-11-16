@@ -46,7 +46,7 @@ test('succès direct (204)', async () => {
     assert.equal(r.ok, true);
     assert.equal(r.attempts, 1);
     assert.equal(hits.length, 1);
-    assert.deepEqual(hits[0].body, { content: 'hi' });
+    assert.deepEqual(hits[0].body, { content: 'hi', allowed_mentions: { parse: [] } });
   });
 });
 
@@ -62,6 +62,15 @@ test('429 avec retry_after JSON puis succès', async () => {
       assert.ok(Date.now() - t0 >= 20, 'doit attendre retry_after');
     },
   );
+});
+
+test('payload générique bloque les mentions implicites; allowlist explicite conservée', async () => {
+  await withServer([{ status: 204 }, { status: 204 }], async (url, hits) => {
+    await sendWebhook(url, { content: '@everyone @here <@123>' }, FAST);
+    await sendWebhook(url, { content: '<@&123>', allowed_mentions: { parse: [], roles: ['123'] } }, FAST);
+    assert.deepEqual(hits[0].body.allowed_mentions, { parse: [] });
+    assert.deepEqual(hits[1].body.allowed_mentions, { parse: [], roles: ['123'] });
+  });
 });
 
 test('500 est réessayé, 400 ne l’est pas', async () => {
@@ -136,7 +145,7 @@ test('sendEmbeds converts embeds to Components V2', async () => {
 });
 
 test('sendEmbeds sends with_components=true in URL', async () => {
-  await withServer([{ status: 204 }], async (url, hits) => {
+  await withServer([{ status: 204 }], async (url, _hits) => {
     const embeds = [{ title: 'test' }];
     await sendEmbeds(url, {}, embeds, FAST);
     // The URL should contain with_components=true

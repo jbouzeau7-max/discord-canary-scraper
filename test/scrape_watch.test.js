@@ -1,6 +1,6 @@
 const { test, describe } = require('node:test');
 const assert = require('node:assert/strict');
-const { shouldScrape, probeVersionHash, probeHtml, main } = require('../src/scrape_watch');
+const { shouldScrape, probeVersionHash, probeHtml, main, scrapeOnce } = require('../src/scrape_watch');
 
 const res = (body, ok = true) => ({ ok, json: async () => JSON.parse(body), text: async () => body });
 
@@ -43,5 +43,40 @@ describe('scrape_watch', () => {
     });
     assert.equal(calls[0], 'startup');
     assert.ok(calls.length >= 2 && /remote/.test(calls[1]), JSON.stringify(calls));
+  });
+
+  test('scrapeOnce : échec enfant → aucun commit', async () => {
+    const calls = [];
+    const code = await scrapeOnce('test failure', {
+      waitForCommit: async () => {},
+      runScrape: async () => 1,
+      commitState: () => calls.push('commit'),
+    });
+    assert.equal(code, 1);
+    assert.deepEqual(calls, []);
+  });
+
+  test('scrapeOnce : succès enfant → commit planifié', async () => {
+    const calls = [];
+    const code = await scrapeOnce('test success', {
+      waitForCommit: async () => {},
+      runScrape: async () => 0,
+      commitState: () => calls.push('commit'),
+    });
+    assert.equal(code, 0);
+    assert.deepEqual(calls, ['commit']);
+  });
+
+  test('main : échec au démarrage arrête le watcher avant les sondes', async () => {
+    let probes = 0;
+    const result = await main({
+      fetchImpl: async () => { probes++; return res('{"hash":"new"}'); },
+      scrape: async () => 1,
+      watchMs: 500,
+      tickMs: 10,
+    });
+    assert.equal(result.ok, false);
+    assert.equal(result.reason, 'startup-scrape-failed');
+    assert.equal(probes, 0);
   });
 });

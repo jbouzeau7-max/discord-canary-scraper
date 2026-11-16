@@ -30,6 +30,7 @@ jobs:
 
       - name: Sync data into docs
         run: |
+          node scripts/validate-data-generation.js
           mkdir -p docs/data
           # Doit couvrir TOUS les JSON chargés par docs/*.js. user_rollouts
           # (rollouts.js) et shop_items (shop.js) manquaient → 404.

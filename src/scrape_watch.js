@@ -119,25 +119,37 @@ function runChild(cmd, args, timeoutMs) {
 }
 
 let commitChain = Promise.resolve();
+let commitFailureCode = 0;
 function commitState() {
   if (process.env.SCRAPE_WATCH_COMMIT === '0') return commitChain;
   commitChain = commitChain.then(() =>
     runChild('bash', ['scripts/commit-state.sh', 'scrape: state', 'data/'], 3 * 60 * 1000).then((c) => {
+      commitFailureCode = c === 0 ? 0 : c;
       if (c !== 0) console.warn('[watch] commit-state code', c, '(rejoué au prochain scrape)');
+      return c;
     }),
   );
   return commitChain;
 }
 
-async function scrapeOnce(reason) {
+async function scrapeOnce(reason, deps = {}) {
   const t = Date.now();
   // jamais de scrape pendant un commit (rebase --autostash sur data/)
-  await commitChain;
+  await (deps.waitForCommit ? deps.waitForCommit() : commitChain);
+  if (commitFailureCode !== 0) return commitFailureCode;
   console.log(`[watch] SCRAPE (${reason}) @ ${new Date().toISOString()}`);
-  const code = await runChild(process.execPath, [path.join(__dirname, 'index.js')], SCRAPE_TIMEOUT_MS);
+  const code = deps.runScrape
+    ? await deps.runScrape(reason)
+    : await runChild(process.execPath, [path.join(__dirname, 'index.js')], SCRAPE_TIMEOUT_MS);
   console.log(`[watch] scrape exit=${code} en ${Date.now() - t}ms`);
-  // commit en arrière-plan : la sonde reprend tout de suite
-  commitState();
+  if (code === 0) {
+    // commit en arrière-plan : la sonde reprend tout de suite
+    (deps.commitState || commitState)();
+  } else {
+    // La publication peut avoir échoué en milieu de promotion; ne pas réutiliser
+    // cet état local. Le prochain job repartira d'un checkout propre.
+    console.warn('[watch] scrape failed; skip state commit and stop this runner');
+  }
   return code;
 }
 
@@ -145,7 +157,11 @@ async function main({ fetchImpl = fetch, scrape = scrapeOnce, watchMs = WATCH_MS
   const t0 = Date.now();
   console.log(`[watch] start tick=${tickMs}ms html/${HTML_EVERY} ticks watch=${Math.round(watchMs / 1000)}s`);
   // passe initiale : couvre le trou entre deux jobs (FAST SKIP si rien de neuf)
-  await scrape('startup');
+  const startupCode = await scrape('startup');
+  if (startupCode !== 0) {
+    await commitChain;
+    return { ok: false, reason: 'startup-scrape-failed', code: startupCode };
+  }
   let tick = 0;
   let failStreak = 0;
   let lastAttemptKey = null;
@@ -170,6 +186,10 @@ async function main({ fetchImpl = fetch, scrape = scrapeOnce, watchMs = WATCH_MS
         lastAttemptAt = Date.now();
         const code = await scrape(`remote ${remote.buildNumber || '?'} ${String(remote.versionHash || '').slice(0, 8)} vs local ${local.buildNumber} ${String(local.versionHash || '').slice(0, 8)}`);
         failStreak = code === 0 ? 0 : failStreak + 1;
+        if (code !== 0) {
+          await commitChain;
+          return { ok: false, reason: 'remote-scrape-failed', code };
+        }
         if (failStreak >= 3) await sleep(Math.min(60000, 5000 * failStreak));
       }
     }
@@ -178,13 +198,21 @@ async function main({ fetchImpl = fetch, scrape = scrapeOnce, watchMs = WATCH_MS
   }
   await commitChain;
   console.log('[watch] fin du budget temps');
+  if (commitFailureCode !== 0) {
+    return { ok: false, reason: 'state-commit-failed', code: commitFailureCode };
+  }
+  return { ok: true };
 }
 
 if (require.main === module) {
-  main().catch((e) => {
-    console.error(e);
-    process.exit(1);
-  });
+  main()
+    .then((result) => {
+      if (result && result.ok === false) process.exitCode = 1;
+    })
+    .catch((e) => {
+      console.error(e);
+      process.exitCode = 1;
+    });
 }
 
-module.exports = { main, shouldScrape, probeVersionHash, probeHtml, VERSION_URL };
+module.exports = { main, scrapeOnce, shouldScrape, probeVersionHash, probeHtml, VERSION_URL };
