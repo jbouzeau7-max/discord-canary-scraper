@@ -43,19 +43,22 @@ jobs:
         if: always() && steps.versions.outcome != 'cancelled'
         run: bash scripts/commit-state.sh "mobile versions" data/mobile_versions.json data/external_versions.json
 
-      - name: Mobile experiments from client files
+      - name: Mobile experiments, strings, routes from client files
         id: files
         if: always() && steps.versions.outcome != 'cancelled'
         env:
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          # Optionnel : par défaut le dépôt public Wumpus-Central/discord-mobile-datamining.
           MOBILE_DATAMINE_REPO: ${{ secrets.MOBILE_DATAMINE_REPO }}
+          # Optionnel : salon dédié (sinon DISCORD_WEBHOOK_URL, comme Canary).
+          MOBILE_FILES_WEBHOOK_URL: ${{ secrets.MOBILE_FILES_WEBHOOK_URL }}
           ORBIT_BOT_NAME: Datamining
         run: node src/mobile_from_files.js
 
       - name: Commit mobile experiments state
         if: always() && steps.files.outcome == 'success'
         run: |
-          bash scripts/commit-state.sh "mobile files: experiments state" data/mobile_experiments.json data/known_mobile_experiment_ids.json
+          bash scripts/commit-state.sh "mobile files: experiments, strings, routes state" data/mobile_experiments.json data/known_mobile_experiment_ids.json
 
       - name: Experiment rollouts
         id: rollouts
