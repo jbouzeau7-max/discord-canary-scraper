@@ -1,7 +1,7 @@
 {
-  "runId": "2026-11-16T17-50-29-232Z_674117_oveaxg",
-  "buildNumber": "674117",
-  "scrapedAt": "2026-11-16T17:50:29.232Z",
+  "runId": "2026-11-16T17-57-29-516Z_674130_pmfzag",
+  "buildNumber": "674130",
+  "scrapedAt": "2026-11-16T17:57:29.516Z",
   "totals": {
     "all": 396,
     "legacy": 0,
@@ -5139,14 +5139,17 @@
       "label": null,
       "system": "apex",
       "defaultConfig": {
-        "enabled": false
+        "enabled": false,
+        "marketingEnabled": false
       },
       "variations": {
         "1": {
-          "enabled": true
+          "enabled": true,
+          "marketingEnabled": false
         },
         "2": {
-          "enabled": true
+          "enabled": true,
+          "marketingEnabled": true
         }
       },
       "variationCount": 2,

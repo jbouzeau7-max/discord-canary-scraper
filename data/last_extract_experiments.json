@@ -1,7 +1,7 @@
 {
-  "runId": "2026-11-16T17-50-29-232Z_674117_oveaxg",
-  "buildNumber": "674117",
-  "updatedAt": "2026-11-16T17:50:29.232Z",
+  "runId": "2026-11-16T17-57-29-516Z_674130_pmfzag",
+  "buildNumber": "674130",
+  "updatedAt": "2026-11-16T17:57:29.516Z",
   "count": 396,
   "data": {
     "2021-02_staff_qc_debugging": {
@@ -4586,14 +4586,17 @@
       "variationCount": 2,
       "variations": {
         "1": {
-          "enabled": true
+          "enabled": true,
+          "marketingEnabled": false
         },
         "2": {
-          "enabled": true
+          "enabled": true,
+          "marketingEnabled": true
         }
       },
       "defaultConfig": {
-        "enabled": false
+        "enabled": false,
+        "marketingEnabled": false
       },
       "system": "apex",
       "fp": "f1790a3d5b67cc3d29c62f0c38c6b2393a73cc807e4d20c64efa8ea049961ca1"
