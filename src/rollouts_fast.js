@@ -79,6 +79,7 @@ const TRACKERS = {
       'data/gist_user_rollouts_docs.json',
       'data/user_rollout_positions.json',
       'data/user_rollout_comparison.json',
+      'data/experiment_types.json',
     ],
     msg: 'data: gist user rollouts',
   },
