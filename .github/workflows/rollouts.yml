@@ -117,6 +117,9 @@ jobs:
           APEX_MIN_PCT_DELTA: "0.01"
           APEX_RECENT_YEAR: "2025"
           GIST_ROLLOUT_MIN_PCT_DELTA: "0.05"
+          # Notifie aussi les ~690 expériences du gist de type inconnu
+          # (absentes de nos scrapes) — étiquetées « [type inconnu] ».
+          GIST_NOTIFY_UNCLASSIFIED: "1"
           ROLLOUTS_FAST_WATCH_MS: "1740000"
           ROLLOUTS_FAST_TICK_MS: "5000"
           ROLLOUTS_FAST_RETRY_MS: "60000"
