@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-11-16T06:23:03.017Z",
+ "generatedAt": "2026-11-16T10:45:41.329Z",
  "semantics": "couverture de l'espace de buckets (gist agnonotdev) — ni une proportion d'utilisateurs, ni une mesure d'accès réel ; multi-populations = couverture projetée non pondérée",
  "source": {
   "gistId": "e3e99062983e6bd0feaef833f14fd931",
@@ -9,10 +9,10 @@
  },
  "stats": {
   "total": 1043,
-  "user": 290,
-  "userData": 118,
-  "guild": 33,
-  "unclassified": 720,
+  "user": 318,
+  "userData": 145,
+  "guild": 35,
+  "unclassified": 690,
   "noData": 262
  },
  "experiments": [
@@ -146,6 +146,56 @@
     },
     "2": {
      "pct": 31.25,
+     "role": "treatment"
+    }
+   }
+  },
+  {
+   "id": "2026-10-user-profile-mobile-save-prompt",
+   "title": "2026-10-user-profile-mobile-save-prompt",
+   "type": "user",
+   "hasData": true,
+   "totalsAvailable": true,
+   "ambiguous": false,
+   "projected": false,
+   "flags": [],
+   "treatmentPct": 20,
+   "projectedTreatmentPct": null,
+   "controlPct": 20,
+   "notEligiblePct": 0,
+   "unassignedPct": 60,
+   "byVariant": {
+    "0": {
+     "pct": 20,
+     "role": "control"
+    },
+    "1": {
+     "pct": 20,
+     "role": "treatment"
+    }
+   }
+  },
+  {
+   "id": "2026-10-summary-reminder-notif-re-revival",
+   "title": "2026-10-summary-reminder-notif-re-revival",
+   "type": "user",
+   "hasData": true,
+   "totalsAvailable": true,
+   "ambiguous": false,
+   "projected": false,
+   "flags": [],
+   "treatmentPct": 20,
+   "projectedTreatmentPct": null,
+   "controlPct": 20,
+   "notEligiblePct": 0,
+   "unassignedPct": 60,
+   "byVariant": {
+    "0": {
+     "pct": 20,
+     "role": "control"
+    },
+    "1": {
+     "pct": 20,
      "role": "treatment"
     }
    }
@@ -380,6 +430,35 @@
    }
   },
   {
+   "id": "2026-10-recurring-referral-reminder",
+   "title": "2026-10-recurring-referral-reminder",
+   "type": "user",
+   "hasData": true,
+   "totalsAvailable": true,
+   "ambiguous": false,
+   "projected": false,
+   "flags": [],
+   "treatmentPct": 66.66,
+   "projectedTreatmentPct": null,
+   "controlPct": 33.33,
+   "notEligiblePct": 0,
+   "unassignedPct": 0.01,
+   "byVariant": {
+    "0": {
+     "pct": 33.33,
+     "role": "control"
+    },
+    "1": {
+     "pct": 33.33,
+     "role": "treatment"
+    },
+    "2": {
+     "pct": 33.33,
+     "role": "treatment"
+    }
+   }
+  },
+  {
    "id": "2026-10-profile-nitro-upsell-refresh",
    "title": "2026-10-profile-nitro-upsell-refresh",
    "type": "user",
@@ -478,6 +557,156 @@
   {
    "id": "2026-10-nitro-home-badge-directory",
    "title": "2026-10-nitro-home-badge-directory",
+   "type": "user",
+   "hasData": true,
+   "totalsAvailable": true,
+   "ambiguous": false,
+   "projected": false,
+   "flags": [],
+   "treatmentPct": 50,
+   "projectedTreatmentPct": null,
+   "controlPct": 50,
+   "notEligiblePct": 0,
+   "unassignedPct": 0,
+   "byVariant": {
+    "0": {
+     "pct": 50,
+     "role": "control"
+    },
+    "1": {
+     "pct": 50,
+     "role": "treatment"
+    }
+   }
+  },
+  {
+   "id": "2026-10-media-viewer-video-perf-android",
+   "title": "2026-10-media-viewer-video-perf-android",
+   "type": "user",
+   "hasData": true,
+   "totalsAvailable": true,
+   "ambiguous": false,
+   "projected": false,
+   "flags": [],
+   "treatmentPct": 10,
+   "projectedTreatmentPct": null,
+   "controlPct": 10,
+   "notEligiblePct": 0,
+   "unassignedPct": 80,
+   "byVariant": {
+    "0": {
+     "pct": 10,
+     "role": "control"
+    },
+    "1": {
+     "pct": 10,
+     "role": "treatment"
+    }
+   }
+  },
+  {
+   "id": "2026-10-media-viewer-improvements",
+   "title": "2026-10-media-viewer-improvements",
+   "type": "user",
+   "hasData": true,
+   "totalsAvailable": true,
+   "ambiguous": false,
+   "projected": false,
+   "flags": [],
+   "treatmentPct": 0,
+   "projectedTreatmentPct": null,
+   "controlPct": 50,
+   "notEligiblePct": 0,
+   "unassignedPct": 50,
+   "byVariant": {
+    "0": {
+     "pct": 50,
+     "role": "control"
+    }
+   }
+  },
+  {
+   "id": "2026-10-media-viewer-entrance-jank",
+   "title": "2026-10-media-viewer-entrance-jank",
+   "type": "user",
+   "hasData": true,
+   "totalsAvailable": true,
+   "ambiguous": false,
+   "projected": false,
+   "flags": [],
+   "treatmentPct": 10,
+   "projectedTreatmentPct": null,
+   "controlPct": 10,
+   "notEligiblePct": 0,
+   "unassignedPct": 80,
+   "byVariant": {
+    "0": {
+     "pct": 10,
+     "role": "control"
+    },
+    "1": {
+     "pct": 10,
+     "role": "treatment"
+    }
+   }
+  },
+  {
+   "id": "2026-10-maple-syrup-3",
+   "title": "2026-10-maple-syrup-3",
+   "type": "user",
+   "hasData": true,
+   "totalsAvailable": true,
+   "ambiguous": false,
+   "projected": false,
+   "flags": [],
+   "treatmentPct": 50,
+   "projectedTreatmentPct": null,
+   "controlPct": 50,
+   "notEligiblePct": 0,
+   "unassignedPct": 0,
+   "byVariant": {
+    "0": {
+     "pct": 50,
+     "role": "control"
+    },
+    "1": {
+     "pct": 50,
+     "role": "treatment"
+    }
+   }
+  },
+  {
+   "id": "2026-10-maple-syrup-2",
+   "title": "2026-10-maple-syrup-2",
+   "type": "user",
+   "hasData": true,
+   "totalsAvailable": true,
+   "ambiguous": false,
+   "projected": false,
+   "flags": [],
+   "treatmentPct": 67.25,
+   "projectedTreatmentPct": null,
+   "controlPct": 32.75,
+   "notEligiblePct": 0,
+   "unassignedPct": 0,
+   "byVariant": {
+    "0": {
+     "pct": 32.75,
+     "role": "control"
+    },
+    "1": {
+     "pct": 34,
+     "role": "treatment"
+    },
+    "2": {
+     "pct": 33.25,
+     "role": "treatment"
+    }
+   }
+  },
+  {
+   "id": "2026-10-maple-syrup-1",
+   "title": "2026-10-maple-syrup-1",
    "type": "user",
    "hasData": true,
    "totalsAvailable": true,
@@ -610,6 +839,56 @@
     },
     "1": {
      "pct": 8.5,
+     "role": "treatment"
+    }
+   }
+  },
+  {
+   "id": "2026-10-game-profiles-v3-communities-tab-mobile",
+   "title": "2026-10-game-profiles-v3-communities-tab-mobile",
+   "type": "user",
+   "hasData": true,
+   "totalsAvailable": true,
+   "ambiguous": false,
+   "projected": false,
+   "flags": [],
+   "treatmentPct": 50,
+   "projectedTreatmentPct": null,
+   "controlPct": 50,
+   "notEligiblePct": 0,
+   "unassignedPct": 0,
+   "byVariant": {
+    "0": {
+     "pct": 50,
+     "role": "control"
+    },
+    "1": {
+     "pct": 50,
+     "role": "treatment"
+    }
+   }
+  },
+  {
+   "id": "2026-10-game-profiles-server-preview",
+   "title": "2026-10-game-profiles-server-preview",
+   "type": "user",
+   "hasData": true,
+   "totalsAvailable": true,
+   "ambiguous": false,
+   "projected": false,
+   "flags": [],
+   "treatmentPct": 10,
+   "projectedTreatmentPct": null,
+   "controlPct": 10,
+   "notEligiblePct": 0,
+   "unassignedPct": 80,
+   "byVariant": {
+    "0": {
+     "pct": 10,
+     "role": "control"
+    },
+    "1": {
+     "pct": 10,
      "role": "treatment"
     }
    }
@@ -1147,6 +1426,73 @@
    }
   },
   {
+   "id": "2026-10-android-stop-and-pause-video",
+   "title": "2026-10-android-stop-and-pause-video",
+   "type": "user",
+   "hasData": true,
+   "totalsAvailable": true,
+   "ambiguous": false,
+   "projected": false,
+   "flags": [],
+   "treatmentPct": 100,
+   "projectedTreatmentPct": null,
+   "controlPct": 0,
+   "notEligiblePct": 0,
+   "unassignedPct": 0,
+   "byVariant": {
+    "1": {
+     "pct": 100,
+     "role": "treatment"
+    }
+   }
+  },
+  {
+   "id": "2026-10-android-seamless-pip",
+   "title": "2026-10-android-seamless-pip",
+   "type": "user",
+   "hasData": true,
+   "totalsAvailable": true,
+   "ambiguous": false,
+   "projected": false,
+   "flags": [],
+   "treatmentPct": 50,
+   "projectedTreatmentPct": null,
+   "controlPct": 50,
+   "notEligiblePct": 0,
+   "unassignedPct": 0,
+   "byVariant": {
+    "0": {
+     "pct": 50,
+     "role": "control"
+    },
+    "1": {
+     "pct": 50,
+     "role": "treatment"
+    }
+   }
+  },
+  {
+   "id": "2026-10-android-mobile-onboarding-friction-negative-test",
+   "title": "2026-10-android-mobile-onboarding-friction-negative-test",
+   "type": "user",
+   "hasData": true,
+   "totalsAvailable": true,
+   "ambiguous": false,
+   "projected": false,
+   "flags": [],
+   "treatmentPct": 0,
+   "projectedTreatmentPct": null,
+   "controlPct": 2,
+   "notEligiblePct": 0,
+   "unassignedPct": 98,
+   "byVariant": {
+    "0": {
+     "pct": 2,
+     "role": "control"
+    }
+   }
+  },
+  {
    "id": "2026-09-youtube-3p-nagbar",
    "title": "2026-09-youtube-3p-nagbar",
    "type": "user",
@@ -1232,6 +1578,31 @@
    }
   },
   {
+   "id": "2026-09-voice-server-update-immediate-mobile",
+   "title": "2026-09-voice-server-update-immediate-mobile",
+   "type": "user",
+   "hasData": true,
+   "totalsAvailable": true,
+   "ambiguous": false,
+   "projected": false,
+   "flags": [],
+   "treatmentPct": 50,
+   "projectedTreatmentPct": null,
+   "controlPct": 50,
+   "notEligiblePct": 0,
+   "unassignedPct": 0,
+   "byVariant": {
+    "0": {
+     "pct": 50,
+     "role": "control"
+    },
+    "1": {
+     "pct": 50,
+     "role": "treatment"
+    }
+   }
+  },
+  {
    "id": "2026-09-voice-connect-feedback",
    "title": "2026-09-voice-connect-feedback",
    "type": "user",
@@ -1273,6 +1644,35 @@
    "notEligiblePct": null,
    "unassignedPct": null,
    "byVariant": {}
+  },
+  {
+   "id": "2026-09-user-profile-premium-try-it-out-mobile-refresh",
+   "title": "2026-09-user-profile-premium-try-it-out-mobile-refresh",
+   "type": "user",
+   "hasData": true,
+   "totalsAvailable": true,
+   "ambiguous": false,
+   "projected": false,
+   "flags": [],
+   "treatmentPct": 40,
+   "projectedTreatmentPct": null,
+   "controlPct": 20,
+   "notEligiblePct": 0,
+   "unassignedPct": 40,
+   "byVariant": {
+    "0": {
+     "pct": 20,
+     "role": "control"
+    },
+    "1": {
+     "pct": 20,
+     "role": "treatment"
+    },
+    "2": {
+     "pct": 20,
+     "role": "treatment"
+    }
+   }
   },
   {
    "id": "2026-09-update-email-settings-copy-subtext",
@@ -1726,6 +2126,31 @@
    }
   },
   {
+   "id": "2026-09-profile-frame-layer-preload-mobile",
+   "title": "2026-09-profile-frame-layer-preload-mobile",
+   "type": "user",
+   "hasData": true,
+   "totalsAvailable": true,
+   "ambiguous": false,
+   "projected": false,
+   "flags": [],
+   "treatmentPct": 5,
+   "projectedTreatmentPct": null,
+   "controlPct": 5,
+   "notEligiblePct": 0,
+   "unassignedPct": 90,
+   "byVariant": {
+    "0": {
+     "pct": 5,
+     "role": "control"
+    },
+    "1": {
+     "pct": 5,
+     "role": "treatment"
+    }
+   }
+  },
+  {
    "id": "2026-09-orbs-hero-carousel",
    "title": "2026-09-orbs-hero-carousel",
    "type": "user",
@@ -1835,6 +2260,31 @@
    }
   },
   {
+   "id": "2026-09-mobile-roadblock-offer-cta",
+   "title": "2026-09-mobile-roadblock-offer-cta",
+   "type": "user",
+   "hasData": true,
+   "totalsAvailable": true,
+   "ambiguous": false,
+   "projected": false,
+   "flags": [],
+   "treatmentPct": 50,
+   "projectedTreatmentPct": null,
+   "controlPct": 50,
+   "notEligiblePct": 0,
+   "unassignedPct": 0,
+   "byVariant": {
+    "0": {
+     "pct": 50,
+     "role": "control"
+    },
+    "1": {
+     "pct": 50,
+     "role": "treatment"
+    }
+   }
+  },
+  {
    "id": "2026-09-mobile-quest-reward-button-to-secondary-button",
    "title": "2026-09-mobile-quest-reward-button-to-secondary-button",
    "type": "user",
@@ -1878,6 +2328,48 @@
    }
   },
   {
+   "id": "2026-09-mobile-nlp-search-user-flag",
+   "title": "2026-09-mobile-nlp-search-user-flag",
+   "type": "user",
+   "hasData": true,
+   "totalsAvailable": true,
+   "ambiguous": false,
+   "projected": false,
+   "flags": [],
+   "treatmentPct": 100,
+   "projectedTreatmentPct": null,
+   "controlPct": 0,
+   "notEligiblePct": 0,
+   "unassignedPct": 0,
+   "byVariant": {
+    "1": {
+     "pct": 100,
+     "role": "treatment"
+    }
+   }
+  },
+  {
+   "id": "2026-09-mobile-nitro-orbs-delivered-modal",
+   "title": "2026-09-mobile-nitro-orbs-delivered-modal",
+   "type": "user",
+   "hasData": true,
+   "totalsAvailable": true,
+   "ambiguous": false,
+   "projected": false,
+   "flags": [],
+   "treatmentPct": 100,
+   "projectedTreatmentPct": null,
+   "controlPct": 0,
+   "notEligiblePct": 0,
+   "unassignedPct": 0,
+   "byVariant": {
+    "1": {
+     "pct": 100,
+     "role": "treatment"
+    }
+   }
+  },
+  {
    "id": "2026-09-linux-gpu-decode",
    "title": "2026-09-linux-gpu-decode",
    "type": "user",
@@ -1912,6 +2404,31 @@
    "notEligiblePct": null,
    "unassignedPct": null,
    "byVariant": {}
+  },
+  {
+   "id": "2026-09-ios-anchored-chat-scroller",
+   "title": "2026-09-ios-anchored-chat-scroller",
+   "type": "user",
+   "hasData": true,
+   "totalsAvailable": true,
+   "ambiguous": false,
+   "projected": false,
+   "flags": [],
+   "treatmentPct": 11.5,
+   "projectedTreatmentPct": null,
+   "controlPct": 11.5,
+   "notEligiblePct": 0,
+   "unassignedPct": 77,
+   "byVariant": {
+    "0": {
+     "pct": 11.5,
+     "role": "control"
+    },
+    "1": {
+     "pct": 11.5,
+     "role": "treatment"
+    }
+   }
   },
   {
    "id": "2026-09-invite-expiring-soon",
@@ -1951,6 +2468,24 @@
      "role": "treatment"
     }
    }
+  },
+  {
+   "id": "2026-09-improved-mobile-shop-loading",
+   "title": "2026-09-improved-mobile-shop-loading",
+   "type": "user",
+   "hasData": false,
+   "totalsAvailable": false,
+   "ambiguous": false,
+   "projected": false,
+   "flags": [
+    "no_data"
+   ],
+   "treatmentPct": null,
+   "projectedTreatmentPct": null,
+   "controlPct": null,
+   "notEligiblePct": null,
+   "unassignedPct": null,
+   "byVariant": {}
   },
   {
    "id": "2026-09-halloween-wishlisting-animation",
@@ -2846,6 +3381,27 @@
    "byVariant": {}
   },
   {
+   "id": "2026-07-shop-this-look-mobile",
+   "title": "2026-07-shop-this-look-mobile",
+   "type": "user",
+   "hasData": true,
+   "totalsAvailable": true,
+   "ambiguous": false,
+   "projected": false,
+   "flags": [],
+   "treatmentPct": 100,
+   "projectedTreatmentPct": null,
+   "controlPct": 0,
+   "notEligiblePct": 0,
+   "unassignedPct": 0,
+   "byVariant": {
+    "1": {
+     "pct": 100,
+     "role": "treatment"
+    }
+   }
+  },
+  {
    "id": "2026-07-renewable-end-date-sort",
    "title": "2026-07-renewable-end-date-sort",
    "type": "user",
@@ -3060,6 +3616,39 @@
    }
   },
   {
+   "id": "2026-07-mobile-emoji-suggestions",
+   "title": "2026-07-mobile-emoji-suggestions",
+   "type": "user",
+   "hasData": true,
+   "totalsAvailable": true,
+   "ambiguous": false,
+   "projected": false,
+   "flags": [],
+   "treatmentPct": 30,
+   "projectedTreatmentPct": null,
+   "controlPct": 10,
+   "notEligiblePct": 0,
+   "unassignedPct": 60,
+   "byVariant": {
+    "0": {
+     "pct": 10,
+     "role": "control"
+    },
+    "1": {
+     "pct": 10,
+     "role": "treatment"
+    },
+    "2": {
+     "pct": 10,
+     "role": "treatment"
+    },
+    "3": {
+     "pct": 10,
+     "role": "treatment"
+    }
+   }
+  },
+  {
    "id": "2026-07-manual-age-assurance-fallback",
    "title": "2026-07-manual-age-assurance-fallback",
    "type": "user",
@@ -3133,6 +3722,39 @@
    "notEligiblePct": null,
    "unassignedPct": null,
    "byVariant": {}
+  },
+  {
+   "id": "2026-07-custom-typing-indicator",
+   "title": "2026-07-custom-typing-indicator",
+   "type": "user",
+   "hasData": true,
+   "totalsAvailable": true,
+   "ambiguous": false,
+   "projected": false,
+   "flags": [],
+   "treatmentPct": 90,
+   "projectedTreatmentPct": null,
+   "controlPct": 10,
+   "notEligiblePct": 0,
+   "unassignedPct": 0,
+   "byVariant": {
+    "0": {
+     "pct": 10,
+     "role": "control"
+    },
+    "1": {
+     "pct": 50,
+     "role": "treatment"
+    },
+    "2": {
+     "pct": 10,
+     "role": "treatment"
+    },
+    "3": {
+     "pct": 30,
+     "role": "treatment"
+    }
+   }
   },
   {
    "id": "2026-07-custom-app-store-overlay",
@@ -3529,6 +4151,31 @@
    }
   },
   {
+   "id": "2026-06-mobile-media-viewer-share",
+   "title": "2026-06-mobile-media-viewer-share",
+   "type": "user",
+   "hasData": true,
+   "totalsAvailable": true,
+   "ambiguous": false,
+   "projected": false,
+   "flags": [],
+   "treatmentPct": 10,
+   "projectedTreatmentPct": null,
+   "controlPct": 10,
+   "notEligiblePct": 0,
+   "unassignedPct": 80,
+   "byVariant": {
+    "0": {
+     "pct": 10,
+     "role": "control"
+    },
+    "1": {
+     "pct": 10,
+     "role": "treatment"
+    }
+   }
+  },
+  {
    "id": "2026-06-hero-shelf-ad-tile",
    "title": "2026-06-hero-shelf-ad-tile",
    "type": "user",
@@ -3545,6 +4192,31 @@
    "notEligiblePct": null,
    "unassignedPct": null,
    "byVariant": {}
+  },
+  {
+   "id": "2026-06-gift-acom-order",
+   "title": "2026-06-gift-acom-order",
+   "type": "user",
+   "hasData": true,
+   "totalsAvailable": true,
+   "ambiguous": false,
+   "projected": false,
+   "flags": [],
+   "treatmentPct": 25,
+   "projectedTreatmentPct": null,
+   "controlPct": 25,
+   "notEligiblePct": 0,
+   "unassignedPct": 50,
+   "byVariant": {
+    "0": {
+     "pct": 25,
+     "role": "control"
+    },
+    "1": {
+     "pct": 25,
+     "role": "treatment"
+    }
+   }
   },
   {
    "id": "2026-06-game-server-hosting-in-shop",
@@ -4436,6 +5108,27 @@
    "notEligiblePct": null,
    "unassignedPct": null,
    "byVariant": {}
+  },
+  {
+   "id": "2026-03-nitro-acom-subscription",
+   "title": "2026-03-nitro-acom-subscription",
+   "type": "user",
+   "hasData": true,
+   "totalsAvailable": true,
+   "ambiguous": false,
+   "projected": false,
+   "flags": [],
+   "treatmentPct": 100,
+   "projectedTreatmentPct": null,
+   "controlPct": 0,
+   "notEligiblePct": 0,
+   "unassignedPct": 0,
+   "byVariant": {
+    "1": {
+     "pct": 100,
+     "role": "treatment"
+    }
+   }
   },
   {
    "id": "2026-03-new-server-boost-system-messages",

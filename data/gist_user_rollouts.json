@@ -2,15 +2,15 @@
  "version": 1,
  "schemaVersion": 1,
  "semanticsVersion": 2,
- "runId": "20261116T101620_gist",
- "scrapedAt": "2026-11-16T10:16:20.739Z",
+ "runId": "20261116T104541_gist",
+ "scrapedAt": "2026-11-16T10:45:41.321Z",
  "source": {
   "gistId": "e3e99062983e6bd0feaef833f14fd931",
   "htmlUrl": "https://gist.github.com/agnonotdev/e3e99062983e6bd0feaef833f14fd931",
   "rawUrl": "https://gist.githubusercontent.com/agnonotdev/e3e99062983e6bd0feaef833f14fd931/raw/28f732f57e30e540d2afad8572e4bf1819815762/rollouts-tag.json",
   "updatedAt": "2026-11-14T15:49:02Z",
   "revision": "6d5357d8dc9a85dec1eb17f3d75ec01dfc43d330",
-  "fetchedAt": "2026-11-16T10:16:20.739Z",
+  "fetchedAt": "2026-11-16T10:45:41.321Z",
   "fallback": false,
   "rawFallback": false,
   "canonicalId": null
@@ -62,10 +62,10 @@
  },
  "stats": {
   "total": 1043,
-  "user": 290,
-  "userData": 118,
-  "guild": 33,
-  "unclassified": 720,
+  "user": 318,
+  "userData": 145,
+  "guild": 35,
+  "unclassified": 690,
   "noData": 262
  },
  "acknowledged": {
@@ -4482,11 +4482,740 @@
    "treatment": {
     "pct": null
    }
+  },
+  "2026-10-user-profile-mobile-save-prompt": {
+   "key": "e9aaf2eb7b793969",
+   "hasData": true,
+   "sig": "0:control|1:treatment",
+   "byVariant": {
+    "0": {
+     "pct": 20,
+     "role": "control"
+    },
+    "1": {
+     "pct": 20,
+     "role": "treatment"
+    }
+   },
+   "treatment": {
+    "pct": 20
+   },
+   "control": {
+    "pct": 20
+   },
+   "notEligible": {
+    "pct": 0
+   },
+   "projectedCoverage": null,
+   "projected": false,
+   "variantsCount": 2
+  },
+  "2026-10-summary-reminder-notif-re-revival": {
+   "key": "8f973673080ffcc3",
+   "hasData": true,
+   "sig": "0:control|1:treatment",
+   "byVariant": {
+    "0": {
+     "pct": 20,
+     "role": "control"
+    },
+    "1": {
+     "pct": 20,
+     "role": "treatment"
+    }
+   },
+   "treatment": {
+    "pct": 20
+   },
+   "control": {
+    "pct": 20
+   },
+   "notEligible": {
+    "pct": 0
+   },
+   "projectedCoverage": null,
+   "projected": false,
+   "variantsCount": 2
+  },
+  "2026-10-recurring-referral-reminder": {
+   "key": "f97922126292200d",
+   "hasData": true,
+   "sig": "0:control|1:treatment|2:treatment",
+   "byVariant": {
+    "0": {
+     "pct": 33.33,
+     "role": "control"
+    },
+    "1": {
+     "pct": 33.33,
+     "role": "treatment"
+    },
+    "2": {
+     "pct": 33.33,
+     "role": "treatment"
+    }
+   },
+   "treatment": {
+    "pct": 66.66
+   },
+   "control": {
+    "pct": 33.33
+   },
+   "notEligible": {
+    "pct": 0
+   },
+   "projectedCoverage": null,
+   "projected": false,
+   "variantsCount": 3
+  },
+  "2026-10-media-viewer-video-perf-android": {
+   "key": "dbb456fc20cc308d",
+   "hasData": true,
+   "sig": "0:control|1:treatment",
+   "byVariant": {
+    "0": {
+     "pct": 10,
+     "role": "control"
+    },
+    "1": {
+     "pct": 10,
+     "role": "treatment"
+    }
+   },
+   "treatment": {
+    "pct": 10
+   },
+   "control": {
+    "pct": 10
+   },
+   "notEligible": {
+    "pct": 0
+   },
+   "projectedCoverage": null,
+   "projected": false,
+   "variantsCount": 2
+  },
+  "2026-10-media-viewer-improvements": {
+   "key": "cdb946d6edf05d5d",
+   "hasData": true,
+   "sig": "0:control",
+   "byVariant": {
+    "0": {
+     "pct": 50,
+     "role": "control"
+    }
+   },
+   "treatment": {
+    "pct": 0
+   },
+   "control": {
+    "pct": 50
+   },
+   "notEligible": {
+    "pct": 0
+   },
+   "projectedCoverage": null,
+   "projected": false,
+   "variantsCount": 1
+  },
+  "2026-10-media-viewer-entrance-jank": {
+   "key": "dbb456fc20cc308d",
+   "hasData": true,
+   "sig": "0:control|1:treatment",
+   "byVariant": {
+    "0": {
+     "pct": 10,
+     "role": "control"
+    },
+    "1": {
+     "pct": 10,
+     "role": "treatment"
+    }
+   },
+   "treatment": {
+    "pct": 10
+   },
+   "control": {
+    "pct": 10
+   },
+   "notEligible": {
+    "pct": 0
+   },
+   "projectedCoverage": null,
+   "projected": false,
+   "variantsCount": 2
+  },
+  "2026-10-maple-syrup-3": {
+   "key": "7c9fd027589c57ba",
+   "hasData": true,
+   "sig": "0:control|1:treatment",
+   "byVariant": {
+    "0": {
+     "pct": 50,
+     "role": "control"
+    },
+    "1": {
+     "pct": 50,
+     "role": "treatment"
+    }
+   },
+   "treatment": {
+    "pct": 50
+   },
+   "control": {
+    "pct": 50
+   },
+   "notEligible": {
+    "pct": 0
+   },
+   "projectedCoverage": null,
+   "projected": false,
+   "variantsCount": 2
+  },
+  "2026-10-maple-syrup-2": {
+   "key": "1a1057883417412a",
+   "hasData": true,
+   "sig": "0:control|1:treatment|2:treatment",
+   "byVariant": {
+    "0": {
+     "pct": 32.75,
+     "role": "control"
+    },
+    "1": {
+     "pct": 34,
+     "role": "treatment"
+    },
+    "2": {
+     "pct": 33.25,
+     "role": "treatment"
+    }
+   },
+   "treatment": {
+    "pct": 67.25
+   },
+   "control": {
+    "pct": 32.75
+   },
+   "notEligible": {
+    "pct": 0
+   },
+   "projectedCoverage": null,
+   "projected": false,
+   "variantsCount": 3
+  },
+  "2026-10-maple-syrup-1": {
+   "key": "7c9fd027589c57ba",
+   "hasData": true,
+   "sig": "0:control|1:treatment",
+   "byVariant": {
+    "0": {
+     "pct": 50,
+     "role": "control"
+    },
+    "1": {
+     "pct": 50,
+     "role": "treatment"
+    }
+   },
+   "treatment": {
+    "pct": 50
+   },
+   "control": {
+    "pct": 50
+   },
+   "notEligible": {
+    "pct": 0
+   },
+   "projectedCoverage": null,
+   "projected": false,
+   "variantsCount": 2
+  },
+  "2026-10-game-profiles-v3-communities-tab-mobile": {
+   "key": "bfb651c748e21566",
+   "hasData": true,
+   "sig": "0:control|1:treatment",
+   "byVariant": {
+    "0": {
+     "pct": 50,
+     "role": "control"
+    },
+    "1": {
+     "pct": 50,
+     "role": "treatment"
+    }
+   },
+   "treatment": {
+    "pct": 50
+   },
+   "control": {
+    "pct": 50
+   },
+   "notEligible": {
+    "pct": 0
+   },
+   "projectedCoverage": null,
+   "projected": false,
+   "variantsCount": 2
+  },
+  "2026-10-game-profiles-server-preview": {
+   "key": "dc6996c724bb242e",
+   "hasData": true,
+   "sig": "0:control|1:treatment",
+   "byVariant": {
+    "0": {
+     "pct": 10,
+     "role": "control"
+    },
+    "1": {
+     "pct": 10,
+     "role": "treatment"
+    }
+   },
+   "treatment": {
+    "pct": 10
+   },
+   "control": {
+    "pct": 10
+   },
+   "notEligible": {
+    "pct": 0
+   },
+   "projectedCoverage": null,
+   "projected": false,
+   "variantsCount": 2
+  },
+  "2026-10-android-stop-and-pause-video": {
+   "key": "95f46bfc73a52751",
+   "hasData": true,
+   "sig": "1:treatment",
+   "byVariant": {
+    "1": {
+     "pct": 100,
+     "role": "treatment"
+    }
+   },
+   "treatment": {
+    "pct": 100
+   },
+   "control": {
+    "pct": 0
+   },
+   "notEligible": {
+    "pct": 0
+   },
+   "projectedCoverage": null,
+   "projected": false,
+   "variantsCount": 1
+  },
+  "2026-10-android-seamless-pip": {
+   "key": "a624203af7186263",
+   "hasData": true,
+   "sig": "0:control|1:treatment",
+   "byVariant": {
+    "0": {
+     "pct": 50,
+     "role": "control"
+    },
+    "1": {
+     "pct": 50,
+     "role": "treatment"
+    }
+   },
+   "treatment": {
+    "pct": 50
+   },
+   "control": {
+    "pct": 50
+   },
+   "notEligible": {
+    "pct": 0
+   },
+   "projectedCoverage": null,
+   "projected": false,
+   "variantsCount": 2
+  },
+  "2026-10-android-mobile-onboarding-friction-negative-test": {
+   "key": "d0abcb550902850e",
+   "hasData": true,
+   "sig": "0:control",
+   "byVariant": {
+    "0": {
+     "pct": 2,
+     "role": "control"
+    }
+   },
+   "treatment": {
+    "pct": 0
+   },
+   "control": {
+    "pct": 2
+   },
+   "notEligible": {
+    "pct": 0
+   },
+   "projectedCoverage": null,
+   "projected": false,
+   "variantsCount": 1
+  },
+  "2026-09-voice-server-update-immediate-mobile": {
+   "key": "dd8d0080ec168ded",
+   "hasData": true,
+   "sig": "0:control|1:treatment",
+   "byVariant": {
+    "0": {
+     "pct": 50,
+     "role": "control"
+    },
+    "1": {
+     "pct": 50,
+     "role": "treatment"
+    }
+   },
+   "treatment": {
+    "pct": 50
+   },
+   "control": {
+    "pct": 50
+   },
+   "notEligible": {
+    "pct": 0
+   },
+   "projectedCoverage": null,
+   "projected": false,
+   "variantsCount": 2
+  },
+  "2026-09-user-profile-premium-try-it-out-mobile-refresh": {
+   "key": "74c0ed96a9100ba4",
+   "hasData": true,
+   "sig": "0:control|1:treatment|2:treatment",
+   "byVariant": {
+    "0": {
+     "pct": 20,
+     "role": "control"
+    },
+    "1": {
+     "pct": 20,
+     "role": "treatment"
+    },
+    "2": {
+     "pct": 20,
+     "role": "treatment"
+    }
+   },
+   "treatment": {
+    "pct": 40
+   },
+   "control": {
+    "pct": 20
+   },
+   "notEligible": {
+    "pct": 0
+   },
+   "projectedCoverage": null,
+   "projected": false,
+   "variantsCount": 3
+  },
+  "2026-09-profile-frame-layer-preload-mobile": {
+   "key": "947de72f00f84f24",
+   "hasData": true,
+   "sig": "0:control|1:treatment",
+   "byVariant": {
+    "0": {
+     "pct": 5,
+     "role": "control"
+    },
+    "1": {
+     "pct": 5,
+     "role": "treatment"
+    }
+   },
+   "treatment": {
+    "pct": 5
+   },
+   "control": {
+    "pct": 5
+   },
+   "notEligible": {
+    "pct": 0
+   },
+   "projectedCoverage": null,
+   "projected": false,
+   "variantsCount": 2
+  },
+  "2026-09-mobile-roadblock-offer-cta": {
+   "key": "55e7c1437ea3c30a",
+   "hasData": true,
+   "sig": "0:control|1:treatment",
+   "byVariant": {
+    "0": {
+     "pct": 50,
+     "role": "control"
+    },
+    "1": {
+     "pct": 50,
+     "role": "treatment"
+    }
+   },
+   "treatment": {
+    "pct": 50
+   },
+   "control": {
+    "pct": 50
+   },
+   "notEligible": {
+    "pct": 0
+   },
+   "projectedCoverage": null,
+   "projected": false,
+   "variantsCount": 2
+  },
+  "2026-09-mobile-nlp-search-user-flag": {
+   "key": "95f46bfc73a52751",
+   "hasData": true,
+   "sig": "1:treatment",
+   "byVariant": {
+    "1": {
+     "pct": 100,
+     "role": "treatment"
+    }
+   },
+   "treatment": {
+    "pct": 100
+   },
+   "control": {
+    "pct": 0
+   },
+   "notEligible": {
+    "pct": 0
+   },
+   "projectedCoverage": null,
+   "projected": false,
+   "variantsCount": 1
+  },
+  "2026-09-mobile-nitro-orbs-delivered-modal": {
+   "key": "95f46bfc73a52751",
+   "hasData": true,
+   "sig": "1:treatment",
+   "byVariant": {
+    "1": {
+     "pct": 100,
+     "role": "treatment"
+    }
+   },
+   "treatment": {
+    "pct": 100
+   },
+   "control": {
+    "pct": 0
+   },
+   "notEligible": {
+    "pct": 0
+   },
+   "projectedCoverage": null,
+   "projected": false,
+   "variantsCount": 1
+  },
+  "2026-09-ios-anchored-chat-scroller": {
+   "key": "77a844f1b6801f40",
+   "hasData": true,
+   "sig": "0:control|1:treatment",
+   "byVariant": {
+    "0": {
+     "pct": 11.5,
+     "role": "control"
+    },
+    "1": {
+     "pct": 11.5,
+     "role": "treatment"
+    }
+   },
+   "treatment": {
+    "pct": 11.5
+   },
+   "control": {
+    "pct": 11.5
+   },
+   "notEligible": {
+    "pct": 0
+   },
+   "projectedCoverage": null,
+   "projected": false,
+   "variantsCount": 2
+  },
+  "2026-07-shop-this-look-mobile": {
+   "key": "95f46bfc73a52751",
+   "hasData": true,
+   "sig": "1:treatment",
+   "byVariant": {
+    "1": {
+     "pct": 100,
+     "role": "treatment"
+    }
+   },
+   "treatment": {
+    "pct": 100
+   },
+   "control": {
+    "pct": 0
+   },
+   "notEligible": {
+    "pct": 0
+   },
+   "projectedCoverage": null,
+   "projected": false,
+   "variantsCount": 1
+  },
+  "2026-07-mobile-emoji-suggestions": {
+   "key": "a20039e6d6fa1f60",
+   "hasData": true,
+   "sig": "0:control|1:treatment|2:treatment|3:treatment",
+   "byVariant": {
+    "0": {
+     "pct": 10,
+     "role": "control"
+    },
+    "1": {
+     "pct": 10,
+     "role": "treatment"
+    },
+    "2": {
+     "pct": 10,
+     "role": "treatment"
+    },
+    "3": {
+     "pct": 10,
+     "role": "treatment"
+    }
+   },
+   "treatment": {
+    "pct": 30
+   },
+   "control": {
+    "pct": 10
+   },
+   "notEligible": {
+    "pct": 0
+   },
+   "projectedCoverage": null,
+   "projected": false,
+   "variantsCount": 4
+  },
+  "2026-07-custom-typing-indicator": {
+   "key": "bbfe36e8b98a7c17",
+   "hasData": true,
+   "sig": "0:control|1:treatment|2:treatment|3:treatment",
+   "byVariant": {
+    "0": {
+     "pct": 10,
+     "role": "control"
+    },
+    "1": {
+     "pct": 50,
+     "role": "treatment"
+    },
+    "2": {
+     "pct": 10,
+     "role": "treatment"
+    },
+    "3": {
+     "pct": 30,
+     "role": "treatment"
+    }
+   },
+   "treatment": {
+    "pct": 90
+   },
+   "control": {
+    "pct": 10
+   },
+   "notEligible": {
+    "pct": 0
+   },
+   "projectedCoverage": null,
+   "projected": false,
+   "variantsCount": 4
+  },
+  "2026-06-mobile-media-viewer-share": {
+   "key": "0b398f2ef8e2a004",
+   "hasData": true,
+   "sig": "0:control|1:treatment",
+   "byVariant": {
+    "0": {
+     "pct": 10,
+     "role": "control"
+    },
+    "1": {
+     "pct": 10,
+     "role": "treatment"
+    }
+   },
+   "treatment": {
+    "pct": 10
+   },
+   "control": {
+    "pct": 10
+   },
+   "notEligible": {
+    "pct": 0
+   },
+   "projectedCoverage": null,
+   "projected": false,
+   "variantsCount": 2
+  },
+  "2026-06-gift-acom-order": {
+   "key": "3e512a40b2210ef9",
+   "hasData": true,
+   "sig": "0:control|1:treatment",
+   "byVariant": {
+    "0": {
+     "pct": 25,
+     "role": "control"
+    },
+    "1": {
+     "pct": 25,
+     "role": "treatment"
+    }
+   },
+   "treatment": {
+    "pct": 25
+   },
+   "control": {
+    "pct": 25
+   },
+   "notEligible": {
+    "pct": 0
+   },
+   "projectedCoverage": null,
+   "projected": false,
+   "variantsCount": 2
+  },
+  "2026-03-nitro-acom-subscription": {
+   "key": "95f46bfc73a52751",
+   "hasData": true,
+   "sig": "1:treatment",
+   "byVariant": {
+    "1": {
+     "pct": 100,
+     "role": "treatment"
+    }
+   },
+   "treatment": {
+    "pct": 100
+   },
+   "control": {
+    "pct": 0
+   },
+   "notEligible": {
+    "pct": 0
+   },
+   "projectedCoverage": null,
+   "projected": false,
+   "variantsCount": 1
   }
  },
  "lastRun": {
-  "changes": 0,
-  "delivered": 0,
+  "changes": 27,
+  "delivered": 27,
   "firstRun": false,
   "semanticsMigrated": 0
  },
@@ -4754,6 +5483,12 @@
    "revision": "6d5357d8dc9a85dec1eb17f3d75ec01dfc43d330",
    "changes": 0,
    "delivered": 0
+  },
+  {
+   "at": "2026-11-16T10:45:41.321Z",
+   "revision": "6d5357d8dc9a85dec1eb17f3d75ec01dfc43d330",
+   "changes": 27,
+   "delivered": 27
   }
  ]
 }
