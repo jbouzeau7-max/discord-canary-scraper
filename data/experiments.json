@@ -1,7 +1,7 @@
 {
-  "runId": "2026-11-16T17-57-29-516Z_674130_pmfzag",
-  "buildNumber": "674130",
-  "scrapedAt": "2026-11-16T17:57:29.516Z",
+  "runId": "2026-11-16T17-59-43-920Z_674132_z7yebz",
+  "buildNumber": "674132",
+  "scrapedAt": "2026-11-16T17:59:43.921Z",
   "totals": {
     "all": 396,
     "legacy": 0,
@@ -8993,7 +8993,17 @@
         }
       },
       "variationCount": 1,
-      "source": "discord"
+      "source": "discord",
+      "guildPercentage": {
+        "status": "unknown",
+        "value": null
+      },
+      "userPercentage": {
+        "status": "provided",
+        "value": 10,
+        "source": "gist_user_rollouts"
+      },
+      "fingerprint": "a98a5ab5af32019439b115d46512b59f4c1b96ed9e576be85650c52e724efe03"
     },
     {
       "id": "2026-11-profile-embed-rendering-mobile",
