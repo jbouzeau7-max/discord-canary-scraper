@@ -4,23 +4,18 @@ const test = require('node:test');
 const assert = require('node:assert/strict');
 const { main } = require('../src/quests');
 
-test('main utilise uniquement la source publique et retourne si elle est vide', async () => {
-  const previousExitCode = process.exitCode;
-  process.exitCode = 0;
+test('main utilise uniquement la source publique et retourne le code 1 si elle est vide', async () => {
   let publicCalls = 0;
-  try {
-    const result = await main({
-      fetchQuestRegions: async () => new Map(),
-      fetchPublicQuests: async () => { publicCalls++; return []; },
-    });
+  let exitCode = 0;
+  const result = await main({
+    fetchQuestRegions: async () => new Map(),
+    fetchPublicQuests: async () => { publicCalls++; return []; },
+    setExitCode: (code) => { exitCode = code; },
+  });
 
-    // Les assertions après await prouvent que main() retourne au watcher au lieu
-    // d'arrêter le processus; le code de sortie non nul est conservé pour CI.
-    assert.equal(publicCalls, 1);
-    assert.equal(process.exitCode, 1);
-    assert.equal(result.reason, 'no-quests');
-    assert.equal('fetchOfficialQuests' in require('../src/quests'), false);
-  } finally {
-    process.exitCode = previousExitCode;
-  }
+  // Les assertions après await prouvent que main() retourne normalement au watcher.
+  assert.equal(publicCalls, 1);
+  assert.equal(exitCode, 1);
+  assert.equal(result.reason, 'no-quests');
+  assert.equal('fetchOfficialQuests' in require('../src/quests'), false);
 });
