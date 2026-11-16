@@ -18,7 +18,7 @@ const fs = require('fs-extra');
 const path = require('path');
 const { sendEmbeds, sendWebhook } = require('./lib/webhook');
 const { writeJsonAtomic } = require('./lib/atomic');
-const { fetchJsonWithRetry, fetchWithRetry } = require('./lib/http');
+const { fetchJsonWithRetry } = require('./lib/http');
 const { sleep, DEFAULT_UA, DEFAULT_BOT_NAME: BOT_NAME, DEFAULT_MOBILE_AVATAR: AVATAR } = require('./lib/utils');
 
 const DATA_DIR = path.join(__dirname, '..', 'data');
@@ -30,23 +30,6 @@ const WEBHOOK =
   process.env.QUEST_WEBHOOK_URL ||
   process.env.DISCORD_WEBHOOK_URL ||
   null;
-function configuredDiscordTokens(env = process.env) {
-  const values = [env.DISCORD_TOKEN, env.DISCORD_USER_TOKEN];
-  for (let i = 1; i <= 5; i++) values.push(env['DISCORD_USER_TOKEN_' + i]);
-  const pool = String(env.DISCORD_USER_TOKENS || '').trim();
-  if (pool) {
-    try {
-      const parsed = JSON.parse(pool);
-      if (Array.isArray(parsed)) values.push(...parsed);
-      else values.push(pool);
-    } catch {
-      values.push(...pool.split(/[\s,;]+/));
-    }
-  }
-  return [...new Set(values.map((v) => String(v || '').trim()).filter(Boolean))];
-}
-
-const DISCORD_TOKENS = configuredDiscordTokens();
 const PUBLIC_QUESTS_URL = 'https://api.discordquest.com/api/quests';
 const QUESTS_MENTION = (process.env.QUESTS_MENTION || '').trim() || null;
 
@@ -1037,75 +1020,6 @@ async function fetchPublicQuests(regionMap) {
   return list.map((q) => normalizeQuest(q, map)).filter(Boolean);
 }
 
-async function fetchOfficialQuests(regionMap, options = {}) {
-  const tokens = Array.isArray(options.tokens) ? options.tokens.filter(Boolean) : DISCORD_TOKENS;
-  const request = options.fetchWithRetry || fetchWithRetry;
-  if (!tokens.length) {
-    console.log('No DISCORD_TOKEN / DISCORD_USER_TOKEN — official quests skipped');
-    return [];
-  }
-  const endpoints = [
-    'https://canary.discord.com/api/v10/quests/@me',
-    'https://discord.com/api/v10/quests/@me',
-  ];
-  let lastStatus = 0;
-  for (let tokenIndex = 0; tokenIndex < tokens.length; tokenIndex++) {
-    const headers = {
-      Authorization: String(tokens[tokenIndex]),
-      'User-Agent': DEFAULT_UA,
-      Accept: 'application/json',
-    };
-    let rejected = false;
-    for (const url of endpoints) {
-      let response;
-      try {
-        response = await request(url, {
-          headers,
-          timeout: options.timeoutMs || 25000,
-          maxAttempts: 2,
-          label: 'quests-official',
-        });
-      } catch (e) {
-        const status = Number(String((e && (e.message || e)) || e).match(/HTTP\s+(\d{3})/i)?.[1]) || 0;
-        lastStatus = status;
-        console.warn('official quests request failed:', status || 'network/retry exhausted');
-        // A network/rate-limit failure affects this endpoint, not credentials;
-        // do not fan the same request out across every account token.
-        if (!status || status === 429 || status >= 500) return [];
-        continue;
-      }
-
-      lastStatus = Number(response.status) || 0;
-      if (lastStatus === 401 || lastStatus === 403) {
-        rejected = true;
-        console.warn('official quests credential rejected; trying configured fallback token', tokenIndex + 1);
-        break;
-      }
-      if (lastStatus === 429 || lastStatus >= 500) {
-        console.warn('official quests temporarily unavailable, HTTP', lastStatus);
-        return [];
-      }
-      if (!response.ok) continue;
-
-      let data = null;
-      try {
-        data = JSON.parse(String(await response.text()).replace(/^\uFEFF/, ''));
-      } catch {}
-      if (!data) {
-        lastStatus = -1;
-        continue;
-      }
-      const list = Array.isArray(data) ? data : data.quests || data.data || [];
-      const map = await regionMap;
-      const out = list.map((q) => normalizeQuest(q, map)).filter(Boolean);
-      console.log('Official quests:', out.length, url.includes('canary') ? '(canary)' : '(stable)');
-      return out;
-    }
-    if (!rejected && lastStatus === 429) return [];
-  }
-  if (lastStatus) console.warn('official quests gave up, last HTTP', lastStatus);
-  return [];
-}
 
 async function main(deps = {}) {
   const setExitCode = deps.setExitCode || ((code) => {
@@ -1113,8 +1027,7 @@ async function main(deps = {}) {
   });
   await fs.ensureDir(DATA_DIR);
   console.log('🎮 Récupération des quêtes…');
-  const tokenConfigured = deps.fetchOfficialQuests ? true : DISCORD_TOKENS.length > 0;
-  console.log('Token officiel:', tokenConfigured ? 'configured' : 'MISSING');
+  console.log('Source des quêtes : API publique uniquement');
   console.log(
     'Webhook:',
     WEBHOOK
@@ -1125,76 +1038,22 @@ async function main(deps = {}) {
   );
 
   let quests = [];
-  let official = [];
   let publicList = [];
-
-  // Régions + quêtes officielles + API publique EN PARALLÈLE (avant : 3 appels
-  // en série → latence additionnée, jusqu'à ~1 min sur un endpoint lent).
-  console.log('🗺️ Récupération des régions + quêtes (parallèle)…');
+  console.log('🗺️ Récupération des régions + quêtes publiques (parallèle)…');
   const regionP = (deps.fetchQuestRegions || fetchQuestRegions)().catch(() => new Map());
-  const officialP = tokenConfigured
-    ? (deps.fetchOfficialQuests || fetchOfficialQuests)(regionP).catch((e) => {
-        console.warn('Quêtes officielles:', String(e.message || e).slice(0, 120));
-        return [];
-      })
-    : Promise.resolve([]);
-  if (!tokenConfigured) {
-    console.log('Tip: set secret DISCORD_TOKEN (user token) for faster official quest detection');
-  }
-  const publicP = (deps.fetchPublicQuests || fetchPublicQuests)(regionP).then(
+  const pub = await (deps.fetchPublicQuests || fetchPublicQuests)(regionP).then(
     (list) => ({ ok: true, list }),
     (e) => ({ ok: false, e }),
   );
-  official = await officialP;
-  const pub = await publicP;
   if (pub.ok) {
     publicList = pub.list;
+    quests = publicList.filter((q) => q && q.id).map((q) => ({ ...q, source: q.source || 'public' }));
     console.log('API publique:', publicList.length, 'quêtes');
   } else {
     console.error('API publique échouée:', pub.e && pub.e.message);
-    if (!official.length) process.exitCode = 1;
+    process.exitCode = 1;
   }
-
-  {
-    const byId = new Map();
-    for (const q of official) {
-      if (q && q.id) byId.set(q.id, { ...q, source: 'official' });
-    }
-    for (const q of publicList) {
-      if (!q || !q.id) continue;
-      const prev = byId.get(q.id);
-      if (!prev) {
-        byId.set(q.id, { ...q, source: 'public' });
-        continue;
-      }
-      byId.set(q.id, {
-        ...prev,
-        ...q,
-        name: prev.name || q.name,
-        heroImage: prev.heroImage || q.heroImage,
-        gameTile: prev.gameTile || q.gameTile,
-        logotype: prev.logotype || q.logotype,
-        videoUrl: prev.videoUrl || q.videoUrl,
-        rewards:
-          (prev.rewards && prev.rewards.length ? prev.rewards : null) ||
-          q.rewards ||
-          [],
-        tasksText: prev.tasksText || q.tasksText,
-        regionFlags: prev.regionFlags || q.regionFlags,
-        source: prev.source === 'official' ? 'official+public' : prev.source,
-      });
-    }
-    quests = Array.from(byId.values());
-  }
-
-  console.log(
-    'Quêtes fusionnées:',
-    quests.length,
-    '| official',
-    official.length,
-    '| public',
-    publicList.length,
-  );
+  console.log('Quêtes publiques:', quests.length);
   const sample = quests.find((q) => q.name && !String(q.name).startsWith('Quête '));
   if (sample) {
     console.log(
@@ -1216,7 +1075,7 @@ async function main(deps = {}) {
   if (!quests.length) {
     console.error('Aucune quête — abort');
     setExitCode(1);
-    return { ok: false, reason: 'no-quests', official: official.length, public: publicList.length };
+    return { ok: false, reason: 'no-quests', public: publicList.length };
   }
 
   const now = Date.now();
@@ -1372,8 +1231,6 @@ module.exports = {
   buildQuestComponentsV2,
   orbImageUrl,
   countryCodeToFlag,
-  configuredDiscordTokens,
-  fetchOfficialQuests,
   fetchQuestRegions,
   main,
   watch,

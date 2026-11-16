@@ -33,11 +33,6 @@ jobs:
       - name: Scrape
         id: scrape
         env:
-          DISCORD_USER_TOKEN: ${{ secrets.DISCORD_USER_TOKEN }}
-          DISCORD_USER_TOKEN_2: ${{ secrets.DISCORD_USER_TOKEN_2 }}
-          DISCORD_USER_TOKEN_3: ${{ secrets.DISCORD_USER_TOKEN_3 }}
-          DISCORD_USER_TOKEN_4: ${{ secrets.DISCORD_USER_TOKEN_4 }}
-          DISCORD_USER_TOKEN_5: ${{ secrets.DISCORD_USER_TOKEN_5 }}
           WEBHOOK_URL: ${{ secrets.WEBHOOK_URL }}
           # Compatibilité avec le secret historique WEBHOOK_URL.
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL || secrets.WEBHOOK_URL }}

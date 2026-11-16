@@ -14,7 +14,7 @@ node src/index.js
 Variables d’environnement utiles :
 
 - `WEBHOOK_URL` / `DISCORD_WEBHOOK_URL` — notifications Discord
-- `DISCORD_USER_TOKEN` (et `_1`…`_5`) — tokens utilisateur pour certaines APIs
+- Aucune authentification par compte Discord n’est utilisée ; seules les sources publiques et les webhooks configurés sont employés.
 - `NEWS_WEBHOOK_URL`, `SHOP_WEBHOOK_URL`, `QUEST_WEBHOOK_URL`, etc.
 
 ## Scripts npm

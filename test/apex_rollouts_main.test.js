@@ -142,7 +142,7 @@ test('envPositive : valeur illisible → défaut (un seuil NaN bloquait toute no
 });
 
 // ── fetchDiscordGuild : erreurs réseau et retries ───────────────────────────
-const fetchOpts = (fetchImpl, more = {}) => ({ fetch: fetchImpl, sleep: async () => {}, tokens: [], ...more });
+const fetchOpts = (fetchImpl, more = {}) => ({ fetch: fetchImpl, sleep: async () => {}, ...more });
 test('fetch : réponse OK → décodée, okResponses = 1', async () => {
   const r = await quiet(() => fetchDiscordGuild(new Map(), fetchOpts(async () => res(200, { guild_experiments: [wire('a', 25)] }))));
   assert.deepStrictEqual([r.experiments.map((e) => e.id), r.okResponses, r.failedResponses], [['a'], 1, 0]);
@@ -165,10 +165,10 @@ test('fetch : échec puis succès à la 2e passe', async () => {
   const r = await quiet(() => fetchDiscordGuild(new Map(), fetchOpts(async () => (++calls <= 2 ? res(500, '') : res(200, { guild_experiments: [wire('a', 1)] })), { fetchRounds: 2 })));
   assert.deepStrictEqual([r.okResponses, calls], [1, 3]);
 });
-test('fetch : 401/403 (jeton mort) → pas de 2e passe inutile', async () => {
+test('fetch : 401/403 anonyme → pas de 2e passe inutile', async () => {
   let calls = 0;
   const r = await quiet(() => fetchDiscordGuild(new Map(), fetchOpts(async () => { calls++; return res(401, '{}'); }, { fetchRounds: 4 })));
-  assert.deepStrictEqual([r.okResponses, calls], [0, 2]);
+  assert.deepStrictEqual([r.okResponses, calls], [0, 1]);
 });
 test('fetch : HTML Cloudflare, JSON null, guild_experiments non tableau → échec, pas d’exception', async () => {
   for (const body of ['<html>blocked</html>', 'null', { guild_experiments: 'x' }, {}, '']) {
@@ -180,10 +180,15 @@ test('fetch : tuple illisible ignoré, les autres gardés', async () => {
   const r = await quiet(() => fetchDiscordGuild(new Map(), fetchOpts(async () => res(200, { guild_experiments: [null, 'x', [1], wire('ok', 10)] }))));
   assert.deepStrictEqual(r.experiments.map((e) => e.id), ['ok']);
 });
-test('fetch : plusieurs jetons, un seul répond → partiel signalé', async () => {
-  const f = async (url, o) => (o.headers.Authorization === 'good' ? res(200, { guild_experiments: [wire('a', 10)] }) : res(401, '{}'));
-  const r = await quiet(() => fetchDiscordGuild(new Map(), fetchOpts(f, { tokens: ['good', 'dead'] })));
-  assert.deepStrictEqual([r.okResponses, r.failedResponses, r.experiments.length], [1, 1, 1]);
+test('fetch : aucune requête ne transmet d’en-tête Authorization', async () => {
+  let calls = 0;
+  const f = async (_url, options) => {
+    calls++;
+    assert.equal(options.headers.Authorization, undefined);
+    return res(200, { guild_experiments: [wire('a', 10)] });
+  };
+  const r = await quiet(() => fetchDiscordGuild(new Map(), fetchOpts(f)));
+  assert.deepStrictEqual([r.okResponses, r.failedResponses, r.experiments.length, calls], [1, 0, 1, 1]);
 });
 
 // ── main : scénarios complets ───────────────────────────────────────────────

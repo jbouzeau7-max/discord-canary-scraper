@@ -159,7 +159,7 @@ async function scenario(pattern) {
   const paths = tmpState(); const calls = [];
   const postWebhook = async (embeds) => { calls.push(embeds); return { ok: true, status: 204 }; };
   for (const present of pattern) {
-    await quietMain({ ...paths, sampler: sampler({ 910001: present ? 300 : null, 910002: 15 }), tokenSnapshot: async () => [], postWebhook });
+    await quietMain({ ...paths, sampler: sampler({ 910001: present ? 300 : null, 910002: 15 }), postWebhook });
   }
   return calls.length;
 }

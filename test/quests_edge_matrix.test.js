@@ -6,8 +6,6 @@ const {
   normalizeQuest,
   buildQuestComponentsV2,
   orbImageUrl,
-  configuredDiscordTokens,
-  fetchOfficialQuests,
   watch,
 } = require('../src/quests');
 
@@ -18,28 +16,6 @@ function componentPayload(q) { return buildQuestComponentsV2(q); }
 function blocks(payload) { return payload.components[0].components; }
 function textOf(payload) { return blocks(payload).filter((b) => b.type === 10).map((b) => b.content).join('\n'); }
 function buttonsOf(payload) { const row = blocks(payload).find((b) => b.type === 1); return row ? row.components : []; }
-function response(status, body, text = JSON.stringify(body)) {
-  return { status, ok: status >= 200 && status < 300, text: async () => text };
-}
-
-// Token configuration parsing: empty values, trimming, all supported sources and malformed pools.
-[
-  ['vide', {}, []],
-  ['token principal', { DISCORD_TOKEN: 'alpha' }, ['alpha']],
-  ['token utilisateur', { DISCORD_USER_TOKEN: 'beta' }, ['beta']],
-  ['trim des valeurs unitaires', { DISCORD_TOKEN: '  spaced  ' }, ['spaced']],
-  ['ignore chaînes blanches', { DISCORD_TOKEN: '  ', DISCORD_USER_TOKEN_1: '\t' }, []],
-  ['pool JSON de chaînes', { DISCORD_USER_TOKENS: '["a","b"]' }, ['a', 'b']],
-  ['pool JSON vide', { DISCORD_USER_TOKENS: '[]' }, []],
-  ['pool JSON non-tableau conservé comme chaîne', { DISCORD_USER_TOKENS: '{"x":1}' }, ['{"x":1}']],
-  ['pool JSON scalaire conservé comme chaîne', { DISCORD_USER_TOKENS: '42' }, ['42']],
-  ['pool avec virgules', { DISCORD_USER_TOKENS: 'a,b,c' }, ['a', 'b', 'c']],
-  ['pool avec espaces', { DISCORD_USER_TOKENS: 'a b\tc' }, ['a', 'b', 'c']],
-  ['pool avec points-virgules', { DISCORD_USER_TOKENS: 'a;b;c' }, ['a', 'b', 'c']],
-  ['déduplication après trim', { DISCORD_TOKEN: ' x ', DISCORD_USER_TOKEN: 'x', DISCORD_USER_TOKEN_2: 'y' }, ['x', 'y']],
-  ['ignore valeurs nulles', { DISCORD_TOKEN: null, DISCORD_USER_TOKEN: false }, []],
-  ['pool d’espaces blancs', { DISCORD_USER_TOKENS: '  ' }, []],
-].forEach(([label, env, expected]) => add('tokens: ' + label, () => assert.deepEqual(configuredDiscordTokens(env), expected)));
 
 // Quest identity, nesting and messages.
 [
@@ -224,69 +200,6 @@ function response(status, body, text = JSON.stringify(body)) {
   ['lien application comme CTA implicite', { id: 'j', questUrl: null, applicationLink: 'https://app.test' }, (p) => assert.equal(buttonsOf(p)[0].url, 'https://app.test')],
   ['bouton redemption de récompense', { id: 'k', questUrl: null, rewards: [{ typeLabel: 'Code', redemptionLink: 'https://redeem.test' }] }, (p) => assert.equal(buttonsOf(p)[0].url, 'https://redeem.test')],
 ].forEach(([label, q, verify]) => add('payload Components V2: ' + label, () => verify(componentPayload({ name: 'Test', ...q }))));
-// Official API fetch protocol is stubbed; no network, retries, or real waiting.
-[
-  { label: 'aucun token', tokens: [], calls: [], result: [] },
-  { label: 'non-tableau tokens utilise la configuration vide', tokens: 'token', calls: [], result: [] },
-].forEach(({ label, tokens, calls: expectedCalls, result }, _i) => add('fetchOfficialQuests: ' + label, async () => {
-  let n = 0; const out = await fetchOfficialQuests(new Map(), { tokens, fetchWithRetry: async () => { n++; return response(200, []); } });
-  assert.equal(n, expectedCalls.length); assert.deepEqual(out, result);
-}));
-[
-  [200, 'JSON array', '[{"id":"arr","messages":{"quest_name":"Array"}}]', 'arr'],
-  [200, 'enveloppe quests', '{"quests":[{"id":"list"}]}', 'list'],
-  [200, 'enveloppe data', '{"data":[{"id":"data"}]}', 'data'],
-  [200, 'liste sans quêtes', '{"other":[]}', null],
-  [200, 'BOM JSON', '\uFEFF{"quests":[{"id":"bom"}]}', 'bom'],
-].forEach(([status, label, body, id], i) => add('fetch officiel parsing #' + (i + 1) + ': ' + label, async () => {
-  const out = await fetchOfficialQuests(Promise.resolve(new Map()), { tokens: ['t'], fetchWithRetry: async () => response(status, null, body) });
-  assert.equal(out[0]?.id ?? null, id);
-}));
-[
-  { label: 'réponse 401 puis token de secours', statuses: [401, 200], expected: 2, result: 1 },
-  { label: 'réponse 403 puis token de secours', statuses: [403, 200], expected: 2, result: 1 },
-  { label: '429 arrête les tokens', statuses: [429], expected: 1, result: 0 },
-  { label: '500 arrête les tokens', statuses: [500], expected: 1, result: 0 },
-  { label: '404 bascule vers host stable', statuses: [404, 200], expected: 2, result: 1 },
-  { label: '500 sans requête vers second host', statuses: [500], expected: 1, result: 0 },
-].forEach(({ label, statuses, expected, result }, i) => add('fetch officiel statut HTTP #' + (i + 1) + ': ' + label, async () => {
-  let calls = 0;
-  const out = await fetchOfficialQuests(new Map(), { tokens: statuses.length === 2 && (statuses[0] === 401 || statuses[0] === 403) ? ['bad', 'good'] : ['a', 'b'], fetchWithRetry: async () => {
-    const status = statuses[Math.min(calls, statuses.length - 1)]; calls++;
-    return response(status, status === 200 ? [{ id: 'ok' }] : {});
-  } });
-  assert.equal(calls, expected); assert.equal(out.length, result);
-}));
-[
-  ['timeout injecté', 7000], ['timeout zéro reprend le défaut', 0],
-].forEach(([label, timeout], _i) => add('fetch officiel options timeout #' + (_i + 1) + ': ' + label, async () => {
-  let seen; await fetchOfficialQuests(new Map(), { tokens: ['t'], timeoutMs: timeout, fetchWithRetry: async (_url, opts) => { seen = opts.timeout; return response(200, []); } });
-  assert.equal(seen, timeout || 25000);
-}));
-[
-  ['erreur HTTP 401 réessaie le second host', new Error('HTTP 401 Unauthorized'), 2],
-  ['erreur HTTP 429 cesse toute tentative', new Error('HTTP 429 Too Many Requests'), 1],
-  ['erreur HTTP 503 ne passe pas au token suivant', new Error('HTTP 503 Service unavailable'), 1],
-  ['erreur réseau ne passe pas au token suivant', new Error('socket closed'), 1],
-  ['erreur 404 continue endpoint suivant', new Error('HTTP 404 Not found'), 2],
-].forEach(([label, error, expected], i) => add('fetch officiel erreur transport #' + (i + 1) + ': ' + label, async () => {
-  let calls = 0; const out = await fetchOfficialQuests(new Map(), { tokens: ['a', 'b'], fetchWithRetry: async () => { calls++; if (calls === 1) throw error; return response(200, []); } });
-  assert.equal(calls, expected); assert.deepEqual(out, []);
-}));
-[
-  ['texte JSON invalide', 'not-json'], ['JSON null', 'null'], ['JSON vide', ''],
-].forEach(([label, body], _i) => add('fetch officiel corps vide/invalide #' + (_i + 1) + ': ' + label, async () => {
-  let calls = 0; const out = await fetchOfficialQuests(new Map(), { tokens: ['t'], fetchWithRetry: async () => { calls++; return response(200, null, body); } });
-  assert.equal(calls, 2); assert.deepEqual(out, []);
-}));
-[
-  [{ id: 'official', messages: { quest_name: 'Official' } }, 'official'],
-  [{ config: { messages: {} } }, null],
-].forEach(([raw, expected], i) => add('fetch officiel filtre normalisation invalide #' + (i + 1), async () => {
-  const out = await fetchOfficialQuests(Promise.resolve(new Map()), { tokens: ['t'], fetchWithRetry: async () => response(200, [raw]) });
-  assert.equal(out[0]?.id ?? null, expected);
-}));
-
 // Watcher boundaries use a deterministic clock and an immediate injected sleep.
 [
   ['watchMs nul fait une passe', 0, 1],
@@ -335,5 +248,5 @@ function response(status, body, text = JSON.stringify(body)) {
   [500, /1f48e\.png$/], [501, /1f48e\.png$/], [-1, /1f7e3\.png$/],
 ].forEach(([qty, pattern], i) => add('orbImageUrl seuil #' + (i + 1) + ' quantité=' + qty, () => assert.match(orbImageUrl(qty), pattern)));
 
-assert.equal(cases.length, 183, 'La matrice doit contenir exactement 183 tests');
+assert.equal(cases.length, 143, 'La matrice doit contenir exactement 183 tests');
 for (const { name, fn } of cases) test(name, fn);

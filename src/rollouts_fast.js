@@ -25,8 +25,7 @@
  *   ROLLOUTS_FAST_TICK_MS   intervalle de sonde (défaut 10 s, min 5 s)
  *   ROLLOUTS_FAST_RETRY_MS  délai avant retentative après échec (défaut 60 s)
  *
- * v3 (vitesse max) : sondes guild + gist en parallèle, sonde guild
- * authentifiée (anonyme = presque aucune guild_experiment visible), sonde
+ * v3 (vitesse max) : sondes guild anonymes + gist en parallèle, sonde guild
  * gist via CDN raw hors quota, trackers user/guild lancés en parallèle,
  * étapes annexes + commit en arrière-plan APRÈS la notification.
  *
@@ -39,7 +38,7 @@ const path = require('path');
 const fs = require('fs-extra');
 const fetch = require('node-fetch');
 const { execFileSync, spawn: spawnAsync } = require('child_process');
-const { DEFAULT_UA, sleep, loadTokens } = require('./lib/utils');
+const { DEFAULT_UA, sleep } = require('./lib/utils');
 
 const ROOT = path.join(__dirname, '..');
 const GIST_STATE = path.join(ROOT, 'data', 'gist_user_rollouts.json');
@@ -54,7 +53,7 @@ const GUILD_URLS = [
 const num = (v, d) => (Number.isFinite(Number(v)) && Number(v) > 0 ? Number(v) : d);
 const WATCH_MS = num(process.env.ROLLOUTS_FAST_WATCH_MS, 28 * 60 * 1000);
 // v3 : sonde toutes les 10 s par défaut (min 5 s). Les deux sondes sont hors
-// quota (Discord /experiments authentifié, CDN raw du gist avec cache-buster).
+// quota (requête Discord anonyme, CDN raw du gist avec cache-buster).
 const TICK_MS = Math.max(5000, num(process.env.ROLLOUTS_FAST_TICK_MS, 10 * 1000));
 const RETRY_MS = num(process.env.ROLLOUTS_FAST_RETRY_MS, 60 * 1000);
 const MAX_TICKS = Math.max(0, Math.floor(num(process.env.ROLLOUTS_FAST_MAX_TICKS, 0)));
@@ -94,37 +93,20 @@ function guildSignature(guildExperiments) {
   return crypto.createHash('sha1').update(parts.join('\n')).digest('hex');
 }
 
-function clientHeaders(token) {
-  const h = { 'User-Agent': DEFAULT_UA, Accept: 'application/json', 'X-Discord-Locale': 'en-US' };
-  if (token) h.Authorization = token;
-  return h;
+function clientHeaders() {
+  return { 'User-Agent': DEFAULT_UA, Accept: 'application/json', 'X-Discord-Locale': 'en-US' };
 }
-
-/**
- * Sonde % guild. AUTHENTIFIÉE si un jeton existe : en anonyme Discord ne
- * renvoie qu'une poignée de guild_experiments (~1,6 Ko) → la plupart des
- * changements serveurs étaient invisibles pour la sonde. Rotation des jetons
- * (un 401/429 sur l'un ne bloque pas la sonde), repli anonyme en dernier.
- */
-let tokenCursor = 0;
-async function probeGuild(fetchImpl = fetch, tokens = loadTokens()) {
-  const list = tokens && tokens.length ? tokens : [];
-  const order = [];
-  for (let i = 0; i < list.length; i++) order.push(list[(tokenCursor + i) % list.length]);
-  order.push(null);
-  for (const token of order) {
-    for (const url of GUILD_URLS) {
-      try {
-        const res = await fetchImpl(url, { headers: clientHeaders(token), timeout: 8000 });
-        if (!res.ok) continue;
-        const j = await res.json();
-        const sig = guildSignature(j && j.guild_experiments);
-        if (sig) {
-          if (token && list.length) tokenCursor = (list.indexOf(token) + 1) % list.length;
-          return { sig, count: j.guild_experiments.length, authed: Boolean(token) };
-        }
-      } catch (_) { /* url suivante */ }
-    }
+/** Sonde guild anonyme uniquement : aucun jeton Discord n’est chargé ni transmis. */
+async function probeGuild(fetchImpl = fetch) {
+  for (const url of GUILD_URLS) {
+    try {
+      const res = await fetchImpl(url, { headers: clientHeaders(), timeout: 8000 });
+      if (!res.ok) continue;
+      const data = await res.json();
+      const experiments = data && data.guild_experiments;
+      const sig = guildSignature(experiments);
+      if (sig) return { sig, count: experiments.length, authed: false };
+    } catch (_) { /* URL suivante */ }
   }
   return null;
 }

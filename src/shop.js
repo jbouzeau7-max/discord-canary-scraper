@@ -1,6 +1,6 @@
 /**
  * Discord Shop / Collectibles tracker
- * Source: official API with user token
+ * Source: public itemshop.gg feed (no Discord account authentication)
  *
  * Message (Components V2, sobre) :
  *   Boutique Discord • NEW item
@@ -10,9 +10,6 @@
  *
  * Env:
  *   SHOP_WEBHOOK_URL | DISCORD_WEBHOOK_URL
- *   DISCORD_USER_TOKEN (preferred) | DISCORD_TOKEN | DISCORD_USER_TOKEN_1
- *
- * 401 on /users/@me = invalid/expired user token in GitHub Secrets (not a shop bug).
  */
 const fetch = require('node-fetch');
 const fs = require('fs-extra');
@@ -25,15 +22,12 @@ const {
   chunkIntoMessages,
 } = require('./lib/components_v2');
 const { writeJsonAtomic } = require('./lib/atomic');
-const { sleep, loadTokens, redactSecrets, DEFAULT_UA, DEFAULT_BOT_NAME: BOT, DEFAULT_AVATAR_URL: AVATAR } = require('./lib/utils');
+const { sleep, redactSecrets, DEFAULT_UA, DEFAULT_BOT_NAME: BOT, DEFAULT_AVATAR_URL: AVATAR } = require('./lib/utils');
 
 const DATA = path.join(__dirname, '..', 'data');
-const STATE = path.join(DATA, 'shop_items.json');
 
-// Mode dégradé (tous les tokens refusés) : trackeur public itemshop.gg.
-// Son robots.txt n'interdit que /api/ et /embed/ — la page publique est libre.
-// Données moins riches (nom + type, pas d'id Discord ni d'image), mais la
-// veille continue pendant que les tokens sont morts.
+// Source publique itemshop.gg — données moins riches (nom + type, pas d'id
+// Discord ni d'image), mais le suivi fonctionne sans authentification de compte.
 const FALLBACK_URL = 'https://itemshop.gg/discord';
 const FALLBACK_STATE = path.join(DATA, 'shop_fallback.json');
 const FALLBACK_MIN_ITEMS = 10;
@@ -49,359 +43,51 @@ const SHOP_URL = 'https://discord.com/shop';
 const MAX_NOTIFY_PER_RUN = 20;
 const ANNOUNCED_KEEP_DAYS = 90;
 
-function normalizeToken(t) {
-  let s = String(t || '')
-    .replace(/^\uFEFF/, '')
-    .replace(/[\r\n\t]/g, '')
-    .trim();
-  if (
-    (s.startsWith('"') && s.endsWith('"')) ||
-    (s.startsWith("'") && s.endsWith("'"))
-  ) {
-    s = s.slice(1, -1).replace(/[\r\n\t]/g, '').trim();
-  }
-  if (/^Bot\s+/i.test(s)) {
-    console.warn(
-      'Token looks like a BOT token (Bot …). Shop collectibles need a USER token.',
-    );
-    s = s.replace(/^Bot\s+/i, '').trim();
-  }
-  if (/^Bearer\s+/i.test(s)) s = s.replace(/^Bearer\s+/i, '').trim();
-  return s || null;
+function escapeMdTitle(t) {
+  return String(t || 'Item')
+    .slice(0, 200)
+    .replace(/\[/g, '\\[')
+    .replace(/\]/g, '\\]');
 }
-
-function tokenShape(t) {
-  if (!t) return 'empty';
-  const parts = t.split('.');
-  return [
-    'len=' + t.length,
-    t.startsWith('mfa.') ? 'mfa' : 'no-mfa',
-    'dots=' + (parts.length - 1),
-    'alnum=' + (/^[A-Za-z0-9._-]+$/.test(t) ? 'yes' : 'no'),
-  ].join(' ');
-}
-
-// Tous les tokens candidats (DISCORD_USER_TOKENS, _1.._10, DISCORD_USER_TOKEN, DISCORD_TOKEN) :
-// le premier accepté par Discord est utilisé → un token expiré ne bloque plus le tracker.
-const TOKENS = [...new Set(loadTokens().map(normalizeToken).filter(Boolean))];
-let TOKEN = TOKENS[0] || null;
-
-const HOSTS = [
-  'https://canary.discord.com/api/v9',
-  'https://discord.com/api/v9',
-];
-
-const ITEM_TYPES = ['0', '1', '2', '3'];
-
-function superProperties() {
-  const payload = {
-    os: 'Windows',
-    browser: 'Chrome',
-    device: '',
-    system_locale: 'en-US',
-    browser_user_agent: DEFAULT_UA,
-    browser_version: '131.0.0.0',
-    os_version: '10',
-    referrer: '',
-    referring_domain: '',
-    referrer_current: '',
-    referring_domain_current: '',
-    release_channel: 'stable',
-    client_build_number: 360000,
-    client_event_source: null,
-  };
-  return Buffer.from(JSON.stringify(payload), 'utf8').toString('base64');
-}
-
-function authHeaders() {
-  return {
-    Authorization: TOKEN,
-    'User-Agent': DEFAULT_UA,
-    Accept: 'application/json',
-    'Accept-Language': 'en-US,en;q=0.9',
-    'X-Discord-Locale': 'en-US',
-    'X-Discord-Timezone': 'Europe/Paris',
-    'X-Super-Properties': superProperties(),
-    'X-Debug-Options': 'bugReporterEnabled',
-  };
-}
-
-async function validateUserToken() {
-  if (!TOKENS.length) return { ok: false, reason: 'missing' };
-  for (let i = 0; i < TOKENS.length; i++) {
-    TOKEN = TOKENS[i];
-    const r = await probeToken();
-    if (r.ok) {
-      if (i > 0) console.log('Token #' + (i + 1) + '/' + TOKENS.length + ' utilisé (les précédents sont refusés)');
-      return r;
-    }
-    if (r.reason !== 'http_401') return r;
-  }
-  return { ok: false, reason: 'http_401 (' + TOKENS.length + ' token(s) testé(s))' };
-}
-
-async function probeToken() {
-  if (!TOKEN) return { ok: false, reason: 'missing' };
-  if (TOKEN.length < 20) return { ok: false, reason: 'too_short' };
-  console.log('Token shape:', tokenShape(TOKEN));
-
-  const headerVariants = [
-    {
-      name: 'minimal',
-      headers: {
-        Authorization: TOKEN,
-        'User-Agent': DEFAULT_UA,
-        Accept: 'application/json',
-      },
-    },
-    { name: 'client-like', headers: authHeaders() },
-  ];
-
-  for (const host of [
-    'https://discord.com/api/v9',
-    'https://canary.discord.com/api/v9',
-  ]) {
-    for (const variant of headerVariants) {
-      try {
-        const res = await fetch(host + '/users/@me', {
-          headers: variant.headers,
-          timeout: 15000,
-        });
-        if (res.ok) {
-          const u = await res.json().catch(() => ({}));
-          console.log(
-            'Token OK as user',
-            u.username
-              ? u.username +
-                  (u.discriminator && u.discriminator !== '0'
-                    ? '#' + u.discriminator
-                    : '')
-              : '(ok)',
-            '(' + variant.name + ')',
-          );
-          return { ok: true, host, variant: variant.name };
-        }
-        console.warn(
-          'Token probe',
-          host.includes('canary') ? 'canary' : 'stable',
-          variant.name,
-          'HTTP',
-          res.status,
-        );
-      } catch (e) {
-        console.warn('Token probe error:', redactSecrets(e.message));
-      }
-    }
-  }
-  return { ok: false, reason: 'http_401' };
-}
-
-async function apiGet(pathAndQuery) {
-  let lastErr = null;
-  for (const host of HOSTS) {
-    const url = host + pathAndQuery;
-    try {
-      const res = await fetch(url, { headers: authHeaders(), timeout: 25000 });
-      if (res.status === 401 || res.status === 403) {
-        throw new Error('AUTH_FAILED HTTP ' + res.status);
-      }
-      if (res.status === 429) {
-        const ra = Number(res.headers.get('retry-after') || 3);
-        await sleep(Math.min(20, ra) * 1000);
-        continue;
-      }
-      if (!res.ok) {
-        const body = await res.text().catch(() => '');
-        lastErr = 'HTTP ' + res.status + (body ? ' ' + body.slice(0, 160) : '');
-        // 4xx = requête refusée : inutile d'essayer les autres hôtes
-        if (res.status >= 400 && res.status < 500) break;
-        continue;
-      }
-      return await res.json();
-    } catch (e) {
-      lastErr = e.message;
-      if (String(e.message).includes('AUTH_FAILED')) throw e;
-    }
-  }
-  throw new Error(lastErr || 'apiGet failed');
-}
-
-function walkCollect(obj, out, depth = 0) {
-  if (!obj || depth > 12) return;
-  if (Array.isArray(obj)) {
-    for (const x of obj) walkCollect(x, out, depth + 1);
-    return;
-  }
-  if (typeof obj !== 'object') return;
-
-  const sku =
-    obj.sku_id ||
-    obj.skuId ||
-    (obj.sku && (obj.sku.id || obj.sku)) ||
-    null;
-  const name =
-    obj.name ||
-    obj.title ||
-    (obj.sku && obj.sku.name) ||
-    (obj.product && obj.product.name) ||
-    null;
-
-  if (sku && name) {
-    const id = String(sku);
-    if (!out.has(id)) {
-      out.set(id, normalizeItem(obj, id, String(name)));
-    }
-  }
-
-  for (const v of Object.values(obj)) {
-    if (v && typeof v === 'object') walkCollect(v, out, depth + 1);
-  }
-}
-
 function pickImage(obj) {
   if (!obj || typeof obj !== 'object') return null;
-  const keys = [
-    'featured_block_url',
-    'catalog_banner_url',
-    'hero_banner_url',
-    'mobile_banner_url',
-    'logo_url',
-    'pdp_bg_url',
-    'thumbnail',
-    'image',
-    'asset',
-  ];
-  for (const k of keys) {
-    const v = obj[k];
-    if (typeof v === 'string' && /^https?:\/\//i.test(v)) return v;
+  const keys = ['featured_block_url', 'catalog_banner_url', 'hero_banner_url', 'mobile_banner_url', 'logo_url', 'pdp_bg_url', 'thumbnail', 'image', 'asset'];
+  for (const key of keys) {
+    const value = obj[key];
+    if (typeof value === 'string' && /^https?:\/\//i.test(value)) return value;
   }
-  if (Array.isArray(obj.items) && obj.items[0]) {
-    const it = obj.items[0];
-    if (it.asset && typeof it.asset === 'string') {
-      if (/^https?:\/\//i.test(it.asset)) return it.asset;
-      return (
-        'https://cdn.discordapp.com/avatar-decoration-presets/' +
-        it.asset.replace(/^\//, '') +
-        '.png'
-      );
-    }
+  if (Array.isArray(obj.items) && obj.items[0] && typeof obj.items[0].asset === 'string') {
+    const asset = obj.items[0].asset;
+    if (/^https?:\/\//i.test(asset)) return asset;
+    return 'https://cdn.discordapp.com/avatar-decoration-presets/' + asset.replace(/^\//, '') + '.png';
   }
-  if (obj.sku_id) {
-    return (
-      'https://cdn.discordapp.com/media/v1/collectibles-shop/' +
-      obj.sku_id +
-      '/static'
-    );
-  }
+  if (obj.sku_id) return 'https://cdn.discordapp.com/media/v1/collectibles-shop/' + obj.sku_id + '/static';
   return null;
 }
-
-/**
- * Liste ordonnée d'URLs d'image candidates (la 1re rendable gagne).
- * Nameplates : assets/collectibles/<asset>/static.png ; décorations :
- * avatar-decoration-presets/<asset>.png ; repli : collectibles-shop/<sku>/static.
- */
 function pickImageCandidates(obj) {
   const out = [];
-  const add = (u) => {
-    if (u && !out.includes(u)) out.push(u);
-  };
+  const add = (url) => { if (url && !out.includes(url)) out.push(url); };
   if (!obj || typeof obj !== 'object') return out;
-  const items = Array.isArray(obj.items) ? obj.items : [];
-  for (const it of items) {
-    const a = it && typeof it.asset === 'string' ? it.asset.trim() : '';
-    if (!a) continue;
-    if (/^https?:\/\//i.test(a)) add(a);
-    else if (a.includes('/')) add('https://cdn.discordapp.com/assets/collectibles/' + a.replace(/^\/+|\/+$/g, '') + '/static.png');
-    else add('https://cdn.discordapp.com/avatar-decoration-presets/' + a + '.png');
+  for (const item of (Array.isArray(obj.items) ? obj.items : [])) {
+    const asset = item && typeof item.asset === 'string' ? item.asset.trim() : '';
+    if (!asset) continue;
+    if (/^https?:\/\//i.test(asset)) add(asset);
+    else if (asset.includes('/')) add('https://cdn.discordapp.com/assets/collectibles/' + asset.replace(/^\/+|\/+$/g, '') + '/static.png');
+    else add('https://cdn.discordapp.com/avatar-decoration-presets/' + asset + '.png');
   }
   const direct = pickImage({ ...obj, items: undefined, sku_id: undefined });
   if (direct) add(direct);
   if (obj.sku_id) add('https://cdn.discordapp.com/media/v1/collectibles-shop/' + obj.sku_id + '/static');
   return out;
 }
-
-function normalizeItem(raw, id, name) {
-  const type =
-    raw.type != null
-      ? raw.type
-      : raw.product_type != null
-        ? raw.product_type
-        : raw.category_type != null
-          ? raw.category_type
-          : null;
-  const summary =
-    raw.summary || raw.description || (raw.sku && raw.sku.summary) || null;
-  const image = pickImage(raw);
-  let price = null;
-  try {
-    const prices = raw.prices || (raw.sku && raw.sku.prices) || null;
-    if (prices && typeof prices === 'object') {
-      const first = Object.values(prices)[0];
-      if (first && first.amount != null) price = first;
-      else if (Array.isArray(first) && first[0]) price = first[0];
-    }
-  } catch (_) {}
-  return {
-    id,
-    name: String(name).slice(0, 200),
-    type,
-    summary: summary ? String(summary).slice(0, 400) : null,
-    image,
-    price,
-    storeListingId: raw.store_listing_id || raw.storeListingId || null,
-    source: 'collectibles',
-  };
-}
-
-async function fetchShopCatalog() {
-  const map = new Map();
-  try {
-    const data = await apiGet(
-      '/collectibles-shop?tab=home&include_bundles=true&include_dynamic_blocks=true&variants_return_style=2',
-    );
-    walkCollect(data, map);
-    console.log('collectibles-shop items:', map.size);
-  } catch (e) {
-    console.warn('collectibles-shop:', redactSecrets(e.message));
-  }
-
-  for (const itype of ITEM_TYPES) {
-    try {
-      const data = await apiGet(
-        '/shop/search?item_types=' +
-          itype +
-          '&offset=0&limit=50&sort_type=1&sort_direction=desc',
-      );
-      walkCollect(data, map);
-      await sleep(150);
-    } catch (e) {
-      console.warn('shop/search type', itype, redactSecrets(e.message));
-      // endpoint refusé (400) → les autres types échoueront pareil
-      if (/HTTP 400/.test(String(e.message))) {
-        console.warn('shop/search désactivé pour ce run (HTTP 400)');
-        break;
-      }
-    }
-  }
-
-  try {
-    const data = await apiGet('/collectibles-categories');
-    walkCollect(data, map);
-  } catch (e) {
-    console.warn('collectibles-categories:', redactSecrets(e.message));
-  }
-
-  return [...map.values()];
-}
-
-// ── Message (Components V2, sobre) ────────────────────
-
-function escapeMdTitle(t) {
-  return String(t || 'Item')
-    .slice(0, 200)
-    .replace(/\[/g, '\\[')
-    .replace(/\]/g, '\\]');
+function buildItemComponents(item) {
+  const components = [
+    textDisplay('Boutique Discord • NEW item'),
+    textDisplay(`### [${escapeMdTitle(item.name)}](${SHOP_URL})`),
+  ];
+  const gallery = mediaGalleryFromUrls(item.image && /^https?:\/\//i.test(String(item.image)) ? [item.image] : []);
+  if (gallery) components.push(gallery);
+  return components;
 }
 
 /**
@@ -453,9 +139,7 @@ async function postComponents(comps) {
 // ── Mode dégradé : source publique itemshop.gg ────────
 
 /**
- * Sans token utilisateur valide, l'API boutique officielle est inaccessible
- * (auth-only). itemshop.gg publie la boutique du jour ; son robots.txt
- * n'interdit que /api/ et /embed/, la page publique est donc libre d'accès.
+ * itemshop.gg publie la boutique du jour ; sa page de boutique est accessible publiquement.
  * Données moins riches (nom + type, pas d'id Discord ni d'image) mais la
  * veille continue — messages marqués « source publique ».
  */
@@ -612,8 +296,7 @@ async function runFallbackMode() {
 
 async function main() {
   await fs.ensureDir(DATA);
-  console.log('Discord Shop tracker');
-  console.log('Token:', TOKEN ? 'configured' : 'MISSING');
+  console.log('Discord Shop tracker — source publique itemshop.gg, sans authentification de compte');
   console.log(
     'Webhook:',
     WEBHOOK
@@ -622,162 +305,7 @@ async function main() {
         : 'DISCORD_WEBHOOK_URL (fallback)'
       : 'MISSING',
   );
-
-  if (!TOKEN) {
-    console.error(
-      'DISCORD_USER_TOKEN required — must be a USER token, not a bot token',
-    );
-    process.exit(1);
-  }
-
-  const probe = await validateUserToken();
-  if (!probe.ok) {
-    console.error(
-      'AUTH invalid (',
-      probe.reason,
-      '). Discord a refusé tous les tokens utilisateur sur /users/@me.',
-    );
-    console.error(
-      'Fix: Settings → Secrets → update DISCORD_USER_TOKEN with a fresh USER token (no quotes, no Bot prefix).',
-    );
-    console.warn('Mode dégradé : veille continue via la source publique itemshop.gg.');
-    await runFallbackMode();
-    return;
-  }
-
-  let items = [];
-  try {
-    items = await fetchShopCatalog();
-  } catch (e) {
-    console.error('Shop fetch failed:', redactSecrets(e.message));
-    process.exit(1);
-  }
-  console.log('Catalog items:', items.length);
-  if (!items.length) {
-    console.error('Empty catalog — abort (do not wipe state)');
-    process.exit(1);
-  }
-
-  let prev = { ids: [], items: [], announced: {} };
-  if (await fs.pathExists(STATE)) {
-    try {
-      prev = await fs.readJson(STATE);
-    } catch (_) {}
-  }
-  const prevIds = new Set(prev.ids || []);
-  const isFirst = prevIds.size === 0;
-
-  const newItems = isFirst ? [] : items.filter((it) => !prevIds.has(it.id));
-  console.log(isFirst ? 'Seed run — no notify' : 'New items: ' + newItems.length);
-
-  const allIds = items.map((i) => i.id);
-
-  if (isFirst) {
-    await writeJsonAtomic(
-      STATE,
-      {
-        scrapedAt: new Date().toISOString(),
-        count: items.length,
-        ids: allIds,
-        items: items.map((i) => ({
-          id: i.id,
-          name: i.name,
-          type: i.type,
-          image: i.image,
-        })),
-        announced: {},
-      },
-      2,
-    );
-    console.log('Seed', allIds.length, 'SKUs');
-    return;
-  }
-
-  if (!newItems.length) {
-    await writeJsonAtomic(
-      STATE,
-      {
-        scrapedAt: new Date().toISOString(),
-        count: items.length,
-        ids: allIds,
-        items: items.map((i) => ({
-          id: i.id,
-          name: i.name,
-          type: i.type,
-          image: i.image,
-        })),
-        announced: prev.announced || {},
-      },
-      2,
-    );
-    console.log('No new shop items');
-    return;
-  }
-
-  // Notifications — 1 message sobre par item, granularité d'échec par item.
-  // Un item non envoyé n'est pas marqué announced → re-notifié au prochain run.
-  const announced = { ...(prev.announced || {}) };
-  const notified = [];
-  const pendingIds = [];
-  const batch = newItems.slice(0, MAX_NOTIFY_PER_RUN);
-  let failed = 0;
-  for (const it of batch) {
-    let ok = false;
-    try {
-      ok = await postComponents(buildItemComponents(it));
-    } catch (e) {
-      console.warn('notify error', redactSecrets(e.message || e));
-      ok = false;
-    }
-    if (ok) {
-      announced[it.id] = new Date().toISOString();
-      notified.push(it.id);
-      console.log('sent', it.name);
-    } else {
-      failed++;
-      pendingIds.push(it.id);
-      console.warn('NOTIFY_FAIL shop', it.id, it.name);
-    }
-    await sleep(300);
-  }
-  for (const it of newItems.slice(MAX_NOTIFY_PER_RUN)) {
-    pendingIds.push(it.id);
-  }
-  if (newItems.length > MAX_NOTIFY_PER_RUN) {
-    console.log('Pending (next run):', newItems.length - MAX_NOTIFY_PER_RUN);
-  }
-  if (failed > 0) process.exitCode = 2;
-
-  // Pruning: entrées announced hors catalogue et > 90 jours
-  const catalogIds = new Set(allIds);
-  const cutoff = Date.now() - ANNOUNCED_KEEP_DAYS * 86400000;
-  for (const [id, ts] of Object.entries(announced)) {
-    if (!catalogIds.has(id) && Date.parse(ts || '') < cutoff) {
-      delete announced[id];
-    }
-  }
-
-  const knownIds = new Set([...(prev.ids || []), ...Object.keys(announced)]);
-  const nextIds = allIds.filter((id) => knownIds.has(id));
-  await writeJsonAtomic(
-    STATE,
-    {
-      scrapedAt: new Date().toISOString(),
-      count: items.length,
-      ids: nextIds,
-      items: items.map((i) => ({
-        id: i.id,
-        name: i.name,
-        type: i.type,
-        image: i.image,
-      })),
-      announced,
-      lastNew: notified,
-      pendingNew: pendingIds,
-    },
-    2,
-  );
-  console.log('Shop done — announced', notified.length, 'failed', failed, 'pending', pendingIds.length);
+  await runFallbackMode();
 }
 
 if (require.main === module) {
@@ -787,4 +315,4 @@ if (require.main === module) {
   });
 }
 
-module.exports = { main, fetchShopCatalog, normalizeItem, parseFallbackShop, pickImageCandidates, buildItemComponents };
+module.exports = { main, parseFallbackShop, buildFallbackComponents, pickImageCandidates, buildItemComponents };

@@ -44,9 +44,6 @@ function makeSampler(spec, ok = 400) {
   return async () => ({ byHash, byRev, ok, fail: 0 });
 }
 
-function makeTokenSnapshot(list) {
-  return async () => list;
-}
 
 /** Webhook factice : file de résultats (un par lot envoyé). */
 function makeWebhook(results) {
@@ -97,7 +94,6 @@ test('intégration : « new » non livré est retenté au run suivant', async ()
   await runMain({
     ...deps,
     sampler: makeSampler({ 900001: { buckets: { 1: 20 } } }),
-    tokenSnapshot: makeTokenSnapshot([]),
     postWebhook: makeWebhook([]),
   });
   let st = readState(dir);
@@ -112,7 +108,6 @@ test('intégration : « new » non livré est retenté au run suivant', async ()
       900001: { buckets: { 1: 20 } },
       900002: { buckets: { 1: 40 } },
     }),
-    tokenSnapshot: makeTokenSnapshot([]),
     postWebhook: wh,
   });
   assert.equal(code, 2, 'exitCode 2 après échec webhook');
@@ -130,7 +125,6 @@ test('intégration : « new » non livré est retenté au run suivant', async ()
       900001: { buckets: { 1: 20 } },
       900002: { buckets: { 1: 40 } },
     }),
-    tokenSnapshot: makeTokenSnapshot([]),
     postWebhook: wh2,
   });
   assert.notEqual(code2, 2);
@@ -146,7 +140,6 @@ test('intégration : « new » non livré est retenté au run suivant', async ()
       900001: { buckets: { 1: 20 } },
       900002: { buckets: { 1: 40 } },
     }),
-    tokenSnapshot: makeTokenSnapshot([]),
     postWebhook: wh3,
   });
   assert.equal(wh3.calls.length, 0, 'rien à renvoyer');
@@ -166,7 +159,6 @@ test('intégration : >10 changements, échec au 2e lot, suite retentée', async 
   await runMain({
     ...deps,
     sampler: makeSampler(seedSpec),
-    tokenSnapshot: makeTokenSnapshot([]),
     postWebhook: makeWebhook([]),
   });
   let st = readState(dir);
@@ -183,7 +175,6 @@ test('intégration : >10 changements, échec au 2e lot, suite retentée', async 
   const code = await runMain({
     ...deps,
     sampler: makeSampler(changedSpec),
-    tokenSnapshot: makeTokenSnapshot([]),
     postWebhook: wh,
   });
   assert.equal(code, 2);
@@ -202,7 +193,6 @@ test('intégration : >10 changements, échec au 2e lot, suite retentée', async 
   const code2 = await runMain({
     ...deps,
     sampler: makeSampler(stableSpec),
-    tokenSnapshot: makeTokenSnapshot([]),
     postWebhook: wh2,
   });
   assert.notEqual(code2, 2);
@@ -223,13 +213,10 @@ test('intégration : annonce de revision perdue avant V14, retentée maintenant'
   const reportFile = path.join(dir, 'user_rollouts.md');
   const deps = { stateFile, reportFile };
 
-  // Run 1 — seed, token snapshot avec revision 5 (rev passée au sampler).
+  // Run 1 — seed avec revision 5 observée dans l’échantillonnage anonyme.
   await runMain({
     ...deps,
     sampler: makeSampler({ 900001: { rev: 5, buckets: { 1: 20 } } }),
-    tokenSnapshot: makeTokenSnapshot([
-      { hash: 900001, id: 'x', title: 'x', type: 'user', revision: 5, bucket: 1, hash_result: 100 },
-    ]),
     postWebhook: makeWebhook([]),
   });
 
@@ -238,9 +225,6 @@ test('intégration : annonce de revision perdue avant V14, retentée maintenant'
   const code = await runMain({
     ...deps,
     sampler: makeSampler({ 900001: { buckets: { 1: 20 }, rev: 6 } }),
-    tokenSnapshot: makeTokenSnapshot([
-      { hash: 900001, id: 'x', title: 'x', type: 'user', revision: 6, bucket: 1, hash_result: 100 },
-    ]),
     postWebhook: wh,
   });
   assert.equal(code, 2);
@@ -252,9 +236,6 @@ test('intégration : annonce de revision perdue avant V14, retentée maintenant'
   await runMain({
     ...deps,
     sampler: makeSampler({ 900001: { buckets: { 1: 20 }, rev: 6 } }),
-    tokenSnapshot: makeTokenSnapshot([
-      { hash: 900001, id: 'x', title: 'x', type: 'user', revision: 6, bucket: 1, hash_result: 100 },
-    ]),
     postWebhook: wh2,
   });
   st = readState(dir);
@@ -273,7 +254,6 @@ test('intégration : dégradé (trop peu d\'observations) puis mesurable', async
   await runMain({
     ...deps,
     sampler: makeSampler({ 900001: { buckets: { 1: 200 } } }),
-    tokenSnapshot: makeTokenSnapshot([]),
     postWebhook: makeWebhook([]),
   });
 
@@ -285,7 +265,6 @@ test('intégration : dégradé (trop peu d\'observations) puis mesurable', async
       900001: { buckets: { 1: 200 } },
       900002: { buckets: { 1: 2 } },
     }),
-    tokenSnapshot: makeTokenSnapshot([]),
     postWebhook: wh,
   });
   assert.equal(wh.calls.length, 0);
@@ -298,7 +277,6 @@ test('intégration : dégradé (trop peu d\'observations) puis mesurable', async
       900001: { buckets: { 1: 200 } },
       900002: { buckets: { 1: 40 } },
     }),
-    tokenSnapshot: makeTokenSnapshot([]),
     postWebhook: wh2,
   });
   assert.equal(wh2.calls.length, 1);
@@ -318,7 +296,6 @@ test('intégration : delta calculé contre acknowledged, pas contre la dernière
   await runMain({
     ...deps,
     sampler: makeSampler({ 900001: { buckets: { 1: 20 } } }),
-    tokenSnapshot: makeTokenSnapshot([]),
     postWebhook: makeWebhook([]),
   });
 
@@ -326,7 +303,6 @@ test('intégration : delta calculé contre acknowledged, pas contre la dernière
   await runMain({
     ...deps,
     sampler: makeSampler({ 900001: { buckets: { 1: 380 } } }),
-    tokenSnapshot: makeTokenSnapshot([]),
     postWebhook: makeWebhook([{ ok: false, status: 500, text: 'boom' }]),
   });
   let st = readState(dir);
@@ -340,7 +316,6 @@ test('intégration : delta calculé contre acknowledged, pas contre la dernière
   await runMain({
     ...deps,
     sampler: makeSampler({ 900001: { buckets: { 1: 200 } } }),
-    tokenSnapshot: makeTokenSnapshot([]),
     postWebhook: wh,
   });
   assert.equal(wh.calls.length, 1, 'le delta 5→50 est notifié (pas perdu)');

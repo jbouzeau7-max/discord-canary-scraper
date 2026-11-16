@@ -5,8 +5,6 @@ const assert = require('node:assert/strict');
 const {
   sleep,
   redactSecrets,
-  loadTokens,
-  firstToken,
   DEFAULT_UA,
   DEFAULT_BOT_NAME,
   DEFAULT_AVATAR_URL,
@@ -67,35 +65,8 @@ test('DEFAULT_AVATAR_URL est une URL valide', () => {
   assert.ok(!DEFAULT_AVATAR_URL.includes('kmljkjj/discord-canary-scraper'));
 });
 
-test('loadTokens retourne un tableau', () => {
-  const tokens = loadTokens();
-  assert.ok(Array.isArray(tokens));
-});
-
-test('loadTokens déduplique les tokens', () => {
-  // If DISCORD_TOKEN is set to the same value as DISCORD_USER_TOKEN, it should be deduplicated
-  const tokens = loadTokens();
-  const unique = new Set(tokens);
-  assert.equal(tokens.length, unique.size, 'tokens should be unique');
-});
-
-test('firstToken retourne null si aucun token', () => {
-  // Save and clear env
-  const saved = {};
-  for (const k of ['DISCORD_USER_TOKENS', 'DISCORD_USER_TOKEN', 'DISCORD_TOKEN']) {
-    saved[k] = process.env[k];
-    delete process.env[k];
-  }
-  for (let i = 1; i <= 10; i++) {
-    saved['DISCORD_USER_TOKEN_' + i] = process.env['DISCORD_USER_TOKEN_' + i];
-    saved['DISCORD_USER_TOKENS' + i] = process.env['DISCORD_USER_TOKENS' + i];
-    delete process.env['DISCORD_USER_TOKEN_' + i];
-    delete process.env['DISCORD_USER_TOKENS' + i];
-  }
-  const result = firstToken();
-  // Restore env
-  for (const [k, v] of Object.entries(saved)) {
-    if (v !== undefined) process.env[k] = v;
-  }
-  assert.equal(result, null);
+test('aucun chargeur de jetons Discord n’est exposé', () => {
+  const utils = require('../src/lib/utils');
+  assert.equal('loadTokens' in utils, false);
+  assert.equal('firstToken' in utils, false);
 });

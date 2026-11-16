@@ -44,7 +44,6 @@
  *    d'échantillons de la fenêtre → pct = k/n + IC de Wilson.
  *
  * Env:
- *   DISCORD_USER_TOKEN(S) / DISCORD_USER_TOKEN_1..10
  *   UR_WEBHOOK | USER_ROLLOUT_WEBHOOK_URL | APEX_WEBHOOK_URL | ROLLOUT_WEBHOOK_URL | DISCORD_WEBHOOK_URL
  *   USER_ROLLOUT_SAMPLES        default 150 (échantillons par run — cible fixe)
  *   USER_ROLLOUT_CONCURRENCY    default 2
@@ -67,7 +66,7 @@ const crypto = require('crypto');
 const { sendEmbeds } = require('./lib/webhook');
 const { murmur3 } = require('./lib/murmur3');
 const { writeJsonAtomic } = require('./lib/atomic');
-const { sleep, redactSecrets, loadTokens, envNumber, DEFAULT_UA, DEFAULT_BOT_NAME: BOT, DEFAULT_AVATAR_URL: AVATAR } = require('./lib/utils');
+const { sleep, redactSecrets, envNumber, DEFAULT_UA, DEFAULT_BOT_NAME: BOT, DEFAULT_AVATAR_URL: AVATAR } = require('./lib/utils');
 const { safeJson } = require('./lib/http');
 const {
   classifyChange,
@@ -87,7 +86,6 @@ const EXPS = path.join(DATA, 'experiments.json');
 const BASELINE = path.join(DATA, 'baseline_experiments.json');
 const APEX_EXP = path.join(DATA, 'apex_experiments.json');
 
-const TOKENS = loadTokens();
 // Webhook UNIQUE pour les notifs user rollouts : la première var définie gagne.
 const WEBHOOK_CANDIDATES = [
   ['UR_WEBHOOK', process.env.UR_WEBHOOK],
@@ -758,53 +756,6 @@ function fingerprintOf(treatments) {
     .join('|');
 }
 
-async function fetchTokenSnapshot(defs) {
-  if (!TOKENS.length) return [];
-  const out = new Map();
-  const list = TOKENS.slice(0, 10);
-  const runOffset = Math.floor(Date.now() / (20 * 60 * 1000));
-  for (let i = 0; i < list.length; i++) {
-    const token = list[i];
-    try {
-      const data = await fetchAssignments(
-        { Authorization: token, 'User-Agent': UAS[(i + runOffset) % UAS.length] },
-        true,
-      );
-      for (const a of data.assignments || []) {
-        if (!Array.isArray(a) || a.length < 3) continue;
-        const hash = Number(a[0]);
-        const revision = a[1] == null ? null : Number(a[1]);
-        const bucket = Number(a[2]);
-        const hashResult = a[5] == null ? null : Number(a[5]);
-        if (!Number.isSafeInteger(hash) || hash < 0 || hash > 0xffffffff) continue;
-        if (revision != null && !Number.isFinite(revision)) continue;
-        if (!Number.isFinite(bucket) || !Number.isInteger(bucket) || bucket < -1) continue;
-        if (hashResult != null && (!Number.isFinite(hashResult) || hashResult < 0)) continue;
-        const meta = defs.get(hash) || {
-          id: 'hash:' + hash,
-          type: 'user',
-          title: 'hash:' + hash,
-        };
-        // Plusieurs jetons peuvent voir le même hash ; on ne garde qu'une
-        // entrée (la dernière observée) pour ne pas doubler les notifications.
-        out.set(hash, {
-          hash,
-          id: meta.id,
-          title: meta.title,
-          type: meta.type,
-          revision,
-          bucket,
-          hash_result: hashResult,
-        });
-      }
-      await sleep(200);
-    } catch (e) {
-      console.warn('Token snapshot fail:', redactSecrets(e.message));
-    }
-  }
-  return [...out.values()];
-}
-
 // ─── Embeds — format sobre, sans emojis ─────────────────────────────────────
 
 function fmtPct(pct) {
@@ -956,20 +907,19 @@ function ackSnapshot(exp, rev, n) {
 
 async function main(deps = {}) {
   // Injection (tests d'intégration) : stateFile/reportFile pour un état
-  // temporaire, sampler/tokenSnapshot/postWebhook pour des doubles purs.
+  // temporaire, sampler/postWebhook pour des doubles purs.
   const stateFile = deps.stateFile || STATE;
   const reportFile = deps.reportFile || path.join(DATA, 'user_rollouts.md');
   const sampler = deps.sampler || sampleFingerprints;
-  const tokenSnapFn = deps.tokenSnapshot || fetchTokenSnapshot;
   const postWebhookFn = deps.postWebhook || postWebhook;
 
   await fs.ensureDir(path.dirname(stateFile));
   console.log('📊 User rollouts v15 (MESURE PROPRE · sampling + fenêtre ' + WINDOW_H + ' h · plages exactes)');
-  console.log('Samples:', SAMPLES, 'concurrency:', CONC, 'tokens:', TOKENS.length);
+  console.log('Samples:', SAMPLES, 'concurrency:', CONC, 'auth: anonymous');
   console.log('Webhook:', WEBHOOK ? 'set (' + WEBHOOK_SOURCE + ')' : 'MISSING');
   console.log('Notify unresolved hash:', NOTIFY_HASH ? 'yes' : 'no');
 
-  let prev = { experiments: [], token: [], announced: {}, acknowledged: {} };
+  let prev = { experiments: [], announced: {}, acknowledged: {} };
   if (await fs.pathExists(stateFile)) {
     try {
       prev = await fs.readJson(stateFile);
@@ -986,12 +936,11 @@ async function main(deps = {}) {
   if (isUpgrade) {
     // Migration : initialise acknowledged depuis la dernière mesure connue.
     acknowledged = {};
-    const prevTokRev = new Map((prev.token || []).map((t) => [String(t.hash), t.revision]));
     for (const e of prev.experiments || []) {
       if (e && e.hash != null) {
         acknowledged[String(e.hash)] = ackSnapshot(
           e,
-          prevTokRev.get(String(e.hash)) ?? null,
+          null,
           e.windowN ?? null,
         );
       }
@@ -1001,17 +950,12 @@ async function main(deps = {}) {
   // Noms : fichiers locaux uniquement.
   const defs = await loadExperimentDefs();
 
-  const [tokenSnapR, sampledR] = await Promise.allSettled([
-    tokenSnapFn(defs),
-    sampler(SAMPLES, CONC),
-  ]);
-  const tokenSnap = tokenSnapR.status === 'fulfilled' ? tokenSnapR.value : [];
-  const sampled = sampledR.status === 'fulfilled'
-    ? sampledR.value
+  const sampledR = await Promise.allSettled([sampler(SAMPLES, CONC)]);
+  const sampled = sampledR[0].status === 'fulfilled'
+    ? sampledR[0].value
     : { byHash: new Map(), byRev: new Map(), ok: 0, fail: 0, samples: [] };
   const { byHash, byRev, ok, fail } = sampled;
   const curSamples = Array.isArray(sampled.samples) ? sampled.samples : [];
-  console.log('Token snapshot:', tokenSnap.length, 'experiments');
   if (ok < MIN_OK) {
     console.warn('Too few ok samples', ok, '<', MIN_OK, '— estimation fenêtre seulement');
   }
@@ -1235,25 +1179,26 @@ async function main(deps = {}) {
       }
     }
 
-    // Revisions : comparées au dernier état NOTIFIÉ (acknowledged.rev),
-    // avec repli sur le dernier état mesuré — un échec de webhook ne perd
-    // plus l'annonce de revision.
-    const prevTok = new Map((prev.token || []).map((t) => [t.hash, t]));
-    for (const t of tokenSnap) {
-      if (!hasName(t.id) && !NOTIFY_HASH) continue;
-      const ack = acknowledged[String(t.hash)];
-      const prevRev = ack && ack.rev != null ? ack.rev : (prevTok.get(t.hash) || {}).revision;
-      if (prevRev != null && prevRev !== t.revision) {
-        changes.push({
-          kind: 'revision',
-          id: t.id,
-          title: t.title,
-          hash: t.hash,
-          fromRev: prevRev,
-          toRev: t.revision,
-          bucket: t.bucket,
-        });
-      }
+    // Révisions observées dans les échantillons anonymes : une révision ne
+    // déclenche une notification qu’après comparaison avec le dernier état livré.
+    for (const [hash, revision] of byRev) {
+      if (revision == null) continue;
+      const def = defs.get(Number(hash)) || { id: 'hash:' + hash, title: 'hash:' + hash };
+      if (!hasName(def.id) && !NOTIFY_HASH) continue;
+      const ack = acknowledged[String(hash)];
+      const prevRev = ack && ack.rev != null ? ack.rev : null;
+      if (prevRev == null || Number(prevRev) === Number(revision)) continue;
+      const bucketMap = byHash.get(Number(hash));
+      const bucket = bucketMap && bucketMap.size ? Number(bucketMap.keys().next().value) : -1;
+      changes.push({
+        kind: 'revision',
+        id: def.id,
+        title: def.title,
+        hash: Number(hash),
+        fromRev: prevRev,
+        toRev: revision,
+        bucket,
+      });
     }
   }
 
@@ -1277,9 +1222,7 @@ async function main(deps = {}) {
       samples: SAMPLES,
       ok,
       fail,
-      tokensConfigured: TOKENS.length,
       experiments,
-      token: tokenSnap,
       announced: extra.announcedMap ?? announced,
       acknowledged: ackMap,
       history,

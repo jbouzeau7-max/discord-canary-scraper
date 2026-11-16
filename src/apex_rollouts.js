@@ -8,7 +8,7 @@ const path = require('path');
 const { sendEmbeds } = require('./lib/webhook');
 const { murmur3 } = require('./lib/murmur3');
 const { writeJsonAtomic } = require('./lib/atomic');
-const { loadTokens, sleep, DEFAULT_UA, DEFAULT_BOT_NAME: BOT, DEFAULT_AVATAR_URL: AVATAR } = require('./lib/utils');
+const { sleep, DEFAULT_UA, DEFAULT_BOT_NAME: BOT, DEFAULT_AVATAR_URL: AVATAR } = require('./lib/utils');
 const { safeJson } = require('./lib/http');
 
 const DATA_DIR = path.join(__dirname, '..', 'data');
@@ -40,7 +40,6 @@ const EMPTY_CONFIRM = Math.max(1, Math.floor(envPositive(process.env.APEX_EMPTY_
 const SCALE = 10000;
 // Précision des % stockés/notifiés (décimales). 2 = 0,01 pt (1 position /10000).
 const PCT_PRECISION = 2;
-const USER_TOKENS = loadTokens();
 
 function tLabel(bucket) {
   const b = Number(bucket);
@@ -205,7 +204,7 @@ async function buildHashMap() {
   return map;
 }
 
-function clientHeaders(token) {
+function clientHeaders() {
   const superProps = Buffer.from(
     JSON.stringify({
       os: 'Windows',
@@ -225,7 +224,6 @@ function clientHeaders(token) {
     'X-Super-Properties': superProps,
     'X-Discord-Locale': 'en-US',
   };
-  if (token) h.Authorization = token;
   return h;
 }
 
@@ -241,61 +239,49 @@ async function fetchDiscordGuild(hashMap, deps = {}) {
   const fetchImpl = deps.fetch || fetch;
   const wait = deps.sleep || sleep;
   const rounds = deps.fetchRounds || FETCH_ROUNDS;
-  const tokenList = Array.isArray(deps.tokens) ? deps.tokens : USER_TOKENS;
   const urls = [
     'https://canary.discord.com/api/v9/experiments?with_guild_experiments=true',
     'https://discord.com/api/v9/experiments?with_guild_experiments=true',
   ];
-  const tokens = tokenList.length ? tokenList : [null];
-  console.log('User tokens:', tokenList.length);
-  const byId = new Map();
-  // v8 : jetons interrogés en PARALLÈLE (avant : en série, jusqu'à 5×2
-  // requêtes de 25 s) ; canary d'abord (le plus frais), stable en repli.
-  // v9 : une 2e passe après une courte pause si les deux URL échouent
-  // (coupure réseau brève, 5xx, 429) ; 401/403 = jeton mort, pas de 2e passe.
-  const one = async (token) => {
-    for (let round = 0; round < rounds; round++) {
-      let authDead = 0;
-      for (const url of urls) {
-        try {
-          const res = await fetchImpl(url, { headers: clientHeaders(token), timeout: 12000 });
-          if (!res.ok) {
-            console.warn('Discord', res.status, url.includes('canary') ? 'canary' : 'stable');
-            if (res.status === 401 || res.status === 403) authDead++;
-            continue;
-          }
-          const data = await safeJson(res);
-          if (!data || !Array.isArray(data.guild_experiments)) {
-            console.warn('Discord: réponse sans guild_experiments', url.includes('canary') ? 'canary' : 'stable');
-            continue;
-          }
-          return data.guild_experiments;
-        } catch (e) {
-          console.warn('Discord fail', e && e.message);
-        }
-      }
-      if (authDead === urls.length) break;
-      if (round < rounds - 1) await wait(FETCH_RETRY_MS * (round + 1));
-    }
-    return null;
-  };
-  const results = await Promise.all(tokens.slice(0, 5).map(one));
-  let okResponses = 0;
-  for (const ge of results) {
-    if (!ge) continue;
-    okResponses++;
-    console.log('Discord guild_experiments:', ge.length);
-    for (const t of ge) {
-      let e = null;
+  console.log('Discord guild experiments: requête anonyme');
+  let guildExperiments = null;
+  let permanentFailure = false;
+  for (let round = 0; round < rounds && !guildExperiments && !permanentFailure; round++) {
+    for (const url of urls) {
       try {
-        e = decodeGuildWire(t, hashMap);
-      } catch (err) {
-        console.warn('decodeGuildWire: tuple illisible ignoré', String((err && err.message) || err).slice(0, 80));
+        const res = await fetchImpl(url, { headers: clientHeaders(), timeout: 12000 });
+        if (!res.ok) {
+          console.warn('Discord', res.status, url.includes('canary') ? 'canary' : 'stable');
+          if (res.status === 401 || res.status === 403) { permanentFailure = true; break; }
+          continue;
+        }
+        const data = await safeJson(res);
+        if (data && Array.isArray(data.guild_experiments)) {
+          guildExperiments = data.guild_experiments;
+          break;
+        }
+        console.warn('Discord: réponse sans guild_experiments', url.includes('canary') ? 'canary' : 'stable');
+      } catch (e) {
+        console.warn('Discord fail', e && e.message);
       }
-      if (e && e.hasGlobalPct && !String(e.id).startsWith('hash:')) byId.set(e.id, e);
+    }
+    if (!guildExperiments && !permanentFailure && round < rounds - 1) await wait(FETCH_RETRY_MS * (round + 1));
+  }
+  if (!guildExperiments) return { experiments: [], okResponses: 0, failedResponses: 1 };
+  const byId = new Map();
+  console.log('Discord guild_experiments:', guildExperiments.length);
+  for (const tuple of guildExperiments) {
+    let experiment = null;
+    try {
+      experiment = decodeGuildWire(tuple, hashMap);
+    } catch (err) {
+      console.warn('decodeGuildWire: tuple illisible ignoré', String((err && err.message) || err).slice(0, 80));
+    }
+    if (experiment && experiment.hasGlobalPct && !String(experiment.id).startsWith('hash:')) {
+      byId.set(experiment.id, experiment);
     }
   }
-  return { experiments: [...byId.values()], okResponses, failedResponses: results.length - okResponses };
+  return { experiments: [...byId.values()], okResponses: 1, failedResponses: 0 };
 }
 
 function pctKey(e) {
@@ -458,7 +444,7 @@ async function postWebhook(embeds) {
 }
 
 /**
- * deps (tests) : stateFile, hashMap, fetchGuild, fetch, tokens, sleep,
+ * deps (tests) : stateFile, hashMap, fetchGuild, fetch, sleep,
  * postWebhook, exit. En production aucun deps → comportement inchangé.
  */
 async function main(deps = {}) {
@@ -473,7 +459,7 @@ async function main(deps = {}) {
   await fs.ensureDir(path.dirname(STATE_FILE));
   console.log('📊 Apex rollouts v9 (EXACT guild % · jetons en parallèle · garde panne réseau)');
   console.log('Webhook:', hasWebhook ? 'set' : 'MISSING');
-  console.log('Tokens:', (deps.tokens || USER_TOKENS).length);
+  console.log('Discord auth: désactivée');
 
   const hashMap = deps.hashMap || (await buildHashMap());
   const fetched = await (deps.fetchGuild || fetchDiscordGuild)(hashMap, deps);

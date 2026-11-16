@@ -85,18 +85,17 @@ test('probeGist : voie CDN raw hors quota (sans jeton) + cache-buster + 304', as
   assert.deepEqual(await probeGist('gid', '"e1"', f200, '', 'owner'), { status: 'changed', revision: '"e2"', etag: '"e2"' });
 });
 
-test('probeGuild : authentifiée en priorité, rotation des jetons, repli anonyme', async () => {
+test('probeGuild : aucune authentification Discord, envoi anonyme seulement', async () => {
   const seen = [];
-  const f = async (u, o) => {
-    seen.push(o.headers.Authorization || 'anon');
-    if (o.headers.Authorization === 'bad') return { ok: false, status: 401 };
+  const f = async (_url, options) => {
+    seen.push(options.headers.Authorization);
     return { ok: true, json: async () => ({ guild_experiments: [[1, null, 0, []]] }) };
   };
-  const r = await probeGuild(f, ['bad', 'good']);
-  assert.equal(r.authed, true);
-  assert.ok(seen.includes('good'));
-  const r2 = await probeGuild(async (u, o) => (o.headers.Authorization ? { ok: false } : { ok: true, json: async () => ({ guild_experiments: [] }) }), ['x']);
-  assert.equal(r2.authed, false);
+  const result = await probeGuild(f);
+  assert.equal(result.authed, false);
+  assert.ok(result.sig);
+  assert.ok(seen.length > 0);
+  assert.ok(seen.every((authorization) => authorization === undefined));
 });
 
 test('main : sondes et trackers user/guild en PARALLÈLE', async () => {

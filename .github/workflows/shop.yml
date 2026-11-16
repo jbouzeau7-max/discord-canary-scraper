@@ -30,11 +30,10 @@ jobs:
         env:
           SHOP_WEBHOOK_URL: ${{ secrets.SHOP_WEBHOOK_URL }}
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
-          DISCORD_USER_TOKEN: ${{ secrets.DISCORD_USER_TOKEN }}
           ORBIT_BOT_NAME: Datamining
         run: node src/shop.js
 
       - name: Save state
         if: always() && steps.shop.outcome != 'cancelled'
         run: |
-          bash scripts/commit-state.sh "shop: state" data/shop_items.json
+          bash scripts/commit-state.sh "shop: state" data/shop_fallback.json
