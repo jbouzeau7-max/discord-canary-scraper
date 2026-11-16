@@ -3,15 +3,15 @@
  "schemaVersion": 1,
  "semanticsVersion": 2,
  "notifyScopeVersion": 2,
- "runId": "20261116T173423_gist",
- "scrapedAt": "2026-11-16T17:34:23.007Z",
+ "runId": "20261116T175534_gist",
+ "scrapedAt": "2026-11-16T17:55:34.027Z",
  "source": {
   "gistId": "e3e99062983e6bd0feaef833f14fd931",
   "htmlUrl": "https://gist.github.com/agnonotdev/e3e99062983e6bd0feaef833f14fd931",
-  "rawUrl": "https://gist.githubusercontent.com/agnonotdev/e3e99062983e6bd0feaef833f14fd931/raw/bc7352c0380f54972a05c7883fb40cd5c00256a4/rollouts-tag.json",
-  "updatedAt": "2026-11-16T16:08:56Z",
-  "revision": "a66178b074ab3f7d1df428a3b9e471882fdfcf90",
-  "fetchedAt": "2026-11-16T17:34:23.007Z",
+  "rawUrl": "https://gist.githubusercontent.com/agnonotdev/e3e99062983e6bd0feaef833f14fd931/raw/84ea4123eaaa32e6aab58a4b2e14253f823b6380/rollouts-tag.json",
+  "updatedAt": "2026-11-16T17:55:17Z",
+  "revision": "3c6b5f2170fd9dadb5507ca37fd1a81a8dce6879",
+  "fetchedAt": "2026-11-16T17:55:34.027Z",
   "fallback": false,
   "rawFallback": false,
   "canonicalId": null
@@ -20,10 +20,12 @@
   "gistId": "192b2ce20539ce1021b5c8cb01b17ff0",
   "diverged": true,
   "divergingIds": [
+   "2026-11-payment-element-accordion-layout",
    "2026-11-mobile-orb-redemption-thru-orders",
    "2026-11-soundboard-upsells-brand-refresh",
    "2026-11-return-full-quest-status-in-decision",
    "2026-11-screen-share-dtx",
+   "2026-10-android-mobile-onboarding-friction-negative-test",
    "2026-10-game-profiles-server-preview",
    "2026-10-express-checkout",
    "2026-10-collectibles-upgraded-search",
@@ -63,9 +65,9 @@
   ]
  },
  "stats": {
-  "total": 1044,
-  "user": 319,
-  "userData": 146,
+  "total": 1045,
+  "user": 320,
+  "userData": 147,
   "guild": 35,
   "unclassified": 690,
   "noData": 262
@@ -4837,27 +4839,31 @@
    "variantsCount": 2
   },
   "2026-10-android-mobile-onboarding-friction-negative-test": {
-   "key": "d0abcb550902850e",
+   "key": "dbb456fc20cc308d",
    "hasData": true,
-   "sig": "0:control",
+   "sig": "0:control|1:treatment",
    "byVariant": {
     "0": {
-     "pct": 2,
+     "pct": 10,
      "role": "control"
+    },
+    "1": {
+     "pct": 10,
+     "role": "treatment"
     }
    },
    "treatment": {
-    "pct": 0
+    "pct": 10
    },
    "control": {
-    "pct": 2
+    "pct": 10
    },
    "notEligible": {
     "pct": 0
    },
    "projectedCoverage": null,
    "projected": false,
-   "variantsCount": 1
+   "variantsCount": 2
   },
   "2026-09-voice-server-update-immediate-mobile": {
    "key": "dd8d0080ec168ded",
@@ -21308,22 +21314,43 @@
    },
    "projected": true,
    "variantsCount": 3
+  },
+  "2026-11-payment-element-accordion-layout": {
+   "key": "dc6996c724bb242e",
+   "hasData": true,
+   "sig": "0:control|1:treatment",
+   "byVariant": {
+    "0": {
+     "pct": 10,
+     "role": "control"
+    },
+    "1": {
+     "pct": 10,
+     "role": "treatment"
+    }
+   },
+   "treatment": {
+    "pct": 10
+   },
+   "control": {
+    "pct": 10
+   },
+   "notEligible": {
+    "pct": 0
+   },
+   "projectedCoverage": null,
+   "projected": false,
+   "variantsCount": 2
   }
  },
  "lastRun": {
-  "changes": 0,
-  "delivered": 0,
+  "changes": 2,
+  "delivered": 2,
   "firstRun": false,
   "semanticsMigrated": 0,
   "scopeBaselined": 0
  },
  "history": [
-  {
-   "at": "2026-11-15T14:15:34.338Z",
-   "revision": "6d5357d8dc9a85dec1eb17f3d75ec01dfc43d330",
-   "changes": 0,
-   "delivered": 0
-  },
   {
    "at": "2026-11-15T14:44:46.554Z",
    "revision": "6d5357d8dc9a85dec1eb17f3d75ec01dfc43d330",
@@ -21617,6 +21644,12 @@
    "revision": "a66178b074ab3f7d1df428a3b9e471882fdfcf90",
    "changes": 0,
    "delivered": 0
+  },
+  {
+   "at": "2026-11-16T17:55:34.027Z",
+   "revision": "3c6b5f2170fd9dadb5507ca37fd1a81a8dce6879",
+   "changes": 2,
+   "delivered": 2
   }
  ]
 }
