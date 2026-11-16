@@ -3,15 +3,15 @@
  "schemaVersion": 1,
  "semanticsVersion": 2,
  "notifyScopeVersion": 2,
- "runId": "20261116T222915_gist",
- "scrapedAt": "2026-11-16T22:29:15.683Z",
+ "runId": "20261116T225221_gist",
+ "scrapedAt": "2026-11-16T22:52:21.966Z",
  "source": {
   "gistId": "e3e99062983e6bd0feaef833f14fd931",
   "htmlUrl": "https://gist.github.com/agnonotdev/e3e99062983e6bd0feaef833f14fd931",
-  "rawUrl": "https://gist.githubusercontent.com/agnonotdev/e3e99062983e6bd0feaef833f14fd931/raw/7cb6f27295cb8683065759a435d9b34ca375c833/rollouts-tag.json",
-  "updatedAt": "2026-11-16T21:55:48Z",
-  "revision": "96db233a0be108b55e301169340aef0b81c0fbdf",
-  "fetchedAt": "2026-11-16T22:29:15.683Z",
+  "rawUrl": "https://gist.githubusercontent.com/agnonotdev/e3e99062983e6bd0feaef833f14fd931/raw/b923057d6a9b5a02da41838892fa2640f9acf809/rollouts-tag.json",
+  "updatedAt": "2026-11-16T22:52:00Z",
+  "revision": "a48817bd020cd93c27294753aea58bde1a37d7be",
+  "fetchedAt": "2026-11-16T22:52:21.966Z",
   "fallback": false,
   "rawFallback": false,
   "canonicalId": null
@@ -25,6 +25,8 @@
    "2026-11-soundboard-upsells-brand-refresh",
    "2026-11-return-full-quest-status-in-decision",
    "2026-11-screen-share-dtx",
+   "2026-10-mobile-rtc-v2",
+   "2026-10-animated-shop-bundle-previews",
    "2026-10-profile-read-state",
    "2026-10-pinot-channel-discoverable",
    "2026-10-interest-picker",
@@ -50,10 +52,10 @@
    "2026-10-request-to-stream-non-games",
    "2026-10-android-stop-and-pause-video",
    "2026-10-android-fastimage-apng",
+   "2026-09-default-emojis",
    "2026-09-user-profile-premium-try-it-out-mobile-refresh",
    "2026-09-mobile-request-to-stream",
    "2026-09-guild-spaces",
-   "2026-09-default-emojis",
    "2026-09-hexagon-campaign-client",
    "2026-09-safety-warning-age-text",
    "2026-09-game-search-row",
@@ -74,9 +76,9 @@
   ]
  },
  "stats": {
-  "total": 1052,
-  "user": 325,
-  "userData": 150,
+  "total": 1053,
+  "user": 326,
+  "userData": 151,
   "guild": 37,
   "unclassified": 690,
   "noData": 264
@@ -1143,31 +1145,27 @@
    "variantsCount": 2
   },
   "2026-10-animated-shop-bundle-previews": {
-   "key": "a4a56f033996ad22",
+   "key": "95f46bfc73a52751",
    "hasData": true,
-   "sig": "0:control|1:treatment",
+   "sig": "1:treatment",
    "byVariant": {
-    "0": {
-     "pct": 50,
-     "role": "control"
-    },
     "1": {
-     "pct": 50,
+     "pct": 100,
      "role": "treatment"
     }
    },
    "treatment": {
-    "pct": 50
+    "pct": 100
    },
    "control": {
-    "pct": 50
+    "pct": 0
    },
    "notEligible": {
     "pct": 0
    },
    "projectedCoverage": null,
    "projected": false,
-   "variantsCount": 2
+   "variantsCount": 1
   },
   "2026-09-youtube-3p-nagbar": {
    "key": "95f46bfc73a52751",
@@ -2015,24 +2013,24 @@
    }
   },
   "2026-09-default-emojis": {
-   "key": "947de72f00f84f24",
+   "key": "72ac21b8852739ba",
    "hasData": true,
    "sig": "0:control|1:treatment",
    "byVariant": {
     "0": {
-     "pct": 5,
+     "pct": 7.5,
      "role": "control"
     },
     "1": {
-     "pct": 5,
+     "pct": 7.5,
      "role": "treatment"
     }
    },
    "treatment": {
-    "pct": 5
+    "pct": 7.5
    },
    "control": {
-    "pct": 5
+    "pct": 7.5
    },
    "notEligible": {
     "pct": 0
@@ -21431,22 +21429,39 @@
    "projectedCoverage": null,
    "projected": false,
    "variantsCount": 2
+  },
+  "2026-10-mobile-rtc-v2": {
+   "key": "ba556803b635aab2",
+   "hasData": true,
+   "sig": "0:control",
+   "byVariant": {
+    "0": {
+     "pct": 30,
+     "role": "control"
+    }
+   },
+   "treatment": {
+    "pct": 0
+   },
+   "control": {
+    "pct": 30
+   },
+   "notEligible": {
+    "pct": 0
+   },
+   "projectedCoverage": null,
+   "projected": false,
+   "variantsCount": 1
   }
  },
  "lastRun": {
-  "changes": 0,
-  "delivered": 0,
+  "changes": 3,
+  "delivered": 3,
   "firstRun": false,
   "semanticsMigrated": 0,
   "scopeBaselined": 0
  },
  "history": [
-  {
-   "at": "2026-11-16T03:57:02.171Z",
-   "revision": "6d5357d8dc9a85dec1eb17f3d75ec01dfc43d330",
-   "changes": 0,
-   "delivered": 0
-  },
   {
    "at": "2026-11-16T04:26:22.194Z",
    "revision": "6d5357d8dc9a85dec1eb17f3d75ec01dfc43d330",
@@ -21740,6 +21755,12 @@
    "revision": "96db233a0be108b55e301169340aef0b81c0fbdf",
    "changes": 0,
    "delivered": 0
+  },
+  {
+   "at": "2026-11-16T22:52:21.966Z",
+   "revision": "a48817bd020cd93c27294753aea58bde1a37d7be",
+   "changes": 3,
+   "delivered": 3
   }
  ]
 }

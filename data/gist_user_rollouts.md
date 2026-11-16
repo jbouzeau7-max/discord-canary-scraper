@@ -1,14 +1,14 @@
 # Rollouts user — couverture gist (v1)
 
-> Source : gist communautaire agnonotdev (copie réduite de rollouts.json, tag Assyst) · Généré le 2026-11-16 22:29 UTC
+> Source : gist communautaire agnonotdev (copie réduite de rollouts.json, tag Assyst) · Généré le 2026-11-16 22:52 UTC
 
 **Sémantique** : couvertures calculées exactement à partir des plages fournies par la source (0-10000), à 0,01 point près. Totaux par rôle = UNION des plages (un bucket appartient à un rôle s'il tombe dans l'union de ses plages). Quand la structure révèle plusieurs populations aplaties (drapeau `multi_population`) ou des rôles conflictuels/inconnus, l'agrégation est indéterminée (poids des populations absents du gist) : totaux principaux indisponibles, l'union est montrée en métrique secondaire étiquetée « projetée » (non pondérée). L'absence du drapeau ne prouve PAS une population unique — le gist n'en garde pas les frontières. Cohérent avec notre décodage wire apex (mêmes plages → mêmes nombres). Ce n'est ni une estimation statistique, ni la proportion de vrais utilisateurs éligibles, ni une mesure d'accès réel. Les expériences `guild` sont exclues (mesurées à part par le décodage wire apex).
 
-**Gist** : [e3e99062983e6bd0feaef833f14fd931](https://gist.github.com/agnonotdev/e3e99062983e6bd0feaef833f14fd931) · révision 96db233a · MAJ 2026-11-16T21:55:48Z · 1052 expériences au catalogue (325 user dont 150 avec données, 37 guild, 690 type inconnu, 264 sans données)
+**Gist** : [e3e99062983e6bd0feaef833f14fd931](https://gist.github.com/agnonotdev/e3e99062983e6bd0feaef833f14fd931) · révision a48817bd · MAJ 2026-11-16T22:52:00Z · 1053 expériences au catalogue (326 user dont 151 avec données, 37 guild, 690 type inconnu, 264 sans données)
 
-⚠️ Miroir divergent (192b2ce20539ce1021b5c8cb01b17ff0) sur : 2026-11-payment-element-accordion-layout, 2026-11-mobile-orb-redemption-thru-orders, 2026-11-soundboard-upsells-brand-refresh, 2026-11-return-full-quest-status-in-decision, 2026-11-screen-share-dtx, 2026-10-profile-read-state, 2026-10-pinot-channel-discoverable, 2026-10-interest-picker, 2026-10-guilds-render-experiment, 2026-10-clickable-hero-banner…
+⚠️ Miroir divergent (192b2ce20539ce1021b5c8cb01b17ff0) sur : 2026-11-payment-element-accordion-layout, 2026-11-mobile-orb-redemption-thru-orders, 2026-11-soundboard-upsells-brand-refresh, 2026-11-return-full-quest-status-in-decision, 2026-11-screen-share-dtx, 2026-10-mobile-rtc-v2, 2026-10-animated-shop-bundle-previews, 2026-10-profile-read-state, 2026-10-pinot-channel-discoverable, 2026-10-interest-picker…
 
-## Expériences user avec données (150)
+## Expériences user avec données (151)
 
 | Expérience | Treatment | Control | Non éligible | Espace non décrit | Particularités |
 |---|---:|---:|---:|---:|---|
@@ -34,6 +34,7 @@
 | 2026-10-pinot-member | **100,00 %** | 0,00 % | 0,00 % | 0,00 % | — |
 | 2026-10-nitro-tab-remove-account-age-restriction | **50,00 %** | 50,00 % | 0,00 % | 0,00 % | — |
 | 2026-10-nitro-home-badge-directory | **50,00 %** | 50,00 % | 0,00 % | 0,00 % | — |
+| 2026-10-mobile-rtc-v2 | **0,00 %** | 30,00 % | 0,00 % | 70,00 % | — |
 | 2026-10-media-viewer-video-perf-android | **10,00 %** | 10,00 % | 0,00 % | 80,00 % | — |
 | 2026-10-media-viewer-improvements | **0,00 %** | 50,00 % | 0,00 % | 50,00 % | — |
 | 2026-10-media-viewer-entrance-jank | **10,00 %** | 10,00 % | 0,00 % | 80,00 % | — |
@@ -64,7 +65,7 @@
 | 2026-10-bulk-nitro-gifting-discounts | **20,00 %** | 20,00 % | 0,00 % | 60,00 % | — |
 | 2026-10-badge-directory-updates | **100,00 %** | 0,00 % | 0,00 % | 0,00 % | — |
 | 2026-10-avx512-entropy-histogram | **15,00 %** | 15,00 % | 0,00 % | 70,00 % | — |
-| 2026-10-animated-shop-bundle-previews | **50,00 %** | 50,00 % | 0,00 % | 0,00 % | — |
+| 2026-10-animated-shop-bundle-previews | **100,00 %** | 0,00 % | 0,00 % | 0,00 % | — |
 | 2026-10-android-stop-and-pause-video | **100,00 %** | 0,00 % | 0,00 % | 0,00 % | — |
 | 2026-10-android-seamless-pip | **50,00 %** | 50,00 % | 0,00 % | 0,00 % | — |
 | 2026-10-android-mobile-onboarding-friction-negative-test | **10,00 %** | 10,00 % | 0,00 % | 80,00 % | — |
@@ -102,7 +103,7 @@
 | 2026-09-friends-sidebar | **5,00 %** | 5,00 % | 0,00 % | 90,00 % | — |
 | 2026-09-edit-profile-collectibles-ordering | **50,00 %** | 50,00 % | 0,00 % | 0,00 % | — |
 | 2026-09-desktop-voice-message-recording | **100,00 %** | 0,00 % | 0,00 % | 0,00 % | — |
-| 2026-09-default-emojis | **5,00 %** | 5,00 % | 0,00 % | 90,00 % | — |
+| 2026-09-default-emojis | **7,50 %** | 7,50 % | 0,00 % | 85,00 % | — |
 | 2026-09-clips-editor-image-track | **100,00 %** | 0,00 % | 0,00 % | 0,00 % | — |
 | 2026-08-vq-remaining-time-truncation | **100,00 %** | 0,00 % | 0,00 % | 0,00 % | — |
 | 2026-08-user-bio-max-length | **100,00 %** | 0,00 % | 0,00 % | 0,00 % | — |
@@ -497,6 +498,9 @@
 - Variant 0 (control) : 50,00 % · plages 0 – 1500 , 3000 – 4000 , 5000 – 7500
 - Variant 1 (treatment) : 50,00 % · plages 1500 – 3000 , 4000 – 5000 , 7500 – 10000
 
+### 2026-10-mobile-rtc-v2
+- Variant 0 (control) : 30,00 % · plages 0 – 3000
+
 ### 2026-10-media-viewer-video-perf-android
 - Variant 0 (control) : 10,00 % · plages 0 – 100 , 200 – 600 , 1000 – 1500
 - Variant 1 (treatment) : 10,00 % · plages 100 – 200 , 600 – 1000 , 1500 – 2000
@@ -614,8 +618,7 @@
 - Variant 1 (treatment) : 15,00 % · plages 500 – 1000 , 2000 – 3000
 
 ### 2026-10-animated-shop-bundle-previews
-- Variant 0 (control) : 50,00 % · plages 0 – 100 , 200 – 1600 , 3000 – 4000 , 5000 – 7500
-- Variant 1 (treatment) : 50,00 % · plages 100 – 200 , 1600 – 3000 , 4000 – 5000 , 7500 – 10000
+- Variant 1 (treatment) : 100,00 % · plages 0 – 10000
 
 ### 2026-10-android-stop-and-pause-video
 - Variant 1 (treatment) : 100,00 % · plages 0 – 10000
@@ -751,8 +754,8 @@
 - Variant 1 (treatment) : 100,00 % · plages 0 – 10000
 
 ### 2026-09-default-emojis
-- Variant 0 (control) : 5,00 % · plages 0 – 100 , 200 – 600
-- Variant 1 (treatment) : 5,00 % · plages 100 – 200 , 600 – 1000
+- Variant 0 (control) : 7,50 % · plages 0 – 100 , 200 – 600 , 1000 – 1250
+- Variant 1 (treatment) : 7,50 % · plages 100 – 200 , 600 – 1000 , 1250 – 1500
 
 ### 2026-09-clips-editor-image-track
 - Variant 1 (treatment) : 100,00 % · plages 0 – 10000

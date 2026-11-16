@@ -1,16 +1,16 @@
 {
- "generatedAt": "2026-11-16T21:56:38.089Z",
+ "generatedAt": "2026-11-16T22:52:21.973Z",
  "semantics": "couverture de l'espace de buckets (gist agnonotdev) — ni une proportion d'utilisateurs, ni une mesure d'accès réel ; multi-populations = couverture projetée non pondérée",
  "source": {
   "gistId": "e3e99062983e6bd0feaef833f14fd931",
   "htmlUrl": "https://gist.github.com/agnonotdev/e3e99062983e6bd0feaef833f14fd931",
-  "updatedAt": "2026-11-16T21:55:48Z",
-  "revision": "96db233a0be108b55e301169340aef0b81c0fbdf"
+  "updatedAt": "2026-11-16T22:52:00Z",
+  "revision": "a48817bd020cd93c27294753aea58bde1a37d7be"
  },
  "stats": {
-  "total": 1052,
-  "user": 325,
-  "userData": 150,
+  "total": 1053,
+  "user": 326,
+  "userData": 151,
   "guild": 37,
   "unclassified": 690,
   "noData": 264
@@ -647,6 +647,27 @@
     "1": {
      "pct": 50,
      "role": "treatment"
+    }
+   }
+  },
+  {
+   "id": "2026-10-mobile-rtc-v2",
+   "title": "2026-10-mobile-rtc-v2",
+   "type": "user",
+   "hasData": true,
+   "totalsAvailable": true,
+   "ambiguous": false,
+   "projected": false,
+   "flags": [],
+   "treatmentPct": 0,
+   "projectedTreatmentPct": null,
+   "controlPct": 30,
+   "notEligiblePct": 0,
+   "unassignedPct": 70,
+   "byVariant": {
+    "0": {
+     "pct": 30,
+     "role": "control"
     }
    }
   },
@@ -1519,18 +1540,14 @@
    "ambiguous": false,
    "projected": false,
    "flags": [],
-   "treatmentPct": 50,
+   "treatmentPct": 100,
    "projectedTreatmentPct": null,
-   "controlPct": 50,
+   "controlPct": 0,
    "notEligiblePct": 0,
    "unassignedPct": 0,
    "byVariant": {
-    "0": {
-     "pct": 50,
-     "role": "control"
-    },
     "1": {
-     "pct": 50,
+     "pct": 100,
      "role": "treatment"
     }
    }
@@ -2805,18 +2822,18 @@
    "ambiguous": false,
    "projected": false,
    "flags": [],
-   "treatmentPct": 5,
+   "treatmentPct": 7.5,
    "projectedTreatmentPct": null,
-   "controlPct": 5,
+   "controlPct": 7.5,
    "notEligiblePct": 0,
-   "unassignedPct": 90,
+   "unassignedPct": 85,
    "byVariant": {
     "0": {
-     "pct": 5,
+     "pct": 7.5,
      "role": "control"
     },
     "1": {
-     "pct": 5,
+     "pct": 7.5,
      "role": "treatment"
     }
    }
