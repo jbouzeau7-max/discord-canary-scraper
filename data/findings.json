@@ -1,7 +1,7 @@
 {
-  "runId": "2026-11-16T22-51-38-773Z_674681_l4wpsm",
-  "buildNumber": "674681",
-  "scrapedAt": "2026-11-16T22:51:38.774Z",
+  "runId": "2026-11-16T23-20-56-147Z_674763_68td7p",
+  "buildNumber": "674763",
+  "scrapedAt": "2026-11-16T23:20:56.148Z",
   "totals": {
     "all": 396
   },
@@ -5274,10 +5274,10 @@
       },
       "userPercentage": {
         "status": "provided",
-        "value": 5,
+        "value": 10,
         "source": "gist_user_rollouts"
       },
-      "fingerprint": "e218a16a9a3c1a9e0280104662bd888d60d7c796ae5eda155dc3ba9d71da9db7"
+      "fingerprint": "5363498bf7e00d0390a1f9c76a5dacead7c0776b2a01daf8614f5684eed6c0b3"
     },
     {
       "id": "2026-09-desktop-tti-shader-cache",
@@ -6691,10 +6691,10 @@
       },
       "userPercentage": {
         "status": "provided",
-        "value": 50,
+        "value": 100,
         "source": "gist_user_rollouts"
       },
-      "fingerprint": "3a8d6eb3876b06bd980330280923732eea584da0e7a92e845a223bace8497945"
+      "fingerprint": "ad160802e8adf4a7b83f5b26353a0a24da89b44ec0247ae1e385c13406f49ed4"
     },
     {
       "id": "2026-10-avx512-entropy-histogram",
@@ -7121,7 +7121,17 @@
         }
       },
       "variationCount": 2,
-      "source": "discord"
+      "source": "discord",
+      "guildPercentage": {
+        "status": "unknown",
+        "value": null
+      },
+      "userPercentage": {
+        "status": "provided",
+        "value": 10,
+        "source": "gist_user_rollouts"
+      },
+      "fingerprint": "98bfa55f6697584a49ecb80633c9597df6a524f5219dc47b9954967c97e5d36a"
     },
     {
       "id": "2026-10-collectibles-upgraded-search",
