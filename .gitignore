@@ -4,6 +4,7 @@ yarn.lock
 
 # working download cache (re-fetched each run)
 assets/
+assets.pool/
 
 # full chunk dumps are huge — published via GitHub Releases instead
 builds/*/files/
