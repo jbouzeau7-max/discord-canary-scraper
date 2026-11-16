@@ -1,19 +1,19 @@
 {
- "generatedAt": "2026-11-16T20:25:23.311Z",
+ "generatedAt": "2026-11-16T21:56:38.089Z",
  "semantics": "couverture de l'espace de buckets (gist agnonotdev) — ni une proportion d'utilisateurs, ni une mesure d'accès réel ; multi-populations = couverture projetée non pondérée",
  "source": {
   "gistId": "e3e99062983e6bd0feaef833f14fd931",
   "htmlUrl": "https://gist.github.com/agnonotdev/e3e99062983e6bd0feaef833f14fd931",
-  "updatedAt": "2026-11-16T20:24:39Z",
-  "revision": "cbe0f28f84445fd2458136cde0f90fe65dd15f0a"
+  "updatedAt": "2026-11-16T21:55:48Z",
+  "revision": "96db233a0be108b55e301169340aef0b81c0fbdf"
  },
  "stats": {
-  "total": 1051,
-  "user": 324,
+  "total": 1052,
+  "user": 325,
   "userData": 150,
   "guild": 37,
   "unclassified": 690,
-  "noData": 263
+  "noData": 264
  },
  "experiments": [
   {
@@ -500,6 +500,31 @@
     },
     "2": {
      "pct": 33.33,
+     "role": "treatment"
+    }
+   }
+  },
+  {
+   "id": "2026-10-profile-read-state",
+   "title": "2026-10-profile-read-state",
+   "type": "user",
+   "hasData": true,
+   "totalsAvailable": true,
+   "ambiguous": false,
+   "projected": false,
+   "flags": [],
+   "treatmentPct": 5,
+   "projectedTreatmentPct": null,
+   "controlPct": 5,
+   "notEligiblePct": 0,
+   "unassignedPct": 90,
+   "byVariant": {
+    "0": {
+     "pct": 5,
+     "role": "control"
+    },
+    "1": {
+     "pct": 5,
      "role": "treatment"
     }
    }
@@ -1738,30 +1763,19 @@
    "id": "2026-09-user-profile-premium-try-it-out-mobile-refresh",
    "title": "2026-09-user-profile-premium-try-it-out-mobile-refresh",
    "type": "user",
-   "hasData": true,
-   "totalsAvailable": true,
+   "hasData": false,
+   "totalsAvailable": false,
    "ambiguous": false,
    "projected": false,
-   "flags": [],
-   "treatmentPct": 40,
+   "flags": [
+    "no_data"
+   ],
+   "treatmentPct": null,
    "projectedTreatmentPct": null,
-   "controlPct": 20,
-   "notEligiblePct": 0,
-   "unassignedPct": 40,
-   "byVariant": {
-    "0": {
-     "pct": 20,
-     "role": "control"
-    },
-    "1": {
-     "pct": 20,
-     "role": "treatment"
-    },
-    "2": {
-     "pct": 20,
-     "role": "treatment"
-    }
-   }
+   "controlPct": null,
+   "notEligiblePct": null,
+   "unassignedPct": null,
+   "byVariant": {}
   },
   {
    "id": "2026-09-update-email-settings-copy-subtext",

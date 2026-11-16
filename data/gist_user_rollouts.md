@@ -1,12 +1,12 @@
 # Rollouts user — couverture gist (v1)
 
-> Source : gist communautaire agnonotdev (copie réduite de rollouts.json, tag Assyst) · Généré le 2026-11-16 21:27 UTC
+> Source : gist communautaire agnonotdev (copie réduite de rollouts.json, tag Assyst) · Généré le 2026-11-16 21:56 UTC
 
 **Sémantique** : couvertures calculées exactement à partir des plages fournies par la source (0-10000), à 0,01 point près. Totaux par rôle = UNION des plages (un bucket appartient à un rôle s'il tombe dans l'union de ses plages). Quand la structure révèle plusieurs populations aplaties (drapeau `multi_population`) ou des rôles conflictuels/inconnus, l'agrégation est indéterminée (poids des populations absents du gist) : totaux principaux indisponibles, l'union est montrée en métrique secondaire étiquetée « projetée » (non pondérée). L'absence du drapeau ne prouve PAS une population unique — le gist n'en garde pas les frontières. Cohérent avec notre décodage wire apex (mêmes plages → mêmes nombres). Ce n'est ni une estimation statistique, ni la proportion de vrais utilisateurs éligibles, ni une mesure d'accès réel. Les expériences `guild` sont exclues (mesurées à part par le décodage wire apex).
 
-**Gist** : [e3e99062983e6bd0feaef833f14fd931](https://gist.github.com/agnonotdev/e3e99062983e6bd0feaef833f14fd931) · révision cbe0f28f · MAJ 2026-11-16T20:24:39Z · 1051 expériences au catalogue (324 user dont 150 avec données, 37 guild, 690 type inconnu, 263 sans données)
+**Gist** : [e3e99062983e6bd0feaef833f14fd931](https://gist.github.com/agnonotdev/e3e99062983e6bd0feaef833f14fd931) · révision 96db233a · MAJ 2026-11-16T21:55:48Z · 1052 expériences au catalogue (325 user dont 150 avec données, 37 guild, 690 type inconnu, 264 sans données)
 
-⚠️ Miroir divergent (192b2ce20539ce1021b5c8cb01b17ff0) sur : 2026-11-payment-element-accordion-layout, 2026-11-mobile-orb-redemption-thru-orders, 2026-11-soundboard-upsells-brand-refresh, 2026-11-return-full-quest-status-in-decision, 2026-11-screen-share-dtx, 2026-10-pinot-channel-discoverable, 2026-10-interest-picker, 2026-10-guilds-render-experiment, 2026-10-clickable-hero-banner, 2026-10-android-mobile-onboarding-friction-negative-test…
+⚠️ Miroir divergent (192b2ce20539ce1021b5c8cb01b17ff0) sur : 2026-11-payment-element-accordion-layout, 2026-11-mobile-orb-redemption-thru-orders, 2026-11-soundboard-upsells-brand-refresh, 2026-11-return-full-quest-status-in-decision, 2026-11-screen-share-dtx, 2026-10-profile-read-state, 2026-10-pinot-channel-discoverable, 2026-10-interest-picker, 2026-10-guilds-render-experiment, 2026-10-clickable-hero-banner…
 
 ## Expériences user avec données (150)
 
@@ -28,6 +28,7 @@
 | 2026-10-remove-quests-from-discovery | **50,00 %** | 50,00 % | 0,00 % | 0,00 % | — |
 | 2026-10-referral-refresh-notification | **50,00 %** | 50,00 % | 0,00 % | 0,00 % | — |
 | 2026-10-recurring-referral-reminder | **66,66 %** | 33,33 % | 0,00 % | 0,01 % | — |
+| 2026-10-profile-read-state | **5,00 %** | 5,00 % | 0,00 % | 90,00 % | — |
 | 2026-10-profile-nitro-upsell-refresh | **25,00 %** | 25,00 % | 0,00 % | 50,00 % | — |
 | 2026-10-profile-default-tab-with-content | **30,00 %** | 30,00 % | 0,00 % | 40,00 % | — |
 | 2026-10-pinot-member | **100,00 %** | 0,00 % | 0,00 % | 0,00 % | — |
@@ -72,7 +73,6 @@
 | 2026-09-web-sticker-picker-upsell-restyle | **50,00 %** | 50,00 % | 0,00 % | 0,00 % | — |
 | 2026-09-voice-server-update-immediate-mobile | **50,00 %** | 50,00 % | 0,00 % | 0,00 % | — |
 | 2026-09-voice-connect-feedback | **15,00 %** | 15,00 % | 0,00 % | 70,00 % | — |
-| 2026-09-user-profile-premium-try-it-out-mobile-refresh | **40,00 %** | 20,00 % | 0,00 % | 40,00 % | — |
 | 2026-09-try-display-name-style | **26,66 %** | 13,33 % | 0,00 % | 60,01 % | — |
 | 2026-09-three-month-nitro-gifting | **20,00 %** | 20,00 % | 0,00 % | 60,00 % | — |
 | 2026-09-soundboard-quick-action | **95,00 %** | 0,00 % | 0,00 % | 5,00 % | — |
@@ -474,6 +474,10 @@
 - Variant 1 (treatment) : 33,33 % · plages 667 – 1334 , 3001 – 4001 , 6667 – 8333
 - Variant 2 (treatment) : 33,33 % · plages 1334 – 2001 , 4001 – 5001 , 8333 – 9999
 
+### 2026-10-profile-read-state
+- Variant 0 (control) : 5,00 % · plages 0 – 500
+- Variant 1 (treatment) : 5,00 % · plages 500 – 1000
+
 ### 2026-10-profile-nitro-upsell-refresh
 - Variant 0 (control) : 25,00 % · plages 0 – 500 , 1000 – 1500 , 2000 – 3500
 - Variant 1 (treatment) : 25,00 % · plages 500 – 1000 , 1500 – 2000 , 3500 – 5000
@@ -641,11 +645,6 @@
 ### 2026-09-voice-connect-feedback
 - Variant 0 (control) : 15,00 % · plages 0 – 1500
 - Variant 2 (treatment) : 15,00 % · plages 1500 – 3000
-
-### 2026-09-user-profile-premium-try-it-out-mobile-refresh
-- Variant 0 (control) : 20,00 % · plages 0 – 500 , 1500 – 2000 , 3000 – 3667 , 5001 – 5334
-- Variant 1 (treatment) : 20,00 % · plages 500 – 1000 , 2000 – 2500 , 3667 – 4334 , 5334 – 5667
-- Variant 2 (treatment) : 20,00 % · plages 1000 – 1500 , 2500 – 3000 , 4334 – 5001 , 5667 – 6000
 
 ### 2026-09-try-display-name-style
 - Variant 0 (control) : 13,33 % · plages 0 – 100 , 300 – 1200 , 3000 – 3333

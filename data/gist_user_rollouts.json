@@ -3,15 +3,15 @@
  "schemaVersion": 1,
  "semanticsVersion": 2,
  "notifyScopeVersion": 2,
- "runId": "20261116T212757_gist",
- "scrapedAt": "2026-11-16T21:27:57.792Z",
+ "runId": "20261116T215638_gist",
+ "scrapedAt": "2026-11-16T21:56:38.074Z",
  "source": {
   "gistId": "e3e99062983e6bd0feaef833f14fd931",
   "htmlUrl": "https://gist.github.com/agnonotdev/e3e99062983e6bd0feaef833f14fd931",
-  "rawUrl": "https://gist.githubusercontent.com/agnonotdev/e3e99062983e6bd0feaef833f14fd931/raw/b1615dead8f280af8f5e527c5e3dae9dc313f0cf/rollouts-tag.json",
-  "updatedAt": "2026-11-16T20:24:39Z",
-  "revision": "cbe0f28f84445fd2458136cde0f90fe65dd15f0a",
-  "fetchedAt": "2026-11-16T21:27:57.792Z",
+  "rawUrl": "https://gist.githubusercontent.com/agnonotdev/e3e99062983e6bd0feaef833f14fd931/raw/7cb6f27295cb8683065759a435d9b34ca375c833/rollouts-tag.json",
+  "updatedAt": "2026-11-16T21:55:48Z",
+  "revision": "96db233a0be108b55e301169340aef0b81c0fbdf",
+  "fetchedAt": "2026-11-16T21:56:38.074Z",
   "fallback": false,
   "rawFallback": false,
   "canonicalId": null
@@ -25,6 +25,7 @@
    "2026-11-soundboard-upsells-brand-refresh",
    "2026-11-return-full-quest-status-in-decision",
    "2026-11-screen-share-dtx",
+   "2026-10-profile-read-state",
    "2026-10-pinot-channel-discoverable",
    "2026-10-interest-picker",
    "2026-10-guilds-render-experiment",
@@ -49,6 +50,7 @@
    "2026-10-request-to-stream-non-games",
    "2026-10-android-stop-and-pause-video",
    "2026-10-android-fastimage-apng",
+   "2026-09-user-profile-premium-try-it-out-mobile-refresh",
    "2026-09-mobile-request-to-stream",
    "2026-09-guild-spaces",
    "2026-09-default-emojis",
@@ -72,12 +74,12 @@
   ]
  },
  "stats": {
-  "total": 1051,
-  "user": 324,
+  "total": 1052,
+  "user": 325,
   "userData": 150,
   "guild": 37,
   "unclassified": 690,
-  "noData": 263
+  "noData": 264
  },
  "acknowledged": {
   "2026-11-soundboard-upsells-brand-refresh": {
@@ -4881,35 +4883,12 @@
    "variantsCount": 2
   },
   "2026-09-user-profile-premium-try-it-out-mobile-refresh": {
-   "key": "74c0ed96a9100ba4",
-   "hasData": true,
-   "sig": "0:control|1:treatment|2:treatment",
-   "byVariant": {
-    "0": {
-     "pct": 20,
-     "role": "control"
-    },
-    "1": {
-     "pct": 20,
-     "role": "treatment"
-    },
-    "2": {
-     "pct": 20,
-     "role": "treatment"
-    }
-   },
+   "key": "no_data",
+   "hasData": false,
+   "sig": "",
    "treatment": {
-    "pct": 40
-   },
-   "control": {
-    "pct": 20
-   },
-   "notEligible": {
-    "pct": 0
-   },
-   "projectedCoverage": null,
-   "projected": false,
-   "variantsCount": 3
+    "pct": null
+   }
   },
   "2026-09-profile-frame-layer-preload-mobile": {
    "key": "947de72f00f84f24",
@@ -21425,6 +21404,33 @@
    "projectedCoverage": null,
    "projected": false,
    "variantsCount": 1
+  },
+  "2026-10-profile-read-state": {
+   "key": "b3b9adcf2eca826f",
+   "hasData": true,
+   "sig": "0:control|1:treatment",
+   "byVariant": {
+    "0": {
+     "pct": 5,
+     "role": "control"
+    },
+    "1": {
+     "pct": 5,
+     "role": "treatment"
+    }
+   },
+   "treatment": {
+    "pct": 5
+   },
+   "control": {
+    "pct": 5
+   },
+   "notEligible": {
+    "pct": 0
+   },
+   "projectedCoverage": null,
+   "projected": false,
+   "variantsCount": 2
   }
  },
  "lastRun": {
@@ -21435,24 +21441,6 @@
   "scopeBaselined": 0
  },
  "history": [
-  {
-   "at": "2026-11-16T02:00:18.440Z",
-   "revision": "6d5357d8dc9a85dec1eb17f3d75ec01dfc43d330",
-   "changes": 0,
-   "delivered": 0
-  },
-  {
-   "at": "2026-11-16T02:29:33.918Z",
-   "revision": "6d5357d8dc9a85dec1eb17f3d75ec01dfc43d330",
-   "changes": 0,
-   "delivered": 0
-  },
-  {
-   "at": "2026-11-16T02:58:46.436Z",
-   "revision": "6d5357d8dc9a85dec1eb17f3d75ec01dfc43d330",
-   "changes": 0,
-   "delivered": 0
-  },
   {
    "at": "2026-11-16T03:27:54.040Z",
    "revision": "6d5357d8dc9a85dec1eb17f3d75ec01dfc43d330",
@@ -21732,6 +21720,24 @@
   {
    "at": "2026-11-16T21:27:57.792Z",
    "revision": "cbe0f28f84445fd2458136cde0f90fe65dd15f0a",
+   "changes": 0,
+   "delivered": 0
+  },
+  {
+   "at": "2026-11-16T21:56:14.164Z",
+   "revision": "96db233a0be108b55e301169340aef0b81c0fbdf",
+   "changes": 2,
+   "delivered": 2
+  },
+  {
+   "at": "2026-11-16T21:56:17.898Z",
+   "revision": "96db233a0be108b55e301169340aef0b81c0fbdf",
+   "changes": 0,
+   "delivered": 0
+  },
+  {
+   "at": "2026-11-16T21:56:38.074Z",
+   "revision": "96db233a0be108b55e301169340aef0b81c0fbdf",
    "changes": 0,
    "delivered": 0
   }
