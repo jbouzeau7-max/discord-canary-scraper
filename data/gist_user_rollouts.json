@@ -3,15 +3,15 @@
  "schemaVersion": 1,
  "semanticsVersion": 2,
  "notifyScopeVersion": 2,
- "runId": "20261116T201849_gist",
- "scrapedAt": "2026-11-16T20:18:49.056Z",
+ "runId": "20261116T202523_gist",
+ "scrapedAt": "2026-11-16T20:25:23.296Z",
  "source": {
   "gistId": "e3e99062983e6bd0feaef833f14fd931",
   "htmlUrl": "https://gist.github.com/agnonotdev/e3e99062983e6bd0feaef833f14fd931",
-  "rawUrl": "https://gist.githubusercontent.com/agnonotdev/e3e99062983e6bd0feaef833f14fd931/raw/a6be47a2ea3eacd773caeee659262b71ec73667b/rollouts-tag.json",
-  "updatedAt": "2026-11-16T20:18:39Z",
-  "revision": "f1f913453db032bc11eddd52c559be00aaaf6a4d",
-  "fetchedAt": "2026-11-16T20:18:49.056Z",
+  "rawUrl": "https://gist.githubusercontent.com/agnonotdev/e3e99062983e6bd0feaef833f14fd931/raw/b1615dead8f280af8f5e527c5e3dae9dc313f0cf/rollouts-tag.json",
+  "updatedAt": "2026-11-16T20:24:39Z",
+  "revision": "cbe0f28f84445fd2458136cde0f90fe65dd15f0a",
+  "fetchedAt": "2026-11-16T20:25:23.296Z",
   "fallback": false,
   "rawFallback": false,
   "canonicalId": null
@@ -25,6 +25,7 @@
    "2026-11-soundboard-upsells-brand-refresh",
    "2026-11-return-full-quest-status-in-decision",
    "2026-11-screen-share-dtx",
+   "2026-10-pinot-channel-discoverable",
    "2026-10-interest-picker",
    "2026-10-guilds-render-experiment",
    "2026-10-clickable-hero-banner",
@@ -48,9 +49,10 @@
    "2026-10-request-to-stream-non-games",
    "2026-10-android-stop-and-pause-video",
    "2026-10-android-fastimage-apng",
+   "2026-09-mobile-request-to-stream",
+   "2026-09-guild-spaces",
    "2026-09-default-emojis",
    "2026-09-hexagon-campaign-client",
-   "2026-09-guild-spaces",
    "2026-09-safety-warning-age-text",
    "2026-09-game-search-row",
    "2026-09-ios-anchored-chat-scroller",
@@ -70,10 +72,10 @@
   ]
  },
  "stats": {
-  "total": 1049,
+  "total": 1051,
   "user": 324,
   "userData": 150,
-  "guild": 35,
+  "guild": 37,
   "unclassified": 690,
   "noData": 263
  },
@@ -21426,31 +21428,13 @@
   }
  },
  "lastRun": {
-  "changes": 6,
-  "delivered": 6,
+  "changes": 0,
+  "delivered": 0,
   "firstRun": false,
   "semanticsMigrated": 0,
   "scopeBaselined": 0
  },
  "history": [
-  {
-   "at": "2026-11-15T23:34:13.319Z",
-   "revision": "6d5357d8dc9a85dec1eb17f3d75ec01dfc43d330",
-   "changes": 0,
-   "delivered": 0
-  },
-  {
-   "at": "2026-11-16T00:03:24.138Z",
-   "revision": "6d5357d8dc9a85dec1eb17f3d75ec01dfc43d330",
-   "changes": 0,
-   "delivered": 0
-  },
-  {
-   "at": "2026-11-16T00:32:36.096Z",
-   "revision": "6d5357d8dc9a85dec1eb17f3d75ec01dfc43d330",
-   "changes": 0,
-   "delivered": 0
-  },
   {
    "at": "2026-11-16T01:01:52.963Z",
    "revision": "6d5357d8dc9a85dec1eb17f3d75ec01dfc43d330",
@@ -21732,6 +21716,24 @@
    "revision": "f1f913453db032bc11eddd52c559be00aaaf6a4d",
    "changes": 6,
    "delivered": 6
+  },
+  {
+   "at": "2026-11-16T20:25:13.529Z",
+   "revision": "cbe0f28f84445fd2458136cde0f90fe65dd15f0a",
+   "changes": 0,
+   "delivered": 0
+  },
+  {
+   "at": "2026-11-16T20:25:18.272Z",
+   "revision": "cbe0f28f84445fd2458136cde0f90fe65dd15f0a",
+   "changes": 0,
+   "delivered": 0
+  },
+  {
+   "at": "2026-11-16T20:25:23.296Z",
+   "revision": "cbe0f28f84445fd2458136cde0f90fe65dd15f0a",
+   "changes": 0,
+   "delivered": 0
   }
  ]
 }
