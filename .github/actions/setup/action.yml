@@ -10,6 +10,15 @@ runs:
     - uses: actions/setup-node@v5
       with:
         node-version: ${{ inputs.node-version }}
+    # Vitesse : node_modules restauré depuis le cache (clé = lockfile) → npm ci
+    # sauté quand le cache est chaud (gain ~5-15 s par run).
+    - name: Cache node_modules
+      id: nm-cache
+      uses: actions/cache@v4
+      with:
+        path: node_modules
+        key: nm-${{ runner.os }}-node${{ inputs.node-version }}-${{ hashFiles('package-lock.json') }}
     - name: npm ci
+      if: steps.nm-cache.outputs.cache-hit != 'true'
       shell: bash
-      run: npm ci --no-audit --no-fund
+      run: npm ci --no-audit --no-fund --prefer-offline
