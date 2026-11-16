@@ -4,6 +4,11 @@ on:
   schedule:
     - cron: '*/5 * * * *'
   workflow_dispatch:
+    inputs:
+      once:
+        description: "true = un seul scrape (ancien mode), false = watcher temps réel"
+        type: boolean
+        default: false
   repository_dispatch:
     types: [trigger-scraping]
 
@@ -17,7 +22,7 @@ concurrency:
 jobs:
   scrape:
     runs-on: ubuntu-latest
-    timeout-minutes: 25
+    timeout-minutes: 40
     steps:
       - uses: actions/checkout@v5
         with:
@@ -37,7 +42,14 @@ jobs:
           # Compatibilité avec le secret historique WEBHOOK_URL.
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL || secrets.WEBHOOK_URL }}
           ORBIT_BOT_NAME: Datamining
-        run: node src/index.js
+          # Watcher : sonde version.canary.json toutes les 2 s et lance le
+          # scrape dès qu'un build sort (runner déjà chaud → pas de 30 s+ de
+          # démarrage). Le run suivant (cron */5) attend en relais.
+          SCRAPE_WATCH_MS: "1680000"
+          SCRAPE_WATCH_TICK_MS: "2000"
+          ONCE: ${{ github.event_name == 'workflow_dispatch' && inputs.once && '1' || '0' }}
+        run: |
+          if [ "$ONCE" = "1" ]; then node src/index.js; else node src/scrape_watch.js; fi
 
       - name: Commit state
         id: commit_state
