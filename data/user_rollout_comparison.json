@@ -1,17 +1,17 @@
 {
  "schemaVersion": 1,
- "generatedAt": "2026-11-16T23:28:44.002Z",
+ "generatedAt": "2026-11-16T23:44:21.030Z",
  "semantics": "Couverture gist non vérifiée et observations API : deux métriques séparées, jamais une proportion réelle d’utilisateurs.",
  "sources": {
   "positions": {
-   "updatedAt": "2026-11-16T23:28:43.908Z",
+   "updatedAt": "2026-11-16T23:44:20.936Z",
    "scheduled": true
   },
   "gist": {
    "gistId": "e3e99062983e6bd0feaef833f14fd931",
    "htmlUrl": "https://gist.github.com/agnonotdev/e3e99062983e6bd0feaef833f14fd931",
-   "updatedAt": "2026-11-16T23:17:13Z",
-   "revision": "a2ff0c7b7c7b03c116e78aa0c2c03b2304167b4f"
+   "updatedAt": "2026-11-16T23:43:05Z",
+   "revision": "2c27512e600f7d55872c74ac207b5737af4b399f"
   },
   "sampling": {
    "observedAt": "2026-11-09T15:26:39.250Z",
@@ -54,9 +54,9 @@
      }
     },
     "verified": false,
-    "updatedAt": "2026-11-16T23:17:13Z",
-    "fetchedAt": "2026-11-16T23:27:33.024Z",
-    "revision": "a2ff0c7b7c7b03c116e78aa0c2c03b2304167b4f",
+    "updatedAt": "2026-11-16T23:43:05Z",
+    "fetchedAt": "2026-11-16T23:43:13.309Z",
+    "revision": "2c27512e600f7d55872c74ac207b5737af4b399f",
     "htmlUrl": "https://gist.github.com/agnonotdev/e3e99062983e6bd0feaef833f14fd931",
     "sourceRanges": [
      {
@@ -72,7 +72,7 @@
     ],
     "freshness": {
      "state": "recent",
-     "ageHours": 0.191945
+     "ageHours": 0.021119444444444444
     }
    },
    "measurement": {
@@ -80,7 +80,7 @@
     "observedAt": "2026-11-09T15:26:39.250Z",
     "freshness": {
      "state": "stale",
-     "ageHours": 176.03465333333332
+     "ageHours": 176.29493888888888
     },
     "n": 6429,
     "k": 6429,
@@ -126,18 +126,18 @@
     "maxPct": 100,
     "estPct": 100,
     "widthPoints": 0,
-    "knownInPct": 72.95,
-    "knownPositions": 7295,
-    "inPositions": 7295,
+    "knownInPct": 73.37,
+    "knownPositions": 7337,
+    "inPositions": 7337,
     "outPositions": 0,
     "runs": 1,
-    "points": 12900,
+    "points": 13050,
     "conflicts": 0,
     "revision": 0,
-    "updatedAt": "2026-11-16T23:28:43.908Z",
+    "updatedAt": "2026-11-16T23:44:20.936Z",
     "assumption": "contiguous_ranges",
     "agreement": {
-     "consistentPositions": 7295,
+     "consistentPositions": 7337,
      "contradictingPositions": 0,
      "gistPct": 100,
      "examples": []
@@ -178,9 +178,9 @@
      }
     },
     "verified": false,
-    "updatedAt": "2026-11-16T23:17:13Z",
-    "fetchedAt": "2026-11-16T23:27:33.024Z",
-    "revision": "a2ff0c7b7c7b03c116e78aa0c2c03b2304167b4f",
+    "updatedAt": "2026-11-16T23:43:05Z",
+    "fetchedAt": "2026-11-16T23:43:13.309Z",
+    "revision": "2c27512e600f7d55872c74ac207b5737af4b399f",
     "htmlUrl": "https://gist.github.com/agnonotdev/e3e99062983e6bd0feaef833f14fd931",
     "sourceRanges": [
      {
@@ -196,7 +196,7 @@
     ],
     "freshness": {
      "state": "recent",
-     "ageHours": 0.191945
+     "ageHours": 0.021119444444444444
     }
    },
    "measurement": {
@@ -204,7 +204,7 @@
     "observedAt": "2026-11-09T15:26:39.250Z",
     "freshness": {
      "state": "stale",
-     "ageHours": 176.03465333333332
+     "ageHours": 176.29493888888888
     },
     "n": 6429,
     "k": 272,
@@ -250,19 +250,19 @@
     "maxPct": 5,
     "estPct": 5,
     "widthPoints": 0,
-    "knownInPct": 3.72,
-    "knownPositions": 7198,
-    "inPositions": 372,
-    "outPositions": 6826,
+    "knownInPct": 3.74,
+    "knownPositions": 7247,
+    "inPositions": 374,
+    "outPositions": 6873,
     "runs": 2,
-    "points": 12750,
+    "points": 12900,
     "conflicts": 0,
     "revision": 3,
-    "updatedAt": "2026-11-16T23:28:43.908Z",
+    "updatedAt": "2026-11-16T23:44:20.936Z",
     "assumption": "contiguous_ranges",
     "agreement": {
-     "consistentPositions": 372,
-     "contradictingPositions": 6826,
+     "consistentPositions": 374,
+     "contradictingPositions": 6873,
      "gistPct": 100,
      "examples": [
       [
@@ -315,9 +315,9 @@
      }
     },
     "verified": false,
-    "updatedAt": "2026-11-16T23:17:13Z",
-    "fetchedAt": "2026-11-16T23:27:33.024Z",
-    "revision": "a2ff0c7b7c7b03c116e78aa0c2c03b2304167b4f",
+    "updatedAt": "2026-11-16T23:43:05Z",
+    "fetchedAt": "2026-11-16T23:43:13.309Z",
+    "revision": "2c27512e600f7d55872c74ac207b5737af4b399f",
     "htmlUrl": "https://gist.github.com/agnonotdev/e3e99062983e6bd0feaef833f14fd931",
     "sourceRanges": [
      {
@@ -333,7 +333,7 @@
     ],
     "freshness": {
      "state": "recent",
-     "ageHours": 0.191945
+     "ageHours": 0.021119444444444444
     }
    },
    "measurement": {
@@ -341,7 +341,7 @@
     "observedAt": "2026-11-09T15:26:39.250Z",
     "freshness": {
      "state": "stale",
-     "ageHours": 176.03465333333332
+     "ageHours": 176.29493888888888
     },
     "n": 6429,
     "k": 351,
@@ -387,18 +387,18 @@
     "maxPct": 5,
     "estPct": 5,
     "widthPoints": 0.01,
-    "knownInPct": 3.58,
-    "knownPositions": 7183,
-    "inPositions": 358,
-    "outPositions": 6825,
+    "knownInPct": 3.61,
+    "knownPositions": 7226,
+    "inPositions": 361,
+    "outPositions": 6865,
     "runs": 2,
-    "points": 12750,
+    "points": 12900,
     "conflicts": 0,
     "revision": 0,
-    "updatedAt": "2026-11-16T23:28:43.908Z",
+    "updatedAt": "2026-11-16T23:44:20.936Z",
     "assumption": "contiguous_ranges",
     "agreement": {
-     "consistentPositions": 7183,
+     "consistentPositions": 7226,
      "contradictingPositions": 0,
      "gistPct": 5,
      "examples": []
@@ -439,9 +439,9 @@
      }
     },
     "verified": false,
-    "updatedAt": "2026-11-16T23:17:13Z",
-    "fetchedAt": "2026-11-16T23:27:33.024Z",
-    "revision": "a2ff0c7b7c7b03c116e78aa0c2c03b2304167b4f",
+    "updatedAt": "2026-11-16T23:43:05Z",
+    "fetchedAt": "2026-11-16T23:43:13.309Z",
+    "revision": "2c27512e600f7d55872c74ac207b5737af4b399f",
     "htmlUrl": "https://gist.github.com/agnonotdev/e3e99062983e6bd0feaef833f14fd931",
     "sourceRanges": [
      {
@@ -457,7 +457,7 @@
     ],
     "freshness": {
      "state": "recent",
-     "ageHours": 0.191945
+     "ageHours": 0.021119444444444444
     }
    },
    "measurement": {
@@ -465,7 +465,7 @@
     "observedAt": "2026-11-09T15:26:39.250Z",
     "freshness": {
      "state": "stale",
-     "ageHours": 176.03465333333332
+     "ageHours": 176.29493888888888
     },
     "n": 6279,
     "k": 6279,
@@ -511,18 +511,18 @@
     "maxPct": 100,
     "estPct": 100,
     "widthPoints": 0.01,
-    "knownInPct": 71.89,
-    "knownPositions": 7189,
-    "inPositions": 7189,
+    "knownInPct": 72.29,
+    "knownPositions": 7229,
+    "inPositions": 7229,
     "outPositions": 0,
     "runs": 1,
-    "points": 12750,
+    "points": 12900,
     "conflicts": 0,
     "revision": 0,
-    "updatedAt": "2026-11-16T23:28:43.908Z",
+    "updatedAt": "2026-11-16T23:44:20.936Z",
     "assumption": "contiguous_ranges",
     "agreement": {
-     "consistentPositions": 7189,
+     "consistentPositions": 7229,
      "contradictingPositions": 0,
      "gistPct": 100,
      "examples": []
@@ -548,7 +548,7 @@
     "observedAt": "2026-11-09T15:26:39.250Z",
     "freshness": {
      "state": "stale",
-     "ageHours": 176.03465333333332
+     "ageHours": 176.29493888888888
     },
     "n": 6429,
     "k": null,

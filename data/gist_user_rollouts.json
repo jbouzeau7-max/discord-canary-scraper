@@ -3,15 +3,15 @@
  "schemaVersion": 1,
  "semanticsVersion": 2,
  "notifyScopeVersion": 2,
- "runId": "20261116T232733_gist",
- "scrapedAt": "2026-11-16T23:27:33.007Z",
+ "runId": "20261116T234313_gist",
+ "scrapedAt": "2026-11-16T23:43:13.300Z",
  "source": {
   "gistId": "e3e99062983e6bd0feaef833f14fd931",
   "htmlUrl": "https://gist.github.com/agnonotdev/e3e99062983e6bd0feaef833f14fd931",
-  "rawUrl": "https://gist.githubusercontent.com/agnonotdev/e3e99062983e6bd0feaef833f14fd931/raw/8c8667d5070059fca9e3575e77186eba85391e14/rollouts-tag.json",
-  "updatedAt": "2026-11-16T23:17:13Z",
-  "revision": "a2ff0c7b7c7b03c116e78aa0c2c03b2304167b4f",
-  "fetchedAt": "2026-11-16T23:27:33.007Z",
+  "rawUrl": "https://gist.githubusercontent.com/agnonotdev/e3e99062983e6bd0feaef833f14fd931/raw/7b768e7bfcd22f047620bee6c0f2c25eceaa24b7/rollouts-tag.json",
+  "updatedAt": "2026-11-16T23:43:05Z",
+  "revision": "2c27512e600f7d55872c74ac207b5737af4b399f",
+  "fetchedAt": "2026-11-16T23:43:13.300Z",
   "fallback": false,
   "rawFallback": false,
   "canonicalId": null
@@ -2014,24 +2014,24 @@
    }
   },
   "2026-09-default-emojis": {
-   "key": "4a4b96c977ffaa86",
+   "key": "0a076766fd7b7107",
    "hasData": true,
    "sig": "0:control|1:treatment",
    "byVariant": {
     "0": {
-     "pct": 10,
+     "pct": 15,
      "role": "control"
     },
     "1": {
-     "pct": 10,
+     "pct": 15,
      "role": "treatment"
     }
    },
    "treatment": {
-    "pct": 10
+    "pct": 15
    },
    "control": {
-    "pct": 10
+    "pct": 15
    },
    "notEligible": {
     "pct": 0
@@ -21479,19 +21479,13 @@
   }
  },
  "lastRun": {
-  "changes": 0,
-  "delivered": 0,
+  "changes": 1,
+  "delivered": 1,
   "firstRun": false,
   "semanticsMigrated": 0,
   "scopeBaselined": 0
  },
  "history": [
-  {
-   "at": "2026-11-16T06:52:12.851Z",
-   "revision": "6d5357d8dc9a85dec1eb17f3d75ec01dfc43d330",
-   "changes": 0,
-   "delivered": 0
-  },
   {
    "at": "2026-11-16T07:21:24.422Z",
    "revision": "6d5357d8dc9a85dec1eb17f3d75ec01dfc43d330",
@@ -21785,6 +21779,12 @@
    "revision": "a2ff0c7b7c7b03c116e78aa0c2c03b2304167b4f",
    "changes": 0,
    "delivered": 0
+  },
+  {
+   "at": "2026-11-16T23:43:13.300Z",
+   "revision": "2c27512e600f7d55872c74ac207b5737af4b399f",
+   "changes": 1,
+   "delivered": 1
   }
  ]
 }
