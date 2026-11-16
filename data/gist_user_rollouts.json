@@ -2,15 +2,15 @@
  "version": 1,
  "schemaVersion": 1,
  "semanticsVersion": 2,
- "runId": "20261116T160651_gist",
- "scrapedAt": "2026-11-16T16:06:51.170Z",
+ "runId": "20261116T160916_gist",
+ "scrapedAt": "2026-11-16T16:09:16.456Z",
  "source": {
   "gistId": "e3e99062983e6bd0feaef833f14fd931",
   "htmlUrl": "https://gist.github.com/agnonotdev/e3e99062983e6bd0feaef833f14fd931",
-  "rawUrl": "https://gist.githubusercontent.com/agnonotdev/e3e99062983e6bd0feaef833f14fd931/raw/28f732f57e30e540d2afad8572e4bf1819815762/rollouts-tag.json",
-  "updatedAt": "2026-11-14T15:49:02Z",
-  "revision": "6d5357d8dc9a85dec1eb17f3d75ec01dfc43d330",
-  "fetchedAt": "2026-11-16T16:06:51.170Z",
+  "rawUrl": "https://gist.githubusercontent.com/agnonotdev/e3e99062983e6bd0feaef833f14fd931/raw/bc7352c0380f54972a05c7883fb40cd5c00256a4/rollouts-tag.json",
+  "updatedAt": "2026-11-16T16:08:56Z",
+  "revision": "a66178b074ab3f7d1df428a3b9e471882fdfcf90",
+  "fetchedAt": "2026-11-16T16:09:16.456Z",
   "fallback": false,
   "rawFallback": false,
   "canonicalId": null
@@ -19,6 +19,7 @@
   "gistId": "192b2ce20539ce1021b5c8cb01b17ff0",
   "diverged": true,
   "divergingIds": [
+   "2026-11-mobile-orb-redemption-thru-orders",
    "2026-11-soundboard-upsells-brand-refresh",
    "2026-11-return-full-quest-status-in-decision",
    "2026-11-screen-share-dtx",
@@ -61,9 +62,9 @@
   ]
  },
  "stats": {
-  "total": 1043,
-  "user": 318,
-  "userData": 145,
+  "total": 1044,
+  "user": 319,
+  "userData": 146,
   "guild": 35,
   "unclassified": 690,
   "noData": 262
@@ -5211,21 +5212,38 @@
    "projectedCoverage": null,
    "projected": false,
    "variantsCount": 1
+  },
+  "2026-11-mobile-orb-redemption-thru-orders": {
+   "key": "0420a2740c95a6f7",
+   "hasData": true,
+   "sig": "1:treatment",
+   "byVariant": {
+    "1": {
+     "pct": 5,
+     "role": "treatment"
+    }
+   },
+   "treatment": {
+    "pct": 5
+   },
+   "control": {
+    "pct": 0
+   },
+   "notEligible": {
+    "pct": 0
+   },
+   "projectedCoverage": null,
+   "projected": false,
+   "variantsCount": 1
   }
  },
  "lastRun": {
-  "changes": 0,
-  "delivered": 0,
+  "changes": 1,
+  "delivered": 1,
   "firstRun": false,
   "semanticsMigrated": 0
  },
  "history": [
-  {
-   "at": "2026-11-15T12:18:43.076Z",
-   "revision": "6d5357d8dc9a85dec1eb17f3d75ec01dfc43d330",
-   "changes": 0,
-   "delivered": 0
-  },
   {
    "at": "2026-11-15T12:47:53.533Z",
    "revision": "6d5357d8dc9a85dec1eb17f3d75ec01dfc43d330",
@@ -5519,6 +5537,12 @@
    "revision": "6d5357d8dc9a85dec1eb17f3d75ec01dfc43d330",
    "changes": 0,
    "delivered": 0
+  },
+  {
+   "at": "2026-11-16T16:09:16.456Z",
+   "revision": "a66178b074ab3f7d1df428a3b9e471882fdfcf90",
+   "changes": 1,
+   "delivered": 1
   }
  ]
 }

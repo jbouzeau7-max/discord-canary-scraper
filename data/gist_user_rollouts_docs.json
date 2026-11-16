@@ -1,16 +1,16 @@
 {
- "generatedAt": "2026-11-16T14:39:23.425Z",
+ "generatedAt": "2026-11-16T16:09:16.459Z",
  "semantics": "couverture de l'espace de buckets (gist agnonotdev) — ni une proportion d'utilisateurs, ni une mesure d'accès réel ; multi-populations = couverture projetée non pondérée",
  "source": {
   "gistId": "e3e99062983e6bd0feaef833f14fd931",
   "htmlUrl": "https://gist.github.com/agnonotdev/e3e99062983e6bd0feaef833f14fd931",
-  "updatedAt": "2026-11-14T15:49:02Z",
-  "revision": "6d5357d8dc9a85dec1eb17f3d75ec01dfc43d330"
+  "updatedAt": "2026-11-16T16:08:56Z",
+  "revision": "a66178b074ab3f7d1df428a3b9e471882fdfcf90"
  },
  "stats": {
-  "total": 1043,
-  "user": 318,
-  "userData": 145,
+  "total": 1044,
+  "user": 319,
+  "userData": 146,
   "guild": 35,
   "unclassified": 690,
   "noData": 262
@@ -83,6 +83,27 @@
    "notEligiblePct": null,
    "unassignedPct": null,
    "byVariant": {}
+  },
+  {
+   "id": "2026-11-mobile-orb-redemption-thru-orders",
+   "title": "2026-11-mobile-orb-redemption-thru-orders",
+   "type": "user",
+   "hasData": true,
+   "totalsAvailable": true,
+   "ambiguous": false,
+   "projected": false,
+   "flags": [],
+   "treatmentPct": 5,
+   "projectedTreatmentPct": null,
+   "controlPct": 0,
+   "notEligiblePct": 0,
+   "unassignedPct": 95,
+   "byVariant": {
+    "1": {
+     "pct": 5,
+     "role": "treatment"
+    }
+   }
   },
   {
    "id": "2026-10-web-streaming-optimizations",
