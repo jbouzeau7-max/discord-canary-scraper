@@ -87,6 +87,9 @@ const GIST_IDS = String(process.env.GIST_ROLLOUT_GIST_IDS || '')
   .filter(Boolean);
 const GISTS = GIST_IDS.length ? GIST_IDS : DEFAULT_GIST_IDS;
 const MIN_DELTA_PCT = envNumber('GIST_ROLLOUT_MIN_PCT_DELTA', 0.05, { min: 0 });
+// API gist : timeout court — si elle traîne (quota anonyme partagé des
+// runners), le repli CDN raw répond en < 1 s.
+const GIST_API_TIMEOUT_MS = envNumber('GIST_API_TIMEOUT_MS', 6000, { min: 500 });
 const STALE_H = envNumber('GIST_ROLLOUT_STALE_H', 72, { min: 1 });
 // Discord accepte jusqu'à 10 embeds par message : regrouper les changements
 // user réduit les aller-retours sans acquitter un lot qui n'a pas été livré.
@@ -162,7 +165,7 @@ async function fetchGistMeta(id, token) {
   if (token) headers.Authorization = 'Bearer ' + token;
   let res = await fetch('https://api.github.com/gists/' + encodeURIComponent(id), {
     headers,
-    timeout: 20000,
+    timeout: GIST_API_TIMEOUT_MS,
   });
   // Le GITHUB_TOKEN des Actions est un jeton d'INSTALLATION sans accès aux
   // gists (« Resource not accessible by integration », 403) : un gist PUBLIC
@@ -171,7 +174,7 @@ async function fetchGistMeta(id, token) {
     delete headers.Authorization;
     res = await fetch('https://api.github.com/gists/' + encodeURIComponent(id), {
       headers,
-      timeout: 20000,
+      timeout: GIST_API_TIMEOUT_MS,
     });
   }
   if (!res.ok) {
@@ -197,11 +200,17 @@ async function fetchGistMeta(id, token) {
   };
 }
 
-async function fetchJsonUrl(url, timeoutMs = 20000) {
-  const res = await fetch(url, {
-    headers: { 'User-Agent': 'discord-canary-scraper' },
-    timeout: timeoutMs,
-  });
+async function fetchJsonUrl(url, timeoutMs = 20000, opts = {}) {
+  const headers = { 'User-Agent': 'discord-canary-scraper' };
+  // URL raw « /raw » (sans révision) : le CDN la met en cache 5 min
+  // (cache-control: max-age=300). Sans cache-buster, la sonde rapide voyait le
+  // nouveau contenu (elle a son cache-buster) mais ce tracker relisait l'ANCIEN
+  // → « Aucun changement » puis acquittement → changement perdu.
+  if (opts.bust) {
+    url += (url.includes('?') ? '&' : '?') + 'cb=' + Date.now().toString(36);
+    headers['Cache-Control'] = 'no-cache';
+  }
+  const res = await fetch(url, { headers, timeout: timeoutMs });
   if (!res.ok) throw new Error('HTTP ' + res.status + ' ' + url.slice(0, 60));
   return res.json();
 }
@@ -228,7 +237,7 @@ async function fetchGistInto(id, token) {
     const owner = RAW_FALLBACK_OWNERS[id];
     if (!owner) throw e;
     const rawUrl = 'https://gist.githubusercontent.com/' + owner + '/' + id + '/raw';
-    const data = await fetchJsonUrl(rawUrl);
+    const data = await fetchJsonUrl(rawUrl, 20000, { bust: true });
     return {
       meta: {
         gistId: id,
@@ -689,7 +698,10 @@ async function main(deps = {}) {
   const isFirst = !acknowledged || !Object.keys(acknowledged).length;
 
   // 2) Lecture du gist canonique (+ miroir).
-  const fetched = await fetchGistsFn(process.env.GITHUB_TOKEN || null);
+  // GIST_TOKEN (PAT, quota 5000/h) en priorité : le GITHUB_TOKEN des Actions
+  // n'a pas accès aux gists (403 → 2e requête anonyme à chaque passe, sur le
+  // quota anonyme 60/h partagé du runner).
+  const fetched = await fetchGistsFn(process.env.GIST_TOKEN || process.env.GITHUB_TOKEN || null);
   if (
     !fetched ||
     fetched.error ||
