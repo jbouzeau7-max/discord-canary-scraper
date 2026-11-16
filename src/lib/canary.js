@@ -68,7 +68,8 @@ async function fetchAppHtml(attempts = HTML_ATTEMPTS, fetchImpl = fetch) {
   let lastErr = null;
   for (let i = 0; i < attempts; i++) {
     try {
-      const res = await fetchImpl(CANARY_APP, {
+      // cache-buster : évite un HIT Cloudflare périmé juste après un déploiement
+      const res = await fetchImpl(CANARY_APP + '?_=' + Date.now(), {
         headers: {
           'User-Agent': DEFAULT_UA,
           Accept: 'text/html,application/xhtml+xml',
