@@ -1,0 +1,1551 @@
+{
+ "version": 1,
+ "updatedAt": "2026-11-16T16:36:00.340Z",
+ "count": 504,
+ "types": {
+  "2021-02_staff_qc_debugging": {
+   "type": "user",
+   "title": "Display QS scores in results. Not a real experiment"
+  },
+  "2021-10_runtime_accessibility_system": {
+   "type": "user",
+   "title": "Runtime Accessibility System"
+  },
+  "2021-12_inferno_spam_redaction": {
+   "type": "user",
+   "title": "Inferno Spam Redaction"
+  },
+  "2022-01_threads": {
+   "type": "user",
+   "title": "Allow logged out users"
+  },
+  "2022-07_voice_in_threads": {
+   "type": "guild",
+   "title": "Voice in Threads"
+  },
+  "2022-11_default_disable_mass_mention": {
+   "type": "guild",
+   "title": "Disable mass mentions for communities by default"
+  },
+  "2023-02_guest_voice_invites": {
+   "type": "guild",
+   "title": "Guest Voice Invites"
+  },
+  "2023-09_iar_dsa_webform": {
+   "type": "user",
+   "title": "Safety Experience Unauthenticated Report Form"
+  },
+  "2023-09_iar_user_reporting": {
+   "type": "user",
+   "title": "Safety Experience IAR User Reporting"
+  },
+  "2024-06_rtc_pacer__simulcast": {
+   "type": "user",
+   "title": "RTC Pacer & Golive Simulcast"
+  },
+  "2024-09_secure_frames_deeplink": {
+   "type": "user",
+   "title": "Secure Frames Deeplinks"
+  },
+  "2025-04-desktop-refresh-fast-follows": {
+   "type": "user"
+  },
+  "2025-04-native-markdown": {
+   "type": "user"
+  },
+  "2025-05-search-results-feedback": {
+   "type": "user"
+  },
+  "2025-06_native_intents": {
+   "type": "user",
+   "title": "Native Intents"
+  },
+  "2025-08-animated-keyboard-android": {
+   "type": "user"
+  },
+  "2025-08-browser-hevc": {
+   "type": "user"
+  },
+  "2025-08-voice-user-affinity": {
+   "type": "user"
+  },
+  "2025-08_default_invite_expiration_guild": {
+   "type": "guild",
+   "title": "Default Invite Expiration Guild"
+  },
+  "2025-08_portkey_enabled": {
+   "type": "guild",
+   "title": "GameServer Enabled"
+  },
+  "2025-09-image-attachment-mezzanine-v2": {
+   "type": "user"
+  },
+  "2025-09-libdiscore-telemetry": {
+   "type": "user"
+  },
+  "2025-09-overlay-state-tracking": {
+   "type": "user"
+  },
+  "2025-09-premium-trial-offer-action-sheet-ks": {
+   "type": "user"
+  },
+  "2025-09-sensitive-content-self-harm": {
+   "type": "user"
+  },
+  "2025-09-server-nsfw-level": {
+   "type": "user"
+  },
+  "2025-09-video-qoe-metrics-tracking": {
+   "type": "user"
+  },
+  "2025-09_hotwheels_nvidia_boost": {
+   "type": "user",
+   "title": "Next iteration of the activity feed ranking model."
+  },
+  "2025-10-collectibles-custom-cursors": {
+   "type": "user"
+  },
+  "2025-10-desktop-communication-notifications-emoji": {
+   "type": "user"
+  },
+  "2025-10-force-sdr-emojis-stickers": {
+   "type": "user"
+  },
+  "2025-10-go-live-auto-quality": {
+   "type": "user"
+  },
+  "2025-10-low-latency-rate-control": {
+   "type": "user"
+  },
+  "2025-10-mana-date-inputs": {
+   "type": "user",
+   "title": "Calendar"
+  },
+  "2025-10-mobile-home-drawer": {
+   "type": "user"
+  },
+  "2025-10-video-frame-rate-validation": {
+   "type": "user"
+  },
+  "2025-10_community_account_link_onboarding": {
+   "type": "guild",
+   "title": "Community Account Linking"
+  },
+  "2025-11-age-verification-expressive-everywhere": {
+   "type": "user"
+  },
+  "2025-11-defer-load-late-lazy-cache": {
+   "type": "user"
+  },
+  "2025-11-enhanced-jpeg-encoding-on-ios": {
+   "type": "user"
+  },
+  "2025-11-global-frame-pool-lock": {
+   "type": "user"
+  },
+  "2025-11-mana-context-menu": {
+   "type": "user"
+  },
+  "2025-11-overlay-chat": {
+   "type": "user"
+  },
+  "2025-11-shockbyte-degraded": {
+   "type": "user"
+  },
+  "2025-11-video-end-card-v2": {
+   "type": "user"
+  },
+  "2025-12-connection-indicator": {
+   "type": "user"
+  },
+  "2025-12-hdr-accessibility-setting": {
+   "type": "user"
+  },
+  "2025-12-katsudon": {
+   "type": "user"
+  },
+  "2025-12-mobile-lossless-image-upload-v2": {
+   "type": "user"
+  },
+  "2025-12-proportional-vad-indicator": {
+   "type": "user"
+  },
+  "2025-12-quest-cta-refactor-rollout": {
+   "type": "user"
+  },
+  "2025-12-shadow-node-spike": {
+   "type": "user"
+  },
+  "2025-12-windows-audio-effects": {
+   "type": "user"
+  },
+  "2025-12-wmf-gpu-encode": {
+   "type": "user"
+  },
+  "2025-12-zoomed-analytics": {
+   "type": "user"
+  },
+  "2025-12_voice_channel_hoisting": {
+   "type": "guild",
+   "title": "Voice Channel Hoisting"
+  },
+  "2026-01-android-rmle": {
+   "type": "user"
+  },
+  "2026-01-bug-reporter": {
+   "type": "user"
+  },
+  "2026-01-chat-loading-indicator": {
+   "type": "user"
+  },
+  "2026-01-friends-in-server": {
+   "type": "user"
+  },
+  "2026-01-image-optimized-encoding-ladder": {
+   "type": "user"
+  },
+  "2026-01-ios-apptransactionid-tracking": {
+   "type": "user"
+  },
+  "2026-01-ios-push-notif-json-fix": {
+   "type": "user"
+  },
+  "2026-01-libdiscore-batch-store-refactor": {
+   "type": "user"
+  },
+  "2026-01-mobile-action-sheet-killswitch": {
+   "type": "user"
+  },
+  "2026-01-mobile-go-live-entrypoint": {
+   "type": "user"
+  },
+  "2026-01-voice-dares-v0": {
+   "type": "user"
+  },
+  "2026-01-wmf-gpu-encode-intel": {
+   "type": "user"
+  },
+  "2026-01-yytext-replacement-ios": {
+   "type": "user"
+  },
+  "2026-02-android-chat-mosaic-shared-pool": {
+   "type": "user"
+  },
+  "2026-02-android-fresco-cache": {
+   "type": "user"
+  },
+  "2026-02-announcement-composer": {
+   "type": "user"
+  },
+  "2026-02-callkit-metric-collection": {
+   "type": "user"
+  },
+  "2026-02-capture-target-window": {
+   "type": "user"
+  },
+  "2026-02-desktop-new-user-onboarding": {
+   "type": "user"
+  },
+  "2026-02-expiring-powerup-coachmark": {
+   "type": "user"
+  },
+  "2026-02-friends-list": {
+   "type": "user"
+  },
+  "2026-02-game-server-tab-always-on": {
+   "type": "user"
+  },
+  "2026-02-gift-cards": {
+   "type": "user"
+  },
+  "2026-02-gifting-modal-redesign": {
+   "type": "user"
+  },
+  "2026-02-go-live-hdr": {
+   "type": "user"
+  },
+  "2026-02-join-game-community-cta": {
+   "type": "user"
+  },
+  "2026-02-lazy-load-all-images": {
+   "type": "user"
+  },
+  "2026-02-longer-group-dm-invites": {
+   "type": "user"
+  },
+  "2026-02-mana-playground-access": {
+   "type": "user"
+  },
+  "2026-02-mobile-visual-refresh": {
+   "type": "user"
+  },
+  "2026-02-mobile-volume-output-slider-removal": {
+   "type": "user"
+  },
+  "2026-02-non-dm-gifting-modal-redesign": {
+   "type": "user"
+  },
+  "2026-02-premium-offer-reminder-xp": {
+   "type": "user"
+  },
+  "2026-02-private-channel-hiding": {
+   "type": "user"
+  },
+  "2026-02-process-boost-on-voice": {
+   "type": "user"
+  },
+  "2026-02-wgc-dirty-regions-all": {
+   "type": "user"
+  },
+  "2026-02_game_claim_coachmark": {
+   "type": "guild",
+   "title": "Game Claim Coachmark"
+  },
+  "2026-02_hangout_window": {
+   "type": "guild",
+   "title": "Hangout Window"
+  },
+  "2026-02_past_vc_activity_messages": {
+   "type": "guild",
+   "title": "Past VC Activity Messages"
+  },
+  "2026-03-acom-modify-dark-launch": {
+   "type": "user"
+  },
+  "2026-03-age-verification-google-wallet": {
+   "type": "user"
+  },
+  "2026-03-app-guild-validation": {
+   "type": "guild"
+  },
+  "2026-03-audio-effects-probe": {
+   "type": "user"
+  },
+  "2026-03-block-purchases": {
+   "type": "user"
+  },
+  "2026-03-boost-to-unlock-mobile-coachmark": {
+   "type": "user"
+  },
+  "2026-03-churro": {
+   "type": "user"
+  },
+  "2026-03-content-inventory-memberlist-and-ranker": {
+   "type": "user"
+  },
+  "2026-03-conversation-highlighting-utility": {
+   "type": "user"
+  },
+  "2026-03-croissant": {
+   "type": "user"
+  },
+  "2026-03-debug-experiment": {
+   "type": "user"
+  },
+  "2026-03-image-load-metrics": {
+   "type": "user"
+  },
+  "2026-03-ios-audio-interrupt-handling": {
+   "type": "user"
+  },
+  "2026-03-krisp-stats-collection": {
+   "type": "user"
+  },
+  "2026-03-l-3pp": {
+   "type": "user"
+  },
+  "2026-03-media-play-metrics": {
+   "type": "user"
+  },
+  "2026-03-mobile-hermes-occupancy-target": {
+   "type": "user"
+  },
+  "2026-03-muted-video-quest-new-defaults": {
+   "type": "user"
+  },
+  "2026-03-new-server-boost-system-messages": {
+   "type": "user"
+  },
+  "2026-03-nitro-acom-subscription": {
+   "type": "user"
+  },
+  "2026-03-notification-load-messages": {
+   "type": "user"
+  },
+  "2026-03-overlay-default-keybind": {
+   "type": "user"
+  },
+  "2026-03-soundmoji-rendering": {
+   "type": "user"
+  },
+  "2026-03-soundmoji-sending": {
+   "type": "user"
+  },
+  "2026-03-steelseries-3p-recurring": {
+   "type": "user"
+  },
+  "2026-03-surface-direct-renderer": {
+   "type": "user"
+  },
+  "2026-03-video-capture-device-no-reuse": {
+   "type": "user"
+  },
+  "2026-03-wysiwyg-user-profile-editing": {
+   "type": "user"
+  },
+  "2026-03_guild_official_messages": {
+   "type": "guild",
+   "title": "Guild Official Messages"
+  },
+  "2026-03_voice_badge": {
+   "type": "guild",
+   "title": "Display Voice Channel Badge"
+  },
+  "2026-04-attachment-quality-metrics": {
+   "type": "user"
+  },
+  "2026-04-browser-transceiver-padding-removal": {
+   "type": "user"
+  },
+  "2026-04-desktop-notification-center": {
+   "type": "user"
+  },
+  "2026-04-desktop-tti-v8-cache": {
+   "type": "user"
+  },
+  "2026-04-ensure-received-messages-added-in-order": {
+   "type": "user"
+  },
+  "2026-04-gift-promotion-reminder": {
+   "type": "user"
+  },
+  "2026-04-gifting-badge": {
+   "type": "user"
+  },
+  "2026-04-hide-covered-channels": {
+   "type": "user"
+  },
+  "2026-04-hide-view-full-profile-button": {
+   "type": "user"
+  },
+  "2026-04-http-request-sample": {
+   "type": "user"
+  },
+  "2026-04-inappropriate-conversations-default-on": {
+   "type": "user"
+  },
+  "2026-04-inappropriate-conversations-prescan": {
+   "type": "user"
+  },
+  "2026-04-mobile-go-live-upsell": {
+   "type": "user"
+  },
+  "2026-04-one-day-fractional-nitro": {
+   "type": "user"
+  },
+  "2026-04-overlay-streamer-mode": {
+   "type": "user"
+  },
+  "2026-04-post-reaction-push-banner": {
+   "type": "user"
+  },
+  "2026-04-quests-premium-orb-multiplier-marketing": {
+   "type": "user"
+  },
+  "2026-04-safety-flows": {
+   "type": "user"
+  },
+  "2026-04-server-boost-copy-1440p": {
+   "type": "user"
+  },
+  "2026-04-topical-navigation-staff-control": {
+   "type": "user"
+  },
+  "2026-04-upcoming-server-event": {
+   "type": "user"
+  },
+  "2026-04-user-profile-performance-analytics": {
+   "type": "user"
+  },
+  "2026-04-video-hook-dx12": {
+   "type": "user"
+  },
+  "2026-04-voice-gateway-protocol-version": {
+   "type": "user"
+  },
+  "2026-04_application_identity_linked_roles": {
+   "type": "guild",
+   "title": "Application Identity Linked Roles"
+  },
+  "2026-04_guild_verification_role": {
+   "type": "guild",
+   "title": "Guild Verification Role"
+  },
+  "2026-04_server_theme": {
+   "type": "guild",
+   "title": "Server Theme"
+  },
+  "2026-04_voice_call_trigger_point": {
+   "type": "guild",
+   "title": "Voice Call Trigger Point Experiment"
+  },
+  "2026-04_voice_user_duration": {
+   "type": "guild",
+   "title": "Voice User Duration"
+  },
+  "2026-05-app-store-overlay-feature-gate": {
+   "type": "user"
+  },
+  "2026-05-av1-bitrate-tuning": {
+   "type": "user"
+  },
+  "2026-05-clips-media-comments": {
+   "type": "user"
+  },
+  "2026-05-device-form-factor-indicators": {
+   "type": "user"
+  },
+  "2026-05-dice-roll-slash-command": {
+   "type": "user"
+  },
+  "2026-05-distributed-clips": {
+   "type": "user"
+  },
+  "2026-05-dvp-for-attachments": {
+   "type": "user"
+  },
+  "2026-05-electron-multilang-spellcheck": {
+   "type": "user"
+  },
+  "2026-05-frontier-tuning": {
+   "type": "guild"
+  },
+  "2026-05-global-soundboard-wheel-popout": {
+   "type": "user"
+  },
+  "2026-05-ios-video-stabilization": {
+   "type": "user"
+  },
+  "2026-05-mobile-request-review-no-tti": {
+   "type": "user"
+  },
+  "2026-05-noisier-notif-settings-defaults": {
+   "type": "user"
+  },
+  "2026-05-quest-home-tile-redesign": {
+   "type": "user"
+  },
+  "2026-05-screenshare-picker-wgc": {
+   "type": "user"
+  },
+  "2026-05-server-theme-user": {
+   "type": "user"
+  },
+  "2026-05-spatial-audio-for-voice": {
+   "type": "user"
+  },
+  "2026-05_default_invite_expiration_guild_web": {
+   "type": "guild",
+   "title": "Default Invite Expiration Guild Web"
+  },
+  "2026-05_voice_channel_list_invite_embed": {
+   "type": "guild",
+   "title": "Voice Channel List Invite Embed"
+  },
+  "2026-06-age-verification-incode": {
+   "type": "user"
+  },
+  "2026-06-av1-encode-linux": {
+   "type": "user"
+  },
+  "2026-06-bounties-shop-carousel": {
+   "type": "user"
+  },
+  "2026-06-chat-bar-customization": {
+   "type": "user"
+  },
+  "2026-06-clickstream-analytics": {
+   "type": "user"
+  },
+  "2026-06-clips-secondary-entrypoints": {
+   "type": "user"
+  },
+  "2026-06-content-classification-embedded-activity-filter": {
+   "type": "user"
+  },
+  "2026-06-contextual-opt-in-nudge-holdout": {
+   "type": "user"
+  },
+  "2026-06-desktop-tti-http-cdt": {
+   "type": "user"
+  },
+  "2026-06-game-invites-channel": {
+   "type": "guild"
+  },
+  "2026-06-game-server-hosting-in-shop": {
+   "type": "user"
+  },
+  "2026-06-gift-acom-order": {
+   "type": "user"
+  },
+  "2026-06-hero-shelf-ad-tile": {
+   "type": "user"
+  },
+  "2026-06-messages-list-impl": {
+   "type": "user"
+  },
+  "2026-06-mobile-media-viewer-share": {
+   "type": "user"
+  },
+  "2026-06-nitro-gdm-cap-increase": {
+   "type": "user"
+  },
+  "2026-06-orbs-holdout": {
+   "type": "user"
+  },
+  "2026-06-otp-acom-order": {
+   "type": "user"
+  },
+  "2026-06-otp-orders-phase-1": {
+   "type": "user"
+  },
+  "2026-06-post-call-survey-assets": {
+   "type": "user"
+  },
+  "2026-06-quest-fetch-reconnect-jitter": {
+   "type": "user"
+  },
+  "2026-06-quest-home-layout-visual-tweaks": {
+   "type": "user"
+  },
+  "2026-06-rive-app-state-playback": {
+   "type": "user"
+  },
+  "2026-06-server-ladder": {
+   "type": "user"
+  },
+  "2026-06-server-theme-apex-shadow": {
+   "type": "guild"
+  },
+  "2026-06-topical-navigation-guild": {
+   "type": "guild"
+  },
+  "2026-06-upscale-small-captured-frames": {
+   "type": "user"
+  },
+  "2026-06-use-new-badge-image-source": {
+   "type": "user"
+  },
+  "2026-06-user-profile-sidebar-redesign": {
+   "type": "user"
+  },
+  "2026-06-web-translate-dom-guard": {
+   "type": "user"
+  },
+  "2026-06-web-vitals-monitoring": {
+   "type": "user"
+  },
+  "2026-06-wmf-cpu-encode-intel": {
+   "type": "user"
+  },
+  "2026-06_guild_rooms": {
+   "type": "guild",
+   "title": "Guild Rooms"
+  },
+  "2026-07-app-channels": {
+   "type": "guild"
+  },
+  "2026-07-attachment-image-ladder": {
+   "type": "user"
+  },
+  "2026-07-autoclipping-default-override": {
+   "type": "user"
+  },
+  "2026-07-bounties-modal-transitions-refactor": {
+   "type": "user"
+  },
+  "2026-07-call-of-duty-3pp-expired": {
+   "type": "user"
+  },
+  "2026-07-clips-game-events-on-player": {
+   "type": "user"
+  },
+  "2026-07-clips-on-profile-setter": {
+   "type": "user"
+  },
+  "2026-07-clips-on-profile-viewer": {
+   "type": "user"
+  },
+  "2026-07-cobalt": {
+   "type": "user"
+  },
+  "2026-07-custom-app-store-overlay": {
+   "type": "user"
+  },
+  "2026-07-custom-typing-indicator": {
+   "type": "user"
+  },
+  "2026-07-desktop-channel-tabs": {
+   "type": "user"
+  },
+  "2026-07-expressive-modal-v2": {
+   "type": "user"
+  },
+  "2026-07-ios-attribution": {
+   "type": "user"
+  },
+  "2026-07-manual-age-assurance-fallback": {
+   "type": "user"
+  },
+  "2026-07-mobile-emoji-suggestions": {
+   "type": "user"
+  },
+  "2026-07-nitro-acom-discounts": {
+   "type": "user"
+  },
+  "2026-07-nitro-floating-subscribe": {
+   "type": "user"
+  },
+  "2026-07-nvenc-reconstructed-frames": {
+   "type": "user"
+  },
+  "2026-07-onyx": {
+   "type": "user"
+  },
+  "2026-07-orbchievements": {
+   "type": "user"
+  },
+  "2026-07-parental-consent-warning-fetch": {
+   "type": "user"
+  },
+  "2026-07-personal-widget": {
+   "type": "user"
+  },
+  "2026-07-premium-group-announcement-modal": {
+   "type": "user"
+  },
+  "2026-07-premium-group-expansion-announcement": {
+   "type": "user"
+  },
+  "2026-07-premium-referral-incentives": {
+   "type": "user"
+  },
+  "2026-07-quest-home-default-banner-removal": {
+   "type": "user"
+  },
+  "2026-07-react-native-plain-text": {
+   "type": "user"
+  },
+  "2026-07-reduce-leave-call-gpu": {
+   "type": "user"
+  },
+  "2026-07-reject-with-error-kill-switch": {
+   "type": "user"
+  },
+  "2026-07-renewable-end-date-sort": {
+   "type": "user"
+  },
+  "2026-07-shop-this-look-mobile": {
+   "type": "user"
+  },
+  "2026-07-smag-dm-sidebar-nitro-recommendation": {
+   "type": "user"
+  },
+  "2026-07-tr-offer-1-campaign": {
+   "type": "user"
+  },
+  "2026-07-typing-users-css-dots": {
+   "type": "user"
+  },
+  "2026-07-unobtrusive-device-suggestions": {
+   "type": "user"
+  },
+  "2026-07-vibegrations-guild": {
+   "type": "guild"
+  },
+  "2026-07-vibegrations-user": {
+   "type": "user"
+  },
+  "2026-07-wishlist-direct-to-gifting": {
+   "type": "user"
+  },
+  "2026-08-ad-topic-opt-out-client": {
+   "type": "user"
+  },
+  "2026-08-android-jank-per-screen": {
+   "type": "user"
+  },
+  "2026-08-android-rn-reparenting-flag": {
+   "type": "user"
+  },
+  "2026-08-audio-fidelity": {
+   "type": "user"
+  },
+  "2026-08-automontage": {
+   "type": "user"
+  },
+  "2026-08-badge-management": {
+   "type": "user"
+  },
+  "2026-08-bounties-mobile-quest-bar": {
+   "type": "user"
+  },
+  "2026-08-dcf-new-user-cooldown": {
+   "type": "user"
+  },
+  "2026-08-dont-close-chat": {
+   "type": "user"
+  },
+  "2026-08-fake-play-age-signals": {
+   "type": "user"
+  },
+  "2026-08-find-coded-links-regex": {
+   "type": "user"
+  },
+  "2026-08-forward-age-restricted-destinations": {
+   "type": "user"
+  },
+  "2026-08-game-mode": {
+   "type": "user"
+  },
+  "2026-08-gsh-subs-activity-bar": {
+   "type": "user"
+  },
+  "2026-08-ios-objc-composed-image-cache": {
+   "type": "user"
+  },
+  "2026-08-mark-channel-unread": {
+   "type": "user"
+  },
+  "2026-08-mute-aware-noise-cancellation": {
+   "type": "user"
+  },
+  "2026-08-no-fill-logging": {
+   "type": "user"
+  },
+  "2026-08-profile-embed-rendering": {
+   "type": "user"
+  },
+  "2026-08-profile-embed-share-button": {
+   "type": "user"
+  },
+  "2026-08-rive-web-perf": {
+   "type": "user"
+  },
+  "2026-08-shop-standalone-pdp-mobile": {
+   "type": "user"
+  },
+  "2026-08-show-expressive-modal-subtitle-alt": {
+   "type": "user"
+  },
+  "2026-08-social-layer-storefront-mobile-embed": {
+   "type": "user"
+  },
+  "2026-08-split-payments": {
+   "type": "user"
+  },
+  "2026-08-tiny-bronco": {
+   "type": "user"
+  },
+  "2026-08-user-bio-max-length": {
+   "type": "user"
+  },
+  "2026-08-video-guard": {
+   "type": "user"
+  },
+  "2026-08-virtual-backgrounds-ios": {
+   "type": "user"
+  },
+  "2026-08-vq-remaining-time-truncation": {
+   "type": "user"
+  },
+  "2026-08-web-filter-tag-group-migration": {
+   "type": "user"
+  },
+  "2026-09-a11y-chassis-target-size": {
+   "type": "user"
+  },
+  "2026-09-activity-go-live": {
+   "type": "user"
+  },
+  "2026-09-agc2-mobile": {
+   "type": "user"
+  },
+  "2026-09-autoclips": {
+   "type": "user"
+  },
+  "2026-09-automod-application-rules": {
+   "type": "guild"
+  },
+  "2026-09-build-a-bear": {
+   "type": "user"
+  },
+  "2026-09-build-a-bear-cards": {
+   "type": "user"
+  },
+  "2026-09-clips-editor-image-track": {
+   "type": "user"
+  },
+  "2026-09-connected-thread-sidebar": {
+   "type": "user"
+  },
+  "2026-09-declarative-notification-settings-redesign": {
+   "type": "user"
+  },
+  "2026-09-default-emojis": {
+   "type": "user"
+  },
+  "2026-09-desktop-tti-shader-cache": {
+   "type": "user"
+  },
+  "2026-09-desktop-tti-update-check-deadline": {
+   "type": "user"
+  },
+  "2026-09-desktop-voice-message-recording": {
+   "type": "user"
+  },
+  "2026-09-edit-profile-collectibles-ordering": {
+   "type": "user"
+  },
+  "2026-09-friends-sidebar": {
+   "type": "user"
+  },
+  "2026-09-game-profiles-v3-communities-tab": {
+   "type": "user"
+  },
+  "2026-09-game-search-row": {
+   "type": "user"
+  },
+  "2026-09-gifting-badge-coachmark-audience": {
+   "type": "user"
+  },
+  "2026-09-guild-members-in-mobile-vc-invites": {
+   "type": "guild"
+  },
+  "2026-09-guild-spaces": {
+   "type": "guild"
+  },
+  "2026-09-halloween-wishlisting-animation": {
+   "type": "user"
+  },
+  "2026-09-hexagon-campaign-client": {
+   "type": "user"
+  },
+  "2026-09-improved-mobile-shop-loading": {
+   "type": "user"
+  },
+  "2026-09-invite-accept-age-group-errors": {
+   "type": "user"
+  },
+  "2026-09-invite-expiring-soon": {
+   "type": "user"
+  },
+  "2026-09-ios-anchored-chat-scroller": {
+   "type": "user"
+  },
+  "2026-09-ios-callkit-connected-on-rtc": {
+   "type": "user"
+  },
+  "2026-09-linked-game-org-invites-dev": {
+   "type": "user"
+  },
+  "2026-09-linked-guilds": {
+   "type": "guild"
+  },
+  "2026-09-linux-gpu-decode": {
+   "type": "user"
+  },
+  "2026-09-mobile-interaction-tti": {
+   "type": "user"
+  },
+  "2026-09-mobile-nitro-orbs-delivered-modal": {
+   "type": "user"
+  },
+  "2026-09-mobile-nitro-upsell-in-shop-feed": {
+   "type": "user"
+  },
+  "2026-09-mobile-nitro-upsell-in-shop-pdp": {
+   "type": "user"
+  },
+  "2026-09-mobile-nlp-search-guild-experiment": {
+   "type": "guild"
+  },
+  "2026-09-mobile-nlp-search-user-flag": {
+   "type": "user"
+  },
+  "2026-09-mobile-quest-home-sort-priority": {
+   "type": "user"
+  },
+  "2026-09-mobile-quest-reward-button-to-secondary-button": {
+   "type": "user"
+  },
+  "2026-09-mobile-request-to-stream": {
+   "type": "guild"
+  },
+  "2026-09-mobile-roadblock-offer-cta": {
+   "type": "user"
+  },
+  "2026-09-multi-sku-embed-rendering": {
+   "type": "user"
+  },
+  "2026-09-new-orb-reward-visuals": {
+   "type": "user"
+  },
+  "2026-09-nitro-file-upload-rollout": {
+   "type": "user"
+  },
+  "2026-09-non-nitro-file-upload-marketing": {
+   "type": "user"
+  },
+  "2026-09-orbs-arcade": {
+   "type": "user"
+  },
+  "2026-09-orbs-hero-carousel": {
+   "type": "user"
+  },
+  "2026-09-profile-frame-layer-preload-mobile": {
+   "type": "user"
+  },
+  "2026-09-profile-link-fetch": {
+   "type": "user"
+  },
+  "2026-09-profile-widget-empty-state-suggestions": {
+   "type": "user"
+  },
+  "2026-09-quest-home-bounties-feature-gate": {
+   "type": "user"
+  },
+  "2026-09-quest-mobile-bar-secondary-cta": {
+   "type": "user"
+  },
+  "2026-09-react-compiler-mobile": {
+   "type": "user"
+  },
+  "2026-09-referral-profile-contextual-menu-upsell": {
+   "type": "user"
+  },
+  "2026-09-registration-email-opt-in-copy": {
+   "type": "user"
+  },
+  "2026-09-request-to-stream-go-live-modal": {
+   "type": "user"
+  },
+  "2026-09-request-to-stream-new-entry-point": {
+   "type": "user"
+  },
+  "2026-09-rust-3p": {
+   "type": "user"
+  },
+  "2026-09-safety-flows-legacy-required-actions": {
+   "type": "user"
+  },
+  "2026-09-safety-warning-age-text": {
+   "type": "user"
+  },
+  "2026-09-server-tooltip-notification-context": {
+   "type": "user"
+  },
+  "2026-09-silp-app-opened-direct-to-discoverable": {
+   "type": "user"
+  },
+  "2026-09-silp-cta-copy-tests": {
+   "type": "user"
+  },
+  "2026-09-silp-desktop-app-upsell": {
+   "type": "user",
+   "title": "download_discord_app"
+  },
+  "2026-09-silp-direct-to-discoverable": {
+   "type": "user"
+  },
+  "2026-09-single-cpu-copy": {
+   "type": "user"
+  },
+  "2026-09-soundboard-echo": {
+   "type": "guild"
+  },
+  "2026-09-soundboard-quick-action": {
+   "type": "user"
+  },
+  "2026-09-three-month-nitro-gifting": {
+   "type": "user"
+  },
+  "2026-09-try-display-name-style": {
+   "type": "user"
+  },
+  "2026-09-update-email-settings-copy-subtext": {
+   "type": "user"
+  },
+  "2026-09-user-profile-premium-try-it-out-mobile-refresh": {
+   "type": "user"
+  },
+  "2026-09-video-background-profile-fetch": {
+   "type": "user"
+  },
+  "2026-09-voice-connect-feedback": {
+   "type": "user"
+  },
+  "2026-09-voice-server-update-immediate-mobile": {
+   "type": "user"
+  },
+  "2026-09-web-sticker-picker-upsell-restyle": {
+   "type": "user"
+  },
+  "2026-09-windows-native-premap": {
+   "type": "user"
+  },
+  "2026-09-youtube-3p": {
+   "type": "user"
+  },
+  "2026-09-youtube-3p-nagbar": {
+   "type": "user"
+  },
+  "2026-10-add-server-join-first": {
+   "type": "user"
+  },
+  "2026-10-android-call-wifi-lock": {
+   "type": "user"
+  },
+  "2026-10-android-chat-preinflation": {
+   "type": "user"
+  },
+  "2026-10-android-messages-list-impl": {
+   "type": "user"
+  },
+  "2026-10-android-mobile-onboarding-friction-negative-test": {
+   "type": "user"
+  },
+  "2026-10-android-nitro-fetch": {
+   "type": "user"
+  },
+  "2026-10-android-seamless-pip": {
+   "type": "user"
+  },
+  "2026-10-android-stop-and-pause-video": {
+   "type": "user"
+  },
+  "2026-10-android-ui-manager-constants-cache": {
+   "type": "user"
+  },
+  "2026-10-animated-shop-bundle-previews": {
+   "type": "user"
+  },
+  "2026-10-app-store-consent-reinstate-endpoint": {
+   "type": "user"
+  },
+  "2026-10-avx512-entropy-histogram": {
+   "type": "user"
+  },
+  "2026-10-badge-directory-updates": {
+   "type": "user"
+  },
+  "2026-10-badges-unread-state": {
+   "type": "user"
+  },
+  "2026-10-bloons-bf-deal": {
+   "type": "user"
+  },
+  "2026-10-bounties-desktop-quest-bar": {
+   "type": "user"
+  },
+  "2026-10-build-a-bear-qa": {
+   "type": "user"
+  },
+  "2026-10-bulk-nitro-gifting-discounts": {
+   "type": "user"
+  },
+  "2026-10-camp-in-dm": {
+   "type": "user"
+  },
+  "2026-10-channel-list-impl-v2": {
+   "type": "user"
+  },
+  "2026-10-clickable-hero-banner": {
+   "type": "user"
+  },
+  "2026-10-clips-default-on-geo": {
+   "type": "user"
+  },
+  "2026-10-cod-relink": {
+   "type": "user"
+  },
+  "2026-10-code-blurple": {
+   "type": "user"
+  },
+  "2026-10-code-blurple-marketing-holdout": {
+   "type": "user"
+  },
+  "2026-10-code-blurple-teaser": {
+   "type": "user"
+  },
+  "2026-10-code-blurple-teaser-marketing": {
+   "type": "user"
+  },
+  "2026-10-collectibles-interactive-jumble-bar": {
+   "type": "user"
+  },
+  "2026-10-collectibles-marketing-client-cache": {
+   "type": "user"
+  },
+  "2026-10-collectibles-promotion-endpoint-reference-mobile": {
+   "type": "user"
+  },
+  "2026-10-collectibles-storefront-pricing-integration": {
+   "type": "user"
+  },
+  "2026-10-collectibles-upgraded-search": {
+   "type": "user"
+  },
+  "2026-10-conjure-mcp-ui": {
+   "type": "user"
+  },
+  "2026-10-conjure-mobile": {
+   "type": "user"
+  },
+  "2026-10-contextual-referrals-gdm-member-list": {
+   "type": "user"
+  },
+  "2026-10-contextual-referrals-server-channel-member-list": {
+   "type": "user"
+  },
+  "2026-10-contextual-referrals-user-dm-sidebar": {
+   "type": "user"
+  },
+  "2026-10-desktop-conjure-native-preview-view": {
+   "type": "user"
+  },
+  "2026-10-desktop-game-perf": {
+   "type": "user"
+  },
+  "2026-10-desktop-general-perf": {
+   "type": "user"
+  },
+  "2026-10-desktop-tti-perf": {
+   "type": "user"
+  },
+  "2026-10-e2e-latency-measurement": {
+   "type": "user"
+  },
+  "2026-10-embedded-app-frame-policy": {
+   "type": "user"
+  },
+  "2026-10-embedded-app-shim-v2": {
+   "type": "user"
+  },
+  "2026-10-embedded-app-storage-access": {
+   "type": "user"
+  },
+  "2026-10-express-checkout": {
+   "type": "user"
+  },
+  "2026-10-fix-soundboard-muting-iconography": {
+   "type": "user"
+  },
+  "2026-10-fractional-nitro-pricing": {
+   "type": "user"
+  },
+  "2026-10-game-discovery": {
+   "type": "user"
+  },
+  "2026-10-game-exit-promo-rust": {
+   "type": "user"
+  },
+  "2026-10-game-profiles-server-preview": {
+   "type": "user"
+  },
+  "2026-10-game-profiles-v3-communities-tab-mobile": {
+   "type": "user"
+  },
+  "2026-10-gdm-duration-timer": {
+   "type": "user"
+  },
+  "2026-10-gift-cards-in-app-marketing": {
+   "type": "user"
+  },
+  "2026-10-gifted-subscriptions": {
+   "type": "user"
+  },
+  "2026-10-gifting-promo-mobile-button-animation-dismiss": {
+   "type": "user"
+  },
+  "2026-10-gsh-change-payment-method": {
+   "type": "user"
+  },
+  "2026-10-guild-bulk-role-actions": {
+   "type": "guild"
+  },
+  "2026-10-guild-tooltip-lazy-content": {
+   "type": "user"
+  },
+  "2026-10-guilds-render-experiment": {
+   "type": "user"
+  },
+  "2026-10-hd-streaming-contextual-referrals": {
+   "type": "user"
+  },
+  "2026-10-interest-picker": {
+   "type": "user"
+  },
+  "2026-10-ios-iap-transaction-apply": {
+   "type": "user"
+  },
+  "2026-10-ios-jank-per-screen": {
+   "type": "user"
+  },
+  "2026-10-macaron": {
+   "type": "user"
+  },
+  "2026-10-macaron-non-sub-marketing": {
+   "type": "user"
+  },
+  "2026-10-mana-badge-refresh": {
+   "type": "user"
+  },
+  "2026-10-maple-syrup-1": {
+   "type": "user"
+  },
+  "2026-10-maple-syrup-2": {
+   "type": "user"
+  },
+  "2026-10-maple-syrup-3": {
+   "type": "user"
+  },
+  "2026-10-media-viewer-entrance-jank": {
+   "type": "user"
+  },
+  "2026-10-media-viewer-improvements": {
+   "type": "user"
+  },
+  "2026-10-media-viewer-video-perf-android": {
+   "type": "user"
+  },
+  "2026-10-meta-quest-app-upsell-coachmark": {
+   "type": "user"
+  },
+  "2026-10-mobile-markdown-format-menu": {
+   "type": "user"
+  },
+  "2026-10-mobile-media-playback": {
+   "type": "user"
+  },
+  "2026-10-mobile-rtc-v2": {
+   "type": "user"
+  },
+  "2026-10-mobile-timestamp-updating": {
+   "type": "user"
+  },
+  "2026-10-mobile-widget-editing": {
+   "type": "user"
+  },
+  "2026-10-native-markdown-setting": {
+   "type": "user"
+  },
+  "2026-10-nitro-gift-acom": {
+   "type": "user"
+  },
+  "2026-10-nitro-home-badge-directory": {
+   "type": "user"
+  },
+  "2026-10-nitro-settings-marketing-page-refresh": {
+   "type": "user"
+  },
+  "2026-10-nitro-tab-remove-account-age-restriction": {
+   "type": "user"
+  },
+  "2026-10-orbchievements-mobile": {
+   "type": "user"
+  },
+  "2026-10-overlay-native-window-rendering": {
+   "type": "user"
+  },
+  "2026-10-pinot-admin": {
+   "type": "guild"
+  },
+  "2026-10-pinot-channel-discoverable": {
+   "type": "guild"
+  },
+  "2026-10-pinot-member": {
+   "type": "user"
+  },
+  "2026-10-pinot-member-notice": {
+   "type": "guild"
+  },
+  "2026-10-pinot-summary-management": {
+   "type": "guild"
+  },
+  "2026-10-profile-default-tab-with-content": {
+   "type": "user"
+  },
+  "2026-10-profile-nitro-upsell-refresh": {
+   "type": "user"
+  },
+  "2026-10-profile-read-state": {
+   "type": "user"
+  },
+  "2026-10-recurring-referral-reminder": {
+   "type": "user"
+  },
+  "2026-10-referral-refresh-notification": {
+   "type": "user"
+  },
+  "2026-10-remove-quests-from-discovery": {
+   "type": "user"
+  },
+  "2026-10-request-to-stream-non-games": {
+   "type": "guild"
+  },
+  "2026-10-rust-bf-deal": {
+   "type": "user"
+  },
+  "2026-10-server-tag-upsell-on-guild-profile": {
+   "type": "user"
+  },
+  "2026-10-server-tag-upsell-on-profile": {
+   "type": "user"
+  },
+  "2026-10-sfp-bloons-orb-split-tender": {
+   "type": "user"
+  },
+  "2026-10-shop-marketing-fatigue": {
+   "type": "user"
+  },
+  "2026-10-shop-sku-nitro-upsell-refresh": {
+   "type": "user"
+  },
+  "2026-10-shop-twelve-days-promo": {
+   "type": "user"
+  },
+  "2026-10-slayer-storefront-single-sku-wide-header": {
+   "type": "user"
+  },
+  "2026-10-social-layer-storefront-mobile-multi-sku-embed": {
+   "type": "user"
+  },
+  "2026-10-soundboard-mute-indicator": {
+   "type": "user"
+  },
+  "2026-10-soundboard-new-sounds-badge": {
+   "type": "user"
+  },
+  "2026-10-stage-unified-call": {
+   "type": "guild"
+  },
+  "2026-10-stage-unified-call-user": {
+   "type": "user"
+  },
+  "2026-10-summary-reminder-notif-re-revival": {
+   "type": "user"
+  },
+  "2026-10-uimanager-experiments": {
+   "type": "user"
+  },
+  "2026-10-user-profile-mobile-save-prompt": {
+   "type": "user"
+  },
+  "2026-10-user-profile-widget-suggestions": {
+   "type": "user"
+  },
+  "2026-10-users-list-impl": {
+   "type": "user"
+  },
+  "2026-10-video-player-playback-speed": {
+   "type": "user"
+  },
+  "2026-10-voice-quality-scoring": {
+   "type": "user"
+  },
+  "2026-10-web-screen-share-audio": {
+   "type": "user"
+  },
+  "2026-10-web-streaming-optimizations": {
+   "type": "user"
+  },
+  "2026-10-windows-playout-buffer-duration": {
+   "type": "user"
+  },
+  "2026-11-android-nitro-gift-orders": {
+   "type": "user"
+  },
+  "2026-11-android-telecom": {
+   "type": "user"
+  },
+  "2026-11-apex-launch-latch": {
+   "type": "user"
+  },
+  "2026-11-autoclips-ea-upsell": {
+   "type": "user"
+  },
+  "2026-11-bloons-td-battles-account-linking-upsell": {
+   "type": "user"
+  },
+  "2026-11-console-connection-coachmark": {
+   "type": "user"
+  },
+  "2026-11-cross-platform-game-bar": {
+   "type": "user"
+  },
+  "2026-11-cti-desktop-viewer": {
+   "type": "user"
+  },
+  "2026-11-cti-new-presets": {
+   "type": "user"
+  },
+  "2026-11-game-exit-promo-bloons": {
+   "type": "user"
+  },
+  "2026-11-linux-steam-sku-detection": {
+   "type": "user"
+  },
+  "2026-11-mac-steam-sku-detection": {
+   "type": "user"
+  },
+  "2026-11-mobile-orb-redemption-thru-orders": {
+   "type": "user"
+  },
+  "2026-11-nitro-mobile-refresh": {
+   "type": "user"
+  },
+  "2026-11-nitro-upload-badge": {
+   "type": "user"
+  },
+  "2026-11-notify-friends-on-custom-status-update": {
+   "type": "user"
+  },
+  "2026-11-pass-the-controller": {
+   "type": "guild"
+  },
+  "2026-11-payment-element-accordion-layout": {
+   "type": "user"
+  },
+  "2026-11-profile-embed-rendering-mobile": {
+   "type": "user"
+  },
+  "2026-11-quest-home-tile-single-elements": {
+   "type": "user"
+  },
+  "2026-11-return-full-quest-status-in-decision": {
+   "type": "user"
+  },
+  "2026-11-screen-share-dtx": {
+   "type": "user"
+  },
+  "2026-11-shop-this-look-full-profile-button": {
+   "type": "user"
+  },
+  "2026-11-soundboard-upsells-brand-refresh": {
+   "type": "user"
+  },
+  "2026-11-subscription-management-settings-brand-refresh": {
+   "type": "user"
+  },
+  "2026-11-waterwheels-discover": {
+   "type": "user"
+  },
+  "2026-11-wishlist-countdown": {
+   "type": "user"
+  },
+  "2026-11-wishlist-countdown-mobile": {
+   "type": "user"
+  }
+ }
+}
