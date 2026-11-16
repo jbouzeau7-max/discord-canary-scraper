@@ -67,7 +67,7 @@ def http_post_json(url: str, body: dict, headers: dict, timeout: int = 30) -> tu
 
 
 # ── Canary build extraction ────────────────────────────────
-def get_canary_build(ua: str = DEFAULT_UA, timeout: int = 20) -> tuple:
+def get_canary_build(ua: str = DEFAULT_UA, timeout: int = 8) -> tuple:
     """Fetch canary.discord.com and return (build_number, version_hash) or (None, None)."""
     for url in CANARY_URLS:
         try:
@@ -111,7 +111,8 @@ def dispatch_github_actions(
     repo: str = DEFAULT_REPO,
     event: str = DEFAULT_EVENT,
     ua: str = DEFAULT_UA,
-    timeout: int = 30,
+    timeout: int = 15,
+    client_payload: dict | None = None,
 ) -> tuple:
     """Dispatch a GitHub Actions repository_dispatch event.
     Returns (success: bool, message: str).
@@ -121,7 +122,7 @@ def dispatch_github_actions(
     url = f"https://api.github.com/repos/{repo}/dispatches"
     status, err = http_post_json(
         url,
-        {"event_type": event},
+        {"event_type": event, **({"client_payload": client_payload} if client_payload else {})},
         {
             "Accept": "application/vnd.github+json",
             "Authorization": f"Bearer {token}",

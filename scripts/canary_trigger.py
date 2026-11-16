@@ -12,7 +12,7 @@ Usage:
 
 Vars optionnelles:
   GITHUB_REPO=jbouzeau7-max/discord-canary-scraper
-  INTERVAL=20          # secondes entre checks (20 recommandé)
+  INTERVAL=5           # secondes entre checks (5 recommandé : dispatch dès le changement)
   DISPATCH_EVENT=trigger-scraping
 """
 from __future__ import annotations
@@ -34,7 +34,7 @@ from _canary_common import (
 TOKEN = os.environ.get("GITHUB_TOKEN") or os.environ.get("GH_TOKEN") or ""
 REPO = os.environ.get("GITHUB_REPO", DEFAULT_REPO)
 EVENT = os.environ.get("DISPATCH_EVENT", DEFAULT_EVENT)
-INTERVAL = int(os.environ.get("INTERVAL", "20"))
+INTERVAL = int(os.environ.get("INTERVAL", "5"))
 STATE = Path(os.environ.get("STATE_FILE", str(Path(__file__).resolve().parent / "last_canary_build.txt")))
 
 
@@ -46,7 +46,7 @@ def tick() -> str:
     if last == bn:
         return f"build={bn} inchangé"
     # nouveau build
-    ok, msg = dispatch_github_actions(TOKEN, REPO, EVENT)
+    ok, msg = dispatch_github_actions(TOKEN, REPO, EVENT, client_payload={"build": str(bn)})
     if ok:
         write_state(STATE, bn)
         return f"NOUVEAU build={bn} (prev={last}) → {msg}"

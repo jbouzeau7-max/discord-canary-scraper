@@ -10,7 +10,7 @@ Setup:
   2. python3 scripts/trigger_host.py
 
 Env:
-  GITHUB_TOKEN, GITHUB_REPO, INTERVAL (défaut 50)
+  GITHUB_TOKEN, GITHUB_REPO, INTERVAL (défaut 5)
 """
 
 from __future__ import annotations
@@ -31,7 +31,7 @@ from _canary_common import (
 TOKEN = os.environ.get("GITHUB_TOKEN") or os.environ.get("GH_TOKEN") or ""
 REPO = os.environ.get("GITHUB_REPO", DEFAULT_REPO)
 EVENT = os.environ.get("DISPATCH_EVENT", DEFAULT_EVENT)
-INTERVAL = int(os.environ.get("INTERVAL", "50"))
+INTERVAL = int(os.environ.get("INTERVAL", "5"))
 STATE_FILE = os.environ.get("BUILD_STATE_FILE", "last_canary_build.txt")
 
 
@@ -49,7 +49,7 @@ def tick() -> None:
         log(f"build {build} inchangé — pas de dispatch")
         return
     log(f"NOUVEAU build {last} → {build} — dispatch Actions")
-    ok, msg = dispatch_github_actions(TOKEN, REPO, EVENT)
+    ok, msg = dispatch_github_actions(TOKEN, REPO, EVENT, client_payload={"build": str(build)})
     if ok:
         write_state(STATE_FILE, build)
     else:
