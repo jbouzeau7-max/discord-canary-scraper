@@ -27814,7 +27814,7 @@
   "owluOg": "Your gifts are on the way!",
   "0UoJ1x": "Yearly Discount ({percent, number}% off)",
   "HLHZSh": "Gifted Subscriptions",
-  "VPktVS": "Cancellation will take effect at the end of your current billing period. On {endDate, date, long}, {username} will lose access to all of their Nitro perks.",
+  "VPktVS": "Cancellation will take effect at the end of your current billing period. On {endDate, date, long}, {username} will stop receiving gifts from this subscription.",
   "3T+pGu": "Keep Gifting",
   "Ud0B7z": "This recurring subscription will begin when a user accepts it. If it is not accepted within 5 days of purchase, it will default to a one-time gift and will not renew.",
   "dL8One": "By clicking 'Subscribe', you are buying a Nitro gift and signing up for a recurring subscription. You'll be charged {totalDue} today. If the recipient accepts by {expirationDate, date, long}, their Nitro starts that day and your subscription renews at {renewalPrice} plus applicable taxes every {interval} from then, until you cancel. If they don't accept by then, today's charge stays a one-time gift with no subscription, and you keep it to send to someone else. Prices subject to change. You can cancel the recurring subscription anytime in your Settings. [Paid Services Terms]({paidServicesTermsUrl}) apply. Have questions? [Contact us]({contactUsUrl}) or see our [Subscriptions FAQ]({subscriptionsFaqUrl}).",
@@ -29091,5 +29091,10 @@
   "ody6zm": "{time} left",
   "ngZimk": "Purchases are currently unavailable for your account due to regional age requirements.",
   "B1kOFr": "One code per calendar month. [Terms apply]({termsUrl})",
-  "fqtaGq": "One code per month. [Terms apply]({termsUrl})"
+  "fqtaGq": "One code per month. [Terms apply]({termsUrl})",
+  "1T/Qjw": "Cancellation will take effect at the end of your current billing period. No more gifts will be sent from this subscription after that.",
+  "ydxNPG": "Nitro Credit (Subscription)",
+  "bWW0Gp": "Pending cancellation",
+  "DLvbaf": "Nitro ({intervalCount, plural, one {# month} other {# months}})",
+  "eXhipA": "Nitro ({intervalCount, plural, one {# year} other {# years}})"
 }
