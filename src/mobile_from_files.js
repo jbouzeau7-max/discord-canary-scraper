@@ -1,24 +1,34 @@
 /**
  * Mobile experiments / strings from real client JS dumps.
- * Set MOBILE_DATAMINE_REPO to a git URL that contains discord_app / discord_common/js.
- * No default third-party org name — you choose the source.
+ * Source : MOBILE_DATAMINE_REPO (git URL avec discord_app / discord_common/js),
+ * par défaut le dépôt public Wumpus-Central/discord-mobile-datamining.
+ * Annonce comme le scraper Canary : expériences ajoutées / modifiées /
+ * supprimées / catégorie changée, strings ajoutées / supprimées, routes
+ * ajoutées / modifiées / supprimées (même rendu, titres « Mobile … »).
  */
 
 const { execSync } = require('child_process');
 const fs = require('fs-extra');
 const path = require('path');
-const { sendWebhook } = require('./lib/webhook');
 const { inferType } = require('./lib/infer_type');
 const { writeJsonAtomic } = require('./lib/atomic');
-const { DEFAULT_BOT_NAME: BOT_NAME, DEFAULT_MOBILE_AVATAR: BOT_AVATAR } = require('./lib/utils');
+const mobileExtract = require('./lib/mobile_extract');
+const experimentState = require('./lib/experiment_state');
+const { notifyUrgent, notifyNormal } = require('./lib/notify');
 
 const DATA_DIR = path.join(__dirname, '..', 'data');
 const WORK_DIR = path.join(__dirname, '..', '.mobile_datamine');
 const STATE_FILE = path.join(DATA_DIR, 'mobile_experiments.json');
 const KNOWN_FILE = path.join(DATA_DIR, 'known_mobile_experiment_ids.json');
-const WEBHOOK_URL = process.env.DISCORD_WEBHOOK_URL || null;
+const WEBHOOK_URL =
+  (process.env.MOBILE_FILES_WEBHOOK_URL || '').trim() || (process.env.DISCORD_WEBHOOK_URL || '').trim() || null;
 
-const SOURCE_REPO = process.env.MOBILE_DATAMINE_REPO || '';
+// Source par défaut : dépôt public déjà utilisé pour les versions Android.
+// Avant : sans le secret MOBILE_DATAMINE_REPO, toute l'étape était ignorée.
+const DEFAULT_SOURCE_REPO = 'https://github.com/Wumpus-Central/discord-mobile-datamining.git';
+const SOURCE_REPO = (process.env.MOBILE_DATAMINE_REPO || '').trim() || DEFAULT_SOURCE_REPO;
+const STATE_FORMAT = 2;
+const CANARY_STRINGS_FILE = path.join(DATA_DIR, 'strings.json');
 
 function isExpId(id) {
   if (!/^20[2-3]\d-[0-1]\d[_-][a-z0-9_\-]{3,80}$/i.test(id)) return false;
@@ -51,7 +61,7 @@ async function syncSourceRepo() {
       path.dirname(WORK_DIR),
     );
     run(
-      'git sparse-checkout set discord_app discord_common/js _runtime discord_assets',
+      'git sparse-checkout set discord_app discord_common/js _runtime',
       WORK_DIR,
     );
   } else {
@@ -59,7 +69,7 @@ async function syncSourceRepo() {
       run('git fetch --depth 1 origin', WORK_DIR);
       run('git reset --hard origin/HEAD', WORK_DIR);
       run(
-        'git sparse-checkout set discord_app discord_common/js _runtime discord_assets',
+        'git sparse-checkout set discord_app discord_common/js _runtime',
         WORK_DIR,
       );
     } catch (e) {
@@ -81,7 +91,27 @@ async function syncSourceRepo() {
   } catch (e) {
     console.warn('getRepoInfo: git log failed -', e.message);
   }
-  return { dir: WORK_DIR, commit: head, message: msg };
+  let full = null;
+  try {
+    full = run('git rev-parse HEAD', WORK_DIR).trim();
+  } catch {}
+  return { dir: WORK_DIR, commit: head, full, message: msg };
+}
+
+/** SHA du HEAD distant via `git ls-remote` (null si indisponible). */
+function remoteHeadSha(repo) {
+  try {
+    const out = execSync(`git ls-remote "${repo}" HEAD`, {
+      encoding: 'utf8',
+      stdio: ['ignore', 'pipe', 'pipe'],
+      timeout: 30000,
+    });
+    const m = out.match(/^([0-9a-f]{40})\s+HEAD/m);
+    return m ? m[1] : null;
+  } catch (e) {
+    console.warn('ls-remote failed:', e.message.split('\n')[0]);
+    return null;
+  }
 }
 
 async function collectJsFiles(root) {
@@ -158,42 +188,6 @@ function extractFromContent(content, expMap, strings) {
   }
 }
 
-async function scanMobileFiles(root) {
-  const files = await collectJsFiles(root);
-  console.log('JS files to scan:', files.length);
-  const expMap = new Map();
-  const strings = {};
-  let n = 0;
-  // Lecture I/O en parallèle (batch de 16), extraction séquentielle
-  const READ_BATCH = 16;
-  for (let i = 0; i < files.length; i += READ_BATCH) {
-    const batch = files.slice(i, i + READ_BATCH);
-    const contents = await Promise.all(
-      batch.map(async (fp) => {
-        try {
-          const st = await fs.stat(fp);
-          if (st.size > 8_000_000) return null;
-          const content = await fs.readFile(fp, 'utf8');
-          return { fp, content };
-        } catch (e) {
-          console.warn('extractFromFiles: failed to process', fp, '-', e.message);
-          return null;
-        }
-      }),
-    );
-    for (const item of contents) {
-      if (!item) continue;
-      extractFromContent(item.content, expMap, strings);
-      n++;
-    }
-  }
-  console.log('Scanned files:', n);
-  return {
-    experiments: [...expMap.values()].sort((a, b) => a.id.localeCompare(b.id)),
-    strings,
-  };
-}
-
 async function loadKnown() {
   const set = new Set();
   try {
@@ -214,24 +208,6 @@ async function saveKnown(set) {
     { updatedAt: new Date().toISOString(), count: ids.length, ids },
     2,
   );
-}
-
-async function postWebhook(payload) {
-  if (!WEBHOOK_URL) return false;
-  const body = {
-    username: BOT_NAME,
-    avatar_url: BOT_AVATAR,
-    ...payload,
-  };
-  const r = await sendWebhook(WEBHOOK_URL, body, { identity: 'mobile', label: 'mobile', timeoutMs: 30000, minGapMs: 400 });
-  if (r.ok) {
-    console.log('Webhook OK');
-    return true;
-  }
-  if (r.status >= 400 && r.status < 500 && r.status !== 429) {
-    throw new Error('Webhook HTTP ' + r.status);
-  }
-  throw new Error('Webhook failed after retries');
 }
 
 const TYPE_EMOJI = { user: '👤', guild: '🏠' };
@@ -271,36 +247,143 @@ function stringsEmbed(added, meta) {
   };
 }
 
-async function notify(newExps, stringDiff, meta) {
-  if (!WEBHOOK_URL) {
-    console.log('No DISCORD_WEBHOOK_URL — skip notify');
-    return;
+/** Lit tous les fichiers source (ordre trié : résultat déterministe). */
+async function readSources(root) {
+  const files = (await collectJsFiles(root)).sort();
+  const items = [];
+  const READ_BATCH = 32;
+  for (let i = 0; i < files.length; i += READ_BATCH) {
+    const batch = files.slice(i, i + READ_BATCH);
+    const read = await Promise.all(
+      batch.map(async (fp) => {
+        try {
+          const st = await fs.stat(fp);
+          if (st.size > 8_000_000) return null;
+          return { file: path.relative(root, fp), content: await fs.readFile(fp, 'utf8') };
+        } catch (e) {
+          console.warn('readSources: failed', fp, '-', e.message);
+          return null;
+        }
+      }),
+    );
+    for (const it of read) if (it) items.push(it);
   }
-  const hasStrings = Object.keys(stringDiff.added || {}).length > 0;
-  if (!newExps.length && !hasStrings) return;
+  return items;
+}
 
-  // Un seul message : expériences + strings regroupées (au lieu d'1 message par expérience)
-  const embeds = [];
-  if (newExps.length) embeds.push(experimentsEmbed(newExps, meta));
-  if (hasStrings) embeds.push(stringsEmbed(stringDiff.added, meta));
-  await postWebhook({ embeds });
+/** « 355.5 (355205) runtime » → « 355.5 (355205) ». */
+function buildLabel(meta) {
+  const m = String(meta?.message || '').match(/^(\d{3}\.\d{1,2}\s*\(\d{5,}\))/);
+  if (m) return m[1];
+  return String(meta?.commit || '?');
+}
+
+/** Snapshot compact persistant (sans le texte brut des fichiers). */
+function expSnapshot(e) {
+  const out = { id: e.id, kind: e.kind, type: e.kind, system: e.system || null };
+  if (e.label) out.label = e.label;
+  if (e.defaultConfig) out.defaultConfig = e.defaultConfig;
+  if (e.variations) out.variations = e.variations;
+  if (e.treatments) out.treatments = e.treatments;
+  if (e.file) out.file = e.file;
+  if (e.source) out.source = e.source;
+  return out;
+}
+
+/**
+ * Diff map clé→valeur (strings / routes). Les suppressions ne sont comptées
+ * que si la couverture est comparable (pas d'extraction partielle).
+ */
+function diffMap(prev, cur, { compareValues = true } = {}) {
+  const p = prev && typeof prev === 'object' ? prev : {};
+  const c = cur && typeof cur === 'object' ? cur : {};
+  const own = (o, k) => Object.prototype.hasOwnProperty.call(o, k);
+  const added = {};
+  const modified = {};
+  const removed = {};
+  for (const [k, v] of Object.entries(c)) {
+    if (!own(p, k)) added[k] = v;
+    else if (compareValues && String(p[k]) !== String(v)) modified[k] = v;
+  }
+  const pc = Object.keys(p).length;
+  const ratio = Object.keys(c).length / Math.max(pc, 1);
+  if (pc && ratio >= 0.75 && ratio <= 1.35) {
+    for (const [k, v] of Object.entries(p)) if (!own(c, k)) removed[k] = v;
+  }
+  return { added, modified, removed };
+}
+
+const countMap = (d) =>
+  Object.keys(d.added).length + Object.keys(d.modified).length + Object.keys(d.removed).length;
+
+/**
+ * Calcule le diff complet mobile (pur, testable).
+ * @returns {{expDiff, strDiff, rtDiff, seeded:boolean, degraded:string|null}}
+ */
+function computeMobileDiff(previous, findings, opts = {}) {
+  const known = opts.knownIds instanceof Set ? opts.knownIds : new Set(opts.knownIds || []);
+  const prevFormat = previous && previous.format === STATE_FORMAT;
+  const prevExps = (previous && previous.experiments) || [];
+  const curExps = findings.experiments || [];
+  const prevStr = (prevFormat && previous.strings) || {};
+  const prevRt = (prevFormat && previous.routes) || {};
+  const empty = { added: {}, modified: {}, removed: {} };
+
+  // Garde de dégradation (dépôt source tronqué, mauvaise branche...).
+  const pE = prevExps.length;
+  const cE = curExps.length;
+  if (pE >= 30 && cE < Math.max(5, pE * 0.5)) return { degraded: `experiments ${pE} → ${cE}` };
+  const pS = Object.keys(prevStr).length;
+  const cS = Object.keys(findings.strings || {}).length;
+  if (pS >= 100 && cS < Math.max(20, pS * 0.5)) return { degraded: `strings ${pS} → ${cS}` };
+  const pR = Object.keys(prevRt).length;
+  const cR = Object.keys(findings.routes || {}).length;
+  if (pR >= 50 && cR < Math.max(20, pR * 0.5)) return { degraded: `routes ${pR} → ${cR}` };
+
+  if (!prevFormat) {
+    // Migration / premier run : seules les expériences inédites (ids jamais
+    // vus) sont annoncées, le reste sert de base.
+    const added = curExps.filter((e) => !known.has(String(e.id)));
+    const hadAny = known.size > 0 || pE > 0;
+    return {
+      expDiff: { added: hadAny ? added : [], modified: [], removed: [], categoryChanged: [] },
+      strDiff: empty,
+      rtDiff: empty,
+      seeded: true,
+      degraded: null,
+    };
+  }
+
+  const reliable = pE > 0 && cE >= pE * 0.85;
+  const removedIds = new Set((previous.removedIds || []).map(String));
+  const raw = experimentState.diffExperiments(prevExps, curExps, reliable, {
+    knownIds: known,
+    removedIds,
+  });
+  const expDiff = experimentState.toNotifyExpDiff(raw);
+  // Le texte des strings vient du dictionnaire Canary : une valeur qui change
+  // reflète Canary, pas le client mobile → seuls ajouts / suppressions.
+  const strDiff = diffMap(prevStr, findings.strings, { compareValues: false });
+  const rtDiff = diffMap(prevRt, findings.routes, { compareValues: true });
+  return { expDiff, strDiff, rtDiff, seeded: false, degraded: null, rawDiff: raw };
+}
+
+async function loadCanaryStrings() {
+  try {
+    if (await fs.pathExists(CANARY_STRINGS_FILE)) return await fs.readJson(CANARY_STRINGS_FILE);
+  } catch (e) {
+    console.warn('loadCanaryStrings:', e.message);
+  }
+  return {};
 }
 
 async function main() {
   await fs.ensureDir(DATA_DIR);
   console.log('=== Mobile files datamine ===');
-  if (!SOURCE_REPO) {
-    console.log('MOBILE_DATAMINE_REPO not set — skip mobile file scan');
+  if (/^(1|true)$/i.test(process.env.MOBILE_FILES_PAUSED || '')) {
+    console.log('MOBILE_FILES_PAUSED — skip');
     return;
   }
-  const meta = await syncSourceRepo();
-  console.log('Source commit:', meta.commit, meta.message);
-
-  const findings = await scanMobileFiles(meta.dir);
-  console.log('Experiments found:', findings.experiments.length);
-  console.log('Strings found:', Object.keys(findings.strings).length);
-
-  const known = await loadKnown();
   let previous = null;
   if (await fs.pathExists(STATE_FILE)) {
     try {
@@ -309,70 +392,117 @@ async function main() {
       console.warn('loadPrevious: failed to read', STATE_FILE, '-', e.message);
     }
   }
-  for (const e of previous?.experiments || []) {
-    if (e?.id) known.add(String(e.id));
+  const force = process.env.MOBILE_FILES_FORCE === '1';
+  const upToDate = (sha) =>
+    !force && previous && previous.format === STATE_FORMAT && previous.notifyOk !== false &&
+    sha && (previous.sourceCommitFull === sha || previous.sourceCommit === sha);
+
+  // Contrôle rapide (quelques Ko) avant de cloner ~240 Mo : rien à faire si
+  // le dépôt source n'a pas bougé depuis le dernier run réussi.
+  const remoteHead = remoteHeadSha(SOURCE_REPO);
+  if (upToDate(remoteHead)) {
+    console.log('Source unchanged since last run (' + remoteHead.slice(0, 8) + ') — nothing to do');
+    return;
   }
 
-  const newExps = findings.experiments.filter((e) => e && e.id && !known.has(String(e.id)));
-
-  const prevStrings = previous?.strings || {};
-  const stringDiff = { added: {} };
-  const prevCount = Object.keys(prevStrings).length;
-  if (prevCount >= 20) {
-    for (const [k, v] of Object.entries(findings.strings)) {
-      if (!(k in prevStrings)) stringDiff.added[k] = v;
-    }
-    if (Object.keys(stringDiff.added).length > 80) {
-      console.log('String flood — skip notify, reseed');
-      stringDiff.added = {};
-    }
+  const meta = await syncSourceRepo();
+  console.log('Source commit:', meta.commit, meta.message);
+  if (upToDate(meta.full) || upToDate(meta.commit)) {
+    console.log('Source unchanged since last run — nothing to do');
+    return;
   }
 
-  console.log('New mobile experiments:', newExps.length);
-  console.log('New mobile strings:', Object.keys(stringDiff.added).length);
+  const t0 = Date.now();
+  const items = await readSources(meta.dir);
+  const scan = mobileExtract.scanContents(items);
+  const dict = await loadCanaryStrings();
+  const strings = mobileExtract.resolveStrings(scan.stringKeys, dict);
+  const findings = { experiments: scan.experiments.map(expSnapshot), strings, routes: scan.routes };
+  console.log(
+    `Scanned ${items.length} files in ${Date.now() - t0} ms →`,
+    'experiments', findings.experiments.length,
+    '| strings', Object.keys(strings).length,
+    '| routes', Object.keys(scan.routes).length,
+  );
 
-  const prevExpN = (previous && previous.experiments ? previous.experiments.length : 0);
-  const prevStrN = Object.keys((previous && previous.strings) || {}).length;
-  const curExpN = findings.experiments.length;
-  const curStrN = Object.keys(findings.strings).length;
-  if (prevExpN >= 30 && curExpN < Math.max(5, prevExpN * 0.5)) {
-    console.error('MOBILE_FILES_DEGRADED: experiments too low', { prevExpN, curExpN });
+  const known = await loadKnown();
+  for (const e of previous?.experiments || []) if (e?.id) known.add(String(e.id));
+
+  const diff = computeMobileDiff(previous, findings, { knownIds: known });
+  if (diff.degraded) {
+    console.error('MOBILE_FILES_DEGRADED:', diff.degraded, '- state NOT updated');
     process.exit(1);
   }
-  if (prevStrN >= 100 && curStrN < Math.max(20, prevStrN * 0.5)) {
-    console.error('MOBILE_FILES_DEGRADED: strings too low', { prevStrN, curStrN });
-    process.exit(1);
-  }
+  const { expDiff, strDiff, rtDiff } = diff;
+  const nExp =
+    expDiff.added.length + expDiff.modified.length + expDiff.removed.length + expDiff.categoryChanged.length;
+  console.log(
+    diff.seeded ? 'Seed/migration run —' : 'Diff —',
+    `experiments +${expDiff.added.length} ~${expDiff.modified.length} -${expDiff.removed.length} cat${expDiff.categoryChanged.length}`,
+    `| strings +${Object.keys(strDiff.added).length} -${Object.keys(strDiff.removed).length}`,
+    `| routes +${Object.keys(rtDiff.added).length} ~${Object.keys(rtDiff.modified).length} -${Object.keys(rtDiff.removed).length}`,
+  );
 
-  const hasDiff = newExps.length > 0 || Object.keys(stringDiff.added).length > 0;
-  if (hasDiff && WEBHOOK_URL) {
+  let notifyOk = true;
+  if ((nExp || countMap(strDiff) || countMap(rtDiff)) && WEBHOOK_URL) {
+    const build = { buildNumber: buildLabel(meta) };
+    const scope = { titlePrefix: 'Mobile', footerLabel: 'Mobile', keyPrefix: 'mobile:' };
     try {
-      await notify(newExps, stringDiff, meta);
+      const [okE, okN] = await Promise.all([
+        notifyUrgent({ build, expDiff, webhookUrl: WEBHOOK_URL, scope }),
+        notifyNormal({ build, strDiff, rtDiff, webhookUrl: WEBHOOK_URL, scope }),
+      ]);
+      notifyOk = okE && okN;
     } catch (e) {
-      console.warn('NOTIFY_FAIL:', e.message, '- not advancing known/state');
+      console.warn('NOTIFY_FAIL:', e.message);
+      notifyOk = false;
+    }
+    if (!notifyOk) {
+      console.warn('NOTIFY_FAIL - state NOT advanced (retry next run)');
       process.exit(2);
     }
-  } else if (hasDiff && !WEBHOOK_URL) {
+  } else if (!WEBHOOK_URL) {
     console.log('No webhook - seed state without notify');
   }
 
-  for (const e of findings.experiments) {
-    if (e && e.id) known.add(String(e.id));
-  }
+  for (const e of findings.experiments) known.add(String(e.id));
+  const removedIds = new Set((previous?.removedIds || []).map(String));
+  for (const e of expDiff.removed) removedIds.add(String(e.id || e));
+  for (const e of findings.experiments) removedIds.delete(String(e.id));
 
   const state = {
+    format: STATE_FORMAT,
     scrapedAt: new Date().toISOString(),
+    sourceRepo: SOURCE_REPO.replace(/\/\/[^@/]+@/, '//'),
     sourceCommit: meta.commit,
+    sourceCommitFull: meta.full || null,
     sourceMessage: meta.message,
+    build: buildLabel(meta),
     experimentCount: findings.experiments.length,
-    stringCount: Object.keys(findings.strings).length,
-    newExperimentCount: newExps.length,
+    stringCount: Object.keys(strings).length,
+    routeCount: Object.keys(scan.routes).length,
+    lastDiff: {
+      experiments: {
+        added: expDiff.added.length,
+        modified: expDiff.modified.length,
+        removed: expDiff.removed.length,
+        categoryChanged: expDiff.categoryChanged.length,
+      },
+      strings: { added: Object.keys(strDiff.added).length, removed: Object.keys(strDiff.removed).length },
+      routes: {
+        added: Object.keys(rtDiff.added).length,
+        modified: Object.keys(rtDiff.modified).length,
+        removed: Object.keys(rtDiff.removed).length,
+      },
+    },
+    notifyOk,
+    removedIds: [...removedIds].sort().slice(-2000),
     experiments: findings.experiments,
-    strings: findings.strings,
+    strings,
+    routes: scan.routes,
   };
   await writeJsonAtomic(STATE_FILE, state, 2);
   await saveKnown(known);
-
   console.log('=== Mobile files done ===');
 }
 
@@ -383,4 +513,14 @@ if (require.main === module) {
   });
 }
 
-module.exports = { experimentsEmbed, stringsEmbed, isExpId, extractFromContent };
+module.exports = {
+  experimentsEmbed,
+  stringsEmbed,
+  isExpId,
+  extractFromContent,
+  computeMobileDiff,
+  diffMap,
+  buildLabel,
+  expSnapshot,
+  STATE_FORMAT,
+};

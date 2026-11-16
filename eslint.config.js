@@ -5,6 +5,7 @@ module.exports = [
   {
     ignores: [
       'node_modules/**',
+      '.mobile_datamine/**',
       'builds/**',
       'assets/**',
       'data/**',

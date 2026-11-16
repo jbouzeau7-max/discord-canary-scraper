@@ -487,7 +487,13 @@ function parseAndroidDataminingCommits(commits) {
       .sort((a, b) => cmpVersion(b.version, a.version) || (Date.parse(b.date || '') || 0) - (Date.parse(a.date || '') || 0))[0] || null;
   const beta = latest(1);
   const alpha = latest(2);
-  return beta || alpha ? { beta, alpha, source: 'datamining_commits' } : null;
+  // Toutes les versions vues par track : permet de signaler les versions
+  // intermédiaires sorties entre deux runs (sinon seule la dernière apparaît).
+  const all = (track) => [...new Set(found.filter((e) => e.track === track).map((e) => e.version))]
+    .sort((a, b) => cmpVersion(b, a));
+  return beta || alpha
+    ? { beta, alpha, versions: { beta: all(1), alpha: all(2) }, source: 'datamining_commits' }
+    : null;
 }
 
 /** Source Android sans Cloudflare ; un échec ne bloque pas les autres sources. */
@@ -885,6 +891,7 @@ async function collectAll() {
   const datamineData = await take(datamineTask).catch(() => null);
   if (datamineData) {
     sources.dataminingCommits = true;
+    if (datamineData.versions) sources.androidTrackVersions = datamineData.versions;
     externalBeta = preferNewerTrackVersion(externalBeta, datamineData.beta);
     externalAlpha = preferNewerTrackVersion(externalAlpha, datamineData.alpha);
     console.log(
@@ -1000,6 +1007,34 @@ async function collectAll() {
 
 // ── Change detection ──────────────────────────────────
 
+/**
+ * Versions publiées strictement entre `from` et `to` pour un canal, d'après
+ * les index connus (OTA Discord, commits de datamining). Sert à ne jamais
+ * « oublier » une version sortie entre deux runs.
+ */
+function intermediateVersions(snapshot, channel, from, to) {
+  if (!from || !to || cmpVersion(to, from) <= 0) return [];
+  const pool = new Set();
+  const plat = channel.platform;
+  const track = channel.channel;
+  const ota = (snapshot && snapshot.otaIndex && snapshot.otaIndex[plat]) || [];
+  for (const v of ota) {
+    if (!v || !v.version) continue;
+    if (plat === 'android') {
+      const d = decodeAndroidBuild(v.build);
+      const t = d ? d.track : 0;
+      const want = track === 'stable' ? 0 : track === 'beta' ? 1 : 2;
+      if (t !== want) continue;
+    } else if (track !== 'stable' && track !== 'beta') continue;
+    pool.add(v.version);
+  }
+  const tv = snapshot && snapshot.sources && snapshot.sources.androidTrackVersions;
+  if (plat === 'android' && tv && Array.isArray(tv[track])) for (const v of tv[track]) pool.add(v);
+  return [...pool]
+    .filter((v) => cmpVersion(v, from) > 0 && cmpVersion(v, to) < 0)
+    .sort((a, b) => cmpVersion(a, b));
+}
+
 function detectChanges(previous, snapshot) {
   const changes = [];
   const notified = new Set((previous?.notifiedFingerprints || []).map(String));
@@ -1013,15 +1048,25 @@ function detectChanges(previous, snapshot) {
     const key = channelKey(c);
     const fp = versionFingerprint(c);
     if (!fp) continue;
+    const prev = prevMap.get(key);
+    if (
+      prev && prev.version && cmpVersion(c.version, prev.version) === 0 &&
+      c.build && prev.build && String(c.build) !== String(prev.build)
+    ) {
+      // Même version, nouveau build (re-publication / hotfix OTA) : annoncé une fois.
+      const rfp = `${fp}|${c.build}`;
+      if (!notified.has(rfp)) changes.push({ type: 'rebuild', channel: c, previous: prev, fp: rfp });
+      continue;
+    }
     if (notified.has(fp)) continue;
 
-    const prev = prevMap.get(key);
     if (!prev || !prev.version) {
       changes.push({ type: 'new', channel: c, previous: null, fp });
       continue;
     }
     if (cmpVersion(c.version, prev.version) > 0) {
-      changes.push({ type: 'updated', channel: c, previous: prev, fp });
+      const skipped = intermediateVersions(snapshot, c, prev.version, c.version);
+      changes.push({ type: 'updated', channel: c, previous: prev, fp, ...(skipped.length ? { skipped } : {}) });
     }
   }
 
@@ -1177,12 +1222,12 @@ function buildReleaseComponents(ch) {
   const c = ch.channel;
   const prevVersion = ch.previous && ch.previous.version ? ch.previous.version : null;
   const isNew = ch.type === 'new' || !prevVersion;
-  const kind = isNew ? 'First seen' : bumpKind(prevVersion, c.version) === 'major' ? 'Major update' : 'Minor update';
+  const kind = isNew ? 'First seen' : ch.type === 'rebuild' ? 'New build' : bumpKind(prevVersion, c.version) === 'major' ? 'Major update' : 'Minor update';
 
   const header = [
     `## ${PLATFORM_EMOJI[c.platform] || '📱'} ${releaseTitle(c)}`,
     `${CHANNEL_EMOJI[c.channel] || '⚪'} **Discord ${platformLabel(c)}** · ${trackName(c)} · ${kind}`,
-    isNew ? `### ${c.version}` : `### ${prevVersion} → ${c.version}`,
+    isNew || ch.type === 'rebuild' ? `### ${c.version}` : `### ${prevVersion} → ${c.version}`,
   ].join('\n');
 
   const comps = [];
@@ -1200,6 +1245,12 @@ function buildReleaseComponents(ch) {
   if (c.build) {
     const decoded = c.platform === 'android' ? decodeAndroidBuild(c.build) : null;
     lines.push(`**Build** · \`${c.build}\`${decoded ? ` · track ${decoded.track} (${decoded.trackName})` : ''}`);
+  }
+  if (ch.type === 'rebuild' && ch.previous && ch.previous.build) {
+    lines.push(`**Previous build** · \`${ch.previous.build}\``);
+  }
+  if (Array.isArray(ch.skipped) && ch.skipped.length) {
+    lines.push(`**Also released since last check** · ${ch.skipped.slice(0, 15).map((v) => `\`${v}\``).join(', ')}${ch.skipped.length > 15 ? ` +${ch.skipped.length - 15}` : ''}`);
   }
   if (c.releaseName) lines.push(`**Release** · \`${String(c.releaseName).slice(0, 60)}\``);
   if (c.commit) lines.push(`**Commit** · \`${String(c.commit).slice(0, 12)}\``);
@@ -1476,6 +1527,7 @@ module.exports = {
   selectIosBetaFallback,
   classifyIosChannels,
   detectChanges,
+  intermediateVersions,
   notify,
   deliverChanges,
   holdBackFailedChannels,

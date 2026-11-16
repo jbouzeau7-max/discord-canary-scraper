@@ -85,7 +85,7 @@ async function notifyAll(opts) {
   return a && b;
 }
 
-async function notifyUrgent({ build, expDiff, webhookUrl }) {
+async function notifyUrgent({ build, expDiff, webhookUrl, scope }) {
   if (!webhookUrl) return true;
   const bn = String(build.buildNumber || '?');
   const ts = new Date().toISOString();
@@ -99,10 +99,10 @@ async function notifyUrgent({ build, expDiff, webhookUrl }) {
     console.log('Urgent: no experiment diff');
     return true;
   }
-  return sendExperiments(webhookUrl, bn, exp, ts);
+  return sendExperiments(webhookUrl, bn, exp, ts, scope);
 }
 
-async function notifyNormal({ build, strDiff, rtDiff, webhookUrl }) {
+async function notifyNormal({ build, strDiff, rtDiff, webhookUrl, scope }) {
   if (!webhookUrl) return true;
   const bn = String(build.buildNumber || '?');
   const ts = new Date().toISOString();
@@ -120,13 +120,13 @@ async function notifyNormal({ build, strDiff, rtDiff, webhookUrl }) {
   const promises = [];
   if (nStr)
     promises.push(
-      sendMapDiff(webhookUrl, bn, str, ts, 'Strings').then((r) => {
+      sendMapDiff(webhookUrl, bn, str, ts, 'Strings', scope).then((r) => {
         if (!r) ok = false;
       }),
     );
   if (nRt)
     promises.push(
-      sendMapDiff(webhookUrl, bn, rt, ts, 'Routes').then((r) => {
+      sendMapDiff(webhookUrl, bn, rt, ts, 'Routes', scope).then((r) => {
         if (!r) ok = false;
       }),
     );
@@ -413,13 +413,14 @@ function discordTime(ts) {
   return Number.isFinite(t) ? `<t:${Math.floor(t / 1000)}:f>` : '';
 }
 
-function footerText(bn, ts) {
+function footerText(bn, ts, footerLabel = 'Canary') {
   const when = discordTime(ts);
-  return when ? `Canary ${bn} · ${when}` : `Canary ${bn}`;
+  const lbl = footerLabel || 'Canary';
+  return when ? `${lbl} ${bn} · ${when}` : `${lbl} ${bn}`;
 }
 
 /** Construit les embeds d'une section (pur : ni envoi, ni dedupe). */
-function sectionEmbeds(sec, { title, bn, ts, maxFieldChars }) {
+function sectionEmbeds(sec, { title, bn, ts, maxFieldChars, footerLabel }) {
   const fieldMax = Number.isFinite(maxFieldChars) && maxFieldChars >= 200 ? maxFieldChars : FIELD_MAX;
   // Un embed = un message quand les champs sont grands (>= 1900) : la clé de
   // dedupe reste alors au niveau du message, sans risque de doublon partiel.
@@ -429,7 +430,7 @@ function sectionEmbeds(sec, { title, bn, ts, maxFieldChars }) {
   // Titre unique « ## Routes · Build 123 » : plus d'auteur, de description
   // ni de pied de page qui répétaient le build (espace perdu).
   const head = `${title} · Build ${bn}`;
-  const footer = { text: footerText(bn, ts) };
+  const footer = { text: footerText(bn, ts, footerLabel) };
   const safe = sec.lines.map(sanitizeCodeLine);
 
   // Petite section (≤ HIGHLIGHT_COUNT entrées qui tiennent en un bloc) :
@@ -483,7 +484,7 @@ function sectionEmbeds(sec, { title, bn, ts, maxFieldChars }) {
   return embeds;
 }
 
-async function sendSectionEmbeds({ webhookUrl, title, bn, ts, sections, batchKey, identity }) {
+async function sendSectionEmbeds({ webhookUrl, title, bn, ts, sections, batchKey, identity, footerLabel }) {
   const items = [];
   for (let si = 0; si < sections.length; si++) {
     // 1 embed par post : chaque message reste sous la limite Discord
@@ -497,6 +498,7 @@ async function sendSectionEmbeds({ webhookUrl, title, bn, ts, sections, batchKey
       bn,
       ts,
       maxFieldChars: COMPONENT_FIELD_MAX,
+      footerLabel,
     });
     for (let i = 0; i < embeds.length; i++) {
       items.push({
@@ -554,14 +556,21 @@ async function sendSectionEmbeds({ webhookUrl, title, bn, ts, sections, batchKey
   return ok;
 }
 
-async function sendExperiments(webhookUrl, bn, exp, ts) {
-  const batchKey = 'expbatch:' + stableExpKey(bn, exp);
+// scope (optionnel) : { titlePrefix, footerLabel, keyPrefix } — réutilisé par
+// le datamining mobile (mêmes messages que Canary, titre « Mobile … »).
+function scoped(scope, title) {
+  return scope && scope.titlePrefix ? `${scope.titlePrefix} ${title}` : title;
+}
+
+async function sendExperiments(webhookUrl, bn, exp, ts, scope) {
+  const kp = (scope && scope.keyPrefix) || '';
+  const batchKey = 'expbatch:' + kp + stableExpKey(bn, exp);
   const claimed = await claimBatch(batchKey, 'Experiments');
   if (claimed !== null) return claimed;
 
   // Per-event filter: drop items already sent (partial batch recovery).
   // Une seule lecture du fichier de dedupe pour tous les événements.
-  const evKey = (changeType, e) => 'expev:' + stableExpEventKey(bn, changeType, e);
+  const evKey = (changeType, e) => 'expev:' + kp + stableExpEventKey(bn, changeType, e);
   const types = [['added', 'added'], ['modified', 'modified'], ['removed', 'removed'], ['categoryChanged', 'category']];
   const allEvKeys = [];
   for (const [f, t] of types) for (const e of exp[f] || []) if (e && (typeof e === 'string' || e.id)) allEvKeys.push(evKey(t, e));
@@ -640,12 +649,13 @@ async function sendExperiments(webhookUrl, bn, exp, ts) {
   }
   const ok = await sendSectionEmbeds({
     webhookUrl,
-    title: label(E.exp, 'Experiments'),
+    title: label(E.exp, scoped(scope, 'Experiments')),
     identity: 'experiments',
     bn,
     ts,
     sections,
     batchKey,
+    footerLabel: scope && scope.footerLabel,
   });
   if (ok) {
     const keys = [batchKey];
@@ -666,8 +676,8 @@ async function sendExperiments(webhookUrl, bn, exp, ts) {
   return ok;
 }
 
-async function sendMapDiff(webhookUrl, bn, diff, ts, kind) {
-  const batchKey = 'mapbatch:' + stableMapKey(bn, kind, diff);
+async function sendMapDiff(webhookUrl, bn, diff, ts, kind, scope) {
+  const batchKey = 'mapbatch:' + ((scope && scope.keyPrefix) || '') + stableMapKey(bn, kind, diff);
   const claimed = await claimBatch(batchKey, kind);
   if (claimed !== null) return claimed;
   const isRoutes = kind === 'Routes';
@@ -716,12 +726,13 @@ async function sendMapDiff(webhookUrl, bn, diff, ts, kind) {
   }
   const ok = await sendSectionEmbeds({
     webhookUrl,
-    title: label(kindEmoji, kind),
+    title: label(kindEmoji, scoped(scope, kind)),
     identity: isRoutes ? 'routes' : 'strings',
     bn,
     ts,
     sections,
     batchKey,
+    footerLabel: scope && scope.footerLabel,
   });
   if (ok) await markPosted(batchKey);
   else {
