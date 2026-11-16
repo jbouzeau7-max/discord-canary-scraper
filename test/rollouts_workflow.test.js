@@ -44,6 +44,8 @@ test('les workflows ne publient que les données validées', () => {
   assert.match(scrape, /if: success\(\) && github\.event_name == 'workflow_dispatch' && inputs\.once == true/);
   assert.match(scrape, /COMMIT_RECOVERY_PATCH:/);
   assert.match(pages, /node scripts\/validate-data-generation\.js/);
+  assert.match(pages, /- 'scripts\/validate-data-generation\.js'/);
+  assert.match(pages, /- 'src\/lib\/generation_validation\.js'/);
 });
 
 test('le validateur Pages utilise le module natif sans charger publish_data et ses deps npm', () => {
