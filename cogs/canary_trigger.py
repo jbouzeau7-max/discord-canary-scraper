@@ -50,9 +50,14 @@ EXTRA_EVENTS = [
     "trigger-blog",  # blog-tracker.yml
 ]
 
-INTERVAL_SECONDS = 65
+# Vitesse : on poll Canary très souvent (léger, ~1 requête HTML) et on dispatch
+# IMMÉDIATEMENT dès que le build change. Le dispatch « force » historique reste
+# en filet de sécurité toutes les FORCE_INTERVAL_SECONDS.
+POLL_SECONDS = max(2, int(os.environ.get("CANARY_POLL_SECONDS", "4")))
+FORCE_INTERVAL_SECONDS = 65
+INTERVAL_SECONDS = POLL_SECONDS  # compat
 FORCE_ALWAYS = True
-# Extras : toutes les N ticks (~6 * 65s ≈ 6–7 min)
+# Extras : toutes les N ticks force (~6 * 65s ≈ 6–7 min)
 EXTRA_EVERY_N_TICKS = 6
 
 STATE_FILE = Path(__file__).resolve().parent / "last_canary_build.txt"
@@ -73,6 +78,8 @@ _last_dispatch_ok = 0.0
 _min_gap_after_429 = 15.0
 _tick_count = 0
 _last_user_rollout = 0.0
+_last_force = 0.0
+_last_seen_token: str | None = None
 
 
 def _opener() -> urllib.request.OpenerDirector:
@@ -190,20 +197,47 @@ def _maybe_user_rollout() -> str | None:
     return ("✅ " if ok else "❌ ") + f"user-rollouts | {msg}"
 
 
-def _tick_force() -> str:
-    """Canary + user-rollouts ~2 min + extras périodiques."""
-    global _tick_count
-    _tick_count += 1
+def _tick_fast() -> str | None:
+    """Poll rapide : dispatch immédiat si nouveau build, sinon force périodique.
 
+    Retourne None quand rien n'a été fait (pas de log spam).
+    """
+    global _last_seen_token
     build, vhash = _read_build_fast(CANARY_URL)
+    if build:
+        token = _state_token(build, vhash)
+        if _last_seen_token is None:
+            _last_seen_token = _read_last()
+        if token != _last_seen_token:
+            ok, msg = _dispatch(DISPATCH_EVENT, {"build": build, "hash": vhash or ""})
+            if ok:
+                prev = _last_seen_token
+                _last_seen_token = token
+                _write_last(token)
+                return f"[NEW-FAST] build={token} prev={prev} | {msg}"
+            return f"[NEW-FAST] build={token} dispatch fail | {msg}"
+    if time.monotonic() - _last_force >= FORCE_INTERVAL_SECONDS:
+        return _tick_force(build, vhash)
+    return None
+
+
+def _tick_force(build: str | None = None, vhash: str | None = None) -> str:
+    """Canary + user-rollouts ~2 min + extras périodiques."""
+    global _tick_count, _last_force, _last_seen_token
+    _tick_count += 1
+    _last_force = time.monotonic()
+
+    if build is None:
+        build, vhash = _read_build_fast(CANARY_URL)
     token = _state_token(build, vhash) if build else "?"
     last = _read_last()
     changed = bool(build) and last != token
 
     # 1) Canary scrape
-    ok, msg = _dispatch(DISPATCH_EVENT)
+    ok, msg = _dispatch(DISPATCH_EVENT, {"build": build, "hash": vhash or ""} if build else None)
     if ok and build:
         _write_last(token)
+        _last_seen_token = token
 
     lines = [f"[{'NEW' if changed else 'force'}] build={token} last={last} | {msg}"]
 
@@ -239,8 +273,9 @@ class CanaryTrigger(commands.Cog):
         if self._lock.locked():
             return
         async with self._lock:
-            result = await asyncio.to_thread(_tick_force)
-            print(f"[canary-cog] {result}", flush=True)
+            result = await asyncio.to_thread(_tick_fast)
+            if result:
+                print(f"[canary-cog] {result}", flush=True)
 
     @auto_check.before_loop
     async def before_auto(self):
@@ -251,7 +286,8 @@ class CanaryTrigger(commands.Cog):
         except Exception:
             pass
         print(
-            f"[canary-cog] FORCE canary every {INTERVAL_SECONDS}s · "
+            f"[canary-cog] poll canary every {POLL_SECONDS}s (dispatch on change) · "
+            f"force every {FORCE_INTERVAL_SECONDS}s · "
             f"user-rollouts every {USER_ROLLOUT_INTERVAL_SECONDS}s · "
             f"extras every {EXTRA_EVERY_N_TICKS} ticks → {GITHUB_REPO}",
             flush=True,
