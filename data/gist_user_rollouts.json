@@ -3,17 +3,17 @@
  "schemaVersion": 1,
  "semanticsVersion": 2,
  "notifyScopeVersion": 2,
- "runId": "20261116T225824_gist",
- "scrapedAt": "2026-11-16T22:58:24.277Z",
+ "runId": "20261116T231739_gist",
+ "scrapedAt": "2026-11-16T23:17:39.449Z",
  "source": {
   "gistId": "e3e99062983e6bd0feaef833f14fd931",
   "htmlUrl": "https://gist.github.com/agnonotdev/e3e99062983e6bd0feaef833f14fd931",
-  "rawUrl": "https://gist.githubusercontent.com/agnonotdev/e3e99062983e6bd0feaef833f14fd931/raw/b923057d6a9b5a02da41838892fa2640f9acf809/rollouts-tag.json",
-  "updatedAt": "2026-11-16T22:52:00Z",
-  "revision": "a48817bd020cd93c27294753aea58bde1a37d7be",
-  "fetchedAt": "2026-11-16T22:58:24.277Z",
+  "rawUrl": "https://gist.githubusercontent.com/agnonotdev/e3e99062983e6bd0feaef833f14fd931/raw",
+  "updatedAt": null,
+  "revision": null,
+  "fetchedAt": "2026-11-16T23:17:39.449Z",
   "fallback": false,
-  "rawFallback": false,
+  "rawFallback": true,
   "canonicalId": null
  },
  "mirror": {
@@ -25,6 +25,7 @@
    "2026-11-soundboard-upsells-brand-refresh",
    "2026-11-return-full-quest-status-in-decision",
    "2026-11-screen-share-dtx",
+   "2026-10-collectibles-storefront-pricing-integration",
    "2026-10-mobile-rtc-v2",
    "2026-10-animated-shop-bundle-previews",
    "2026-10-profile-read-state",
@@ -76,9 +77,9 @@
   ]
  },
  "stats": {
-  "total": 1053,
-  "user": 326,
-  "userData": 151,
+  "total": 1054,
+  "user": 327,
+  "userData": 152,
   "guild": 37,
   "unclassified": 690,
   "noData": 264
@@ -2013,24 +2014,24 @@
    }
   },
   "2026-09-default-emojis": {
-   "key": "72ac21b8852739ba",
+   "key": "4a4b96c977ffaa86",
    "hasData": true,
    "sig": "0:control|1:treatment",
    "byVariant": {
     "0": {
-     "pct": 7.5,
+     "pct": 10,
      "role": "control"
     },
     "1": {
-     "pct": 7.5,
+     "pct": 10,
      "role": "treatment"
     }
    },
    "treatment": {
-    "pct": 7.5
+    "pct": 10
    },
    "control": {
-    "pct": 7.5
+    "pct": 10
    },
    "notEligible": {
     "pct": 0
@@ -21452,6 +21453,29 @@
    "projectedCoverage": null,
    "projected": false,
    "variantsCount": 1
+  },
+  "2026-10-collectibles-storefront-pricing-integration": {
+   "key": "7969daec1f1ff520",
+   "hasData": true,
+   "sig": "1:treatment",
+   "byVariant": {
+    "1": {
+     "pct": 10,
+     "role": "treatment"
+    }
+   },
+   "treatment": {
+    "pct": 10
+   },
+   "control": {
+    "pct": 0
+   },
+   "notEligible": {
+    "pct": 0
+   },
+   "projectedCoverage": null,
+   "projected": false,
+   "variantsCount": 1
   }
  },
  "lastRun": {
@@ -21462,24 +21486,6 @@
   "scopeBaselined": 0
  },
  "history": [
-  {
-   "at": "2026-11-16T04:55:31.739Z",
-   "revision": "6d5357d8dc9a85dec1eb17f3d75ec01dfc43d330",
-   "changes": 0,
-   "delivered": 0
-  },
-  {
-   "at": "2026-11-16T05:24:46.157Z",
-   "revision": "6d5357d8dc9a85dec1eb17f3d75ec01dfc43d330",
-   "changes": 0,
-   "delivered": 0
-  },
-  {
-   "at": "2026-11-16T05:53:53.694Z",
-   "revision": null,
-   "changes": 0,
-   "delivered": 0
-  },
   {
    "at": "2026-11-16T06:23:03.005Z",
    "revision": "6d5357d8dc9a85dec1eb17f3d75ec01dfc43d330",
@@ -21759,6 +21765,24 @@
   {
    "at": "2026-11-16T22:58:24.277Z",
    "revision": "a48817bd020cd93c27294753aea58bde1a37d7be",
+   "changes": 0,
+   "delivered": 0
+  },
+  {
+   "at": "2026-11-16T23:17:14.486Z",
+   "revision": null,
+   "changes": 0,
+   "delivered": 0
+  },
+  {
+   "at": "2026-11-16T23:17:29.845Z",
+   "revision": null,
+   "changes": 2,
+   "delivered": 2
+  },
+  {
+   "at": "2026-11-16T23:17:39.449Z",
+   "revision": null,
    "changes": 0,
    "delivered": 0
   }
