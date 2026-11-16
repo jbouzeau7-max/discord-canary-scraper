@@ -1,7 +1,7 @@
 {
-  "runId": "2026-11-16T18-26-52-526Z_674185_dg8jlh",
-  "buildNumber": "674185",
-  "scrapedAt": "2026-11-16T18:26:52.526Z",
+  "runId": "2026-11-16T18-34-19-031Z_674194_04fl96",
+  "buildNumber": "674194",
+  "scrapedAt": "2026-11-16T18:34:19.031Z",
   "totals": {
     "all": 396
   },
@@ -4910,10 +4910,10 @@
       },
       "userPercentage": {
         "status": "provided",
-        "value": 10,
+        "value": 100,
         "source": "gist_user_rollouts"
       },
-      "fingerprint": "44b18b17733445b9cb74d086108fcf1d0269b45e40adf55880fb75e8d1b4380c"
+      "fingerprint": "5842ed95ba00a22fa7817afbb4184241d79cf82cc5fd532b6d3f260d7f10ed7e"
     },
     {
       "id": "2026-08-tiny-bronco",
@@ -5581,7 +5581,17 @@
         }
       },
       "variationCount": 3,
-      "source": "discord"
+      "source": "discord",
+      "guildPercentage": {
+        "status": "unknown",
+        "value": null
+      },
+      "userPercentage": {
+        "status": "provided",
+        "value": 100,
+        "source": "gist_user_rollouts"
+      },
+      "fingerprint": "5d5d6b23ec05b39b4bb0ae98d0b8a8eea1d75f7f23aff8e6ddf65d2bfdca7421"
     },
     {
       "id": "2026-09-invite-accept-age-group-errors",
