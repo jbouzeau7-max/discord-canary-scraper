@@ -1,7 +1,7 @@
 {
-  "runId": "2026-11-16T22-03-54-129Z_674579_cut6gv",
-  "buildNumber": "674579",
-  "scrapedAt": "2026-11-16T22:03:54.129Z",
+  "runId": "2026-11-16T22-05-52-703Z_674580_vhz4pc",
+  "buildNumber": "674580",
+  "scrapedAt": "2026-11-16T22:05:52.703Z",
   "totals": {
     "all": 396
   },
@@ -8157,7 +8157,17 @@
       "defaultConfig": null,
       "variations": null,
       "variationCount": 0,
-      "source": "discord"
+      "source": "discord",
+      "guildPercentage": {
+        "status": "unknown",
+        "value": null
+      },
+      "userPercentage": {
+        "status": "provided",
+        "value": 5,
+        "source": "gist_user_rollouts"
+      },
+      "fingerprint": "c94379ed71e674e14ec70d51b5addad69c5f74a3fe3327a714c4b00ca18feaef"
     },
     {
       "id": "2026-10-referral-refresh-notification",

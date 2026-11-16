@@ -1,7 +1,7 @@
 {
-  "runId": "2026-11-16T22-03-54-129Z_674579_cut6gv",
-  "buildNumber": "674579",
-  "updatedAt": "2026-11-16T22:03:54.129Z",
+  "runId": "2026-11-16T22-05-52-703Z_674580_vhz4pc",
+  "buildNumber": "674580",
+  "updatedAt": "2026-11-16T22:05:52.703Z",
   "count": 396,
   "experiments": [
     {
@@ -18396,10 +18396,11 @@
         "value": null
       },
       "userPercentage": {
-        "status": "unknown",
-        "value": null
+        "status": "provided",
+        "value": 5,
+        "source": "gist_user_rollouts"
       },
-      "fingerprint": "a5dc7c12d7d4bca42b02afb773e33e4652a9ace5e19e47a7181ec9a4799db478"
+      "fingerprint": "c94379ed71e674e14ec70d51b5addad69c5f74a3fe3327a714c4b00ca18feaef"
     },
     {
       "id": "2026-10-referral-refresh-notification",
