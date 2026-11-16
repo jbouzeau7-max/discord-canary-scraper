@@ -3,15 +3,15 @@
  "schemaVersion": 1,
  "semanticsVersion": 2,
  "notifyScopeVersion": 2,
- "runId": "20261116T180334_gist",
- "scrapedAt": "2026-11-16T18:03:34.903Z",
+ "runId": "20261116T181740_gist",
+ "scrapedAt": "2026-11-16T18:17:40.784Z",
  "source": {
   "gistId": "e3e99062983e6bd0feaef833f14fd931",
   "htmlUrl": "https://gist.github.com/agnonotdev/e3e99062983e6bd0feaef833f14fd931",
-  "rawUrl": "https://gist.githubusercontent.com/agnonotdev/e3e99062983e6bd0feaef833f14fd931/raw/84ea4123eaaa32e6aab58a4b2e14253f823b6380/rollouts-tag.json",
-  "updatedAt": "2026-11-16T17:55:17Z",
-  "revision": "3c6b5f2170fd9dadb5507ca37fd1a81a8dce6879",
-  "fetchedAt": "2026-11-16T18:03:34.903Z",
+  "rawUrl": "https://gist.githubusercontent.com/agnonotdev/e3e99062983e6bd0feaef833f14fd931/raw/310f2b9c3e6b8af18566c1fe3a7b8a2ef6219911/rollouts-tag.json",
+  "updatedAt": "2026-11-16T18:16:41Z",
+  "revision": "2c46a071810e42aee39a3a77a300a7065b8e1666",
+  "fetchedAt": "2026-11-16T18:17:40.784Z",
   "fallback": false,
   "rawFallback": false,
   "canonicalId": null
@@ -45,6 +45,7 @@
    "2026-10-request-to-stream-non-games",
    "2026-10-android-stop-and-pause-video",
    "2026-10-android-fastimage-apng",
+   "2026-09-hexagon-campaign-client",
    "2026-09-guild-spaces",
    "2026-09-safety-warning-age-text",
    "2026-09-default-emojis",
@@ -65,9 +66,9 @@
   ]
  },
  "stats": {
-  "total": 1045,
-  "user": 320,
-  "userData": 147,
+  "total": 1046,
+  "user": 321,
+  "userData": 148,
   "guild": 35,
   "unclassified": 690,
   "noData": 262
@@ -2208,17 +2209,17 @@
    "variantsCount": 1
   },
   "2026-08-split-payments": {
-   "key": "7969daec1f1ff520",
+   "key": "95f46bfc73a52751",
    "hasData": true,
    "sig": "1:treatment",
    "byVariant": {
     "1": {
-     "pct": 10,
+     "pct": 100,
      "role": "treatment"
     }
    },
    "treatment": {
-    "pct": 10
+    "pct": 100
    },
    "control": {
     "pct": 0
@@ -21341,22 +21342,43 @@
    "projectedCoverage": null,
    "projected": false,
    "variantsCount": 2
+  },
+  "2026-09-hexagon-campaign-client": {
+   "key": "7304acee780675d5",
+   "hasData": true,
+   "sig": "1:treatment|2:treatment",
+   "byVariant": {
+    "1": {
+     "pct": 10,
+     "role": "treatment"
+    },
+    "2": {
+     "pct": 90,
+     "role": "treatment"
+    }
+   },
+   "treatment": {
+    "pct": 100
+   },
+   "control": {
+    "pct": 0
+   },
+   "notEligible": {
+    "pct": 0
+   },
+   "projectedCoverage": null,
+   "projected": false,
+   "variantsCount": 2
   }
  },
  "lastRun": {
-  "changes": 0,
-  "delivered": 0,
+  "changes": 2,
+  "delivered": 2,
   "firstRun": false,
   "semanticsMigrated": 0,
   "scopeBaselined": 0
  },
  "history": [
-  {
-   "at": "2026-11-15T15:14:05.908Z",
-   "revision": "6d5357d8dc9a85dec1eb17f3d75ec01dfc43d330",
-   "changes": 0,
-   "delivered": 0
-  },
   {
    "at": "2026-11-15T15:43:20.244Z",
    "revision": "6d5357d8dc9a85dec1eb17f3d75ec01dfc43d330",
@@ -21650,6 +21672,12 @@
    "revision": "3c6b5f2170fd9dadb5507ca37fd1a81a8dce6879",
    "changes": 0,
    "delivered": 0
+  },
+  {
+   "at": "2026-11-16T18:17:40.784Z",
+   "revision": "2c46a071810e42aee39a3a77a300a7065b8e1666",
+   "changes": 2,
+   "delivered": 2
   }
  ]
 }
