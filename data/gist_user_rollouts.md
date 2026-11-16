@@ -1,14 +1,14 @@
 # Rollouts user — couverture gist (v1)
 
-> Source : gist communautaire agnonotdev (copie réduite de rollouts.json, tag Assyst) · Généré le 2026-11-16 20:00 UTC
+> Source : gist communautaire agnonotdev (copie réduite de rollouts.json, tag Assyst) · Généré le 2026-11-16 20:18 UTC
 
 **Sémantique** : couvertures calculées exactement à partir des plages fournies par la source (0-10000), à 0,01 point près. Totaux par rôle = UNION des plages (un bucket appartient à un rôle s'il tombe dans l'union de ses plages). Quand la structure révèle plusieurs populations aplaties (drapeau `multi_population`) ou des rôles conflictuels/inconnus, l'agrégation est indéterminée (poids des populations absents du gist) : totaux principaux indisponibles, l'union est montrée en métrique secondaire étiquetée « projetée » (non pondérée). L'absence du drapeau ne prouve PAS une population unique — le gist n'en garde pas les frontières. Cohérent avec notre décodage wire apex (mêmes plages → mêmes nombres). Ce n'est ni une estimation statistique, ni la proportion de vrais utilisateurs éligibles, ni une mesure d'accès réel. Les expériences `guild` sont exclues (mesurées à part par le décodage wire apex).
 
-**Gist** : [e3e99062983e6bd0feaef833f14fd931](https://gist.github.com/agnonotdev/e3e99062983e6bd0feaef833f14fd931) · révision 603e868d · MAJ 2026-11-16T18:41:25Z · 1046 expériences au catalogue (321 user dont 148 avec données, 35 guild, 690 type inconnu, 262 sans données)
+**Gist** : [e3e99062983e6bd0feaef833f14fd931](https://gist.github.com/agnonotdev/e3e99062983e6bd0feaef833f14fd931) · révision f1f91345 · MAJ 2026-11-16T20:18:39Z · 1049 expériences au catalogue (324 user dont 150 avec données, 35 guild, 690 type inconnu, 263 sans données)
 
-⚠️ Miroir divergent (192b2ce20539ce1021b5c8cb01b17ff0) sur : 2026-11-payment-element-accordion-layout, 2026-11-mobile-orb-redemption-thru-orders, 2026-11-soundboard-upsells-brand-refresh, 2026-11-return-full-quest-status-in-decision, 2026-11-screen-share-dtx, 2026-10-android-mobile-onboarding-friction-negative-test, 2026-10-game-profiles-server-preview, 2026-10-express-checkout, 2026-10-collectibles-upgraded-search, 2026-10-media-viewer-video-perf-android…
+⚠️ Miroir divergent (192b2ce20539ce1021b5c8cb01b17ff0) sur : 2026-11-payment-element-accordion-layout, 2026-11-mobile-orb-redemption-thru-orders, 2026-11-soundboard-upsells-brand-refresh, 2026-11-return-full-quest-status-in-decision, 2026-11-screen-share-dtx, 2026-10-interest-picker, 2026-10-guilds-render-experiment, 2026-10-clickable-hero-banner, 2026-10-android-mobile-onboarding-friction-negative-test, 2026-10-game-profiles-server-preview…
 
-## Expériences user avec données (148)
+## Expériences user avec données (150)
 
 | Expérience | Treatment | Control | Non éligible | Espace non décrit | Particularités |
 |---|---:|---:|---:|---:|---|
@@ -41,6 +41,8 @@
 | 2026-10-maple-syrup-1 | **50,00 %** | 50,00 % | 0,00 % | 0,00 % | — |
 | 2026-10-macaron-non-sub-marketing | **90,50 %** | 9,50 % | 0,00 % | 0,00 % | — |
 | 2026-10-macaron | **100,00 %** | 0,00 % | 0,00 % | 0,00 % | — |
+| 2026-10-interest-picker | **0,00 %** | 4,00 % | 0,00 % | 96,00 % | — |
+| 2026-10-guilds-render-experiment | **10,00 %** | 10,00 % | 0,00 % | 80,00 % | — |
 | 2026-10-guild-tooltip-lazy-content | **50,00 %** | 50,00 % | 0,00 % | 0,00 % | — |
 | 2026-10-gdm-duration-timer | **8,50 %** | 3,50 % | 0,00 % | 88,00 % | — |
 | 2026-10-game-profiles-v3-communities-tab-mobile | **50,00 %** | 50,00 % | 0,00 % | 0,00 % | — |
@@ -58,7 +60,6 @@
 | 2026-10-code-blurple-marketing-holdout | **95,00 %** | 5,00 % | 0,00 % | 0,00 % | — |
 | 2026-10-code-blurple | **100,00 %** | 0,00 % | 0,00 % | 0,00 % | — |
 | 2026-10-cod-relink | **100,00 %** | 0,00 % | 0,00 % | 0,00 % | — |
-| 2026-10-clickable-hero-banner | **10,00 %** | 10,00 % | 0,00 % | 80,00 % | — |
 | 2026-10-bulk-nitro-gifting-discounts | **20,00 %** | 20,00 % | 0,00 % | 60,00 % | — |
 | 2026-10-badge-directory-updates | **100,00 %** | 0,00 % | 0,00 % | 0,00 % | — |
 | 2026-10-avx512-entropy-histogram | **15,00 %** | 15,00 % | 0,00 % | 70,00 % | — |
@@ -101,7 +102,7 @@
 | 2026-09-friends-sidebar | **5,00 %** | 5,00 % | 0,00 % | 90,00 % | — |
 | 2026-09-edit-profile-collectibles-ordering | **50,00 %** | 50,00 % | 0,00 % | 0,00 % | — |
 | 2026-09-desktop-voice-message-recording | **100,00 %** | 0,00 % | 0,00 % | 0,00 % | — |
-| 2026-09-default-emojis | **1,00 %** | 1,00 % | 0,00 % | 98,00 % | — |
+| 2026-09-default-emojis | **5,00 %** | 5,00 % | 0,00 % | 90,00 % | — |
 | 2026-09-clips-editor-image-track | **100,00 %** | 0,00 % | 0,00 % | 0,00 % | — |
 | 2026-08-vq-remaining-time-truncation | **100,00 %** | 0,00 % | 0,00 % | 0,00 % | — |
 | 2026-08-user-bio-max-length | **100,00 %** | 0,00 % | 0,00 % | 0,00 % | — |
@@ -112,6 +113,7 @@
 | 2026-08-profile-embed-share-button | **100,00 %** | 0,00 % | 0,00 % | 0,00 % | — |
 | 2026-08-profile-embed-rendering | **100,00 %** | 0,00 % | 0,00 % | 0,00 % | — |
 | 2026-08-no-fill-logging | **100,00 %** | 0,00 % | 0,00 % | 0,00 % | — |
+| 2026-08-find-coded-links-regex | **100,00 %** | 0,00 % | 0,00 % | 0,00 % | — |
 | 2026-08-dont-close-chat | **100,00 %** | 0,00 % | 0,00 % | 0,00 % | — |
 | 2026-08-dcf-new-user-cooldown | **75,00 %** | 25,00 % | 0,00 % | 0,00 % | — |
 | 2026-08-badge-management | **100,00 %** | 0,00 % | 0,00 % | 0,00 % | — |
@@ -522,6 +524,13 @@
 ### 2026-10-macaron
 - Variant 2 (treatment) : 100,00 % · plages 0 – 10000
 
+### 2026-10-interest-picker
+- Variant 0 (control) : 4,00 % · plages 0 – 400
+
+### 2026-10-guilds-render-experiment
+- Variant 0 (control) : 10,00 % · plages 0 – 100 , 200 – 600 , 1000 – 1500
+- Variant 1 (treatment) : 10,00 % · plages 100 – 200 , 600 – 1000 , 1500 – 2000
+
 ### 2026-10-guild-tooltip-lazy-content
 - Variant 0 (control) : 50,00 % · plages 0 – 5000
 - Variant 1 (treatment) : 50,00 % · plages 5000 – 10000
@@ -588,10 +597,6 @@
 
 ### 2026-10-cod-relink
 - Variant 1 (treatment) : 100,00 % · plages 0 – 10000
-
-### 2026-10-clickable-hero-banner
-- Variant 0 (control) : 10,00 % · plages 0 – 250 , 500 – 750 , 1000 – 1500
-- Variant 1 (treatment) : 10,00 % · plages 250 – 500 , 750 – 1000 , 1500 – 2000
 
 ### 2026-10-bulk-nitro-gifting-discounts
 - Variant 0 (control) : 20,00 % · plages 0 – 100 , 200 – 600 , 1000 – 1500 , 2000 – 3000
@@ -727,8 +732,7 @@
 - Variant 1 (treatment) : 15,00 % · plages 0 – 1500
 
 ### 2026-09-hexagon-campaign-client
-- Variant 1 (treatment) : 50,00 % · plages 5000 – 10000
-- Variant 2 (treatment) : 50,00 % · plages 0 – 5000
+- Variant 1 (treatment) : 100,00 % · plages 0 – 10000
 
 ### 2026-09-game-search-row
 - Variant 1 (treatment) : 35,00 % · plages 1000 – 2000 , 3500 – 6000
@@ -748,8 +752,8 @@
 - Variant 1 (treatment) : 100,00 % · plages 0 – 10000
 
 ### 2026-09-default-emojis
-- Variant 0 (control) : 1,00 % · plages 0 – 100
-- Variant 1 (treatment) : 1,00 % · plages 100 – 200
+- Variant 0 (control) : 5,00 % · plages 0 – 100 , 200 – 600
+- Variant 1 (treatment) : 5,00 % · plages 100 – 200 , 600 – 1000
 
 ### 2026-09-clips-editor-image-track
 - Variant 1 (treatment) : 100,00 % · plages 0 – 10000
@@ -781,6 +785,9 @@
 
 ### 2026-08-no-fill-logging
 - Variant 2 (treatment) : 100,00 % · plages 0 – 10000
+
+### 2026-08-find-coded-links-regex
+- Variant 1 (treatment) : 100,00 % · plages 0 – 10000
 
 ### 2026-08-dont-close-chat
 - Variant 1 (treatment) : 100,00 % · plages 0 – 10000

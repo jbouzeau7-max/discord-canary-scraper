@@ -3,15 +3,15 @@
  "schemaVersion": 1,
  "semanticsVersion": 2,
  "notifyScopeVersion": 2,
- "runId": "20261116T200027_gist",
- "scrapedAt": "2026-11-16T20:00:27.935Z",
+ "runId": "20261116T201849_gist",
+ "scrapedAt": "2026-11-16T20:18:49.056Z",
  "source": {
   "gistId": "e3e99062983e6bd0feaef833f14fd931",
   "htmlUrl": "https://gist.github.com/agnonotdev/e3e99062983e6bd0feaef833f14fd931",
-  "rawUrl": "https://gist.githubusercontent.com/agnonotdev/e3e99062983e6bd0feaef833f14fd931/raw/b14db168847bd27819f39f23328f3b908616f909/rollouts-tag.json",
-  "updatedAt": "2026-11-16T18:41:25Z",
-  "revision": "603e868dec1c07d88c8d3c98cb05848f0cf533f6",
-  "fetchedAt": "2026-11-16T20:00:27.935Z",
+  "rawUrl": "https://gist.githubusercontent.com/agnonotdev/e3e99062983e6bd0feaef833f14fd931/raw/a6be47a2ea3eacd773caeee659262b71ec73667b/rollouts-tag.json",
+  "updatedAt": "2026-11-16T20:18:39Z",
+  "revision": "f1f913453db032bc11eddd52c559be00aaaf6a4d",
+  "fetchedAt": "2026-11-16T20:18:49.056Z",
   "fallback": false,
   "rawFallback": false,
   "canonicalId": null
@@ -25,6 +25,9 @@
    "2026-11-soundboard-upsells-brand-refresh",
    "2026-11-return-full-quest-status-in-decision",
    "2026-11-screen-share-dtx",
+   "2026-10-interest-picker",
+   "2026-10-guilds-render-experiment",
+   "2026-10-clickable-hero-banner",
    "2026-10-android-mobile-onboarding-friction-negative-test",
    "2026-10-game-profiles-server-preview",
    "2026-10-express-checkout",
@@ -45,10 +48,10 @@
    "2026-10-request-to-stream-non-games",
    "2026-10-android-stop-and-pause-video",
    "2026-10-android-fastimage-apng",
+   "2026-09-default-emojis",
    "2026-09-hexagon-campaign-client",
    "2026-09-guild-spaces",
    "2026-09-safety-warning-age-text",
-   "2026-09-default-emojis",
    "2026-09-game-search-row",
    "2026-09-ios-anchored-chat-scroller",
    "2026-09-voice-connect-feedback",
@@ -56,6 +59,7 @@
    "2026-09-game-profiles-v3-communities-tab",
    "2026-09-voice-server-update-immediate-mobile",
    "2026-09-friends-sidebar",
+   "2026-08-find-coded-links-regex",
    "2026-08-split-payments",
    "2026-07-onyx",
    "2026-07-cobalt",
@@ -66,12 +70,12 @@
   ]
  },
  "stats": {
-  "total": 1046,
-  "user": 321,
-  "userData": 148,
+  "total": 1049,
+  "user": 324,
+  "userData": 150,
   "guild": 35,
   "unclassified": 690,
-  "noData": 262
+  "noData": 263
  },
  "acknowledged": {
   "2026-11-soundboard-upsells-brand-refresh": {
@@ -1042,31 +1046,12 @@
    "variantsCount": 1
   },
   "2026-10-clickable-hero-banner": {
-   "key": "705ae5913859378c",
-   "hasData": true,
-   "sig": "0:control|1:treatment",
-   "byVariant": {
-    "0": {
-     "pct": 10,
-     "role": "control"
-    },
-    "1": {
-     "pct": 10,
-     "role": "treatment"
-    }
-   },
+   "key": "no_data",
+   "hasData": false,
+   "sig": "",
    "treatment": {
-    "pct": 10
-   },
-   "control": {
-    "pct": 10
-   },
-   "notEligible": {
-    "pct": 0
-   },
-   "projectedCoverage": null,
-   "projected": false,
-   "variantsCount": 2
+    "pct": null
+   }
   },
   "2026-10-bulk-nitro-gifting-discounts": {
    "key": "8f973673080ffcc3",
@@ -2026,24 +2011,24 @@
    }
   },
   "2026-09-default-emojis": {
-   "key": "19a2e309986d6b83",
+   "key": "947de72f00f84f24",
    "hasData": true,
    "sig": "0:control|1:treatment",
    "byVariant": {
     "0": {
-     "pct": 1,
+     "pct": 5,
      "role": "control"
     },
     "1": {
-     "pct": 1,
+     "pct": 5,
      "role": "treatment"
     }
    },
    "treatment": {
-    "pct": 1
+    "pct": 5
    },
    "control": {
-    "pct": 1
+    "pct": 5
    },
    "notEligible": {
     "pct": 0
@@ -21344,16 +21329,12 @@
    "variantsCount": 2
   },
   "2026-09-hexagon-campaign-client": {
-   "key": "5a8298401b5c0481",
+   "key": "95f46bfc73a52751",
    "hasData": true,
-   "sig": "1:treatment|2:treatment",
+   "sig": "1:treatment",
    "byVariant": {
     "1": {
-     "pct": 50,
-     "role": "treatment"
-    },
-    "2": {
-     "pct": 50,
+     "pct": 100,
      "role": "treatment"
     }
    },
@@ -21368,23 +21349,90 @@
    },
    "projectedCoverage": null,
    "projected": false,
+   "variantsCount": 1
+  },
+  "2026-10-interest-picker": {
+   "key": "e04bc04a10232282",
+   "hasData": true,
+   "sig": "0:control",
+   "byVariant": {
+    "0": {
+     "pct": 4,
+     "role": "control"
+    }
+   },
+   "treatment": {
+    "pct": 0
+   },
+   "control": {
+    "pct": 4
+   },
+   "notEligible": {
+    "pct": 0
+   },
+   "projectedCoverage": null,
+   "projected": false,
+   "variantsCount": 1
+  },
+  "2026-10-guilds-render-experiment": {
+   "key": "dbb456fc20cc308d",
+   "hasData": true,
+   "sig": "0:control|1:treatment",
+   "byVariant": {
+    "0": {
+     "pct": 10,
+     "role": "control"
+    },
+    "1": {
+     "pct": 10,
+     "role": "treatment"
+    }
+   },
+   "treatment": {
+    "pct": 10
+   },
+   "control": {
+    "pct": 10
+   },
+   "notEligible": {
+    "pct": 0
+   },
+   "projectedCoverage": null,
+   "projected": false,
    "variantsCount": 2
+  },
+  "2026-08-find-coded-links-regex": {
+   "key": "95f46bfc73a52751",
+   "hasData": true,
+   "sig": "1:treatment",
+   "byVariant": {
+    "1": {
+     "pct": 100,
+     "role": "treatment"
+    }
+   },
+   "treatment": {
+    "pct": 100
+   },
+   "control": {
+    "pct": 0
+   },
+   "notEligible": {
+    "pct": 0
+   },
+   "projectedCoverage": null,
+   "projected": false,
+   "variantsCount": 1
   }
  },
  "lastRun": {
-  "changes": 0,
-  "delivered": 0,
+  "changes": 6,
+  "delivered": 6,
   "firstRun": false,
   "semanticsMigrated": 0,
   "scopeBaselined": 0
  },
  "history": [
-  {
-   "at": "2026-11-15T23:05:01.912Z",
-   "revision": "6d5357d8dc9a85dec1eb17f3d75ec01dfc43d330",
-   "changes": 0,
-   "delivered": 0
-  },
   {
    "at": "2026-11-15T23:34:13.319Z",
    "revision": "6d5357d8dc9a85dec1eb17f3d75ec01dfc43d330",
@@ -21678,6 +21726,12 @@
    "revision": "603e868dec1c07d88c8d3c98cb05848f0cf533f6",
    "changes": 0,
    "delivered": 0
+  },
+  {
+   "at": "2026-11-16T20:18:49.056Z",
+   "revision": "f1f913453db032bc11eddd52c559be00aaaf6a4d",
+   "changes": 6,
+   "delivered": 6
   }
  ]
 }

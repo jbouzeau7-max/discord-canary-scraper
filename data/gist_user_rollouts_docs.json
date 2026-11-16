@@ -1,19 +1,19 @@
 {
- "generatedAt": "2026-11-16T20:00:27.955Z",
+ "generatedAt": "2026-11-16T20:18:49.066Z",
  "semantics": "couverture de l'espace de buckets (gist agnonotdev) — ni une proportion d'utilisateurs, ni une mesure d'accès réel ; multi-populations = couverture projetée non pondérée",
  "source": {
   "gistId": "e3e99062983e6bd0feaef833f14fd931",
   "htmlUrl": "https://gist.github.com/agnonotdev/e3e99062983e6bd0feaef833f14fd931",
-  "updatedAt": "2026-11-16T18:41:25Z",
-  "revision": "603e868dec1c07d88c8d3c98cb05848f0cf533f6"
+  "updatedAt": "2026-11-16T20:18:39Z",
+  "revision": "f1f913453db032bc11eddd52c559be00aaaf6a4d"
  },
  "stats": {
-  "total": 1046,
-  "user": 321,
-  "userData": 148,
+  "total": 1049,
+  "user": 324,
+  "userData": 150,
   "guild": 35,
   "unclassified": 690,
-  "noData": 262
+  "noData": 263
  },
  "experiments": [
   {
@@ -822,6 +822,52 @@
    }
   },
   {
+   "id": "2026-10-interest-picker",
+   "title": "2026-10-interest-picker",
+   "type": "user",
+   "hasData": true,
+   "totalsAvailable": true,
+   "ambiguous": false,
+   "projected": false,
+   "flags": [],
+   "treatmentPct": 0,
+   "projectedTreatmentPct": null,
+   "controlPct": 4,
+   "notEligiblePct": 0,
+   "unassignedPct": 96,
+   "byVariant": {
+    "0": {
+     "pct": 4,
+     "role": "control"
+    }
+   }
+  },
+  {
+   "id": "2026-10-guilds-render-experiment",
+   "title": "2026-10-guilds-render-experiment",
+   "type": "user",
+   "hasData": true,
+   "totalsAvailable": true,
+   "ambiguous": false,
+   "projected": false,
+   "flags": [],
+   "treatmentPct": 10,
+   "projectedTreatmentPct": null,
+   "controlPct": 10,
+   "notEligiblePct": 0,
+   "unassignedPct": 80,
+   "byVariant": {
+    "0": {
+     "pct": 10,
+     "role": "control"
+    },
+    "1": {
+     "pct": 10,
+     "role": "treatment"
+    }
+   }
+  },
+  {
    "id": "2026-10-guild-tooltip-lazy-content",
    "title": "2026-10-guild-tooltip-lazy-content",
    "type": "user",
@@ -1336,26 +1382,19 @@
    "id": "2026-10-clickable-hero-banner",
    "title": "2026-10-clickable-hero-banner",
    "type": "user",
-   "hasData": true,
-   "totalsAvailable": true,
+   "hasData": false,
+   "totalsAvailable": false,
    "ambiguous": false,
    "projected": false,
-   "flags": [],
-   "treatmentPct": 10,
+   "flags": [
+    "no_data"
+   ],
+   "treatmentPct": null,
    "projectedTreatmentPct": null,
-   "controlPct": 10,
-   "notEligiblePct": 0,
-   "unassignedPct": 80,
-   "byVariant": {
-    "0": {
-     "pct": 10,
-     "role": "control"
-    },
-    "1": {
-     "pct": 10,
-     "role": "treatment"
-    }
-   }
+   "controlPct": null,
+   "notEligiblePct": null,
+   "unassignedPct": null,
+   "byVariant": {}
   },
   {
    "id": "2026-10-bulk-nitro-gifting-discounts",
@@ -2553,11 +2592,7 @@
    "unassignedPct": 0,
    "byVariant": {
     "1": {
-     "pct": 50,
-     "role": "treatment"
-    },
-    "2": {
-     "pct": 50,
+     "pct": 100,
      "role": "treatment"
     }
    }
@@ -2756,18 +2791,18 @@
    "ambiguous": false,
    "projected": false,
    "flags": [],
-   "treatmentPct": 1,
+   "treatmentPct": 5,
    "projectedTreatmentPct": null,
-   "controlPct": 1,
+   "controlPct": 5,
    "notEligiblePct": 0,
-   "unassignedPct": 98,
+   "unassignedPct": 90,
    "byVariant": {
     "0": {
-     "pct": 1,
+     "pct": 5,
      "role": "control"
     },
     "1": {
-     "pct": 1,
+     "pct": 5,
      "role": "treatment"
     }
    }
@@ -3219,6 +3254,27 @@
    "notEligiblePct": null,
    "unassignedPct": null,
    "byVariant": {}
+  },
+  {
+   "id": "2026-08-find-coded-links-regex",
+   "title": "2026-08-find-coded-links-regex",
+   "type": "user",
+   "hasData": true,
+   "totalsAvailable": true,
+   "ambiguous": false,
+   "projected": false,
+   "flags": [],
+   "treatmentPct": 100,
+   "projectedTreatmentPct": null,
+   "controlPct": 0,
+   "notEligiblePct": 0,
+   "unassignedPct": 0,
+   "byVariant": {
+    "1": {
+     "pct": 100,
+     "role": "treatment"
+    }
+   }
   },
   {
    "id": "2026-08-dont-close-chat",
