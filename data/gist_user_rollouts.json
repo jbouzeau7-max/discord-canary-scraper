@@ -3,15 +3,15 @@
  "schemaVersion": 1,
  "semanticsVersion": 2,
  "notifyScopeVersion": 2,
- "runId": "20261117T162930_gist",
- "scrapedAt": "2026-11-17T16:29:30.977Z",
+ "runId": "20261117T165611_gist",
+ "scrapedAt": "2026-11-17T16:56:11.214Z",
  "source": {
   "gistId": "e3e99062983e6bd0feaef833f14fd931",
   "htmlUrl": "https://gist.github.com/agnonotdev/e3e99062983e6bd0feaef833f14fd931",
-  "rawUrl": "https://gist.githubusercontent.com/agnonotdev/e3e99062983e6bd0feaef833f14fd931/raw/14d746f7b8f49376a2f6e6978542e3b61a9e785b/rollouts-tag.json",
-  "updatedAt": "2026-11-17T00:16:12Z",
-  "revision": "6425b3843d764a503ff8fb9ec3568c62833dcf24",
-  "fetchedAt": "2026-11-17T16:29:30.977Z",
+  "rawUrl": "https://gist.githubusercontent.com/agnonotdev/e3e99062983e6bd0feaef833f14fd931/raw/4ad8470de217688f57d73e0688abd22d710d10ef/rollouts-tag.json",
+  "updatedAt": "2026-11-17T16:55:34Z",
+  "revision": "ac231bb250ee98fcefbc73ad3d54d85027169837",
+  "fetchedAt": "2026-11-17T16:56:11.214Z",
   "fallback": false,
   "rawFallback": false,
   "canonicalId": null
@@ -2014,24 +2014,24 @@
    }
   },
   "2026-09-default-emojis": {
-   "key": "0a076766fd7b7107",
+   "key": "1ab21c181b4d8f08",
    "hasData": true,
    "sig": "0:control|1:treatment",
    "byVariant": {
     "0": {
-     "pct": 15,
+     "pct": 20,
      "role": "control"
     },
     "1": {
-     "pct": 15,
+     "pct": 20,
      "role": "treatment"
     }
    },
    "treatment": {
-    "pct": 15
+    "pct": 20
    },
    "control": {
-    "pct": 15
+    "pct": 20
    },
    "notEligible": {
     "pct": 0
@@ -21479,24 +21479,6 @@
  },
  "history": [
   {
-   "at": "2026-11-16T20:25:23.296Z",
-   "revision": "cbe0f28f84445fd2458136cde0f90fe65dd15f0a",
-   "changes": 0,
-   "delivered": 0
-  },
-  {
-   "at": "2026-11-16T20:58:48.404Z",
-   "revision": "cbe0f28f84445fd2458136cde0f90fe65dd15f0a",
-   "changes": 0,
-   "delivered": 0
-  },
-  {
-   "at": "2026-11-16T21:27:57.792Z",
-   "revision": "cbe0f28f84445fd2458136cde0f90fe65dd15f0a",
-   "changes": 0,
-   "delivered": 0
-  },
-  {
    "at": "2026-11-16T21:56:14.164Z",
    "revision": "96db233a0be108b55e301169340aef0b81c0fbdf",
    "changes": 2,
@@ -21775,6 +21757,24 @@
   {
    "at": "2026-11-17T16:29:30.977Z",
    "revision": "6425b3843d764a503ff8fb9ec3568c62833dcf24",
+   "changes": 0,
+   "delivered": 0
+  },
+  {
+   "at": "2026-11-17T16:56:01.789Z",
+   "revision": "ac231bb250ee98fcefbc73ad3d54d85027169837",
+   "changes": 1,
+   "delivered": 1
+  },
+  {
+   "at": "2026-11-17T16:56:06.232Z",
+   "revision": "ac231bb250ee98fcefbc73ad3d54d85027169837",
+   "changes": 0,
+   "delivered": 0
+  },
+  {
+   "at": "2026-11-17T16:56:11.214Z",
+   "revision": "ac231bb250ee98fcefbc73ad3d54d85027169837",
    "changes": 0,
    "delivered": 0
   }

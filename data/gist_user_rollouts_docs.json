@@ -1,11 +1,11 @@
 {
- "generatedAt": "2026-11-17T16:29:30.999Z",
+ "generatedAt": "2026-11-17T16:56:11.229Z",
  "semantics": "couverture de l'espace de buckets (gist agnonotdev) — ni une proportion d'utilisateurs, ni une mesure d'accès réel ; multi-populations = couverture projetée non pondérée",
  "source": {
   "gistId": "e3e99062983e6bd0feaef833f14fd931",
   "htmlUrl": "https://gist.github.com/agnonotdev/e3e99062983e6bd0feaef833f14fd931",
-  "updatedAt": "2026-11-17T00:16:12Z",
-  "revision": "6425b3843d764a503ff8fb9ec3568c62833dcf24"
+  "updatedAt": "2026-11-17T16:55:34Z",
+  "revision": "ac231bb250ee98fcefbc73ad3d54d85027169837"
  },
  "stats": {
   "total": 1054,
@@ -2843,18 +2843,18 @@
    "ambiguous": false,
    "projected": false,
    "flags": [],
-   "treatmentPct": 15,
+   "treatmentPct": 20,
    "projectedTreatmentPct": null,
-   "controlPct": 15,
+   "controlPct": 20,
    "notEligiblePct": 0,
-   "unassignedPct": 70,
+   "unassignedPct": 60,
    "byVariant": {
     "0": {
-     "pct": 15,
+     "pct": 20,
      "role": "control"
     },
     "1": {
-     "pct": 15,
+     "pct": 20,
      "role": "treatment"
     }
    }
