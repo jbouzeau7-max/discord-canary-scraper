@@ -1,8 +1,8 @@
 {
-  "runId": "2026-11-17T20-19-39-885Z_675649_ufjr39",
-  "buildNumber": "675649",
-  "updatedAt": "2026-11-17T20:19:39.885Z",
-  "count": 397,
+  "runId": "2026-11-17T20-24-56-735Z_675653_rn0h0p",
+  "buildNumber": "675653",
+  "updatedAt": "2026-11-17T20:24:56.735Z",
+  "count": 396,
   "experiments": [
     {
       "id": "2021-02_staff_qc_debugging",
@@ -9448,72 +9448,6 @@
         "value": null
       },
       "fingerprint": "13a8f9c0b93b99df45e5eb0c4a4d75a0904545242097ad4e6f6b38897f5aa13f"
-    },
-    {
-      "id": "2026-07-personal-widget",
-      "kind": "user",
-      "type": "user",
-      "system": "apex",
-      "label": null,
-      "title": null,
-      "description": null,
-      "defaultConfig": {
-        "enabled": false,
-        "showCreateEntrypoint": false
-      },
-      "variations": {
-        "0": {
-          "enabled": false,
-          "showCreateEntrypoint": false
-        },
-        "1": {
-          "enabled": true,
-          "showCreateEntrypoint": false
-        },
-        "2": {
-          "enabled": true,
-          "showCreateEntrypoint": true
-        }
-      },
-      "treatments": null,
-      "variationSource": "variations",
-      "variationCount": 3,
-      "raw": {
-        "id": "2026-07-personal-widget",
-        "type": "user",
-        "kind": "user",
-        "label": null,
-        "system": "apex",
-        "defaultConfig": {
-          "enabled": false,
-          "showCreateEntrypoint": false
-        },
-        "variations": {
-          "0": {
-            "enabled": false,
-            "showCreateEntrypoint": false
-          },
-          "1": {
-            "enabled": true,
-            "showCreateEntrypoint": false
-          },
-          "2": {
-            "enabled": true,
-            "showCreateEntrypoint": true
-          }
-        },
-        "variationCount": 3,
-        "source": "discord"
-      },
-      "guildPercentage": {
-        "status": "unknown",
-        "value": null
-      },
-      "userPercentage": {
-        "status": "unknown",
-        "value": null
-      },
-      "fingerprint": "0321c03a3b15587ac162e90e800f16bbe995f65677e70226675a5ed359056e10"
     },
     {
       "id": "2026-07-premium-group-expansion-announcement",

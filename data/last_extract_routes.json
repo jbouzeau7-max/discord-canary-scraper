@@ -1,9 +1,9 @@
 {
-  "runId": "2026-11-17T20-19-39-885Z_675649_ufjr39",
-  "buildNumber": "675649",
+  "runId": "2026-11-17T20-24-56-735Z_675653_rn0h0p",
+  "buildNumber": "675653",
   "extractVersion": 3,
-  "updatedAt": "2026-11-17T20:19:39.885Z",
-  "count": 1122,
+  "updatedAt": "2026-11-17T20:24:56.735Z",
+  "count": 1121,
   "data": {
     "DEV_LANDING": "/build",
     "DEV_PORTAL": "/developers",
@@ -15,7 +15,6 @@
     "USER_BADGE_SETTINGS": "/users/@me/badges/settings",
     "USER_PROFILE_WIDGETS": "/users/@me/widgets",
     "USER_PROFILE_SUGGESTED_GAMES": "/users/@me/widgets/suggested-games",
-    "USER_PROFILE_WIDGET_ASSET_UPLOAD": "/users/@me/widgets/assets/upload",
     "USER_PROFILE_WIDGET_CLIP_UPLOAD": "/users/@me/widgets/clips/upload",
     "WIDGET_CONFIGS_FEATURED": "/widget-configs/featured",
     "WIDGET_CONFIGS_DEVELOPER": "/widget-configs/developer",
@@ -1013,6 +1012,11 @@
     "UPDATE_VOICE_STATE": "/guilds/:param/voice-states/:param",
     "HOME": "/home/web_user",
     "PROFILE_READ_STATE": "/users/@me/profile-read-states/:param",
+    "JSNLOG_URL": "/openvidu/elk/openvidu-browser-logs",
+    "SUMMARIES": "/guilds/:param/discoverable-content/summaries",
+    "SUMMARY": "/guilds/:param/discoverable-content/summaries/:param",
+    "REMOVE_SUMMARY": "/guilds/:param/discoverable-content/summaries/:param/remove",
+    "DISCOVERABLE_CONTENT": "/guilds/:param/discoverable-content",
     "APP": "/app",
     "ACTIVITY": "/activity",
     "ACTIVITIES_HAPPENING_NOW": "/activities/happening-now",
@@ -1121,11 +1125,6 @@
     "GAME_PROFILE": "/games/:param",
     "POWERUP_STORE": "/channels/:param/boosts",
     "CONFERENCE_MODE_VOICE": "/conference-mode/voice/:param/:param",
-    "QUEST_PREVIEW_TOOL_2": "/quest-home?tab=preview_tool&quest_id=:param",
-    "JSNLOG_URL": "/openvidu/elk/openvidu-browser-logs",
-    "SUMMARIES": "/guilds/:param/discoverable-content/summaries",
-    "SUMMARY": "/guilds/:param/discoverable-content/summaries/:param",
-    "REMOVE_SUMMARY": "/guilds/:param/discoverable-content/summaries/:param/remove",
-    "DISCOVERABLE_CONTENT": "/guilds/:param/discoverable-content"
+    "QUEST_PREVIEW_TOOL_2": "/quest-home?tab=preview_tool&quest_id=:param"
   }
 }
