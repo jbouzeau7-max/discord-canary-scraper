@@ -1,9 +1,9 @@
 {
-  "runId": "2026-11-17T20-58-05-499Z_675702_t3vkzi",
-  "buildNumber": "675702",
-  "scrapedAt": "2026-11-17T20:58:05.499Z",
+  "runId": "2026-11-17T21-04-48-333Z_675704_5eqa1y",
+  "buildNumber": "675704",
+  "scrapedAt": "2026-11-17T21:04:48.333Z",
   "totals": {
-    "all": 396
+    "all": 395
   },
   "experiments": [
     {
@@ -6697,36 +6697,6 @@
         "source": "gist_user_rollouts"
       },
       "fingerprint": "fac7209d66f39321636693e00dfb4433232b2fbfd960d205b6b09902fee4e1c4"
-    },
-    {
-      "id": "2026-10-badge-directory-updates",
-      "type": "user",
-      "kind": "user",
-      "label": null,
-      "system": "apex",
-      "defaultConfig": {
-        "enabled": false
-      },
-      "variations": {
-        "0": {
-          "enabled": false
-        },
-        "1": {
-          "enabled": true
-        }
-      },
-      "variationCount": 2,
-      "source": "discord",
-      "guildPercentage": {
-        "status": "unknown",
-        "value": null
-      },
-      "userPercentage": {
-        "status": "provided",
-        "value": 100,
-        "source": "gist_user_rollouts"
-      },
-      "fingerprint": "f1322ccc74bee39ea4a2a25a21be694dfc8c5b5a1c84cfb621f11f436b54b848"
     },
     {
       "id": "2026-10-badges-unread-state",
