@@ -1,16 +1,16 @@
 {
- "generatedAt": "2026-11-17T20:24:33.746Z",
+ "generatedAt": "2026-11-17T20:39:59.642Z",
  "semantics": "couverture de l'espace de buckets (gist agnonotdev) — ni une proportion d'utilisateurs, ni une mesure d'accès réel ; multi-populations = couverture projetée non pondérée",
  "source": {
   "gistId": "e3e99062983e6bd0feaef833f14fd931",
   "htmlUrl": "https://gist.github.com/agnonotdev/e3e99062983e6bd0feaef833f14fd931",
-  "updatedAt": "2026-11-17T16:58:32Z",
-  "revision": "d61687ac88c62cb18faf07bf94f9e53072d7269e"
+  "updatedAt": "2026-11-17T20:39:29Z",
+  "revision": "92a62ccbeb2c33051192adddc8ba17cb249d4d04"
  },
  "stats": {
-  "total": 1054,
-  "user": 326,
-  "userData": 153,
+  "total": 1055,
+  "user": 327,
+  "userData": 154,
   "guild": 38,
   "unclassified": 690,
   "noData": 263
@@ -127,6 +127,27 @@
     "1": {
      "pct": 5,
      "role": "treatment"
+    }
+   }
+  },
+  {
+   "id": "2026-10-windows-playout-buffer-duration",
+   "title": "2026-10-windows-playout-buffer-duration",
+   "type": "user",
+   "hasData": true,
+   "totalsAvailable": true,
+   "ambiguous": false,
+   "projected": false,
+   "flags": [],
+   "treatmentPct": 0,
+   "projectedTreatmentPct": null,
+   "controlPct": 1,
+   "notEligiblePct": 0,
+   "unassignedPct": 99,
+   "byVariant": {
+    "0": {
+     "pct": 1,
+     "role": "control"
     }
    }
   },
@@ -2221,22 +2242,14 @@
    "ambiguous": false,
    "projected": false,
    "flags": [],
-   "treatmentPct": 10,
+   "treatmentPct": 100,
    "projectedTreatmentPct": null,
-   "controlPct": 5,
+   "controlPct": 0,
    "notEligiblePct": 0,
-   "unassignedPct": 85,
+   "unassignedPct": 0,
    "byVariant": {
-    "0": {
-     "pct": 5,
-     "role": "control"
-    },
-    "1": {
-     "pct": 5,
-     "role": "treatment"
-    },
     "2": {
-     "pct": 5,
+     "pct": 100,
      "role": "treatment"
     }
    }

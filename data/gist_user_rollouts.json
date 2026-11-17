@@ -3,15 +3,15 @@
  "schemaVersion": 1,
  "semanticsVersion": 2,
  "notifyScopeVersion": 2,
- "runId": "20261117T202433_gist",
- "scrapedAt": "2026-11-17T20:24:33.735Z",
+ "runId": "20261117T203959_gist",
+ "scrapedAt": "2026-11-17T20:39:59.628Z",
  "source": {
   "gistId": "e3e99062983e6bd0feaef833f14fd931",
   "htmlUrl": "https://gist.github.com/agnonotdev/e3e99062983e6bd0feaef833f14fd931",
-  "rawUrl": "https://gist.githubusercontent.com/agnonotdev/e3e99062983e6bd0feaef833f14fd931/raw/1789ba66a008acf8c95fd8d6886ba528a8d219c4/rollouts-tag.json",
-  "updatedAt": "2026-11-17T16:58:32Z",
-  "revision": "d61687ac88c62cb18faf07bf94f9e53072d7269e",
-  "fetchedAt": "2026-11-17T20:24:33.735Z",
+  "rawUrl": "https://gist.githubusercontent.com/agnonotdev/e3e99062983e6bd0feaef833f14fd931/raw/c264dfe37aeda3c548eee6c19fa905de4fd4f551/rollouts-tag.json",
+  "updatedAt": "2026-11-17T20:39:29Z",
+  "revision": "92a62ccbeb2c33051192adddc8ba17cb249d4d04",
+  "fetchedAt": "2026-11-17T20:39:59.628Z",
   "fallback": false,
   "rawFallback": false,
   "canonicalId": null
@@ -25,6 +25,7 @@
    "2026-11-soundboard-upsells-brand-refresh",
    "2026-11-return-full-quest-status-in-decision",
    "2026-11-screen-share-dtx",
+   "2026-10-windows-playout-buffer-duration",
    "2026-10-mobile-rtc-v2",
    "2026-10-collectibles-storefront-pricing-integration",
    "2026-10-animated-shop-bundle-previews",
@@ -53,6 +54,7 @@
    "2026-10-request-to-stream-non-games",
    "2026-10-android-stop-and-pause-video",
    "2026-10-android-fastimage-apng",
+   "2026-09-profile-widget-empty-state-suggestions",
    "2026-09-default-emojis",
    "2026-09-user-profile-premium-try-it-out-mobile-refresh",
    "2026-09-mobile-request-to-stream",
@@ -78,9 +80,9 @@
   ]
  },
  "stats": {
-  "total": 1054,
-  "user": 326,
-  "userData": 153,
+  "total": 1055,
+  "user": 327,
+  "userData": 154,
   "guild": 38,
   "unclassified": 690,
   "noData": 263
@@ -1601,35 +1603,27 @@
    }
   },
   "2026-09-profile-widget-empty-state-suggestions": {
-   "key": "764b4df6bbc5111a",
+   "key": "16e432fd014af240",
    "hasData": true,
-   "sig": "0:control|1:treatment|2:treatment",
+   "sig": "2:treatment",
    "byVariant": {
-    "0": {
-     "pct": 5,
-     "role": "control"
-    },
-    "1": {
-     "pct": 5,
-     "role": "treatment"
-    },
     "2": {
-     "pct": 5,
+     "pct": 100,
      "role": "treatment"
     }
    },
    "treatment": {
-    "pct": 10
+    "pct": 100
    },
    "control": {
-    "pct": 5
+    "pct": 0
    },
    "notEligible": {
     "pct": 0
    },
    "projectedCoverage": null,
    "projected": false,
-   "variantsCount": 3
+   "variantsCount": 1
   },
   "2026-09-profile-link-fetch": {
    "key": "a624203af7186263",
@@ -21484,6 +21478,29 @@
    "projectedCoverage": null,
    "projected": false,
    "variantsCount": 1
+  },
+  "2026-10-windows-playout-buffer-duration": {
+   "key": "10713d2ffb9c0089",
+   "hasData": true,
+   "sig": "0:control",
+   "byVariant": {
+    "0": {
+     "pct": 1,
+     "role": "control"
+    }
+   },
+   "treatment": {
+    "pct": 0
+   },
+   "control": {
+    "pct": 1
+   },
+   "notEligible": {
+    "pct": 0
+   },
+   "projectedCoverage": null,
+   "projected": false,
+   "variantsCount": 1
   }
  },
  "lastRun": {
@@ -21494,24 +21511,6 @@
   "scopeBaselined": 0
  },
  "history": [
-  {
-   "at": "2026-11-16T23:17:29.845Z",
-   "revision": null,
-   "changes": 2,
-   "delivered": 2
-  },
-  {
-   "at": "2026-11-16T23:17:39.449Z",
-   "revision": null,
-   "changes": 0,
-   "delivered": 0
-  },
-  {
-   "at": "2026-11-16T23:27:33.007Z",
-   "revision": "a2ff0c7b7c7b03c116e78aa0c2c03b2304167b4f",
-   "changes": 0,
-   "delivered": 0
-  },
   {
    "at": "2026-11-16T23:43:13.300Z",
    "revision": "2c27512e600f7d55872c74ac207b5737af4b399f",
@@ -21791,6 +21790,24 @@
   {
    "at": "2026-11-17T20:24:33.735Z",
    "revision": "d61687ac88c62cb18faf07bf94f9e53072d7269e",
+   "changes": 0,
+   "delivered": 0
+  },
+  {
+   "at": "2026-11-17T20:39:49.682Z",
+   "revision": "92a62ccbeb2c33051192adddc8ba17cb249d4d04",
+   "changes": 2,
+   "delivered": 2
+  },
+  {
+   "at": "2026-11-17T20:39:53.805Z",
+   "revision": "92a62ccbeb2c33051192adddc8ba17cb249d4d04",
+   "changes": 0,
+   "delivered": 0
+  },
+  {
+   "at": "2026-11-17T20:39:59.628Z",
+   "revision": "92a62ccbeb2c33051192adddc8ba17cb249d4d04",
    "changes": 0,
    "delivered": 0
   }
