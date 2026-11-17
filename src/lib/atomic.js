@@ -17,7 +17,7 @@ async function writeJsonAtomic(file, value, spaces = 2) {
     } else {
       await fs.writeJson(tmp, value, { spaces });
     }
-    await fs.move(tmp, file, { overwrite: true });
+    await fs.rename(tmp, file);
   } catch (e) {
     try {
       await fs.remove(tmp);
@@ -32,7 +32,7 @@ async function writeFileAtomic(file, buf) {
   const tmp = tmpName(file);
   try {
     await fs.writeFile(tmp, buf);
-    await fs.move(tmp, file, { overwrite: true });
+    await fs.rename(tmp, file);
   } catch (e) {
     try {
       await fs.remove(tmp);
