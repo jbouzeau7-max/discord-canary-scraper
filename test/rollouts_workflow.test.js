@@ -53,3 +53,9 @@ test('le validateur Pages utilise le module natif sans charger publish_data et s
   assert.match(validator, /generation_validation/);
   assert.doesNotMatch(validator, /publish_data/);
 });
+
+test('la suite Node est séquentielle pour éviter la désérialisation instable sous Node 20', () => {
+  const packageJson = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'package.json'), 'utf8'));
+  assert.match(packageJson.scripts.test, /--test-concurrency=1/);
+  assert.match(packageJson.scripts.coverage, /--test-concurrency=1/);
+});

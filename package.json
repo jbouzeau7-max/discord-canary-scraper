@@ -19,10 +19,10 @@
     "blog": "node src/blog_tracker.js",
     "news": "node src/news.js",
     "check": "node scripts/check.js",
-    "test": "node --test test/*.test.js",
+    "test": "node --test --test-concurrency=1 test/*.test.js",
     "lint": "eslint . --max-warnings=26",
     "verify": "npm run check && npm run lint && npm test",
-    "coverage": "node --test --experimental-test-coverage --test-coverage-include=src/** --test-coverage-include=scripts/** test/*.test.js"
+    "coverage": "node --test --test-concurrency=1 --experimental-test-coverage --test-coverage-include=src/** --test-coverage-include=scripts/** test/*.test.js"
   },
   "engines": {
     "node": ">=20.18.1"
