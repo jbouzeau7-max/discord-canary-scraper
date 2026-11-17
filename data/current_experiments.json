@@ -1,8 +1,8 @@
 {
-  "runId": "2026-11-17T23-34-52-956Z_675964_jde008",
-  "buildNumber": "675964",
-  "updatedAt": "2026-11-17T23:34:52.956Z",
-  "count": 388,
+  "runId": "2026-11-17T23-39-07-034Z_675974_31xnwe",
+  "buildNumber": "675974",
+  "updatedAt": "2026-11-17T23:39:07.034Z",
+  "count": 389,
   "experiments": [
     {
       "id": "2021-02_staff_qc_debugging",
@@ -19623,6 +19623,58 @@
         "value": null
       },
       "fingerprint": "4234b55b08deda289273782e69c62ce8fd4ed8753470ea9b0430856f05351f78"
+    },
+    {
+      "id": "2026-11-iar-guild-reporting-desktop",
+      "kind": "user",
+      "type": "user",
+      "system": "apex",
+      "label": "[STAFF] Test Guild Report",
+      "title": "[STAFF] Test Guild Report",
+      "description": null,
+      "defaultConfig": {
+        "enabled": false
+      },
+      "variations": {
+        "0": {
+          "enabled": false
+        },
+        "1": {
+          "enabled": true
+        }
+      },
+      "treatments": null,
+      "variationSource": "variations",
+      "variationCount": 2,
+      "raw": {
+        "id": "2026-11-iar-guild-reporting-desktop",
+        "type": "user",
+        "kind": "user",
+        "label": "[STAFF] Test Guild Report",
+        "system": "apex",
+        "defaultConfig": {
+          "enabled": false
+        },
+        "variations": {
+          "0": {
+            "enabled": false
+          },
+          "1": {
+            "enabled": true
+          }
+        },
+        "variationCount": 2,
+        "source": "discord"
+      },
+      "guildPercentage": {
+        "status": "unknown",
+        "value": null
+      },
+      "userPercentage": {
+        "status": "unknown",
+        "value": null
+      },
+      "fingerprint": "bed053296773807c30169833dc12f2dd2ec810e6017fc525b65a5918860c7391"
     },
     {
       "id": "2026-11-linux-steam-sku-detection",

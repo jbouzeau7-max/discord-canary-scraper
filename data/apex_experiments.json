@@ -5450,6 +5450,22 @@
   },
   {
     "kind": "user",
+    "name": "2026-11-iar-guild-reporting-desktop",
+    "defaultConfig": {
+      "enabled": false
+    },
+    "variations": {
+      "0": {
+        "enabled": false
+      },
+      "1": {
+        "enabled": true
+      }
+    },
+    "label": "[STAFF] Test Guild Report"
+  },
+  {
+    "kind": "user",
     "name": "2026-11-linux-steam-sku-detection",
     "defaultConfig": {
       "enabled": false

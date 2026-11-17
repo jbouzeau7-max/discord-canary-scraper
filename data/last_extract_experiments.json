@@ -1,8 +1,8 @@
 {
-  "runId": "2026-11-17T23-34-52-956Z_675964_jde008",
-  "buildNumber": "675964",
-  "updatedAt": "2026-11-17T23:34:52.956Z",
-  "count": 388,
+  "runId": "2026-11-17T23-39-07-034Z_675974_31xnwe",
+  "buildNumber": "675974",
+  "updatedAt": "2026-11-17T23:39:07.034Z",
+  "count": 389,
   "data": {
     "2021-02_staff_qc_debugging": {
       "id": "2021-02_staff_qc_debugging",
@@ -7527,6 +7527,26 @@
       },
       "system": "apex",
       "fp": "4234b55b08deda289273782e69c62ce8fd4ed8753470ea9b0430856f05351f78"
+    },
+    "2026-11-iar-guild-reporting-desktop": {
+      "id": "2026-11-iar-guild-reporting-desktop",
+      "type": "user",
+      "kind": "user",
+      "label": "[STAFF] Test Guild Report",
+      "variationCount": 2,
+      "variations": {
+        "0": {
+          "enabled": false
+        },
+        "1": {
+          "enabled": true
+        }
+      },
+      "defaultConfig": {
+        "enabled": false
+      },
+      "system": "apex",
+      "fp": "bed053296773807c30169833dc12f2dd2ec810e6017fc525b65a5918860c7391"
     },
     "2026-11-linux-steam-sku-detection": {
       "id": "2026-11-linux-steam-sku-detection",
