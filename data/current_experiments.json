@@ -1,8 +1,8 @@
 {
-  "runId": "2026-11-17T18-58-13-448Z_675510_85l16o",
-  "buildNumber": "675510",
-  "updatedAt": "2026-11-17T18:58:13.449Z",
-  "count": 398,
+  "runId": "2026-11-17T19-06-42-017Z_675529_92vb92",
+  "buildNumber": "675529",
+  "updatedAt": "2026-11-17T19:06:42.018Z",
+  "count": 397,
   "experiments": [
     {
       "id": "2021-02_staff_qc_debugging",
@@ -8461,52 +8461,6 @@
         "value": null
       },
       "fingerprint": "fafb28a21853d9e985f84bf7cea9a896f4096368f10acfcc82918330278065ac"
-    },
-    {
-      "id": "2026-06-user-profile-sidebar-redesign",
-      "kind": "user",
-      "type": "user",
-      "system": "apex",
-      "label": null,
-      "title": null,
-      "description": null,
-      "defaultConfig": {
-        "enabled": false
-      },
-      "variations": {
-        "1": {
-          "enabled": true
-        }
-      },
-      "treatments": null,
-      "variationSource": "variations",
-      "variationCount": 1,
-      "raw": {
-        "id": "2026-06-user-profile-sidebar-redesign",
-        "type": "user",
-        "kind": "user",
-        "label": null,
-        "system": "apex",
-        "defaultConfig": {
-          "enabled": false
-        },
-        "variations": {
-          "1": {
-            "enabled": true
-          }
-        },
-        "variationCount": 1,
-        "source": "discord"
-      },
-      "guildPercentage": {
-        "status": "unknown",
-        "value": null
-      },
-      "userPercentage": {
-        "status": "unknown",
-        "value": null
-      },
-      "fingerprint": "be0e7bccee1f95bd32ea645cecaf43ca22b29fd46199f430a9291aadc123e703"
     },
     {
       "id": "2026-06-web-translate-dom-guard",

@@ -1,11 +1,11 @@
 {
-  "runId": "2026-11-17T18-58-13-448Z_675510_85l16o",
-  "buildNumber": "675510",
-  "scrapedAt": "2026-11-17T18:58:13.449Z",
+  "runId": "2026-11-17T19-06-42-017Z_675529_92vb92",
+  "buildNumber": "675529",
+  "scrapedAt": "2026-11-17T19:06:42.018Z",
   "totals": {
-    "all": 398,
+    "all": 397,
     "legacy": 28,
-    "apex": 370
+    "apex": 369
   },
   "experiments": [
     {
@@ -3585,23 +3585,6 @@
         }
       },
       "variationCount": 2,
-      "source": "discord"
-    },
-    {
-      "id": "2026-06-user-profile-sidebar-redesign",
-      "type": "user",
-      "kind": "user",
-      "label": null,
-      "system": "apex",
-      "defaultConfig": {
-        "enabled": false
-      },
-      "variations": {
-        "1": {
-          "enabled": true
-        }
-      },
-      "variationCount": 1,
       "source": "discord"
     },
     {
