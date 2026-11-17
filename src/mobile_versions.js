@@ -365,10 +365,6 @@ async function androidFromAptoide() {
         track: m[2].toLowerCase(),
       }));
 
-      // Also try to extract dates
-      const dateRe = /(\d{1,2})\/(\d{1,2})\/(\d{4})/g;
-      const _dates = [...html.matchAll(dateRe)];
-
       // Find the latest beta and alpha
       const betas = versions.filter((v) => v.track === 'beta')
         .sort((a, b) => cmpVersion(b.version, a.version));

@@ -259,7 +259,7 @@ function chunkIntoMessages(components, accentColor, withDismiss = false) {
  * @param {boolean} [params.withDismiss=false] - Ignoré : le bouton « Dismiss » a été retiré
  * @returns {Array<Array>} Array of message payloads (each is a components array)
  */
-function buildSectionMessages({ title, bn, ts, sections, withDismiss = false }) {
+function buildSectionMessages({ bn, sections, withDismiss = false }) {
   const allComponents = [];
 
   for (const sec of sections) {

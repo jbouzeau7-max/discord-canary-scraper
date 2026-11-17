@@ -66,7 +66,7 @@ const crypto = require('crypto');
 const { sendEmbeds } = require('./lib/webhook');
 const { murmur3 } = require('./lib/murmur3');
 const { writeJsonAtomic } = require('./lib/atomic');
-const { sleep, redactSecrets, envNumber, DEFAULT_UA, DEFAULT_BOT_NAME: BOT, DEFAULT_AVATAR_URL: AVATAR } = require('./lib/utils');
+const { sleep, envNumber, DEFAULT_UA, DEFAULT_BOT_NAME: BOT, DEFAULT_AVATAR_URL: AVATAR } = require('./lib/utils');
 const { safeJson } = require('./lib/http');
 const {
   classifyChange,
@@ -887,7 +887,7 @@ function writeReport(state, reportFile) {
         out.push('');
         out.push(waiting.map((g) => '- ' + (g.title || g.id)).join('\n'));
       }
-    } catch (e2) { /* experiment_rollouts.json absent au premier run */ }
+    } catch { /* experiment_rollouts.json absent au premier run */ }
     fs.writeFileSync(reportFile || path.join(DATA, 'user_rollouts.md'), out.join('\n') + '\n');
   } catch (e) {
     console.warn('report skip:', String((e && e.message) || e).slice(0, 80));

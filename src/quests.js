@@ -1092,7 +1092,7 @@ async function main(deps = {}) {
   if (await fs.pathExists(STATE_FILE)) {
     try {
       previous = await fs.readJson(STATE_FILE);
-    } catch (e) {}
+    } catch {}
   }
   // Always compare as strings (snowflake id type mismatch caused re-notifies)
   const prevIds = new Set((previous.ids || []).map((x) => String(x)));

@@ -20,7 +20,7 @@
     "news": "node src/news.js",
     "check": "node scripts/check.js",
     "test": "node --test --test-concurrency=1 test/*.test.js",
-    "lint": "eslint . --max-warnings=26",
+    "lint": "eslint . --max-warnings=0",
     "verify": "npm run check && npm run lint && npm test",
     "coverage": "node --test --test-concurrency=1 --experimental-test-coverage --test-coverage-include=src/** --test-coverage-include=scripts/** test/*.test.js"
   },
@@ -33,7 +33,7 @@
     "node-fetch": "^2.7.0"
   },
   "devDependencies": {
-    "eslint": "^9.39.5",
-    "globals": "^15.15.0"
+    "eslint": "^10.15.0",
+    "globals": "^17.14.0"
   }
 }
