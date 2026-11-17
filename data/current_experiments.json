@@ -1,8 +1,8 @@
 {
-  "runId": "2026-11-17T21-41-39-911Z_675763_0q8ct2",
-  "buildNumber": "675763",
-  "updatedAt": "2026-11-17T21:41:39.911Z",
-  "count": 394,
+  "runId": "2026-11-17T21-43-54-579Z_675766_jqv04f",
+  "buildNumber": "675766",
+  "updatedAt": "2026-11-17T21:43:54.579Z",
+  "count": 391,
   "experiments": [
     {
       "id": "2021-02_staff_qc_debugging",
@@ -7531,56 +7531,6 @@
       "fingerprint": "3b20c81069d6233cc7a31ea72bdea285778183f9e31eebad17c527aff464570c"
     },
     {
-      "id": "2026-06-clips-secondary-entrypoints",
-      "kind": "user",
-      "type": "user",
-      "system": "apex",
-      "label": null,
-      "title": null,
-      "description": null,
-      "defaultConfig": {
-        "enableOverlayEntrypoint": false,
-        "enableGamePanelEntrypoint": false
-      },
-      "variations": {
-        "1": {
-          "enableOverlayEntrypoint": true,
-          "enableGamePanelEntrypoint": true
-        }
-      },
-      "treatments": null,
-      "variationSource": "variations",
-      "variationCount": 1,
-      "raw": {
-        "id": "2026-06-clips-secondary-entrypoints",
-        "type": "user",
-        "kind": "user",
-        "label": null,
-        "system": "apex",
-        "defaultConfig": {
-          "enableOverlayEntrypoint": false,
-          "enableGamePanelEntrypoint": false
-        },
-        "variations": {
-          "1": {
-            "enableOverlayEntrypoint": true,
-            "enableGamePanelEntrypoint": true
-          }
-        },
-        "variationCount": 1,
-        "source": "discord"
-      },
-      "guildPercentage": {
-        "status": "unknown",
-        "value": null
-      },
-      "userPercentage": {
-        "status": "unknown",
-        "value": null
-      },
-      "fingerprint": "cf0f0ae629aa8a99d405a7725dc1f2105dd6f479fa68d3ea8a6ad64b4778b0fc"
-    },
-    {
       "id": "2026-06-content-classification-embedded-activity-filter",
       "kind": "user",
       "type": "user",
@@ -8751,52 +8701,6 @@
         "value": null
       },
       "fingerprint": "bb91f120b45c6615b750d848d8180a70e28fbf41b3b7a01e8c311abad4bcd99a"
-    },
-    {
-      "id": "2026-07-clips-game-events-on-player",
-      "kind": "user",
-      "type": "user",
-      "system": "apex",
-      "label": null,
-      "title": null,
-      "description": null,
-      "defaultConfig": {
-        "enableGameEventsOnPlayer": false
-      },
-      "variations": {
-        "1": {
-          "enableGameEventsOnPlayer": true
-        }
-      },
-      "treatments": null,
-      "variationSource": "variations",
-      "variationCount": 1,
-      "raw": {
-        "id": "2026-07-clips-game-events-on-player",
-        "type": "user",
-        "kind": "user",
-        "label": null,
-        "system": "apex",
-        "defaultConfig": {
-          "enableGameEventsOnPlayer": false
-        },
-        "variations": {
-          "1": {
-            "enableGameEventsOnPlayer": true
-          }
-        },
-        "variationCount": 1,
-        "source": "discord"
-      },
-      "guildPercentage": {
-        "status": "unknown",
-        "value": null
-      },
-      "userPercentage": {
-        "status": "unknown",
-        "value": null
-      },
-      "fingerprint": "935ed2fdf7291549f5e2207b540f4bcd7d0150f1714f0dacbda96734cf92706c"
     },
     {
       "id": "2026-07-clips-on-profile-setter",
@@ -11883,53 +11787,6 @@
         "value": null
       },
       "fingerprint": "17ce787921bfdae06c6f6a836f3dfe3e509583eb1239501671b290300ea49733"
-    },
-    {
-      "id": "2026-09-clips-editor-image-track",
-      "kind": "user",
-      "type": "user",
-      "system": "apex",
-      "label": null,
-      "title": null,
-      "description": null,
-      "defaultConfig": {
-        "enabled": false
-      },
-      "variations": {
-        "1": {
-          "enabled": true
-        }
-      },
-      "treatments": null,
-      "variationSource": "variations",
-      "variationCount": 1,
-      "raw": {
-        "id": "2026-09-clips-editor-image-track",
-        "type": "user",
-        "kind": "user",
-        "label": null,
-        "system": "apex",
-        "defaultConfig": {
-          "enabled": false
-        },
-        "variations": {
-          "1": {
-            "enabled": true
-          }
-        },
-        "variationCount": 1,
-        "source": "discord"
-      },
-      "guildPercentage": {
-        "status": "unknown",
-        "value": null
-      },
-      "userPercentage": {
-        "status": "provided",
-        "value": 100,
-        "source": "gist_user_rollouts"
-      },
-      "fingerprint": "ec5151c9424559cd914d1cfa3c21b91526b405c8b316c466d2109af5b4e1de35"
     },
     {
       "id": "2026-09-connected-thread-sidebar",

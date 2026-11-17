@@ -1,8 +1,8 @@
 {
-  "runId": "2026-11-17T21-41-39-911Z_675763_0q8ct2",
-  "buildNumber": "675763",
-  "updatedAt": "2026-11-17T21:41:39.911Z",
-  "count": 394,
+  "runId": "2026-11-17T21-43-54-579Z_675766_jqv04f",
+  "buildNumber": "675766",
+  "updatedAt": "2026-11-17T21:43:54.579Z",
+  "count": 391,
   "data": {
     "2021-02_staff_qc_debugging": {
       "id": "2021-02_staff_qc_debugging",
@@ -2900,25 +2900,6 @@
       "system": "apex",
       "fp": "3b20c81069d6233cc7a31ea72bdea285778183f9e31eebad17c527aff464570c"
     },
-    "2026-06-clips-secondary-entrypoints": {
-      "id": "2026-06-clips-secondary-entrypoints",
-      "type": "user",
-      "kind": "user",
-      "label": null,
-      "variationCount": 1,
-      "variations": {
-        "1": {
-          "enableOverlayEntrypoint": true,
-          "enableGamePanelEntrypoint": true
-        }
-      },
-      "defaultConfig": {
-        "enableOverlayEntrypoint": false,
-        "enableGamePanelEntrypoint": false
-      },
-      "system": "apex",
-      "fp": "cf0f0ae629aa8a99d405a7725dc1f2105dd6f479fa68d3ea8a6ad64b4778b0fc"
-    },
     "2026-06-content-classification-embedded-activity-filter": {
       "id": "2026-06-content-classification-embedded-activity-filter",
       "type": "user",
@@ -3370,23 +3351,6 @@
       },
       "system": "apex",
       "fp": "bb91f120b45c6615b750d848d8180a70e28fbf41b3b7a01e8c311abad4bcd99a"
-    },
-    "2026-07-clips-game-events-on-player": {
-      "id": "2026-07-clips-game-events-on-player",
-      "type": "user",
-      "kind": "user",
-      "label": null,
-      "variationCount": 1,
-      "variations": {
-        "1": {
-          "enableGameEventsOnPlayer": true
-        }
-      },
-      "defaultConfig": {
-        "enableGameEventsOnPlayer": false
-      },
-      "system": "apex",
-      "fp": "935ed2fdf7291549f5e2207b540f4bcd7d0150f1714f0dacbda96734cf92706c"
     },
     "2026-07-clips-on-profile-setter": {
       "id": "2026-07-clips-on-profile-setter",
@@ -4571,23 +4535,6 @@
       },
       "system": "apex",
       "fp": "17ce787921bfdae06c6f6a836f3dfe3e509583eb1239501671b290300ea49733"
-    },
-    "2026-09-clips-editor-image-track": {
-      "id": "2026-09-clips-editor-image-track",
-      "type": "user",
-      "kind": "user",
-      "label": null,
-      "variationCount": 1,
-      "variations": {
-        "1": {
-          "enabled": true
-        }
-      },
-      "defaultConfig": {
-        "enabled": false
-      },
-      "system": "apex",
-      "fp": "02023b9b92e7bf7ff761d0f99c9748e5c580e7e2cc75e41a66796705b209d35d"
     },
     "2026-09-connected-thread-sidebar": {
       "id": "2026-09-connected-thread-sidebar",

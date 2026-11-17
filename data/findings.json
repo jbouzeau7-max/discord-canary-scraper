@@ -1,9 +1,9 @@
 {
-  "runId": "2026-11-17T21-41-39-911Z_675763_0q8ct2",
-  "buildNumber": "675763",
-  "scrapedAt": "2026-11-17T21:41:39.911Z",
+  "runId": "2026-11-17T21-43-54-579Z_675766_jqv04f",
+  "buildNumber": "675766",
+  "scrapedAt": "2026-11-17T21:43:54.579Z",
   "totals": {
-    "all": 394
+    "all": 391
   },
   "experiments": [
     {
@@ -3203,25 +3203,6 @@
       "source": "discord"
     },
     {
-      "id": "2026-06-clips-secondary-entrypoints",
-      "type": "user",
-      "kind": "user",
-      "label": null,
-      "system": "apex",
-      "defaultConfig": {
-        "enableOverlayEntrypoint": false,
-        "enableGamePanelEntrypoint": false
-      },
-      "variations": {
-        "1": {
-          "enableOverlayEntrypoint": true,
-          "enableGamePanelEntrypoint": true
-        }
-      },
-      "variationCount": 1,
-      "source": "discord"
-    },
-    {
       "id": "2026-06-content-classification-embedded-activity-filter",
       "type": "user",
       "kind": "user",
@@ -3711,23 +3692,6 @@
         }
       },
       "variationCount": 2,
-      "source": "discord"
-    },
-    {
-      "id": "2026-07-clips-game-events-on-player",
-      "type": "user",
-      "kind": "user",
-      "label": null,
-      "system": "apex",
-      "defaultConfig": {
-        "enableGameEventsOnPlayer": false
-      },
-      "variations": {
-        "1": {
-          "enableGameEventsOnPlayer": true
-        }
-      },
-      "variationCount": 1,
       "source": "discord"
     },
     {
@@ -5133,33 +5097,6 @@
       },
       "variationCount": 2,
       "source": "discord"
-    },
-    {
-      "id": "2026-09-clips-editor-image-track",
-      "type": "user",
-      "kind": "user",
-      "label": null,
-      "system": "apex",
-      "defaultConfig": {
-        "enabled": false
-      },
-      "variations": {
-        "1": {
-          "enabled": true
-        }
-      },
-      "variationCount": 1,
-      "source": "discord",
-      "guildPercentage": {
-        "status": "unknown",
-        "value": null
-      },
-      "userPercentage": {
-        "status": "provided",
-        "value": 100,
-        "source": "gist_user_rollouts"
-      },
-      "fingerprint": "ec5151c9424559cd914d1cfa3c21b91526b405c8b316c466d2109af5b4e1de35"
     },
     {
       "id": "2026-09-connected-thread-sidebar",

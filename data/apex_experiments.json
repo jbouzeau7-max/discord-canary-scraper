@@ -1738,21 +1738,6 @@
   },
   {
     "kind": "user",
-    "name": "2026-06-clips-secondary-entrypoints",
-    "defaultConfig": {
-      "enableOverlayEntrypoint": false,
-      "enableGamePanelEntrypoint": false
-    },
-    "variations": {
-      "1": {
-        "enableOverlayEntrypoint": true,
-        "enableGamePanelEntrypoint": true
-      }
-    },
-    "label": null
-  },
-  {
-    "kind": "user",
     "name": "2026-06-content-classification-embedded-activity-filter",
     "defaultConfig": {
       "enabled": false
@@ -2111,19 +2096,6 @@
       },
       "1": {
         "enabled": true
-      }
-    },
-    "label": null
-  },
-  {
-    "kind": "user",
-    "name": "2026-07-clips-game-events-on-player",
-    "defaultConfig": {
-      "enableGameEventsOnPlayer": false
-    },
-    "variations": {
-      "1": {
-        "enableGameEventsOnPlayer": true
       }
     },
     "label": null
@@ -3074,19 +3046,6 @@
       "0": {
         "enabled": false
       },
-      "1": {
-        "enabled": true
-      }
-    },
-    "label": null
-  },
-  {
-    "kind": "user",
-    "name": "2026-09-clips-editor-image-track",
-    "defaultConfig": {
-      "enabled": false
-    },
-    "variations": {
       "1": {
         "enabled": true
       }
