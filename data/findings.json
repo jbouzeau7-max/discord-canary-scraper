@@ -1,9 +1,9 @@
 {
-  "runId": "2026-11-17T22-05-57-763Z_675804_nj68gq",
-  "buildNumber": "675804",
-  "scrapedAt": "2026-11-17T22:05:57.763Z",
+  "runId": "2026-11-17T22-08-13-185Z_675808_chm27u",
+  "buildNumber": "675808",
+  "scrapedAt": "2026-11-17T22:08:13.185Z",
   "totals": {
-    "all": 389
+    "all": 388
   },
   "experiments": [
     {
@@ -2422,23 +2422,6 @@
     },
     {
       "id": "2026-04-gift-promotion-reminder",
-      "type": "user",
-      "kind": "user",
-      "label": null,
-      "system": "apex",
-      "defaultConfig": {
-        "enabled": false
-      },
-      "variations": {
-        "1": {
-          "enabled": true
-        }
-      },
-      "variationCount": 1,
-      "source": "discord"
-    },
-    {
-      "id": "2026-04-gifting-badge",
       "type": "user",
       "kind": "user",
       "label": null,
