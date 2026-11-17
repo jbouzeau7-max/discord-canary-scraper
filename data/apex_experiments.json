@@ -3493,25 +3493,6 @@
   },
   {
     "kind": "user",
-    "name": "2026-09-profile-widget-empty-state-suggestions",
-    "defaultConfig": {
-      "enabled": false,
-      "maxWidgetOptions": 0
-    },
-    "variations": {
-      "1": {
-        "enabled": true,
-        "maxWidgetOptions": 4
-      },
-      "2": {
-        "enabled": true,
-        "maxWidgetOptions": 6
-      }
-    },
-    "label": null
-  },
-  {
-    "kind": "user",
     "name": "2026-09-quest-home-bounties-feature-gate",
     "defaultConfig": {
       "enabled": false
