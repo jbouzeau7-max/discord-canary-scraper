@@ -1,23 +1,23 @@
 {
   "format": 2,
-  "scrapedAt": "2026-11-16T10:34:34.298Z",
+  "scrapedAt": "2026-11-17T02:46:11.574Z",
   "sourceRepo": "https://github.com/Wumpus-Central/discord-mobile-datamining.git",
-  "sourceCommit": "29434656",
-  "sourceCommitFull": "29434656f8c8029a7106dc4ce93b59d89e209083",
-  "sourceMessage": "355.5 (355205) runtime",
-  "build": "355.5 (355205)",
-  "experimentCount": 339,
-  "stringCount": 9838,
+  "sourceCommit": "0ab5122e",
+  "sourceCommitFull": "0ab5122ec95f6434a025fc0683079191657a87a0",
+  "sourceMessage": "356.0 (356200) runtime",
+  "build": "356.0 (356200)",
+  "experimentCount": 340,
+  "stringCount": 9839,
   "routeCount": 1092,
   "lastDiff": {
     "experiments": {
-      "added": 0,
+      "added": 1,
       "modified": 0,
       "removed": 0,
       "categoryChanged": 0
     },
     "strings": {
-      "added": 0,
+      "added": 1,
       "removed": 0
     },
     "routes": {
@@ -5969,6 +5969,44 @@
       "source": "mobile_files"
     },
     {
+      "id": "2026-11-quest-bar-expand-rate-asset-cta",
+      "kind": "user",
+      "type": "user",
+      "system": "apex",
+      "defaultConfig": {
+        "squareAsset": "default",
+        "rewardMessage": "generic"
+      },
+      "variations": {
+        "0": {
+          "squareAsset": "default",
+          "rewardMessage": "generic"
+        },
+        "1": {
+          "squareAsset": "reward",
+          "rewardMessage": "generic"
+        },
+        "2": {
+          "squareAsset": "reward",
+          "rewardMessage": "orbAmount"
+        },
+        "3": {
+          "squareAsset": "reward",
+          "rewardMessage": "bountyIllustration"
+        },
+        "4": {
+          "squareAsset": "advertiser",
+          "rewardMessage": "orbAmount"
+        },
+        "5": {
+          "squareAsset": "advertiser",
+          "rewardMessage": "bountyIllustration"
+        }
+      },
+      "file": "discord_app/modules/quests/experiments/QuestBarExpandRateV1Experiment.tsx",
+      "source": "mobile_files"
+    },
+    {
       "id": "2026-11-quest-home-tile-single-elements",
       "kind": "user",
       "type": "user",
@@ -10469,6 +10507,7 @@
     "QUXSpo": "Find Friends",
     "QUe9zz": "Explore More Quests",
     "QV/8u5": "New and improved Activity Alerts are monitoring your server safety. AutoMod will send a message here if there is any DM or join activity that exceed what is normal for your server.",
+    "QVBTlz": "Get {orbCount, plural, one {# Orb} other {# Orbs}}!",
     "QVFjHh": "Delete {name}",
     "QVdYsK": "Blur",
     "QWGvxA": "This action will remove the link between your Discord account and {applicationName}",
