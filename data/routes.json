@@ -1119,5 +1119,6 @@
   "DISCOVERABLE_CONTENT": "/guilds/:param/discoverable-content",
   "GAME_ANNOUNCEMENTS_LATEST": "/games/announcements/latest",
   "BULK_GUILD_KICK": "/guilds/:param/bulk/kick",
-  "BULK_GUILD_TIMEOUT": "/guilds/:param/bulk/timeout"
+  "BULK_GUILD_TIMEOUT": "/guilds/:param/bulk/timeout",
+  "QUEST_BAR_PREVIEW": "/quest-bar-preview"
 }
