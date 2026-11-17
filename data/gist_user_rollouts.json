@@ -3,15 +3,15 @@
  "schemaVersion": 1,
  "semanticsVersion": 2,
  "notifyScopeVersion": 2,
- "runId": "20261117T165611_gist",
- "scrapedAt": "2026-11-17T16:56:11.214Z",
+ "runId": "20261117T172848_gist",
+ "scrapedAt": "2026-11-17T17:28:48.029Z",
  "source": {
   "gistId": "e3e99062983e6bd0feaef833f14fd931",
   "htmlUrl": "https://gist.github.com/agnonotdev/e3e99062983e6bd0feaef833f14fd931",
-  "rawUrl": "https://gist.githubusercontent.com/agnonotdev/e3e99062983e6bd0feaef833f14fd931/raw/4ad8470de217688f57d73e0688abd22d710d10ef/rollouts-tag.json",
-  "updatedAt": "2026-11-17T16:55:34Z",
-  "revision": "ac231bb250ee98fcefbc73ad3d54d85027169837",
-  "fetchedAt": "2026-11-17T16:56:11.214Z",
+  "rawUrl": "https://gist.githubusercontent.com/agnonotdev/e3e99062983e6bd0feaef833f14fd931/raw/1789ba66a008acf8c95fd8d6886ba528a8d219c4/rollouts-tag.json",
+  "updatedAt": "2026-11-17T16:58:32Z",
+  "revision": "d61687ac88c62cb18faf07bf94f9e53072d7269e",
+  "fetchedAt": "2026-11-17T17:28:48.029Z",
   "fallback": false,
   "rawFallback": false,
   "canonicalId": null
@@ -68,6 +68,7 @@
    "2026-09-friends-sidebar",
    "2026-08-find-coded-links-regex",
    "2026-08-split-payments",
+   "2026-07-autoclipping-default-override",
    "2026-07-onyx",
    "2026-07-cobalt",
    "2026-07-quest-home-default-banner-removal",
@@ -79,10 +80,10 @@
  "stats": {
   "total": 1054,
   "user": 326,
-  "userData": 152,
+  "userData": 153,
   "guild": 38,
   "unclassified": 690,
-  "noData": 264
+  "noData": 263
  },
  "acknowledged": {
   "2026-11-soundboard-upsells-brand-refresh": {
@@ -2850,12 +2851,27 @@
    }
   },
   "2026-07-autoclipping-default-override": {
-   "key": "no_data",
-   "hasData": false,
-   "sig": "",
+   "key": "c52c1a195a61c67e",
+   "hasData": true,
+   "sig": "1:treatment",
+   "byVariant": {
+    "1": {
+     "pct": 30,
+     "role": "treatment"
+    }
+   },
    "treatment": {
-    "pct": null
-   }
+    "pct": 30
+   },
+   "control": {
+    "pct": 0
+   },
+   "notEligible": {
+    "pct": 0
+   },
+   "projectedCoverage": null,
+   "projected": false,
+   "variantsCount": 1
   },
   "2026-07-attachment-image-ladder": {
    "key": "no_data",
@@ -21471,19 +21487,13 @@
   }
  },
  "lastRun": {
-  "changes": 0,
-  "delivered": 0,
+  "changes": 1,
+  "delivered": 1,
   "firstRun": false,
   "semanticsMigrated": 0,
   "scopeBaselined": 0
  },
  "history": [
-  {
-   "at": "2026-11-16T21:56:14.164Z",
-   "revision": "96db233a0be108b55e301169340aef0b81c0fbdf",
-   "changes": 2,
-   "delivered": 2
-  },
   {
    "at": "2026-11-16T21:56:17.898Z",
    "revision": "96db233a0be108b55e301169340aef0b81c0fbdf",
@@ -21777,6 +21787,12 @@
    "revision": "ac231bb250ee98fcefbc73ad3d54d85027169837",
    "changes": 0,
    "delivered": 0
+  },
+  {
+   "at": "2026-11-17T17:28:48.029Z",
+   "revision": "d61687ac88c62cb18faf07bf94f9e53072d7269e",
+   "changes": 1,
+   "delivered": 1
   }
  ]
 }

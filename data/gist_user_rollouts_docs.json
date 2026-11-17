@@ -1,19 +1,19 @@
 {
- "generatedAt": "2026-11-17T16:56:11.229Z",
+ "generatedAt": "2026-11-17T17:28:48.037Z",
  "semantics": "couverture de l'espace de buckets (gist agnonotdev) — ni une proportion d'utilisateurs, ni une mesure d'accès réel ; multi-populations = couverture projetée non pondérée",
  "source": {
   "gistId": "e3e99062983e6bd0feaef833f14fd931",
   "htmlUrl": "https://gist.github.com/agnonotdev/e3e99062983e6bd0feaef833f14fd931",
-  "updatedAt": "2026-11-17T16:55:34Z",
-  "revision": "ac231bb250ee98fcefbc73ad3d54d85027169837"
+  "updatedAt": "2026-11-17T16:58:32Z",
+  "revision": "d61687ac88c62cb18faf07bf94f9e53072d7269e"
  },
  "stats": {
   "total": 1054,
   "user": 326,
-  "userData": 152,
+  "userData": 153,
   "guild": 38,
   "unclassified": 690,
-  "noData": 264
+  "noData": 263
  },
  "experiments": [
   {
@@ -4054,19 +4054,22 @@
    "id": "2026-07-autoclipping-default-override",
    "title": "2026-07-autoclipping-default-override",
    "type": "user",
-   "hasData": false,
-   "totalsAvailable": false,
+   "hasData": true,
+   "totalsAvailable": true,
    "ambiguous": false,
    "projected": false,
-   "flags": [
-    "no_data"
-   ],
-   "treatmentPct": null,
+   "flags": [],
+   "treatmentPct": 30,
    "projectedTreatmentPct": null,
-   "controlPct": null,
-   "notEligiblePct": null,
-   "unassignedPct": null,
-   "byVariant": {}
+   "controlPct": 0,
+   "notEligiblePct": 0,
+   "unassignedPct": 70,
+   "byVariant": {
+    "1": {
+     "pct": 30,
+     "role": "treatment"
+    }
+   }
   },
   {
    "id": "2026-07-attachment-image-ladder",
