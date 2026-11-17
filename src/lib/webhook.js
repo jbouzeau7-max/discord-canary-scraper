@@ -10,6 +10,7 @@
  */
 const fetch = require('node-fetch');
 const https = require('https');
+const { createHash } = require('node:crypto');
 const { sleep, envNumber } = require('./utils');
 const { IS_COMPONENTS_V2_FLAG, embedsToComponents, textDisplay, chunkText } = require('./components_v2');
 const { allowedMentions, mentionText, autoPingRoles } = require('./mentions');
@@ -38,7 +39,9 @@ const MAX_EMBEDS_PER_MESSAGE = 10;
 const MAX_EMBED_CHARS_PER_MESSAGE = 6000;
 
 // Pause partagée si Discord signale un bucket épuisé
-let bucketResetAt = 0;
+let globalResetAt = 0;
+const resets = new Map();
+let nextPruneAt = 0;
 
 // File d'attente par URL : sérialise les envois vers le même webhook
 // pour éviter les 429 quand plusieurs appels parallèles ciblent le même webhook.
@@ -51,7 +54,9 @@ const urlQueues = new Map();
 function enqueue(url, fn) {
   const prev = urlQueues.get(url) || Promise.resolve();
   const next = prev.then(fn, fn); // fn s'exécute même si le précédent a échoué
-  urlQueues.set(url, next.catch(() => {})); // ne jamais casser la chaîne
+  urlQueues.set(url, next);
+  const cleanup = () => { if (urlQueues.get(url) === next) urlQueues.delete(url); };
+  next.then(cleanup, cleanup);
   return next;
 }
 
@@ -70,10 +75,9 @@ function sanitizeLogText(text, url) {
   return s.slice(0, 400);
 }
 
+const discordWebhook = /^https:\/\/(?:(?:canary|ptb)\.)?discord(?:app)?\.com(?::443)?\/api\/(?:v\d+\/)?webhooks\/(\d+)\/[\w-]+/i;
 function isWebhookUrl(url) {
-  return /^https:\/\/(?:(?:canary|ptb)\.)?discord(?:app)?\.com\/api\/(?:v\d+\/)?webhooks\/\d+\/[\w-]+/i.test(
-    String(url || ''),
-  );
+  return discordWebhook.test(String(url || ''));
 }
 
 // Aucun emoji dans les messages : retirés de tous les textes envoyés
@@ -183,10 +187,18 @@ function chunkEmbeds(embeds, maxPerMsg = MAX_EMBEDS_PER_MESSAGE, maxChars = MAX_
  * @returns {Promise<{ok:boolean,status:number,text:string,attempts:number,json?:any}>}
  */
 async function sendWebhook(url, body, options = {}) {
-  return enqueue(url, () => _sendWebhook(url, body, options));
+  const endpoint = String(url || '');
+  const match = discordWebhook.exec(endpoint);
+  const key = match ? match[1] : `url:${createHash('sha256').update(endpoint).digest('hex')}`;
+  const now = Date.now();
+  if (now >= nextPruneAt) {
+    for (const [id, until] of resets) if (until <= now) resets.delete(id);
+    nextPruneAt = now + 60000;
+  }
+  return enqueue(key, () => _sendWebhook(url, body, options, key));
 }
 
-async function _sendWebhook(url, body, options = {}) {
+async function _sendWebhook(url, body, options, key) {
   const opts = { ...DEFAULTS, ...options };
   if (!url) return { ok: false, status: 0, text: 'no webhook url', attempts: 0 };
   let data = opts.identity ? { ...body, ...webhookIdentity(opts.identity) } : body;
@@ -214,9 +226,13 @@ async function _sendWebhook(url, body, options = {}) {
   let tries = 0; // requêtes réellement émises (429 compris)
 
   for (let attempt = 0; attempt < opts.maxAttempts; attempt++) {
+    let wait;
+    while ((wait = Math.max(globalResetAt, resets.get(key) || 0) - Date.now()) > 0) {
+      if (wait > opts.max429WaitMs) return { ok: false, status: 429, text: 'rate limit deferred', attempts: tries };
+      await sleep(wait);
+    }
+    resets.delete(key);
     tries++;
-    const waitBucket = bucketResetAt - Date.now();
-    if (waitBucket > 0) await sleep(Math.min(waitBucket, opts.maxDelayMs));
 
     let res;
     try {
@@ -243,9 +259,13 @@ async function _sendWebhook(url, body, options = {}) {
     last = { ok: res.ok, status: res.status, text: text.slice(0, 500), attempts: tries, json };
 
     const remaining = res.headers && res.headers.get('x-ratelimit-remaining');
-    if (remaining === '0') {
-      const ra = retryAfterMs(res, null);
-      if (ra > 0) bucketResetAt = Date.now() + ra;
+    if (remaining === '0' || res.status === 429) {
+      const ra = retryAfterMs(res, json);
+      if (ra > 0) {
+        const until = Date.now() + ra;
+        if (res.status === 429 && (json?.global === true || res.headers?.get('x-ratelimit-global') === 'true' || res.headers?.get('x-ratelimit-scope') === 'global')) globalResetAt = Math.max(globalResetAt, until);
+        else resets.set(key, until);
+      }
     }
 
     if (res.ok) {
@@ -382,7 +402,9 @@ async function sendPlainFallback(url, base, components, options) {
 }
 
 function _resetBucket() {
-  bucketResetAt = 0;
+  globalResetAt = 0;
+  nextPruneAt = 0;
+  resets.clear();
 }
 
 module.exports = {
