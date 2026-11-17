@@ -1,7 +1,7 @@
 {
-  "runId": "2026-11-17T20-40-19-514Z_675672_n5rs7a",
-  "buildNumber": "675672",
-  "updatedAt": "2026-11-17T20:40:19.514Z",
+  "runId": "2026-11-17T20-49-18-947Z_675680_xsgeuf",
+  "buildNumber": "675680",
+  "updatedAt": "2026-11-17T20:49:18.948Z",
   "count": 396,
   "experiments": [
     {
@@ -13542,10 +13542,10 @@
       },
       "userPercentage": {
         "status": "provided",
-        "value": 10,
+        "value": 100,
         "source": "gist_user_rollouts"
       },
-      "fingerprint": "93e41dff83f55170639219a103833d7c232cbc05c205f3b46756920e9eb49cb6"
+      "fingerprint": "fa7aa109d328b1d09755692d6e35e6b4ffdcecbe66b9abd01e4f654ef3da771a"
     },
     {
       "id": "2026-09-quest-home-bounties-feature-gate",
@@ -19530,10 +19530,11 @@
         "value": null
       },
       "userPercentage": {
-        "status": "unknown",
-        "value": null
+        "status": "provided",
+        "value": 0,
+        "source": "gist_user_rollouts"
       },
-      "fingerprint": "95282bb7c3c3e9d3411e8d7256eb8479e6babfad2e5af1a1e3a1688a965b6641"
+      "fingerprint": "b1a20847856df152d99251e25dadf139e4bba907065d3fd6fcda714f1ee439b7"
     },
     {
       "id": "2026-11-ad-refresh-immediate-on-focus",
