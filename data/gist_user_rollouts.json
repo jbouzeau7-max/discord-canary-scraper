@@ -3,15 +3,15 @@
  "schemaVersion": 1,
  "semanticsVersion": 2,
  "notifyScopeVersion": 2,
- "runId": "20261117T005459_gist",
- "scrapedAt": "2026-11-17T00:54:59.645Z",
+ "runId": "20261117T012408_gist",
+ "scrapedAt": "2026-11-17T01:24:08.052Z",
  "source": {
   "gistId": "e3e99062983e6bd0feaef833f14fd931",
   "htmlUrl": "https://gist.github.com/agnonotdev/e3e99062983e6bd0feaef833f14fd931",
   "rawUrl": "https://gist.githubusercontent.com/agnonotdev/e3e99062983e6bd0feaef833f14fd931/raw/14d746f7b8f49376a2f6e6978542e3b61a9e785b/rollouts-tag.json",
   "updatedAt": "2026-11-17T00:16:12Z",
   "revision": "6425b3843d764a503ff8fb9ec3568c62833dcf24",
-  "fetchedAt": "2026-11-17T00:54:59.645Z",
+  "fetchedAt": "2026-11-17T01:24:08.052Z",
   "fallback": false,
   "rawFallback": false,
   "canonicalId": null
@@ -78,9 +78,9 @@
  },
  "stats": {
   "total": 1054,
-  "user": 327,
+  "user": 326,
   "userData": 152,
-  "guild": 37,
+  "guild": 38,
   "unclassified": 690,
   "noData": 264
  },
@@ -3642,14 +3642,6 @@
    }
   },
   "2026-03-croissant": {
-   "key": "no_data",
-   "hasData": false,
-   "sig": "",
-   "treatment": {
-    "pct": null
-   }
-  },
-  "2026-03-conversation-highlighting-utility": {
    "key": "no_data",
    "hasData": false,
    "sig": "",
@@ -21487,12 +21479,6 @@
  },
  "history": [
   {
-   "at": "2026-11-16T09:18:03.915Z",
-   "revision": "6d5357d8dc9a85dec1eb17f3d75ec01dfc43d330",
-   "changes": 0,
-   "delivered": 0
-  },
-  {
    "at": "2026-11-16T09:47:16.886Z",
    "revision": "6d5357d8dc9a85dec1eb17f3d75ec01dfc43d330",
    "changes": 0,
@@ -21782,6 +21768,12 @@
   },
   {
    "at": "2026-11-17T00:54:59.645Z",
+   "revision": "6425b3843d764a503ff8fb9ec3568c62833dcf24",
+   "changes": 0,
+   "delivered": 0
+  },
+  {
+   "at": "2026-11-17T01:24:08.052Z",
    "revision": "6425b3843d764a503ff8fb9ec3568c62833dcf24",
    "changes": 0,
    "delivered": 0

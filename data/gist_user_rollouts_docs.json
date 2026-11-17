@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-11-17T00:17:07.705Z",
+ "generatedAt": "2026-11-17T01:24:08.063Z",
  "semantics": "couverture de l'espace de buckets (gist agnonotdev) — ni une proportion d'utilisateurs, ni une mesure d'accès réel ; multi-populations = couverture projetée non pondérée",
  "source": {
   "gistId": "e3e99062983e6bd0feaef833f14fd931",
@@ -9,9 +9,9 @@
  },
  "stats": {
   "total": 1054,
-  "user": 327,
+  "user": 326,
   "userData": 152,
-  "guild": 37,
+  "guild": 38,
   "unclassified": 690,
   "noData": 264
  },
@@ -5492,24 +5492,6 @@
   {
    "id": "2026-03-croissant",
    "title": "2026-03-croissant",
-   "type": "user",
-   "hasData": false,
-   "totalsAvailable": false,
-   "ambiguous": false,
-   "projected": false,
-   "flags": [
-    "no_data"
-   ],
-   "treatmentPct": null,
-   "projectedTreatmentPct": null,
-   "controlPct": null,
-   "notEligiblePct": null,
-   "unassignedPct": null,
-   "byVariant": {}
-  },
-  {
-   "id": "2026-03-conversation-highlighting-utility",
-   "title": "2026-03-conversation-highlighting-utility",
    "type": "user",
    "hasData": false,
    "totalsAvailable": false,
