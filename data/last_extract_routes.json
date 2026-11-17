@@ -1,9 +1,9 @@
 {
-  "runId": "2026-11-17T19-06-42-017Z_675529_92vb92",
-  "buildNumber": "675529",
+  "runId": "2026-11-17T19-13-18-050Z_675544_2yucmo",
+  "buildNumber": "675544",
   "extractVersion": 3,
-  "updatedAt": "2026-11-17T19:06:42.018Z",
-  "count": 1120,
+  "updatedAt": "2026-11-17T19:13:18.050Z",
+  "count": 1122,
   "data": {
     "DEV_LANDING": "/build",
     "DEV_PORTAL": "/developers",
@@ -926,6 +926,8 @@
     "FORCE_SEND_PROMPT": "/:param/force-send-prompt",
     "BULK_GUILD_BAN_V2": "/guilds/:param/bulk-ban/v2",
     "BULK_GUILD_ROLE": "/guilds/:param/bulk/role",
+    "BULK_GUILD_KICK": "/guilds/:param/bulk/kick",
+    "BULK_GUILD_TIMEOUT": "/guilds/:param/bulk/timeout",
     "EXPLICIT_MEDIA_SCAN_MESSAGES": "/channels/:param/explicit-media",
     "POLL_ANSWERS": "/channels/:param/polls/:param/answers/@me",
     "POLL_EXPIRE": "/channels/:param/polls/:param/expire",
