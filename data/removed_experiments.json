@@ -1,8 +1,8 @@
 {
-  "runId": "2026-11-17T21-07-00-732Z_675707_usqf9e",
-  "buildNumber": "675707",
-  "updatedAt": "2026-11-17T21:07:00.733Z",
-  "count": 7,
+  "runId": "2026-11-17T21-12-07-184Z_675709_7w8q1v",
+  "buildNumber": "675709",
+  "updatedAt": "2026-11-17T21:12:07.184Z",
+  "count": 8,
   "experiments": [
     {
       "id": "2026-06-av1-encode-linux",
@@ -52,6 +52,13 @@
       "label": null,
       "removedAt": "2026-11-17T21:04:48.347Z",
       "lastBuild": "675704"
+    },
+    {
+      "id": "2026-06-use-new-badge-image-source",
+      "kind": "user",
+      "label": null,
+      "removedAt": "2026-11-17T21:12:07.208Z",
+      "lastBuild": "675709"
     }
   ]
 }

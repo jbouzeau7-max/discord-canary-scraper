@@ -1,11 +1,11 @@
 {
-  "runId": "2026-11-17T21-07-00-732Z_675707_usqf9e",
-  "buildNumber": "675707",
-  "scrapedAt": "2026-11-17T21:07:00.733Z",
+  "runId": "2026-11-17T21-12-07-184Z_675709_7w8q1v",
+  "buildNumber": "675709",
+  "scrapedAt": "2026-11-17T21:12:07.184Z",
   "totals": {
-    "all": 395,
+    "all": 394,
     "legacy": 28,
-    "apex": 367
+    "apex": 366
   },
   "experiments": [
     {
@@ -3566,26 +3566,6 @@
         "source": "gist_user_rollouts"
       },
       "fingerprint": "41c9a615ba7b05591ebd1175a9cea5eeb26506a55f20ceb41717eda313d853fb"
-    },
-    {
-      "id": "2026-06-use-new-badge-image-source",
-      "type": "user",
-      "kind": "user",
-      "label": null,
-      "system": "apex",
-      "defaultConfig": {
-        "enabled": false
-      },
-      "variations": {
-        "0": {
-          "enabled": false
-        },
-        "1": {
-          "enabled": true
-        }
-      },
-      "variationCount": 2,
-      "source": "discord"
     },
     {
       "id": "2026-06-web-translate-dom-guard",

@@ -1,8 +1,8 @@
 {
-  "runId": "2026-11-17T21-07-00-732Z_675707_usqf9e",
-  "buildNumber": "675707",
-  "updatedAt": "2026-11-17T21:07:00.733Z",
-  "count": 395,
+  "runId": "2026-11-17T21-12-07-184Z_675709_7w8q1v",
+  "buildNumber": "675709",
+  "updatedAt": "2026-11-17T21:12:07.184Z",
+  "count": 394,
   "data": {
     "2021-02_staff_qc_debugging": {
       "id": "2021-02_staff_qc_debugging",
@@ -3242,26 +3242,6 @@
       },
       "system": "apex",
       "fp": "cabf534632239b4f2a45fc5000383c99a68082121dbe3a4658f3ab03fd1d2edd"
-    },
-    "2026-06-use-new-badge-image-source": {
-      "id": "2026-06-use-new-badge-image-source",
-      "type": "user",
-      "kind": "user",
-      "label": null,
-      "variationCount": 2,
-      "variations": {
-        "0": {
-          "enabled": false
-        },
-        "1": {
-          "enabled": true
-        }
-      },
-      "defaultConfig": {
-        "enabled": false
-      },
-      "system": "apex",
-      "fp": "fafb28a21853d9e985f84bf7cea9a896f4096368f10acfcc82918330278065ac"
     },
     "2026-06-web-translate-dom-guard": {
       "id": "2026-06-web-translate-dom-guard",

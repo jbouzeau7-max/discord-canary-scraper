@@ -2017,22 +2017,6 @@
   },
   {
     "kind": "user",
-    "name": "2026-06-use-new-badge-image-source",
-    "defaultConfig": {
-      "enabled": false
-    },
-    "variations": {
-      "0": {
-        "enabled": false
-      },
-      "1": {
-        "enabled": true
-      }
-    },
-    "label": null
-  },
-  {
-    "kind": "user",
     "name": "2026-06-web-translate-dom-guard",
     "defaultConfig": {
       "enabled": true
