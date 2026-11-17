@@ -1,8 +1,8 @@
 {
-  "runId": "2026-11-17T22-08-13-185Z_675808_chm27u",
-  "buildNumber": "675808",
-  "updatedAt": "2026-11-17T22:08:13.185Z",
-  "count": 388,
+  "runId": "2026-11-17T22-10-18-496Z_675814_9ca4it",
+  "buildNumber": "675814",
+  "updatedAt": "2026-11-17T22:10:18.496Z",
+  "count": 389,
   "experiments": [
     {
       "id": "2021-02_staff_qc_debugging",
@@ -5655,6 +5655,52 @@
         "value": null
       },
       "fingerprint": "3f91e63574a3cc5869cc7dc00a226c84c3c6a8cfba2de4ef88dc538fb5131391"
+    },
+    {
+      "id": "2026-04-gifting-badge",
+      "kind": "user",
+      "type": "user",
+      "system": "apex",
+      "label": null,
+      "title": null,
+      "description": null,
+      "defaultConfig": {
+        "enabled": false
+      },
+      "variations": {
+        "1": {
+          "enabled": true
+        }
+      },
+      "treatments": null,
+      "variationSource": "variations",
+      "variationCount": 1,
+      "raw": {
+        "id": "2026-04-gifting-badge",
+        "type": "user",
+        "kind": "user",
+        "label": null,
+        "system": "apex",
+        "defaultConfig": {
+          "enabled": false
+        },
+        "variations": {
+          "1": {
+            "enabled": true
+          }
+        },
+        "variationCount": 1,
+        "source": "discord"
+      },
+      "guildPercentage": {
+        "status": "unknown",
+        "value": null
+      },
+      "userPercentage": {
+        "status": "unknown",
+        "value": null
+      },
+      "fingerprint": "304b8613813923db46f72c513158f9f84375a3d92b09955e8891931ae363a90c"
     },
     {
       "id": "2026-04-http-request-sample",
