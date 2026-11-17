@@ -10,6 +10,7 @@ const {
   resolveAllChunkUrls,
   resolveEnUsLocaleUrls,
   extractLocaleStrings,
+  decodeJsStringLiteral,
 } = require('../src/lib/extract');
 
 test('normalizePath / isValidRouteKey', () => {
@@ -113,4 +114,39 @@ test('resolveAllChunkUrls ignore les IDs Discord numériques (évite les 404)', 
     '{1:"521847234246082599"} "521846918637420545.js" "0123456789abcdef01.js"',
   );
   assert.deepEqual(urls, ['https://canary.discord.com/assets/0123456789abcdef01.js']);
+});
+
+test('decodeJsStringLiteral : escapes incomplets ou hors plage ne font pas planter le scraper', () => {
+  for (const input of ['\\xG1', '\\u12', '\\u{}', '\\u{110000}', 'trailing\\']) {
+    assert.doesNotThrow(() => decodeJsStringLiteral(input), input);
+  }
+  assert.equal(decodeJsStringLiteral('\\u{1F680}'), '🚀');
+});
+
+test('extractExperiments : accolades dans les chaînes ne tronquent pas les objets imbriqués', () => {
+  const source = '(0,i.C)({kind:"user",id:"2026-04_brace-aware",label:"Brace aware",defaultConfig:{text:"a } ] { b",enabled:!0},variations:{0:{label:"} ] {",enabled:!0},1:{count:2}}});';
+  const result = new Map();
+  extractExperiments(source, result);
+  const exp = result.get('2026-04_brace-aware');
+  assert.deepEqual(exp.defaultConfig, { text: 'a } ] { b', enabled: true });
+  assert.deepEqual(Object.keys(exp.variations), ['0', '1']);
+  assert.equal(exp.variations['0'].label, '} ] {');
+});
+
+test('extractExperiments : fusion de doublons identique quel que soit l’ordre', () => {
+  const id = '2026-04_duplicate-exp';
+  const first = '(0,i.C)({kind:"user",id:"2026-04_duplicate-exp",label:"Zulu label",defaultConfig:{z:1},variations:{0:{value:2}}});';
+  const second = '(0,i.C)({kind:"guild",id:"2026-04_duplicate-exp",label:"Alpha label",defaultConfig:{a:1},treatments:[{id:2,value:1}]});';
+  const scan = (content) => {
+    const map = new Map();
+    extractExperiments(content, map);
+    return map.get(id);
+  };
+  const forward = scan(first + second);
+  const reverse = scan(second + first);
+  assert.deepEqual(forward, reverse);
+  assert.equal(forward.kind, 'guild');
+  assert.equal(forward.system, 'legacy');
+  assert.equal(forward.label, 'Alpha label');
+  assert.deepEqual(forward.defaultConfig, { a: 1 });
 });

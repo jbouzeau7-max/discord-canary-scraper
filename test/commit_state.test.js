@@ -57,6 +57,23 @@ test('push simple + suppression dans un dossier', () => {
   assert.ok(fs.existsSync(path.join(b, 'builds/2/f')));
 });
 
+test('ne commit que le périmètre demandé et préserve les chemins déjà staged', () => {
+  const { a } = setup();
+  sh(a, `echo staged > unrelated.txt && git add unrelated.txt && echo '{"v":1}' > data/state.json`);
+
+  const output = sh(a, `${SCRIPT} "state" data/state.json`);
+  assert.match(output, /push OK/);
+  assert.deepEqual(
+    sh(a, 'git diff-tree --no-commit-id --name-only -r HEAD').trim().split('\n'),
+    ['data/state.json'],
+  );
+  assert.deepEqual(
+    sh(a, 'git diff --cached HEAD^ --name-only').trim().split('\n'),
+    ['unrelated.txt'],
+  );
+  assert.equal(sh(a, 'git show :unrelated.txt').trim(), 'staged');
+});
+
 test('réindexe une écriture tardive dans un fichier du périmètre', () => {
   const { a, b } = setup();
   const hook = path.join(a, '.git', 'hooks', 'pre-commit');

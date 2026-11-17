@@ -5,18 +5,25 @@ const { writeJsonAtomic } = require('./atomic');
 
 const SCHEMA_VERSION = 2;
 
+function normalizeExperimentId(value) {
+  if (typeof value === 'string') return value.trim() || null;
+  if (typeof value === 'number' && Number.isSafeInteger(value) && value >= 0) return String(value);
+  return null;
+}
+
 function normalizeExperiments(raw) {
   let list = [];
   if (Array.isArray(raw)) list = raw;
   else if (raw && Array.isArray(raw.experiments)) list = raw.experiments;
   else if (raw && typeof raw === 'object') {
-    list = Object.values(raw).filter((x) => x && typeof x === 'object' && x.id);
+    list = Object.values(raw).filter((x) => x && typeof x === 'object' && normalizeExperimentId(x.id) !== null);
   }
   const out = [];
   const seen = new Set();
   for (const e of list) {
-    if (!e || !e.id) continue;
-    const id = String(e.id);
+    if (!e || typeof e !== 'object' || Array.isArray(e)) continue;
+    const id = normalizeExperimentId(e.id);
+    if (id === null) continue;
     if (seen.has(id)) continue;
     seen.add(id);
     out.push({

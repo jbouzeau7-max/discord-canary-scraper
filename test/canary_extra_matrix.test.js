@@ -44,9 +44,9 @@ function response(status, bytes, headers = {}) {
   };
 }
 
-const ASSET_CSS = 'https://cdn.test/assets/theme.css';
-const ASSET_JS = 'https://cdn.test/assets/chunk.js';
-const WEB_JS = 'https://cdn.test/assets/web.canary.js';
+const ASSET_CSS = 'https://cdn.discordapp.com/assets/theme.css';
+const ASSET_JS = 'https://cdn.discordapp.com/assets/chunk.js';
+const WEB_JS = 'https://cdn.discordapp.com/assets/web.canary.js';
 
 // 1
 test('un Content-Length supérieur au plafond est rejeté avant lecture et libère le corps', async () => {

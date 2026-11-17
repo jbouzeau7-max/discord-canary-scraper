@@ -37,17 +37,6 @@ const LAST_EXTRACT_EXP = path.join(DATA, 'last_extract_experiments.json');
 const ANNOUNCED = path.join(DATA, 'announced_builds.json');
 const LAST_RUN_META = path.join(DATA, 'last_run_meta.json');
 
-// Plafonds relevés : ce qui dépassait n'était JAMAIS notifié (déjà enregistré
-// dans last_extract → considéré comme vu au run suivant).
-// Désormais illimités par défaut (surchargeables par env) : tout est notifié.
-const capEnv = (name) => {
-  const n = Number(process.env[name]);
-  return Number.isFinite(n) && n > 0 ? n : Infinity;
-};
-const MAX_NOTIFY_EXP = capEnv('MAX_NOTIFY_EXP');
-const MAX_NOTIFY_STR = capEnv('MAX_NOTIFY_STR');
-const MAX_NOTIFY_RT = capEnv('MAX_NOTIFY_RT');
-const MAX_NOTIFY_EXP_OTHER = capEnv('MAX_NOTIFY_EXP_OTHER');
 // Incrémenter quand la logique d'extraction strings/routes change :
 // le run suivant ré-amorce last_extract_* sans spammer de faux diffs.
 const STR_RT_EXTRACT_VERSION = 3; // v3 : balises $link/$b conservées, routes ${…} nettoyées
@@ -179,6 +168,8 @@ function computeExpDiff(findingsExps, lastExp, knownExp, opts) {
         currentCount: extractedExpCount,
         previousCount: lastExpCount,
         extractionStatus: 'incomplete',
+        currentIds: current.map((e) => e.id),
+        previousIds: previous.map((e) => e.id),
       }),
     };
   }
@@ -187,7 +178,17 @@ function computeExpDiff(findingsExps, lastExp, knownExp, opts) {
     currentCount: extractedExpCount,
     previousCount: lastExpCount,
     extractionStatus: 'complete',
+    currentIds: current.map((e) => e.id),
+    previousIds: previous.map((e) => e.id),
   });
+  if (!coverage.reliable) {
+    return {
+      expDiff: { added: [], modified: [], removed: [], categoryChanged: [] },
+      nextExpSnap: { ...(lastExp || {}) },
+      coverage,
+      rawDiff: null,
+    };
+  }
 
   // Unique source of truth
   const rawDiff = experimentState.diffExperiments(
@@ -198,10 +199,6 @@ function computeExpDiff(findingsExps, lastExp, knownExp, opts) {
       knownIds: knownExp,
       // annoncées supprimées puis revenues → ré-annoncées (avant : silence)
       removedIds: opts && opts.removedIds,
-      maxAdded: MAX_NOTIFY_EXP,
-      maxModified: MAX_NOTIFY_EXP_OTHER,
-      maxRemoved: MAX_NOTIFY_EXP_OTHER,
-      maxCategoryChanged: MAX_NOTIFY_EXP_OTHER,
     },
   );
 
@@ -628,8 +625,6 @@ async function main() {
     strDiff = computeMapDiff(lastStr, extractedStrings, {
       known: knownStr,
       isCatchUp,
-      maxAdded: MAX_NOTIFY_STR,
-      maxRemoved: 500,
     });
   }
 
@@ -639,8 +634,6 @@ async function main() {
     rtDiff = computeMapDiff(lastRt, nextRt, {
       known: knownRt,
       isCatchUp,
-      maxAdded: MAX_NOTIFY_RT,
-      maxRemoved: 200,
     });
   }
 
@@ -891,31 +884,36 @@ async function main() {
     currentCount: normalized.length,
     previousCount: previousCurrent.length,
     extractionStatus: 'complete',
+    currentIds: normalized.map((e) => e.id),
+    previousIds: previousCurrent.map((e) => e.id),
   });
   console.log('EXP_STATE coverage', cov);
+  const stateCurrent = cov.reliable ? normalized : previousCurrent;
   const nextKnown = experimentState.mergeKnownIds(knownExpIds, normalized);
-  const nextRemoved = experimentState.updateRemovedExperiments({
-    previousCurrent,
-    current: normalized,
-    existingRemoved: previousRemoved,
-    allowRemovals: !!cov.reliable || (expDiff.removed.length > 0),
-    buildNumber: bn,
-    confirmedRemovedIds: (() => {
-      const candidates =
-        (rawDiff && (rawDiff.removedAll || rawDiff.removed)) ||
-        expDiff.removed ||
-        [];
-      const out = [];
-      const seen = new Set();
-      for (const e of candidates) {
-        const id = String(typeof e === 'string' ? e : (e && e.id) || '');
-        if (!id || seen.has(id) || knownRemoved.has(id)) continue;
-        seen.add(id);
-        out.push(id);
-      }
-      return out;
-    })(),
-  });
+  const nextRemoved = cov.reliable
+    ? experimentState.updateRemovedExperiments({
+        previousCurrent,
+        current: normalized,
+        existingRemoved: previousRemoved,
+        allowRemovals: true,
+        buildNumber: bn,
+        confirmedRemovedIds: (() => {
+          const candidates =
+            (rawDiff && (rawDiff.removedAll || rawDiff.removed)) ||
+            expDiff.removed ||
+            [];
+          const out = [];
+          const seen = new Set();
+          for (const e of candidates) {
+            const id = String(typeof e === 'string' ? e : (e && e.id) || '');
+            if (!id || seen.has(id) || knownRemoved.has(id)) continue;
+            seen.add(id);
+            out.push(id);
+          }
+          return out;
+        })(),
+      })
+    : previousRemoved;
 
   const allExps = findings.experiments || [];
   const apexList = allExps
@@ -986,8 +984,8 @@ async function main() {
     'current_experiments.json': {
       ...stamp,
       updatedAt: tsIso,
-      count: normalized.length,
-      experiments: normalized,
+      count: stateCurrent.length,
+      experiments: stateCurrent,
     },
     'removed_experiments.json': {
       ...stamp,

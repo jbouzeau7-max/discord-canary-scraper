@@ -2,6 +2,7 @@
 
 const test = require('node:test');
 const assert = require('node:assert/strict');
+const crypto = require('crypto');
 const fs = require('fs-extra');
 const os = require('os');
 const path = require('path');
@@ -21,16 +22,20 @@ test('pool: chunk du build précédent réutilisé sans requête réseau', async
   const dir = path.join(await fs.mkdtemp(path.join(os.tmpdir(), 'pool-')), 'assets');
   await fs.ensureDir(dir);
   await fs.writeFile(path.join(dir, 'aaaaaaaaaaaaaaaa.js'), JS);
+  await fs.writeFile(
+    path.join(dir, 'aaaaaaaaaaaaaaaa.js.sha256'),
+    crypto.createHash('sha256').update(JS).digest('hex') + '\n',
+  );
   await fs.writeFile(path.join(dir, 'web.bbbbbbbbbbbbbbbb.js'), JS);
   await clearAssetsDir(dir);
   assert.deepEqual(await fs.readdir(dir), []);
-  assert.deepEqual(await fs.readdir(poolDirFor(dir)), ['aaaaaaaaaaaaaaaa.js']);
+  assert.deepEqual(await fs.readdir(poolDirFor(dir)), ['aaaaaaaaaaaaaaaa.js', 'aaaaaaaaaaaaaaaa.js.sha256']);
   let calls = 0;
   const fetch = async () => {
     calls++;
     return { ok: true, status: 200, headers: { get: () => null }, body: null, buffer: async () => Buffer.from(JS) };
   };
-  await downloadList(['https://x/assets/aaaaaaaaaaaaaaaa.js'], dir, false, { fetch });
+  await downloadList(['https://canary.discord.com/assets/aaaaaaaaaaaaaaaa.js'], dir, false, { fetch });
   assert.equal(calls, 0);
   assert.equal(await fs.readFile(path.join(dir, 'aaaaaaaaaaaaaaaa.js'), 'utf8'), JS);
 });
@@ -45,6 +50,6 @@ test('pool: chunk HTML corrompu ignoré (re-téléchargé)', async () => {
     calls++;
     throw new Error('offline');
   };
-  await assert.rejects(downloadList(['https://x/assets/cccccccccccccccc.js'], dir, false, { fetch }));
+  await assert.rejects(downloadList(['https://canary.discord.com/assets/cccccccccccccccc.js'], dir, false, { fetch }));
   assert.ok(calls >= 1);
 });

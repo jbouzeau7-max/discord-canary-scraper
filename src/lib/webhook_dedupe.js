@@ -1,6 +1,6 @@
 /**
  * Webhook dedupe — claim BEFORE HTTP so concurrent GHA runs cannot double-post.
- * States: pending | sent | failed
+ * States: pending | sent | failed (unavailable is a transient claim result)
  * - pending: in-flight (stale after CLAIM_STALE_MS → re-claimable)
  * - sent: delivered OK (blocked for WINDOW_MS)
  * - failed: HTTP failed → immediately re-claimable
@@ -21,50 +21,105 @@ const CLAIM_STALE_MS = 5 * 60 * 1000;
 // récentes étaient purgées → doublons après un échec partiel.
 const MAX_KEYS = envNumber('NOTIFY_DEDUPE_MAX_KEYS', 6000, { min: 100, int: true });
 const LOCK_FILE = DEDUPE_FILE + '.lock';
-const LOCK_WAIT_MS = 8000;
+const LOCK_WAIT_MS = envNumber('NOTIFY_DEDUPE_LOCK_WAIT_MS', 8000, { min: 1, int: true });
+
+class DedupeLockError extends Error {
+  constructor(message, cause) {
+    super(message, cause ? { cause } : undefined);
+    this.name = 'DedupeLockError';
+    this.code = 'DEDUPE_LOCK_UNAVAILABLE';
+  }
+}
+
+function processIsAlive(pid) {
+  if (!Number.isSafeInteger(pid) || pid <= 0) return false;
+  try {
+    process.kill(pid, 0);
+    return true;
+  } catch (e) {
+    return e && e.code === 'EPERM';
+  }
+}
+
+async function removeStaleLock() {
+  let before;
+  let owner;
+  try {
+    before = await fs.stat(LOCK_FILE);
+    if (Date.now() - before.mtimeMs <= LOCK_WAIT_MS * 2) return false;
+  } catch {
+    return false;
+  }
+  try { owner = await fs.readJson(LOCK_FILE); } catch { owner = null; }
+
+  // A live process owns a valid lock even if its critical section is long.
+  // Legacy/malformed locks remain recoverable after the conservative age test.
+  if (owner && processIsAlive(Number(owner.pid))) return false;
+  try {
+    const current = await fs.stat(LOCK_FILE);
+    if (current.dev !== before.dev || current.ino !== before.ino) return false;
+    let currentOwner;
+    try { currentOwner = await fs.readJson(LOCK_FILE); } catch { currentOwner = null; }
+    if (JSON.stringify(currentOwner) !== JSON.stringify(owner)) return false;
+    await fs.unlink(LOCK_FILE);
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+async function removeOwnedLock(token) {
+  try {
+    const owner = await fs.readJson(LOCK_FILE);
+    if (owner && owner.token === token) await fs.unlink(LOCK_FILE);
+  } catch {}
+}
 
 async function withDedupeLock(fn) {
   const start = Date.now();
-  while (Date.now() - start < LOCK_WAIT_MS) {
-    let fd = null;
+  while (true) {
+    let handle;
+    const token = crypto.randomBytes(16).toString('hex');
     try {
       await fs.ensureDir(path.dirname(LOCK_FILE));
-      fd = await fs.open(LOCK_FILE, 'wx');
-      try { return await fn(); }
-      finally {
-        try { await fd.close(); } catch {}
-        try { await fs.unlink(LOCK_FILE); } catch {}
-      }
+      handle = await fs.promises.open(LOCK_FILE, 'wx');
+      await handle.writeFile(JSON.stringify({ pid: process.pid, token, createdAt: Date.now() }));
     } catch (e) {
-      if (e && e.code === 'EEXIST') {
-        // Verrou orphelin (processus précédent tué avant unlink) → nettoyage si expiré
-        try {
-          const st = await fs.stat(LOCK_FILE);
-          if (Date.now() - st.mtimeMs > LOCK_WAIT_MS * 2) {
-            await fs.unlink(LOCK_FILE).catch(() => {});
-            continue;
-          }
-        } catch {}
-        await sleep(15 + Math.floor(Math.random() * 40));
-        continue;
+      if (handle) {
+        try { await handle.close(); } catch {}
+        await removeOwnedLock(token);
       }
-      console.warn('dedupe lock unavailable', e.message);
-      return fn();
+      if (!e || e.code !== 'EEXIST') {
+        throw new DedupeLockError('could not acquire dedupe lock', e);
+      }
+      await removeStaleLock();
+      if (Date.now() - start >= LOCK_WAIT_MS) {
+        throw new DedupeLockError('dedupe lock acquisition timed out');
+      }
+      await sleep(15 + Math.floor(Math.random() * 20));
+      continue;
+    }
+
+    try {
+      return await fn();
+    } finally {
+      try { await handle.close(); } catch {}
+      await removeOwnedLock(token);
     }
   }
-  console.warn('dedupe lock timeout — proceeding unlocked');
-  return fn();
 }
 
 async function load() {
   try {
-    if (!(await fs.pathExists(DEDUPE_FILE))) return { fps: {} };
     const d = await fs.readJson(DEDUPE_FILE);
-    if (!d || typeof d !== 'object' || Array.isArray(d)) return { fps: {} };
-    if (!d.fps || typeof d.fps !== 'object' || Array.isArray(d.fps)) d.fps = {};
+    if (!d || typeof d !== 'object' || Array.isArray(d) ||
+        !d.fps || typeof d.fps !== 'object' || Array.isArray(d.fps)) {
+      throw new Error('invalid dedupe state schema');
+    }
     return d;
-  } catch {
-    return { fps: {} };
+  } catch (error) {
+    if (error && error.code === 'ENOENT') return { fps: {} };
+    throw error;
   }
 }
 
@@ -111,12 +166,13 @@ async function save(d) {
           Math.random().toString(36).slice(2, 8);
         await fs.writeJson(tmp2, d);
         await fs.move(tmp2, DEDUPE_FILE, { overwrite: true });
-      } catch (e2) {
+      } catch {
         throw moveErr;
       }
     }
   } catch (e) {
     console.warn('dedupe save fail', e.message);
+    throw e;
   }
 }
 
@@ -150,8 +206,9 @@ async function wasPosted(fp) {
 }
 
 /**
- * Réserve une clé. Retourne 'claimed' (à envoyer), 'sent' (déjà livré) ou
- * 'pending' (envoi en cours / run interrompu récent → NON livré).
+ * Réserve une clé. Retourne 'claimed' (à envoyer), 'sent' (déjà livré),
+ * 'pending' (envoi en cours / run interrompu récent) ou 'unavailable'
+ * (verrou indisponible → réessayer sans envoyer).
  * Distinguer 'sent' de 'pending' évite de considérer comme envoyé un message
  * qui ne l'a jamais été (l'état avançait → message perdu).
  */
@@ -171,8 +228,8 @@ async function claimState(fp) {
       return 'claimed';
     });
   } catch (e) {
-    console.warn('claimPosted fail (allow send)', e.message);
-    return 'claimed';
+    console.warn('claimPosted fail (retry required)', e.message);
+    return 'unavailable';
   }
 }
 
@@ -184,8 +241,9 @@ async function claimPosted(fp) {
  * Réserve N clés en UNE seule passe verrou+lecture+écriture.
  * Mêmes garanties que claimState (pending écrit AVANT l'envoi), mais un lot
  * de 300 messages passait par 300 réécritures du fichier de dedupe ; ici :
- * une seule. Retourne Map<clé, 'claimed'|'sent'|'pending'>.
- * En cas d'erreur disque : tout est « claimed » (fail-open, jamais de perte).
+ * une seule. Retourne Map<clé, 'claimed'|'sent'|'pending'|'unavailable'>.
+ * Si le verrou n'est pas obtenu, les clés sont « unavailable » et doivent
+ * être retentées sans envoyer.
  */
 async function claimMany(fps) {
   const keys = [
@@ -225,8 +283,8 @@ async function claimMany(fps) {
     for (const fp of keys) if (!out.has(fp)) out.set(fp, 'claimed');
     return out;
   } catch (e) {
-    console.warn('claimMany fail (allow send)', e.message);
-    for (const fp of keys) out.set(fp, 'claimed');
+    console.warn('claimMany fail (retry required)', e.message);
+    for (const fp of keys) out.set(fp, 'unavailable');
     return out;
   }
 }

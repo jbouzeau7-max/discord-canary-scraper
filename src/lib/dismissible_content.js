@@ -39,14 +39,20 @@ function extractDismissibleContent(content, out) {
     re.lastIndex = at - vm[0].length;
     const found = {};
     let n = 0;
+    let complete = false;
     let m;
     while ((m = re.exec(content)) !== null) {
       found[m[1]] = Number(m[2]);
       n++;
+      const tail = content.slice(re.lastIndex);
+      if (new RegExp('^\\s*(?:,\\s*' + v + '\\s*)?\\)').test(tail)) {
+        complete = true;
+        break;
+      }
       if (content.charCodeAt(re.lastIndex) !== 44) break; // ','
       re.lastIndex++;
     }
-    if (n >= 10) {
+    if (n >= 10 && complete) {
       delete found.DISMISSIBLE_CONTENT_UNSPECIFIED;
       Object.assign(out, found);
       total += n;

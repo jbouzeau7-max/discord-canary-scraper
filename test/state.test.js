@@ -49,6 +49,20 @@ test('normalizeExperiments ignore les entrées sans id', () => {
   assert.equal(out[0].id, 'ok');
 });
 
+test('normalizeExperiments ignore les IDs non scalaires et normalise les chaînes', () => {
+  const out = normalizeExperiments([
+    { id: { value: 'bad' } },
+    { id: ['bad'] },
+    { id: true },
+    { id: Infinity },
+    { id: -1 },
+    { id: '  valid-id  ' },
+    { id: 'valid-id' },
+    { id: 0 },
+  ]);
+  assert.deepEqual(out.map((entry) => entry.id), ['valid-id', '0']);
+});
+
 test('normalizeExperiments normalise le type', () => {
   assert.equal(normalizeExperiments([{ id: '1', type: 'guild' }])[0].type, 'guild');
   assert.equal(normalizeExperiments([{ id: '1', type: 'user' }])[0].type, 'user');

@@ -18,6 +18,13 @@ function bundle(members, v = 'i') {
   return 'var x=1,a=(' + parts.join(',') + `,${v}),b={FOO_BAR:12,BAZ_QUX:13};`;
 }
 
+function truncatedBundle(members, v = 'i') {
+  const parts = members.map(([k, n], idx) =>
+    idx === 0 ? `(${v}={})[${v}.${k}=${n}]="${k}"` : `${v}[${v}.${k}=${n}]="${k}"`,
+  );
+  return 'var x=1,a=(' + parts.join(',');
+}
+
 const BASE = [['DISMISSIBLE_CONTENT_UNSPECIFIED', 0]];
 for (let i = 1; i <= 20; i++) BASE.push(['ITEM_' + i, i]);
 
@@ -43,6 +50,14 @@ test('extraction : rien sans ancre / enum trop court', () => {
   dc.extractDismissibleContent('a={FOO_BAR:1,BAR_BAZ:2}', out);
   dc.extractDismissibleContent(bundle(BASE.slice(0, 4)), out);
   assert.deepEqual(out, {});
+});
+
+test('extraction : enum tronquée au seuil rejetée et réparable avec le bundle complet', () => {
+  const out = {};
+  assert.equal(dc.extractDismissibleContent(truncatedBundle(BASE.slice(0, 10)), out), 0);
+  assert.deepEqual(out, {});
+  assert.equal(dc.extractDismissibleContent(bundle(BASE), out), BASE.length);
+  assert.equal(Object.keys(out).length, BASE.length - 1);
 });
 
 test('diff : ajouté / modifié / supprimé', () => {

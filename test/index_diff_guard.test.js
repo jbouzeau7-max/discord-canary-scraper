@@ -77,3 +77,14 @@ test('computeExpDiff : ids hash: et entrées invalides ignorés', () => {
 test('MIN_EXP_FOR_DIFF reste un seuil positif', () => {
   assert.ok(Number.isFinite(MIN_EXP_FOR_DIFF) && MIN_EXP_FOR_DIFF > 0);
 });
+
+test('computeExpDiff : rétention faible préserve le snapshot et supprime les diff fantômes', () => {
+  const lastExp = snapMap(100);
+  const current = Array.from({ length: 100 }, (_, i) => exp(1000 + i));
+  const { expDiff, nextExpSnap, coverage } = computeExpDiff(current, lastExp, new Set());
+  assert.equal(coverage.reliable, false);
+  assert.equal(coverage.reason, 'retention_too_low');
+  assert.equal(expDiff.added.length, 0);
+  assert.equal(expDiff.removed.length, 0);
+  assert.deepEqual(nextExpSnap, lastExp);
+});

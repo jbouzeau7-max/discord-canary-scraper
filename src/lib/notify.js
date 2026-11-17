@@ -54,16 +54,6 @@ const COMPONENT_FIELD_MAX = (() => {
 })();
 const LINE_VAL_MAX = 240;
 const LINE_VAL_ROUTES = 100;
-// Plus de troncature silencieuse : tout est envoyé (découpé en plusieurs messages)
-// Aucun plafond par défaut : chaque élément du diff est envoyé (sinon le
-// surplus était enregistré comme « vu » et jamais notifié).
-const capEnv = (name) => {
-  const n = Number(process.env[name]);
-  return Number.isFinite(n) && n > 0 ? n : Infinity;
-};
-const MAX_STR_LINES = capEnv('NOTIFY_MAX_STR_LINES');
-const MAX_RT_LINES = capEnv('NOTIFY_MAX_RT_LINES');
-const MAX_EXP_LINES = capEnv('NOTIFY_MAX_EXP_LINES');
 
 /**
  * Réserve une clé de lot. 'sent' → déjà livré (succès), 'pending' → un autre
@@ -529,6 +519,13 @@ async function sendSectionEmbeds({ webhookUrl, title, bn, ts, sections, batchKey
       ok = false;
       continue;
     }
+    if (st === 'unavailable') {
+      // Verrou indisponible : la réservation n'a pas eu lieu, retenter au
+      // prochain run plutôt que d'envoyer sans protection contre les doublons.
+      console.log('webhook CLAIM skip', 'unavailable', it.embed.title || '');
+      ok = false;
+      continue;
+    }
     toSend.push(it);
   }
 
@@ -600,8 +597,7 @@ async function sendExperiments(webhookUrl, bn, exp, ts, scope) {
 
   const sections = [];
   if (exp.added.length) {
-    const lines = exp.added.slice(0, MAX_EXP_LINES).map((e) => expLine(e, '+'));
-    if (exp.added.length > MAX_EXP_LINES) lines.push(`… +${exp.added.length - MAX_EXP_LINES} de plus`);
+    const lines = exp.added.map((e) => expLine(e, '+'));
     sections.push({
       label: label(E.added, `Ajoutées · ${exp.added.length}`),
       color: COLOR.added,
@@ -610,8 +606,7 @@ async function sendExperiments(webhookUrl, bn, exp, ts, scope) {
     });
   }
   if (exp.modified.length) {
-    const lines = exp.modified.slice(0, MAX_EXP_LINES).map((e) => expLine(e, '~'));
-    if (exp.modified.length > MAX_EXP_LINES) lines.push(`… +${exp.modified.length - MAX_EXP_LINES} de plus`);
+    const lines = exp.modified.map((e) => expLine(e, '~'));
     sections.push({
       label: label(E.modified, `Modifiées · ${exp.modified.length}`),
       color: COLOR.modified,
@@ -620,13 +615,12 @@ async function sendExperiments(webhookUrl, bn, exp, ts, scope) {
     });
   }
   if ((exp.categoryChanged || []).length) {
-    const lines = exp.categoryChanged.slice(0, MAX_EXP_LINES).map((e) => {
+    const lines = exp.categoryChanged.map((e) => {
       const id = e.id || '?';
       const from = e.from || '?';
       const to = e.to || e.kind || '?';
       return `~ ${id}  ${from} → ${to}`;
     });
-    if (exp.categoryChanged.length > MAX_EXP_LINES) lines.push(`… +${exp.categoryChanged.length - MAX_EXP_LINES} de plus`);
     sections.push({
       label: label(E.modified, `Catégorie changée · ${exp.categoryChanged.length}`),
       color: COLOR.modified,
@@ -635,11 +629,10 @@ async function sendExperiments(webhookUrl, bn, exp, ts, scope) {
     });
   }
   if (exp.removed.length) {
-    const lines = exp.removed.slice(0, MAX_EXP_LINES).map((e) => {
+    const lines = exp.removed.map((e) => {
       const id = typeof e === 'string' ? e : e.id;
       return `- ${id}`;
     });
-    if (exp.removed.length > MAX_EXP_LINES) lines.push(`… +${exp.removed.length - MAX_EXP_LINES} de plus`);
     sections.push({
       label: label(E.removed, `Supprimées · ${exp.removed.length}`),
       color: COLOR.removed,
@@ -686,13 +679,11 @@ async function sendMapDiff(webhookUrl, bn, diff, ts, kind, scope) {
   const r = Object.keys(diff.removed);
   const sections = [];
   const kindEmoji = isRoutes ? E.route : E.str;
-  const maxLines = isRoutes ? MAX_RT_LINES : MAX_STR_LINES;
   const maxVal = isRoutes ? LINE_VAL_ROUTES : LINE_VAL_MAX;
   if (a.length) {
-    const lines = a.slice(0, maxLines).map((k) =>
+    const lines = a.map((k) =>
       isRoutes ? routeLine('+', k, diff.added[k]) : stringLine('+', k, diff.added[k], maxVal),
     );
-    if (a.length > maxLines) lines.push(`… +${a.length - maxLines} de plus`);
     sections.push({
       label: label(E.added, isRoutes ? `Ajoutées · ${a.length}` : `Ajoutés · ${a.length}`),
       color: COLOR.added,
@@ -701,10 +692,9 @@ async function sendMapDiff(webhookUrl, bn, diff, ts, kind, scope) {
     });
   }
   if (m.length) {
-    const lines = m.slice(0, maxLines).map((k) =>
+    const lines = m.map((k) =>
       isRoutes ? routeLine('~', k, diff.modified[k]) : stringLine('~', k, diff.modified[k], maxVal),
     );
-    if (m.length > maxLines) lines.push(`… +${m.length - maxLines} de plus`);
     sections.push({
       label: label(E.modified, isRoutes ? `Modifiées · ${m.length}` : `Modifiés · ${m.length}`),
       color: COLOR.modified,
@@ -713,10 +703,9 @@ async function sendMapDiff(webhookUrl, bn, diff, ts, kind, scope) {
     });
   }
   if (r.length) {
-    const lines = r.slice(0, maxLines).map((k) =>
+    const lines = r.map((k) =>
       isRoutes ? routeLine('-', k, diff.removed[k]) : stringLine('-', k, diff.removed[k], maxVal),
     );
-    if (r.length > maxLines) lines.push(`… +${r.length - maxLines} de plus`);
     sections.push({
       label: label(E.removed, isRoutes ? `Supprimées · ${r.length}` : `Supprimés · ${r.length}`),
       color: COLOR.removed,

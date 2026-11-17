@@ -9,6 +9,8 @@ validateCurrentGeneration(path.join(__dirname, '..', 'data'))
     console.log('data generation valid', JSON.stringify(result));
     if (result.legacy) {
       console.warn('legacy generation pointer: structural checks passed; checksums are unavailable');
+    } else if (!result.manifestChecked) {
+      console.warn('legacy schemaVersion 2 pointer: fixed-file checksums passed; no committed manifest is available');
     }
   })
   .catch((error) => {

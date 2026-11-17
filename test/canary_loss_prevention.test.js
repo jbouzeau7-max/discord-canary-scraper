@@ -132,7 +132,7 @@ test('la borne basse de baseline conserve un extract juste sous le seuil courant
 
 // 9
 test('exactement MIN_EXP_FOR_DIFF permet de promouvoir le snapshot courant', () => {
-  const previous = expSnapshot(40);
+  const previous = expSnapshot(100);
   const current = Array.from({ length: MIN_EXP_FOR_DIFF }, (_, i) => exp(i));
   const promoted = computeExpDiff(current, previous, new Set()).nextExpSnap;
   assert.equal(Object.keys(promoted).length, current.length);
@@ -264,7 +264,7 @@ async function runTinyBatch(size, failedIndex) {
   const dir = await fs.mkdtemp(path.join(os.tmpdir(), 'canary-tiny-batch-'));
   const urls = Array.from(
     { length: size },
-    (_, i) => `https://cdn.test/assets/chunk-${i}.js`,
+    (_, i) => `https://cdn.discordapp.com/assets/chunk-${i}.js`,
   );
   try {
     await assert.rejects(

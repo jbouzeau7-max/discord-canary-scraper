@@ -7,10 +7,13 @@
 const fetch = require('node-fetch');
 const cheerio = require('cheerio');
 const { DEFAULT_UA, sleep, envNumber } = require('./utils');
+const { normalizeAssetUrl } = require('./asset_url');
+const { readResponseBody, MAX_RESPONSE_BODY_BYTES, extractRetryAfterMs } = require('./http');
 
 const CANARY_APP = 'https://canary.discord.com/app';
 const HTML_ATTEMPTS = envNumber('CANARY_HTML_ATTEMPTS', 3, { min: 1, max: 10, int: true });
 const HTML_TIMEOUT_MS = envNumber('CANARY_HTML_TIMEOUT_MS', 20000, { min: 1000 });
+const CANARY_MAX_RETRY_AFTER_MS = envNumber('CANARY_MAX_RETRY_AFTER_MS', 120000, { min: 0 });
 
 /**
  * Fetch the Discord Canary web app HTML and extract build metadata + asset URLs.
@@ -64,7 +67,11 @@ async function fetchBuild(opts = {}) {
  * HTML de l'app avec retries : une erreur réseau / 5xx / page incomplète
  * passagère faisait échouer tout le run (build annoncé 5 min plus tard).
  */
-async function fetchAppHtml(attempts = HTML_ATTEMPTS, fetchImpl = fetch) {
+async function fetchAppHtml(attempts = HTML_ATTEMPTS, fetchImpl = fetch, deps = {}) {
+  const sleepImpl = typeof deps.sleep === 'function' ? deps.sleep : sleep;
+  const maxRetryAfterMs = Number.isFinite(Number(deps.maxRetryAfterMs))
+    ? Math.max(0, Number(deps.maxRetryAfterMs))
+    : CANARY_MAX_RETRY_AFTER_MS;
   let lastErr = null;
   for (let i = 0; i < attempts; i++) {
     try {
@@ -78,16 +85,25 @@ async function fetchAppHtml(attempts = HTML_ATTEMPTS, fetchImpl = fetch) {
         timeout: HTML_TIMEOUT_MS,
       });
       if (res.ok) {
-        const html = await res.text();
+        // Plafond partagé de 5 MiB; le lecteur détruit le flux si la limite
+        // est dépassée, plutôt que d'accumuler une page d'app arbitrairement grande.
+        const html = await readResponseBody(res, { maxBytes: MAX_RESPONSE_BODY_BYTES });
         if (isCompleteAppHtml(html) || i + 1 >= attempts) return html;
         lastErr = new Error('canary app HTML sans BUILD_NUMBER (' + html.length + ' octets)');
       } else {
         lastErr = new Error('canary app HTTP ' + res.status);
+        const retryAfterMs = extractRetryAfterMs(res);
+        // Libère le flux sans accumuler un corps d'erreur illimité.
+        try { await readResponseBody(res, { maxBytes: 64 * 1024 }); } catch {}
         // 4xx (hors 429) : inutile de marteler, l'erreur est permanente.
         if (res.status >= 400 && res.status < 500 && res.status !== 429) break;
-        const ra = Number(res.headers && res.headers.get && res.headers.get('retry-after'));
-        if (Number.isFinite(ra) && ra > 0) {
-          lastErr.retryAfterMs = Math.min(60000, ra * 1000);
+        if (retryAfterMs > maxRetryAfterMs) {
+          lastErr = new Error(`canary app Retry-After ${Math.ceil(retryAfterMs / 1000)}s exceeds budget ${Math.ceil(maxRetryAfterMs / 1000)}s`);
+          lastErr.retryAfterTooLong = true;
+          break;
+        }
+        if (retryAfterMs > 0) {
+          lastErr.retryAfterMs = retryAfterMs;
         }
       }
     } catch (e) {
@@ -97,7 +113,7 @@ async function fetchAppHtml(attempts = HTML_ATTEMPTS, fetchImpl = fetch) {
       console.warn(`fetchBuild retry ${i + 1}/${attempts - 1}:`, String(lastErr && lastErr.message).slice(0, 160));
       const base = 800 * (i + 1) * (i + 1);
       const jitter = Math.floor(Math.random() * 250);
-      await sleep((lastErr && lastErr.retryAfterMs) || base + jitter);
+      await sleepImpl((lastErr && lastErr.retryAfterMs) || base + jitter);
     }
   }
   throw lastErr || new Error('canary app fetch failed');
@@ -187,16 +203,10 @@ function extractAssetUrls(html) {
     if (!href || typeof href !== 'string') return;
     const raw = href.trim();
     if (!raw.includes('/assets/')) return;
-    // ?query et #fragment ne font pas partie du nom de fichier.
-    const clean = raw.split('?')[0].split('#')[0];
-    let abs;
-    if (/^https?:\/\//i.test(clean)) abs = clean;
-    // URL protocole-relative (//cdn.discordapp.com/assets/...) : surtout ne
-    // pas la préfixer par canary.discord.com (ancien bug → 404 garanti).
-    else if (clean.startsWith('//')) abs = 'https:' + clean;
-    else abs = 'https://canary.discord.com' + (clean.startsWith('/') ? clean : '/' + clean);
-    if (/\.js$/i.test(abs)) js.add(abs);
-    if (/\.css$/i.test(abs)) css.add(abs);
+    const abs = normalizeAssetUrl(raw, CANARY_APP);
+    if (!abs) return;
+    if (/\.js$/i.test(new URL(abs).pathname)) js.add(abs);
+    if (/\.css$/i.test(new URL(abs).pathname)) css.add(abs);
   };
 
   $('script[src]').each((_, el) => add($(el).attr('src')));

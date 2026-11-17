@@ -21,6 +21,7 @@ const { writeJsonAtomic, writeFileAtomic } = require('./atomic');
 const GENERATIONS_DIR = '.generations';
 const STAGING_DIR = '.publish_staging';
 const POINTER_FILE = 'generation.json';
+const MANIFEST_FILE = 'generation-manifest.json';
 const KEEP_GENERATIONS = envNumber('DATA_KEEP_GENERATIONS', 5, { min: 1, int: true });
 
 async function publishDataGeneration(dataDir, opts) {
@@ -29,11 +30,17 @@ async function publishDataGeneration(dataDir, opts) {
   const files = opts.files || {};
 
   if (!runId) throw new Error('publishDataGeneration: missing runId');
+  if (!/^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$/.test(runId)) {
+    throw new Error('publishDataGeneration: invalid runId');
+  }
   if (!buildNumber || buildNumber === 'unknown') {
     throw new Error('publishDataGeneration: missing or unknown buildNumber');
   }
   const names = Object.keys(files);
   if (!names.length) throw new Error('publishDataGeneration: no files');
+  if (names.includes(POINTER_FILE) || names.includes(MANIFEST_FILE)) {
+    throw new Error('publishDataGeneration: input uses a reserved generation metadata path');
+  }
 
   await fs.ensureDir(dataDir);
 
@@ -99,7 +106,7 @@ async function publishDataGeneration(dataDir, opts) {
   }
 
   const manifest = {
-    schemaVersion: 2,
+    schemaVersion: 3,
     runId,
     buildNumber,
     publishedAt: null,
@@ -113,39 +120,77 @@ async function publishDataGeneration(dataDir, opts) {
 
   const genRoot = path.join(dataDir, GENERATIONS_DIR);
   const generationDir = path.join(genRoot, runId);
+  const currentPointer = await readCurrentGeneration(dataDir);
+  if (currentPointer && currentPointer.generationDir &&
+      path.resolve(dataDir, currentPointer.generationDir) === path.resolve(generationDir)) {
+    throw new Error('publishDataGeneration: runId already identifies the current generation');
+  }
   await fs.emptyDir(generationDir);
   await fs.copy(staging, generationDir);
 
-  const promoted = [];
-  try {
-    for (const rel of written) {
-      const from = path.join(generationDir, rel);
-      const to = path.join(dataDir, rel);
-      await fs.ensureDir(path.dirname(to));
-      const tmp = `${to}.promote-${process.pid}-${Date.now()}`;
-      await fs.copy(from, tmp);
-      await fs.move(tmp, to, { overwrite: true });
-      promoted.push(rel);
-    }
-  } catch (e) {
-    throw new Error(
-      `publishDataGeneration: promote failed after [${promoted.join(', ')}]: ${e.message}`,
-    );
-  }
-
+  const publishedAt = new Date().toISOString();
+  manifest.publishedAt = publishedAt;
+  const generationManifestPath = path.join(generationDir, '_manifest.json');
+  await writeJsonAtomic(generationManifestPath, manifest);
+  const manifestChecksum = sha256(await fs.readFile(generationManifestPath));
   const pointer = {
-    schemaVersion: 2,
+    schemaVersion: 3,
     runId,
     buildNumber,
-    publishedAt: new Date().toISOString(),
+    publishedAt,
     files: written.slice(),
     checksums: { ...checksums },
     generationDir: path.join(GENERATIONS_DIR, runId),
+    manifestFile: MANIFEST_FILE,
+    manifestSha256: manifestChecksum,
   };
-  await writeJsonAtomic(path.join(dataDir, POINTER_FILE), pointer);
-
-  manifest.publishedAt = pointer.publishedAt;
-  await writeJsonAtomic(path.join(generationDir, '_manifest.json'), manifest);
+  const promoted = [];
+  const rollbackRoot = path.join(staging, '__rollback__');
+  try {
+    const promotionPlan = written.map((rel) => ({ rel, from: path.join(generationDir, rel) }));
+    promotionPlan.push({ rel: MANIFEST_FILE, from: generationManifestPath });
+    for (const { rel, from } of promotionPlan) {
+      const to = path.join(dataDir, rel);
+      await fs.ensureDir(path.dirname(to));
+      const existed = await fs.pathExists(to);
+      const backup = path.join(rollbackRoot, rel);
+      if (existed) {
+        await fs.ensureDir(path.dirname(backup));
+        await fs.copy(to, backup, { overwrite: true });
+      }
+      const tmp = `${to}.promote-${process.pid}-${Date.now()}`;
+      const record = { rel, to, backup, existed, tmp };
+      promoted.push(record);
+      await fs.copy(from, tmp, { overwrite: true });
+      await fs.move(tmp, to, { overwrite: true });
+    }
+    await writeJsonAtomic(path.join(dataDir, POINTER_FILE), pointer);
+  } catch (e) {
+    const rollbackErrors = [];
+    for (const item of promoted.reverse()) {
+      try {
+        await fs.remove(item.tmp);
+        if (item.existed) {
+          const restore = `${item.to}.restore-${process.pid}-${Date.now()}`;
+          await fs.copy(item.backup, restore, { overwrite: true });
+          await fs.move(restore, item.to, { overwrite: true });
+        } else {
+          await fs.remove(item.to);
+        }
+      } catch (rollbackError) {
+        rollbackErrors.push(`${item.rel}: ${rollbackError.message}`);
+      }
+    }
+    try {
+      await fs.remove(staging);
+    } catch (cleanupError) {
+      rollbackErrors.push(`staging cleanup: ${cleanupError.message}`);
+    }
+    const suffix = rollbackErrors.length ? `; rollback failed for ${rollbackErrors.join('; ')}` : '';
+    throw new Error(
+      `publishDataGeneration: promote failed after [${promoted.map((item) => item.rel).join(', ')}]: ${e.message}${suffix}`,
+    );
+  }
 
   try {
     await fs.remove(staging);
@@ -193,5 +238,5 @@ module.exports = {
   validateCurrentGeneration,
   GENERATIONS_DIR,
   POINTER_FILE,
-  STAGING_DIR,
+  MANIFEST_FILE,
 };

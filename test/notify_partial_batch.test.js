@@ -183,3 +183,31 @@ test('pending claim is not treated as successfully sent', async (t) => {
   assert.equal(await dedupe.wasPosted(fp), false);
   assert.equal(posts, 0, 'no HTTP involved in claim-only path');
 });
+
+test('notification expérimentale : aucun élément perdu avec l’ancien paramètre de cap', async (t) => {
+  installFetchMock();
+  t.after(() => uninstallFetchMock());
+  const previousCap = process.env.NOTIFY_MAX_EXP_LINES;
+  process.env.NOTIFY_MAX_EXP_LINES = '1';
+  t.after(() => {
+    if (previousCap === undefined) delete process.env.NOTIFY_MAX_EXP_LINES;
+    else process.env.NOTIFY_MAX_EXP_LINES = previousCap;
+  });
+
+  const payloads = [];
+  fetchImpl = async (_url, opts) => {
+    payloads.push(JSON.parse(opts.body));
+    return okRes();
+  };
+  const { notifyUrgent } = await loadNotify();
+  const ids = Array.from({ length: 12 }, (_, i) => `all_events_${i}`);
+  const result = await notifyUrgent({
+    build: { buildNumber: 'NO-TRUNCATION-' + Date.now() },
+    expDiff: { added: ids.map((id) => ({ id, kind: 'user' })), modified: [], removed: [], categoryChanged: [] },
+    webhookUrl: 'https://example.test/webhook',
+  });
+  assert.equal(result, true);
+  const serialized = JSON.stringify(payloads);
+  for (const id of ids) assert.ok(serialized.includes(id), `missing notified ID ${id}`);
+  assert.ok(!serialized.includes('de plus'), 'must not replace omitted events with a placeholder');
+});

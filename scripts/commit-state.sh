@@ -16,6 +16,35 @@ MSG="${1:?message de commit requis}"
 shift
 [ "$#" -gt 0 ] || { echo "commit-state: aucun chemin"; exit 0; }
 
+REPO_ROOT="$(git rev-parse --show-toplevel 2>/dev/null)" || {
+  echo "commit-state: impossible de trouver la racine du dépôt git" >&2
+  exit 1
+}
+cd "$REPO_ROOT"
+
+for p in "$@"; do
+  case "$p" in
+    '') echo "commit-state: chemin vide" >&2; exit 1 ;;
+    /*) echo "commit-state: chemin absolu interdit: $p" >&2; exit 1 ;;
+  esac
+  case "/$p/" in
+    */../*) echo "commit-state: chemin sortant du dépôt interdit: $p" >&2; exit 1 ;;
+  esac
+done
+
+# Toute l'opération travaille sur un index privé basé sur HEAD. L'index réel
+# de l'utilisateur (y compris ses entrées staged) n'est jamais touché.
+TEMP_INDEX="$(mktemp "${TMPDIR:-/tmp}/commit-state-index.XXXXXX")" || {
+  echo "commit-state: impossible de créer un index temporaire" >&2
+  exit 1
+}
+trap 'rm -f -- "$TEMP_INDEX"' EXIT
+export GIT_INDEX_FILE="$TEMP_INDEX"
+if ! git read-tree HEAD; then
+  echo "commit-state: impossible d'initialiser l'index temporaire depuis HEAD" >&2
+  exit 1
+fi
+
 MAX="${COMMIT_MAX_ATTEMPTS:-8}"
 BRANCH="${COMMIT_BRANCH:-main}"
 RECOVERY_PATCH="${COMMIT_RECOVERY_PATCH:-${RUNNER_TEMP:-${TMPDIR:-/tmp}}/commit-state-recovery.patch}"
@@ -25,12 +54,16 @@ git config user.email >/dev/null 2>&1 || git config user.email "github-actions[b
 
 stage() {
   for p in "$@"; do
+    local pathspec=":(literal)$p"
     if [ -d "$p" ]; then
-      git add -A -- "$p"
-    elif [ -e "$p" ]; then
-      git add -f -- "$p"
-    elif git ls-files --error-unmatch -- "$p" >/dev/null 2>&1; then
-      git add -A -- "$p"
+      git add -A -- "$pathspec"
+    elif [ -e "$p" ] || [ -L "$p" ]; then
+      git add -f -A -- "$pathspec"
+    elif git ls-files --error-unmatch -- "$pathspec" >/dev/null 2>&1; then
+      git add -A -- "$pathspec"
+    else
+      echo "commit-state: chemin inexistant et non suivi: $p" >&2
+      return 1
     fi
   done
 }

@@ -1,6 +1,7 @@
 'use strict';
 const test = require('node:test');
 const assert = require('node:assert/strict');
+const crypto = require('crypto');
 const fs = require('fs-extra');
 const os = require('os');
 const path = require('path');
@@ -30,8 +31,13 @@ async function tmpDir() {
   return fs.mkdtemp(path.join(os.tmpdir(), 'dl-test-'));
 }
 
-const URL_A = 'https://cdn.test/assets/web.aaa.js';
-const URL_B = 'https://cdn.test/assets/chunk.bbb.js';
+const URL_A = 'https://cdn.discordapp.com/assets/web.aaa.js';
+const URL_B = 'https://cdn.discordapp.com/assets/chunk.bbb.js';
+
+async function writeCacheWithDigest(file, body = JS, digestBody = body) {
+  await fs.writeFile(file, body);
+  await fs.writeFile(file + '.sha256', crypto.createHash('sha256').update(digestBody).digest('hex') + '\n');
+}
 
 test('downloadList : téléchargement réussi et stats', async () => {
   resetDownloadStats();
@@ -99,7 +105,7 @@ test('downloadList : corps HTML refusé (même pour un .css)', async () => {
   const dir = await tmpDir();
   const html = Buffer.from('<!DOCTYPE html><html><body>blocked</body></html>');
   await assert.rejects(
-    downloadList(['https://cdn.test/assets/app.zzz.css'], dir, true, {
+    downloadList(['https://cdn.discordapp.com/assets/app.zzz.css'], dir, true, {
       fetch: async () => res(200, html),
     }),
     /download success ratio/,
@@ -146,7 +152,7 @@ test('downloadList : noms de fichiers dupliqués → un seul téléchargement', 
   const dir = await tmpDir();
   let calls = 0;
   await downloadList(
-    ['https://cdn.test/assets/web.aaa.js', 'https://cdn.test/assets/web.aaa.js?v=2'],
+    ['https://cdn.discordapp.com/assets/web.aaa.js', 'https://cdn.discordapp.com/assets/web.aaa.js?v=2'],
     dir,
     true,
     {
@@ -179,7 +185,7 @@ test('downloadList : cache HTML existant re-téléchargé', async () => {
 test('downloadList : cache valide réutilisé sans requête', async () => {
   resetDownloadStats();
   const dir = await tmpDir();
-  await fs.writeFile(path.join(dir, 'web.aaa.js'), JS);
+  await writeCacheWithDigest(path.join(dir, 'web.aaa.js'));
   let calls = 0;
   await downloadList([URL_A], dir, false, {
     fetch: async () => {
@@ -191,10 +197,27 @@ test('downloadList : cache valide réutilisé sans requête', async () => {
   assert.equal(getDownloadStats().skipped, 1);
 });
 
+test('downloadList : cache modifié mais checksum ancien re-téléchargé', async () => {
+  resetDownloadStats();
+  const dir = await tmpDir();
+  const file = path.join(dir, 'web.aaa.js');
+  await writeCacheWithDigest(file, Buffer.from('x'.repeat(100)), JS);
+  let calls = 0;
+  await downloadList([URL_A], dir, false, {
+    fetch: async () => { calls++; return res(200, JS); },
+  });
+  assert.equal(calls, 1);
+  assert.deepEqual(await fs.readFile(file), JS);
+  assert.equal(
+    (await fs.readFile(file + '.sha256', 'utf8')).trim(),
+    crypto.createHash('sha256').update(JS).digest('hex'),
+  );
+});
+
 test('downloadList : ratio de succès insuffisant → erreur bloquante', async () => {
   resetDownloadStats();
   const dir = await tmpDir();
-  const urls = Array.from({ length: 6 }, (_, i) => `https://cdn.test/assets/c${i}.js`);
+  const urls = Array.from({ length: 6 }, (_, i) => `https://cdn.discordapp.com/assets/c${i}.js`);
   await assert.rejects(
     downloadList(urls, dir, true, { fetch: async () => res(404, Buffer.from('x')) }),
     /download success ratio/,
@@ -206,7 +229,7 @@ test('downloadList : URLs hors /assets/ ou non JS/CSS ignorées', async () => {
   const dir = await tmpDir();
   let calls = 0;
   await downloadList(
-    ['https://cdn.test/other.js', 'https://cdn.test/assets/img.png', null, ''],
+    ['https://cdn.discordapp.com/other.js', 'https://cdn.discordapp.com/assets/img.png', null, ''],
     dir,
     true,
     {
@@ -230,4 +253,32 @@ test('downloadList : contenu trop volumineux rejeté sans écriture', async () =
   );
   assert.equal(await fs.pathExists(path.join(dir, 'chunk.bbb.js')), false);
   assert.equal(getDownloadStats().failed, 1);
+});
+
+test('downloadList : refuse localhost avant toute requête réseau', async () => {
+  const dir = await tmpDir();
+  let calls = 0;
+  await assert.rejects(
+    downloadList(['http://127.0.0.1/assets/secret.js'], dir, true, {
+      fetch: async () => { calls++; return res(200, JS); },
+    }),
+    /INVALID_ASSET_URL/,
+  );
+  assert.equal(calls, 0);
+});
+
+test('downloadList : une redirection vers localhost est bloquée sans retry', async () => {
+  resetDownloadStats();
+  const dir = await tmpDir();
+  let calls = 0;
+  await assert.rejects(
+    downloadList([URL_A], dir, true, {
+      fetch: async () => {
+        calls++;
+        return res(302, Buffer.alloc(0), { location: 'http://127.0.0.1/assets/secret.js' });
+      },
+    }),
+    /download success ratio/,
+  );
+  assert.equal(calls, 1);
 });

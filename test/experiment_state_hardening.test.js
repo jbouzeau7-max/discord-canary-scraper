@@ -41,6 +41,16 @@ test('isMeaningfulModification : variationCount différent détecté', () => {
   assert.equal(isMeaningfulModification(a, b), true);
 });
 
+test('isMeaningfulModification : transitions unknown/known conservent zéro comme valeur', () => {
+  const unknown = { id: 'e1', kind: 'guild', guildPercentage: { status: 'unknown', value: null } };
+  const zero = { id: 'e1', kind: 'guild', guildPercentage: { status: 'active', value: 0 } };
+  const known = { id: 'e1', kind: 'guild', guildPercentage: { status: 'active', value: 25 } };
+  assert.equal(isMeaningfulModification(unknown, zero), true);
+  assert.equal(isMeaningfulModification(unknown, known), true);
+  assert.equal(isMeaningfulModification(zero, unknown), true);
+  assert.equal(isMeaningfulModification(zero, { ...zero, guildPercentage: { status: 'active', value: 0.1 } }), false);
+});
+
 test('assessCoverage : env invalide ne bloque pas la couverture', () => {
   const saved = {
     a: process.env.EXP_COVERAGE_MIN_RATIO,
@@ -91,4 +101,29 @@ test('assessCoverage : extraction incomplète jamais fiable', () => {
 test('assessCoverage : bootstrap vide / non vide', () => {
   assert.equal(assessCoverage({ currentCount: 0, previousCount: 0, extractionStatus: 'complete' }).reliable, false);
   assert.equal(assessCoverage({ currentCount: 10, previousCount: 0, extractionStatus: 'complete' }).reliable, true);
+});
+
+test('assessCoverage : churn complet à taille identique est dégradé, réordonnancement reste fiable', () => {
+  const previousIds = Array.from({ length: 100 }, (_, i) => `exp-${i}`);
+  const disjoint = Array.from({ length: 100 }, (_, i) => `other-${i}`);
+  const churn = assessCoverage({
+    currentCount: 100,
+    previousCount: 100,
+    extractionStatus: 'complete',
+    currentIds: disjoint,
+    previousIds,
+  });
+  assert.equal(churn.reliable, false);
+  assert.equal(churn.reason, 'retention_too_low');
+  assert.equal(churn.retentionRatio, 0);
+
+  const reordered = assessCoverage({
+    currentCount: 100,
+    previousCount: 100,
+    extractionStatus: 'complete',
+    currentIds: [...previousIds].reverse(),
+    previousIds,
+  });
+  assert.equal(reordered.reliable, true);
+  assert.equal(reordered.retentionRatio, 1);
 });

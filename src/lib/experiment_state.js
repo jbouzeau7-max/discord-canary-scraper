@@ -104,9 +104,11 @@ function isMeaningfulModification(prev, cur) {
   };
   const pg = num(prev.guildPercentage);
   const cg = num(cur.guildPercentage);
+  if ((pg == null) !== (cg == null)) return true;
   if (pg != null && cg != null && Math.abs(pg - cg) >= 0.5) return true;
   const pu = num(prev.userPercentage);
   const cu = num(cur.userPercentage);
+  if ((pu == null) !== (cu == null)) return true;
   if (pu != null && cu != null && Math.abs(pu - cu) >= 0.5) return true;
   return false;
 }

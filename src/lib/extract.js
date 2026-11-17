@@ -384,7 +384,10 @@ function decodeJsStringLiteral(s) {
       continue;
     }
     const n = s[++i];
-    if (n === undefined) break;
+    if (n === undefined) {
+      out += '\\';
+      break;
+    }
     switch (n) {
       case 'n': out += '\n'; break;
       case 't': out += '\t'; break;
@@ -394,18 +397,37 @@ function decodeJsStringLiteral(s) {
       case 'v': out += '\v'; break;
       case '0': out += '\0'; break;
       case 'x': {
-        out += String.fromCharCode(parseInt(s.slice(i + 1, i + 3), 16));
-        i += 2;
+        const hex = s.slice(i + 1, i + 3);
+        if (/^[0-9a-f]{2}$/i.test(hex)) {
+          out += String.fromCharCode(parseInt(hex, 16));
+          i += 2;
+        } else {
+          out += '\\x';
+        }
         break;
       }
       case 'u': {
         if (s[i + 1] === '{') {
           const close = s.indexOf('}', i);
-          out += String.fromCodePoint(parseInt(s.slice(i + 2, close), 16));
-          i = close;
+          const hex = close < 0 ? '' : s.slice(i + 2, close);
+          const point = /^[0-9a-f]{1,6}$/i.test(hex) ? parseInt(hex, 16) : NaN;
+          if (Number.isInteger(point) && point <= 0x10ffff) {
+            out += String.fromCodePoint(point);
+            i = close;
+          } else if (close >= 0) {
+            out += s.slice(i - 1, close + 1);
+            i = close;
+          } else {
+            out += '\\u';
+          }
         } else {
-          out += String.fromCharCode(parseInt(s.slice(i + 1, i + 5), 16));
-          i += 4;
+          const hex = s.slice(i + 1, i + 5);
+          if (/^[0-9a-f]{4}$/i.test(hex)) {
+            out += String.fromCharCode(parseInt(hex, 16));
+            i += 4;
+          } else {
+            out += '\\u';
+          }
         }
         break;
       }
@@ -601,29 +623,94 @@ function setRoute(out, key, p) {
   if (a > b || (a === b && p > cur)) out[key] = p;
 }
 
+function createCodePositionMask(content) {
+  const mask = new Uint8Array(content.length);
+  const prefixKeywords = new Set(['return', 'throw', 'case', 'delete', 'void', 'typeof', 'instanceof', 'in', 'of', 'yield', 'await', 'else', 'do', 'new', 'extends']);
+  let quote = null;
+  let escaped = false;
+  let lineComment = false;
+  let blockComment = false;
+  let regex = false;
+  let regexClass = false;
+  let regexEscaped = false;
+  let canStartRegex = true;
+  for (let i = 0; i < content.length; i++) {
+    const ch = content[i];
+    const next = content[i + 1];
+    if (regex) {
+      if (regexEscaped) { regexEscaped = false; continue; }
+      if (ch === '\\') { regexEscaped = true; continue; }
+      if (ch === '[') { regexClass = true; continue; }
+      if (ch === ']') { regexClass = false; continue; }
+      if (ch === '/' && !regexClass) { regex = false; canStartRegex = false; }
+      continue;
+    }
+    if (lineComment) {
+      if (ch === '\n' || ch === '\r') lineComment = false;
+      else continue;
+    }
+    if (blockComment) {
+      if (ch === '*' && next === '/') { blockComment = false; i++; }
+      continue;
+    }
+    if (quote) {
+      if (escaped) { escaped = false; continue; }
+      if (ch === '\\') { escaped = true; continue; }
+      if (ch === quote) quote = null;
+      continue;
+    }
+    mask[i] = 1;
+    if (ch === '/' && next === '/') { lineComment = true; mask[i] = 0; i++; continue; }
+    if (ch === '/' && next === '*') { blockComment = true; mask[i] = 0; i++; continue; }
+    if (ch === '/' && canStartRegex) { regex = true; regexClass = false; regexEscaped = false; mask[i] = 0; continue; }
+    if (ch === '"' || ch === "'" || ch === '`') { quote = ch; canStartRegex = false; continue; }
+    if (/[A-Za-z_$]/.test(ch)) {
+      let end = i + 1;
+      while (end < content.length && /[A-Za-z0-9_$]/.test(content[end])) end++;
+      const word = content.slice(i, end);
+      canStartRegex = prefixKeywords.has(word);
+      i = end - 1;
+      continue;
+    }
+    if (/\d/.test(ch)) {
+      while (i + 1 < content.length && /[\w.]/.test(content[i + 1])) i++;
+      canStartRegex = false;
+      continue;
+    }
+    if (ch === ')' || ch === ']' || ch === '}' || ch === '.') canStartRegex = false;
+    else if (!/\s/.test(ch)) canStartRegex = true;
+  }
+  return mask;
+}
+
 function extractRoutes(content, out) {
+  const codePositions = createCodePositionMask(content);
   const re =
     /\b([A-Z][A-Z0-9_]{2,100})\s*:\s*["'`](\/[a-zA-Z0-9_\-./{}@:$]+)["'`]/g;
   let m;
   while ((m = re.exec(content)) !== null) {
+    if (!codePositions[m.index]) continue;
     const p = normalizePath(m[2]);
     setRoute(out, m[1], p);
   }
   const re2 =
     /["']([A-Z][A-Z0-9_]{2,100})["']\s*:\s*["'](\/[^"']{1,250})["']/g;
   while ((m = re2.exec(content)) !== null) {
+    if (!codePositions[m.index]) continue;
     const p = normalizePath(m[2]);
     setRoute(out, m[1], p);
   }
   const re3 =
     /\.([A-Z][A-Z0-9_]{2,100})\s*=\s*["'](\/[a-zA-Z0-9_\-./{}@:$]+)["']/g;
   while ((m = re3.exec(content)) !== null) {
+    if (!codePositions[m.index]) continue;
     const p = normalizePath(m[2]);
     setRoute(out, m[1], p);
   }
   const re4 =
     /(?:Endpoints|Routes|API_ENDPOINTS|APIRoutes)\s*(?:\.|\[)\s*["']?([A-Z][A-Z0-9_]{2,100})["']?\s*(?:\])?\s*=\s*["'`](\/[^"'`]{1,250})["'`]/g;
   while ((m = re4.exec(content)) !== null) {
+    if (!codePositions[m.index]) continue;
     const p = normalizePath(m[2]);
     setRoute(out, m[1], p);
   }
@@ -633,12 +720,14 @@ function extractRoutes(content, out) {
   const re5 =
     /\b([A-Z][A-Z0-9_]{2,100})\s*:\s*(?:\([^)]*\)|[A-Za-z_$][\w$]*)\s*=>\s*(?:\(\s*)?(?:[\w$.!=<>\s]{1,60}\?\s*)?(["'`])(\/[^"'`\n]{0,250}?)\2/g;
   while ((m = re5.exec(content)) !== null) {
+    if (!codePositions[m.index]) continue;
     const p = normalizePath(m[3]);
     setRoute(out, m[1], p);
   }
   const re6 =
     /\b([A-Z][A-Z0-9_]{2,100})\s*(?::\s*function\s*\([^)]*\)|\([^)]*\))\s*\{(?:[^{}`]{0,300}?;)?\s*return\s*(["'`])(\/[^"'`\n]{0,250}?)\2/g;
   while ((m = re6.exec(content)) !== null) {
+    if (!codePositions[m.index]) continue;
     const p = normalizePath(m[3]);
     setRoute(out, m[1], p);
   }
@@ -661,7 +750,6 @@ function extractExperiments(content, map) {
   while ((m = reId.exec(content)) !== null) {
     const id = m[1];
     if (/^20\d{2}-\d{2}$/.test(id)) continue;
-    if (map.has(id)) continue;
     const start = Math.max(0, m.index - 180);
     const end = Math.min(content.length, m.index + id.length + 280);
     const ctx = content.slice(start, end);
@@ -680,18 +768,7 @@ function extractExperiments(content, map) {
     if (/kind\s*:\s*["']guild["']/i.test(own)) type = 'guild';
     else if (/kind\s*:\s*["']user["']/i.test(own)) type = 'user';
     else type = inferType(id);
-    const variations = countVariationsNear(content, m.index);
-    map.set(id, {
-      id,
-      type,
-      kind: type,
-      label: extractLabelNear(content, m.index) || null,
-      system: 'apex',
-      defaultConfig: extractDefaultConfigNear(content, m.index),
-      variations,
-      variationCount: variations ? Object.keys(variations).length : 0,
-      source: 'discord',
-    });
+    upsertExp(map, id, type, content, m.index);
   }
 }
 
@@ -699,14 +776,10 @@ function extractDefaultConfigNear(content, from) {
   const window = expWindow(content, from, 2800);
   const m = window.match(/defaultConfig\s*:\s*\{/);
   if (!m) return null;
-  const start = m.index + m[0].length;
-  let depth = 1;
-  let i = start;
-  for (; i < window.length && depth > 0; i++) {
-    if (window[i] === '{') depth++;
-    else if (window[i] === '}') depth--;
-  }
-  const body = window.slice(start, i - 1);
+  const open = m.index + m[0].length - 1;
+  const close = findMatchingDelimiter(window, open, '{', '}');
+  if (close < 0) return null;
+  const body = window.slice(open + 1, close);
   const out = {};
   // accepte aussi la forme minifiée !0 (true) / !1 (false)
   const re = /([A-Za-z_][\w]*)\s*:\s*(true|false|!0|!1|null|\d+|["'][^"']*["'])/g;
@@ -759,6 +832,14 @@ function extractLabelNear(content, from) {
   return found ? found[1] : null;
 }
 
+function stableJson(value) {
+  if (Array.isArray(value)) return '[' + value.map(stableJson).join(',') + ']';
+  if (value && typeof value === 'object') {
+    return '{' + Object.keys(value).sort().map((key) => JSON.stringify(key) + ':' + stableJson(value[key])).join(',') + '}';
+  }
+  return JSON.stringify(value);
+}
+
 function upsertExp(map, id, kind, content, posAfter) {
   if (!id || /^20\d{2}-\d{2}$/.test(id)) return;
   const variations = countVariationsNear(content, posAfter);
@@ -774,18 +855,18 @@ function upsertExp(map, id, kind, content, posAfter) {
       existing.type = 'guild';
       existing.kind = 'guild';
     }
-    if (
-      variations &&
-      (!existing.variations ||
-        Object.keys(variations).length >
-          Object.keys(existing.variations || {}).length)
-    ) {
+    const newVariationCount = variations ? Object.keys(variations).length : -1;
+    const oldVariationCount = existing.variations ? Object.keys(existing.variations).length : -1;
+    if (variations && (newVariationCount > oldVariationCount ||
+      (newVariationCount === oldVariationCount && stableJson(variations) < stableJson(existing.variations)))) {
       existing.variations = variations;
       existing.variationCount = Object.keys(variations).length;
     }
-    if (defaultConfig && !existing.defaultConfig) existing.defaultConfig = defaultConfig;
-    if (label && !existing.label) existing.label = label;
-    if (!existing.system) existing.system = system;
+    if (defaultConfig && (!existing.defaultConfig || stableJson(defaultConfig) < stableJson(existing.defaultConfig))) {
+      existing.defaultConfig = defaultConfig;
+    }
+    if (label && (!existing.label || label < existing.label)) existing.label = label;
+    if (system === 'legacy' || !existing.system) existing.system = system;
     return;
   }
   map.set(id, {
@@ -816,15 +897,11 @@ function countVariationsNear(content, from) {
 
   const isArray = /treatments\s*:\s*\[/.test(m[0]);
   const start = m.index + m[0].length;
-  let depth = 1;
-  let i = start;
   const open = isArray ? '[' : '{';
   const close = isArray ? ']' : '}';
-  for (; i < window.length && depth > 0; i++) {
-    if (window[i] === open) depth++;
-    else if (window[i] === close) depth--;
-  }
-  const body = window.slice(start, i - 1);
+  const end = findMatchingDelimiter(window, start - 1, open, close);
+  if (end < 0) return null;
+  const body = window.slice(start, end);
   const out = {};
   if (isArray) {
     // Tableau treatments: [{...}, {...}] — chaque objet est une variation
@@ -902,15 +979,10 @@ function extractVariationBlock(body, key) {
   const re = new RegExp('(?:^|[,{}])\\s*' + key + '\\s*:\\s*\\{');
   const m = body.match(re);
   if (!m) return null;
-  const start = m.index + m[0].length;
-  let depth = 1;
-  let i = start;
-  for (; i < body.length && depth > 0; i++) {
-    if (body[i] === '{') depth++;
-    else if (body[i] === '}') depth--;
-  }
-  if (depth !== 0) return null;
-  return body.slice(start, i - 1);
+  const open = m.index + m[0].length - 1;
+  const close = findMatchingDelimiter(body, open, '{', '}');
+  if (close < 0) return null;
+  return body.slice(open + 1, close);
 }
 
 /**
@@ -927,18 +999,49 @@ function parseTopLevelBlocks(body, open, close) {
     // Trouver le prochain caractère d'ouverture
     while (i < body.length && body[i] !== open) i++;
     if (i >= body.length) break;
-    const start = i + 1;
-    let depth = 1;
-    i++;
-    for (; i < body.length && depth > 0; i++) {
-      if (body[i] === open) depth++;
-      else if (body[i] === close) depth--;
-    }
-    if (depth === 0) {
-      blocks.push(body.slice(start, i - 1));
-    }
+    const start = i;
+    const end = findMatchingDelimiter(body, start, open, close);
+    if (end < 0) break;
+    blocks.push(body.slice(start + 1, end));
+    i = end + 1;
   }
   return blocks;
+}
+
+function findMatchingDelimiter(source, openIndex, open, close) {
+  if (source[openIndex] !== open) return -1;
+  let depth = 0;
+  let quote = null;
+  let escaped = false;
+  let lineComment = false;
+  let blockComment = false;
+  for (let i = openIndex; i < source.length; i++) {
+    const ch = source[i];
+    const next = source[i + 1];
+    if (lineComment) {
+      if (ch === '\n' || ch === '\r') lineComment = false;
+      continue;
+    }
+    if (blockComment) {
+      if (ch === '*' && next === '/') { blockComment = false; i++; }
+      continue;
+    }
+    if (quote) {
+      if (escaped) { escaped = false; continue; }
+      if (ch === '\\') { escaped = true; continue; }
+      if (ch === quote) quote = null;
+      continue;
+    }
+    if (ch === '/' && next === '/') { lineComment = true; i++; continue; }
+    if (ch === '/' && next === '*') { blockComment = true; i++; continue; }
+    if (ch === '"' || ch === "'" || ch === '`') { quote = ch; continue; }
+    if (ch === open) depth++;
+    else if (ch === close) {
+      depth--;
+      if (depth === 0) return i;
+    }
+  }
+  return -1;
 }
 
 module.exports = {

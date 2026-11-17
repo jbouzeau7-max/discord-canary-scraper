@@ -82,12 +82,13 @@ test('claimMany : liste vide / clés vides', async () => {
   assert.deepEqual([...m.keys()], ['x']);
 });
 
-test('claimMany : fichier corrompu → fail-open (claimed, aucune perte)', async () => {
+test('claimMany : fichier corrompu → fail-closed (unavailable, aucun envoi sûr)', async () => {
   reset();
   await fs.writeFile(FILE, '{oops');
   const m = await dedupe.claimMany(['k1', 'k2']);
-  assert.equal(m.get('k1'), 'claimed');
-  assert.equal(m.get('k2'), 'claimed');
+  assert.equal(m.get('k1'), 'unavailable');
+  assert.equal(m.get('k2'), 'unavailable');
+  assert.equal(await fs.readFile(FILE, 'utf8'), '{oops');
 });
 
 test('markFailedMany : une écriture, statuts failed, re-réclamables', async () => {

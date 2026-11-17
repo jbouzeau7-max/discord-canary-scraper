@@ -38,6 +38,15 @@ test('extractAssetUrls : JS + CSS, absolus, sans query, sans doublon, ignore hor
   assert.deepEqual(css, ['https://canary.discord.com/assets/app.css']);
 });
 
+test('extractAssetUrls refuse les hôtes non Discord et les schémas HTTP', () => {
+  const html = `
+    <script src="http://127.0.0.1/assets/local.js"></script>
+    <script src="https://canary.discord.com.attacker.test/assets/fake.js"></script>
+    <script src="//attacker.test/assets/remote.js"></script>
+    <script src="https://cdn.discordapp.com/assets/approved.js?v=4"></script>`;
+  assert.deepEqual(extractAssetUrls(html).js, ['https://cdn.discordapp.com/assets/approved.js']);
+});
+
 test('prioritizeAssets met le bundle web en premier', () => {
   const out = prioritizeAssets([
     'https://canary.discord.com/assets/1.js',

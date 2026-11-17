@@ -7,10 +7,12 @@
  */
 const fs = require('fs-extra');
 const path = require('path');
+const crypto = require('crypto');
 const fetch = require('node-fetch');
 const https = require('https');
 const http = require('http');
 const { sleep, envNumber, DEFAULT_UA } = require('./utils');
+const { normalizeAssetUrl } = require('./asset_url');
 
 const DOWNLOAD_CONCURRENCY = envNumber('DOWNLOAD_CONCURRENCY', 32, { min: 1, max: 256, int: true });
 const DOWNLOAD_RETRIES = envNumber('DOWNLOAD_RETRIES', 4, { min: 1, max: 20, int: true });
@@ -98,6 +100,61 @@ function destroyBody(res) {
   } catch {}
 }
 
+function sha256(buffer) {
+  return crypto.createHash('sha256').update(buffer).digest('hex');
+}
+
+function integrityPath(filePath) {
+  return filePath + '.sha256';
+}
+
+async function hasValidIntegrity(filePath) {
+  try {
+    const [body, expected] = await Promise.all([
+      fs.readFile(filePath),
+      fs.readFile(integrityPath(filePath), 'utf8'),
+    ]);
+    return expected.trim() === sha256(body);
+  } catch {
+    return false;
+  }
+}
+
+async function writeIntegrity(filePath, body) {
+  const sidecar = integrityPath(filePath);
+  const tmp = sidecar + '.part.' + process.pid + '.' + Math.random().toString(36).slice(2, 8);
+  await fs.writeFile(tmp, sha256(body) + '\n');
+  await fs.move(tmp, sidecar, { overwrite: true });
+}
+
+async function fetchAssetResponse(fetchImpl, url, init) {
+  let current = url;
+  for (let redirects = 0; redirects <= 3; redirects++) {
+    const res = await fetchImpl(current, { ...init, redirect: 'manual' });
+    if (![301, 302, 303, 307, 308].includes(Number(res.status))) return res;
+    const location = res.headers && typeof res.headers.get === 'function'
+      ? res.headers.get('location')
+      : null;
+    destroyBody(res);
+    if (!location || redirects === 3) {
+      const error = new Error('invalid or excessive asset redirect');
+      error.code = 'UNSAFE_ASSET_REDIRECT';
+      throw error;
+    }
+    let next;
+    try {
+      next = normalizeAssetUrl(new URL(location, current).href);
+    } catch {}
+    if (!next || next === current) {
+      const error = new Error('asset redirect target is not an approved Discord URL');
+      error.code = 'UNSAFE_ASSET_REDIRECT';
+      throw error;
+    }
+    current = next;
+  }
+  throw new Error('asset redirect limit exceeded');
+}
+
 /** Vrai si le corps ressemble à une page d'erreur HTML (jamais du JS/CSS). */
 function looksLikeHtml(buf) {
   const head = Buffer.isBuffer(buf) ? buf.slice(0, 80).toString('utf8') : String(buf || '').slice(0, 80);
@@ -126,7 +183,13 @@ async function clearAssetsDir(assetsDir) {
       await Promise.all(
         names.filter(isImmutableName).map(async (f) => {
           try {
-            await fs.rename(path.join(assetsDir, f), path.join(pool, f));
+            const source = path.join(assetsDir, f);
+            const target = path.join(pool, f);
+            await fs.rename(source, target);
+            const sidecar = integrityPath(source);
+            if (await fs.pathExists(sidecar)) {
+              await fs.rename(sidecar, integrityPath(target));
+            }
             pooled++;
           } catch {}
         }),
@@ -143,26 +206,29 @@ async function clearAssetsDir(assetsDir) {
 async function takeFromPool(assetsDir, name, fp) {
   if (!ASSET_POOL || !isImmutableName(name)) return false;
   const src = path.join(poolDirFor(assetsDir), name);
+  const sidecar = integrityPath(src);
   try {
     const st = await fs.stat(src);
-    if (st.size <= 64) return false;
-    const fh = await fs.promises.open(src, 'r');
-    const headBuf = Buffer.alloc(80);
-    try {
-      await fh.read(headBuf, 0, 80, 0);
-    } finally {
-      await fh.close();
+    if (st.size <= 64 || st.size > MAX_ASSET_BYTES) return false;
+    const body = await fs.readFile(src);
+    const expected = await fs.readFile(sidecar, 'utf8');
+    if (expected.trim() !== sha256(body) || looksLikeHtml(body)) {
+      await fs.remove(src).catch(() => {});
+      await fs.remove(sidecar).catch(() => {});
+      return false;
     }
-    if (looksLikeHtml(headBuf)) return false;
     await fs.promises.rename(src, fp);
+    await fs.promises.rename(sidecar, integrityPath(fp));
     return true;
   } catch {
+    await fs.remove(src).catch(() => {});
+    await fs.remove(sidecar).catch(() => {});
     return false;
   }
 }
 
 async function assertWebBundle(assetsDir) {
-  const files = (await fs.readdir(assetsDir)).filter((f) => /^web\./i.test(f));
+  const files = (await fs.readdir(assetsDir)).filter((f) => /^web\..*\.js$/i.test(f));
   if (!files.length) {
     throw new Error('INVALID_ASSET: No web.*.js after download — abort scrape');
   }
@@ -193,14 +259,27 @@ async function downloadList(urls, assetsDir, force, opts = {}) {
   const jobs = [];
   const seenNames = new Set();
   for (const url of urls) {
-    if (!url || !String(url).includes('/assets/')) continue;
-    const name = path.basename(String(url).split('?')[0]);
-    if (!name.endsWith('.js') && !name.endsWith('.css')) continue;
+    if (typeof url !== 'string' || !url.trim()) continue;
+    let parsed;
+    try {
+      parsed = new URL(url, 'https://canary.discord.com/app');
+    } catch {
+      if (/\/assets\/[^?#]+\.(?:js|css)(?:[?#]|$)/i.test(url)) {
+        throw new Error('INVALID_ASSET_URL: malformed asset URL');
+      }
+      continue;
+    }
+    if (!parsed.pathname.includes('/assets/') || !/\.(?:js|css)$/i.test(parsed.pathname)) continue;
+    const approvedUrl = normalizeAssetUrl(url);
+    if (!approvedUrl) {
+      throw new Error('INVALID_ASSET_URL: unapproved asset host or scheme');
+    }
+    const name = path.basename(new URL(approvedUrl).pathname);
     // Deux URLs avec le même nom de fichier écrivaient le même .part en
     // parallèle (corruption possible) : on ne garde que la première.
     if (seenNames.has(name)) continue;
     seenNames.add(name);
-    jobs.push({ url: String(url), name });
+    jobs.push({ url: approvedUrl, name });
   }
 
   let n = 0;
@@ -221,21 +300,24 @@ async function downloadList(urls, assetsDir, force, opts = {}) {
 
     if (!force && (await fs.pathExists(fp))) {
       const st = await fs.stat(fp);
-      if (st.size > 64) {
+      const cacheLimit = /\bweb\./i.test(job.name) ? MAX_WEB_BYTES : MAX_ASSET_BYTES;
+      if (st.size > 64 && st.size <= cacheLimit) {
         try {
-          const fd = await fs.open(fp, 'r');
+          const fd = await fs.promises.open(fp, 'r');
           const headBuf = Buffer.alloc(80);
-          await fd.read(headBuf, 0, 80, 0);
-          await fd.close();
+          try {
+            await fd.read(headBuf, 0, 80, 0);
+          } finally {
+            await fd.close();
+          }
           if (looksLikeHtml(headBuf)) {
             // cache HTML corrompu (JS ou CSS) — re-télécharger
-          } else {
+          } else if (await hasValidIntegrity(fp)) {
             skip++;
             return true;
           }
         } catch {
-          skip++;
-          return true;
+          // Cache incomplet/non lisible : re-télécharger plutôt que l’acquitter.
         }
       }
     }
@@ -252,7 +334,7 @@ async function downloadList(urls, assetsDir, force, opts = {}) {
     for (let attempt = 0; attempt < DOWNLOAD_RETRIES; attempt++) {
       try {
         if (attempt > 0) retried++;
-        const res = await fetchImpl(job.url, {
+        const res = await fetchAssetResponse(fetchImpl, job.url, {
           headers: { 'User-Agent': DEFAULT_UA, Accept: '*/*' },
           timeout: DOWNLOAD_TIMEOUT_MS,
           agent: pickAgent,
@@ -313,6 +395,13 @@ async function downloadList(urls, assetsDir, force, opts = {}) {
         }
         await fs.writeFile(part, buf);
         await fs.move(part, fp, { overwrite: true });
+        try {
+          await writeIntegrity(fp, buf);
+        } catch (error) {
+          await fs.remove(fp).catch(() => {});
+          await fs.remove(integrityPath(fp)).catch(() => {});
+          throw error;
+        }
         n++;
         if (n <= 8 || n % 500 === 0) {
           console.log(
@@ -325,6 +414,7 @@ async function downloadList(urls, assetsDir, force, opts = {}) {
         return true;
       } catch (e) {
         lastErr = e.message;
+        if (e && e.code === 'UNSAFE_ASSET_REDIRECT') break;
         await pause(attempt, Math.min(15_000, 400 * 2 ** attempt));
       }
     }
