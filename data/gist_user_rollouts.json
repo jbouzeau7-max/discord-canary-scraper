@@ -3,17 +3,17 @@
  "schemaVersion": 1,
  "semanticsVersion": 2,
  "notifyScopeVersion": 2,
- "runId": "20261116T235642_gist",
- "scrapedAt": "2026-11-16T23:56:42.136Z",
+ "runId": "20261117T001707_gist",
+ "scrapedAt": "2026-11-17T00:17:07.699Z",
  "source": {
   "gistId": "e3e99062983e6bd0feaef833f14fd931",
   "htmlUrl": "https://gist.github.com/agnonotdev/e3e99062983e6bd0feaef833f14fd931",
-  "rawUrl": "https://gist.githubusercontent.com/agnonotdev/e3e99062983e6bd0feaef833f14fd931/raw",
-  "updatedAt": null,
-  "revision": null,
-  "fetchedAt": "2026-11-16T23:56:42.136Z",
+  "rawUrl": "https://gist.githubusercontent.com/agnonotdev/e3e99062983e6bd0feaef833f14fd931/raw/14d746f7b8f49376a2f6e6978542e3b61a9e785b/rollouts-tag.json",
+  "updatedAt": "2026-11-17T00:16:12Z",
+  "revision": "6425b3843d764a503ff8fb9ec3568c62833dcf24",
+  "fetchedAt": "2026-11-17T00:17:07.699Z",
   "fallback": false,
-  "rawFallback": true,
+  "rawFallback": false,
   "canonicalId": null
  },
  "mirror": {
@@ -25,8 +25,8 @@
    "2026-11-soundboard-upsells-brand-refresh",
    "2026-11-return-full-quest-status-in-decision",
    "2026-11-screen-share-dtx",
-   "2026-10-collectibles-storefront-pricing-integration",
    "2026-10-mobile-rtc-v2",
+   "2026-10-collectibles-storefront-pricing-integration",
    "2026-10-animated-shop-bundle-previews",
    "2026-10-profile-read-state",
    "2026-10-pinot-channel-discoverable",
@@ -21432,12 +21432,12 @@
    "variantsCount": 2
   },
   "2026-10-mobile-rtc-v2": {
-   "key": "ba556803b635aab2",
+   "key": "9562c4224da9e515",
    "hasData": true,
    "sig": "0:control",
    "byVariant": {
     "0": {
-     "pct": 30,
+     "pct": 45,
      "role": "control"
     }
    },
@@ -21445,7 +21445,7 @@
     "pct": 0
    },
    "control": {
-    "pct": 30
+    "pct": 45
    },
    "notEligible": {
     "pct": 0
@@ -21479,19 +21479,13 @@
   }
  },
  "lastRun": {
-  "changes": 0,
-  "delivered": 0,
+  "changes": 1,
+  "delivered": 1,
   "firstRun": false,
   "semanticsMigrated": 0,
   "scopeBaselined": 0
  },
  "history": [
-  {
-   "at": "2026-11-16T07:50:36.616Z",
-   "revision": "6d5357d8dc9a85dec1eb17f3d75ec01dfc43d330",
-   "changes": 0,
-   "delivered": 0
-  },
   {
    "at": "2026-11-16T08:19:45.047Z",
    "revision": "6d5357d8dc9a85dec1eb17f3d75ec01dfc43d330",
@@ -21785,6 +21779,12 @@
    "revision": null,
    "changes": 0,
    "delivered": 0
+  },
+  {
+   "at": "2026-11-17T00:17:07.699Z",
+   "revision": "6425b3843d764a503ff8fb9ec3568c62833dcf24",
+   "changes": 1,
+   "delivered": 1
   }
  ]
 }
