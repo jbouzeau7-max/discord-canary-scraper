@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-11-17T06:13:06.409Z",
+  "fetchedAt": "2026-11-17T06:19:37.582Z",
   "sources": {
     "discordApi": {
       "url": "https://discord.com/api/v9/experiments",
@@ -320,10 +320,10 @@
       }
     },
     {
-      "hash": 1144304849,
+      "hash": 704914099,
       "id": null,
       "type": "user",
-      "title": "hash_1144304849",
+      "title": "hash_704914099",
       "percentage": 0,
       "status": "not_started",
       "samples": 4,
@@ -340,23 +340,23 @@
       }
     },
     {
-      "hash": 704914099,
+      "hash": 1144304849,
       "id": null,
       "type": "user",
-      "title": "hash_704914099",
+      "title": "hash_1144304849",
       "percentage": 0,
       "status": "not_started",
-      "samples": 2,
+      "samples": 1,
       "enrolled": 0,
       "treatmentDistribution": {
-        "0": 2
+        "0": 1
       },
       "source": "fingerprint_sampling",
       "note": "No local experiment ID match for this hash",
-      "fpSamples": 2,
+      "fpSamples": 1,
       "fpEnrolled": 0,
       "fpTreatmentDist": {
-        "0": 2
+        "0": 1
       }
     },
     {
@@ -4080,6 +4080,16 @@
       "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
     },
     {
+      "id": "2026-11-checkpoint-intro",
+      "hash": 4200331166,
+      "type": "user",
+      "title": "2026-11-checkpoint-intro",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
       "id": "2026-11-console-connection-coachmark",
       "hash": 2011052583,
       "type": "user",
@@ -4281,11 +4291,11 @@
     }
   ],
   "summary": {
-    "total": 401,
+    "total": 402,
     "guild": 42,
-    "user": 359,
+    "user": 360,
     "withPercentage": 9,
-    "withoutPercentage": 392,
+    "withoutPercentage": 393,
     "fullRollout": 5,
     "partial": 0,
     "notStarted": 4,
