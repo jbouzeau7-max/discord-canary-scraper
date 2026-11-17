@@ -1,11 +1,11 @@
 {
-  "runId": "2026-11-17T21-48-24-479Z_675772_9t4yk8",
-  "buildNumber": "675772",
-  "scrapedAt": "2026-11-17T21:48:24.479Z",
+  "runId": "2026-11-17T21-50-36-584Z_675774_e4ymtb",
+  "buildNumber": "675774",
+  "scrapedAt": "2026-11-17T21:50:36.584Z",
   "totals": {
-    "all": 391,
+    "all": 390,
     "legacy": 28,
-    "apex": 363
+    "apex": 362
   },
   "experiments": [
     {
@@ -4219,36 +4219,6 @@
       },
       "variationCount": 2,
       "source": "discord"
-    },
-    {
-      "id": "2026-07-wishlist-direct-to-gifting",
-      "type": "user",
-      "kind": "user",
-      "label": null,
-      "system": "apex",
-      "defaultConfig": null,
-      "variations": {
-        "1": {
-          "clickRoutesToGift": true,
-          "showGiftButton": true
-        },
-        "2": {
-          "clickRoutesToGift": true,
-          "showGiftButton": false
-        }
-      },
-      "variationCount": 2,
-      "source": "discord",
-      "guildPercentage": {
-        "status": "unknown",
-        "value": null
-      },
-      "userPercentage": {
-        "status": "provided",
-        "value": 100,
-        "source": "gist_user_rollouts"
-      },
-      "fingerprint": "a219463c2f615b3a318de047a4659c33953cc430643b586f5ea7ea97164102a0"
     },
     {
       "id": "2026-08-ad-topic-opt-out-client",

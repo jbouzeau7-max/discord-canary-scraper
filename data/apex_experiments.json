@@ -2454,22 +2454,6 @@
   },
   {
     "kind": "user",
-    "name": "2026-07-wishlist-direct-to-gifting",
-    "defaultConfig": null,
-    "variations": {
-      "1": {
-        "clickRoutesToGift": true,
-        "showGiftButton": true
-      },
-      "2": {
-        "clickRoutesToGift": true,
-        "showGiftButton": false
-      }
-    },
-    "label": null
-  },
-  {
-    "kind": "user",
     "name": "2026-08-ad-topic-opt-out-client",
     "defaultConfig": {
       "enabled": false

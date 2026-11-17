@@ -1,8 +1,8 @@
 {
-  "runId": "2026-11-17T21-48-24-479Z_675772_9t4yk8",
-  "buildNumber": "675772",
-  "updatedAt": "2026-11-17T21:48:24.479Z",
-  "count": 391,
+  "runId": "2026-11-17T21-50-36-584Z_675774_e4ymtb",
+  "buildNumber": "675774",
+  "updatedAt": "2026-11-17T21:50:36.584Z",
+  "count": 390,
   "experiments": [
     {
       "id": "2021-02_staff_qc_debugging",
@@ -9873,59 +9873,6 @@
         "value": null
       },
       "fingerprint": "dcf344561475a6ac94c3740bacb22a02293841c1948e89e4cd7ef99edfe5fe2a"
-    },
-    {
-      "id": "2026-07-wishlist-direct-to-gifting",
-      "kind": "user",
-      "type": "user",
-      "system": "apex",
-      "label": null,
-      "title": null,
-      "description": null,
-      "defaultConfig": null,
-      "variations": {
-        "1": {
-          "clickRoutesToGift": true,
-          "showGiftButton": true
-        },
-        "2": {
-          "clickRoutesToGift": true,
-          "showGiftButton": false
-        }
-      },
-      "treatments": null,
-      "variationSource": "variations",
-      "variationCount": 2,
-      "raw": {
-        "id": "2026-07-wishlist-direct-to-gifting",
-        "type": "user",
-        "kind": "user",
-        "label": null,
-        "system": "apex",
-        "defaultConfig": null,
-        "variations": {
-          "1": {
-            "clickRoutesToGift": true,
-            "showGiftButton": true
-          },
-          "2": {
-            "clickRoutesToGift": true,
-            "showGiftButton": false
-          }
-        },
-        "variationCount": 2,
-        "source": "discord"
-      },
-      "guildPercentage": {
-        "status": "unknown",
-        "value": null
-      },
-      "userPercentage": {
-        "status": "provided",
-        "value": 100,
-        "source": "gist_user_rollouts"
-      },
-      "fingerprint": "a219463c2f615b3a318de047a4659c33953cc430643b586f5ea7ea97164102a0"
     },
     {
       "id": "2026-08-ad-topic-opt-out-client",
