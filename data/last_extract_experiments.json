@@ -1,7 +1,7 @@
 {
-  "runId": "2026-11-17T00-56-59-937Z_674946_lok0m5",
-  "buildNumber": "674946",
-  "updatedAt": "2026-11-17T00:56:59.937Z",
+  "runId": "2026-11-17T01-01-21-079Z_674951_joch8l",
+  "buildNumber": "674951",
+  "updatedAt": "2026-11-17T01:01:21.079Z",
   "count": 396,
   "data": {
     "2021-02_staff_qc_debugging": {
@@ -20,7 +20,7 @@
       "defaultConfig": {
         "showScores": false
       },
-      "system": "apex",
+      "system": "legacy",
       "fp": "6dde44f006b934741ecdbf5491e522362624461af09f52b5bdd256bad5eb97a2"
     },
     "2021-10_runtime_accessibility_system": {
@@ -47,7 +47,7 @@
         "enabled": false,
         "reporting": false
       },
-      "system": "apex",
+      "system": "legacy",
       "fp": "38bf2a7429337fc29a3c14ba5217bb5e473daf650019b2cd6df26e963e19167e"
     },
     "2021-12_inferno_spam_redaction": {
@@ -66,7 +66,7 @@
       "defaultConfig": {
         "enabled": false
       },
-      "system": "apex",
+      "system": "legacy",
       "fp": "8bcfcd4a6948e70579de61e19783e3b3e166886283a29b092307a9f24342805b"
     },
     "2022-01_threads": {
@@ -96,7 +96,7 @@
       "defaultConfig": {
         "enabled": false
       },
-      "system": "apex",
+      "system": "legacy",
       "fp": "a673cf1be6e90b216bc57ac5a1f72deb612cf8a905737dd3ac6c191929504531"
     },
     "2022-11_default_disable_mass_mention": {
@@ -115,7 +115,7 @@
       "defaultConfig": {
         "enabled": false
       },
-      "system": "apex",
+      "system": "legacy",
       "fp": "a0d02767aa118888281de888ba20e967882ad6314c5b4ce1a07b54bca9e5f0d2"
     },
     "2023-02_guest_voice_invites": {
@@ -134,7 +134,7 @@
       "defaultConfig": {
         "enabled": false
       },
-      "system": "apex",
+      "system": "legacy",
       "fp": "e46bad854ec580b321d0f1cf7d6c3c25fe65d14ebd6564e701453f4869f70068"
     },
     "2023-09_iar_dsa_webform": {
@@ -158,7 +158,7 @@
       "defaultConfig": {
         "enabled": false
       },
-      "system": "apex",
+      "system": "legacy",
       "fp": "b3160666770ef851958aac5284b6a15f41f487e4c11e94094097f722afd236aa"
     },
     "2023-09_iar_user_reporting": {
@@ -177,7 +177,7 @@
       "defaultConfig": {
         "enabled": false
       },
-      "system": "apex",
+      "system": "legacy",
       "fp": "c063adde6e10f2ec5647153bab09f963a26c5fe7feaf8ec9b0dbc206c4f7d02b"
     },
     "2024-06_rtc_pacer__simulcast": {
@@ -235,7 +235,7 @@
         "fullname": "bandwidth_estimation/trendline-window-duration-3750,robust-estimator/",
         "simulcastEnabled": false
       },
-      "system": "apex",
+      "system": "legacy",
       "fp": "a759dfa4fe7da54af9a793c75a9be1a2593e0c64f998f66421f9b42681a0e522"
     },
     "2025-04-desktop-refresh-fast-follows": {
@@ -357,7 +357,7 @@
         "clearEnabled": false,
         "activityEnabled": false
       },
-      "system": "apex",
+      "system": "legacy",
       "fp": "34d97a1b37b74226187810fc7124148aa0bfa2fdf6d22294d9e433a297020aa7"
     },
     "2025-08_default_invite_expiration_guild": {
@@ -386,7 +386,7 @@
       "defaultConfig": {
         "defaultMaxAge": 604800
       },
-      "system": "apex",
+      "system": "legacy",
       "fp": "c656da25d782fe62e35352803579cf71814894a651b9f4eebd3e8d2e64fdcf3e"
     },
     "2025-08_portkey_enabled": {
@@ -405,7 +405,7 @@
       "defaultConfig": {
         "enabled": false
       },
-      "system": "apex",
+      "system": "legacy",
       "fp": "c18970e6d7833b9f6f7c29d1c00645b877df85f93d29c5ace8ba513419071987"
     },
     "2025-08-browser-hevc": {
@@ -467,7 +467,7 @@
         }
       },
       "defaultConfig": null,
-      "system": "apex",
+      "system": "legacy",
       "fp": "e0f7fd4a5e51eae6a4cbb1719b56501a270b69eba78a1ef606d06cf5cc335207"
     },
     "2025-09-image-attachment-mezzanine-v2": {
@@ -582,7 +582,7 @@
       "defaultConfig": {
         "enabled": false
       },
-      "system": "apex",
+      "system": "legacy",
       "fp": "5e3b6a38ef542559c8ecfa85e0c94301ba25c4609054cda842da78980d7f40d6"
     },
     "2025-10-collectibles-custom-cursors": {
@@ -836,7 +836,7 @@
         "enableWaveformIcon": false,
         "enableHighlight": false
       },
-      "system": "apex",
+      "system": "legacy",
       "fp": "bd671cf10ed1e6285635c1bf64e5526e4b801f7d40f818c4addfc0bb990d393d"
     },
     "2025-12-hdr-accessibility-setting": {
@@ -1075,7 +1075,7 @@
       "defaultConfig": {
         "enabled": false
       },
-      "system": "apex",
+      "system": "legacy",
       "fp": "01d2f7056a7aa23eae1a7a469f7466da3962fc48415349560009dc46dd738d2d"
     },
     "2026-02_hangout_window": {
@@ -1094,7 +1094,7 @@
       "defaultConfig": {
         "enableHangoutWindow": false
       },
-      "system": "apex",
+      "system": "legacy",
       "fp": "1a7501134a10e8597dfcc1a0a1b27da9cacbd5ed90701e152a0ab572e112babb"
     },
     "2026-02_past_vc_activity_messages": {
@@ -1113,7 +1113,7 @@
       "defaultConfig": {
         "enabled": false
       },
-      "system": "apex",
+      "system": "legacy",
       "fp": "580de023f058dec9c0b63847e72cc42ca9ce04bab9807164a89b33af2745d176"
     },
     "2026-02-announcement-composer": {
@@ -1487,7 +1487,7 @@
       "defaultConfig": {
         "enabled": false
       },
-      "system": "apex",
+      "system": "legacy",
       "fp": "23dfbc8f2ae59760430dc93b03443b08c36253f567ab1278cecd45d47852785e"
     },
     "2026-03_voice_badge": {
@@ -1511,7 +1511,7 @@
       "defaultConfig": {
         "enabled": false
       },
-      "system": "apex",
+      "system": "legacy",
       "fp": "c1c77adb8b268ab5e1657ba0ce6692e06b104596088ea36070e6fda61897079a"
     },
     "2026-03-age-verification-google-wallet": {
@@ -1621,8 +1621,8 @@
     },
     "2026-03-conversation-highlighting-utility": {
       "id": "2026-03-conversation-highlighting-utility",
-      "type": "user",
-      "kind": "user",
+      "type": "guild",
+      "kind": "guild",
       "label": null,
       "variationCount": 2,
       "variations": {
@@ -1637,7 +1637,7 @@
         "enabled": false
       },
       "system": "apex",
-      "fp": "8995de760ecce3d0b296d0106c3c930a62271777e24307522883f05134f4a658"
+      "fp": "ed4d82c2c35c4da57397d8b66915f37b64eed090f93c86ef24abe197c12ed21a"
     },
     "2026-03-croissant": {
       "id": "2026-03-croissant",
@@ -1975,7 +1975,7 @@
       "defaultConfig": {
         "enabled": false
       },
-      "system": "apex",
+      "system": "legacy",
       "fp": "56325e3771ed8dbf3a9303cd3bad007cf9c18e6bda59bcf0274033fc2678aaac"
     },
     "2026-04_guild_verification_role": {
@@ -1994,7 +1994,7 @@
       "defaultConfig": {
         "enabled": false
       },
-      "system": "apex",
+      "system": "legacy",
       "fp": "247c67f933d75d5fbb941a86898ec1180775dc069d88f6203657a34798a3bb97"
     },
     "2026-04_server_theme": {
@@ -2035,7 +2035,7 @@
         "gatesApex": false,
         "rollbackEnabled": false
       },
-      "system": "apex",
+      "system": "legacy",
       "fp": "8dc1a02277ae8338683ddd95229f1ef59ee1e249ce853ea9b7107af5c1eed372"
     },
     "2026-04_voice_call_trigger_point": {
@@ -2054,7 +2054,7 @@
       "defaultConfig": {
         "enabled": false
       },
-      "system": "apex",
+      "system": "legacy",
       "fp": "d1407e7cb88a8bc99050347cbb1d83a7f8918dec2e059e640de93c3266a868f1"
     },
     "2026-04_voice_user_duration": {
@@ -2073,7 +2073,7 @@
       "defaultConfig": {
         "enabled": false
       },
-      "system": "apex",
+      "system": "legacy",
       "fp": "945fa8bc2ca25746beb651216279617d26fd100aec8d95961d4ce3cf741cc7f0"
     },
     "2026-04-browser-transceiver-padding-removal": {
@@ -2458,7 +2458,7 @@
       "defaultConfig": {
         "defaultMaxAge": 604800
       },
-      "system": "apex",
+      "system": "legacy",
       "fp": "8913e97a60f2154d1cf1807694a907fe4765c639345b7fa21f2f8371b49be85b"
     },
     "2026-05_voice_channel_list_invite_embed": {
@@ -2477,7 +2477,7 @@
       "defaultConfig": {
         "enabled": false
       },
-      "system": "apex",
+      "system": "legacy",
       "fp": "f0acfc506429b9e338d42fc0f8c597b7bca000c6f1bc1918f53880c8cbe3f609"
     },
     "2026-05-app-store-overlay-feature-gate": {
@@ -2846,7 +2846,7 @@
         "multipleRoomsEnabled": false,
         "posturesEnabled": false
       },
-      "system": "apex",
+      "system": "legacy",
       "fp": "8954f67af1e53a535d1a27c66d9c186d404cc4bbd4dfc9c58756aa5785560a2f"
     },
     "2026-06-age-verification-incode": {

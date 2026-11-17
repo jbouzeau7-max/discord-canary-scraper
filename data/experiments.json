@@ -1,11 +1,11 @@
 {
-  "runId": "2026-11-17T00-56-59-937Z_674946_lok0m5",
-  "buildNumber": "674946",
-  "scrapedAt": "2026-11-17T00:56:59.937Z",
+  "runId": "2026-11-17T01-01-21-079Z_674951_joch8l",
+  "buildNumber": "674951",
+  "scrapedAt": "2026-11-17T01:01:21.079Z",
   "totals": {
     "all": 396,
-    "legacy": 0,
-    "apex": 396
+    "legacy": 28,
+    "apex": 368
   },
   "experiments": [
     {
@@ -13,7 +13,7 @@
       "type": "user",
       "kind": "user",
       "label": "Display QS scores in results. Not a real experiment",
-      "system": "apex",
+      "system": "legacy",
       "defaultConfig": {
         "showScores": false
       },
@@ -32,7 +32,7 @@
       "type": "user",
       "kind": "user",
       "label": "Runtime Accessibility System",
-      "system": "apex",
+      "system": "legacy",
       "defaultConfig": {
         "enabled": false,
         "reporting": false
@@ -59,7 +59,7 @@
       "type": "user",
       "kind": "user",
       "label": "Inferno Spam Redaction",
-      "system": "apex",
+      "system": "legacy",
       "defaultConfig": {
         "enabled": false
       },
@@ -99,7 +99,7 @@
       "type": "guild",
       "kind": "guild",
       "label": "Voice in Threads",
-      "system": "apex",
+      "system": "legacy",
       "defaultConfig": {
         "enabled": false
       },
@@ -128,7 +128,7 @@
       "type": "guild",
       "kind": "guild",
       "label": "Disable mass mentions for communities by default",
-      "system": "apex",
+      "system": "legacy",
       "defaultConfig": {
         "enabled": false
       },
@@ -157,7 +157,7 @@
       "type": "guild",
       "kind": "guild",
       "label": "Guest Voice Invites",
-      "system": "apex",
+      "system": "legacy",
       "defaultConfig": {
         "enabled": false
       },
@@ -186,7 +186,7 @@
       "type": "user",
       "kind": "user",
       "label": "Safety Experience Unauthenticated Report Form",
-      "system": "apex",
+      "system": "legacy",
       "defaultConfig": {
         "enabled": false
       },
@@ -220,7 +220,7 @@
       "type": "user",
       "kind": "user",
       "label": "Safety Experience IAR User Reporting",
-      "system": "apex",
+      "system": "legacy",
       "defaultConfig": {
         "enabled": false
       },
@@ -249,7 +249,7 @@
       "type": "user",
       "kind": "user",
       "label": "RTC Pacer & Golive Simulcast",
-      "system": "apex",
+      "system": "legacy",
       "defaultConfig": {
         "enabled": true,
         "fullname": "bandwidth_estimation/trendline-window-duration-3750,robust-estimator/",
@@ -385,7 +385,7 @@
       "type": "user",
       "kind": "user",
       "label": "Native Intents",
-      "system": "apex",
+      "system": "legacy",
       "defaultConfig": {
         "searchEnabled": false,
         "clearEnabled": false,
@@ -429,7 +429,7 @@
       "type": "guild",
       "kind": "guild",
       "label": "Default Invite Expiration Guild",
-      "system": "apex",
+      "system": "legacy",
       "defaultConfig": {
         "defaultMaxAge": 604800
       },
@@ -468,7 +468,7 @@
       "type": "guild",
       "kind": "guild",
       "label": "GameServer Enabled",
-      "system": "apex",
+      "system": "legacy",
       "defaultConfig": {
         "enabled": false
       },
@@ -529,7 +529,7 @@
       "type": "user",
       "kind": "user",
       "label": "Next iteration of the activity feed ranking model.",
-      "system": "apex",
+      "system": "legacy",
       "defaultConfig": null,
       "variations": {
         "16": {
@@ -665,7 +665,7 @@
       "type": "guild",
       "kind": "guild",
       "label": "Community Account Linking",
-      "system": "apex",
+      "system": "legacy",
       "defaultConfig": {
         "enabled": false
       },
@@ -931,7 +931,7 @@
       "type": "guild",
       "kind": "guild",
       "label": "Voice Channel Hoisting",
-      "system": "apex",
+      "system": "legacy",
       "defaultConfig": {
         "enableWaveformIcon": false,
         "enableHighlight": false
@@ -1198,7 +1198,7 @@
       "type": "guild",
       "kind": "guild",
       "label": "Game Claim Coachmark",
-      "system": "apex",
+      "system": "legacy",
       "defaultConfig": {
         "enabled": false
       },
@@ -1217,7 +1217,7 @@
       "type": "guild",
       "kind": "guild",
       "label": "Hangout Window",
-      "system": "apex",
+      "system": "legacy",
       "defaultConfig": {
         "enableHangoutWindow": false
       },
@@ -1236,7 +1236,7 @@
       "type": "guild",
       "kind": "guild",
       "label": "Past VC Activity Messages",
-      "system": "apex",
+      "system": "legacy",
       "defaultConfig": {
         "enabled": false
       },
@@ -1690,7 +1690,7 @@
       "type": "guild",
       "kind": "guild",
       "label": "Guild Official Messages",
-      "system": "apex",
+      "system": "legacy",
       "defaultConfig": {
         "enabled": false
       },
@@ -1709,7 +1709,7 @@
       "type": "guild",
       "kind": "guild",
       "label": "Display Voice Channel Badge",
-      "system": "apex",
+      "system": "legacy",
       "defaultConfig": {
         "enabled": false
       },
@@ -1835,8 +1835,8 @@
     },
     {
       "id": "2026-03-conversation-highlighting-utility",
-      "type": "user",
-      "kind": "user",
+      "type": "guild",
+      "kind": "guild",
       "label": null,
       "system": "apex",
       "defaultConfig": {
@@ -2218,7 +2218,7 @@
       "type": "guild",
       "kind": "guild",
       "label": "Application Identity Linked Roles",
-      "system": "apex",
+      "system": "legacy",
       "defaultConfig": {
         "enabled": false
       },
@@ -2237,7 +2237,7 @@
       "type": "guild",
       "kind": "guild",
       "label": "Guild Verification Role",
-      "system": "apex",
+      "system": "legacy",
       "defaultConfig": {
         "enabled": false
       },
@@ -2256,7 +2256,7 @@
       "type": "guild",
       "kind": "guild",
       "label": "Server Theme",
-      "system": "apex",
+      "system": "legacy",
       "defaultConfig": {
         "enabled": false,
         "inExperiment": false,
@@ -2297,7 +2297,7 @@
       "type": "guild",
       "kind": "guild",
       "label": "Voice Call Trigger Point Experiment",
-      "system": "apex",
+      "system": "legacy",
       "defaultConfig": {
         "enabled": false
       },
@@ -2316,7 +2316,7 @@
       "type": "guild",
       "kind": "guild",
       "label": "Voice User Duration",
-      "system": "apex",
+      "system": "legacy",
       "defaultConfig": {
         "enabled": false
       },
@@ -2721,7 +2721,7 @@
       "type": "guild",
       "kind": "guild",
       "label": "Default Invite Expiration Guild Web",
-      "system": "apex",
+      "system": "legacy",
       "defaultConfig": {
         "defaultMaxAge": 604800
       },
@@ -2750,7 +2750,7 @@
       "type": "guild",
       "kind": "guild",
       "label": "Voice Channel List Invite Embed",
-      "system": "apex",
+      "system": "legacy",
       "defaultConfig": {
         "enabled": false
       },
@@ -3101,7 +3101,7 @@
       "type": "guild",
       "kind": "guild",
       "label": "Guild Rooms",
-      "system": "apex",
+      "system": "legacy",
       "defaultConfig": {
         "enabled": false,
         "interactionsEnabled": false,
@@ -9345,5 +9345,709 @@
       "source": "discord"
     }
   ],
-  "legacyExperiments": []
+  "legacyExperiments": [
+    {
+      "id": "2021-02_staff_qc_debugging",
+      "type": "user",
+      "kind": "user",
+      "label": "Display QS scores in results. Not a real experiment",
+      "system": "legacy",
+      "defaultConfig": {
+        "showScores": false
+      },
+      "variations": {
+        "1": {
+          "id": 1,
+          "label": "Show scores in QS results",
+          "showScores": true
+        }
+      },
+      "variationCount": 1,
+      "source": "discord"
+    },
+    {
+      "id": "2021-10_runtime_accessibility_system",
+      "type": "user",
+      "kind": "user",
+      "label": "Runtime Accessibility System",
+      "system": "legacy",
+      "defaultConfig": {
+        "enabled": false,
+        "reporting": false
+      },
+      "variations": {
+        "1": {
+          "id": 1,
+          "label": "Enabled but silent",
+          "enabled": true,
+          "reporting": false
+        },
+        "2": {
+          "id": 2,
+          "label": "Enabled and reporting",
+          "enabled": true,
+          "reporting": true
+        }
+      },
+      "variationCount": 2,
+      "source": "discord"
+    },
+    {
+      "id": "2021-12_inferno_spam_redaction",
+      "type": "user",
+      "kind": "user",
+      "label": "Inferno Spam Redaction",
+      "system": "legacy",
+      "defaultConfig": {
+        "enabled": false
+      },
+      "variations": {
+        "1": {
+          "id": 1,
+          "label": "Allow guild channel messages from spammers to be collapsed",
+          "enabled": true
+        }
+      },
+      "variationCount": 1,
+      "source": "discord"
+    },
+    {
+      "id": "2022-07_voice_in_threads",
+      "type": "guild",
+      "kind": "guild",
+      "label": "Voice in Threads",
+      "system": "legacy",
+      "defaultConfig": {
+        "enabled": false
+      },
+      "variations": {
+        "1": {
+          "id": 1,
+          "label": "On",
+          "enabled": true
+        }
+      },
+      "variationCount": 1,
+      "source": "discord"
+    },
+    {
+      "id": "2022-11_default_disable_mass_mention",
+      "type": "guild",
+      "kind": "guild",
+      "label": "Disable mass mentions for communities by default",
+      "system": "legacy",
+      "defaultConfig": {
+        "enabled": false
+      },
+      "variations": {
+        "1": {
+          "id": 1,
+          "label": "Enabled",
+          "enabled": true
+        }
+      },
+      "variationCount": 1,
+      "source": "discord"
+    },
+    {
+      "id": "2023-02_guest_voice_invites",
+      "type": "guild",
+      "kind": "guild",
+      "label": "Guest Voice Invites",
+      "system": "legacy",
+      "defaultConfig": {
+        "enabled": false
+      },
+      "variations": {
+        "1": {
+          "id": 1,
+          "label": "Allow creation of guest voice invites",
+          "enabled": true
+        }
+      },
+      "variationCount": 1,
+      "source": "discord"
+    },
+    {
+      "id": "2023-09_iar_dsa_webform",
+      "type": "user",
+      "kind": "user",
+      "label": "Safety Experience Unauthenticated Report Form",
+      "system": "legacy",
+      "defaultConfig": {
+        "enabled": false
+      },
+      "variations": {
+        "1": {
+          "id": 1,
+          "label": "EU user",
+          "enabled": true
+        },
+        "2": {
+          "id": 2,
+          "label": "DSA E2E testing user",
+          "enabled": true
+        }
+      },
+      "variationCount": 2,
+      "source": "discord"
+    },
+    {
+      "id": "2023-09_iar_user_reporting",
+      "type": "user",
+      "kind": "user",
+      "label": "Safety Experience IAR User Reporting",
+      "system": "legacy",
+      "defaultConfig": {
+        "enabled": false
+      },
+      "variations": {
+        "1": {
+          "id": 1,
+          "label": "Enabled",
+          "enabled": true
+        }
+      },
+      "variationCount": 1,
+      "source": "discord"
+    },
+    {
+      "id": "2024-06_rtc_pacer__simulcast",
+      "type": "user",
+      "kind": "user",
+      "label": "RTC Pacer & Golive Simulcast",
+      "system": "legacy",
+      "defaultConfig": {
+        "enabled": true,
+        "fullname": "bandwidth_estimation/trendline-window-duration-3750,robust-estimator/",
+        "simulcastEnabled": false
+      },
+      "variations": {
+        "1": {
+          "id": 1,
+          "label": "Golive Simulcast without prober 720p@500k",
+          "enabled": true,
+          "fullname": "bandwidth_estimation/trendline-window-duration-3750,robust-estimator/",
+          "simulcastEnabled": true
+        },
+        "2": {
+          "id": 2,
+          "label": "Golive Simulcast 720p@500k",
+          "enabled": true,
+          "fullname": "bandwidth_estimation/trendline-window-duration-3750,robust-estimator/worker-pacer,worker-pacer-probe",
+          "simulcastEnabled": true
+        },
+        "3": {
+          "id": 3,
+          "label": "Golive with pacing",
+          "enabled": true,
+          "fullname": "bandwidth_estimation/trendline-window-duration-3750,robust-estimator/worker-pacer",
+          "simulcastEnabled": false
+        },
+        "4": {
+          "id": 4,
+          "label": "Golive with pacing and probing",
+          "enabled": true,
+          "fullname": "bandwidth_estimation/trendline-window-duration-3750,robust-estimator/worker-pacer,worker-pacer-probe",
+          "simulcastEnabled": false
+        },
+        "5": {
+          "id": 5,
+          "label": "Golive Simulcast 720p@750k",
+          "enabled": true,
+          "fullname": "bandwidth_estimation/trendline-window-duration-3750,robust-estimator/worker-pacer-probe,worker-lq-floor-750k",
+          "simulcastEnabled": true
+        },
+        "6": {
+          "id": 6,
+          "label": "Golive Simulcast 720p@1000k",
+          "enabled": true,
+          "fullname": "bandwidth_estimation/trendline-window-duration-3750,robust-estimator/worker-pacer-probe,worker-lq-floor-1000k",
+          "simulcastEnabled": true
+        }
+      },
+      "variationCount": 6,
+      "source": "discord"
+    },
+    {
+      "id": "2025-06_native_intents",
+      "type": "user",
+      "kind": "user",
+      "label": "Native Intents",
+      "system": "legacy",
+      "defaultConfig": {
+        "searchEnabled": false,
+        "clearEnabled": false,
+        "activityEnabled": false
+      },
+      "variations": {
+        "1": {
+          "id": 1,
+          "label": "All enabled",
+          "searchEnabled": true,
+          "clearEnabled": true,
+          "activityEnabled": true
+        },
+        "2": {
+          "id": 2,
+          "label": "Clear Only",
+          "searchEnabled": false,
+          "clearEnabled": true,
+          "activityEnabled": false
+        },
+        "3": {
+          "id": 3,
+          "label": "Activities Only",
+          "searchEnabled": false,
+          "clearEnabled": false,
+          "activityEnabled": true
+        },
+        "4": {
+          "id": 4,
+          "label": "Activities and Clear",
+          "searchEnabled": false,
+          "clearEnabled": true,
+          "activityEnabled": true
+        }
+      },
+      "variationCount": 4,
+      "source": "discord"
+    },
+    {
+      "id": "2025-08_default_invite_expiration_guild",
+      "type": "guild",
+      "kind": "guild",
+      "label": "Default Invite Expiration Guild",
+      "system": "legacy",
+      "defaultConfig": {
+        "defaultMaxAge": 604800
+      },
+      "variations": {
+        "1": {
+          "id": 1,
+          "label": "14 days",
+          "defaultMaxAge": 1209600
+        },
+        "2": {
+          "id": 2,
+          "label": "30 days",
+          "defaultMaxAge": 2592
+        },
+        "3": {
+          "id": 3,
+          "label": "60 days",
+          "defaultMaxAge": 5184
+        }
+      },
+      "variationCount": 3,
+      "source": "discord"
+    },
+    {
+      "id": "2025-08_portkey_enabled",
+      "type": "guild",
+      "kind": "guild",
+      "label": "GameServer Enabled",
+      "system": "legacy",
+      "defaultConfig": {
+        "enabled": false
+      },
+      "variations": {
+        "1": {
+          "id": 1,
+          "label": "Enable GameServer",
+          "enabled": true
+        }
+      },
+      "variationCount": 1,
+      "source": "discord"
+    },
+    {
+      "id": "2025-09_hotwheels_nvidia_boost",
+      "type": "user",
+      "kind": "user",
+      "label": "Next iteration of the activity feed ranking model.",
+      "system": "legacy",
+      "defaultConfig": null,
+      "variations": {
+        "16": {
+          "id": 16,
+          "label": "ML model V3 - Nvidia small boost"
+        },
+        "17": {
+          "id": 17,
+          "label": "ML model V3 - Nvidia big boost"
+        }
+      },
+      "variationCount": 2,
+      "source": "discord"
+    },
+    {
+      "id": "2025-10_community_account_link_onboarding",
+      "type": "guild",
+      "kind": "guild",
+      "label": "Community Account Linking",
+      "system": "legacy",
+      "defaultConfig": {
+        "enabled": false
+      },
+      "variations": {
+        "1": {
+          "id": 1,
+          "label": "Enable Community Account Linking UI",
+          "enabled": true
+        }
+      },
+      "variationCount": 1,
+      "source": "discord"
+    },
+    {
+      "id": "2025-12_voice_channel_hoisting",
+      "type": "guild",
+      "kind": "guild",
+      "label": "Voice Channel Hoisting",
+      "system": "legacy",
+      "defaultConfig": {
+        "enableWaveformIcon": false,
+        "enableHighlight": false
+      },
+      "variations": {
+        "1": {
+          "id": 1,
+          "label": "Both waveform and highlight",
+          "enableWaveformIcon": true,
+          "enableHighlight": true
+        },
+        "2": {
+          "id": 2,
+          "label": "Waveform icon only",
+          "enableWaveformIcon": true,
+          "enableHighlight": false
+        }
+      },
+      "variationCount": 2,
+      "source": "discord"
+    },
+    {
+      "id": "2026-02_game_claim_coachmark",
+      "type": "guild",
+      "kind": "guild",
+      "label": "Game Claim Coachmark",
+      "system": "legacy",
+      "defaultConfig": {
+        "enabled": false
+      },
+      "variations": {
+        "1": {
+          "id": 1,
+          "label": "Enable Game Claim Coachmark",
+          "enabled": true
+        }
+      },
+      "variationCount": 1,
+      "source": "discord"
+    },
+    {
+      "id": "2026-02_hangout_window",
+      "type": "guild",
+      "kind": "guild",
+      "label": "Hangout Window",
+      "system": "legacy",
+      "defaultConfig": {
+        "enableHangoutWindow": false
+      },
+      "variations": {
+        "1": {
+          "id": 1,
+          "label": "Enable Hangout Window",
+          "enableHangoutWindow": true
+        }
+      },
+      "variationCount": 1,
+      "source": "discord"
+    },
+    {
+      "id": "2026-02_past_vc_activity_messages",
+      "type": "guild",
+      "kind": "guild",
+      "label": "Past VC Activity Messages",
+      "system": "legacy",
+      "defaultConfig": {
+        "enabled": false
+      },
+      "variations": {
+        "1": {
+          "id": 1,
+          "label": "Show past VC activity messages in system channel",
+          "enabled": true
+        }
+      },
+      "variationCount": 1,
+      "source": "discord"
+    },
+    {
+      "id": "2026-03_guild_official_messages",
+      "type": "guild",
+      "kind": "guild",
+      "label": "Guild Official Messages",
+      "system": "legacy",
+      "defaultConfig": {
+        "enabled": false
+      },
+      "variations": {
+        "1": {
+          "id": 1,
+          "label": "Enable official messages",
+          "enabled": true
+        }
+      },
+      "variationCount": 1,
+      "source": "discord"
+    },
+    {
+      "id": "2026-03_voice_badge",
+      "type": "guild",
+      "kind": "guild",
+      "label": "Display Voice Channel Badge",
+      "system": "legacy",
+      "defaultConfig": {
+        "enabled": false
+      },
+      "variations": {
+        "0": {
+          "id": 0,
+          "label": "Control",
+          "enabled": false
+        },
+        "1": {
+          "id": 1,
+          "label": "Show voice badges",
+          "enabled": true
+        }
+      },
+      "variationCount": 2,
+      "source": "discord"
+    },
+    {
+      "id": "2026-04_application_identity_linked_roles",
+      "type": "guild",
+      "kind": "guild",
+      "label": "Application Identity Linked Roles",
+      "system": "legacy",
+      "defaultConfig": {
+        "enabled": false
+      },
+      "variations": {
+        "1": {
+          "id": 1,
+          "label": "Enable Application Identity Linked Roles",
+          "enabled": true
+        }
+      },
+      "variationCount": 1,
+      "source": "discord"
+    },
+    {
+      "id": "2026-04_guild_verification_role",
+      "type": "guild",
+      "kind": "guild",
+      "label": "Guild Verification Role",
+      "system": "legacy",
+      "defaultConfig": {
+        "enabled": false
+      },
+      "variations": {
+        "1": {
+          "id": 1,
+          "label": "Enable verification role setting",
+          "enabled": true
+        }
+      },
+      "variationCount": 1,
+      "source": "discord"
+    },
+    {
+      "id": "2026-04_server_theme",
+      "type": "guild",
+      "kind": "guild",
+      "label": "Server Theme",
+      "system": "legacy",
+      "defaultConfig": {
+        "enabled": false,
+        "inExperiment": false,
+        "gatesApex": false,
+        "rollbackEnabled": false
+      },
+      "variations": {
+        "0": {
+          "id": 0,
+          "label": "Control",
+          "enabled": false,
+          "inExperiment": true,
+          "gatesApex": false,
+          "rollbackEnabled": false
+        },
+        "1": {
+          "id": 1,
+          "label": "Enable Server Theme",
+          "enabled": true,
+          "inExperiment": true,
+          "gatesApex": false,
+          "rollbackEnabled": false
+        },
+        "2": {
+          "id": 2,
+          "label": "Rollback UI for Server Theme",
+          "enabled": true,
+          "inExperiment": true,
+          "gatesApex": false,
+          "rollbackEnabled": true
+        }
+      },
+      "variationCount": 3,
+      "source": "discord"
+    },
+    {
+      "id": "2026-04_voice_call_trigger_point",
+      "type": "guild",
+      "kind": "guild",
+      "label": "Voice Call Trigger Point Experiment",
+      "system": "legacy",
+      "defaultConfig": {
+        "enabled": false
+      },
+      "variations": {
+        "1": {
+          "id": 1,
+          "label": "Treatment",
+          "enabled": true
+        }
+      },
+      "variationCount": 1,
+      "source": "discord"
+    },
+    {
+      "id": "2026-04_voice_user_duration",
+      "type": "guild",
+      "kind": "guild",
+      "label": "Voice User Duration",
+      "system": "legacy",
+      "defaultConfig": {
+        "enabled": false
+      },
+      "variations": {
+        "1": {
+          "id": 1,
+          "label": "Allow guild members to see each others duration in the channel list",
+          "enabled": true
+        }
+      },
+      "variationCount": 1,
+      "source": "discord"
+    },
+    {
+      "id": "2026-05_default_invite_expiration_guild_web",
+      "type": "guild",
+      "kind": "guild",
+      "label": "Default Invite Expiration Guild Web",
+      "system": "legacy",
+      "defaultConfig": {
+        "defaultMaxAge": 604800
+      },
+      "variations": {
+        "1": {
+          "id": 1,
+          "label": "14 days",
+          "defaultMaxAge": 1209600
+        },
+        "2": {
+          "id": 2,
+          "label": "30 days",
+          "defaultMaxAge": 2592
+        },
+        "3": {
+          "id": 3,
+          "label": "60 days",
+          "defaultMaxAge": 5184
+        }
+      },
+      "variationCount": 3,
+      "source": "discord"
+    },
+    {
+      "id": "2026-05_voice_channel_list_invite_embed",
+      "type": "guild",
+      "kind": "guild",
+      "label": "Voice Channel List Invite Embed",
+      "system": "legacy",
+      "defaultConfig": {
+        "enabled": false
+      },
+      "variations": {
+        "1": {
+          "id": 1,
+          "label": "Enable channel-list-style voice invite embed",
+          "enabled": true
+        }
+      },
+      "variationCount": 1,
+      "source": "discord"
+    },
+    {
+      "id": "2026-06_guild_rooms",
+      "type": "guild",
+      "kind": "guild",
+      "label": "Guild Rooms",
+      "system": "legacy",
+      "defaultConfig": {
+        "enabled": false,
+        "interactionsEnabled": false,
+        "multipleRoomsEnabled": false,
+        "posturesEnabled": false
+      },
+      "variations": {
+        "1": {
+          "id": 1,
+          "label": "Enable Guild Rooms in this guild",
+          "enabled": true,
+          "interactionsEnabled": true,
+          "multipleRoomsEnabled": false,
+          "posturesEnabled": true
+        },
+        "2": {
+          "id": 2,
+          "label": "Enable Guild Rooms without Interactions",
+          "enabled": true,
+          "interactionsEnabled": false,
+          "multipleRoomsEnabled": false,
+          "posturesEnabled": true
+        },
+        "3": {
+          "id": 3,
+          "label": "Enable Guild Rooms with Room Variants",
+          "enabled": true,
+          "interactionsEnabled": true,
+          "multipleRoomsEnabled": true,
+          "posturesEnabled": true
+        },
+        "4": {
+          "id": 4,
+          "label": "Enable Guild Rooms without Postures",
+          "enabled": true,
+          "interactionsEnabled": true,
+          "multipleRoomsEnabled": false,
+          "posturesEnabled": false
+        },
+        "5": {
+          "id": 5,
+          "label": "Enable Guild Rooms with Room 2 Default and Selector",
+          "enabled": true,
+          "interactionsEnabled": true,
+          "multipleRoomsEnabled": true,
+          "posturesEnabled": true
+        }
+      },
+      "variationCount": 5,
+      "source": "discord"
+    }
+  ]
 }

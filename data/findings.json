@@ -1,7 +1,7 @@
 {
-  "runId": "2026-11-17T00-56-59-937Z_674946_lok0m5",
-  "buildNumber": "674946",
-  "scrapedAt": "2026-11-17T00:56:59.937Z",
+  "runId": "2026-11-17T01-01-21-079Z_674951_joch8l",
+  "buildNumber": "674951",
+  "scrapedAt": "2026-11-17T01:01:21.079Z",
   "totals": {
     "all": 396
   },
@@ -11,7 +11,7 @@
       "type": "user",
       "kind": "user",
       "label": "Display QS scores in results. Not a real experiment",
-      "system": "apex",
+      "system": "legacy",
       "defaultConfig": {
         "showScores": false
       },
@@ -30,7 +30,7 @@
       "type": "user",
       "kind": "user",
       "label": "Runtime Accessibility System",
-      "system": "apex",
+      "system": "legacy",
       "defaultConfig": {
         "enabled": false,
         "reporting": false
@@ -57,7 +57,7 @@
       "type": "user",
       "kind": "user",
       "label": "Inferno Spam Redaction",
-      "system": "apex",
+      "system": "legacy",
       "defaultConfig": {
         "enabled": false
       },
@@ -97,7 +97,7 @@
       "type": "guild",
       "kind": "guild",
       "label": "Voice in Threads",
-      "system": "apex",
+      "system": "legacy",
       "defaultConfig": {
         "enabled": false
       },
@@ -126,7 +126,7 @@
       "type": "guild",
       "kind": "guild",
       "label": "Disable mass mentions for communities by default",
-      "system": "apex",
+      "system": "legacy",
       "defaultConfig": {
         "enabled": false
       },
@@ -155,7 +155,7 @@
       "type": "guild",
       "kind": "guild",
       "label": "Guest Voice Invites",
-      "system": "apex",
+      "system": "legacy",
       "defaultConfig": {
         "enabled": false
       },
@@ -184,7 +184,7 @@
       "type": "user",
       "kind": "user",
       "label": "Safety Experience Unauthenticated Report Form",
-      "system": "apex",
+      "system": "legacy",
       "defaultConfig": {
         "enabled": false
       },
@@ -218,7 +218,7 @@
       "type": "user",
       "kind": "user",
       "label": "Safety Experience IAR User Reporting",
-      "system": "apex",
+      "system": "legacy",
       "defaultConfig": {
         "enabled": false
       },
@@ -247,7 +247,7 @@
       "type": "user",
       "kind": "user",
       "label": "RTC Pacer & Golive Simulcast",
-      "system": "apex",
+      "system": "legacy",
       "defaultConfig": {
         "enabled": true,
         "fullname": "bandwidth_estimation/trendline-window-duration-3750,robust-estimator/",
@@ -383,7 +383,7 @@
       "type": "user",
       "kind": "user",
       "label": "Native Intents",
-      "system": "apex",
+      "system": "legacy",
       "defaultConfig": {
         "searchEnabled": false,
         "clearEnabled": false,
@@ -427,7 +427,7 @@
       "type": "guild",
       "kind": "guild",
       "label": "Default Invite Expiration Guild",
-      "system": "apex",
+      "system": "legacy",
       "defaultConfig": {
         "defaultMaxAge": 604800
       },
@@ -466,7 +466,7 @@
       "type": "guild",
       "kind": "guild",
       "label": "GameServer Enabled",
-      "system": "apex",
+      "system": "legacy",
       "defaultConfig": {
         "enabled": false
       },
@@ -527,7 +527,7 @@
       "type": "user",
       "kind": "user",
       "label": "Next iteration of the activity feed ranking model.",
-      "system": "apex",
+      "system": "legacy",
       "defaultConfig": null,
       "variations": {
         "16": {
@@ -663,7 +663,7 @@
       "type": "guild",
       "kind": "guild",
       "label": "Community Account Linking",
-      "system": "apex",
+      "system": "legacy",
       "defaultConfig": {
         "enabled": false
       },
@@ -929,7 +929,7 @@
       "type": "guild",
       "kind": "guild",
       "label": "Voice Channel Hoisting",
-      "system": "apex",
+      "system": "legacy",
       "defaultConfig": {
         "enableWaveformIcon": false,
         "enableHighlight": false
@@ -1196,7 +1196,7 @@
       "type": "guild",
       "kind": "guild",
       "label": "Game Claim Coachmark",
-      "system": "apex",
+      "system": "legacy",
       "defaultConfig": {
         "enabled": false
       },
@@ -1215,7 +1215,7 @@
       "type": "guild",
       "kind": "guild",
       "label": "Hangout Window",
-      "system": "apex",
+      "system": "legacy",
       "defaultConfig": {
         "enableHangoutWindow": false
       },
@@ -1234,7 +1234,7 @@
       "type": "guild",
       "kind": "guild",
       "label": "Past VC Activity Messages",
-      "system": "apex",
+      "system": "legacy",
       "defaultConfig": {
         "enabled": false
       },
@@ -1688,7 +1688,7 @@
       "type": "guild",
       "kind": "guild",
       "label": "Guild Official Messages",
-      "system": "apex",
+      "system": "legacy",
       "defaultConfig": {
         "enabled": false
       },
@@ -1707,7 +1707,7 @@
       "type": "guild",
       "kind": "guild",
       "label": "Display Voice Channel Badge",
-      "system": "apex",
+      "system": "legacy",
       "defaultConfig": {
         "enabled": false
       },
@@ -1833,8 +1833,8 @@
     },
     {
       "id": "2026-03-conversation-highlighting-utility",
-      "type": "user",
-      "kind": "user",
+      "type": "guild",
+      "kind": "guild",
       "label": null,
       "system": "apex",
       "defaultConfig": {
@@ -2216,7 +2216,7 @@
       "type": "guild",
       "kind": "guild",
       "label": "Application Identity Linked Roles",
-      "system": "apex",
+      "system": "legacy",
       "defaultConfig": {
         "enabled": false
       },
@@ -2235,7 +2235,7 @@
       "type": "guild",
       "kind": "guild",
       "label": "Guild Verification Role",
-      "system": "apex",
+      "system": "legacy",
       "defaultConfig": {
         "enabled": false
       },
@@ -2254,7 +2254,7 @@
       "type": "guild",
       "kind": "guild",
       "label": "Server Theme",
-      "system": "apex",
+      "system": "legacy",
       "defaultConfig": {
         "enabled": false,
         "inExperiment": false,
@@ -2295,7 +2295,7 @@
       "type": "guild",
       "kind": "guild",
       "label": "Voice Call Trigger Point Experiment",
-      "system": "apex",
+      "system": "legacy",
       "defaultConfig": {
         "enabled": false
       },
@@ -2314,7 +2314,7 @@
       "type": "guild",
       "kind": "guild",
       "label": "Voice User Duration",
-      "system": "apex",
+      "system": "legacy",
       "defaultConfig": {
         "enabled": false
       },
@@ -2719,7 +2719,7 @@
       "type": "guild",
       "kind": "guild",
       "label": "Default Invite Expiration Guild Web",
-      "system": "apex",
+      "system": "legacy",
       "defaultConfig": {
         "defaultMaxAge": 604800
       },
@@ -2748,7 +2748,7 @@
       "type": "guild",
       "kind": "guild",
       "label": "Voice Channel List Invite Embed",
-      "system": "apex",
+      "system": "legacy",
       "defaultConfig": {
         "enabled": false
       },
@@ -3099,7 +3099,7 @@
       "type": "guild",
       "kind": "guild",
       "label": "Guild Rooms",
-      "system": "apex",
+      "system": "legacy",
       "defaultConfig": {
         "enabled": false,
         "interactionsEnabled": false,

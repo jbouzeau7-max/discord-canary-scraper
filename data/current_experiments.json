@@ -1,14 +1,14 @@
 {
-  "runId": "2026-11-17T00-56-59-937Z_674946_lok0m5",
-  "buildNumber": "674946",
-  "updatedAt": "2026-11-17T00:56:59.937Z",
+  "runId": "2026-11-17T01-01-21-079Z_674951_joch8l",
+  "buildNumber": "674951",
+  "updatedAt": "2026-11-17T01:01:21.079Z",
   "count": 396,
   "experiments": [
     {
       "id": "2021-02_staff_qc_debugging",
       "kind": "user",
       "type": "user",
-      "system": "apex",
+      "system": "legacy",
       "label": "Display QS scores in results. Not a real experiment",
       "title": "Display QS scores in results. Not a real experiment",
       "description": null,
@@ -30,7 +30,7 @@
         "type": "user",
         "kind": "user",
         "label": "Display QS scores in results. Not a real experiment",
-        "system": "apex",
+        "system": "legacy",
         "defaultConfig": {
           "showScores": false
         },
@@ -58,7 +58,7 @@
       "id": "2021-10_runtime_accessibility_system",
       "kind": "user",
       "type": "user",
-      "system": "apex",
+      "system": "legacy",
       "label": "Runtime Accessibility System",
       "title": "Runtime Accessibility System",
       "description": null,
@@ -88,7 +88,7 @@
         "type": "user",
         "kind": "user",
         "label": "Runtime Accessibility System",
-        "system": "apex",
+        "system": "legacy",
         "defaultConfig": {
           "enabled": false,
           "reporting": false
@@ -124,7 +124,7 @@
       "id": "2021-12_inferno_spam_redaction",
       "kind": "user",
       "type": "user",
-      "system": "apex",
+      "system": "legacy",
       "label": "Inferno Spam Redaction",
       "title": "Inferno Spam Redaction",
       "description": null,
@@ -146,7 +146,7 @@
         "type": "user",
         "kind": "user",
         "label": "Inferno Spam Redaction",
-        "system": "apex",
+        "system": "legacy",
         "defaultConfig": {
           "enabled": false
         },
@@ -209,7 +209,7 @@
       "id": "2022-07_voice_in_threads",
       "kind": "guild",
       "type": "guild",
-      "system": "apex",
+      "system": "legacy",
       "label": "Voice in Threads",
       "title": "Voice in Threads",
       "description": null,
@@ -231,7 +231,7 @@
         "type": "guild",
         "kind": "guild",
         "label": "Voice in Threads",
-        "system": "apex",
+        "system": "legacy",
         "defaultConfig": {
           "enabled": false
         },
@@ -260,7 +260,7 @@
       "id": "2022-11_default_disable_mass_mention",
       "kind": "guild",
       "type": "guild",
-      "system": "apex",
+      "system": "legacy",
       "label": "Disable mass mentions for communities by default",
       "title": "Disable mass mentions for communities by default",
       "description": null,
@@ -282,7 +282,7 @@
         "type": "guild",
         "kind": "guild",
         "label": "Disable mass mentions for communities by default",
-        "system": "apex",
+        "system": "legacy",
         "defaultConfig": {
           "enabled": false
         },
@@ -311,7 +311,7 @@
       "id": "2023-02_guest_voice_invites",
       "kind": "guild",
       "type": "guild",
-      "system": "apex",
+      "system": "legacy",
       "label": "Guest Voice Invites",
       "title": "Guest Voice Invites",
       "description": null,
@@ -333,7 +333,7 @@
         "type": "guild",
         "kind": "guild",
         "label": "Guest Voice Invites",
-        "system": "apex",
+        "system": "legacy",
         "defaultConfig": {
           "enabled": false
         },
@@ -362,7 +362,7 @@
       "id": "2023-09_iar_dsa_webform",
       "kind": "user",
       "type": "user",
-      "system": "apex",
+      "system": "legacy",
       "label": "Safety Experience Unauthenticated Report Form",
       "title": "Safety Experience Unauthenticated Report Form",
       "description": null,
@@ -389,7 +389,7 @@
         "type": "user",
         "kind": "user",
         "label": "Safety Experience Unauthenticated Report Form",
-        "system": "apex",
+        "system": "legacy",
         "defaultConfig": {
           "enabled": false
         },
@@ -423,7 +423,7 @@
       "id": "2023-09_iar_user_reporting",
       "kind": "user",
       "type": "user",
-      "system": "apex",
+      "system": "legacy",
       "label": "Safety Experience IAR User Reporting",
       "title": "Safety Experience IAR User Reporting",
       "description": null,
@@ -445,7 +445,7 @@
         "type": "user",
         "kind": "user",
         "label": "Safety Experience IAR User Reporting",
-        "system": "apex",
+        "system": "legacy",
         "defaultConfig": {
           "enabled": false
         },
@@ -474,7 +474,7 @@
       "id": "2024-06_rtc_pacer__simulcast",
       "kind": "user",
       "type": "user",
-      "system": "apex",
+      "system": "legacy",
       "label": "RTC Pacer & Golive Simulcast",
       "title": "RTC Pacer & Golive Simulcast",
       "description": null,
@@ -535,7 +535,7 @@
         "type": "user",
         "kind": "user",
         "label": "RTC Pacer & Golive Simulcast",
-        "system": "apex",
+        "system": "legacy",
         "defaultConfig": {
           "enabled": true,
           "fullname": "bandwidth_estimation/trendline-window-duration-3750,robust-estimator/",
@@ -794,7 +794,7 @@
       "id": "2025-06_native_intents",
       "kind": "user",
       "type": "user",
-      "system": "apex",
+      "system": "legacy",
       "label": "Native Intents",
       "title": "Native Intents",
       "description": null,
@@ -841,7 +841,7 @@
         "type": "user",
         "kind": "user",
         "label": "Native Intents",
-        "system": "apex",
+        "system": "legacy",
         "defaultConfig": {
           "searchEnabled": false,
           "clearEnabled": false,
@@ -894,7 +894,7 @@
       "id": "2025-08_default_invite_expiration_guild",
       "kind": "guild",
       "type": "guild",
-      "system": "apex",
+      "system": "legacy",
       "label": "Default Invite Expiration Guild",
       "title": "Default Invite Expiration Guild",
       "description": null,
@@ -926,7 +926,7 @@
         "type": "guild",
         "kind": "guild",
         "label": "Default Invite Expiration Guild",
-        "system": "apex",
+        "system": "legacy",
         "defaultConfig": {
           "defaultMaxAge": 604800
         },
@@ -965,7 +965,7 @@
       "id": "2025-08_portkey_enabled",
       "kind": "guild",
       "type": "guild",
-      "system": "apex",
+      "system": "legacy",
       "label": "GameServer Enabled",
       "title": "GameServer Enabled",
       "description": null,
@@ -987,7 +987,7 @@
         "type": "guild",
         "kind": "guild",
         "label": "GameServer Enabled",
-        "system": "apex",
+        "system": "legacy",
         "defaultConfig": {
           "enabled": false
         },
@@ -1123,7 +1123,7 @@
       "id": "2025-09_hotwheels_nvidia_boost",
       "kind": "user",
       "type": "user",
-      "system": "apex",
+      "system": "legacy",
       "label": "Next iteration of the activity feed ranking model.",
       "title": "Next iteration of the activity feed ranking model.",
       "description": null,
@@ -1146,7 +1146,7 @@
         "type": "user",
         "kind": "user",
         "label": "Next iteration of the activity feed ranking model.",
-        "system": "apex",
+        "system": "legacy",
         "defaultConfig": null,
         "variations": {
           "16": {
@@ -1429,7 +1429,7 @@
       "id": "2025-10_community_account_link_onboarding",
       "kind": "guild",
       "type": "guild",
-      "system": "apex",
+      "system": "legacy",
       "label": "Community Account Linking",
       "title": "Community Account Linking",
       "description": null,
@@ -1451,7 +1451,7 @@
         "type": "guild",
         "kind": "guild",
         "label": "Community Account Linking",
-        "system": "apex",
+        "system": "legacy",
         "defaultConfig": {
           "enabled": false
         },
@@ -2079,7 +2079,7 @@
       "id": "2025-12_voice_channel_hoisting",
       "kind": "guild",
       "type": "guild",
-      "system": "apex",
+      "system": "legacy",
       "label": "Voice Channel Hoisting",
       "title": "Voice Channel Hoisting",
       "description": null,
@@ -2109,7 +2109,7 @@
         "type": "guild",
         "kind": "guild",
         "label": "Voice Channel Hoisting",
-        "system": "apex",
+        "system": "legacy",
         "defaultConfig": {
           "enableWaveformIcon": false,
           "enableHighlight": false
@@ -2719,7 +2719,7 @@
       "id": "2026-02_game_claim_coachmark",
       "kind": "guild",
       "type": "guild",
-      "system": "apex",
+      "system": "legacy",
       "label": "Game Claim Coachmark",
       "title": "Game Claim Coachmark",
       "description": null,
@@ -2741,7 +2741,7 @@
         "type": "guild",
         "kind": "guild",
         "label": "Game Claim Coachmark",
-        "system": "apex",
+        "system": "legacy",
         "defaultConfig": {
           "enabled": false
         },
@@ -2769,7 +2769,7 @@
       "id": "2026-02_hangout_window",
       "kind": "guild",
       "type": "guild",
-      "system": "apex",
+      "system": "legacy",
       "label": "Hangout Window",
       "title": "Hangout Window",
       "description": null,
@@ -2791,7 +2791,7 @@
         "type": "guild",
         "kind": "guild",
         "label": "Hangout Window",
-        "system": "apex",
+        "system": "legacy",
         "defaultConfig": {
           "enableHangoutWindow": false
         },
@@ -2819,7 +2819,7 @@
       "id": "2026-02_past_vc_activity_messages",
       "kind": "guild",
       "type": "guild",
-      "system": "apex",
+      "system": "legacy",
       "label": "Past VC Activity Messages",
       "title": "Past VC Activity Messages",
       "description": null,
@@ -2841,7 +2841,7 @@
         "type": "guild",
         "kind": "guild",
         "label": "Past VC Activity Messages",
-        "system": "apex",
+        "system": "legacy",
         "defaultConfig": {
           "enabled": false
         },
@@ -3815,7 +3815,7 @@
       "id": "2026-03_guild_official_messages",
       "kind": "guild",
       "type": "guild",
-      "system": "apex",
+      "system": "legacy",
       "label": "Guild Official Messages",
       "title": "Guild Official Messages",
       "description": null,
@@ -3837,7 +3837,7 @@
         "type": "guild",
         "kind": "guild",
         "label": "Guild Official Messages",
-        "system": "apex",
+        "system": "legacy",
         "defaultConfig": {
           "enabled": false
         },
@@ -3865,7 +3865,7 @@
       "id": "2026-03_voice_badge",
       "kind": "guild",
       "type": "guild",
-      "system": "apex",
+      "system": "legacy",
       "label": "Display Voice Channel Badge",
       "title": "Display Voice Channel Badge",
       "description": null,
@@ -3892,7 +3892,7 @@
         "type": "guild",
         "kind": "guild",
         "label": "Display Voice Channel Badge",
-        "system": "apex",
+        "system": "legacy",
         "defaultConfig": {
           "enabled": false
         },
@@ -4205,8 +4205,8 @@
     },
     {
       "id": "2026-03-conversation-highlighting-utility",
-      "kind": "user",
-      "type": "user",
+      "kind": "guild",
+      "type": "guild",
       "system": "apex",
       "label": null,
       "title": null,
@@ -4227,8 +4227,8 @@
       "variationCount": 2,
       "raw": {
         "id": "2026-03-conversation-highlighting-utility",
-        "type": "user",
-        "kind": "user",
+        "type": "guild",
+        "kind": "guild",
         "label": null,
         "system": "apex",
         "defaultConfig": {
@@ -4253,7 +4253,7 @@
         "status": "unknown",
         "value": null
       },
-      "fingerprint": "8995de760ecce3d0b296d0106c3c930a62271777e24307522883f05134f4a658"
+      "fingerprint": "ed4d82c2c35c4da57397d8b66915f37b64eed090f93c86ef24abe197c12ed21a"
     },
     {
       "id": "2026-03-croissant",
@@ -5107,7 +5107,7 @@
       "id": "2026-04_application_identity_linked_roles",
       "kind": "guild",
       "type": "guild",
-      "system": "apex",
+      "system": "legacy",
       "label": "Application Identity Linked Roles",
       "title": "Application Identity Linked Roles",
       "description": null,
@@ -5129,7 +5129,7 @@
         "type": "guild",
         "kind": "guild",
         "label": "Application Identity Linked Roles",
-        "system": "apex",
+        "system": "legacy",
         "defaultConfig": {
           "enabled": false
         },
@@ -5157,7 +5157,7 @@
       "id": "2026-04_guild_verification_role",
       "kind": "guild",
       "type": "guild",
-      "system": "apex",
+      "system": "legacy",
       "label": "Guild Verification Role",
       "title": "Guild Verification Role",
       "description": null,
@@ -5179,7 +5179,7 @@
         "type": "guild",
         "kind": "guild",
         "label": "Guild Verification Role",
-        "system": "apex",
+        "system": "legacy",
         "defaultConfig": {
           "enabled": false
         },
@@ -5207,7 +5207,7 @@
       "id": "2026-04_server_theme",
       "kind": "guild",
       "type": "guild",
-      "system": "apex",
+      "system": "legacy",
       "label": "Server Theme",
       "title": "Server Theme",
       "description": null,
@@ -5251,7 +5251,7 @@
         "type": "guild",
         "kind": "guild",
         "label": "Server Theme",
-        "system": "apex",
+        "system": "legacy",
         "defaultConfig": {
           "enabled": false,
           "inExperiment": false,
@@ -5301,7 +5301,7 @@
       "id": "2026-04_voice_call_trigger_point",
       "kind": "guild",
       "type": "guild",
-      "system": "apex",
+      "system": "legacy",
       "label": "Voice Call Trigger Point Experiment",
       "title": "Voice Call Trigger Point Experiment",
       "description": null,
@@ -5323,7 +5323,7 @@
         "type": "guild",
         "kind": "guild",
         "label": "Voice Call Trigger Point Experiment",
-        "system": "apex",
+        "system": "legacy",
         "defaultConfig": {
           "enabled": false
         },
@@ -5351,7 +5351,7 @@
       "id": "2026-04_voice_user_duration",
       "kind": "guild",
       "type": "guild",
-      "system": "apex",
+      "system": "legacy",
       "label": "Voice User Duration",
       "title": "Voice User Duration",
       "description": null,
@@ -5373,7 +5373,7 @@
         "type": "guild",
         "kind": "guild",
         "label": "Voice User Duration",
-        "system": "apex",
+        "system": "legacy",
         "defaultConfig": {
           "enabled": false
         },
@@ -6344,7 +6344,7 @@
       "id": "2026-05_default_invite_expiration_guild_web",
       "kind": "guild",
       "type": "guild",
-      "system": "apex",
+      "system": "legacy",
       "label": "Default Invite Expiration Guild Web",
       "title": "Default Invite Expiration Guild Web",
       "description": null,
@@ -6376,7 +6376,7 @@
         "type": "guild",
         "kind": "guild",
         "label": "Default Invite Expiration Guild Web",
-        "system": "apex",
+        "system": "legacy",
         "defaultConfig": {
           "defaultMaxAge": 604800
         },
@@ -6414,7 +6414,7 @@
       "id": "2026-05_voice_channel_list_invite_embed",
       "kind": "guild",
       "type": "guild",
-      "system": "apex",
+      "system": "legacy",
       "label": "Voice Channel List Invite Embed",
       "title": "Voice Channel List Invite Embed",
       "description": null,
@@ -6436,7 +6436,7 @@
         "type": "guild",
         "kind": "guild",
         "label": "Voice Channel List Invite Embed",
-        "system": "apex",
+        "system": "legacy",
         "defaultConfig": {
           "enabled": false
         },
@@ -7270,7 +7270,7 @@
       "id": "2026-06_guild_rooms",
       "kind": "guild",
       "type": "guild",
-      "system": "apex",
+      "system": "legacy",
       "label": "Guild Rooms",
       "title": "Guild Rooms",
       "description": null,
@@ -7330,7 +7330,7 @@
         "type": "guild",
         "kind": "guild",
         "label": "Guild Rooms",
-        "system": "apex",
+        "system": "legacy",
         "defaultConfig": {
           "enabled": false,
           "interactionsEnabled": false,

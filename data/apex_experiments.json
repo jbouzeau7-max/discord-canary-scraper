@@ -1,197 +1,10 @@
 [
   {
     "kind": "user",
-    "name": "2021-02_staff_qc_debugging",
-    "defaultConfig": {
-      "showScores": false
-    },
-    "variations": {
-      "1": {
-        "id": 1,
-        "label": "Show scores in QS results",
-        "showScores": true
-      }
-    },
-    "label": "Display QS scores in results. Not a real experiment"
-  },
-  {
-    "kind": "user",
-    "name": "2021-10_runtime_accessibility_system",
-    "defaultConfig": {
-      "enabled": false,
-      "reporting": false
-    },
-    "variations": {
-      "1": {
-        "id": 1,
-        "label": "Enabled but silent",
-        "enabled": true,
-        "reporting": false
-      },
-      "2": {
-        "id": 2,
-        "label": "Enabled and reporting",
-        "enabled": true,
-        "reporting": true
-      }
-    },
-    "label": "Runtime Accessibility System"
-  },
-  {
-    "kind": "user",
-    "name": "2021-12_inferno_spam_redaction",
-    "defaultConfig": {
-      "enabled": false
-    },
-    "variations": {
-      "1": {
-        "id": 1,
-        "label": "Allow guild channel messages from spammers to be collapsed",
-        "enabled": true
-      }
-    },
-    "label": "Inferno Spam Redaction"
-  },
-  {
-    "kind": "user",
     "name": "2022-01_threads",
     "defaultConfig": null,
     "variations": null,
     "label": "Allow logged out users"
-  },
-  {
-    "kind": "guild",
-    "name": "2022-07_voice_in_threads",
-    "defaultConfig": {
-      "enabled": false
-    },
-    "variations": {
-      "1": {
-        "id": 1,
-        "label": "On",
-        "enabled": true
-      }
-    },
-    "label": "Voice in Threads"
-  },
-  {
-    "kind": "guild",
-    "name": "2022-11_default_disable_mass_mention",
-    "defaultConfig": {
-      "enabled": false
-    },
-    "variations": {
-      "1": {
-        "id": 1,
-        "label": "Enabled",
-        "enabled": true
-      }
-    },
-    "label": "Disable mass mentions for communities by default"
-  },
-  {
-    "kind": "guild",
-    "name": "2023-02_guest_voice_invites",
-    "defaultConfig": {
-      "enabled": false
-    },
-    "variations": {
-      "1": {
-        "id": 1,
-        "label": "Allow creation of guest voice invites",
-        "enabled": true
-      }
-    },
-    "label": "Guest Voice Invites"
-  },
-  {
-    "kind": "user",
-    "name": "2023-09_iar_dsa_webform",
-    "defaultConfig": {
-      "enabled": false
-    },
-    "variations": {
-      "1": {
-        "id": 1,
-        "label": "EU user",
-        "enabled": true
-      },
-      "2": {
-        "id": 2,
-        "label": "DSA E2E testing user",
-        "enabled": true
-      }
-    },
-    "label": "Safety Experience Unauthenticated Report Form"
-  },
-  {
-    "kind": "user",
-    "name": "2023-09_iar_user_reporting",
-    "defaultConfig": {
-      "enabled": false
-    },
-    "variations": {
-      "1": {
-        "id": 1,
-        "label": "Enabled",
-        "enabled": true
-      }
-    },
-    "label": "Safety Experience IAR User Reporting"
-  },
-  {
-    "kind": "user",
-    "name": "2024-06_rtc_pacer__simulcast",
-    "defaultConfig": {
-      "enabled": true,
-      "fullname": "bandwidth_estimation/trendline-window-duration-3750,robust-estimator/",
-      "simulcastEnabled": false
-    },
-    "variations": {
-      "1": {
-        "id": 1,
-        "label": "Golive Simulcast without prober 720p@500k",
-        "enabled": true,
-        "fullname": "bandwidth_estimation/trendline-window-duration-3750,robust-estimator/",
-        "simulcastEnabled": true
-      },
-      "2": {
-        "id": 2,
-        "label": "Golive Simulcast 720p@500k",
-        "enabled": true,
-        "fullname": "bandwidth_estimation/trendline-window-duration-3750,robust-estimator/worker-pacer,worker-pacer-probe",
-        "simulcastEnabled": true
-      },
-      "3": {
-        "id": 3,
-        "label": "Golive with pacing",
-        "enabled": true,
-        "fullname": "bandwidth_estimation/trendline-window-duration-3750,robust-estimator/worker-pacer",
-        "simulcastEnabled": false
-      },
-      "4": {
-        "id": 4,
-        "label": "Golive with pacing and probing",
-        "enabled": true,
-        "fullname": "bandwidth_estimation/trendline-window-duration-3750,robust-estimator/worker-pacer,worker-pacer-probe",
-        "simulcastEnabled": false
-      },
-      "5": {
-        "id": 5,
-        "label": "Golive Simulcast 720p@750k",
-        "enabled": true,
-        "fullname": "bandwidth_estimation/trendline-window-duration-3750,robust-estimator/worker-pacer-probe,worker-lq-floor-750k",
-        "simulcastEnabled": true
-      },
-      "6": {
-        "id": 6,
-        "label": "Golive Simulcast 720p@1000k",
-        "enabled": true,
-        "fullname": "bandwidth_estimation/trendline-window-duration-3750,robust-estimator/worker-pacer-probe,worker-lq-floor-1000k",
-        "simulcastEnabled": true
-      }
-    },
-    "label": "RTC Pacer & Golive Simulcast"
   },
   {
     "kind": "user",
@@ -261,86 +74,6 @@
   },
   {
     "kind": "user",
-    "name": "2025-06_native_intents",
-    "defaultConfig": {
-      "searchEnabled": false,
-      "clearEnabled": false,
-      "activityEnabled": false
-    },
-    "variations": {
-      "1": {
-        "id": 1,
-        "label": "All enabled",
-        "searchEnabled": true,
-        "clearEnabled": true,
-        "activityEnabled": true
-      },
-      "2": {
-        "id": 2,
-        "label": "Clear Only",
-        "searchEnabled": false,
-        "clearEnabled": true,
-        "activityEnabled": false
-      },
-      "3": {
-        "id": 3,
-        "label": "Activities Only",
-        "searchEnabled": false,
-        "clearEnabled": false,
-        "activityEnabled": true
-      },
-      "4": {
-        "id": 4,
-        "label": "Activities and Clear",
-        "searchEnabled": false,
-        "clearEnabled": true,
-        "activityEnabled": true
-      }
-    },
-    "label": "Native Intents"
-  },
-  {
-    "kind": "guild",
-    "name": "2025-08_default_invite_expiration_guild",
-    "defaultConfig": {
-      "defaultMaxAge": 604800
-    },
-    "variations": {
-      "1": {
-        "id": 1,
-        "label": "14 days",
-        "defaultMaxAge": 1209600
-      },
-      "2": {
-        "id": 2,
-        "label": "30 days",
-        "defaultMaxAge": 2592
-      },
-      "3": {
-        "id": 3,
-        "label": "60 days",
-        "defaultMaxAge": 5184
-      }
-    },
-    "label": "Default Invite Expiration Guild"
-  },
-  {
-    "kind": "guild",
-    "name": "2025-08_portkey_enabled",
-    "defaultConfig": {
-      "enabled": false
-    },
-    "variations": {
-      "1": {
-        "id": 1,
-        "label": "Enable GameServer",
-        "enabled": true
-      }
-    },
-    "label": "GameServer Enabled"
-  },
-  {
-    "kind": "user",
     "name": "2025-08-browser-hevc",
     "defaultConfig": {
       "enabled": false
@@ -372,22 +105,6 @@
       }
     },
     "label": null
-  },
-  {
-    "kind": "user",
-    "name": "2025-09_hotwheels_nvidia_boost",
-    "defaultConfig": null,
-    "variations": {
-      "16": {
-        "id": 16,
-        "label": "ML model V3 - Nvidia small boost"
-      },
-      "17": {
-        "id": 17,
-        "label": "ML model V3 - Nvidia big boost"
-      }
-    },
-    "label": "Next iteration of the activity feed ranking model."
   },
   {
     "kind": "user",
@@ -464,21 +181,6 @@
       }
     },
     "label": null
-  },
-  {
-    "kind": "guild",
-    "name": "2025-10_community_account_link_onboarding",
-    "defaultConfig": {
-      "enabled": false
-    },
-    "variations": {
-      "1": {
-        "id": 1,
-        "label": "Enable Community Account Linking UI",
-        "enabled": true
-      }
-    },
-    "label": "Community Account Linking"
   },
   {
     "kind": "user",
@@ -660,29 +362,6 @@
     "label": null
   },
   {
-    "kind": "guild",
-    "name": "2025-12_voice_channel_hoisting",
-    "defaultConfig": {
-      "enableWaveformIcon": false,
-      "enableHighlight": false
-    },
-    "variations": {
-      "1": {
-        "id": 1,
-        "label": "Both waveform and highlight",
-        "enableWaveformIcon": true,
-        "enableHighlight": true
-      },
-      "2": {
-        "id": 2,
-        "label": "Waveform icon only",
-        "enableWaveformIcon": true,
-        "enableHighlight": false
-      }
-    },
-    "label": "Voice Channel Hoisting"
-  },
-  {
     "kind": "user",
     "name": "2025-12-hdr-accessibility-setting",
     "defaultConfig": {
@@ -857,51 +536,6 @@
       }
     },
     "label": null
-  },
-  {
-    "kind": "guild",
-    "name": "2026-02_game_claim_coachmark",
-    "defaultConfig": {
-      "enabled": false
-    },
-    "variations": {
-      "1": {
-        "id": 1,
-        "label": "Enable Game Claim Coachmark",
-        "enabled": true
-      }
-    },
-    "label": "Game Claim Coachmark"
-  },
-  {
-    "kind": "guild",
-    "name": "2026-02_hangout_window",
-    "defaultConfig": {
-      "enableHangoutWindow": false
-    },
-    "variations": {
-      "1": {
-        "id": 1,
-        "label": "Enable Hangout Window",
-        "enableHangoutWindow": true
-      }
-    },
-    "label": "Hangout Window"
-  },
-  {
-    "kind": "guild",
-    "name": "2026-02_past_vc_activity_messages",
-    "defaultConfig": {
-      "enabled": false
-    },
-    "variations": {
-      "1": {
-        "id": 1,
-        "label": "Show past VC activity messages in system channel",
-        "enabled": true
-      }
-    },
-    "label": "Past VC Activity Messages"
   },
   {
     "kind": "user",
@@ -1183,41 +817,6 @@
     "label": null
   },
   {
-    "kind": "guild",
-    "name": "2026-03_guild_official_messages",
-    "defaultConfig": {
-      "enabled": false
-    },
-    "variations": {
-      "1": {
-        "id": 1,
-        "label": "Enable official messages",
-        "enabled": true
-      }
-    },
-    "label": "Guild Official Messages"
-  },
-  {
-    "kind": "guild",
-    "name": "2026-03_voice_badge",
-    "defaultConfig": {
-      "enabled": false
-    },
-    "variations": {
-      "0": {
-        "id": 0,
-        "label": "Control",
-        "enabled": false
-      },
-      "1": {
-        "id": 1,
-        "label": "Show voice badges",
-        "enabled": true
-      }
-    },
-    "label": "Display Voice Channel Badge"
-  },
-  {
     "kind": "user",
     "name": "2026-03-age-verification-google-wallet",
     "defaultConfig": {
@@ -1299,7 +898,7 @@
     "label": null
   },
   {
-    "kind": "user",
+    "kind": "guild",
     "name": "2026-03-conversation-highlighting-utility",
     "defaultConfig": {
       "enabled": false
@@ -1565,103 +1164,6 @@
       }
     },
     "label": null
-  },
-  {
-    "kind": "guild",
-    "name": "2026-04_application_identity_linked_roles",
-    "defaultConfig": {
-      "enabled": false
-    },
-    "variations": {
-      "1": {
-        "id": 1,
-        "label": "Enable Application Identity Linked Roles",
-        "enabled": true
-      }
-    },
-    "label": "Application Identity Linked Roles"
-  },
-  {
-    "kind": "guild",
-    "name": "2026-04_guild_verification_role",
-    "defaultConfig": {
-      "enabled": false
-    },
-    "variations": {
-      "1": {
-        "id": 1,
-        "label": "Enable verification role setting",
-        "enabled": true
-      }
-    },
-    "label": "Guild Verification Role"
-  },
-  {
-    "kind": "guild",
-    "name": "2026-04_server_theme",
-    "defaultConfig": {
-      "enabled": false,
-      "inExperiment": false,
-      "gatesApex": false,
-      "rollbackEnabled": false
-    },
-    "variations": {
-      "0": {
-        "id": 0,
-        "label": "Control",
-        "enabled": false,
-        "inExperiment": true,
-        "gatesApex": false,
-        "rollbackEnabled": false
-      },
-      "1": {
-        "id": 1,
-        "label": "Enable Server Theme",
-        "enabled": true,
-        "inExperiment": true,
-        "gatesApex": false,
-        "rollbackEnabled": false
-      },
-      "2": {
-        "id": 2,
-        "label": "Rollback UI for Server Theme",
-        "enabled": true,
-        "inExperiment": true,
-        "gatesApex": false,
-        "rollbackEnabled": true
-      }
-    },
-    "label": "Server Theme"
-  },
-  {
-    "kind": "guild",
-    "name": "2026-04_voice_call_trigger_point",
-    "defaultConfig": {
-      "enabled": false
-    },
-    "variations": {
-      "1": {
-        "id": 1,
-        "label": "Treatment",
-        "enabled": true
-      }
-    },
-    "label": "Voice Call Trigger Point Experiment"
-  },
-  {
-    "kind": "guild",
-    "name": "2026-04_voice_user_duration",
-    "defaultConfig": {
-      "enabled": false
-    },
-    "variations": {
-      "1": {
-        "id": 1,
-        "label": "Allow guild members to see each others duration in the channel list",
-        "enabled": true
-      }
-    },
-    "label": "Voice User Duration"
   },
   {
     "kind": "user",
@@ -1944,46 +1446,6 @@
     "label": null
   },
   {
-    "kind": "guild",
-    "name": "2026-05_default_invite_expiration_guild_web",
-    "defaultConfig": {
-      "defaultMaxAge": 604800
-    },
-    "variations": {
-      "1": {
-        "id": 1,
-        "label": "14 days",
-        "defaultMaxAge": 1209600
-      },
-      "2": {
-        "id": 2,
-        "label": "30 days",
-        "defaultMaxAge": 2592
-      },
-      "3": {
-        "id": 3,
-        "label": "60 days",
-        "defaultMaxAge": 5184
-      }
-    },
-    "label": "Default Invite Expiration Guild Web"
-  },
-  {
-    "kind": "guild",
-    "name": "2026-05_voice_channel_list_invite_embed",
-    "defaultConfig": {
-      "enabled": false
-    },
-    "variations": {
-      "1": {
-        "id": 1,
-        "label": "Enable channel-list-style voice invite embed",
-        "enabled": true
-      }
-    },
-    "label": "Voice Channel List Invite Embed"
-  },
-  {
     "kind": "user",
     "name": "2026-05-app-store-overlay-feature-gate",
     "defaultConfig": {
@@ -2234,59 +1696,6 @@
       }
     },
     "label": null
-  },
-  {
-    "kind": "guild",
-    "name": "2026-06_guild_rooms",
-    "defaultConfig": {
-      "enabled": false,
-      "interactionsEnabled": false,
-      "multipleRoomsEnabled": false,
-      "posturesEnabled": false
-    },
-    "variations": {
-      "1": {
-        "id": 1,
-        "label": "Enable Guild Rooms in this guild",
-        "enabled": true,
-        "interactionsEnabled": true,
-        "multipleRoomsEnabled": false,
-        "posturesEnabled": true
-      },
-      "2": {
-        "id": 2,
-        "label": "Enable Guild Rooms without Interactions",
-        "enabled": true,
-        "interactionsEnabled": false,
-        "multipleRoomsEnabled": false,
-        "posturesEnabled": true
-      },
-      "3": {
-        "id": 3,
-        "label": "Enable Guild Rooms with Room Variants",
-        "enabled": true,
-        "interactionsEnabled": true,
-        "multipleRoomsEnabled": true,
-        "posturesEnabled": true
-      },
-      "4": {
-        "id": 4,
-        "label": "Enable Guild Rooms without Postures",
-        "enabled": true,
-        "interactionsEnabled": true,
-        "multipleRoomsEnabled": false,
-        "posturesEnabled": false
-      },
-      "5": {
-        "id": 5,
-        "label": "Enable Guild Rooms with Room 2 Default and Selector",
-        "enabled": true,
-        "interactionsEnabled": true,
-        "multipleRoomsEnabled": true,
-        "posturesEnabled": true
-      }
-    },
-    "label": "Guild Rooms"
   },
   {
     "kind": "user",
