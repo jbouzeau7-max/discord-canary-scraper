@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-11-17T21:39:15.740Z",
+  "fetchedAt": "2026-11-17T21:46:03.290Z",
   "sources": {
     "discordApi": {
       "url": "https://discord.com/api/v9/experiments",
@@ -326,17 +326,17 @@
       "title": "hash_704914099",
       "percentage": 0,
       "status": "not_started",
-      "samples": 2,
+      "samples": 5,
       "enrolled": 0,
       "treatmentDistribution": {
-        "0": 2
+        "0": 5
       },
       "source": "fingerprint_sampling",
       "note": "No local experiment ID match for this hash",
-      "fpSamples": 2,
+      "fpSamples": 5,
       "fpEnrolled": 0,
       "fpTreatmentDist": {
-        "0": 2
+        "0": 5
       }
     },
     {
@@ -346,17 +346,17 @@
       "title": "hash_1144304849",
       "percentage": 0,
       "status": "not_started",
-      "samples": 3,
+      "samples": 1,
       "enrolled": 0,
       "treatmentDistribution": {
-        "0": 3
+        "0": 1
       },
       "source": "fingerprint_sampling",
       "note": "No local experiment ID match for this hash",
-      "fpSamples": 3,
+      "fpSamples": 1,
       "fpEnrolled": 0,
       "fpTreatmentDist": {
-        "0": 3
+        "0": 1
       }
     },
     {
@@ -1740,16 +1740,6 @@
       "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
     },
     {
-      "id": "2026-06-clips-secondary-entrypoints",
-      "hash": 2821661297,
-      "type": "user",
-      "title": "2026-06-clips-secondary-entrypoints",
-      "percentage": null,
-      "status": "no_rollout_data",
-      "source": "client_bundle",
-      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
-    },
-    {
       "id": "2026-06-content-classification-embedded-activity-filter",
       "hash": 3994309503,
       "type": "user",
@@ -1964,16 +1954,6 @@
       "hash": 2449276955,
       "type": "user",
       "title": "2026-07-call-of-duty-3pp-expired",
-      "percentage": null,
-      "status": "no_rollout_data",
-      "source": "client_bundle",
-      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
-    },
-    {
-      "id": "2026-07-clips-game-events-on-player",
-      "hash": 3098460155,
-      "type": "user",
-      "title": "2026-07-clips-game-events-on-player",
       "percentage": null,
       "status": "no_rollout_data",
       "source": "client_bundle",
@@ -2554,16 +2534,6 @@
       "hash": 2255079292,
       "type": "user",
       "title": "2026-09-build-a-bear-cards",
-      "percentage": null,
-      "status": "no_rollout_data",
-      "source": "client_bundle",
-      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
-    },
-    {
-      "id": "2026-09-clips-editor-image-track",
-      "hash": 2229714232,
-      "type": "user",
-      "title": "2026-09-clips-editor-image-track",
       "percentage": null,
       "status": "no_rollout_data",
       "source": "client_bundle",
@@ -4261,11 +4231,11 @@
     }
   ],
   "summary": {
-    "total": 399,
+    "total": 396,
     "guild": 42,
-    "user": 357,
+    "user": 354,
     "withPercentage": 9,
-    "withoutPercentage": 390,
+    "withoutPercentage": 387,
     "fullRollout": 5,
     "partial": 0,
     "notStarted": 4,
