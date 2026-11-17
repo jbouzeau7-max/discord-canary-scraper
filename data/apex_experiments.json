@@ -5517,6 +5517,22 @@
   },
   {
     "kind": "user",
+    "name": "2026-11-checkpoint-intro",
+    "defaultConfig": {
+      "enabled": false
+    },
+    "variations": {
+      "0": {
+        "enabled": false
+      },
+      "1": {
+        "enabled": true
+      }
+    },
+    "label": null
+  },
+  {
+    "kind": "user",
     "name": "2026-11-console-connection-coachmark",
     "defaultConfig": {
       "enabled": false
