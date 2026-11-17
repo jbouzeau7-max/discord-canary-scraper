@@ -86,7 +86,7 @@ jobs:
       # qui sera remplacé par celui-ci) au lieu d'attendre jusqu'à 29 min.
       cancel-in-progress: ${{ github.event_name == 'workflow_dispatch' }}
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v7
         with:
           fetch-depth: 1
 
@@ -128,7 +128,7 @@ jobs:
       group: rollouts-watch
       cancel-in-progress: false
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v7
         with:
           fetch-depth: 1
 

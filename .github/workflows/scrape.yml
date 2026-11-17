@@ -24,7 +24,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 40
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v7
         with:
           fetch-depth: 1
 
@@ -65,7 +65,7 @@ jobs:
 
       - name: Preserve unpushed state for recovery
         if: always() && (steps.commit_state.outcome == 'failure' || steps.scrape.outcome == 'failure')
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: scrape-state-recovery-${{ github.run_id }}
           path: ${{ runner.temp }}/scrape-state-recovery.patch*
