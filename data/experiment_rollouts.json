@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-11-17T20:59:19.194Z",
+  "fetchedAt": "2026-11-17T21:06:01.221Z",
   "sources": {
     "discordApi": {
       "url": "https://discord.com/api/v9/experiments",
@@ -326,17 +326,17 @@
       "title": "hash_1144304849",
       "percentage": 0,
       "status": "not_started",
-      "samples": 2,
+      "samples": 3,
       "enrolled": 0,
       "treatmentDistribution": {
-        "0": 2
+        "0": 3
       },
       "source": "fingerprint_sampling",
       "note": "No local experiment ID match for this hash",
-      "fpSamples": 2,
+      "fpSamples": 3,
       "fpEnrolled": 0,
       "fpTreatmentDist": {
-        "0": 2
+        "0": 3
       }
     },
     {
@@ -3190,16 +3190,6 @@
       "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
     },
     {
-      "id": "2026-10-badge-directory-updates",
-      "hash": 1475570113,
-      "type": "user",
-      "title": "2026-10-badge-directory-updates",
-      "percentage": null,
-      "status": "no_rollout_data",
-      "source": "client_bundle",
-      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
-    },
-    {
       "id": "2026-10-badges-unread-state",
       "hash": 3864328341,
       "type": "user",
@@ -4281,11 +4271,11 @@
     }
   ],
   "summary": {
-    "total": 401,
+    "total": 400,
     "guild": 42,
-    "user": 359,
+    "user": 358,
     "withPercentage": 9,
-    "withoutPercentage": 392,
+    "withoutPercentage": 391,
     "fullRollout": 5,
     "partial": 0,
     "notStarted": 4,
