@@ -1,11 +1,11 @@
 {
-  "runId": "2026-11-17T18-31-33-731Z_675482_zmhek3",
-  "buildNumber": "675482",
-  "scrapedAt": "2026-11-17T18:31:33.731Z",
+  "runId": "2026-11-17T18-36-52-874Z_675490_7en263",
+  "buildNumber": "675490",
+  "scrapedAt": "2026-11-17T18:36:52.874Z",
   "totals": {
-    "all": 398,
+    "all": 399,
     "legacy": 28,
-    "apex": 370
+    "apex": 371
   },
   "experiments": [
     {
@@ -9081,6 +9081,24 @@
         "source": "gist_user_rollouts"
       },
       "fingerprint": "a98a5ab5af32019439b115d46512b59f4c1b96ed9e576be85650c52e724efe03"
+    },
+    {
+      "id": "2026-11-premium-group-continuation-40",
+      "type": "user",
+      "kind": "user",
+      "label": null,
+      "system": "apex",
+      "defaultConfig": null,
+      "variations": {
+        "0": {
+          "id": 0
+        },
+        "1": {
+          "id": 1
+        }
+      },
+      "variationCount": 2,
+      "source": "discord"
     },
     {
       "id": "2026-11-profile-embed-rendering-mobile",
