@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-11-17T21:52:46.542Z",
+  "fetchedAt": "2026-11-17T21:59:46.778Z",
   "sources": {
     "discordApi": {
       "url": "https://discord.com/api/v9/experiments",
@@ -7,7 +7,7 @@
     },
     "fingerprintSampling": {
       "samples": 50,
-      "uniqueHashes": 5,
+      "uniqueHashes": 4,
       "matched": 1
     }
   },
@@ -326,37 +326,17 @@
       "title": "hash_1144304849",
       "percentage": 0,
       "status": "not_started",
-      "samples": 2,
+      "samples": 6,
       "enrolled": 0,
       "treatmentDistribution": {
-        "0": 2
+        "0": 6
       },
       "source": "fingerprint_sampling",
       "note": "No local experiment ID match for this hash",
-      "fpSamples": 2,
+      "fpSamples": 6,
       "fpEnrolled": 0,
       "fpTreatmentDist": {
-        "0": 2
-      }
-    },
-    {
-      "hash": 704914099,
-      "id": null,
-      "type": "user",
-      "title": "hash_704914099",
-      "percentage": 0,
-      "status": "not_started",
-      "samples": 4,
-      "enrolled": 0,
-      "treatmentDistribution": {
-        "0": 4
-      },
-      "source": "fingerprint_sampling",
-      "note": "No local experiment ID match for this hash",
-      "fpSamples": 4,
-      "fpEnrolled": 0,
-      "fpTreatmentDist": {
-        "0": 4
+        "0": 6
       }
     },
     {
@@ -2820,16 +2800,6 @@
       "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
     },
     {
-      "id": "2026-09-profile-widget-empty-state-suggestions",
-      "hash": 3463472513,
-      "type": "user",
-      "title": "2026-09-profile-widget-empty-state-suggestions",
-      "percentage": null,
-      "status": "no_rollout_data",
-      "source": "client_bundle",
-      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
-    },
-    {
       "id": "2026-09-quest-home-bounties-feature-gate",
       "hash": 3619982516,
       "type": "user",
@@ -4221,14 +4191,14 @@
     }
   ],
   "summary": {
-    "total": 395,
+    "total": 393,
     "guild": 42,
-    "user": 353,
-    "withPercentage": 9,
-    "withoutPercentage": 386,
+    "user": 351,
+    "withPercentage": 8,
+    "withoutPercentage": 385,
     "fullRollout": 5,
     "partial": 0,
-    "notStarted": 4,
-    "fpSampled": 5
+    "notStarted": 3,
+    "fpSampled": 4
   }
 }
