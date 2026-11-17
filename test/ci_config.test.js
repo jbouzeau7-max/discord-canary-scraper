@@ -23,7 +23,8 @@ test('CI installe les dépendances depuis un lockfile déterministe', () => {
 test('les contrôles lint, tests et actionlint ne sont pas masqués dans le CI', () => {
   const ci = read('.github/workflows/ci.yml');
   const pkg = JSON.parse(read('package.json'));
-  assert.match(pkg.scripts.lint, /--max-warnings=26/);
+  // Zéro tolérance : tout avertissement ESLint doit bloquer le CI.
+  assert.match(pkg.scripts.lint, /--max-warnings=0/);
   assert.match(ci, /run: npm run lint/);
   assert.match(ci, /run: npm test/);
   assert.match(ci, /\.\/actionlint -color\s*$/m);

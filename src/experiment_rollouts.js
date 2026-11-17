@@ -331,7 +331,7 @@ async function sampleFingerprintRollouts(hashToId) {
         if (hashResult != null && hashResult >= 0) s.hashResults.push(hashResult);
       }
       success++;
-    } catch (e) {
+    } catch {
       fail++;
     }
 

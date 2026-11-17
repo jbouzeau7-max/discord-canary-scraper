@@ -70,10 +70,15 @@ test('les workflows Actions limitent contents:write aux jobs qui publient réell
   assert.doesNotMatch(rollouts, /^  diagnostic:[\s\S]*?^    permissions:/m);
 });
 
-test('les workflows Python utilisent setup-python v6', () => {
+test('les workflows Python utilisent setup-python v6+', () => {
   for (const name of ['ci.yml', 'news-avatars.yml', 'x-watch.yml']) {
     const content = fs.readFileSync(path.join(workflowDir, name), 'utf8');
-    assert.match(content, /actions\/setup-python@v6/, `${name} doit utiliser setup-python v6`);
-    assert.doesNotMatch(content, /actions\/setup-python@v5/, `${name} ne doit pas utiliser setup-python v5`);
+    // Version tolérante (dependabot) mais jamais une version obsolète (< v6).
+    const versions = [...content.matchAll(/actions\/setup-python@v(\d+)/g)].map((m) => Number(m[1]));
+    assert.ok(versions.length > 0, `${name} doit utiliser actions/setup-python`);
+    for (const v of versions) {
+      assert.ok(v >= 6, `${name} doit utiliser setup-python v6+ (trouvé v${v})`);
+    }
+    assert.doesNotMatch(content, /actions\/setup-python@v[0-5]\b/, `${name} ne doit pas utiliser setup-python < v6`);
   }
 });

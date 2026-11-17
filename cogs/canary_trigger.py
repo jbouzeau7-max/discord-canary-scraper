@@ -51,10 +51,15 @@ EXTRA_EVENTS = [
 ]
 
 # Vitesse : on poll Canary très souvent (léger, ~1 requête HTML) et on dispatch
-# IMMÉDIATEMENT dès que le build change. Le dispatch « force » historique reste
-# en filet de sécurité toutes les FORCE_INTERVAL_SECONDS.
-POLL_SECONDS = max(2, int(os.environ.get("CANARY_POLL_SECONDS", "4")))
+# IMMÉDIATEMENT dès que le build change.
+# AVANT : force toutes les 65 s → pendant les 28 min du watcher (qui détecte
+# déjà les builds en local, 1 tick/s), chaque dispatch créait un run « pending »
+# qui ANNIULAIT le précédent → ~95 % des runs « Scrape » restaient annulés.
+# Le workflow a déjà un cron */5 en filet de sécurité : on force maintenant le
+# scrape bien moins souvent (SCRAPE_FORCE_INTERVAL_SECONDS, défaut 900 s).
+POLL_SECONDS = max(2, int(os.environ.get("CANARY_POLL_SECONDS", "2")))
 FORCE_INTERVAL_SECONDS = 65
+SCRAPE_FORCE_INTERVAL_SECONDS = max(60, int(os.environ.get("SCRAPE_FORCE_INTERVAL_SECONDS", "900")))
 INTERVAL_SECONDS = POLL_SECONDS  # compat
 FORCE_ALWAYS = True
 # Extras : toutes les N ticks force (~6 * 65s ≈ 6–7 min)
@@ -79,6 +84,7 @@ _min_gap_after_429 = 15.0
 _tick_count = 0
 _last_user_rollout = 0.0
 _last_force = 0.0
+_last_scrape_force = 0.0
 _last_seen_token: str | None = None
 
 
@@ -232,12 +238,18 @@ def _tick_force(build: str | None = None, vhash: str | None = None) -> str:
     token = _state_token(build, vhash) if build else "?"
     last = _read_last()
     changed = bool(build) and last != token
+    scrape_force_due = time.monotonic() - _last_scrape_force >= SCRAPE_FORCE_INTERVAL_SECONDS
 
-    # 1) Canary scrape
-    ok, msg = _dispatch(DISPATCH_EVENT, {"build": build, "hash": vhash or ""} if build else None)
-    if ok and build:
-        _write_last(token)
-        _last_seen_token = token
+    # 1) Canary scrape — UNIQUement si nouveau build, ou filet de sécurité
+    # espacé (le cron */5 du workflow relance déjà le watcher en continu).
+    ok, msg = None, "skip (build inchangé, watcher actif)"
+    if changed or scrape_force_due:
+        ok, msg = _dispatch(DISPATCH_EVENT, {"build": build, "hash": vhash or ""} if build else None)
+        if ok:
+            if build:
+                _write_last(token)
+                _last_seen_token = token
+            _last_scrape_force = time.monotonic()
 
     lines = [f"[{'NEW' if changed else 'force'}] build={token} last={last} | {msg}"]
 

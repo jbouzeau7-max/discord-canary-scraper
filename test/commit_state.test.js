@@ -157,7 +157,9 @@ test('les workflows n’ignorent pas les échecs de persistance d’état', () =
   }
   const scrape = fs.readFileSync(path.join(dir, 'scrape.yml'), 'utf8');
   assert.match(scrape, /COMMIT_RECOVERY_PATCH:/);
-  assert.match(scrape, /actions\/upload-artifact@v4/);
+  // Version tolérante : dependabot met les actions à jour, l'important est
+  // que l'artefact de récupération d'état reste uploadé.
+  assert.match(scrape, /actions\/upload-artifact@v\d+/);
   assert.match(scrape, /scrape-state-recovery-\$\{\{ github\.run_id \}\}/);
   assert.match(scrape, /scrape-state-recovery\.patch\*/);
 });
