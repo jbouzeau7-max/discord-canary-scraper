@@ -60,7 +60,7 @@ décodage du track depuis l'OTA ne peut rien trouver. Les miroirs
 (APKMirror, Aptoide) sont la seule source beta, et ils bloquent les fetches
 automatisés.
 
-Deux fa¸ons de récupérer les betas aujourd'hui :
+Deux façons de récupérer les betas aujourd'hui :
 
 1. `npm run mirrors` — lit APKMirror avec un vrai navigateur
    (`npm i -D playwright && npx playwright install chromium`, puis
