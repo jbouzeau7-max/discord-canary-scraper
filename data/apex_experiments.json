@@ -5447,6 +5447,22 @@
   },
   {
     "kind": "user",
+    "name": "2026-11-holiday-ringtone",
+    "defaultConfig": {
+      "enabled": false
+    },
+    "variations": {
+      "0": {
+        "enabled": false
+      },
+      "1": {
+        "enabled": true
+      }
+    },
+    "label": null
+  },
+  {
+    "kind": "user",
     "name": "2026-11-linux-steam-sku-detection",
     "defaultConfig": {
       "enabled": false

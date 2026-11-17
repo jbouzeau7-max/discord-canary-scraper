@@ -1,8 +1,8 @@
 {
-  "runId": "2026-11-17T22-23-14-832Z_675844_bgre8o",
-  "buildNumber": "675844",
-  "updatedAt": "2026-11-17T22:23:14.832Z",
-  "count": 388,
+  "runId": "2026-11-17T22-27-40-717Z_675858_v1iktk",
+  "buildNumber": "675858",
+  "updatedAt": "2026-11-17T22:27:40.717Z",
+  "count": 389,
   "experiments": [
     {
       "id": "2021-02_staff_qc_debugging",
@@ -19617,6 +19617,58 @@
         "value": null
       },
       "fingerprint": "d34b6d71f4534c5ff5fd4765796b9f9b063519db9163b3aff4ace15cee79ebf7"
+    },
+    {
+      "id": "2026-11-holiday-ringtone",
+      "kind": "user",
+      "type": "user",
+      "system": "apex",
+      "label": null,
+      "title": null,
+      "description": null,
+      "defaultConfig": {
+        "enabled": false
+      },
+      "variations": {
+        "0": {
+          "enabled": false
+        },
+        "1": {
+          "enabled": true
+        }
+      },
+      "treatments": null,
+      "variationSource": "variations",
+      "variationCount": 2,
+      "raw": {
+        "id": "2026-11-holiday-ringtone",
+        "type": "user",
+        "kind": "user",
+        "label": null,
+        "system": "apex",
+        "defaultConfig": {
+          "enabled": false
+        },
+        "variations": {
+          "0": {
+            "enabled": false
+          },
+          "1": {
+            "enabled": true
+          }
+        },
+        "variationCount": 2,
+        "source": "discord"
+      },
+      "guildPercentage": {
+        "status": "unknown",
+        "value": null
+      },
+      "userPercentage": {
+        "status": "unknown",
+        "value": null
+      },
+      "fingerprint": "4234b55b08deda289273782e69c62ce8fd4ed8753470ea9b0430856f05351f78"
     },
     {
       "id": "2026-11-linux-steam-sku-detection",
