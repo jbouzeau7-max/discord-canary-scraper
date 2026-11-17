@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-11-17T21:06:01.221Z",
+  "fetchedAt": "2026-11-17T21:12:41.082Z",
   "sources": {
     "discordApi": {
       "url": "https://discord.com/api/v9/experiments",
@@ -320,43 +320,43 @@
       }
     },
     {
-      "hash": 1144304849,
-      "id": null,
-      "type": "user",
-      "title": "hash_1144304849",
-      "percentage": 0,
-      "status": "not_started",
-      "samples": 3,
-      "enrolled": 0,
-      "treatmentDistribution": {
-        "0": 3
-      },
-      "source": "fingerprint_sampling",
-      "note": "No local experiment ID match for this hash",
-      "fpSamples": 3,
-      "fpEnrolled": 0,
-      "fpTreatmentDist": {
-        "0": 3
-      }
-    },
-    {
       "hash": 704914099,
       "id": null,
       "type": "user",
       "title": "hash_704914099",
       "percentage": 0,
       "status": "not_started",
-      "samples": 4,
+      "samples": 2,
       "enrolled": 0,
       "treatmentDistribution": {
-        "0": 4
+        "0": 2
       },
       "source": "fingerprint_sampling",
       "note": "No local experiment ID match for this hash",
-      "fpSamples": 4,
+      "fpSamples": 2,
       "fpEnrolled": 0,
       "fpTreatmentDist": {
-        "0": 4
+        "0": 2
+      }
+    },
+    {
+      "hash": 1144304849,
+      "id": null,
+      "type": "user",
+      "title": "hash_1144304849",
+      "percentage": 0,
+      "status": "not_started",
+      "samples": 2,
+      "enrolled": 0,
+      "treatmentDistribution": {
+        "0": 2
+      },
+      "source": "fingerprint_sampling",
+      "note": "No local experiment ID match for this hash",
+      "fpSamples": 2,
+      "fpEnrolled": 0,
+      "fpTreatmentDist": {
+        "0": 2
       }
     },
     {
@@ -1894,16 +1894,6 @@
       "hash": 3145434105,
       "type": "user",
       "title": "2026-06-upscale-small-captured-frames",
-      "percentage": null,
-      "status": "no_rollout_data",
-      "source": "client_bundle",
-      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
-    },
-    {
-      "id": "2026-06-use-new-badge-image-source",
-      "hash": 358445144,
-      "type": "user",
-      "title": "2026-06-use-new-badge-image-source",
       "percentage": null,
       "status": "no_rollout_data",
       "source": "client_bundle",
@@ -4271,11 +4261,11 @@
     }
   ],
   "summary": {
-    "total": 400,
+    "total": 399,
     "guild": 42,
-    "user": 358,
+    "user": 357,
     "withPercentage": 9,
-    "withoutPercentage": 391,
+    "withoutPercentage": 390,
     "fullRollout": 5,
     "partial": 0,
     "notStarted": 4,
