@@ -3,15 +3,15 @@
  "schemaVersion": 1,
  "semanticsVersion": 2,
  "notifyScopeVersion": 2,
- "runId": "20261117T203959_gist",
- "scrapedAt": "2026-11-17T20:39:59.628Z",
+ "runId": "20261117T212254_gist",
+ "scrapedAt": "2026-11-17T21:22:54.493Z",
  "source": {
   "gistId": "e3e99062983e6bd0feaef833f14fd931",
   "htmlUrl": "https://gist.github.com/agnonotdev/e3e99062983e6bd0feaef833f14fd931",
-  "rawUrl": "https://gist.githubusercontent.com/agnonotdev/e3e99062983e6bd0feaef833f14fd931/raw/c264dfe37aeda3c548eee6c19fa905de4fd4f551/rollouts-tag.json",
-  "updatedAt": "2026-11-17T20:39:29Z",
-  "revision": "92a62ccbeb2c33051192adddc8ba17cb249d4d04",
-  "fetchedAt": "2026-11-17T20:39:59.628Z",
+  "rawUrl": "https://gist.githubusercontent.com/agnonotdev/e3e99062983e6bd0feaef833f14fd931/raw/3215a415f9c32b2ef31993ea39703f675e16d860/rollouts-tag.json",
+  "updatedAt": "2026-11-17T21:04:37Z",
+  "revision": "99650ed80d21acf0e86c031e91e3e9f7ac035234",
+  "fetchedAt": "2026-11-17T21:22:54.493Z",
   "fallback": false,
   "rawFallback": false,
   "canonicalId": null
@@ -25,6 +25,8 @@
    "2026-11-soundboard-upsells-brand-refresh",
    "2026-11-return-full-quest-status-in-decision",
    "2026-11-screen-share-dtx",
+   "2026-10-media-viewer-improvements",
+   "2026-10-referral-refresh-notification",
    "2026-10-windows-playout-buffer-duration",
    "2026-10-mobile-rtc-v2",
    "2026-10-collectibles-storefront-pricing-integration",
@@ -54,6 +56,7 @@
    "2026-10-request-to-stream-non-games",
    "2026-10-android-stop-and-pause-video",
    "2026-10-android-fastimage-apng",
+   "2026-09-web-sticker-picker-upsell-restyle",
    "2026-09-profile-widget-empty-state-suggestions",
    "2026-09-default-emojis",
    "2026-09-user-profile-premium-try-it-out-mobile-refresh",
@@ -407,31 +410,27 @@
    "variantsCount": 2
   },
   "2026-10-referral-refresh-notification": {
-   "key": "55e7c1437ea3c30a",
+   "key": "95f46bfc73a52751",
    "hasData": true,
-   "sig": "0:control|1:treatment",
+   "sig": "1:treatment",
    "byVariant": {
-    "0": {
-     "pct": 50,
-     "role": "control"
-    },
     "1": {
-     "pct": 50,
+     "pct": 100,
      "role": "treatment"
     }
    },
    "treatment": {
-    "pct": 50
+    "pct": 100
    },
    "control": {
-    "pct": 50
+    "pct": 0
    },
    "notEligible": {
     "pct": 0
    },
    "projectedCoverage": null,
    "projected": false,
-   "variantsCount": 2
+   "variantsCount": 1
   },
   "2026-10-profile-nitro-upsell-refresh": {
    "key": "f19384d9db70dab8",
@@ -1226,31 +1225,27 @@
    }
   },
   "2026-09-web-sticker-picker-upsell-restyle": {
-   "key": "55e7c1437ea3c30a",
+   "key": "95f46bfc73a52751",
    "hasData": true,
-   "sig": "0:control|1:treatment",
+   "sig": "1:treatment",
    "byVariant": {
-    "0": {
-     "pct": 50,
-     "role": "control"
-    },
     "1": {
-     "pct": 50,
+     "pct": 100,
      "role": "treatment"
     }
    },
    "treatment": {
-    "pct": 50
+    "pct": 100
    },
    "control": {
-    "pct": 50
+    "pct": 0
    },
    "notEligible": {
     "pct": 0
    },
    "projectedCoverage": null,
    "projected": false,
-   "variantsCount": 2
+   "variantsCount": 1
   },
   "2026-09-voice-connect-feedback": {
    "key": "0971f2a942bfdfa5",
@@ -4591,27 +4586,31 @@
    "variantsCount": 2
   },
   "2026-10-media-viewer-improvements": {
-   "key": "cdb946d6edf05d5d",
+   "key": "45d61aae7a327474",
    "hasData": true,
-   "sig": "0:control",
+   "sig": "0:control|1:treatment",
    "byVariant": {
     "0": {
-     "pct": 50,
+     "pct": 25,
      "role": "control"
+    },
+    "1": {
+     "pct": 25,
+     "role": "treatment"
     }
    },
    "treatment": {
-    "pct": 0
+    "pct": 25
    },
    "control": {
-    "pct": 50
+    "pct": 25
    },
    "notEligible": {
     "pct": 0
    },
    "projectedCoverage": null,
    "projected": false,
-   "variantsCount": 1
+   "variantsCount": 2
   },
   "2026-10-media-viewer-entrance-jank": {
    "key": "dbb456fc20cc308d",
@@ -21504,19 +21503,13 @@
   }
  },
  "lastRun": {
-  "changes": 0,
-  "delivered": 0,
+  "changes": 3,
+  "delivered": 3,
   "firstRun": false,
   "semanticsMigrated": 0,
   "scopeBaselined": 0
  },
  "history": [
-  {
-   "at": "2026-11-16T23:43:13.300Z",
-   "revision": "2c27512e600f7d55872c74ac207b5737af4b399f",
-   "changes": 1,
-   "delivered": 1
-  },
   {
    "at": "2026-11-16T23:56:42.136Z",
    "revision": null,
@@ -21810,6 +21803,12 @@
    "revision": "92a62ccbeb2c33051192adddc8ba17cb249d4d04",
    "changes": 0,
    "delivered": 0
+  },
+  {
+   "at": "2026-11-17T21:22:54.493Z",
+   "revision": "99650ed80d21acf0e86c031e91e3e9f7ac035234",
+   "changes": 3,
+   "delivered": 3
   }
  ]
 }
