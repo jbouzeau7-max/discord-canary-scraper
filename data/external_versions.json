@@ -1,18 +1,29 @@
 {
-  "updatedAt": "2026-11-17T11:20:10.430Z",
+  "updatedAt": "2026-11-17T18:44:55.088Z",
   "sources": {
     "dataminingCommits": {
       "url": "https://api.github.com/repos/Wumpus-Central/discord-mobile-datamining/commits?per_page=100",
       "lastAccessible": true
+    },
+    "apkmirror": {
+      "url": "https://www.apkmirror.com/uploads/?appcategory=discord-chat-for-gamers",
+      "lastAccessible": true,
+      "via": "browser",
+      "note": "page bloquée par Cloudflare pour un fetch HTTP : lecture via navigateur le 2026-11-17"
     }
   },
   "android": {
-    "beta": null,
+    "beta": {
+      "version": "355.6",
+      "source": "apkmirror",
+      "date": "2026-11-16T23:48:00.000Z",
+      "track": "beta"
+    },
     "alpha": {
       "version": "356.1",
-      "track": "alpha",
+      "source": "datamining_commits",
       "date": "2026-11-17T11:18:18Z",
-      "source": "datamining_commits"
+      "track": "alpha"
     }
   },
   "ios": {

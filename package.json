@@ -10,6 +10,7 @@
     "scrape-watch": "node src/scrape_watch.js",
     "quests": "node src/quests.js",
     "mobile": "node src/mobile_versions.js",
+    "mirrors": "node scripts/mobile_mirrors.js",
     "apex": "node src/apex_rollouts.js",
     "user-rollouts": "node src/user_rollouts.js",
     "rollout-positions": "node src/user_rollout_positions.js",
