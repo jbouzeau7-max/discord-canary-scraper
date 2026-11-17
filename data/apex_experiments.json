@@ -2209,11 +2209,17 @@
     "kind": "user",
     "name": "2026-07-desktop-channel-tabs",
     "defaultConfig": {
-      "enabled": false
+      "enabled": false,
+      "newTabExperience": "popout"
     },
     "variations": {
       "1": {
-        "enabled": true
+        "enabled": true,
+        "newTabExperience": "popout"
+      },
+      "2": {
+        "enabled": true,
+        "newTabExperience": "friends"
       }
     },
     "label": null
