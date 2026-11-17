@@ -1,8 +1,8 @@
 {
-  "runId": "2026-11-17T23-45-51-203Z_675988_9vp2nh",
-  "buildNumber": "675988",
-  "updatedAt": "2026-11-17T23:45:51.203Z",
-  "count": 389,
+  "runId": "2026-11-17T23-48-13-285Z_675995_wlb3gh",
+  "buildNumber": "675995",
+  "updatedAt": "2026-11-17T23:48:13.285Z",
+  "count": 388,
   "experiments": [
     {
       "id": "2021-02_staff_qc_debugging",
@@ -11322,52 +11322,6 @@
         "value": null
       },
       "fingerprint": "db5a2575494ce498c0d5891063855796b9dc6fe529727893bf6d6e5d6f0041bb"
-    },
-    {
-      "id": "2026-09-activity-go-live",
-      "kind": "user",
-      "type": "user",
-      "system": "apex",
-      "label": null,
-      "title": null,
-      "description": null,
-      "defaultConfig": {
-        "enabled": false
-      },
-      "variations": {
-        "1": {
-          "enabled": true
-        }
-      },
-      "treatments": null,
-      "variationSource": "variations",
-      "variationCount": 1,
-      "raw": {
-        "id": "2026-09-activity-go-live",
-        "type": "user",
-        "kind": "user",
-        "label": null,
-        "system": "apex",
-        "defaultConfig": {
-          "enabled": false
-        },
-        "variations": {
-          "1": {
-            "enabled": true
-          }
-        },
-        "variationCount": 1,
-        "source": "discord"
-      },
-      "guildPercentage": {
-        "status": "unknown",
-        "value": null
-      },
-      "userPercentage": {
-        "status": "unknown",
-        "value": null
-      },
-      "fingerprint": "bd4a6329f462bb5d85dbb8e4a735917e0363ec54d888f13936cf62cb50b6b8b1"
     },
     {
       "id": "2026-09-agc2-mobile",
