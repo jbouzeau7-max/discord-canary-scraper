@@ -60,21 +60,18 @@ décodage du track depuis l'OTA ne peut rien trouver. Les miroirs
 (APKMirror, Aptoide) sont la seule source beta, et ils bloquent les fetches
 automatisés.
 
-Trois façons de récupérer les betas :
+Deux fa¸ons de récupérer les betas aujourd'hui :
 
-1. `MOBILE_SCRAPE_PROXY` — relais qui renvoie le HTML rendu (Worker, etc.).
-   `{url}` est remplacé par l'URL encodée : `https://proxy.exemple/?url={url}`.
-2. `npm run mirrors` — lit APKMirror avec un vrai navigateur
+1. `npm run mirrors` — lit APKMirror avec un vrai navigateur
    (`npm i -D playwright && npx playwright install chromium`, puis
    `xvfb-run -a node scripts/mobile_mirrors.js` sans écran) et fusionne
    beta/alpha dans `data/external_versions.json`. Le script lit aussi la page
-   TestFlight (iOS beta quand la bêta est ouverte).
-3. Édition manuelle de `data/external_versions.json` (`android.beta`,
-   `android.alpha`, `ios.beta`) : le fichier sert de repli et ne régresse jamais.
-
-L'état `data/mobile_versions.json` expose `sources.health` (`ok`, `blocked`,
-`full`, `error`) pour chaque source : si un canal est vide, c'est lisible
-directement dans l'état.
+   TestFlight (iOS beta quand la bêta est ouverte) et n'écrit jamais une version
+   plus ancienne que celle déjà connue. Le workflow mobile peut exécuter ce step
+   avec la variable de dépôt `MOBILE_MIRROR_BROWSER=1` (non bloquant).
+2. Édition manuelle de `data/external_versions.json` (`android.beta`,
+   `android.alpha`, `ios.beta`) : c'est le fichier de repli lu par
+   `src/mobile_versions.js`, qui ne régresse jamais une version connue.
 
 ## Données
 
