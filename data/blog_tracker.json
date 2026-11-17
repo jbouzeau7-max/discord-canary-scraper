@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-11-17T08:08:43.449Z",
+  "scrapedAt": "2026-11-17T08:15:18.568Z",
   "blog": [
     {
       "id": "https://discord.com/blog/vice-city-theme-available-in-discord",
@@ -497,6 +497,96 @@
   "help": {
     "support": [
       {
+        "id": "360004159932",
+        "title": "[Windows 10] Allowing Access for Microphone & Camera",
+        "link": "https://support.discord.com/hc/en-us/articles/360004159932--Windows-10-Allowing-Access-for-Microphone-Camera",
+        "updatedAt": "2026-11-17T08:14:50Z",
+        "createdAt": "2018-05-24T03:17:59Z",
+        "sectionId": "360007770612",
+        "sectionName": "Known Issues, Bugs, and Troubleshooting · Troubleshooting Help",
+        "bodyHash": "fcecc64e21f0fdf3551be351a0562d8daad702149b63c369a8437335c2597cb2",
+        "hashVersion": 2,
+        "bodyPreview": "Before using your Microphone for Voice Calls, and your Camera for Video Calls, you may have to grant permission for apps to access your Microphone and Camera. This guide will show you how! To get started, go into Windows Settings > Privacy > Microphone AND Camera . You'll see two toggles under the \" Allow apps to access your camera/microphone ,\" turn both of these to \" On \" and voilà! & You've ju…",
+        "thumb": "https://support.discord.com/hc/article_attachments/360005226592/Micro_final.png",
+        "source": "support",
+        "label": "Help Center"
+      },
+      {
+        "id": "219576828",
+        "title": "Setting up Multi-Factor Authentication",
+        "link": "https://support.discord.com/hc/en-us/articles/219576828-Setting-up-Multi-Factor-Authentication",
+        "updatedAt": "2026-11-17T08:14:44Z",
+        "createdAt": "2016-05-26T17:18:00Z",
+        "sectionId": "360009072571",
+        "sectionName": "Account Settings · Account Security",
+        "bodyHash": "58949b53bd1fe07059096c4e9c36b80845c38f65af02f98a7766ccbb9960d4d9",
+        "hashVersion": 2,
+        "bodyPreview": "Multi-Factor Authentication (MFA for short) is a great way to add an extra layer of security to your Discord account to help you stay in control of logging in. What this article covers: Types of Multi-Factor Authentication Passkeys and Security Keys Authenticator App SMS/Texts Backup Codes I forgot to download my codes I forgot to add my phone as backup Important: Don’t forget to save your backup…",
+        "thumb": "https://support.discord.com/hc/article_attachments/33571014122391",
+        "source": "support",
+        "label": "Help Center"
+      },
+      {
+        "id": "360060145013",
+        "title": "Why isn't my DM going through?",
+        "link": "https://support.discord.com/hc/en-us/articles/360060145013-Why-isn-t-my-DM-going-through",
+        "updatedAt": "2026-11-17T08:14:36Z",
+        "createdAt": "2020-11-30T20:42:12Z",
+        "sectionId": "115000458672",
+        "sectionName": "Discord Basics · Messaging and Chat",
+        "bodyHash": "769ce66273b71982e2633f2e9b83e57e0b6156886faaca7d89ef748c4d3ddb41",
+        "hashVersion": 2,
+        "bodyPreview": "If your direct message was unable to be sent, you'll receive an error message from Clyde that states the following: Your message could not be delivered. This is usually because you don't share a server with the recipient or the recipient is only accepting direct messages from friends. Clyde’s message will look something like this: Possible Reasons for This Error There can be a few reasons why you…",
+        "thumb": "https://support.discord.com/hc/article_attachments/38971509168663",
+        "source": "support",
+        "label": "Help Center"
+      },
+      {
+        "id": "25966860846231",
+        "title": "Security Keys, Passkeys, and Passwordless Login on Discord",
+        "link": "https://support.discord.com/hc/en-us/articles/25966860846231-Security-Keys-Passkeys-and-Passwordless-Login-on-Discord",
+        "updatedAt": "2026-11-17T08:12:46Z",
+        "createdAt": "2024-08-28T14:36:55Z",
+        "sectionId": "360009072571",
+        "sectionName": "Account Settings · Account Security",
+        "bodyHash": "00a26af47841d1c38813e9415cdb3a2ba8c540b4674396f5d5da1c5c3b77f22c",
+        "hashVersion": 2,
+        "bodyPreview": "Multi-Factor Authentication (MFA for short) is a great way to add an extra layer of security to your Discord account to help you stay in control of logging in. What this article covers: How to Register Passkey Mobile Desktop/Browser Passwordless Login with Passkeys How to Use Security Keys Discord supports the newest standards for authentication: Passkeys and Security Keys, an easier to use and m…",
+        "thumb": "https://support.discord.com/hc/article_attachments/26429365112215",
+        "source": "support",
+        "label": "Help Center"
+      },
+      {
+        "id": "24160905919511",
+        "title": "My Discord Account was Hacked or Compromised",
+        "link": "https://support.discord.com/hc/en-us/articles/24160905919511-My-Discord-Account-was-Hacked-or-Compromised",
+        "updatedAt": "2026-11-17T08:11:16Z",
+        "createdAt": "2024-06-13T16:51:09Z",
+        "sectionId": "24453122216087",
+        "sectionName": "Safety, Privacy, and Policy · Account Safety",
+        "bodyHash": "207e61097e49b4613f5f664db8c149e8223addf0b3235feb322942da7cb3a335",
+        "hashVersion": 2,
+        "bodyPreview": "Important: Discord Staff will never contact users directly through the Discord app for support-related matters. If someone requests personal information, asks for payment, or urges you to change your login credentials, please do not comply and avoid further interaction. As per our Terms of Service , you are responsible for the security of your account. Please note that if you fail to secure your …",
+        "thumb": "https://support.discord.com/hc/article_attachments/32331211229463",
+        "source": "support",
+        "label": "Help Center"
+      },
+      {
+        "id": "213219267",
+        "title": "Resending Verification Email",
+        "link": "https://support.discord.com/hc/en-us/articles/213219267-Resending-Verification-Email",
+        "updatedAt": "2026-11-17T08:09:14Z",
+        "createdAt": "2015-10-28T15:20:15Z",
+        "sectionId": "360009072571",
+        "sectionName": "Account Settings · Account Security",
+        "bodyHash": "45e279cd1b733670601f94d5ed511e315f9049d7c04359bc124c7ce95500f20e",
+        "hashVersion": 2,
+        "bodyPreview": "Have you recently signed up for Discord, but now your verification email has expired? No worries, you have the power to resend the verification email right to your inbox. What does this article cover? How to resend the email Browser/Desktop Mobile Having trouble receiving the email? How to resend the email If you would like to resend the verification email to yourself, you will be able to do so t…",
+        "thumb": "https://support.discord.com/hc/article_attachments/12497032841239",
+        "source": "support",
+        "label": "Help Center"
+      },
+      {
         "id": "26680694104215",
         "title": "How to Fix Phone Errors on Discord",
         "link": "https://support.discord.com/hc/en-us/articles/26680694104215-How-to-Fix-Phone-Errors-on-Discord",
@@ -617,21 +707,6 @@
         "label": "Help Center"
       },
       {
-        "id": "360060145013",
-        "title": "Why isn't my DM going through?",
-        "link": "https://support.discord.com/hc/en-us/articles/360060145013-Why-isn-t-my-DM-going-through",
-        "updatedAt": "2026-11-17T08:00:59Z",
-        "createdAt": "2020-11-30T20:42:12Z",
-        "sectionId": "115000458672",
-        "sectionName": "Discord Basics · Messaging and Chat",
-        "bodyHash": "769ce66273b71982e2633f2e9b83e57e0b6156886faaca7d89ef748c4d3ddb41",
-        "hashVersion": 2,
-        "bodyPreview": "If your direct message was unable to be sent, you'll receive an error message from Clyde that states the following: Your message could not be delivered. This is usually because you don't share a server with the recipient or the recipient is only accepting direct messages from friends. Clyde’s message will look something like this: Possible Reasons for This Error There can be a few reasons why you…",
-        "thumb": "https://support.discord.com/hc/article_attachments/38971509168663",
-        "source": "support",
-        "label": "Help Center"
-      },
-      {
         "id": "212500837",
         "title": "How to Delete your Discord Account",
         "link": "https://support.discord.com/hc/en-us/articles/212500837-How-to-Delete-your-Discord-Account",
@@ -733,21 +808,6 @@
         "hashVersion": 2,
         "bodyPreview": "Welcome to the comprehensive beginner's guide to Discord! What this article covers: What is Discord? Account Setup and Troubleshooting What is a Discord Server? What are Text and Voice Channels? How to Share your Screen Additional Discord Features Account Connections How to Customize your Discord User Profile What is Discord? Discord is a communication platform that allows users to interact throu…",
         "thumb": "https://support.discord.com/hc/article_attachments/33107296852247",
-        "source": "support",
-        "label": "Help Center"
-      },
-      {
-        "id": "24160905919511",
-        "title": "My Discord Account was Hacked or Compromised",
-        "link": "https://support.discord.com/hc/en-us/articles/24160905919511-My-Discord-Account-was-Hacked-or-Compromised",
-        "updatedAt": "2026-11-17T07:58:07Z",
-        "createdAt": "2024-06-13T16:51:09Z",
-        "sectionId": "24453122216087",
-        "sectionName": "Safety, Privacy, and Policy · Account Safety",
-        "bodyHash": "207e61097e49b4613f5f664db8c149e8223addf0b3235feb322942da7cb3a335",
-        "hashVersion": 2,
-        "bodyPreview": "Important: Discord Staff will never contact users directly through the Discord app for support-related matters. If someone requests personal information, asks for payment, or urges you to change your login credentials, please do not comply and avoid further interaction. As per our Terms of Service , you are responsible for the security of your account. Please note that if you fail to secure your …",
-        "thumb": "https://support.discord.com/hc/article_attachments/32331211229463",
         "source": "support",
         "label": "Help Center"
       },
@@ -992,21 +1052,6 @@
         "label": "Help Center"
       },
       {
-        "id": "213219267",
-        "title": "Resending Verification Email",
-        "link": "https://support.discord.com/hc/en-us/articles/213219267-Resending-Verification-Email",
-        "updatedAt": "2026-11-17T07:23:20Z",
-        "createdAt": "2015-10-28T15:20:15Z",
-        "sectionId": "360009072571",
-        "sectionName": "Account Settings · Account Security",
-        "bodyHash": "45e279cd1b733670601f94d5ed511e315f9049d7c04359bc124c7ce95500f20e",
-        "hashVersion": 2,
-        "bodyPreview": "Have you recently signed up for Discord, but now your verification email has expired? No worries, you have the power to resend the verification email right to your inbox. What does this article cover? How to resend the email Browser/Desktop Mobile Having trouble receiving the email? How to resend the email If you would like to resend the verification email to yourself, you will be able to do so t…",
-        "thumb": "https://support.discord.com/hc/article_attachments/12497032841239",
-        "source": "support",
-        "label": "Help Center"
-      },
-      {
         "id": "4402712000663",
         "title": "Why do I see a Temporary Hold Charged to my Account?",
         "link": "https://support.discord.com/hc/en-us/articles/4402712000663-Why-do-I-see-a-Temporary-Hold-Charged-to-my-Account",
@@ -1157,21 +1202,6 @@
         "label": "Help Center"
       },
       {
-        "id": "360004159932",
-        "title": "[Windows 10] Allowing Access for Microphone & Camera",
-        "link": "https://support.discord.com/hc/en-us/articles/360004159932--Windows-10-Allowing-Access-for-Microphone-Camera",
-        "updatedAt": "2026-11-17T07:04:17Z",
-        "createdAt": "2018-05-24T03:17:59Z",
-        "sectionId": "360007770612",
-        "sectionName": "Known Issues, Bugs, and Troubleshooting · Troubleshooting Help",
-        "bodyHash": "fcecc64e21f0fdf3551be351a0562d8daad702149b63c369a8437335c2597cb2",
-        "hashVersion": 2,
-        "bodyPreview": "Before using your Microphone for Voice Calls, and your Camera for Video Calls, you may have to grant permission for apps to access your Microphone and Camera. This guide will show you how! To get started, go into Windows Settings > Privacy > Microphone AND Camera . You'll see two toggles under the \" Allow apps to access your camera/microphone ,\" turn both of these to \" On \" and voilà! & You've ju…",
-        "thumb": "https://support.discord.com/hc/article_attachments/360005226592/Micro_final.png",
-        "source": "support",
-        "label": "Help Center"
-      },
-      {
         "id": "42178056096663",
         "title": "What Protections Do You Get in the Teen Age Group?",
         "link": "https://support.discord.com/hc/en-us/articles/42178056096663-What-Protections-Do-You-Get-in-the-Teen-Age-Group",
@@ -1262,21 +1292,6 @@
         "label": "Help Center"
       },
       {
-        "id": "219576828",
-        "title": "Setting up Multi-Factor Authentication",
-        "link": "https://support.discord.com/hc/en-us/articles/219576828-Setting-up-Multi-Factor-Authentication",
-        "updatedAt": "2026-11-17T06:53:28Z",
-        "createdAt": "2016-05-26T17:18:00Z",
-        "sectionId": "360009072571",
-        "sectionName": "Account Settings · Account Security",
-        "bodyHash": "58949b53bd1fe07059096c4e9c36b80845c38f65af02f98a7766ccbb9960d4d9",
-        "hashVersion": 2,
-        "bodyPreview": "Multi-Factor Authentication (MFA for short) is a great way to add an extra layer of security to your Discord account to help you stay in control of logging in. What this article covers: Types of Multi-Factor Authentication Passkeys and Security Keys Authenticator App SMS/Texts Backup Codes I forgot to download my codes I forgot to add my phone as backup Important: Don’t forget to save your backup…",
-        "thumb": "https://support.discord.com/hc/article_attachments/33571014122391",
-        "source": "support",
-        "label": "Help Center"
-      },
-      {
         "id": "115000084051",
         "title": "Age-Restricted Channels and Content",
         "link": "https://support.discord.com/hc/en-us/articles/115000084051-Age-Restricted-Channels-and-Content",
@@ -1348,21 +1363,6 @@
         "hashVersion": 2,
         "bodyPreview": "On Discord, phone numbers are used to help with login and verification for anti-abuse purposes. However, there may be situations in which you have to remove and change the phone number under your account. This article will help you remove the phone number under your account. What this article covers: How to Remove a Phone Number Desktop/Browser Mobile How to Remove a Phone Number from an Accident…",
         "thumb": "https://support.discord.com/hc/article_attachments/33571368085399",
-        "source": "support",
-        "label": "Help Center"
-      },
-      {
-        "id": "25966860846231",
-        "title": "Security Keys, Passkeys, and Passwordless Login on Discord",
-        "link": "https://support.discord.com/hc/en-us/articles/25966860846231-Security-Keys-Passkeys-and-Passwordless-Login-on-Discord",
-        "updatedAt": "2026-11-17T06:42:58Z",
-        "createdAt": "2024-08-28T14:36:55Z",
-        "sectionId": "360009072571",
-        "sectionName": "Account Settings · Account Security",
-        "bodyHash": "00a26af47841d1c38813e9415cdb3a2ba8c540b4674396f5d5da1c5c3b77f22c",
-        "hashVersion": 2,
-        "bodyPreview": "Multi-Factor Authentication (MFA for short) is a great way to add an extra layer of security to your Discord account to help you stay in control of logging in. What this article covers: How to Register Passkey Mobile Desktop/Browser Passwordless Login with Passkeys How to Use Security Keys Discord supports the newest standards for authentication: Passkeys and Security Keys, an easier to use and m…",
-        "thumb": "https://support.discord.com/hc/article_attachments/26429365112215",
         "source": "support",
         "label": "Help Center"
       },
