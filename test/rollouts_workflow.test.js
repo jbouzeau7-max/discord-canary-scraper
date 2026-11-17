@@ -59,3 +59,21 @@ test('la suite Node est séquentielle pour éviter la désérialisation instable
   assert.match(packageJson.scripts.test, /--test-concurrency=1/);
   assert.match(packageJson.scripts.coverage, /--test-concurrency=1/);
 });
+
+test('les workflows Actions limitent contents:write aux jobs qui publient réellement', () => {
+  const alerts = fs.readFileSync(path.join(workflowDir, 'alerts.yml'), 'utf8');
+  const rollouts = fs.readFileSync(path.join(workflowDir, 'rollouts.yml'), 'utf8');
+  assert.match(alerts, /^permissions:\n  contents: read$/m);
+  assert.match(rollouts, /^permissions:\n  contents: read$/m);
+  assert.match(rollouts, /^  guard:\n(?:.*\n)*?    permissions:\n      actions: read$/m);
+  assert.match(rollouts, /^  fast:\n(?:.*\n)*?    permissions:\n      contents: write$/m);
+  assert.doesNotMatch(rollouts, /^  diagnostic:[\s\S]*?^    permissions:/m);
+});
+
+test('les workflows Python utilisent setup-python v6', () => {
+  for (const name of ['ci.yml', 'news-avatars.yml', 'x-watch.yml']) {
+    const content = fs.readFileSync(path.join(workflowDir, name), 'utf8');
+    assert.match(content, /actions\/setup-python@v6/, `${name} doit utiliser setup-python v6`);
+    assert.doesNotMatch(content, /actions\/setup-python@v5/, `${name} ne doit pas utiliser setup-python v5`);
+  }
+});
