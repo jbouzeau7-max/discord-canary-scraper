@@ -1117,5 +1117,6 @@
   "SUMMARIES": "/guilds/:param/discoverable-content/summaries",
   "SUMMARY": "/guilds/:param/discoverable-content/summaries/:param",
   "REMOVE_SUMMARY": "/guilds/:param/discoverable-content/summaries/:param/remove",
-  "DISCOVERABLE_CONTENT": "/guilds/:param/discoverable-content"
+  "DISCOVERABLE_CONTENT": "/guilds/:param/discoverable-content",
+  "GAME_ANNOUNCEMENTS_LATEST": "/games/announcements/latest"
 }

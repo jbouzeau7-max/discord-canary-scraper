@@ -1,7 +1,7 @@
 {
-  "runId": "2026-11-17T17-30-36-285Z_675387_eo02jh",
-  "buildNumber": "675387",
-  "scrapedAt": "2026-11-17T17:30:36.285Z",
+  "runId": "2026-11-17T17-34-55-061Z_675391_mhqdwl",
+  "buildNumber": "675391",
+  "scrapedAt": "2026-11-17T17:34:55.061Z",
   "totals": {
     "all": 397
   },
@@ -3718,7 +3718,17 @@
         }
       },
       "variationCount": 1,
-      "source": "discord"
+      "source": "discord",
+      "guildPercentage": {
+        "status": "unknown",
+        "value": null
+      },
+      "userPercentage": {
+        "status": "provided",
+        "value": 30,
+        "source": "gist_user_rollouts"
+      },
+      "fingerprint": "d8891a8dcd4ebc6b82dea4cb2da755ec2b0ffe1b08b2db00e4ab9626551e120f"
     },
     {
       "id": "2026-07-call-of-duty-3pp-expired",
