@@ -1,8 +1,8 @@
 {
-  "runId": "2026-11-17T17-37-04-655Z_675397_afnivs",
-  "buildNumber": "675397",
-  "updatedAt": "2026-11-17T17:37:04.655Z",
-  "count": 397,
+  "runId": "2026-11-17T17-41-24-756Z_675400_tjl0wl",
+  "buildNumber": "675400",
+  "updatedAt": "2026-11-17T17:41:24.756Z",
+  "count": 398,
   "data": {
     "2021-02_staff_qc_debugging": {
       "id": "2021-02_staff_qc_debugging",
@@ -7988,6 +7988,26 @@
       },
       "system": "apex",
       "fp": "ea82013a5b8077c7977b0efafeb9c43866f68b93f5220ed2e4bd3827cde504f4"
+    },
+    "2026-11-shop-pdp-similar-items": {
+      "id": "2026-11-shop-pdp-similar-items",
+      "type": "user",
+      "kind": "user",
+      "label": null,
+      "variationCount": 2,
+      "variations": {
+        "0": {
+          "enabled": false
+        },
+        "1": {
+          "enabled": true
+        }
+      },
+      "defaultConfig": {
+        "enabled": false
+      },
+      "system": "apex",
+      "fp": "9ff43739fe1f7b82bf9aac1baf65275318ba41ec6fcb8afc1e4bd17d2414020e"
     },
     "2026-11-shop-this-look-full-profile-button": {
       "id": "2026-11-shop-this-look-full-profile-button",

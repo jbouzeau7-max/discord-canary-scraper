@@ -1,8 +1,8 @@
 {
-  "runId": "2026-11-17T17-37-04-655Z_675397_afnivs",
-  "buildNumber": "675397",
-  "updatedAt": "2026-11-17T17:37:04.655Z",
-  "count": 397,
+  "runId": "2026-11-17T17-41-24-756Z_675400_tjl0wl",
+  "buildNumber": "675400",
+  "updatedAt": "2026-11-17T17:41:24.756Z",
+  "count": 398,
   "experiments": [
     {
       "id": "2021-02_staff_qc_debugging",
@@ -20790,6 +20790,58 @@
         "source": "gist_user_rollouts"
       },
       "fingerprint": "a98e82167619530e949939e858e5c0167f34c934e058e09a960df4348ca8dbcb"
+    },
+    {
+      "id": "2026-11-shop-pdp-similar-items",
+      "kind": "user",
+      "type": "user",
+      "system": "apex",
+      "label": null,
+      "title": null,
+      "description": null,
+      "defaultConfig": {
+        "enabled": false
+      },
+      "variations": {
+        "0": {
+          "enabled": false
+        },
+        "1": {
+          "enabled": true
+        }
+      },
+      "treatments": null,
+      "variationSource": "variations",
+      "variationCount": 2,
+      "raw": {
+        "id": "2026-11-shop-pdp-similar-items",
+        "type": "user",
+        "kind": "user",
+        "label": null,
+        "system": "apex",
+        "defaultConfig": {
+          "enabled": false
+        },
+        "variations": {
+          "0": {
+            "enabled": false
+          },
+          "1": {
+            "enabled": true
+          }
+        },
+        "variationCount": 2,
+        "source": "discord"
+      },
+      "guildPercentage": {
+        "status": "unknown",
+        "value": null
+      },
+      "userPercentage": {
+        "status": "unknown",
+        "value": null
+      },
+      "fingerprint": "9ff43739fe1f7b82bf9aac1baf65275318ba41ec6fcb8afc1e4bd17d2414020e"
     },
     {
       "id": "2026-11-shop-this-look-full-profile-button",
