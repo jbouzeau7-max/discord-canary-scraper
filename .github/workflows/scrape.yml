@@ -37,11 +37,11 @@ jobs:
           # Compatibilité avec le secret historique WEBHOOK_URL.
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL || secrets.WEBHOOK_URL }}
           ORBIT_BOT_NAME: Datamining
-          # Watcher : sonde version.canary.json toutes les 1 s et lance le
+          # Watcher : sonde version.canary.json toutes les 0,5 s et lance le
           # scrape dès qu'un build sort (runner déjà chaud → pas de 30 s+ de
           # démarrage). Le run suivant (cron */5) attend en relais.
           SCRAPE_WATCH_MS: "1680000"
-          SCRAPE_WATCH_TICK_MS: "1000"
+          SCRAPE_WATCH_TICK_MS: "500"
           # Mode ONCE : build vu par le déclencheur ; si l'edge CDN du runner
           # sert encore l'ancien build, on attend (≤25 s) au lieu d'un FAST SKIP.
           EXPECTED_BUILD: ${{ github.event.client_payload.build }}
