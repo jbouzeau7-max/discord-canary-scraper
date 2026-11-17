@@ -26,6 +26,19 @@ jobs:
 
       - uses: ./.github/actions/setup
 
+      - name: Miroirs mobiles (APKMirror, navigateur)
+        id: mirrors
+        # Optionnel : la page APKMirror est derrière Cloudflare, un fetch HTTP
+        # reçoit 403. Ce step lit la page avec un Chromium réel (Xvfb) et
+        # complète data/external_versions.json. Activer avec la variable de
+        # dépôt MOBILE_MIRROR_BROWSER=1 ; un échec ne bloque jamais le run.
+        if: vars.MOBILE_MIRROR_BROWSER == '1'
+        continue-on-error: true
+        run: |
+          npm i -D playwright --no-save --no-audit --no-fund
+          npx playwright install --with-deps chromium
+          xvfb-run -a node scripts/mobile_mirrors.js
+
       - name: Mobile versions
         id: versions
         env:
