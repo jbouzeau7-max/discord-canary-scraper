@@ -1,8 +1,8 @@
 {
-  "runId": "2026-11-18T23-12-09-553Z_677211_e6wouk",
-  "buildNumber": "677211",
-  "updatedAt": "2026-11-18T23:12:09.553Z",
-  "count": 387,
+  "runId": "2026-11-18T23-20-49-519Z_677217_mboklc",
+  "buildNumber": "677217",
+  "updatedAt": "2026-11-18T23:20:49.519Z",
+  "count": 386,
   "experiments": [
     {
       "id": "2021-02_staff_qc_debugging",
@@ -17660,53 +17660,6 @@
         "source": "gist_user_rollouts"
       },
       "fingerprint": "c94379ed71e674e14ec70d51b5addad69c5f74a3fe3327a714c4b00ca18feaef"
-    },
-    {
-      "id": "2026-10-referral-refresh-notification",
-      "kind": "user",
-      "type": "user",
-      "system": "apex",
-      "label": null,
-      "title": null,
-      "description": null,
-      "defaultConfig": {
-        "enabled": false
-      },
-      "variations": {
-        "1": {
-          "enabled": true
-        }
-      },
-      "treatments": null,
-      "variationSource": "variations",
-      "variationCount": 1,
-      "raw": {
-        "id": "2026-10-referral-refresh-notification",
-        "type": "user",
-        "kind": "user",
-        "label": null,
-        "system": "apex",
-        "defaultConfig": {
-          "enabled": false
-        },
-        "variations": {
-          "1": {
-            "enabled": true
-          }
-        },
-        "variationCount": 1,
-        "source": "discord"
-      },
-      "guildPercentage": {
-        "status": "unknown",
-        "value": null
-      },
-      "userPercentage": {
-        "status": "provided",
-        "value": 100,
-        "source": "gist_user_rollouts"
-      },
-      "fingerprint": "2128ef331a2187d2b3138a1252103f33613fab9578fdd12c3977559f172630e3"
     },
     {
       "id": "2026-10-remove-quests-from-discovery",

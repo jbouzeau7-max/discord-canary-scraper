@@ -1,8 +1,8 @@
 {
-  "runId": "2026-11-18T23-12-09-553Z_677211_e6wouk",
-  "buildNumber": "677211",
-  "updatedAt": "2026-11-18T23:12:09.553Z",
-  "count": 387,
+  "runId": "2026-11-18T23-20-49-519Z_677217_mboklc",
+  "buildNumber": "677217",
+  "updatedAt": "2026-11-18T23:20:49.519Z",
+  "count": 386,
   "data": {
     "2021-02_staff_qc_debugging": {
       "id": "2021-02_staff_qc_debugging",
@@ -6767,23 +6767,6 @@
       "defaultConfig": null,
       "system": "apex",
       "fp": "a5dc7c12d7d4bca42b02afb773e33e4652a9ace5e19e47a7181ec9a4799db478"
-    },
-    "2026-10-referral-refresh-notification": {
-      "id": "2026-10-referral-refresh-notification",
-      "type": "user",
-      "kind": "user",
-      "label": null,
-      "variationCount": 1,
-      "variations": {
-        "1": {
-          "enabled": true
-        }
-      },
-      "defaultConfig": {
-        "enabled": false
-      },
-      "system": "apex",
-      "fp": "34cae9cf47acf062834a0e179e4ba72d9284798169309c46cfce7a5f25d81f27"
     },
     "2026-10-remove-quests-from-discovery": {
       "id": "2026-10-remove-quests-from-discovery",
