@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-11-18T21:11:43.184Z",
+  "fetchedAt": "2026-11-18T21:18:26.723Z",
   "sources": {
     "discordApi": {
       "url": "https://discord.com/api/v9/experiments",
@@ -300,6 +300,26 @@
       }
     },
     {
+      "hash": 704914099,
+      "id": null,
+      "type": "user",
+      "title": "hash_704914099",
+      "percentage": 0,
+      "status": "not_started",
+      "samples": 3,
+      "enrolled": 0,
+      "treatmentDistribution": {
+        "0": 3
+      },
+      "source": "fingerprint_sampling",
+      "note": "No local experiment ID match for this hash",
+      "fpSamples": 3,
+      "fpEnrolled": 0,
+      "fpTreatmentDist": {
+        "0": 3
+      }
+    },
+    {
       "hash": 4055210228,
       "id": null,
       "type": "user",
@@ -326,37 +346,17 @@
       "title": "hash_1144304849",
       "percentage": 0,
       "status": "not_started",
-      "samples": 5,
+      "samples": 2,
       "enrolled": 0,
       "treatmentDistribution": {
-        "0": 5
+        "0": 2
       },
       "source": "fingerprint_sampling",
       "note": "No local experiment ID match for this hash",
-      "fpSamples": 5,
+      "fpSamples": 2,
       "fpEnrolled": 0,
       "fpTreatmentDist": {
-        "0": 5
-      }
-    },
-    {
-      "hash": 704914099,
-      "id": null,
-      "type": "user",
-      "title": "hash_704914099",
-      "percentage": 0,
-      "status": "not_started",
-      "samples": 4,
-      "enrolled": 0,
-      "treatmentDistribution": {
-        "0": 4
-      },
-      "source": "fingerprint_sampling",
-      "note": "No local experiment ID match for this hash",
-      "fpSamples": 4,
-      "fpEnrolled": 0,
-      "fpTreatmentDist": {
-        "0": 4
+        "0": 2
       }
     },
     {
@@ -774,16 +774,6 @@
       "hash": 2424783045,
       "type": "user",
       "title": "2026-01-friends-in-server",
-      "percentage": null,
-      "status": "no_rollout_data",
-      "source": "client_bundle",
-      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
-    },
-    {
-      "id": "2026-01-ios-push-notif-json-fix",
-      "hash": 4086254591,
-      "type": "user",
-      "title": "2026-01-ios-push-notif-json-fix",
       "percentage": null,
       "status": "no_rollout_data",
       "source": "client_bundle",
@@ -4211,11 +4201,11 @@
     }
   ],
   "summary": {
-    "total": 394,
+    "total": 393,
     "guild": 42,
-    "user": 352,
+    "user": 351,
     "withPercentage": 9,
-    "withoutPercentage": 385,
+    "withoutPercentage": 384,
     "fullRollout": 5,
     "partial": 0,
     "notStarted": 4,
