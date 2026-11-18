@@ -224,7 +224,7 @@ async function fetchShopSnapshot({ fetchImpl = fetch, etag = null, sleepImpl = s
     return {
       ...snapshot,
       notModified: false,
-      etag: response.headers && response.headers.get('etag') || etag,
+      etag: response.headers && response.headers.get('etag') || null,
     };
   }
   throw new Error('itemshop.gg API: retry budget exhausted');
@@ -232,10 +232,10 @@ async function fetchShopSnapshot({ fetchImpl = fetch, etag = null, sleepImpl = s
 
 function buildItemComponents(item, sourceUrl = DEFAULT_ATTRIBUTION_URL) {
   const components = [
-    textDisplay('Boutique Discord • NOUVEL ITEM'),
+    textDisplay('Boutique Discord • Nouvel article'),
     textDisplay(`### [${escapeMdTitle(item.name)}](${SHOP_URL})`),
   ];
-  const summary = [item.type, item.priceLabel].filter(Boolean).map(escapeMdTitle).join(' · ');
+  const summary = [item.type && `Type : ${escapeMdTitle(item.type)}`, item.priceLabel && `Prix : ${escapeMdTitle(item.priceLabel)}`].filter(Boolean).join(' · ');
   if (summary) components.push(textDisplay('-# ' + summary));
   if (item.image) {
     const gallery = mediaGalleryFromUrls([item.image]);
@@ -321,11 +321,14 @@ async function runShopTracker({
   now = () => new Date(),
 } = {}) {
   const previous = await loadState(statePath);
-  const previousEtag = typeof previous.etag === 'string' ? previous.etag : null;
+  const canReuseBaseline = previous.schemaVersion === 2 && previous.initialized === true &&
+    previous.announced && typeof previous.announced === 'object' && !Array.isArray(previous.announced);
+  const hasPending = Array.isArray(previous.pendingNew) && previous.pendingNew.length > 0;
+  const previousEtag = canReuseBaseline && !hasPending && typeof previous.etag === 'string' ? previous.etag : null;
   const snapshot = await fetchShopSnapshot({ fetchImpl, etag: previousEtag, sleepImpl });
   if (snapshot.notModified) {
-    if (previous.initialized !== true) {
-      throw new Error('itemshop.gg returned 304 without an initialized local baseline');
+    if (!previousEtag) {
+      throw new Error('itemshop.gg returned unexpected 304 without a usable cache validator');
     }
     console.log('itemshop.gg shop unchanged (ETag 304)');
     return { ok: true, unchanged: true, notified: 0 };
@@ -333,9 +336,7 @@ async function runShopTracker({
 
   const nowValue = now();
   const currentTime = (nowValue instanceof Date ? nowValue : new Date(nowValue)).toISOString();
-  const canReuseBaseline = previous.schemaVersion === 2 && previous.initialized === true &&
-    previous.announced && typeof previous.announced === 'object' && !Array.isArray(previous.announced);
-  const announced = canReuseBaseline ? { ...previous.announced } : {};
+  const announced = Object.assign(Object.create(null), canReuseBaseline ? previous.announced : null);
   if (!canReuseBaseline) {
     for (const item of snapshot.items) announced[item.key] = currentTime;
     await writeJsonAtomic(statePath, {
@@ -346,16 +347,32 @@ async function runShopTracker({
       shopDate: snapshot.shopDate,
       itemCount: snapshot.itemCount,
       announced,
+      activeAnnounced: Object.keys(announced),
       lastSyncAt: currentTime,
     }, 2);
     console.log('shop API baseline seeded silently', snapshot.items.length, 'items');
     return { ok: true, seeded: true, notified: 0 };
   }
 
-  const fresh = snapshot.items.filter((item) => !announced[item.key]);
+  // A 304 preserves membership without writing state. Start the retention
+  // window when the next full snapshot first shows an announced item absent.
+  const activeAnnounced = [];
+  // Older v2 states have no membership list: preserve known, present items.
+  const previouslyActive = Array.isArray(previous.activeAnnounced)
+    ? previous.activeAnnounced : snapshot.items.map(item => item.key);
+  for (const id of previouslyActive) {
+    if (Object.hasOwn(announced, id)) announced[id] = currentTime;
+  }
+  pruneAnnounced(announced, ANNOUNCED_KEEP_DAYS, Date.parse(currentTime));
+  const fresh = [];
+  for (const item of snapshot.items) {
+    if (Object.hasOwn(announced, item.key)) {
+      announced[item.key] = currentTime;
+      activeAnnounced.push(item.key);
+    } else fresh.push(item);
+  }
   console.log('itemshop.gg current items:', snapshot.items.length, 'new:', fresh.length);
   if (!fresh.length) {
-    pruneAnnounced(announced, ANNOUNCED_KEEP_DAYS, Date.parse(currentTime));
     await writeJsonAtomic(statePath, {
       ...previous,
       schemaVersion: 2,
@@ -365,6 +382,7 @@ async function runShopTracker({
       shopDate: snapshot.shopDate,
       itemCount: snapshot.itemCount,
       announced,
+      activeAnnounced,
       lastSyncAt: currentTime,
       lastNew: [],
       pendingNew: [],
@@ -385,6 +403,7 @@ async function runShopTracker({
     }
     if (sent) {
       announced[item.key] = currentTime;
+      activeAnnounced.push(item.key);
       notified.push(item.key);
       console.log('sent shop item', item.name);
     } else {
@@ -392,10 +411,8 @@ async function runShopTracker({
       pending.push(item.key);
       console.warn('NOTIFY_FAIL shop API', item.key);
     }
-    await sleepImpl(300);
   }
   for (const item of fresh.slice(MAX_NOTIFY_PER_RUN)) pending.push(item.key);
-  pruneAnnounced(announced, ANNOUNCED_KEEP_DAYS, Date.parse(currentTime));
   await writeJsonAtomic(statePath, {
     ...previous,
     schemaVersion: 2,
@@ -405,6 +422,7 @@ async function runShopTracker({
     shopDate: snapshot.shopDate,
     itemCount: snapshot.itemCount,
     announced,
+    activeAnnounced,
     lastSyncAt: currentTime,
     lastNew: notified,
     pendingNew: pending,
