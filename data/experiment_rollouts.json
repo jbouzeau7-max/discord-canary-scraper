@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-11-18T23:18:26.993Z",
+  "fetchedAt": "2026-11-18T23:25:10.153Z",
   "sources": {
     "discordApi": {
       "url": "https://discord.com/api/v9/experiments",
@@ -7,7 +7,7 @@
     },
     "fingerprintSampling": {
       "samples": 50,
-      "uniqueHashes": 4,
+      "uniqueHashes": 5,
       "matched": 1
     }
   },
@@ -337,6 +337,26 @@
       "fpEnrolled": 0,
       "fpTreatmentDist": {
         "0": 2
+      }
+    },
+    {
+      "hash": 704914099,
+      "id": null,
+      "type": "user",
+      "title": "hash_704914099",
+      "percentage": 0,
+      "status": "not_started",
+      "samples": 3,
+      "enrolled": 0,
+      "treatmentDistribution": {
+        "0": 3
+      },
+      "source": "fingerprint_sampling",
+      "note": "No local experiment ID match for this hash",
+      "fpSamples": 3,
+      "fpEnrolled": 0,
+      "fpTreatmentDist": {
+        "0": 3
       }
     },
     {
@@ -3650,16 +3670,6 @@
       "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
     },
     {
-      "id": "2026-10-referral-refresh-notification",
-      "hash": 1761537201,
-      "type": "user",
-      "title": "2026-10-referral-refresh-notification",
-      "percentage": null,
-      "status": "no_rollout_data",
-      "source": "client_bundle",
-      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
-    },
-    {
       "id": "2026-10-remove-quests-from-discovery",
       "hash": 3418608626,
       "type": "user",
@@ -4174,11 +4184,11 @@
     "total": 391,
     "guild": 42,
     "user": 349,
-    "withPercentage": 8,
-    "withoutPercentage": 383,
+    "withPercentage": 9,
+    "withoutPercentage": 382,
     "fullRollout": 5,
     "partial": 0,
-    "notStarted": 3,
-    "fpSampled": 4
+    "notStarted": 4,
+    "fpSampled": 5
   }
 }
