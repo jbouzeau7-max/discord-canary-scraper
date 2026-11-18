@@ -1,11 +1,11 @@
 {
-  "runId": "2026-11-18T20-23-16-701Z_676869_f0b37y",
-  "buildNumber": "676869",
-  "scrapedAt": "2026-11-18T20:23:16.701Z",
+  "runId": "2026-11-18T20-25-26-578Z_676887_h1kqny",
+  "buildNumber": "676887",
+  "scrapedAt": "2026-11-18T20:25:26.578Z",
   "totals": {
-    "all": 387,
+    "all": 389,
     "legacy": 28,
-    "apex": 359
+    "apex": 361
   },
   "experiments": [
     {
@@ -8776,6 +8776,40 @@
         }
       },
       "variationCount": 2,
+      "source": "discord"
+    },
+    {
+      "id": "2026-11-norbs",
+      "type": "user",
+      "kind": "user",
+      "label": null,
+      "system": "apex",
+      "defaultConfig": {
+        "enabled": false
+      },
+      "variations": {
+        "1": {
+          "enabled": true
+        }
+      },
+      "variationCount": 1,
+      "source": "discord"
+    },
+    {
+      "id": "2026-11-norbs-2",
+      "type": "user",
+      "kind": "user",
+      "label": null,
+      "system": "apex",
+      "defaultConfig": {
+        "enabled": false
+      },
+      "variations": {
+        "1": {
+          "enabled": true
+        }
+      },
+      "variationCount": 1,
       "source": "discord"
     },
     {

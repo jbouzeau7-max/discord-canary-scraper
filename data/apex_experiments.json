@@ -5488,6 +5488,32 @@
   },
   {
     "kind": "user",
+    "name": "2026-11-norbs",
+    "defaultConfig": {
+      "enabled": false
+    },
+    "variations": {
+      "1": {
+        "enabled": true
+      }
+    },
+    "label": null
+  },
+  {
+    "kind": "user",
+    "name": "2026-11-norbs-2",
+    "defaultConfig": {
+      "enabled": false
+    },
+    "variations": {
+      "1": {
+        "enabled": true
+      }
+    },
+    "label": null
+  },
+  {
+    "kind": "user",
     "name": "2026-11-notify-friends-on-custom-status-update",
     "defaultConfig": {
       "enabled": false

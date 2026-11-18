@@ -1,8 +1,8 @@
 {
-  "runId": "2026-11-18T20-23-16-701Z_676869_f0b37y",
-  "buildNumber": "676869",
-  "updatedAt": "2026-11-18T20:23:16.701Z",
-  "count": 387,
+  "runId": "2026-11-18T20-25-26-578Z_676887_h1kqny",
+  "buildNumber": "676887",
+  "updatedAt": "2026-11-18T20:25:26.578Z",
+  "count": 389,
   "experiments": [
     {
       "id": "2021-02_staff_qc_debugging",
@@ -19739,6 +19739,98 @@
         "value": null
       },
       "fingerprint": "4044f1c914f6acbf4075b2042253fd889b021374a9e00685ec48d6769c4bcd10"
+    },
+    {
+      "id": "2026-11-norbs",
+      "kind": "user",
+      "type": "user",
+      "system": "apex",
+      "label": null,
+      "title": null,
+      "description": null,
+      "defaultConfig": {
+        "enabled": false
+      },
+      "variations": {
+        "1": {
+          "enabled": true
+        }
+      },
+      "treatments": null,
+      "variationSource": "variations",
+      "variationCount": 1,
+      "raw": {
+        "id": "2026-11-norbs",
+        "type": "user",
+        "kind": "user",
+        "label": null,
+        "system": "apex",
+        "defaultConfig": {
+          "enabled": false
+        },
+        "variations": {
+          "1": {
+            "enabled": true
+          }
+        },
+        "variationCount": 1,
+        "source": "discord"
+      },
+      "guildPercentage": {
+        "status": "unknown",
+        "value": null
+      },
+      "userPercentage": {
+        "status": "unknown",
+        "value": null
+      },
+      "fingerprint": "9fcf1e8d080f5599c3b6ea0798205cf9a5976dbb669e15f028d211088385fbf9"
+    },
+    {
+      "id": "2026-11-norbs-2",
+      "kind": "user",
+      "type": "user",
+      "system": "apex",
+      "label": null,
+      "title": null,
+      "description": null,
+      "defaultConfig": {
+        "enabled": false
+      },
+      "variations": {
+        "1": {
+          "enabled": true
+        }
+      },
+      "treatments": null,
+      "variationSource": "variations",
+      "variationCount": 1,
+      "raw": {
+        "id": "2026-11-norbs-2",
+        "type": "user",
+        "kind": "user",
+        "label": null,
+        "system": "apex",
+        "defaultConfig": {
+          "enabled": false
+        },
+        "variations": {
+          "1": {
+            "enabled": true
+          }
+        },
+        "variationCount": 1,
+        "source": "discord"
+      },
+      "guildPercentage": {
+        "status": "unknown",
+        "value": null
+      },
+      "userPercentage": {
+        "status": "unknown",
+        "value": null
+      },
+      "fingerprint": "57823e3d42c7ce07db0629f6e9b6888494e786711b96385bc3a9f27ec18391fe"
     },
     {
       "id": "2026-11-notify-friends-on-custom-status-update",
