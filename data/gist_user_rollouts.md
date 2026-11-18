@@ -1,12 +1,12 @@
 # Rollouts user — couverture gist (v1)
 
-> Source : gist communautaire agnonotdev (copie réduite de rollouts.json, tag Assyst) · Généré le 2026-11-18 20:14 UTC
+> Source : gist communautaire agnonotdev (copie réduite de rollouts.json, tag Assyst) · Généré le 2026-11-18 20:36 UTC
 
 **Sémantique** : couvertures calculées exactement à partir des plages fournies par la source (0-10000), à 0,01 point près. Totaux par rôle = UNION des plages (un bucket appartient à un rôle s'il tombe dans l'union de ses plages). Quand la structure révèle plusieurs populations aplaties (drapeau `multi_population`) ou des rôles conflictuels/inconnus, l'agrégation est indéterminée (poids des populations absents du gist) : totaux principaux indisponibles, l'union est montrée en métrique secondaire étiquetée « projetée » (non pondérée). L'absence du drapeau ne prouve PAS une population unique — le gist n'en garde pas les frontières. Cohérent avec notre décodage wire apex (mêmes plages → mêmes nombres). Ce n'est ni une estimation statistique, ni la proportion de vrais utilisateurs éligibles, ni une mesure d'accès réel. Les expériences `guild` sont exclues (mesurées à part par le décodage wire apex).
 
-**Gist** : [e3e99062983e6bd0feaef833f14fd931](https://gist.github.com/agnonotdev/e3e99062983e6bd0feaef833f14fd931) · révision c27b4359 · MAJ 2026-11-18T14:53:51Z · 1057 expériences au catalogue (329 user dont 156 avec données, 38 guild, 690 type inconnu, 263 sans données)
+**Gist** : [e3e99062983e6bd0feaef833f14fd931](https://gist.github.com/agnonotdev/e3e99062983e6bd0feaef833f14fd931) · révision 795c5d38 · MAJ 2026-11-18T20:36:05Z · 1058 expériences au catalogue (330 user dont 156 avec données, 38 guild, 690 type inconnu, 264 sans données)
 
-⚠️ Miroir divergent (192b2ce20539ce1021b5c8cb01b17ff0) sur : 2026-11-mobile-orb-redemption-thru-orders, 2026-11-payment-element-accordion-layout, 2026-11-soundboard-upsells-brand-refresh, 2026-11-return-full-quest-status-in-decision, 2026-11-screen-share-dtx, 2026-10-clips-default-on-geo, 2026-10-media-viewer-improvements, 2026-10-referral-refresh-notification, 2026-10-windows-playout-buffer-duration, 2026-10-mobile-rtc-v2…
+⚠️ Miroir divergent (192b2ce20539ce1021b5c8cb01b17ff0) sur : 2026-11-mobile-orb-redemption-thru-orders, 2026-11-payment-element-accordion-layout, 2026-11-soundboard-upsells-brand-refresh, 2026-11-return-full-quest-status-in-decision, 2026-11-screen-share-dtx, 2026-10-shop-twelve-days-promo, 2026-10-clips-default-on-geo, 2026-10-media-viewer-improvements, 2026-10-referral-refresh-notification, 2026-10-windows-playout-buffer-duration…
 
 ## Expériences user avec données (156)
 
@@ -24,6 +24,7 @@
 | 2026-10-soundboard-new-sounds-badge | **10,00 %** | 10,00 % | 0,00 % | 80,00 % | — |
 | 2026-10-soundboard-mute-indicator | **10,00 %** | 10,00 % | 0,00 % | 80,00 % | — |
 | 2026-10-slayer-storefront-single-sku-wide-header | **100,00 %** | 0,00 % | 0,00 % | 0,00 % | — |
+| 2026-10-shop-twelve-days-promo | **0,00 %** | 30,00 % | 0,00 % | 70,00 % | — |
 | 2026-10-shop-sku-nitro-upsell-refresh | **25,00 %** | 25,00 % | 0,00 % | 50,00 % | — |
 | 2026-10-sfp-bloons-orb-split-tender | **45,44 %** | 22,56 % | 0,00 % | 32,00 % | — |
 | 2026-10-remove-quests-from-discovery | **50,00 %** | 50,00 % | 0,00 % | 0,00 % | — |
@@ -94,7 +95,6 @@
 | 2026-09-new-orb-reward-visuals | **100,00 %** | 0,00 % | 0,00 % | 0,00 % | — |
 | 2026-09-multi-sku-embed-rendering | **100,00 %** | 0,00 % | 0,00 % | 0,00 % | — |
 | 2026-09-mobile-roadblock-offer-cta | **50,00 %** | 50,00 % | 0,00 % | 0,00 % | — |
-| 2026-09-mobile-quest-home-sort-priority | **10,00 %** | 10,00 % | 0,00 % | 80,00 % | — |
 | 2026-09-mobile-nlp-search-user-flag | **100,00 %** | 0,00 % | 0,00 % | 0,00 % | — |
 | 2026-09-mobile-nitro-orbs-delivered-modal | **100,00 %** | 0,00 % | 0,00 % | 0,00 % | — |
 | 2026-09-ios-anchored-chat-scroller | **11,50 %** | 11,50 % | 0,00 % | 77,00 % | — |
@@ -141,7 +141,7 @@
 | 2026-06-mobile-media-viewer-share | **10,00 %** | 10,00 % | 0,00 % | 80,00 % | — |
 | 2026-06-gift-acom-order | **25,00 %** | 25,00 % | 0,00 % | 50,00 % | — |
 | 2026-05-mobile-request-review-no-tti | **50,00 %** | 50,00 % | 0,00 % | 0,00 % | — |
-| 2026-05-dvp-for-attachments | **25,00 %** | 25,00 % | 0,00 % | 50,00 % | — |
+| 2026-05-dvp-for-attachments | **37,50 %** | 37,50 % | 0,00 % | 25,00 % | — |
 | 2026-05-av1-bitrate-tuning | **41,19 %** | 41,50 % | 0,00 % | 17,31 % | — |
 | 2026-04-safety-flows | **100,00 %** | 0,00 % | 0,00 % | 0,00 % | — |
 | 2026-04-one-day-fractional-nitro | **50,00 %** | 50,00 % | 0,00 % | 0,00 % | — |
@@ -461,6 +461,9 @@
 ### 2026-10-slayer-storefront-single-sku-wide-header
 - Variant 1 (treatment) : 100,00 % · plages 0 – 10000
 
+### 2026-10-shop-twelve-days-promo
+- Variant 0 (control) : 30,00 % · plages 0 – 3000
+
 ### 2026-10-shop-sku-nitro-upsell-refresh
 - Variant 0 (control) : 25,00 % · plages 0 – 500 , 1000 – 1500 , 2000 – 3500
 - Variant 1 (treatment) : 25,00 % · plages 500 – 1000 , 1500 – 2000 , 3500 – 5000
@@ -723,10 +726,6 @@
 - Variant 0 (control) : 50,00 % · plages 0 – 1000 , 2000 – 3500 , 5000 – 7500
 - Variant 1 (treatment) : 50,00 % · plages 1000 – 2000 , 3500 – 5000 , 7500 – 10000
 
-### 2026-09-mobile-quest-home-sort-priority
-- Variant 0 (control) : 10,00 % · plages 0 – 250 , 500 – 1250
-- Variant 1 (treatment) : 10,00 % · plages 250 – 500 , 1250 – 2000
-
 ### 2026-09-mobile-nlp-search-user-flag
 - Variant 1 (treatment) : 100,00 % · plages 0 – 10000
 
@@ -887,8 +886,8 @@
 - Variant 1 (treatment) : 50,00 % · plages 1000 – 2000 , 6000 – 10000
 
 ### 2026-05-dvp-for-attachments
-- Variant 0 (control) : 25,00 % · plages 0 – 100 , 200 – 350 , 500 – 750 , 1000 – 1500 , 2000 – 2750 , 3500 – 4250
-- Variant 1 (treatment) : 25,00 % · plages 100 – 200 , 350 – 500 , 750 – 1000 , 1500 – 2000 , 2750 – 3500 , 4250 – 5000
+- Variant 0 (control) : 37,50 % · plages 0 – 100 , 200 – 350 , 500 – 750 , 1000 – 1500 , 2000 – 2750 , 3500 – 4250 , 5000 – 6250
+- Variant 1 (treatment) : 37,50 % · plages 100 – 200 , 350 – 500 , 750 – 1000 , 1500 – 2000 , 2750 – 3500 , 4250 – 5000 , 6250 – 7500
 
 ### 2026-05-av1-bitrate-tuning
 - Variant 0 (control) : 41,50 % · plages 0 – 25 , 100 – 725 , 1950 – 2950 , 4950 – 7450

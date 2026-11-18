@@ -1,19 +1,19 @@
 {
- "generatedAt": "2026-11-18T18:47:10.411Z",
+ "generatedAt": "2026-11-18T20:36:41.333Z",
  "semantics": "couverture de l'espace de buckets (gist agnonotdev) — ni une proportion d'utilisateurs, ni une mesure d'accès réel ; multi-populations = couverture projetée non pondérée",
  "source": {
   "gistId": "e3e99062983e6bd0feaef833f14fd931",
   "htmlUrl": "https://gist.github.com/agnonotdev/e3e99062983e6bd0feaef833f14fd931",
-  "updatedAt": "2026-11-18T14:53:51Z",
-  "revision": "c27b4359d80bc2c00a2eb932b95162fbf33d2888"
+  "updatedAt": "2026-11-18T20:36:05Z",
+  "revision": "795c5d38db33c0e6f14fc4b75c4122b275f57997"
  },
  "stats": {
-  "total": 1057,
-  "user": 329,
+  "total": 1058,
+  "user": 330,
   "userData": 156,
   "guild": 38,
   "unclassified": 690,
-  "noData": 263
+  "noData": 264
  },
  "experiments": [
   {
@@ -353,6 +353,27 @@
     "1": {
      "pct": 100,
      "role": "treatment"
+    }
+   }
+  },
+  {
+   "id": "2026-10-shop-twelve-days-promo",
+   "title": "2026-10-shop-twelve-days-promo",
+   "type": "user",
+   "hasData": true,
+   "totalsAvailable": true,
+   "ambiguous": false,
+   "projected": false,
+   "flags": [],
+   "treatmentPct": 0,
+   "projectedTreatmentPct": null,
+   "controlPct": 30,
+   "notEligiblePct": 0,
+   "unassignedPct": 70,
+   "byVariant": {
+    "0": {
+     "pct": 30,
+     "role": "control"
     }
    }
   },
@@ -2470,26 +2491,19 @@
    "id": "2026-09-mobile-quest-home-sort-priority",
    "title": "2026-09-mobile-quest-home-sort-priority",
    "type": "user",
-   "hasData": true,
-   "totalsAvailable": true,
+   "hasData": false,
+   "totalsAvailable": false,
    "ambiguous": false,
    "projected": false,
-   "flags": [],
-   "treatmentPct": 10,
+   "flags": [
+    "no_data"
+   ],
+   "treatmentPct": null,
    "projectedTreatmentPct": null,
-   "controlPct": 10,
-   "notEligiblePct": 0,
-   "unassignedPct": 80,
-   "byVariant": {
-    "0": {
-     "pct": 10,
-     "role": "control"
-    },
-    "1": {
-     "pct": 10,
-     "role": "treatment"
-    }
-   }
+   "controlPct": null,
+   "notEligiblePct": null,
+   "unassignedPct": null,
+   "byVariant": {}
   },
   {
    "id": "2026-09-mobile-nlp-search-user-flag",
@@ -4738,18 +4752,18 @@
    "ambiguous": false,
    "projected": false,
    "flags": [],
-   "treatmentPct": 25,
+   "treatmentPct": 37.5,
    "projectedTreatmentPct": null,
-   "controlPct": 25,
+   "controlPct": 37.5,
    "notEligiblePct": 0,
-   "unassignedPct": 50,
+   "unassignedPct": 25,
    "byVariant": {
     "0": {
-     "pct": 25,
+     "pct": 37.5,
      "role": "control"
     },
     "1": {
-     "pct": 25,
+     "pct": 37.5,
      "role": "treatment"
     }
    }

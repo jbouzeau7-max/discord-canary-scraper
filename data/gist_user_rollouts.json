@@ -3,15 +3,15 @@
  "schemaVersion": 1,
  "semanticsVersion": 2,
  "notifyScopeVersion": 2,
- "runId": "20261118T201440_gist",
- "scrapedAt": "2026-11-18T20:14:40.442Z",
+ "runId": "20261118T203641_gist",
+ "scrapedAt": "2026-11-18T20:36:41.321Z",
  "source": {
   "gistId": "e3e99062983e6bd0feaef833f14fd931",
   "htmlUrl": "https://gist.github.com/agnonotdev/e3e99062983e6bd0feaef833f14fd931",
-  "rawUrl": "https://gist.githubusercontent.com/agnonotdev/e3e99062983e6bd0feaef833f14fd931/raw/6f8990c7bad96127c63ea0ee3b1ded96e5348231/rollouts-tag.json",
-  "updatedAt": "2026-11-18T14:53:51Z",
-  "revision": "c27b4359d80bc2c00a2eb932b95162fbf33d2888",
-  "fetchedAt": "2026-11-18T20:14:40.442Z",
+  "rawUrl": "https://gist.githubusercontent.com/agnonotdev/e3e99062983e6bd0feaef833f14fd931/raw/c81ae59b9fc9d983b5980cc877445d89c765d4a8/rollouts-tag.json",
+  "updatedAt": "2026-11-18T20:36:05Z",
+  "revision": "795c5d38db33c0e6f14fc4b75c4122b275f57997",
+  "fetchedAt": "2026-11-18T20:36:41.321Z",
   "fallback": false,
   "rawFallback": false,
   "canonicalId": null
@@ -25,6 +25,7 @@
    "2026-11-soundboard-upsells-brand-refresh",
    "2026-11-return-full-quest-status-in-decision",
    "2026-11-screen-share-dtx",
+   "2026-10-shop-twelve-days-promo",
    "2026-10-clips-default-on-geo",
    "2026-10-media-viewer-improvements",
    "2026-10-referral-refresh-notification",
@@ -57,6 +58,7 @@
    "2026-10-request-to-stream-non-games",
    "2026-10-android-stop-and-pause-video",
    "2026-10-android-fastimage-apng",
+   "2026-09-mobile-quest-home-sort-priority",
    "2026-09-voice-connect-feedback",
    "2026-09-three-month-nitro-gifting",
    "2026-09-mobile-request-to-stream",
@@ -80,19 +82,19 @@
    "2026-07-onyx",
    "2026-07-cobalt",
    "2026-07-quest-home-default-banner-removal",
+   "2026-05-dvp-for-attachments",
    "2026-05-mobile-request-review-no-tti",
    "2026-05-av1-bitrate-tuning",
-   "2026-05-dvp-for-attachments",
    "2026-02-game-server-tab-always-on"
   ]
  },
  "stats": {
-  "total": 1057,
-  "user": 329,
+  "total": 1058,
+  "user": 330,
   "userData": 156,
   "guild": 38,
   "unclassified": 690,
-  "noData": 263
+  "noData": 264
  },
  "acknowledged": {
   "2026-11-soundboard-upsells-brand-refresh": {
@@ -1760,31 +1762,12 @@
    }
   },
   "2026-09-mobile-quest-home-sort-priority": {
-   "key": "f82485db99bac722",
-   "hasData": true,
-   "sig": "0:control|1:treatment",
-   "byVariant": {
-    "0": {
-     "pct": 10,
-     "role": "control"
-    },
-    "1": {
-     "pct": 10,
-     "role": "treatment"
-    }
-   },
+   "key": "no_data",
+   "hasData": false,
+   "sig": "",
    "treatment": {
-    "pct": 10
-   },
-   "control": {
-    "pct": 10
-   },
-   "notEligible": {
-    "pct": 0
-   },
-   "projectedCoverage": null,
-   "projected": false,
-   "variantsCount": 2
+    "pct": null
+   }
   },
   "2026-09-linux-gpu-decode": {
    "key": "no_data",
@@ -3156,24 +3139,24 @@
    }
   },
   "2026-05-dvp-for-attachments": {
-   "key": "16025a1c39ab0c00",
+   "key": "a356e7048439436c",
    "hasData": true,
    "sig": "0:control|1:treatment",
    "byVariant": {
     "0": {
-     "pct": 25,
+     "pct": 37.5,
      "role": "control"
     },
     "1": {
-     "pct": 25,
+     "pct": 37.5,
      "role": "treatment"
     }
    },
    "treatment": {
-    "pct": 25
+    "pct": 37.5
    },
    "control": {
-    "pct": 25
+    "pct": 37.5
    },
    "notEligible": {
     "pct": 0
@@ -21554,22 +21537,39 @@
    "projectedCoverage": null,
    "projected": false,
    "variantsCount": 2
+  },
+  "2026-10-shop-twelve-days-promo": {
+   "key": "ba556803b635aab2",
+   "hasData": true,
+   "sig": "0:control",
+   "byVariant": {
+    "0": {
+     "pct": 30,
+     "role": "control"
+    }
+   },
+   "treatment": {
+    "pct": 0
+   },
+   "control": {
+    "pct": 30
+   },
+   "notEligible": {
+    "pct": 0
+   },
+   "projectedCoverage": null,
+   "projected": false,
+   "variantsCount": 1
   }
  },
  "lastRun": {
-  "changes": 0,
-  "delivered": 0,
+  "changes": 3,
+  "delivered": 3,
   "firstRun": false,
   "semanticsMigrated": 0,
   "scopeBaselined": 0
  },
  "history": [
-  {
-   "at": "2026-11-17T21:22:54.493Z",
-   "revision": "99650ed80d21acf0e86c031e91e3e9f7ac035234",
-   "changes": 3,
-   "delivered": 3
-  },
   {
    "at": "2026-11-17T21:52:05.322Z",
    "revision": "99650ed80d21acf0e86c031e91e3e9f7ac035234",
@@ -21863,6 +21863,12 @@
    "revision": "c27b4359d80bc2c00a2eb932b95162fbf33d2888",
    "changes": 0,
    "delivered": 0
+  },
+  {
+   "at": "2026-11-18T20:36:41.321Z",
+   "revision": "795c5d38db33c0e6f14fc4b75c4122b275f57997",
+   "changes": 3,
+   "delivered": 3
   }
  ]
 }
