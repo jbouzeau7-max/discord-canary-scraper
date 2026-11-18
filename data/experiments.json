@@ -1,11 +1,11 @@
 {
-  "runId": "2026-11-18T18-48-30-324Z_676649_vg3km6",
-  "buildNumber": "676649",
-  "scrapedAt": "2026-11-18T18:48:30.324Z",
+  "runId": "2026-11-18T18-50-58-373Z_676670_8yq5t8",
+  "buildNumber": "676670",
+  "scrapedAt": "2026-11-18T18:50:58.373Z",
   "totals": {
-    "all": 388,
+    "all": 387,
     "legacy": 28,
-    "apex": 360
+    "apex": 359
   },
   "experiments": [
     {
@@ -5722,33 +5722,6 @@
         "source": "gist_user_rollouts"
       },
       "fingerprint": "00b5c445f15b7d7d6a065fdd70e0dfe07e8b482919bc4cd368f6a9478b05ad6a"
-    },
-    {
-      "id": "2026-09-profile-link-fetch",
-      "type": "user",
-      "kind": "user",
-      "label": null,
-      "system": "apex",
-      "defaultConfig": {
-        "enabled": false
-      },
-      "variations": {
-        "1": {
-          "enabled": true
-        }
-      },
-      "variationCount": 1,
-      "source": "discord",
-      "guildPercentage": {
-        "status": "unknown",
-        "value": null
-      },
-      "userPercentage": {
-        "status": "provided",
-        "value": 50,
-        "source": "gist_user_rollouts"
-      },
-      "fingerprint": "1eda20c7e54bd6bf5d5f194e6fe7e8bce18c14b045e81d8e52862c7979926c9e"
     },
     {
       "id": "2026-09-quest-home-bounties-feature-gate",
