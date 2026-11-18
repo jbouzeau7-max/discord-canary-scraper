@@ -1,11 +1,11 @@
 {
-  "runId": "2026-11-18T21-15-05-415Z_676967_ypmbdl",
-  "buildNumber": "676967",
-  "scrapedAt": "2026-11-18T21:15:05.415Z",
+  "runId": "2026-11-18T21-17-13-090Z_676971_xzi8q8",
+  "buildNumber": "676971",
+  "scrapedAt": "2026-11-18T21:17:13.090Z",
   "totals": {
-    "all": 389,
+    "all": 388,
     "legacy": 28,
-    "apex": 361
+    "apex": 360
   },
   "experiments": [
     {
@@ -1137,23 +1137,6 @@
       "variations": {
         "1": {
           "guildFriendsEnabled": true
-        }
-      },
-      "variationCount": 1,
-      "source": "discord"
-    },
-    {
-      "id": "2026-01-ios-push-notif-json-fix",
-      "type": "user",
-      "kind": "user",
-      "label": null,
-      "system": "apex",
-      "defaultConfig": {
-        "enabled": false
-      },
-      "variations": {
-        "1": {
-          "enabled": true
         }
       },
       "variationCount": 1,
