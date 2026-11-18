@@ -28,6 +28,7 @@ const fetch = require('node-fetch');
 const fs = require('fs-extra');
 const path = require('path');
 const crypto = require('crypto');
+const cheerio = require('cheerio');
 const { sendWebhook, withComponentsUrl } = require('./lib/webhook');
 const {
   IS_COMPONENTS_V2_FLAG,
@@ -271,11 +272,23 @@ async function withRetries(fn, label, tries = 3) {
 
 // ── Blog (RSS) ────────────────────────────────────────
 
-function parseRssItems(xml) {
+function parseRssItems(xml, requireEnvelope = false) {
   const items = [];
-  const blocks = String(xml).split(/<item[\s>]/i).slice(1);
-  for (const block of blocks) {
-    const chunk = block.split(/<\/item>/i)[0] || '';
+  const $ = cheerio.load(xml, { xml: { withStartIndices: true, withEndIndices: true } });
+  // XML mode recovers unclosed elements; require their actual closing tags in the input.
+  const explicitlyClosed = el => el && el.endIndex < xml.length &&
+    xml.slice(xml.lastIndexOf('<', el.endIndex), el.endIndex + 1).trimEnd().replace(/\s+>$/, '>') === `</${el.name}>`;
+  const entries = $('item').toArray();
+  if (requireEnvelope) {
+    const roots = $.root().children();
+    const channels = roots.children('channel');
+    if (roots.length !== 1 || !roots.is('rss') || !explicitlyClosed(roots[0]) ||
+        channels.length !== 1 || !explicitlyClosed(channels[0]) ||
+        entries.some(el => el.parent !== channels[0])) throw new Error('Incomplete blog RSS envelope');
+  }
+  for (const el of entries) {
+    if (!explicitlyClosed(el)) throw new Error('Incomplete blog RSS item');
+    const chunk = xml.slice(el.startIndex, el.endIndex + 1);
     const get = (tag) => {
       const m = chunk.match(
         new RegExp('<' + tag + '[^>]*><!\\[CDATA\\[([\\s\\S]*?)\\]\\]><\\/' + tag + '>', 'i'),
@@ -337,7 +350,8 @@ async function fetchBlog(oldById) {
     () => fetchText(BLOG_RSS, { accept: 'application/rss+xml, application/xml, text/xml, */*' }),
     'blog rss',
   );
-  const items = parseRssItems(xml);
+  const items = parseRssItems(xml, true);
+  if (!items.length) throw new Error('Blog RSS returned no usable articles');
   console.log('Blog RSS items:', items.length);
 
   const queue = items.slice(0, Math.min(items.length, 40));
@@ -442,7 +456,11 @@ async function fetchHelpArticles(host, center, sectionsById) {
   while (page && pages < 25) {
     pages++;
     const data = await fetchJson(page, { timeout: 30000 });
-    const batch = data.articles || [];
+    if (!Array.isArray(data.articles)) throw new Error('Zendesk response is missing articles');
+    if (data.next_page !== null && (typeof data.next_page !== 'string' || !data.next_page.trim())) {
+      throw new Error('Zendesk response has missing or invalid next_page');
+    }
+    const batch = data.articles;
     for (const a of batch) {
       if (seen.has(a.id)) continue;
       seen.add(a.id);
@@ -464,10 +482,11 @@ async function fetchHelpArticles(host, center, sectionsById) {
         label: center.label,
       });
     }
-    page = data.next_page || null;
+    page = data.next_page;
     if (!batch.length) break;
-    await sleep(150);
+    if (page && pages < 25) await sleep(150);
   }
+  if (page) throw new Error('Incomplete Zendesk pagination');
   console.log(`Help ${center.key}: ${list.length} articles (${pages} pages)`);
   return list;
 }
@@ -608,7 +627,8 @@ function changeText(entry) {
         lines.push('> Modified beyond the captured excerpt');
       }
     } else if (c.kind === 'description') {
-      lines.push('**Summary** · changed');
+      const w = firstDivergence(c.before, c.after, 80);
+      lines.push('**Summary** · changed', '**Before**', codeBlock(w.before), '**After**', codeBlock(w.after));
     } else if (c.kind === 'link') {
       lines.push('**Link** · changed');
     } else if (c.kind === 'thumb') {
@@ -833,7 +853,7 @@ function applyNotifyResult(prevList, freshList, result, sourceKey) {
     }
   }
   for (const [id, o] of Object.entries(prevM)) {
-    if (pushed.has(id) || freshM[id]) continue;
+    if (!revertIds.has(id) || pushed.has(id) || freshM[id]) continue;
     if (o && o.source === sourceKey) {
       out.push(o);
       pushed.add(id);
@@ -884,7 +904,7 @@ async function main() {
 
   // 2. Help centers
   const help = {};
-  for (const center of HELP_CENTERS) {
+  await Promise.all(HELP_CENTERS.map(async (center) => {
     const prevList = previous.help[center.key] || [];
     let list = prevList;
     try {
@@ -897,7 +917,7 @@ async function main() {
       statuses.push({ label: center.label, ok: false, error: e.message });
     }
     help[center.key] = list;
-  }
+  }));
 
   console.log(
     'Blog entries:', blog.length,
@@ -938,7 +958,9 @@ async function main() {
     const lastTs = lastErrorNotifiedAt ? Date.parse(lastErrorNotifiedAt) : 0;
     if (Date.now() - (lastTs || 0) > ERROR_NOTIFY_EVERY_MS) {
       try {
-        await postComponents(buildHealthComps(statuses), 0xed4245);
+        if (!await postComponents(buildHealthComps(statuses), 0xed4245)) {
+          throw new Error('Discord rejected the health alert; will retry next run');
+        }
         lastErrorNotifiedAt = new Date().toISOString();
         console.log('Health message sent');
       } catch (e) {
