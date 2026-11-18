@@ -1,16 +1,16 @@
 {
- "generatedAt": "2026-11-18T06:07:45.983Z",
+ "generatedAt": "2026-11-18T12:19:19.650Z",
  "semantics": "couverture de l'espace de buckets (gist agnonotdev) — ni une proportion d'utilisateurs, ni une mesure d'accès réel ; multi-populations = couverture projetée non pondérée",
  "source": {
   "gistId": "e3e99062983e6bd0feaef833f14fd931",
   "htmlUrl": "https://gist.github.com/agnonotdev/e3e99062983e6bd0feaef833f14fd931",
-  "updatedAt": "2026-11-17T21:04:37Z",
-  "revision": "99650ed80d21acf0e86c031e91e3e9f7ac035234"
+  "updatedAt": "2026-11-18T12:19:10Z",
+  "revision": "029f4c7f3a8803fa8ee910f1c133fbbce9f64998"
  },
  "stats": {
-  "total": 1055,
-  "user": 327,
-  "userData": 154,
+  "total": 1057,
+  "user": 329,
+  "userData": 156,
   "guild": 38,
   "unclassified": 690,
   "noData": 263
@@ -1467,6 +1467,27 @@
    }
   },
   {
+   "id": "2026-10-clips-default-on-geo",
+   "title": "2026-10-clips-default-on-geo",
+   "type": "user",
+   "hasData": true,
+   "totalsAvailable": true,
+   "ambiguous": false,
+   "projected": false,
+   "flags": [],
+   "treatmentPct": 30,
+   "projectedTreatmentPct": null,
+   "controlPct": 0,
+   "notEligiblePct": 0,
+   "unassignedPct": 70,
+   "byVariant": {
+    "1": {
+     "pct": 30,
+     "role": "treatment"
+    }
+   }
+  },
+  {
    "id": "2026-10-clickable-hero-banner",
    "title": "2026-10-clickable-hero-banner",
    "type": "user",
@@ -1780,18 +1801,18 @@
    "ambiguous": false,
    "projected": false,
    "flags": [],
-   "treatmentPct": 15,
+   "treatmentPct": 25,
    "projectedTreatmentPct": null,
-   "controlPct": 15,
+   "controlPct": 25,
    "notEligiblePct": 0,
-   "unassignedPct": 70,
+   "unassignedPct": 50,
    "byVariant": {
     "0": {
-     "pct": 15,
+     "pct": 25,
      "role": "control"
     },
     "2": {
-     "pct": 15,
+     "pct": 25,
      "role": "treatment"
     }
    }
@@ -1883,26 +1904,19 @@
    "id": "2026-09-three-month-nitro-gifting",
    "title": "2026-09-three-month-nitro-gifting",
    "type": "user",
-   "hasData": true,
-   "totalsAvailable": true,
+   "hasData": false,
+   "totalsAvailable": false,
    "ambiguous": false,
    "projected": false,
-   "flags": [],
-   "treatmentPct": 20,
+   "flags": [
+    "no_data"
+   ],
+   "treatmentPct": null,
    "projectedTreatmentPct": null,
-   "controlPct": 20,
-   "notEligiblePct": 0,
-   "unassignedPct": 60,
-   "byVariant": {
-    "0": {
-     "pct": 20,
-     "role": "control"
-    },
-    "1": {
-     "pct": 20,
-     "role": "treatment"
-    }
-   }
+   "controlPct": null,
+   "notEligiblePct": null,
+   "unassignedPct": null,
+   "byVariant": {}
   },
   {
    "id": "2026-09-soundboard-quick-action",
@@ -3248,19 +3262,26 @@
    "id": "2026-08-mark-channel-unread",
    "title": "2026-08-mark-channel-unread",
    "type": "user",
-   "hasData": false,
-   "totalsAvailable": false,
+   "hasData": true,
+   "totalsAvailable": true,
    "ambiguous": false,
    "projected": false,
-   "flags": [
-    "no_data"
-   ],
-   "treatmentPct": null,
+   "flags": [],
+   "treatmentPct": 1,
    "projectedTreatmentPct": null,
-   "controlPct": null,
-   "notEligiblePct": null,
-   "unassignedPct": null,
-   "byVariant": {}
+   "controlPct": 1,
+   "notEligiblePct": 0,
+   "unassignedPct": 98,
+   "byVariant": {
+    "0": {
+     "pct": 1,
+     "role": "control"
+    },
+    "1": {
+     "pct": 1,
+     "role": "treatment"
+    }
+   }
   },
   {
    "id": "2026-08-gsh-subs-activity-bar",
@@ -4068,14 +4089,14 @@
    "ambiguous": false,
    "projected": false,
    "flags": [],
-   "treatmentPct": 30,
+   "treatmentPct": 100,
    "projectedTreatmentPct": null,
    "controlPct": 0,
    "notEligiblePct": 0,
-   "unassignedPct": 70,
+   "unassignedPct": 0,
    "byVariant": {
     "1": {
-     "pct": 30,
+     "pct": 100,
      "role": "treatment"
     }
    }
@@ -4630,6 +4651,31 @@
    "byVariant": {}
   },
   {
+   "id": "2026-05-mobile-request-review-no-tti",
+   "title": "2026-05-mobile-request-review-no-tti",
+   "type": "user",
+   "hasData": true,
+   "totalsAvailable": true,
+   "ambiguous": false,
+   "projected": false,
+   "flags": [],
+   "treatmentPct": 50,
+   "projectedTreatmentPct": null,
+   "controlPct": 50,
+   "notEligiblePct": 0,
+   "unassignedPct": 0,
+   "byVariant": {
+    "0": {
+     "pct": 50,
+     "role": "control"
+    },
+    "1": {
+     "pct": 50,
+     "role": "treatment"
+    }
+   }
+  },
+  {
    "id": "2026-05-ios-video-stabilization",
    "title": "2026-05-ios-video-stabilization",
    "type": "user",
@@ -4692,18 +4738,18 @@
    "ambiguous": false,
    "projected": false,
    "flags": [],
-   "treatmentPct": 17.5,
+   "treatmentPct": 25,
    "projectedTreatmentPct": null,
-   "controlPct": 17.5,
+   "controlPct": 25,
    "notEligiblePct": 0,
-   "unassignedPct": 65,
+   "unassignedPct": 50,
    "byVariant": {
     "0": {
-     "pct": 17.5,
+     "pct": 25,
      "role": "control"
     },
     "1": {
-     "pct": 17.5,
+     "pct": 25,
      "role": "treatment"
     }
    }
@@ -4789,18 +4835,18 @@
    "ambiguous": false,
    "projected": false,
    "flags": [],
-   "treatmentPct": 42,
+   "treatmentPct": 41.19,
    "projectedTreatmentPct": null,
    "controlPct": 41.5,
    "notEligiblePct": 0,
-   "unassignedPct": 16.5,
+   "unassignedPct": 17.31,
    "byVariant": {
     "0": {
      "pct": 41.5,
      "role": "control"
     },
     "1": {
-     "pct": 42,
+     "pct": 41.19,
      "role": "treatment"
     }
    }

@@ -1,14 +1,14 @@
 # Rollouts user — couverture gist (v1)
 
-> Source : gist communautaire agnonotdev (copie réduite de rollouts.json, tag Assyst) · Généré le 2026-11-18 11:58 UTC
+> Source : gist communautaire agnonotdev (copie réduite de rollouts.json, tag Assyst) · Généré le 2026-11-18 12:19 UTC
 
 **Sémantique** : couvertures calculées exactement à partir des plages fournies par la source (0-10000), à 0,01 point près. Totaux par rôle = UNION des plages (un bucket appartient à un rôle s'il tombe dans l'union de ses plages). Quand la structure révèle plusieurs populations aplaties (drapeau `multi_population`) ou des rôles conflictuels/inconnus, l'agrégation est indéterminée (poids des populations absents du gist) : totaux principaux indisponibles, l'union est montrée en métrique secondaire étiquetée « projetée » (non pondérée). L'absence du drapeau ne prouve PAS une population unique — le gist n'en garde pas les frontières. Cohérent avec notre décodage wire apex (mêmes plages → mêmes nombres). Ce n'est ni une estimation statistique, ni la proportion de vrais utilisateurs éligibles, ni une mesure d'accès réel. Les expériences `guild` sont exclues (mesurées à part par le décodage wire apex).
 
-**Gist** : [e3e99062983e6bd0feaef833f14fd931](https://gist.github.com/agnonotdev/e3e99062983e6bd0feaef833f14fd931) · révision 99650ed8 · MAJ 2026-11-17T21:04:37Z · 1055 expériences au catalogue (327 user dont 154 avec données, 38 guild, 690 type inconnu, 263 sans données)
+**Gist** : [e3e99062983e6bd0feaef833f14fd931](https://gist.github.com/agnonotdev/e3e99062983e6bd0feaef833f14fd931) · révision 029f4c7f · MAJ 2026-11-18T12:19:10Z · 1057 expériences au catalogue (329 user dont 156 avec données, 38 guild, 690 type inconnu, 263 sans données)
 
-⚠️ Miroir divergent (192b2ce20539ce1021b5c8cb01b17ff0) sur : 2026-11-payment-element-accordion-layout, 2026-11-mobile-orb-redemption-thru-orders, 2026-11-soundboard-upsells-brand-refresh, 2026-11-return-full-quest-status-in-decision, 2026-11-screen-share-dtx, 2026-10-media-viewer-improvements, 2026-10-referral-refresh-notification, 2026-10-windows-playout-buffer-duration, 2026-10-mobile-rtc-v2, 2026-10-collectibles-storefront-pricing-integration…
+⚠️ Miroir divergent (192b2ce20539ce1021b5c8cb01b17ff0) sur : 2026-11-payment-element-accordion-layout, 2026-11-mobile-orb-redemption-thru-orders, 2026-11-soundboard-upsells-brand-refresh, 2026-11-return-full-quest-status-in-decision, 2026-11-screen-share-dtx, 2026-10-clips-default-on-geo, 2026-10-media-viewer-improvements, 2026-10-referral-refresh-notification, 2026-10-windows-playout-buffer-duration, 2026-10-mobile-rtc-v2…
 
-## Expériences user avec données (154)
+## Expériences user avec données (156)
 
 | Expérience | Treatment | Control | Non éligible | Espace non décrit | Particularités |
 |---|---:|---:|---:|---:|---|
@@ -64,6 +64,7 @@
 | 2026-10-code-blurple-marketing-holdout | **95,00 %** | 5,00 % | 0,00 % | 0,00 % | — |
 | 2026-10-code-blurple | **100,00 %** | 0,00 % | 0,00 % | 0,00 % | — |
 | 2026-10-cod-relink | **100,00 %** | 0,00 % | 0,00 % | 0,00 % | — |
+| 2026-10-clips-default-on-geo | **30,00 %** | 0,00 % | 0,00 % | 70,00 % | — |
 | 2026-10-bulk-nitro-gifting-discounts | **20,00 %** | 20,00 % | 0,00 % | 60,00 % | — |
 | 2026-10-badge-directory-updates | **100,00 %** | 0,00 % | 0,00 % | 0,00 % | — |
 | 2026-10-avx512-entropy-histogram | **15,00 %** | 15,00 % | 0,00 % | 70,00 % | — |
@@ -75,9 +76,8 @@
 | 2026-09-youtube-3p | **100,00 %** | 0,00 % | 0,00 % | 0,00 % | — |
 | 2026-09-web-sticker-picker-upsell-restyle | **100,00 %** | 0,00 % | 0,00 % | 0,00 % | — |
 | 2026-09-voice-server-update-immediate-mobile | **50,00 %** | 50,00 % | 0,00 % | 0,00 % | — |
-| 2026-09-voice-connect-feedback | **15,00 %** | 15,00 % | 0,00 % | 70,00 % | — |
+| 2026-09-voice-connect-feedback | **25,00 %** | 25,00 % | 0,00 % | 50,00 % | — |
 | 2026-09-try-display-name-style | **26,66 %** | 13,33 % | 0,00 % | 60,01 % | — |
-| 2026-09-three-month-nitro-gifting | **20,00 %** | 20,00 % | 0,00 % | 60,00 % | — |
 | 2026-09-soundboard-quick-action | **95,00 %** | 0,00 % | 0,00 % | 5,00 % | — |
 | 2026-09-single-cpu-copy | **100,00 %** | 0,00 % | 0,00 % | 0,00 % | — |
 | 2026-09-silp-direct-to-discoverable | **0,00 %** | 3,00 % | 0,00 % | 97,00 % | — |
@@ -116,6 +116,7 @@
 | 2026-08-profile-embed-share-button | **100,00 %** | 0,00 % | 0,00 % | 0,00 % | — |
 | 2026-08-profile-embed-rendering | **100,00 %** | 0,00 % | 0,00 % | 0,00 % | — |
 | 2026-08-no-fill-logging | **100,00 %** | 0,00 % | 0,00 % | 0,00 % | — |
+| 2026-08-mark-channel-unread | **1,00 %** | 1,00 % | 0,00 % | 98,00 % | — |
 | 2026-08-find-coded-links-regex | **100,00 %** | 0,00 % | 0,00 % | 0,00 % | — |
 | 2026-08-dont-close-chat | **100,00 %** | 0,00 % | 0,00 % | 0,00 % | — |
 | 2026-08-dcf-new-user-cooldown | **75,00 %** | 25,00 % | 0,00 % | 0,00 % | — |
@@ -133,14 +134,15 @@
 | 2026-07-expressive-modal-v2 | **100,00 %** | 0,00 % | 0,00 % | 0,00 % | — |
 | 2026-07-custom-typing-indicator | **90,00 %** | 10,00 % | 0,00 % | 0,00 % | — |
 | 2026-07-cobalt | **100,00 %** | 0,00 % | 0,00 % | 0,00 % | — |
-| 2026-07-autoclipping-default-override | **30,00 %** | 0,00 % | 0,00 % | 70,00 % | — |
+| 2026-07-autoclipping-default-override | **100,00 %** | 0,00 % | 0,00 % | 0,00 % | — |
 | 2026-06-web-translate-dom-guard | **0,00 %** | 1,00 % | 0,00 % | 99,00 % | — |
 | 2026-06-upscale-small-captured-frames | **0,50 %** | 0,50 % | 0,00 % | 99,00 % | — |
 | 2026-06-nitro-gdm-cap-increase | **1,00 %** | 0,00 % | 0,00 % | 99,00 % | — |
 | 2026-06-mobile-media-viewer-share | **10,00 %** | 10,00 % | 0,00 % | 80,00 % | — |
 | 2026-06-gift-acom-order | **25,00 %** | 25,00 % | 0,00 % | 50,00 % | — |
-| 2026-05-dvp-for-attachments | **17,50 %** | 17,50 % | 0,00 % | 65,00 % | — |
-| 2026-05-av1-bitrate-tuning | **42,00 %** | 41,50 % | 0,00 % | 16,50 % | — |
+| 2026-05-mobile-request-review-no-tti | **50,00 %** | 50,00 % | 0,00 % | 0,00 % | — |
+| 2026-05-dvp-for-attachments | **25,00 %** | 25,00 % | 0,00 % | 50,00 % | — |
+| 2026-05-av1-bitrate-tuning | **41,19 %** | 41,50 % | 0,00 % | 17,31 % | — |
 | 2026-04-safety-flows | **100,00 %** | 0,00 % | 0,00 % | 0,00 % | — |
 | 2026-04-one-day-fractional-nitro | **50,00 %** | 50,00 % | 0,00 % | 0,00 % | — |
 | 2026-04-browser-transceiver-padding-removal | **100,00 %** | 0,00 % | 0,00 % | 0,00 % | — |
@@ -615,6 +617,9 @@
 ### 2026-10-cod-relink
 - Variant 1 (treatment) : 100,00 % · plages 0 – 10000
 
+### 2026-10-clips-default-on-geo
+- Variant 1 (treatment) : 30,00 % · plages 0 – 3000
+
 ### 2026-10-bulk-nitro-gifting-discounts
 - Variant 0 (control) : 20,00 % · plages 0 – 100 , 200 – 600 , 1000 – 1500 , 2000 – 3000
 - Variant 1 (treatment) : 20,00 % · plages 100 – 200 , 600 – 1000 , 1500 – 2000 , 3000 – 4000
@@ -654,17 +659,13 @@
 - Variant 1 (treatment) : 50,00 % · plages 100 – 200 , 600 – 1000 , 1500 – 2000 , 6000 – 10000
 
 ### 2026-09-voice-connect-feedback
-- Variant 0 (control) : 15,00 % · plages 0 – 1500
-- Variant 2 (treatment) : 15,00 % · plages 1500 – 3000
+- Variant 0 (control) : 25,00 % · plages 0 – 1500 , 3000 – 4000
+- Variant 2 (treatment) : 25,00 % · plages 1500 – 3000 , 4000 – 5000
 
 ### 2026-09-try-display-name-style
 - Variant 0 (control) : 13,33 % · plages 0 – 100 , 300 – 1200 , 3000 – 3333
 - Variant 1 (treatment) : 13,33 % · plages 100 – 200 , 1200 – 2100 , 3333 – 3666
 - Variant 2 (treatment) : 13,33 % · plages 200 – 300 , 2100 – 3000 , 3666 – 3999
-
-### 2026-09-three-month-nitro-gifting
-- Variant 0 (control) : 20,00 % · plages 0 – 2000
-- Variant 1 (treatment) : 20,00 % · plages 5000 – 7000
 
 ### 2026-09-soundboard-quick-action
 - Variant 1 (treatment) : 95,00 % · plages 0 – 9500
@@ -794,6 +795,10 @@
 ### 2026-08-no-fill-logging
 - Variant 2 (treatment) : 100,00 % · plages 0 – 10000
 
+### 2026-08-mark-channel-unread
+- Variant 0 (control) : 1,00 % · plages 0 – 100
+- Variant 1 (treatment) : 1,00 % · plages 100 – 200
+
 ### 2026-08-find-coded-links-regex
 - Variant 1 (treatment) : 100,00 % · plages 0 – 10000
 
@@ -857,7 +862,7 @@
 - Variant 1 (treatment) : 100,00 % · plages 0 – 10000
 
 ### 2026-07-autoclipping-default-override
-- Variant 1 (treatment) : 30,00 % · plages 0 – 3000
+- Variant 1 (treatment) : 100,00 % · plages 0 – 10000
 
 ### 2026-06-web-translate-dom-guard
 - Variant 0 (control) : 1,00 % · plages 0 – 100
@@ -877,13 +882,17 @@
 - Variant 0 (control) : 25,00 % · plages 0 – 100 , 200 – 1100 , 2000 – 3500
 - Variant 1 (treatment) : 25,00 % · plages 100 – 200 , 1100 – 2000 , 3500 – 5000
 
+### 2026-05-mobile-request-review-no-tti
+- Variant 0 (control) : 50,00 % · plages 0 – 1000 , 2000 – 6000
+- Variant 1 (treatment) : 50,00 % · plages 1000 – 2000 , 6000 – 10000
+
 ### 2026-05-dvp-for-attachments
-- Variant 0 (control) : 17,50 % · plages 0 – 100 , 200 – 350 , 500 – 750 , 1000 – 1500 , 2000 – 2750
-- Variant 1 (treatment) : 17,50 % · plages 100 – 200 , 350 – 500 , 750 – 1000 , 1500 – 2000 , 2750 – 3500
+- Variant 0 (control) : 25,00 % · plages 0 – 100 , 200 – 350 , 500 – 750 , 1000 – 1500 , 2000 – 2750 , 3500 – 4250
+- Variant 1 (treatment) : 25,00 % · plages 100 – 200 , 350 – 500 , 750 – 1000 , 1500 – 2000 , 2750 – 3500 , 4250 – 5000
 
 ### 2026-05-av1-bitrate-tuning
 - Variant 0 (control) : 41,50 % · plages 0 – 25 , 100 – 725 , 1950 – 2950 , 4950 – 7450
-- Variant 1 (treatment) : 42,00 % · plages 25 – 100 , 725 – 1300 , 2950 – 3950 , 7450 – 10000
+- Variant 1 (treatment) : 41,19 % · plages 25 – 100 , 725 – 1300 , 2950 – 3950 , 7450 – 9919
 
 ### 2026-04-safety-flows
 - Variant 1 (treatment) : 100,00 % · plages 0 – 10000

@@ -3,15 +3,15 @@
  "schemaVersion": 1,
  "semanticsVersion": 2,
  "notifyScopeVersion": 2,
- "runId": "20261118T115802_gist",
- "scrapedAt": "2026-11-18T11:58:02.880Z",
+ "runId": "20261118T121919_gist",
+ "scrapedAt": "2026-11-18T12:19:19.642Z",
  "source": {
   "gistId": "e3e99062983e6bd0feaef833f14fd931",
   "htmlUrl": "https://gist.github.com/agnonotdev/e3e99062983e6bd0feaef833f14fd931",
-  "rawUrl": "https://gist.githubusercontent.com/agnonotdev/e3e99062983e6bd0feaef833f14fd931/raw/3215a415f9c32b2ef31993ea39703f675e16d860/rollouts-tag.json",
-  "updatedAt": "2026-11-17T21:04:37Z",
-  "revision": "99650ed80d21acf0e86c031e91e3e9f7ac035234",
-  "fetchedAt": "2026-11-18T11:58:02.880Z",
+  "rawUrl": "https://gist.githubusercontent.com/agnonotdev/e3e99062983e6bd0feaef833f14fd931/raw/2a006e67de539a9ca1bfe4924a74ce5053bf9601/rollouts-tag.json",
+  "updatedAt": "2026-11-18T12:19:10Z",
+  "revision": "029f4c7f3a8803fa8ee910f1c133fbbce9f64998",
+  "fetchedAt": "2026-11-18T12:19:19.642Z",
   "fallback": false,
   "rawFallback": false,
   "canonicalId": null
@@ -25,6 +25,7 @@
    "2026-11-soundboard-upsells-brand-refresh",
    "2026-11-return-full-quest-status-in-decision",
    "2026-11-screen-share-dtx",
+   "2026-10-clips-default-on-geo",
    "2026-10-media-viewer-improvements",
    "2026-10-referral-refresh-notification",
    "2026-10-windows-playout-buffer-duration",
@@ -56,36 +57,39 @@
    "2026-10-request-to-stream-non-games",
    "2026-10-android-stop-and-pause-video",
    "2026-10-android-fastimage-apng",
+   "2026-09-voice-connect-feedback",
+   "2026-09-three-month-nitro-gifting",
+   "2026-09-mobile-request-to-stream",
    "2026-09-web-sticker-picker-upsell-restyle",
    "2026-09-profile-widget-empty-state-suggestions",
    "2026-09-default-emojis",
    "2026-09-user-profile-premium-try-it-out-mobile-refresh",
-   "2026-09-mobile-request-to-stream",
    "2026-09-guild-spaces",
    "2026-09-hexagon-campaign-client",
    "2026-09-safety-warning-age-text",
    "2026-09-game-search-row",
    "2026-09-ios-anchored-chat-scroller",
-   "2026-09-voice-connect-feedback",
    "2026-09-silp-desktop-app-upsell",
    "2026-09-game-profiles-v3-communities-tab",
    "2026-09-voice-server-update-immediate-mobile",
    "2026-09-friends-sidebar",
+   "2026-08-mark-channel-unread",
    "2026-08-find-coded-links-regex",
    "2026-08-split-payments",
    "2026-07-autoclipping-default-override",
    "2026-07-onyx",
    "2026-07-cobalt",
    "2026-07-quest-home-default-banner-removal",
-   "2026-05-dvp-for-attachments",
+   "2026-05-mobile-request-review-no-tti",
    "2026-05-av1-bitrate-tuning",
+   "2026-05-dvp-for-attachments",
    "2026-02-game-server-tab-always-on"
   ]
  },
  "stats": {
-  "total": 1055,
-  "user": 327,
-  "userData": 154,
+  "total": 1057,
+  "user": 329,
+  "userData": 156,
   "guild": 38,
   "unclassified": 690,
   "noData": 263
@@ -1248,24 +1252,24 @@
    "variantsCount": 1
   },
   "2026-09-voice-connect-feedback": {
-   "key": "0971f2a942bfdfa5",
+   "key": "39ffa778cb521664",
    "hasData": true,
    "sig": "0:control|2:treatment",
    "byVariant": {
     "0": {
-     "pct": 15,
+     "pct": 25,
      "role": "control"
     },
     "2": {
-     "pct": 15,
+     "pct": 25,
      "role": "treatment"
     }
    },
    "treatment": {
-    "pct": 15
+    "pct": 25
    },
    "control": {
-    "pct": 15
+    "pct": 25
    },
    "notEligible": {
     "pct": 0
@@ -1322,31 +1326,12 @@
    "variantsCount": 3
   },
   "2026-09-three-month-nitro-gifting": {
-   "key": "46439952c83bead3",
-   "hasData": true,
-   "sig": "0:control|1:treatment",
-   "byVariant": {
-    "0": {
-     "pct": 20,
-     "role": "control"
-    },
-    "1": {
-     "pct": 20,
-     "role": "treatment"
-    }
-   },
+   "key": "no_data",
+   "hasData": false,
+   "sig": "",
    "treatment": {
-    "pct": 20
-   },
-   "control": {
-    "pct": 20
-   },
-   "notEligible": {
-    "pct": 0
-   },
-   "projectedCoverage": null,
-   "projected": false,
-   "variantsCount": 2
+    "pct": null
+   }
   },
   "2026-09-soundboard-quick-action": {
    "key": "265e4af2b88fc4a9",
@@ -2337,12 +2322,31 @@
    }
   },
   "2026-08-mark-channel-unread": {
-   "key": "no_data",
-   "hasData": false,
-   "sig": "",
+   "key": "19a2e309986d6b83",
+   "hasData": true,
+   "sig": "0:control|1:treatment",
+   "byVariant": {
+    "0": {
+     "pct": 1,
+     "role": "control"
+    },
+    "1": {
+     "pct": 1,
+     "role": "treatment"
+    }
+   },
    "treatment": {
-    "pct": null
-   }
+    "pct": 1
+   },
+   "control": {
+    "pct": 1
+   },
+   "notEligible": {
+    "pct": 0
+   },
+   "projectedCoverage": null,
+   "projected": false,
+   "variantsCount": 2
   },
   "2026-08-gsh-subs-activity-bar": {
    "key": "no_data",
@@ -2840,17 +2844,17 @@
    }
   },
   "2026-07-autoclipping-default-override": {
-   "key": "c52c1a195a61c67e",
+   "key": "95f46bfc73a52751",
    "hasData": true,
    "sig": "1:treatment",
    "byVariant": {
     "1": {
-     "pct": 30,
+     "pct": 100,
      "role": "treatment"
     }
    },
    "treatment": {
-    "pct": 30
+    "pct": 100
    },
    "control": {
     "pct": 0
@@ -3152,24 +3156,24 @@
    }
   },
   "2026-05-dvp-for-attachments": {
-   "key": "8cbf8b241c85ac18",
+   "key": "16025a1c39ab0c00",
    "hasData": true,
    "sig": "0:control|1:treatment",
    "byVariant": {
     "0": {
-     "pct": 17.5,
+     "pct": 25,
      "role": "control"
     },
     "1": {
-     "pct": 17.5,
+     "pct": 25,
      "role": "treatment"
     }
    },
    "treatment": {
-    "pct": 17.5
+    "pct": 25
    },
    "control": {
-    "pct": 17.5
+    "pct": 25
    },
    "notEligible": {
     "pct": 0
@@ -3211,7 +3215,7 @@
    }
   },
   "2026-05-av1-bitrate-tuning": {
-   "key": "7725707546e6c26f",
+   "key": "3e4ebcfa53f1da12",
    "hasData": true,
    "sig": "0:control|1:treatment",
    "byVariant": {
@@ -3220,12 +3224,12 @@
      "role": "control"
     },
     "1": {
-     "pct": 42,
+     "pct": 41.19,
      "role": "treatment"
     }
    },
    "treatment": {
-    "pct": 42
+    "pct": 41.19
    },
    "control": {
     "pct": 41.5
@@ -21500,22 +21504,66 @@
    "projectedCoverage": null,
    "projected": false,
    "variantsCount": 1
+  },
+  "2026-10-clips-default-on-geo": {
+   "key": "c52c1a195a61c67e",
+   "hasData": true,
+   "sig": "1:treatment",
+   "byVariant": {
+    "1": {
+     "pct": 30,
+     "role": "treatment"
+    }
+   },
+   "treatment": {
+    "pct": 30
+   },
+   "control": {
+    "pct": 0
+   },
+   "notEligible": {
+    "pct": 0
+   },
+   "projectedCoverage": null,
+   "projected": false,
+   "variantsCount": 1
+  },
+  "2026-05-mobile-request-review-no-tti": {
+   "key": "1c8ca9b61fca071b",
+   "hasData": true,
+   "sig": "0:control|1:treatment",
+   "byVariant": {
+    "0": {
+     "pct": 50,
+     "role": "control"
+    },
+    "1": {
+     "pct": 50,
+     "role": "treatment"
+    }
+   },
+   "treatment": {
+    "pct": 50
+   },
+   "control": {
+    "pct": 50
+   },
+   "notEligible": {
+    "pct": 0
+   },
+   "projectedCoverage": null,
+   "projected": false,
+   "variantsCount": 2
   }
  },
  "lastRun": {
-  "changes": 0,
-  "delivered": 0,
+  "changes": 8,
+  "delivered": 8,
   "firstRun": false,
   "semanticsMigrated": 0,
   "scopeBaselined": 0
  },
  "history": [
-  {
-   "at": "2026-11-17T14:03:03.807Z",
-   "revision": "6425b3843d764a503ff8fb9ec3568c62833dcf24",
-   "changes": 0,
-   "delivered": 0
-  },
   {
    "at": "2026-11-17T14:32:16.908Z",
    "revision": "6425b3843d764a503ff8fb9ec3568c62833dcf24",
@@ -21809,6 +21857,12 @@
    "revision": "99650ed80d21acf0e86c031e91e3e9f7ac035234",
    "changes": 0,
    "delivered": 0
+  },
+  {
+   "at": "2026-11-18T12:19:19.642Z",
+   "revision": "029f4c7f3a8803fa8ee910f1c133fbbce9f64998",
+   "changes": 8,
+   "delivered": 8
   }
  ]
 }
