@@ -1,7 +1,7 @@
 {
-  "runId": "2026-11-18T20-41-35-064Z_676903_a4seqg",
-  "buildNumber": "676903",
-  "updatedAt": "2026-11-18T20:41:35.064Z",
+  "runId": "2026-11-18T20-43-48-164Z_676905_30ihxq",
+  "buildNumber": "676905",
+  "updatedAt": "2026-11-18T20:43:48.164Z",
   "count": 389,
   "experiments": [
     {
@@ -6745,10 +6745,10 @@
       },
       "userPercentage": {
         "status": "provided",
-        "value": 25,
+        "value": 37.5,
         "source": "gist_user_rollouts"
       },
-      "fingerprint": "f7aae957bb2460c55e296f827f0b815eeeaa3b2d6d9c804174089e028fe3807d"
+      "fingerprint": "5024d5c84f29fd4168c562eedcfadb437ce72bc8ba84859e709981b18491634b"
     },
     {
       "id": "2026-05-electron-multilang-spellcheck",
@@ -12681,11 +12681,10 @@
         "value": null
       },
       "userPercentage": {
-        "status": "provided",
-        "value": 10,
-        "source": "gist_user_rollouts"
+        "status": "unknown",
+        "value": null
       },
-      "fingerprint": "b8af32a0b99db4c0495c57b39f9fe8687e2b95da77ad68d9f9bf16befa69703d"
+      "fingerprint": "01953085ce81900d89bbd43ae240a0168feb60681bd3f2f4c4b29e7969ce9d2c"
     },
     {
       "id": "2026-09-mobile-quest-reward-button-to-secondary-button",
@@ -18291,10 +18290,11 @@
         "value": null
       },
       "userPercentage": {
-        "status": "unknown",
-        "value": null
+        "status": "provided",
+        "value": 0,
+        "source": "gist_user_rollouts"
       },
-      "fingerprint": "4dd14b571a44f563689092c7f9b64fba992cedfb442169ffe39cd1dc688c9447"
+      "fingerprint": "7201d591be59c1a2c88faa505f819b7d2a8ef8e5d5133de076b9c18129380b65"
     },
     {
       "id": "2026-10-slayer-storefront-single-sku-wide-header",
