@@ -1,7 +1,7 @@
 {
-  "runId": "2026-11-18T12-11-17-779Z_676390_kkracb",
-  "buildNumber": "676390",
-  "scrapedAt": "2026-11-18T12:11:17.779Z",
+  "runId": "2026-11-18T13-30-55-601Z_676397_zuykh1",
+  "buildNumber": "676397",
+  "scrapedAt": "2026-11-18T13:30:55.601Z",
   "totals": {
     "all": 388,
     "legacy": 28,
@@ -2789,10 +2789,10 @@
       },
       "userPercentage": {
         "status": "provided",
-        "value": 42,
+        "value": 41.19,
         "source": "gist_user_rollouts"
       },
-      "fingerprint": "08d64ce95386315f4639822e1c252d111634dab7dcee30284934d35ddc6948d8"
+      "fingerprint": "43c6dde99999e53e7a52ceb9ba5bc9758de8491408e7c184dd6ff35cc17c1c5b"
     },
     {
       "id": "2026-05-clips-media-comments",
@@ -2887,10 +2887,10 @@
       },
       "userPercentage": {
         "status": "provided",
-        "value": 17.5,
+        "value": 25,
         "source": "gist_user_rollouts"
       },
-      "fingerprint": "f87880d756feff214fef87640a56e3e44c5ce21073bd9878e9dd67cb87728646"
+      "fingerprint": "f7aae957bb2460c55e296f827f0b815eeeaa3b2d6d9c804174089e028fe3807d"
     },
     {
       "id": "2026-05-electron-multilang-spellcheck",
@@ -3637,10 +3637,10 @@
       },
       "userPercentage": {
         "status": "provided",
-        "value": 30,
+        "value": 100,
         "source": "gist_user_rollouts"
       },
-      "fingerprint": "d8891a8dcd4ebc6b82dea4cb2da755ec2b0ffe1b08b2db00e4ab9626551e120f"
+      "fingerprint": "7a498dc81dac18cfce10899e775e049a96ce5e34312fc46757670bcc4f113e48"
     },
     {
       "id": "2026-07-call-of-duty-3pp-expired",
@@ -4534,7 +4534,17 @@
         }
       },
       "variationCount": 1,
-      "source": "discord"
+      "source": "discord",
+      "guildPercentage": {
+        "status": "unknown",
+        "value": null
+      },
+      "userPercentage": {
+        "status": "provided",
+        "value": 1,
+        "source": "gist_user_rollouts"
+      },
+      "fingerprint": "666973ce70c3365b03b296bed4af4c3674bcb5d01a5369f67222fd11a5004c6d"
     },
     {
       "id": "2026-08-mute-aware-noise-cancellation",
@@ -6186,17 +6196,7 @@
         }
       },
       "variationCount": 2,
-      "source": "discord",
-      "guildPercentage": {
-        "status": "unknown",
-        "value": null
-      },
-      "userPercentage": {
-        "status": "provided",
-        "value": 20,
-        "source": "gist_user_rollouts"
-      },
-      "fingerprint": "85238e3da0d3f78153fb45e70c2cbcbf7eab13d1412b71b033e38db45d279354"
+      "source": "discord"
     },
     {
       "id": "2026-09-try-display-name-style",
@@ -6294,10 +6294,10 @@
       },
       "userPercentage": {
         "status": "provided",
-        "value": 15,
+        "value": 25,
         "source": "gist_user_rollouts"
       },
-      "fingerprint": "3703aed036c8d76297dbb2655a0c8bff38c99c4c52f92842d7e53ea373d397fc"
+      "fingerprint": "824dd04ffe504e96317be0e1826d7ac2fa4bb7e7a8d449c119ecd87b28823b09"
     },
     {
       "id": "2026-09-web-sticker-picker-upsell-restyle",
@@ -6659,7 +6659,17 @@
         }
       },
       "variationCount": 1,
-      "source": "discord"
+      "source": "discord",
+      "guildPercentage": {
+        "status": "unknown",
+        "value": null
+      },
+      "userPercentage": {
+        "status": "provided",
+        "value": 30,
+        "source": "gist_user_rollouts"
+      },
+      "fingerprint": "06212baaabc64eec3d7b35917d2f3581225a1dfe329f615fedd20aac46083f15"
     },
     {
       "id": "2026-10-cod-relink",
