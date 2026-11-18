@@ -68,6 +68,12 @@ function coerceProvidedNumber(n, { isRate } = {}) {
   return clampPct(n);
 }
 
+function readWithUnit(raw, isRate) {
+  const n = parseNumericValue(raw);
+  if (typeof raw === 'string' && raw.trimEnd().endsWith('%')) return clampPct(n);
+  return coerceProvidedNumber(n, { isRate });
+}
+
 function readProvidedPercentage(obj) {
   if (!obj || typeof obj !== 'object') return null;
 
@@ -76,9 +82,7 @@ function readProvidedPercentage(obj) {
   // que de choisir silencieusement l'un des deux (l'ancien ordre donnait 50).
   const values = [];
   for (const c of [obj.rate, obj.fraction]) {
-    const n = parseNumericValue(c);
-    if (n == null) continue;
-    const v = coerceProvidedNumber(n, { isRate: true });
+    const v = readWithUnit(c, true);
     if (v != null) values.push(v);
   }
   for (const c of [
@@ -88,9 +92,7 @@ function readProvidedPercentage(obj) {
     obj.rolloutPercentage,
     obj.pct,
   ]) {
-    const n = parseNumericValue(c);
-    if (n == null) continue;
-    const v = coerceProvidedNumber(n, { isRate: false });
+    const v = readWithUnit(c, false);
     if (v != null) values.push(v);
   }
   if (!values.length) return null;
@@ -206,7 +208,7 @@ function computeAudiencePercentage(experiment, audience, opts = {}) {
         ? experiment?.user || null
         : null;
   if (nest != null && typeof nest !== 'object') {
-    const v = coerceProvidedNumber(parseNumericValue(nest), { isRate: false });
+    const v = readWithUnit(nest, false);
     if (v != null) {
       return normalizeStatusValue('provided', v, { source: 'audience_nested' });
     }

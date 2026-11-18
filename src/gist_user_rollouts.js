@@ -540,7 +540,11 @@ function buildEmbed(change, sourceMeta) {
       : null;
   const descLines = [];
   if (treatPct != null) {
-    descLines.push(`\`${pctBar(treatPct)}\` **${fmtPct(treatPct)}** des utilisateurs en treatment` + (kind !== 'new' && deltaPct ? ` (${fmtDelta(deltaPct)})` : ''));
+    descLines.push(`\`${pctBar(treatPct)}\` **${fmtPct(treatPct)}** de l’espace de répartition dans les plages de traitement` + (kind !== 'new' && deltaPct ? ` (${fmtDelta(deltaPct)})` : ''));
+  } else if (after && after.hasData) {
+    descLines.push(after.projected && after.projectedCoverage
+      ? 'Couverture globale inconnue : les poids des populations ne sont pas publiés. La projection figure ci-dessous.'
+      : 'Couverture globale inconnue : les données ne permettent pas de calculer un total fiable.');
   }
   descLines.push(`👤 Utilisateurs · détecté <t:${Math.floor(Date.now() / 1000)}:R>`);
   return {
