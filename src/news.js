@@ -201,8 +201,10 @@ function isPolitical(title, desc, cat) {
 function decodeXml(s) {
   return String(s || '')
     .replace(/<!\[CDATA\[([\s\S]*?)\]\]>/g, '$1')
-    .replace(/&#(\d+);/g, (_, n) => String.fromCodePoint(Number(n)))
-    .replace(/&#[xX]([0-9a-fA-F]+);/g, (_, n) => String.fromCodePoint(parseInt(n, 16)))
+    .replace(/&#(?:(\d+)|[xX]([0-9a-fA-F]+));/g, (_, dec, hex) => {
+      const n = dec == null ? parseInt(hex, 16) : Number(dec);
+      return n > 0 && n <= 0x10ffff && !(n >= 0xd800 && n <= 0xdfff) ? String.fromCodePoint(n) : '�';
+    })
     .replace(/&lt;/g, '<')
     .replace(/&gt;/g, '>')
     .replace(/&quot;/g, '"')
@@ -282,11 +284,12 @@ function normalizeUrl(u) {
   let s = String(u || '').trim();
   try {
     const url = new URL(s);
+    if (!/^https?:$/.test(url.protocol)) return '';
     for (const p of ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content', 'fbclid']) {
       url.searchParams.delete(p);
     }
     s = url.toString();
-  } catch {}
+  } catch { return ''; }
   return s;
 }
 
@@ -373,8 +376,9 @@ function titleTokens(t) {
   return new Set(normalizeTitle(t).split(' ').filter((w) => w.length > 2 && !STOP.has(w)));
 }
 function similarity(a, b) {
-  const A = titleTokens(a);
-  const B = titleTokens(b);
+  return tokenSimilarity(titleTokens(a), titleTokens(b));
+}
+function tokenSimilarity(A, B) {
   if (A.size < 3 || B.size < 3) return 0;
   let inter = 0;
   for (const w of A) if (B.has(w)) inter++;
@@ -384,11 +388,33 @@ function similarity(a, b) {
 function dedupeSimilar(items, threshold = SIMILAR_THRESHOLD) {
   const kept = [];
   const dropped = [];
+  const groups = new Map();
+  const tokens = [];
+  const byKey = new Map();
   for (const it of items) {
-    if (kept.some((k) => similarity(k.title, it.title) >= threshold)) dropped.push(it);
-    else kept.push(it);
+    const words = titleTokens(it.title);
+    let owner;
+    for (const k of it.keys || []) {
+      if (byKey.has(k)) { owner = byKey.get(k); break; }
+    }
+    if (!owner) owner = kept[tokens.findIndex((other) => tokenSimilarity(other, words) >= threshold)];
+    if (!owner) {
+      owner = it;
+      kept.push(it);
+      tokens.push(words);
+      groups.set(it, [it]);
+    } else {
+      dropped.push(it);
+      groups.get(owner).push(it);
+      if (it.sourceName && it.sourceName !== owner.sourceName) {
+        owner.alsoBy ||= [];
+        if (!owner.alsoBy.includes(it.sourceName)) owner.alsoBy.push(it.sourceName);
+      }
+      if (!owner.image && it.image) owner.image = it.image;
+    }
+    for (const k of it.keys || []) if (!byKey.has(k)) byKey.set(k, owner);
   }
-  return { kept, dropped };
+  return { kept, dropped, groups };
 }
 
 // — Plafonds anti-spam (items triés du plus récent au plus ancien) —
@@ -438,7 +464,7 @@ async function fetchSource(src, now) {
     const xml = await fetchTextWithRetry(src.url, {
       headers: {
         'User-Agent': DEFAULT_UA,
-        Accept: 'application/rss+xml, application/atom+xml, application/xml, text/xml, */*',
+        Accept: 'application/rss+xml,application/atom+xml,application/xml,text/xml, */*',
       },
       timeout: 15000,
       maxAttempts: 2,
@@ -543,21 +569,13 @@ async function main() {
   const clean = fresh.filter((it) => !isPolitical(it.title, it.desc, it.cat));
   // Urgences d'abord, puis du plus récent au plus ancien
   clean.sort((a, b) => (b.breaking ? 1 : 0) - (a.breaking ? 1 : 0) || b.date - a.date);
-  const { kept, dropped } = dedupeSimilar(clean);
-  for (const d of dropped) {
-    const k = kept.find((x) => similarity(x.title, d.title) >= SIMILAR_THRESHOLD);
-    if (k && d.sourceName !== k.sourceName) {
-      k.alsoBy = k.alsoBy || [];
-      if (!k.alsoBy.includes(d.sourceName)) k.alsoBy.push(d.sourceName);
-    }
-    // l'image d'une autre source si la retenue n'en a pas
-    if (k && !k.image && d.image) k.image = d.image;
-  }
+  const { kept, dropped, groups } = dedupeSimilar(clean);
   if (dropped.length) console.log('Quasi-doublons fusionnés:', dropped.length);
   const picked = pickItems(kept);
 
   let sentOk = 0;
   let sentFail = 0;
+  const retryKeys = new Set();
   for (const it of picked) {
     const ok = await postWebhook(it);
     if (ok) {
@@ -565,6 +583,7 @@ async function main() {
       for (const k of it.keys) seen.add(k);
     } else {
       sentFail++;
+      for (const member of groups.get(it)) for (const k of member.keys) retryKeys.add(k);
       console.warn('NOTIFY_FAIL', it.title.slice(0, 60), '- retry au prochain run');
     }
   }
@@ -572,11 +591,11 @@ async function main() {
   // marqué vu — pas de rattrapage différé au run suivant.
   const pickedSet = new Set(picked);
   for (const it of clean) {
-    if (!pickedSet.has(it)) for (const k of it.keys) seen.add(k);
+    if (!pickedSet.has(it)) for (const k of it.keys) if (!retryKeys.has(k)) seen.add(k);
   }
   const cleanSet = new Set(clean);
   for (const it of fresh) {
-    if (!cleanSet.has(it)) for (const k of it.keys) seen.add(k);
+    if (!cleanSet.has(it)) for (const k of it.keys) if (!retryKeys.has(k)) seen.add(k);
   }
   // Rafraîchit la récence des clés encore présentes dans les flux : elles ne
   // doivent jamais être évincées tant qu'elles peuvent réapparaître.
