@@ -3,15 +3,15 @@
  "schemaVersion": 1,
  "semanticsVersion": 2,
  "notifyScopeVersion": 2,
- "runId": "20261118T145302_gist",
- "scrapedAt": "2026-11-18T14:53:02.586Z",
+ "runId": "20261118T145417_gist",
+ "scrapedAt": "2026-11-18T14:54:17.244Z",
  "source": {
   "gistId": "e3e99062983e6bd0feaef833f14fd931",
   "htmlUrl": "https://gist.github.com/agnonotdev/e3e99062983e6bd0feaef833f14fd931",
-  "rawUrl": "https://gist.githubusercontent.com/agnonotdev/e3e99062983e6bd0feaef833f14fd931/raw/2a006e67de539a9ca1bfe4924a74ce5053bf9601/rollouts-tag.json",
-  "updatedAt": "2026-11-18T12:19:10Z",
-  "revision": "029f4c7f3a8803fa8ee910f1c133fbbce9f64998",
-  "fetchedAt": "2026-11-18T14:53:02.586Z",
+  "rawUrl": "https://gist.githubusercontent.com/agnonotdev/e3e99062983e6bd0feaef833f14fd931/raw/6f8990c7bad96127c63ea0ee3b1ded96e5348231/rollouts-tag.json",
+  "updatedAt": "2026-11-18T14:53:51Z",
+  "revision": "c27b4359d80bc2c00a2eb932b95162fbf33d2888",
+  "fetchedAt": "2026-11-18T14:54:17.244Z",
   "fallback": false,
   "rawFallback": false,
   "canonicalId": null
@@ -20,8 +20,8 @@
   "gistId": "192b2ce20539ce1021b5c8cb01b17ff0",
   "diverged": true,
   "divergingIds": [
-   "2026-11-payment-element-accordion-layout",
    "2026-11-mobile-orb-redemption-thru-orders",
+   "2026-11-payment-element-accordion-layout",
    "2026-11-soundboard-upsells-brand-refresh",
    "2026-11-return-full-quest-status-in-decision",
    "2026-11-screen-share-dtx",
@@ -5192,17 +5192,17 @@
    "variantsCount": 1
   },
   "2026-11-mobile-orb-redemption-thru-orders": {
-   "key": "0420a2740c95a6f7",
+   "key": "210ae21d946decc8",
    "hasData": true,
    "sig": "1:treatment",
    "byVariant": {
     "1": {
-     "pct": 5,
+     "pct": 25,
      "role": "treatment"
     }
    },
    "treatment": {
-    "pct": 5
+    "pct": 25
    },
    "control": {
     "pct": 0
@@ -21557,19 +21557,13 @@
   }
  },
  "lastRun": {
-  "changes": 0,
-  "delivered": 0,
+  "changes": 1,
+  "delivered": 1,
   "firstRun": false,
   "semanticsMigrated": 0,
   "scopeBaselined": 0
  },
  "history": [
-  {
-   "at": "2026-11-17T16:56:06.232Z",
-   "revision": "ac231bb250ee98fcefbc73ad3d54d85027169837",
-   "changes": 0,
-   "delivered": 0
-  },
   {
    "at": "2026-11-17T16:56:11.214Z",
    "revision": "ac231bb250ee98fcefbc73ad3d54d85027169837",
@@ -21863,6 +21857,12 @@
    "revision": "029f4c7f3a8803fa8ee910f1c133fbbce9f64998",
    "changes": 0,
    "delivered": 0
+  },
+  {
+   "at": "2026-11-18T14:54:17.244Z",
+   "revision": "c27b4359d80bc2c00a2eb932b95162fbf33d2888",
+   "changes": 1,
+   "delivered": 1
   }
  ]
 }

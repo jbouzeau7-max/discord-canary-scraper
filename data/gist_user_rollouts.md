@@ -1,12 +1,12 @@
 # Rollouts user — couverture gist (v1)
 
-> Source : gist communautaire agnonotdev (copie réduite de rollouts.json, tag Assyst) · Généré le 2026-11-18 14:53 UTC
+> Source : gist communautaire agnonotdev (copie réduite de rollouts.json, tag Assyst) · Généré le 2026-11-18 14:54 UTC
 
 **Sémantique** : couvertures calculées exactement à partir des plages fournies par la source (0-10000), à 0,01 point près. Totaux par rôle = UNION des plages (un bucket appartient à un rôle s'il tombe dans l'union de ses plages). Quand la structure révèle plusieurs populations aplaties (drapeau `multi_population`) ou des rôles conflictuels/inconnus, l'agrégation est indéterminée (poids des populations absents du gist) : totaux principaux indisponibles, l'union est montrée en métrique secondaire étiquetée « projetée » (non pondérée). L'absence du drapeau ne prouve PAS une population unique — le gist n'en garde pas les frontières. Cohérent avec notre décodage wire apex (mêmes plages → mêmes nombres). Ce n'est ni une estimation statistique, ni la proportion de vrais utilisateurs éligibles, ni une mesure d'accès réel. Les expériences `guild` sont exclues (mesurées à part par le décodage wire apex).
 
-**Gist** : [e3e99062983e6bd0feaef833f14fd931](https://gist.github.com/agnonotdev/e3e99062983e6bd0feaef833f14fd931) · révision 029f4c7f · MAJ 2026-11-18T12:19:10Z · 1057 expériences au catalogue (329 user dont 156 avec données, 38 guild, 690 type inconnu, 263 sans données)
+**Gist** : [e3e99062983e6bd0feaef833f14fd931](https://gist.github.com/agnonotdev/e3e99062983e6bd0feaef833f14fd931) · révision c27b4359 · MAJ 2026-11-18T14:53:51Z · 1057 expériences au catalogue (329 user dont 156 avec données, 38 guild, 690 type inconnu, 263 sans données)
 
-⚠️ Miroir divergent (192b2ce20539ce1021b5c8cb01b17ff0) sur : 2026-11-payment-element-accordion-layout, 2026-11-mobile-orb-redemption-thru-orders, 2026-11-soundboard-upsells-brand-refresh, 2026-11-return-full-quest-status-in-decision, 2026-11-screen-share-dtx, 2026-10-clips-default-on-geo, 2026-10-media-viewer-improvements, 2026-10-referral-refresh-notification, 2026-10-windows-playout-buffer-duration, 2026-10-mobile-rtc-v2…
+⚠️ Miroir divergent (192b2ce20539ce1021b5c8cb01b17ff0) sur : 2026-11-mobile-orb-redemption-thru-orders, 2026-11-payment-element-accordion-layout, 2026-11-soundboard-upsells-brand-refresh, 2026-11-return-full-quest-status-in-decision, 2026-11-screen-share-dtx, 2026-10-clips-default-on-geo, 2026-10-media-viewer-improvements, 2026-10-referral-refresh-notification, 2026-10-windows-playout-buffer-duration, 2026-10-mobile-rtc-v2…
 
 ## Expériences user avec données (156)
 
@@ -15,7 +15,7 @@
 | 2026-11-soundboard-upsells-brand-refresh | **25,00 %** | 25,00 % | 0,00 % | 50,00 % | — |
 | 2026-11-screen-share-dtx | **10,00 %** | 10,00 % | 0,00 % | 80,00 % | — |
 | 2026-11-payment-element-accordion-layout | **10,00 %** | 10,00 % | 0,00 % | 80,00 % | — |
-| 2026-11-mobile-orb-redemption-thru-orders | **5,00 %** | 0,00 % | 0,00 % | 95,00 % | — |
+| 2026-11-mobile-orb-redemption-thru-orders | **25,00 %** | 0,00 % | 0,00 % | 75,00 % | — |
 | 2026-10-windows-playout-buffer-duration | **0,00 %** | 1,00 % | 0,00 % | 99,00 % | — |
 | 2026-10-web-streaming-optimizations | **16,00 %** | 4,00 % | 0,00 % | 80,00 % | — |
 | 2026-10-user-profile-widget-suggestions | **64,50 %** | 33,50 % | 0,00 % | 2,00 % | — |
@@ -425,7 +425,7 @@
 - Variant 1 (treatment) : 10,00 % · plages 1000 – 2000
 
 ### 2026-11-mobile-orb-redemption-thru-orders
-- Variant 1 (treatment) : 5,00 % · plages 0 – 500
+- Variant 1 (treatment) : 25,00 % · plages 0 – 2500
 
 ### 2026-10-windows-playout-buffer-duration
 - Variant 0 (control) : 1,00 % · plages 0 – 100
