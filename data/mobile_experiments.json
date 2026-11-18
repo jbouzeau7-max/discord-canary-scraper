@@ -1,35 +1,41 @@
 {
   "format": 2,
-  "scrapedAt": "2026-11-17T11:20:31.876Z",
+  "scrapedAt": "2026-11-18T11:00:28.231Z",
   "sourceRepo": "https://github.com/Wumpus-Central/discord-mobile-datamining.git",
-  "sourceCommit": "2a4948bd",
-  "sourceCommitFull": "2a4948bdf72f699234e9a53101dba24db7a3bea2",
-  "sourceMessage": "356.1 (356201) runtime",
-  "build": "356.1 (356201)",
-  "experimentCount": 342,
-  "stringCount": 9843,
-  "routeCount": 1092,
+  "sourceCommit": "6ddeaacd",
+  "sourceCommitFull": "6ddeaacd4c7087434c3ae7e6e15682efd54fb4a3",
+  "sourceMessage": "356.2 (356202) runtime",
+  "build": "356.2 (356202)",
+  "experimentCount": 338,
+  "stringCount": 9829,
+  "routeCount": 1095,
   "lastDiff": {
     "experiments": {
-      "added": 4,
-      "modified": 0,
-      "removed": 2,
+      "added": 2,
+      "modified": 1,
+      "removed": 6,
       "categoryChanged": 0
     },
     "strings": {
-      "added": 4,
-      "removed": 0
+      "added": 6,
+      "removed": 20
     },
     "routes": {
-      "added": 0,
+      "added": 4,
       "modified": 0,
-      "removed": 0
+      "removed": 1
     }
   },
   "notifyOk": true,
   "removedIds": [
+    "2025-11-age-verification-expressive-everywhere",
+    "2026-04-gifting-badge",
+    "2026-05-server-theme-user",
     "2026-06-av1-encode-linux",
-    "2026-08-ios-objc-composed-image-cache"
+    "2026-07-clips-game-events-on-player",
+    "2026-07-personal-widget",
+    "2026-08-ios-objc-composed-image-cache",
+    "2026-11-wishlist-countdown-mobile"
   ],
   "experiments": [
     {
@@ -575,22 +581,6 @@
         }
       },
       "file": "discord_app/modules/media_uploads/experiments/VideoFrameRateValidationExperiment.tsx",
-      "source": "mobile_files"
-    },
-    {
-      "id": "2025-11-age-verification-expressive-everywhere",
-      "kind": "user",
-      "type": "user",
-      "system": "apex",
-      "defaultConfig": {
-        "enabled": false
-      },
-      "variations": {
-        "1": {
-          "enabled": true
-        }
-      },
-      "file": "discord_app/modules/age_assurance/AgeVerificationExpressiveModalEverywhereExperiment.tsx",
       "source": "mobile_files"
     },
     {
@@ -1571,7 +1561,7 @@
       "type": "user",
       "system": "apex",
       "defaultConfig": {
-        "keybindOverride": "r"
+        "keybindOverride": "find"
       },
       "variations": {
         "1": {},
@@ -1804,22 +1794,6 @@
         }
       },
       "file": "discord_app/modules/premium/gifting/experiments/GiftPromotionReminderExperiment.tsx",
-      "source": "mobile_files"
-    },
-    {
-      "id": "2026-04-gifting-badge",
-      "kind": "user",
-      "type": "user",
-      "system": "apex",
-      "defaultConfig": {
-        "enabled": false
-      },
-      "variations": {
-        "1": {
-          "enabled": true
-        }
-      },
-      "file": "discord_app/modules/premium/gifting/experiments/GiftingBadgeExperiment.tsx",
       "source": "mobile_files"
     },
     {
@@ -2352,22 +2326,6 @@
       "source": "mobile_files"
     },
     {
-      "id": "2026-05-server-theme-user",
-      "kind": "user",
-      "type": "user",
-      "system": "apex",
-      "defaultConfig": {
-        "enabled": false
-      },
-      "variations": {
-        "1": {
-          "enabled": true
-        }
-      },
-      "file": "discord_app/modules/premium/powerups/experiments/ServerThemeUserExperiment.tsx",
-      "source": "mobile_files"
-    },
-    {
       "id": "2026-05-spatial-audio-for-voice",
       "kind": "user",
       "type": "user",
@@ -2864,22 +2822,6 @@
       "source": "mobile_files"
     },
     {
-      "id": "2026-07-clips-game-events-on-player",
-      "kind": "user",
-      "type": "user",
-      "system": "apex",
-      "defaultConfig": {
-        "enableGameEventsOnPlayer": false
-      },
-      "variations": {
-        "1": {
-          "enableGameEventsOnPlayer": true
-        }
-      },
-      "file": "discord_app/modules/clips/GameEventsOnPlayerExperiment.tsx",
-      "source": "mobile_files"
-    },
-    {
       "id": "2026-07-clips-on-profile-setter",
       "kind": "user",
       "type": "user",
@@ -2955,7 +2897,15 @@
       "type": "user",
       "system": "apex",
       "defaultConfig": {
-        "enabled": false
+        "enabled": false,
+        "newTabExperience": "popout"
+      },
+      "variations": {
+        "1": {},
+        "2": {
+          "enabled": true,
+          "newTabExperience": "friends"
+        }
       },
       "file": "discord_app/modules/tabs/TabsExperiment.tsx",
       "source": "mobile_files"
@@ -3126,32 +3076,6 @@
         }
       },
       "file": "discord_app/modules/parent_tools/ParentalConsentWarningFetchExperiment.tsx",
-      "source": "mobile_files"
-    },
-    {
-      "id": "2026-07-personal-widget",
-      "kind": "user",
-      "type": "user",
-      "system": "apex",
-      "defaultConfig": {
-        "enabled": false,
-        "showCreateEntrypoint": false
-      },
-      "variations": {
-        "0": {
-          "enabled": false,
-          "showCreateEntrypoint": false
-        },
-        "1": {
-          "enabled": true,
-          "showCreateEntrypoint": false
-        },
-        "2": {
-          "enabled": true,
-          "showCreateEntrypoint": true
-        }
-      },
-      "file": "discord_app/modules/user_profile/experiments/UserProfilePersonalWidgetExperiment.tsx",
       "source": "mobile_files"
     },
     {
@@ -5921,6 +5845,44 @@
       "source": "mobile_files"
     },
     {
+      "id": "2026-11-holiday-ringtone",
+      "kind": "user",
+      "type": "user",
+      "system": "apex",
+      "defaultConfig": {
+        "enabled": false
+      },
+      "variations": {
+        "0": {
+          "enabled": false
+        },
+        "1": {
+          "enabled": true
+        }
+      },
+      "file": "discord_app/modules/holidays/HolidayRingtoneExperiment.tsx",
+      "source": "mobile_files"
+    },
+    {
+      "id": "2026-11-mobile-did-background-app-native",
+      "kind": "user",
+      "type": "user",
+      "system": "apex",
+      "defaultConfig": {
+        "useNative": false
+      },
+      "variations": {
+        "0": {
+          "useNative": false
+        },
+        "1": {
+          "useNative": true
+        }
+      },
+      "file": "discord_app/modules/tti_analytics/native/DidBackgroundAppNativeExperiment.tsx",
+      "source": "mobile_files"
+    },
+    {
       "id": "2026-11-mobile-orb-redemption-thru-orders",
       "kind": "user",
       "type": "user",
@@ -6186,25 +6148,6 @@
       },
       "file": "discord_app/modules/wishlists/experiments/WishlistCountdownExperiment.tsx",
       "source": "mobile_files"
-    },
-    {
-      "id": "2026-11-wishlist-countdown-mobile",
-      "kind": "user",
-      "type": "user",
-      "system": "apex",
-      "defaultConfig": {
-        "labelsEnabled": false,
-        "reorderEnabled": false
-      },
-      "variations": {
-        "1": {},
-        "2": {
-          "labelsEnabled": true,
-          "reorderEnabled": true
-        }
-      },
-      "file": "discord_app/modules/wishlists/experiments/WishlistCountdownExperiment.tsx",
-      "source": "mobile_files"
     }
   ],
   "strings": {
@@ -6277,7 +6220,6 @@
     "+LEfDL": "**14 day SLA on resolution** These are issues that affect app functionality for a limited subset of users or are cosmetic for more than a very small subset of users.",
     "+LSSRH": "Maldives",
     "+LXBxU": "Tap to enable pinging the original author.",
-    "+LasFV": "🎃 Halloween",
     "+M1yLj": "Allow members to create threads that everyone in these channels can view.",
     "+MWrWt": "Edit Hub Profile",
     "+MbOX4": "I think this is a bug.",
@@ -6783,7 +6725,6 @@
     "1Wn2M4": "Use Server Default",
     "1Wvve2": "Reward Available!",
     "1Ww0Hi": "This stream has ended. *cricket noise*",
-    "1XGw3F": "DMs getting buried alive? Try pinning!",
     "1YDv7a": "Decline",
     "1YS80z": "Transcript",
     "1YTWty": "{name} is likely a spammer. Are you sure you want to jump to their message?",
@@ -6809,7 +6750,6 @@
     "1kR88y": "Mention a game",
     "1kkbKw": "Start Earning Orbs!",
     "1knDPI": "{emojiName} (without pineapple)",
-    "1l30oB": "Add Personal Widget",
     "1lGNPZ": "No policy violations",
     "1lKfMQ": "Olive green",
     "1mRkFr": "Keep in mind that we may take back Custom Invite Links if we discover abuse or if there's an intellectual property conflict.",
@@ -7646,7 +7586,6 @@
     "7J6/nG": "I'll do this later",
     "7JgxF5": "Last used {lastUsed}",
     "7K5Lma": "Tap to see sticker",
-    "7KOunu": "Are your bones rattling or is your keyboard really just that loud?",
     "7KjxW3": "There's an official message from the Discord team that needs your attention.",
     "7KyPor": "Boost a server",
     "7LL+Fw": "United States",
@@ -8109,7 +8048,6 @@
     "AKBgPy": "Come back for notifications on events, streams, and more.",
     "AKajgt": "Failed to leave the group",
     "AKcFUj": "App Directory",
-    "AL/SoZ": "Are you a ghost or are you just Invisible?",
     "ALJkb2": "Force badge",
     "ALlnbi": "Organize your members",
     "AMKNT1": "Wrap Text",
@@ -8128,7 +8066,6 @@
     "AV/v6i": "file",
     "AVGAkw": "Twitch (Integration)",
     "AVZpFH": "Dismiss Cache Actions",
-    "AVkYMx": "Personal",
     "AWIIQw": "Dollar sign badge",
     "AWmdd9": "{count, plural, one {# Member} other {# Members}}",
     "AXPbZr": "Before searching, we need to index this server. Give us a bit.",
@@ -9599,6 +9536,7 @@
     "JwX6Jd": "Sky blue",
     "JwkNU4": "Vote",
     "JxKXeT": "Your comment",
+    "JxM9jQ": "Profile",
     "JxNFav": "Successfully redeemed {amountDescription} for {redeemedItemDescription}",
     "JxTzzb": "Hey friend you gotta subscribe to **Discord Nitro** to use animated emoji.",
     "JxU0wr": "Sort",
@@ -9905,7 +9843,6 @@
     "MCVmjA": "Upcoming Server Events",
     "MDqARb": "Safety alerts",
     "MEaSRh": "in 1 hour",
-    "MElQEQ": "Modding a dead server? That’s called crypt keeping.",
     "MEpX+2": "{count, plural, one {# server is unavailable due to a temporary outage.} other {# servers are unavailable due to a temporary outage.}} Discord's Twitter should have more information.",
     "MExFkz": "Your account is $[suspended](hook)",
     "MFGE51": "Publish",
@@ -10019,7 +9956,6 @@
     "Mv4E/M": "Nitro credits are active",
     "Mw/UDN": "Basic View",
     "MwjTvn": "Nothing here yet",
-    "MxXgrL": "Animate GIF",
     "My50nf": "Start Call",
     "MyJpJT": "Request Pending",
     "MzW9sN": "Connecting",
@@ -10534,7 +10470,6 @@
     "Q5VqrN": "ALT",
     "Q60n1E": "Server Emoji",
     "Q75ddl": "Call {name}",
-    "Q7mm4g": "Default theme in servers",
     "Q7msr+": "Flight Simulator",
     "Q87rI/": "This emoji doesn't work here because it's from a different server. Upgrade to Discord Nitro to use emoji from other servers",
     "Q89oQU": "Discord is unable to pin that message. You may have hit the limit of {maxPins} pins in this channel.",
@@ -11109,7 +11044,6 @@
     "TjNWNF": "Reminder due in {duration}",
     "TkTvBz": "Sweet!",
     "Tl9JpL": "This channel has special permissions. To listen in it, you'll need someone, like a server moderator or admin, to undeafen you.",
-    "TlJKIQ": "You can find Lottie, Discord’s resident witch and potion brewista, in the Shop.",
     "TlZULM": "{daysLeft} days remaining",
     "Tlz0x1": "{numEmojiSlots, number} Emoji Slots",
     "Tm2Bmi": "Kenya",
@@ -11172,7 +11106,6 @@
     "U5x12f": "Unlink {name}",
     "U6vLcA": "This emoji is from a server that is either invite-only or unavailable. [Learn more]({openPremiumSettings}) about using custom emoji.",
     "U7DAV9": "Included in bundle",
-    "U7cCLU": "Play",
     "U8Rr2l": "This message has been deleted.",
     "U8lK/J": "This year",
     "U989ct": "Copied Command",
@@ -11477,7 +11410,6 @@
     "WA3189": "Platformer",
     "WAI6xu": "Dismiss",
     "WB1ip6": "Failed to make an invite link.",
-    "WB9eZl": "BoooOOOOooOo0o!",
     "WBUh3O": "Your username contains words flagged in {guildName}.",
     "WBiKnI": "Question",
     "WBqMRQ": "Current Password",
@@ -11948,6 +11880,7 @@
     "Z45os7": "Disconnect Member",
     "Z4oaN0": "Auto Sensitivity",
     "Z53e3m": "investing",
+    "Z5OQNp": "❄️ Winter",
     "Z5SUuv": "Server is too busy, please try again later.",
     "Z5b2Gf": "When you accept a gift while you have a running subscription, redeem a promotion, or accept a gift that differs from your current subscription, it will appear here as credit.",
     "Z5s7PM": "Transfer Ownership",
@@ -12156,7 +12089,6 @@
     "aQzVF8": "This will remove specific features for Community Servers, like Server Discovery and Server Insights.",
     "aRIFWD": "Learn More",
     "aRUbah": "Sending messages to this channel has been temporarily disabled. Try again in a bit.",
-    "aRr1um": "The voice call is coming from inside the house…",
     "aS6cK4": "YouTube",
     "aS8Krq": "$[**{user}**](userHook) removed a Voice Channel Status in $[**{channel}**](channelHook)",
     "aSjPgw": "Media Channel Permissions",
@@ -12356,6 +12288,7 @@
     "bmbHPA": "Dismiss",
     "bnDQ7E": "Are you sure you want to end the event?",
     "bnNxW1": "Your profile just got more flexible! Choose to share with friends only, everyone, or somewhere in between.",
+    "bnnNER": "{elapsed} of {duration}",
     "boL/YX": "Add Friend",
     "boMftC": "Waiting for you to stream {gameName} on desktop...",
     "boqtTA": "Buy Now",
@@ -12597,6 +12530,7 @@
     "dNktpr": "Send your first message",
     "dO2aLi": "Status updated to \"{statusLabel}\"",
     "dOie5v": "Qatar",
+    "dPT1o7": "Play for {seconds}s",
     "dQ71Wa": "Verify Email",
     "dQN6qS": "Right Edge Gesture",
     "dRNTWW": "Restored this event",
@@ -12856,7 +12790,6 @@
     "f7rGug": "Basic Info",
     "f7yOAX": "Display on profile",
     "f8Rh0U": "Set the name to **{newValue}**",
-    "f8kllL": "Create your own",
     "f8u+VO": "Templates will copy:",
     "f8wNDl": "Sort by",
     "f9SRFh": "trading",
@@ -13448,7 +13381,6 @@
     "ipgKDg": "This post cannot be sent because it contains content blocked by this community. Please revise your post and try again.",
     "iqlsnD": "Voice Channel Chat Permissions",
     "iqwXvc": "Timeout members",
-    "irDT8W": "Static on the mic? Could be interference. Could be something else…",
     "irT3ud": "Weather",
     "iruf5E": "{minutes, plural, one {# Minute} other {# Minutes}}",
     "isLGyX": "per {period}",
@@ -13787,6 +13719,7 @@
     "lBG2s/": "Add Widget",
     "lBLP4u": "Failed to send message. Hold for options.",
     "lBeKY2": "Show more",
+    "lD2bO/": "{username} · {pronouns}",
     "lE/PG3": "Mark as Official",
     "lEIwDw": "Boosts are {price}, discounted from {originalPrice}",
     "lELyPj": "You have more gifts! Make another link?",
@@ -13900,7 +13833,6 @@
     "m+qury": "Set their nickname to **{newValue}**",
     "m+sRVL": "Limit reached!",
     "m+veAn": "Set the topic to **{newValue}**",
-    "m+xpaC": "What’s lurking in the chat (other than you)?",
     "m/GC8z": "Moderator",
     "m09gxk": "Travel",
     "m0b6Kj": "- {attributionName}, {attributionTitle}",
@@ -14640,7 +14572,6 @@
     "quj4DY": "Voice messages are disabled in this channel.",
     "qv5/SP": "Show Activity Debug Overlay",
     "qv9j1K": "Cancel Editing Message",
-    "qvtjM4": "Verifying your servers (probably) aren't haunted.",
     "qwJHjo": "App",
     "qx4cha": "When enabled, may increase the time it takes to show search results.",
     "qxhmN4": "Singapore",
@@ -14681,7 +14612,6 @@
     "rBw4cE": "You can now purchase Server Subscriptions on Mobile!",
     "rCJvqo": "{skuName} ({intervalCount, plural, one {# month} other {# months}})",
     "rD/nte": "metal",
-    "rE+3z3": "Spooky season's no excuse to ghost your friends, DM them back.",
     "rEAPa0": "Slovakia",
     "rEBKvg": "You must complete a few more steps before you can talk.",
     "rEeodK": "This thread has been closed and locked. Only moderators can reopen it.",
@@ -15336,6 +15266,7 @@
     "vFiCSx": "Noise Suppression powered by Krisp",
     "vFiQlU": "{sender} gifted you a Nameplate!",
     "vFzPFj": "Failed to remove link",
+    "vGP84Q": "Play now to earn orbs!",
     "vGSLa2": "friend removed",
     "vGU8+r": "The application didn't respond in time",
     "vGgPMH": "You cannot send embeds in this channel",
@@ -15465,7 +15396,6 @@
     "w2J6Qs": "Oops! We encountered an error when trying to ban that user.",
     "w2d0vU": "Bitrate",
     "w2o/60": "What a nice addition to your server. Lookin' real spiffy in here.",
-    "w2pMut": "Brewing up a bone-chilling ringtone...",
     "w2ve0t": "Turn off notifications for this chat.",
     "w33hIP": "Travel",
     "w3RBdW": "Perks",
@@ -15849,7 +15779,6 @@
     "ycPQE4": "Costa Rica",
     "ycg1xj": "Shadow Realm",
     "ydL28i": "Allows members to change this channel’s name, description, and text settings. They can also delete the channel.",
-    "ydMZ2o": "Make sure to bring your server back from the dead.",
     "ydw5nX": "Add Email",
     "yeYaHf": "Sort By",
     "yeaXw5": "Increased activity from normal members. No action needed.",
@@ -16235,7 +16164,9 @@
     "BUILD": "/build",
     "BULK_ACK": "/read-states/ack-bulk",
     "BULK_GUILD_BAN_V2": "/guilds/:param/bulk-ban/v2",
+    "BULK_GUILD_KICK": "/guilds/:param/bulk/kick",
     "BULK_GUILD_ROLE": "/guilds/:param/bulk/role",
+    "BULK_GUILD_TIMEOUT": "/guilds/:param/bulk/timeout",
     "CALL": "/channels/:param/call",
     "CALL_RING": "/channels/:param/call/ring",
     "CALL_STOP_RINGING": "/channels/:param/call/stop-ringing",
@@ -16464,6 +16395,7 @@
     "GAMES_SEARCH": "/games/search",
     "GAMES_TRENDING": "/games/trending",
     "GAME_ANNOUNCEMENTS": "/games/:param/announcements",
+    "GAME_ANNOUNCEMENTS_LATEST": "/games/announcements/latest",
     "GAME_INVITE": "/game-invite/@me/:param",
     "GAME_INVITES": "/game-invite/@me",
     "GAME_NOTIFICATION_SETTINGS": "/users/@me/notification-settings/muted-games",
@@ -16859,6 +16791,7 @@
     "QUESTS_RESET_RECENT_QUEST_COMPLETIONS": "/quests/reset-recent-quest-completions",
     "QUESTS_REWARD_CODE": "/quests/:param/reward-code",
     "QUESTS_VIDEO_PROGRESS": "/quests/:param/video-progress",
+    "QUEST_BAR_PREVIEW": "/quest-bar-preview",
     "QUEST_FETCH_QUEST_TO_DELIVER": "/quests/decision",
     "QUEST_HOME": "/quest-home",
     "QUEST_HOME_DEPRECATED": "/discovery/quests",
@@ -17095,7 +17028,6 @@
     "USER_PROFILE": "/users/:param/profile",
     "USER_PROFILE_SUGGESTED_GAMES": "/users/@me/widgets/suggested-games",
     "USER_PROFILE_WIDGETS": "/users/@me/widgets",
-    "USER_PROFILE_WIDGET_ASSET_UPLOAD": "/users/@me/widgets/assets/upload",
     "USER_PROFILE_WIDGET_CLIP_UPLOAD": "/users/@me/widgets/clips/upload",
     "USER_RELATIONSHIP": "/users/@me/relationships/:param",
     "USER_SETTINGS_PROTO": "/users/@me/settings-proto/:param",
