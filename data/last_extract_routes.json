@@ -1,8 +1,8 @@
 {
-  "runId": "2026-11-18T02-31-15-791Z_676230_xqb8q7",
-  "buildNumber": "676230",
+  "runId": "2026-11-18T02-34-10-001Z_676233_kgmhtk",
+  "buildNumber": "676233",
   "extractVersion": 3,
-  "updatedAt": "2026-11-18T02:31:15.791Z",
+  "updatedAt": "2026-11-18T02:34:10.001Z",
   "count": 1122,
   "data": {
     "DEV_LANDING": "/build",
@@ -1015,7 +1015,6 @@
     "SUMMARY": "/guilds/:param/discoverable-content/summaries/:param",
     "REMOVE_SUMMARY": "/guilds/:param/discoverable-content/summaries/:param/remove",
     "DISCOVERABLE_CONTENT": "/guilds/:param/discoverable-content",
-    "HOME": "/home/web_user",
     "APP": "/app",
     "ACTIVITY": "/activity",
     "ACTIVITIES_HAPPENING_NOW": "/activities/happening-now",
@@ -1126,6 +1125,7 @@
     "POWERUP_STORE": "/channels/:param/boosts",
     "CONFERENCE_MODE_VOICE": "/conference-mode/voice/:param/:param",
     "QUEST_PREVIEW_TOOL_2": "/quest-home?tab=preview_tool&quest_id=:param",
+    "HOME": "/home/web_user",
     "JSNLOG_URL": "/openvidu/elk/openvidu-browser-logs"
   }
 }
