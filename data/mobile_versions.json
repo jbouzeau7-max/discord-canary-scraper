@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-11-18T18:02:27.660Z",
+  "scrapedAt": "2026-11-18T18:09:12.214Z",
   "channels": [
     {
       "platform": "ios",
@@ -14,7 +14,7 @@
       "source": "itunes_lookup",
       "storeUrl": "https://apps.apple.com/app/id985746746",
       "available": true,
-      "checkedAt": "2026-11-18T18:02:27.660Z"
+      "checkedAt": "2026-11-18T18:09:12.214Z"
     },
     {
       "platform": "ios",
@@ -23,20 +23,20 @@
       "available": false,
       "note": "OTA not ahead of App Store",
       "storeUrl": "https://testflight.apple.com/join/gdE4pRzI",
-      "checkedAt": "2026-11-18T18:02:27.660Z",
+      "checkedAt": "2026-11-18T18:09:12.214Z",
       "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/6a/2f/ba/6a2fba87-e0a7-ec69-6ca5-e77cad3e533e/AppIcon-0-0-1x_U007epad-0-1-0-85-220.png/512x512bb.jpg"
     },
     {
       "platform": "android",
       "channel": "stable",
       "version": "354.12",
-      "build": "35401200486314",
-      "commit": "795259634ce9d6f13a6ad3d6ce571dcd1ee9a71e",
-      "releaseName": "discord_android@354.12.486314-0+35401200486314",
+      "build": "35401200487218",
+      "commit": "7e495622d4ffcb9b61ea74caf8e2faf2683636d5",
+      "releaseName": "discord_android@354.12.487218-0+35401200487218",
       "source": "discord_ota_manifest",
       "storeUrl": "https://play.google.com/store/apps/details?id=com.discord",
       "available": true,
-      "checkedAt": "2026-11-18T18:02:27.660Z",
+      "checkedAt": "2026-11-18T18:09:12.214Z",
       "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/6a/2f/ba/6a2fba87-e0a7-ec69-6ca5-e77cad3e533e/AppIcon-0-0-1x_U007epad-0-1-0-85-220.png/512x512bb.jpg"
     },
     {
@@ -50,7 +50,7 @@
       "storeUrl": "https://play.google.com/store/apps/details?id=com.discord",
       "available": true,
       "note": "Track-labeled on apkmirror",
-      "checkedAt": "2026-11-18T18:02:27.660Z",
+      "checkedAt": "2026-11-18T18:09:12.214Z",
       "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/6a/2f/ba/6a2fba87-e0a7-ec69-6ca5-e77cad3e533e/AppIcon-0-0-1x_U007epad-0-1-0-85-220.png/512x512bb.jpg"
     },
     {
@@ -64,7 +64,7 @@
       "storeUrl": "https://play.google.com/store/apps/details?id=com.discord",
       "available": true,
       "note": "Track-labeled on datamining_commits",
-      "checkedAt": "2026-11-18T18:02:27.660Z",
+      "checkedAt": "2026-11-18T18:09:12.214Z",
       "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/6a/2f/ba/6a2fba87-e0a7-ec69-6ca5-e77cad3e533e/AppIcon-0-0-1x_U007epad-0-1-0-85-220.png/512x512bb.jpg"
     }
   ],
@@ -72,8 +72,8 @@
     "ios": [
       {
         "version": "354.0",
-        "build": "123482",
-        "commit": "2098869f48a17b3200185d88a45ac74ff6c9fcb5",
+        "build": "123797",
+        "commit": "5ccd880bf07a77d174c2e2e911f342a6050a9a81",
         "releaseName": null
       },
       {
@@ -182,9 +182,9 @@
     "android": [
       {
         "version": "354.12",
-        "build": "35401200486314",
-        "commit": "795259634ce9d6f13a6ad3d6ce571dcd1ee9a71e",
-        "releaseName": "discord_android@354.12.486314-0+35401200486314"
+        "build": "35401200487218",
+        "commit": "7e495622d4ffcb9b61ea74caf8e2faf2683636d5",
+        "releaseName": "discord_android@354.12.487218-0+35401200487218"
       },
       {
         "version": "353.11",
@@ -345,6 +345,13 @@
   },
   "history": [
     {
+      "at": "2026-11-18T18:09:12.214Z",
+      "key": "android/stable",
+      "from": "354.12",
+      "to": "354.12",
+      "build": "35401200487218"
+    },
+    {
       "at": "2026-11-18T11:00:08.575Z",
       "key": "android/alpha",
       "from": "356.1",
@@ -394,7 +401,7 @@
       "build": "35301100485321"
     }
   ],
-  "previousScrapedAt": "2026-11-18T17:55:44.619Z",
+  "previousScrapedAt": "2026-11-18T18:02:27.660Z",
   "notifiedFingerprints": [
     "android|stable|353.11|35301100485321",
     "android|alpha|355.5",
@@ -402,12 +409,21 @@
     "ios|stable|353.0",
     "android|stable|353.11",
     "android|alpha|356.1",
+    "android|stable|354.12|35401200487218",
     "ios|stable|354.0",
     "android|stable|354.12",
     "android|beta|355.6",
     "android|alpha|356.2"
   ],
-  "changes": [],
+  "changes": [
+    {
+      "type": "rebuild",
+      "key": "android/stable",
+      "from": "354.12",
+      "to": "354.12",
+      "build": "35401200487218"
+    }
+  ],
   "paused": false,
   "notifyOk": true
 }
