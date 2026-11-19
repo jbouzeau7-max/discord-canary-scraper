@@ -241,6 +241,13 @@ async function fetchText(url, opts = {}) {
   if (!res.ok) {
     const err = new Error('HTTP ' + res.status + ' ' + url);
     err.status = res.status;
+    if (res.status === 429) {
+      const value = (res.headers.get('retry-after') || '').trim();
+      const now = Date.now();
+      const until = /^\d+$/.test(value) ? now + Number(value) * 1000 : Date.parse(value);
+      // Without a usable server deadline, skip at least one scheduled scan.
+      err.retryAt = Number.isFinite(until) && until >= now && until <= 8.64e15 ? until : now + 30 * 60000;
+    }
     throw err;
   }
   return res.text();
@@ -497,6 +504,7 @@ async function fetchHelpCenter(center, sectionsById) {
     try {
       return await fetchHelpArticles(host, center, sectionsById);
     } catch (e) {
+      if (e.status === 429) throw e;
       lastErr = e;
       console.warn(`help ${center.key} via ${host}:`, String(e.message || e).slice(0, 100));
     }
@@ -724,10 +732,10 @@ function buildHelpComps(entry, action, center) {
 function buildHealthComps(statuses) {
   const lines = statuses.map(
     (s) =>
-      `**${s.label}** · ${s.ok ? 'OK' : 'FAILED — ' + truncate(s.error || 'unknown error', 90)}`,
+      `**${s.label}** · ${s.retryAt ? `RATE LIMITED — retry <t:${Math.ceil(s.retryAt / 1000)}:R>` : s.ok ? 'OK' : 'FAILED — ' + truncate(s.error || 'unknown error', 90)}`,
   );
   const comps = [
-    textDisplay('## Blog Tracker Error'),
+    textDisplay(statuses.some(s => !s.ok && !s.retryAt) ? '## Blog Tracker Error' : '## Blog Tracker · Rate limit'),
     textDisplay(lines.join('\n')),
   ];
   const row = actionRow(RUN_URL ? [linkButton('Actions run', RUN_URL)] : []);
@@ -904,17 +912,29 @@ async function main() {
 
   // 2. Help centers
   const help = {};
+  const retryAt = {};
   await Promise.all(HELP_CENTERS.map(async (center) => {
     const prevList = previous.help[center.key] || [];
+    const until = previous.retryAt?.[center.key];
+    if (Number.isFinite(until) && until > Date.now()) {
+      retryAt[center.key] = until;
+      help[center.key] = prevList;
+      statuses.push({ label: center.label, ok: false, retryAt: until });
+      return;
+    }
     let list = prevList;
     try {
-      const sectionsById = await fetchHelpMeta(center).catch(() => new Map());
+      const sectionsById = await fetchHelpMeta(center).catch(e => {
+        if (e.status === 429) throw e;
+        return new Map();
+      });
       const fresh = await fetchHelpCenter(center, sectionsById);
       list = keepStaleHelp(fresh, prevList, center.key);
       statuses.push({ label: center.label, ok: true });
     } catch (e) {
       console.error('help fail', center.key, e.message);
-      statuses.push({ label: center.label, ok: false, error: e.message });
+      if (e.status === 429) retryAt[center.key] = e.retryAt;
+      statuses.push({ label: center.label, ok: false, error: e.message, retryAt: retryAt[center.key] });
     }
     help[center.key] = list;
   }));
@@ -980,6 +1000,7 @@ async function main() {
       scrapedAt: new Date().toISOString(),
       blog: nextBlog,
       help: nextHelp,
+      retryAt,
       counts,
       lastErrorNotifiedAt,
     },
