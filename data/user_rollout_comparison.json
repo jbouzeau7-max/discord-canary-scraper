@@ -1,10 +1,10 @@
 {
  "schemaVersion": 1,
- "generatedAt": "2026-11-19T12:48:29.147Z",
+ "generatedAt": "2026-11-19T13:17:40.617Z",
  "semantics": "Couverture gist non vérifiée et observations API : deux métriques séparées, jamais une proportion réelle d’utilisateurs.",
  "sources": {
   "positions": {
-   "updatedAt": "2026-11-19T12:48:29.085Z",
+   "updatedAt": "2026-11-19T13:17:40.524Z",
    "scheduled": true
   },
   "gist": {
@@ -72,7 +72,7 @@
     ],
     "freshness": {
      "state": "recent",
-     "ageHours": 14.078374166666666
+     "ageHours": 14.564893611111112
     }
    },
    "measurement": {
@@ -80,7 +80,7 @@
     "observedAt": "2026-11-09T15:26:39.250Z",
     "freshness": {
      "state": "stale",
-     "ageHours": 237.36386027777777
+     "ageHours": 237.85037972222221
     },
     "n": 6429,
     "k": 6429,
@@ -126,18 +126,18 @@
     "maxPct": 100,
     "estPct": 100,
     "widthPoints": 0,
-    "knownInPct": 97.01,
-    "knownPositions": 9701,
-    "inPositions": 9701,
+    "knownInPct": 97.05,
+    "knownPositions": 9705,
+    "inPositions": 9705,
     "outPositions": 0,
     "runs": 1,
-    "points": 33900,
+    "points": 34050,
     "conflicts": 0,
     "revision": 0,
-    "updatedAt": "2026-11-19T12:48:29.085Z",
+    "updatedAt": "2026-11-19T13:17:40.524Z",
     "assumption": "contiguous_ranges",
     "agreement": {
-     "consistentPositions": 9701,
+     "consistentPositions": 9705,
      "contradictingPositions": 0,
      "gistPct": 100,
      "examples": []
@@ -196,7 +196,7 @@
     ],
     "freshness": {
      "state": "recent",
-     "ageHours": 14.078374166666666
+     "ageHours": 14.564893611111112
     }
    },
    "measurement": {
@@ -204,7 +204,7 @@
     "observedAt": "2026-11-09T15:26:39.250Z",
     "freshness": {
      "state": "stale",
-     "ageHours": 237.36386027777777
+     "ageHours": 237.85037972222221
     },
     "n": 6429,
     "k": 272,
@@ -250,19 +250,19 @@
     "maxPct": 5,
     "estPct": 5,
     "widthPoints": 0,
-    "knownInPct": 4.81,
-    "knownPositions": 9681,
-    "inPositions": 481,
-    "outPositions": 9200,
+    "knownInPct": 4.82,
+    "knownPositions": 9687,
+    "inPositions": 482,
+    "outPositions": 9205,
     "runs": 2,
-    "points": 33750,
+    "points": 33900,
     "conflicts": 0,
     "revision": 3,
-    "updatedAt": "2026-11-19T12:48:29.085Z",
+    "updatedAt": "2026-11-19T13:17:40.524Z",
     "assumption": "contiguous_ranges",
     "agreement": {
-     "consistentPositions": 481,
-     "contradictingPositions": 9200,
+     "consistentPositions": 482,
+     "contradictingPositions": 9205,
      "gistPct": 100,
      "examples": [
       [
@@ -333,7 +333,7 @@
     ],
     "freshness": {
      "state": "recent",
-     "ageHours": 14.078374166666666
+     "ageHours": 14.564893611111112
     }
    },
    "measurement": {
@@ -341,7 +341,7 @@
     "observedAt": "2026-11-09T15:26:39.250Z",
     "freshness": {
      "state": "stale",
-     "ageHours": 237.36386027777777
+     "ageHours": 237.85037972222221
     },
     "n": 6429,
     "k": 351,
@@ -388,17 +388,17 @@
     "estPct": 5,
     "widthPoints": 0,
     "knownInPct": 4.9,
-    "knownPositions": 9648,
+    "knownPositions": 9653,
     "inPositions": 490,
-    "outPositions": 9158,
+    "outPositions": 9163,
     "runs": 2,
-    "points": 33750,
+    "points": 33900,
     "conflicts": 0,
     "revision": 0,
-    "updatedAt": "2026-11-19T12:48:29.085Z",
+    "updatedAt": "2026-11-19T13:17:40.524Z",
     "assumption": "contiguous_ranges",
     "agreement": {
-     "consistentPositions": 9648,
+     "consistentPositions": 9653,
      "contradictingPositions": 0,
      "gistPct": 5,
      "examples": []
@@ -457,7 +457,7 @@
     ],
     "freshness": {
      "state": "recent",
-     "ageHours": 14.078374166666666
+     "ageHours": 14.564893611111112
     }
    },
    "measurement": {
@@ -465,7 +465,7 @@
     "observedAt": "2026-11-09T15:26:39.250Z",
     "freshness": {
      "state": "stale",
-     "ageHours": 237.36386027777777
+     "ageHours": 237.85037972222221
     },
     "n": 6279,
     "k": 6279,
@@ -511,18 +511,18 @@
     "maxPct": 100,
     "estPct": 100,
     "widthPoints": 0,
-    "knownInPct": 96.24,
-    "knownPositions": 9624,
-    "inPositions": 9624,
+    "knownInPct": 96.32,
+    "knownPositions": 9632,
+    "inPositions": 9632,
     "outPositions": 0,
     "runs": 1,
-    "points": 33750,
+    "points": 33900,
     "conflicts": 0,
     "revision": 0,
-    "updatedAt": "2026-11-19T12:48:29.085Z",
+    "updatedAt": "2026-11-19T13:17:40.524Z",
     "assumption": "contiguous_ranges",
     "agreement": {
-     "consistentPositions": 9624,
+     "consistentPositions": 9632,
      "contradictingPositions": 0,
      "gistPct": 100,
      "examples": []
@@ -548,7 +548,7 @@
     "observedAt": "2026-11-09T15:26:39.250Z",
     "freshness": {
      "state": "stale",
-     "ageHours": 237.36386027777777
+     "ageHours": 237.85037972222221
     },
     "n": 6429,
     "k": null,
