@@ -1,11 +1,11 @@
 {
-  "runId": "2026-11-19T23-52-29-081Z_678538_qamud0",
-  "buildNumber": "678538",
-  "scrapedAt": "2026-11-19T23:52:29.081Z",
+  "runId": "2026-11-19T23-54-44-434Z_678543_r8h0o0",
+  "buildNumber": "678543",
+  "scrapedAt": "2026-11-19T23:54:44.434Z",
   "totals": {
-    "all": 387,
+    "all": 386,
     "legacy": 28,
-    "apex": 359
+    "apex": 358
   },
   "experiments": [
     {
@@ -1587,43 +1587,6 @@
       },
       "variationCount": 1,
       "source": "discord"
-    },
-    {
-      "id": "2026-02-private-channel-hiding",
-      "type": "user",
-      "kind": "user",
-      "label": null,
-      "system": "apex",
-      "defaultConfig": {
-        "enableObfuscation": false,
-        "enableIntegrityCheck": false
-      },
-      "variations": {
-        "1": {
-          "enableObfuscation": true,
-          "enableIntegrityCheck": false
-        },
-        "2": {
-          "enableObfuscation": true,
-          "enableIntegrityCheck": true
-        },
-        "3": {
-          "enableObfuscation": false,
-          "enableIntegrityCheck": false
-        }
-      },
-      "variationCount": 3,
-      "source": "discord",
-      "guildPercentage": {
-        "status": "unknown",
-        "value": null
-      },
-      "userPercentage": {
-        "status": "provided",
-        "value": 2,
-        "source": "gist_user_rollouts"
-      },
-      "fingerprint": "fcaeca7cc72648d7a3a2e029cd6ac9809c3f4a21beea3a053d6ba82b5fbb59dc"
     },
     {
       "id": "2026-02-process-boost-on-voice",

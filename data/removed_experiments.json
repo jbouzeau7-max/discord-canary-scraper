@@ -1,8 +1,8 @@
 {
-  "runId": "2026-11-19T23-52-29-081Z_678538_qamud0",
-  "buildNumber": "678538",
-  "updatedAt": "2026-11-19T23:52:29.081Z",
-  "count": 25,
+  "runId": "2026-11-19T23-54-44-434Z_678543_r8h0o0",
+  "buildNumber": "678543",
+  "updatedAt": "2026-11-19T23:54:44.434Z",
+  "count": 26,
   "experiments": [
     {
       "id": "2026-06-av1-encode-linux",
@@ -178,6 +178,13 @@
       "label": null,
       "removedAt": "2026-11-19T22:35:33.789Z",
       "lastBuild": "678398"
+    },
+    {
+      "id": "2026-02-private-channel-hiding",
+      "kind": "user",
+      "label": null,
+      "removedAt": "2026-11-19T23:54:44.454Z",
+      "lastBuild": "678543"
     }
   ]
 }
