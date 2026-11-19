@@ -1,8 +1,8 @@
 {
-  "runId": "2026-11-19T20-58-54-329Z_678212_lzu10i",
-  "buildNumber": "678212",
-  "updatedAt": "2026-11-19T20:58:54.329Z",
-  "count": 385,
+  "runId": "2026-11-19T21-01-14-065Z_678214_6dz0hv",
+  "buildNumber": "678214",
+  "updatedAt": "2026-11-19T21:01:14.065Z",
+  "count": 386,
   "data": {
     "2021-02_staff_qc_debugging": {
       "id": "2021-02_staff_qc_debugging",
@@ -7786,6 +7786,26 @@
       "defaultConfig": null,
       "system": "apex",
       "fp": "12dea01107aa0c5287c847ccbe6d08eb93f8228cdd5600412a833a243e9e26fb"
+    },
+    "2026-11-stream-drawing": {
+      "id": "2026-11-stream-drawing",
+      "type": "user",
+      "kind": "user",
+      "label": null,
+      "variationCount": 2,
+      "variations": {
+        "0": {
+          "enabled": false
+        },
+        "1": {
+          "enabled": true
+        }
+      },
+      "defaultConfig": {
+        "enabled": false
+      },
+      "system": "apex",
+      "fp": "a0df7d542e37b35c45d6e4a8fb9df616537cc7f722f86ca27f5a4173e2dc518d"
     },
     "2026-11-subscription-management-settings-brand-refresh": {
       "id": "2026-11-subscription-management-settings-brand-refresh",
