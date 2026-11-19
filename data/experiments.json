@@ -1,7 +1,7 @@
 {
-  "runId": "2026-11-19T20-04-10-800Z_678155_pbo219",
-  "buildNumber": "678155",
-  "scrapedAt": "2026-11-19T20:04:10.800Z",
+  "runId": "2026-11-19T20-10-44-882Z_678162_9iu3yo",
+  "buildNumber": "678162",
+  "scrapedAt": "2026-11-19T20:10:44.882Z",
   "totals": {
     "all": 386,
     "legacy": 28,
@@ -361,7 +361,17 @@
         }
       },
       "variationCount": 2,
-      "source": "discord"
+      "source": "discord",
+      "guildPercentage": {
+        "status": "unknown",
+        "value": null
+      },
+      "userPercentage": {
+        "status": "provided",
+        "value": 2,
+        "source": "gist_user_rollouts"
+      },
+      "fingerprint": "3f624723302986decd36b2cdc80cf351febd3baeb8cb261b3295e2cb960cca49"
     },
     {
       "id": "2025-05-search-results-feedback",
@@ -4504,10 +4514,10 @@
       },
       "userPercentage": {
         "status": "provided",
-        "value": 1,
+        "value": 10,
         "source": "gist_user_rollouts"
       },
-      "fingerprint": "666973ce70c3365b03b296bed4af4c3674bcb5d01a5369f67222fd11a5004c6d"
+      "fingerprint": "9f585a612fa97cd1a2f6f47876e977ce66cdb966505a032dce72c6ba92bac246"
     },
     {
       "id": "2026-08-mute-aware-noise-cancellation",
@@ -5154,10 +5164,10 @@
       },
       "userPercentage": {
         "status": "provided",
-        "value": 50,
+        "value": 100,
         "source": "gist_user_rollouts"
       },
-      "fingerprint": "4ccf8b11fc91a637b1c5fb1740d590a0d1a2f93d8a58ee45fa0d1d4136811488"
+      "fingerprint": "48aa034d267af16c10b76e95984f1fcba598d71ed72c64a2df1ac7fe7c08b14d"
     },
     {
       "id": "2026-09-friends-sidebar",
@@ -5691,7 +5701,17 @@
         }
       },
       "variationCount": 1,
-      "source": "discord"
+      "source": "discord",
+      "guildPercentage": {
+        "status": "unknown",
+        "value": null
+      },
+      "userPercentage": {
+        "status": "provided",
+        "value": 1,
+        "source": "gist_user_rollouts"
+      },
+      "fingerprint": "88760be2d458bce2581b55328dd05c13e0f5a4929ae1958f693b29f9a737b8f9"
     },
     {
       "id": "2026-09-quest-mobile-bar-secondary-cta",
@@ -6464,7 +6484,17 @@
         }
       },
       "variationCount": 1,
-      "source": "discord"
+      "source": "discord",
+      "guildPercentage": {
+        "status": "unknown",
+        "value": null
+      },
+      "userPercentage": {
+        "status": "provided",
+        "value": 1,
+        "source": "gist_user_rollouts"
+      },
+      "fingerprint": "7522c2c0259ff9309c17fd06ce7136bb877fe9b803ae996d6169d96fa4c2d43e"
     },
     {
       "id": "2026-10-build-a-bear-qa",
@@ -6572,10 +6602,10 @@
       },
       "userPercentage": {
         "status": "provided",
-        "value": 30,
+        "value": 100,
         "source": "gist_user_rollouts"
       },
-      "fingerprint": "06212baaabc64eec3d7b35917d2f3581225a1dfe329f615fedd20aac46083f15"
+      "fingerprint": "c25a69fad9871a16332b32d48451db75927bba6fc12a72c104c7c3dfc1d27f6b"
     },
     {
       "id": "2026-10-cod-relink",
@@ -7836,10 +7866,10 @@
       },
       "userPercentage": {
         "status": "provided",
-        "value": 25,
+        "value": 50,
         "source": "gist_user_rollouts"
       },
-      "fingerprint": "944b5856f2e4ee3f654d16872d6e7526c2839de4206a5cc2f777f0b13a281415"
+      "fingerprint": "6562c492b2708cd09b9f704e4e4934f48a117ef792f9e8242bc1f946f8ddd65e"
     },
     {
       "id": "2026-10-profile-read-state",
@@ -8058,10 +8088,10 @@
       },
       "userPercentage": {
         "status": "provided",
-        "value": 25,
+        "value": 50,
         "source": "gist_user_rollouts"
       },
-      "fingerprint": "c8bea8e82bb8b5b776f1c892911a8f3c5290b1ce1072a4b7b8162fe2b6891dcc"
+      "fingerprint": "3e45df75533867ccf9da48d1586fddf9a9ae1b7b3edc1cae6de0fcf5252cc4e4"
     },
     {
       "id": "2026-10-shop-twelve-days-promo",
@@ -9014,10 +9044,10 @@
       },
       "userPercentage": {
         "status": "provided",
-        "value": 25,
+        "value": 50,
         "source": "gist_user_rollouts"
       },
-      "fingerprint": "1a9082f8e825a638a9dc4eacf56d8225f76b1434e1e0c5127425a71bdb07eebe"
+      "fingerprint": "5c228edd93bda14521accd13783ce3a11962c4b359f1c82fda53c54cb8a399ec"
     },
     {
       "id": "2026-11-subscription-management-settings-brand-refresh",
