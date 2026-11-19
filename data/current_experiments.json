@@ -1,8 +1,8 @@
 {
-  "runId": "2026-11-19T00-58-51-715Z_677422_jxluci",
-  "buildNumber": "677422",
-  "updatedAt": "2026-11-19T00:58:51.715Z",
-  "count": 386,
+  "runId": "2026-11-19T01-28-54-069Z_677482_nw4ao9",
+  "buildNumber": "677482",
+  "updatedAt": "2026-11-19T01:28:54.069Z",
+  "count": 385,
   "experiments": [
     {
       "id": "2021-02_staff_qc_debugging",
@@ -19024,54 +19024,6 @@
         "value": null
       },
       "fingerprint": "409ad870dfae41f9aab25580352e001e26aa62431c7aaf0c4f2be3383e05221f"
-    },
-    {
-      "id": "2026-11-autoclips-ea-upsell",
-      "kind": "user",
-      "type": "user",
-      "system": "apex",
-      "label": null,
-      "title": null,
-      "description": null,
-      "defaultConfig": null,
-      "variations": {
-        "0": {
-          "id": 0
-        },
-        "1": {
-          "enabled": true
-        }
-      },
-      "treatments": null,
-      "variationSource": "variations",
-      "variationCount": 2,
-      "raw": {
-        "id": "2026-11-autoclips-ea-upsell",
-        "type": "user",
-        "kind": "user",
-        "label": null,
-        "system": "apex",
-        "defaultConfig": null,
-        "variations": {
-          "0": {
-            "id": 0
-          },
-          "1": {
-            "enabled": true
-          }
-        },
-        "variationCount": 2,
-        "source": "discord"
-      },
-      "guildPercentage": {
-        "status": "unknown",
-        "value": null
-      },
-      "userPercentage": {
-        "status": "unknown",
-        "value": null
-      },
-      "fingerprint": "f2434d49cfb709e90b38efd9364e98a781845ef4aad8dcfb1e2d845a930a8def"
     },
     {
       "id": "2026-11-checkpoint-intro",
