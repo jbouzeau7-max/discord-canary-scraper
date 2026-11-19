@@ -1,443 +1,142 @@
-/**
- * Discord Components V2 builder.
- *
- * Converts legacy embed structures to Components V2 format:
- * - Container (type 17) with accent_color replaces embed color
- * - TextDisplay (type 10) replaces fields/title/description
- * - Separator (type 14) between sections
- *
- * Limits handled automatically:
- * - TextDisplay content: 4000 chars (auto-split into multiple TextDisplays)
- * - Components per Container: 10 (auto-split into multiple Containers)
- * - Total components per message: 40
- * - Messages sent sequentially via webhook URL queue
- *
- * @see https://docs.discord.com/developers/components/reference
- */
-
-const IS_COMPONENTS_V2_FLAG = 1 << 15; // 32768
-
-/** Maximum characters per TextDisplay content. */
+'use strict';
+// Shared Discord Components V2 renderer. Keep some room for role mentions.
+const IS_COMPONENTS_V2_FLAG = 1 << 15;
 const TEXT_DISPLAY_MAX = 4000;
-
-/** Maximum components per Container. */
 const CONTAINER_MAX_COMPONENTS = 10;
-
-/** Maximum total components per message. */
 const MESSAGE_MAX_COMPONENTS = 40;
-
-/**
- * Discord : la somme des caractères de TOUS les TextDisplay d'un message
- * Components V2 est limitée à 4000. Dépasser = HTTP 400 → message non envoyé.
- * Marge de sécurité pour les caractères comptés différemment (emoji, etc.).
- */
 const MESSAGE_MAX_TEXT_CHARS = 3900;
 
 function componentTextLen(comp) {
   if (!comp || typeof comp !== 'object') return 0;
-  let n = 0;
-  if (comp.type === 10 && typeof comp.content === 'string') n += comp.content.length;
-  if (Array.isArray(comp.components)) for (const c of comp.components) n += componentTextLen(c);
-  if (comp.accessory) n += componentTextLen(comp.accessory);
-  return n;
+  let n = comp.type === 10 && typeof comp.content === 'string' ? comp.content.length : 0;
+  if (Array.isArray(comp.components)) for (const child of comp.components) n += componentTextLen(child);
+  return n + (comp.accessory ? componentTextLen(comp.accessory) : 0);
 }
 
-/**
- * Build a single TextDisplay component.
- * @param {string} content - Markdown text (max 4000 chars)
- * @returns {{type:number,content:string}}
- */
 function textDisplay(content) {
-  return { type: 10, content: String(content).slice(0, TEXT_DISPLAY_MAX) };
+  const str = String(content);
+  return { type: 10, content: str.length <= TEXT_DISPLAY_MAX ? str : str.slice(0, TEXT_DISPLAY_MAX - 1).replace(/[\uD800-\uDBFF]$/u, '') + '…' };
 }
-
-/**
- * Build a Separator component.
- * @param {boolean} [divider=true] - Show a divider line
- * @param {number} [spacing=1] - 1=small, 2=large
- * @returns {{type:number,divider:boolean,spacing:number}}
- */
-function separator(divider = true, spacing = 1) {
-  return { type: 14, divider, spacing };
-}
-
-/**
- * Build a MediaGallery (type 12) from image URLs.
- * @param {string[]} urls
- * @returns {{type:number,items:Array}|null}
- */
-function mediaGalleryFromUrls(urls) {
-  const items = [];
-  const seen = new Set();
-  for (const u of urls || []) {
-    if (!u || typeof u !== 'string') continue;
-    const url = String(u).trim();
-    if (!/^https?:\/\//i.test(url)) continue;
-    if (seen.has(url)) continue;
-    seen.add(url);
-    items.push({ media: { url: url.slice(0, 2048) } });
-    if (items.length >= 4) break;
-  }
-  if (!items.length) return null;
-  return { type: 12, items };
-}
-
-/** Collect image/thumbnail URLs from a legacy embed. */
-function embedImageUrls(embed) {
-  if (!embed || typeof embed !== 'object') return [];
-  const urls = [];
-  if (embed.image && embed.image.url) urls.push(embed.image.url);
-  if (embed.thumbnail && embed.thumbnail.url) urls.push(embed.thumbnail.url);
-  return urls;
-}
-
-/**
- * Build a Container component.
- * @param {Array} components - Child components
- * @param {number} [accentColor] - RGB color
- * @returns {{type:number,components:Array,accent_color?:number}}
- */
+function separator(divider = true, spacing = 1) { return { type: 14, divider, spacing }; }
 function container(components, accentColor) {
   const c = { type: 17, components };
   if (accentColor != null) c.accent_color = accentColor;
   return c;
 }
+function mediaGalleryFromUrls(urls) {
+  const items = [], seen = new Set();
+  for (const u of urls || []) {
+    if (typeof u !== 'string') continue;
+    const url = u.trim();
+    if (!/^https?:\/\//i.test(url) || seen.has(url)) continue;
+    seen.add(url);
+    items.push({ media: { url: url.slice(0, 2048) } });
+    if (items.length >= 4) break;
+  }
+  return items.length ? { type: 12, items } : null;
+}
+function embedImageUrls(embed) { return [embed?.image?.url, embed?.thumbnail?.url].filter(Boolean); }
+function linkButton(label, url) {
+  return { type: 2, style: 5, label: String(label).slice(0, 80), url: String(url).slice(0, 512) };
+}
+function dismissButton(label = 'Dismiss') { return { type: 1, components: [linkButton(label, 'https://discord.com')] }; }
+// Kept for API compatibility. No notification receives a Dismiss button.
+function addDismissToMessages(messages) { return messages; }
 
-/**
- * Split text into chunks that fit within TextDisplay limit.
- * Tries to split on newlines, then on spaces, then hard-cuts.
- * @param {string} text - Text to chunk
- * @param {number} [maxLen=TEXT_DISPLAY_MAX] - Max chars per chunk
- * @returns {string[]} Array of text chunks
- */
 function chunkText(text, maxLen = TEXT_DISPLAY_MAX) {
+  if (!Number.isSafeInteger(maxLen) || maxLen < 1) throw new RangeError('maxLen must be a positive integer');
   const str = String(text || '');
   if (str.length <= maxLen) return [str];
-
   const chunks = [];
-  let pos = 0;
-  while (pos < str.length) {
-    let end = pos + maxLen;
-    if (end >= str.length) {
-      chunks.push(str.slice(pos));
-      break;
+  for (let pos = 0; pos < str.length;) {
+    let end = Math.min(str.length, pos + maxLen);
+    if (end < str.length) {
+      const window = str.slice(Math.max(pos, end - 200), end);
+      let at = window.lastIndexOf('\n');
+      if (at < 0) at = window.lastIndexOf(' ');
+      if (at >= 0) end -= window.length - at - 1;
+      else if (end - pos > 1 && /[\uD800-\uDBFF]/u.test(str[end - 1]) && /[\uDC00-\uDFFF]/u.test(str[end])) end--;
     }
-
-    // Try to find a newline to split on (within the last 200 chars)
-    let splitAt = -1;
-    for (let i = end; i > end - 200 && i > pos; i--) {
-      if (str[i] === '\n') {
-        splitAt = i + 1;
-        break;
-      }
-    }
-    // Fall back to space
-    if (splitAt < 0) {
-      for (let i = end; i > end - 200 && i > pos; i--) {
-        if (str[i] === ' ') {
-          splitAt = i + 1;
-          break;
-        }
-      }
-    }
-    // Hard cut
-    if (splitAt < 0) splitAt = end;
-
-    chunks.push(str.slice(pos, splitAt));
-    pos = splitAt;
+    chunks.push(str.slice(pos, end));
+    pos = end;
   }
   return chunks;
 }
 
-/**
- * Build a link button (style 5) that works on non-app webhooks.
- * @param {string} label - Button text
- * @param {string} url - URL to open
- * @returns {{type:number,style:number,label:string,url:string}}
- */
-function linkButton(label, url) {
-  return { type: 2, style: 5, label: String(label).slice(0, 80), url: String(url).slice(0, 512) };
-}
-
-/**
- * Build an ActionRow containing a dismiss button.
- * Uses link button (style 5) since webhooks can't handle interactions.
- * The button links to discord.com so the user can navigate to the message
- * and delete it manually.
- * @param {string} [label='Dismiss'] - Button label
- * @returns {{type:number,components:Array}}
- */
-function dismissButton(label = 'Dismiss') {
-  return {
-    type: 1, // ActionRow
-    components: [linkButton(label, 'https://discord.com')],
-  };
-}
-
-/**
- * N'ajoute plus le bouton « Dismiss » aux messages.
- *
- * Historiquement, cette fonction ajoutait un ActionRow avec un bouton lien
- * « Dismiss » à chaque message. Retiré sur demande : le bouton apparaissait
- * sur tous les embeds. C'est le point de passage unique de tous les envois
- * (sendEmbeds, buildSectionMessages, embedToComponents, embedsToComponents
- * passent toujours withDismiss) — la fonction reste donc appelée partout
- * mais ne modifie plus les messages. Restaurer l'ancien corps de fonction
- * pour réactiver le bouton.
- *
- * @param {Array<Array>} messages - Array of message component arrays
- * @returns {Array<Array>} Messages inchangés
- */
-function addDismissToMessages(messages) {
-  return messages;
-}
-
-/**
- * Split a list of components into messages that respect the 40-component limit.
- * Each message gets its own Container with the accent color.
- * @param {Array} components - Flat list of components
- * @param {number} [accentColor] - Container accent color
- * @param {boolean} [withDismiss=false] - Ignoré : le bouton « Dismiss » a été retiré
- * @returns {Array<Array>} Array of message component arrays
- */
-function chunkIntoMessages(components, accentColor, withDismiss = false) {
+function chunkIntoMessages(components, accentColor) {
   const messages = [];
-  let current = [];
-  let containerCount = 0;
-  let textChars = 0;
-
-  // Un TextDisplay trop long est redécoupé pour tenir dans un message seul
-  const flat = [];
+  let current = [], chars = 0;
   for (const comp of components) {
-    if (comp && comp.type === 10 && String(comp.content || '').length > MESSAGE_MAX_TEXT_CHARS) {
-      for (const part of chunkText(comp.content, MESSAGE_MAX_TEXT_CHARS)) flat.push(textDisplay(part));
-    } else {
-      flat.push(comp);
+    const parts = comp?.type === 10 && comp.content?.length > MESSAGE_MAX_TEXT_CHARS
+      ? chunkText(comp.content, MESSAGE_MAX_TEXT_CHARS).map(textDisplay) : [comp];
+    for (const part of parts) {
+      const size = componentTextLen(part);
+      if (current.length && (current.length >= CONTAINER_MAX_COMPONENTS || chars + size > MESSAGE_MAX_TEXT_CHARS)) {
+        messages.push([container(current, accentColor)]);
+        current = []; chars = 0;
+      }
+      if (!current.length && part?.type === 14) continue;
+      current.push(part);
+      chars += size;
     }
   }
-
-  for (const comp of flat) {
-    const len = componentTextLen(comp);
-    // Each component counts toward the 40 limit (containers count too)
-    if (
-      current.length &&
-      (current.length >= CONTAINER_MAX_COMPONENTS ||
-        containerCount >= MESSAGE_MAX_COMPONENTS - 1 ||
-        textChars + len > MESSAGE_MAX_TEXT_CHARS)
-    ) {
-      // ne pas commencer un message par un séparateur
-      messages.push([container(current, accentColor)]);
-      current = [];
-      containerCount = 0;
-      textChars = 0;
-    }
-    if (!current.length && comp && comp.type === 14) continue;
-    current.push(comp);
-    containerCount++;
-    textChars += len;
-  }
-  if (current.length) {
-    messages.push([container(current, accentColor)]);
-  }
-  if (withDismiss) {
-    addDismissToMessages(messages);
-  }
+  if (current.length) messages.push([container(current, accentColor)]);
   return messages;
 }
 
-/**
- * Convert lines (like the old chunkLines output) into Components V2.
- * Each section becomes a Container with TextDisplay children and separators.
- *
- * @param {Object} params
- * @param {string} params.title - Message title (e.g. "Experiments")
- * @param {string} params.bn - Build number
- * @param {string} params.ts - ISO timestamp
- * @param {string} [params.botName] - Bot name for header
- * @param {string} [params.avatarUrl] - Avatar URL
- * @param {Array} params.sections - Array of {label, color, count, lines}
- * @param {boolean} [params.withDismiss=false] - Ignoré : le bouton « Dismiss » a été retiré
- * @returns {Array<Array>} Array of message payloads (each is a components array)
- */
-function buildSectionMessages({ bn, sections, withDismiss = false }) {
-  const allComponents = [];
-
-  for (const sec of sections) {
-    if (!sec.lines || !sec.lines.length) continue;
-
-    // Build header text for this section
-    const headerText = `### ${sec.label}\nBuild ${bn} · **${sec.count}** items`;
-
-    // Join all lines into one text block
-    const fullText = sec.lines.join('\n');
-
-    // Split into TextDisplay-sized chunks
-    const textChunks = chunkText(fullText);
-
-    // Add header as first TextDisplay
-    allComponents.push(textDisplay(headerText));
-
-    // Add text chunks
-    for (const chunk of textChunks) {
-      allComponents.push(textDisplay(chunk));
-    }
-
-    // Add separator between sections
-    allComponents.push(separator(true, 1));
-  }
-
-  // Remove trailing separator
-  if (allComponents.length && allComponents[allComponents.length - 1].type === 14) {
-    allComponents.pop();
-  }
-
-  // Split into messages (respecting 40-component limit)
-  // Use the first section's color as the container accent
-  const accentColor = sections.find((s) => s.color != null)?.color;
-  return chunkIntoMessages(allComponents, accentColor, withDismiss);
+function appendText(components, text) {
+  for (const part of chunkText(text, MESSAGE_MAX_TEXT_CHARS)) components.push(textDisplay(part));
 }
-
-/**
- * Convert a legacy embed object to Components V2 message(s).
- * Handles title, description, fields, color, footer, author.
- *
- * @param {Object} embed - Legacy Discord embed
- * @param {boolean} [withDismiss=false] - Ignoré : le bouton « Dismiss » a été retiré
- * @returns {Array<Array>} Array of message component arrays
- */
-function embedToComponents(embed, withDismiss = false) {
+function buildSectionMessages({ bn, sections }) {
   const components = [];
-
-  // Author + Title
-  const headerParts = [];
-  if (embed.author && embed.author.name) headerParts.push(`**${embed.author.name}**`);
-  if (embed.title) headerParts.push(`## ${embed.title}`);
-  if (headerParts.length) {
-    const header = headerParts.join('\n');
-    for (const chunk of chunkText(header)) {
-      components.push(textDisplay(chunk));
-    }
+  for (const sec of sections) {
+    if (!sec.lines?.length) continue;
+    if (components.length) components.push(separator());
+    const count = sec.count ?? sec.lines.length;
+    const build = bn == null || bn === '' ? '' : `Build ${bn} · `;
+    appendText(components, `### ${sec.label}\n${build}**${count} élément${count > 1 ? 's' : ''}**`);
+    appendText(components, sec.lines.join('\n'));
   }
-
-  // Image / thumbnail as MediaGallery (Components V2 drops embed.image otherwise)
-  {
-    const gallery = mediaGalleryFromUrls(embedImageUrls(embed));
-    if (gallery) components.push(gallery);
-  }
-
-  // Description
-  if (embed.description) {
-    for (const chunk of chunkText(embed.description)) {
-      components.push(textDisplay(chunk));
-    }
-  }
-
-  // Fields
-  if (embed.fields && embed.fields.length) {
-    for (const field of embed.fields) {
-      // champ sans nom : pas de ligne de titre vide
-      const fieldText = field.name ? `**${field.name}**\n${field.value || ''}` : String(field.value || '');
-      for (const chunk of chunkText(fieldText)) {
-        components.push(textDisplay(chunk));
-      }
-    }
-  }
-
-  // Footer
-  if (embed.footer && embed.footer.text) {
-    if (components.length > 0) components.push(separator(false, 1));
-    components.push(textDisplay(`-# ${embed.footer.text}`));
-  }
-
-  if (!components.length) {
-    components.push(textDisplay(' '));
-  }
-
-  const accentColor = embed.color;
-  return chunkIntoMessages(components, accentColor, withDismiss);
+  return chunkIntoMessages(components, sections.find(s => s.color != null)?.color);
 }
 
-/**
- * Convert multiple legacy embeds into Components V2 message(s).
- * Embeds are concatenated and split respecting limits.
- *
- * @param {Array} embeds - Array of legacy Discord embeds
- * @param {boolean} [withDismiss=false] - Ignoré : le bouton « Dismiss » a été retiré
- * @returns {Array<Array>} Array of message component arrays
- */
-function embedsToComponents(embeds, withDismiss = false) {
-  const allComponents = [];
-
-  for (let i = 0; i < embeds.length; i++) {
-    const embed = embeds[i];
-    if (i > 0) allComponents.push(separator(true, 2));
-
-    // Add embed content
-    const headerParts = [];
-    if (embed.author && embed.author.name) headerParts.push(`**${embed.author.name}**`);
-    if (embed.title) headerParts.push(`## ${embed.title}`);
-
-    if (headerParts.length) {
-      const header = headerParts.join('\n');
-      for (const chunk of chunkText(header)) {
-        allComponents.push(textDisplay(chunk));
-      }
-    }
-
-    // Preserve embed.image / thumbnail as MediaGallery
-    {
-      const gallery = mediaGalleryFromUrls(embedImageUrls(embed));
-      if (gallery) allComponents.push(gallery);
-    }
-
-    if (embed.description) {
-      for (const chunk of chunkText(embed.description)) {
-        allComponents.push(textDisplay(chunk));
-      }
-    }
-
-    if (embed.fields && embed.fields.length) {
-      for (const field of embed.fields) {
-        // champ sans nom : pas de ligne de titre vide
-        const fieldText = field.name ? `**${field.name}**\n${field.value || ''}` : String(field.value || '');
-        for (const chunk of chunkText(fieldText)) {
-          allComponents.push(textDisplay(chunk));
-        }
-      }
-    }
-
-    if (embed.footer && embed.footer.text) {
-      allComponents.push(textDisplay(`-# ${embed.footer.text}`));
-    }
+function appendEmbed(components, embed, separateFooter) {
+  const header = [];
+  if (embed.author?.name) header.push(`**${embed.author.name}**`);
+  if (embed.title) header.push(`## ${embed.title}`);
+  if (typeof embed.url === 'string' && /^https?:\/\//i.test(embed.url)) {
+    try {
+      const url = new URL(embed.url);
+      if (!url.username && !url.password) header.push(`-# Source : <${url.href}>`);
+    } catch { /* A malformed source must not discard the notification. */ }
   }
-
-  if (!allComponents.length) {
-    allComponents.push(textDisplay(' '));
+  if (header.length) appendText(components, header.join('\n'));
+  const gallery = mediaGalleryFromUrls(embedImageUrls(embed));
+  if (gallery) components.push(gallery);
+  if (embed.description) appendText(components, embed.description);
+  for (const field of embed.fields || []) {
+    appendText(components, field.name ? `**${field.name}**\n${field.value || ''}` : String(field.value || ''));
   }
-
-  // Use first embed's color
-  const accentColor = embeds.find((e) => e && e.color != null)?.color;
-  return chunkIntoMessages(allComponents, accentColor, withDismiss);
+  if (embed.footer?.text) {
+    if (separateFooter && components.length) components.push(separator(false));
+    appendText(components, `-# ${embed.footer.text}`);
+  }
 }
-
+function embedToComponents(embed) {
+  const components = [];
+  appendEmbed(components, embed, true);
+  return chunkIntoMessages(components.length ? components : [textDisplay(' ')], embed.color);
+}
+function embedsToComponents(embeds) {
+  const components = [];
+  for (const [i, embed] of embeds.entries()) {
+    if (i) components.push(separator(true, 2));
+    appendEmbed(components, embed, false);
+  }
+  return chunkIntoMessages(components.length ? components : [textDisplay(' ')], embeds.find(e => e?.color != null)?.color);
+}
 module.exports = {
-  IS_COMPONENTS_V2_FLAG,
-  TEXT_DISPLAY_MAX,
-  CONTAINER_MAX_COMPONENTS,
-  MESSAGE_MAX_COMPONENTS,
-  MESSAGE_MAX_TEXT_CHARS,
-  componentTextLen,
-  textDisplay,
-  separator,
-  container,
-  mediaGalleryFromUrls,
-  embedImageUrls,
-  linkButton,
-  dismissButton,
-  addDismissToMessages,
-  chunkText,
-  chunkIntoMessages,
-  buildSectionMessages,
-  embedToComponents,
-  embedsToComponents,
+  IS_COMPONENTS_V2_FLAG, TEXT_DISPLAY_MAX, CONTAINER_MAX_COMPONENTS, MESSAGE_MAX_COMPONENTS, MESSAGE_MAX_TEXT_CHARS,
+  componentTextLen, textDisplay, separator, container, mediaGalleryFromUrls, embedImageUrls, linkButton, dismissButton,
+  addDismissToMessages, chunkText, chunkIntoMessages, buildSectionMessages, embedToComponents, embedsToComponents,
 };
