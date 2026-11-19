@@ -1,8 +1,8 @@
 {
-  "runId": "2026-11-19T18-43-29-356Z_678015_u0ot42",
-  "buildNumber": "678015",
-  "updatedAt": "2026-11-19T18:43:29.356Z",
-  "count": 386,
+  "runId": "2026-11-19T18-47-48-910Z_678021_rq7mkm",
+  "buildNumber": "678021",
+  "updatedAt": "2026-11-19T18:47:48.910Z",
+  "count": 385,
   "experiments": [
     {
       "id": "2021-02_staff_qc_debugging",
@@ -18255,53 +18255,6 @@
         "value": null
       },
       "fingerprint": "fd0d8870261a420d774b4d56076f17204cf73a2ead5b15d36433303365f0c75d"
-    },
-    {
-      "id": "2026-10-soundboard-mute-indicator",
-      "kind": "user",
-      "type": "user",
-      "system": "apex",
-      "label": null,
-      "title": null,
-      "description": null,
-      "defaultConfig": {
-        "enabled": false
-      },
-      "variations": {
-        "1": {
-          "enabled": true
-        }
-      },
-      "treatments": null,
-      "variationSource": "variations",
-      "variationCount": 1,
-      "raw": {
-        "id": "2026-10-soundboard-mute-indicator",
-        "type": "user",
-        "kind": "user",
-        "label": null,
-        "system": "apex",
-        "defaultConfig": {
-          "enabled": false
-        },
-        "variations": {
-          "1": {
-            "enabled": true
-          }
-        },
-        "variationCount": 1,
-        "source": "discord"
-      },
-      "guildPercentage": {
-        "status": "unknown",
-        "value": null
-      },
-      "userPercentage": {
-        "status": "provided",
-        "value": 10,
-        "source": "gist_user_rollouts"
-      },
-      "fingerprint": "41529f3af7ef554f634af1e9a039cde109f578f719436a95d8cbfd46cf38666b"
     },
     {
       "id": "2026-10-soundboard-new-sounds-badge",
