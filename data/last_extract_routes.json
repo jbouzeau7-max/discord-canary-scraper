@@ -1,8 +1,8 @@
 {
-  "runId": "2026-11-19T23-27-56-040Z_678520_6kkrrk",
-  "buildNumber": "678520",
+  "runId": "2026-11-19T23-30-05-305Z_678522_dy5jad",
+  "buildNumber": "678522",
   "extractVersion": 3,
-  "updatedAt": "2026-11-19T23:27:56.040Z",
+  "updatedAt": "2026-11-19T23:30:05.305Z",
   "count": 1122,
   "data": {
     "DEV_LANDING": "/build",
@@ -1010,8 +1010,11 @@
     "AVATAR_DECORATION_PRESETS": "/avatar-decoration-presets/:param.:param",
     "GUILD_MEMBER_BANNER": "/guilds/:param/users/:param/banners/:param.:param",
     "UPDATE_VOICE_STATE": "/guilds/:param/voice-states/:param",
-    "JSNLOG_URL": "/openvidu/elk/openvidu-browser-logs",
     "HOME": "/home/web_user",
+    "SUMMARIES": "/guilds/:param/discoverable-content/summaries",
+    "SUMMARY": "/guilds/:param/discoverable-content/summaries/:param",
+    "REMOVE_SUMMARY": "/guilds/:param/discoverable-content/summaries/:param/remove",
+    "DISCOVERABLE_CONTENT": "/guilds/:param/discoverable-content",
     "PROFILE_READ_STATE": "/users/@me/profile-read-states/:param",
     "APP": "/app",
     "ACTIVITY": "/activity",
@@ -1123,9 +1126,6 @@
     "POWERUP_STORE": "/channels/:param/boosts",
     "CONFERENCE_MODE_VOICE": "/conference-mode/voice/:param/:param",
     "QUEST_PREVIEW_TOOL_2": "/quest-home?tab=preview_tool&quest_id=:param",
-    "SUMMARIES": "/guilds/:param/discoverable-content/summaries",
-    "SUMMARY": "/guilds/:param/discoverable-content/summaries/:param",
-    "REMOVE_SUMMARY": "/guilds/:param/discoverable-content/summaries/:param/remove",
-    "DISCOVERABLE_CONTENT": "/guilds/:param/discoverable-content"
+    "JSNLOG_URL": "/openvidu/elk/openvidu-browser-logs"
   }
 }
