@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-11-19T22:25:38.916Z",
+  "fetchedAt": "2026-11-19T22:39:10.300Z",
   "sources": {
     "discordApi": {
       "url": "https://discord.com/api/v9/experiments",
@@ -7,7 +7,7 @@
     },
     "fingerprintSampling": {
       "samples": 50,
-      "uniqueHashes": 5,
+      "uniqueHashes": 4,
       "matched": 1
     }
   },
@@ -326,37 +326,17 @@
       "title": "hash_704914099",
       "percentage": 0,
       "status": "not_started",
-      "samples": 1,
+      "samples": 3,
       "enrolled": 0,
       "treatmentDistribution": {
-        "0": 1
+        "0": 3
       },
       "source": "fingerprint_sampling",
       "note": "No local experiment ID match for this hash",
-      "fpSamples": 1,
+      "fpSamples": 3,
       "fpEnrolled": 0,
       "fpTreatmentDist": {
-        "0": 1
-      }
-    },
-    {
-      "hash": 1144304849,
-      "id": null,
-      "type": "user",
-      "title": "hash_1144304849",
-      "percentage": 0,
-      "status": "not_started",
-      "samples": 1,
-      "enrolled": 0,
-      "treatmentDistribution": {
-        "0": 1
-      },
-      "source": "fingerprint_sampling",
-      "note": "No local experiment ID match for this hash",
-      "fpSamples": 1,
-      "fpEnrolled": 0,
-      "fpTreatmentDist": {
-        "0": 1
+        "0": 3
       }
     },
     {
@@ -2920,16 +2900,6 @@
       "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
     },
     {
-      "id": "2026-09-three-month-nitro-gifting",
-      "hash": 1644794275,
-      "type": "user",
-      "title": "2026-09-three-month-nitro-gifting",
-      "percentage": null,
-      "status": "no_rollout_data",
-      "source": "client_bundle",
-      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
-    },
-    {
       "id": "2026-09-try-display-name-style",
       "hash": 3244363438,
       "type": "user",
@@ -4150,6 +4120,16 @@
       "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
     },
     {
+      "id": "2026-11-three-month-nitro-gifting-no-copy-change",
+      "hash": 2055744029,
+      "type": "user",
+      "title": "2026-11-three-month-nitro-gifting-no-copy-change",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
       "id": "2026-11-voicemod-3p",
       "hash": 1785884105,
       "type": "user",
@@ -4191,14 +4171,14 @@
     }
   ],
   "summary": {
-    "total": 392,
+    "total": 391,
     "guild": 42,
-    "user": 350,
-    "withPercentage": 9,
+    "user": 349,
+    "withPercentage": 8,
     "withoutPercentage": 383,
     "fullRollout": 5,
     "partial": 0,
-    "notStarted": 4,
-    "fpSampled": 5
+    "notStarted": 3,
+    "fpSampled": 4
   }
 }
