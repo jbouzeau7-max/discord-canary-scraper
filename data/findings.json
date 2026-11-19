@@ -1,7 +1,7 @@
 {
-  "runId": "2026-11-19T22-33-22-119Z_678392_ke8um6",
-  "buildNumber": "678392",
-  "scrapedAt": "2026-11-19T22:33:22.119Z",
+  "runId": "2026-11-19T22-35-33-772Z_678398_ihhfv5",
+  "buildNumber": "678398",
+  "scrapedAt": "2026-11-19T22:35:33.773Z",
   "totals": {
     "all": 387
   },
@@ -6105,24 +6105,6 @@
       "fingerprint": "1268025c02c4b9cc70a3c18da7f63394209d09fad9d6de7e4ca9e6dbd4714b9c"
     },
     {
-      "id": "2026-09-three-month-nitro-gifting",
-      "type": "user",
-      "kind": "user",
-      "label": null,
-      "system": "apex",
-      "defaultConfig": null,
-      "variations": {
-        "0": {
-          "id": 0
-        },
-        "1": {
-          "id": 1
-        }
-      },
-      "variationCount": 2,
-      "source": "discord"
-    },
-    {
       "id": "2026-09-try-display-name-style",
       "type": "user",
       "kind": "user",
@@ -9078,6 +9060,24 @@
         },
         "1": {
           "enabled": true
+        }
+      },
+      "variationCount": 2,
+      "source": "discord"
+    },
+    {
+      "id": "2026-11-three-month-nitro-gifting-no-copy-change",
+      "type": "user",
+      "kind": "user",
+      "label": null,
+      "system": "apex",
+      "defaultConfig": null,
+      "variations": {
+        "0": {
+          "id": 0
+        },
+        "1": {
+          "id": 1
         }
       },
       "variationCount": 2,
