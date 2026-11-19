@@ -1,8 +1,8 @@
 {
-  "runId": "2026-11-19T18-58-46-695Z_678046_welc51",
-  "buildNumber": "678046",
-  "updatedAt": "2026-11-19T18:58:46.695Z",
-  "count": 385,
+  "runId": "2026-11-19T19-00-58-472Z_678047_owa0dv",
+  "buildNumber": "678047",
+  "updatedAt": "2026-11-19T19:00:58.472Z",
+  "count": 386,
   "experiments": [
     {
       "id": "2021-02_staff_qc_debugging",
@@ -20402,6 +20402,58 @@
         "value": null
       },
       "fingerprint": "0fae4b8ea2d7cec7e63ba48be8e8153eb9bab5f5b3ab30446f8002f959a31751"
+    },
+    {
+      "id": "2026-11-voicemod-non-sub-marketing",
+      "kind": "user",
+      "type": "user",
+      "system": "apex",
+      "label": null,
+      "title": null,
+      "description": null,
+      "defaultConfig": {
+        "enabled": false
+      },
+      "variations": {
+        "0": {
+          "enabled": false
+        },
+        "1": {
+          "enabled": true
+        }
+      },
+      "treatments": null,
+      "variationSource": "variations",
+      "variationCount": 2,
+      "raw": {
+        "id": "2026-11-voicemod-non-sub-marketing",
+        "type": "user",
+        "kind": "user",
+        "label": null,
+        "system": "apex",
+        "defaultConfig": {
+          "enabled": false
+        },
+        "variations": {
+          "0": {
+            "enabled": false
+          },
+          "1": {
+            "enabled": true
+          }
+        },
+        "variationCount": 2,
+        "source": "discord"
+      },
+      "guildPercentage": {
+        "status": "unknown",
+        "value": null
+      },
+      "userPercentage": {
+        "status": "unknown",
+        "value": null
+      },
+      "fingerprint": "33fa064c64dcf9826b4231e8f667d081f2933862ee2c4c568522688ec32d207f"
     },
     {
       "id": "2026-11-waterwheels-discover",
