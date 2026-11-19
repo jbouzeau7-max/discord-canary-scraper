@@ -1,8 +1,8 @@
 {
-  "runId": "2026-11-19T04-47-01-775Z_677606_zwnqpo",
-  "buildNumber": "677606",
-  "updatedAt": "2026-11-19T04:47:01.775Z",
-  "count": 385,
+  "runId": "2026-11-19T04-58-42-753Z_677609_y0rxpm",
+  "buildNumber": "677609",
+  "updatedAt": "2026-11-19T04:58:42.753Z",
+  "count": 386,
   "experiments": [
     {
       "id": "2021-02_staff_qc_debugging",
@@ -17172,6 +17172,58 @@
         "source": "gist_user_rollouts"
       },
       "fingerprint": "584112daa79c653bb8bb38a6722c656f910a3c8a605d4dbc178d620068525277"
+    },
+    {
+      "id": "2026-10-orb-void",
+      "kind": "user",
+      "type": "user",
+      "system": "apex",
+      "label": null,
+      "title": null,
+      "description": null,
+      "defaultConfig": {
+        "enabled": false
+      },
+      "variations": {
+        "0": {
+          "enabled": false
+        },
+        "1": {
+          "enabled": true
+        }
+      },
+      "treatments": null,
+      "variationSource": "variations",
+      "variationCount": 2,
+      "raw": {
+        "id": "2026-10-orb-void",
+        "type": "user",
+        "kind": "user",
+        "label": null,
+        "system": "apex",
+        "defaultConfig": {
+          "enabled": false
+        },
+        "variations": {
+          "0": {
+            "enabled": false
+          },
+          "1": {
+            "enabled": true
+          }
+        },
+        "variationCount": 2,
+        "source": "discord"
+      },
+      "guildPercentage": {
+        "status": "unknown",
+        "value": null
+      },
+      "userPercentage": {
+        "status": "unknown",
+        "value": null
+      },
+      "fingerprint": "491408f6ad10995547fd98a0c9e4be62cac93cbe59814dd81aa921198b79fdaf"
     },
     {
       "id": "2026-10-orbchievements-mobile",
