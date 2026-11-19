@@ -11,7 +11,9 @@
  *      creator-support.discord.com (support créateurs)
  *
  * Features:
- *  - retries avec backoff (1s/2s/4s) par source
+ *  - retries avec backoff (1s/2s/4s) par source, Retry-After respecté (RSS + Zendesk)
+ *  - quota Zendesk partagé par IP : appels sérialisés (2 en vol max, espacement
+ *    minimal) et pause globale sur 429 avant toute réémission
  *  - health gate: message d'erreur sur la webhook si une source est down
  *    (dédupliqué 6h) + lien vers le run GitHub Actions
  *  - noms de sections/catégories Zendesk (via sections.json + categories.json)
@@ -38,6 +40,7 @@ const {
   chunkIntoMessages,
 } = require('./lib/components_v2');
 const { writeJsonAtomic } = require('./lib/atomic');
+const { fetchWithRetry, extractRetryAfterMs, isRetryableStatus } = require('./lib/http');
 const { sleep, DEFAULT_UA, DEFAULT_AVATAR_URL } = require('./lib/utils');
 
 const DATA_DIR = path.join(__dirname, '..', 'data');
@@ -229,6 +232,9 @@ function firstDivergence(before, after, radius = 120) {
 
 // ── HTTP ──────────────────────────────────────────────
 
+const BLOG_MAX_ATTEMPTS = 3;
+const MAX_RETRY_AFTER_MS = 90 * 1000; // garde-fou: le job a 12 min de budget
+
 async function fetchText(url, opts = {}) {
   const res = await fetch(url, {
     headers: {
@@ -241,41 +247,149 @@ async function fetchText(url, opts = {}) {
   if (!res.ok) {
     const err = new Error('HTTP ' + res.status + ' ' + url);
     err.status = res.status;
-    if (res.status === 429) {
-      const value = (res.headers.get('retry-after') || '').trim();
-      const now = Date.now();
-      const until = /^\d+$/.test(value) ? now + Number(value) * 1000 : Date.parse(value);
-      // Without a usable server deadline, skip at least one scheduled scan.
-      err.retryAt = Number.isFinite(until) && until >= now && until <= 8.64e15 ? until : now + 30 * 60000;
-    }
+    err.retryAfterMs = extractRetryAfterMs(res, null);
     throw err;
   }
   return res.text();
 }
 
-async function fetchJson(url, opts = {}) {
-  return JSON.parse(await fetchText(url, { ...opts, accept: 'application/json' }));
+// ── Quota Zendesk (partagé par IP entre tous les help centers) ──────────
+// Les 4 help centers tapent le même edge depuis la même IP de runner : un
+// burst de requêtes simultanées se fait 429 (observé sur apps/creator).
+// → max 2 requêtes en vol, espacement minimal entre départs, et sur 429 tout
+// le client patiente le Retry-After annoncé avant de réémettre.
+
+const ZENDESK_MAX_IN_FLIGHT = 2;
+const ZENDESK_MIN_GAP_MS = 150;
+const ZENDESK_MAX_ATTEMPTS = 4;
+const ZENDESK_MAX_RETRY_AFTER_MS = 90 * 1000;
+const ZENDESK_MAX_BACKOFF_MS = 8000;
+
+let zendeskInFlight = 0;
+const zendeskWaiters = [];
+let zendeskNextStart = 0;
+let zendeskBlockedUntil = 0;
+// Horloge logique : garde l'espacement effectif même si sleep est stubé (tests).
+let zendeskClock = 0;
+const zdNow = () => Math.max(Date.now(), zendeskClock);
+
+async function zendeskWait(untilMs) {
+  const now = zdNow();
+  if (untilMs <= now) return;
+  zendeskClock = untilMs; // réserve le créneau dans la timeline logique
+  await sleep(untilMs - now);
 }
 
-/** Retry avec backoff exponentiel (1s, 2s, 4s). */
-async function withRetries(fn, label, tries = 3) {
+async function acquireZendeskSlot() {
+  // Réservation synchrone du prochain départ (pas d'await avant) → l'ordre et
+  // l'espacement sont déterministes même avec 4 centers en parallèle.
+  const start = Math.max(zdNow(), zendeskNextStart, zendeskBlockedUntil);
+  zendeskNextStart = start + ZENDESK_MIN_GAP_MS;
+  if (zendeskInFlight >= ZENDESK_MAX_IN_FLIGHT) {
+    await new Promise((resolve) => zendeskWaiters.push(resolve));
+  } else {
+    zendeskInFlight++;
+  }
+  await zendeskWait(start);
+}
+
+function releaseZendeskSlot() {
+  const next = zendeskWaiters.shift();
+  if (next) {
+    next(); // créneau transféré au waiter, zendeskInFlight inchangé
+    return;
+  }
+  zendeskInFlight--;
+}
+
+function httpError(status, url, extra = {}) {
+  const err = new Error(`HTTP ${status} ${url}`);
+  err.status = status;
+  if (status === 429) err.rateLimited = true;
+  return Object.assign(err, extra);
+}
+
+/**
+ * GET JSON sur une API Zendesk via la porte de quota partagée.
+ * Retry sur 429/408/425/5xx en respectant Retry-After (échec rapide et clair
+ * si la consigne dépasse le budget du run — pas de contournement).
+ */
+async function fetchZendeskJson(url, opts = {}) {
   let lastErr = null;
-  for (let t = 0; t < tries; t++) {
+  for (let attempt = 1; attempt <= ZENDESK_MAX_ATTEMPTS; attempt++) {
+    await acquireZendeskSlot();
+    let res;
     try {
-      return await fn();
+      res = await fetch(url, {
+        headers: {
+          'User-Agent': DEFAULT_UA,
+          Accept: 'application/json',
+          ...(opts.headers || {}),
+        },
+        timeout: opts.timeout || 30000,
+      });
     } catch (e) {
+      releaseZendeskSlot();
       lastErr = e;
-      if (t < tries - 1) {
-        const delay = 1000 * Math.pow(2, t);
-        console.warn(
-          `${label} attempt ${t + 1} failed (${String(e.message).slice(0, 100)}), retrying in ${delay}ms`,
-        );
-        await sleep(delay);
+      if (attempt === ZENDESK_MAX_ATTEMPTS) break;
+      const wait = Math.min(ZENDESK_MAX_BACKOFF_MS, 1000 * Math.pow(2, attempt - 1));
+      console.warn(`zendesk réseau ${String(e.message || e).slice(0, 90)} — retry dans ${wait}ms`);
+      await zendeskWait(zdNow() + wait);
+      continue;
+    }
+
+    try {
+      const status = Number(res.status) || 0;
+      if (res.ok) return JSON.parse(await res.text());
+
+      const retryAfterMs = extractRetryAfterMs(res, null);
+      if (typeof res.text === 'function') await res.text().catch(() => '');
+      lastErr = httpError(status, url, { retryAfterMs });
+
+      if (!isRetryableStatus(status) || attempt === ZENDESK_MAX_ATTEMPTS) break;
+
+      const wait = retryAfterMs > 0
+        ? retryAfterMs
+        : Math.min(ZENDESK_MAX_BACKOFF_MS, 1000 * Math.pow(2, attempt - 1));
+      if (wait > ZENDESK_MAX_RETRY_AFTER_MS) {
+        throw httpError(status, url, {
+          retryAfterMs: wait,
+          message: `HTTP ${status} ${url} — Retry-After ${Math.ceil(wait / 1000)}s > budget ${Math.round(ZENDESK_MAX_RETRY_AFTER_MS / 1000)}s`,
+        });
       }
+      if (status === 429) {
+        // Quota partagé : on met tout le client en pause, pas juste cette requête.
+        zendeskBlockedUntil = Math.max(zendeskBlockedUntil, zdNow() + wait);
+        console.warn(
+          `zendesk 429 ${url.slice(0, 90)} — pause globale ${Math.round(wait / 1000)}s (Retry-After)`,
+        );
+      } else {
+        console.warn(`zendesk HTTP ${status} — retry ${attempt}/${ZENDESK_MAX_ATTEMPTS} dans ${wait}ms`);
+        await zendeskWait(zdNow() + wait);
+      }
+    } finally {
+      releaseZendeskSlot();
     }
   }
-  throw lastErr;
+  throw lastErr || new Error('zendesk fetch failed ' + url);
 }
+
+/** Flux RSS blog : retries + Retry-After via le helper réseau partagé. */
+async function fetchBlogRss() {
+  const res = await fetchWithRetry(BLOG_RSS, {
+    headers: {
+      'User-Agent': DEFAULT_UA,
+      Accept: 'application/rss+xml, application/xml, text/xml, */*',
+    },
+    timeout: 30000,
+    maxAttempts: BLOG_MAX_ATTEMPTS,
+    maxRetryAfterMs: MAX_RETRY_AFTER_MS,
+    label: 'blog rss',
+  });
+  if (!res.ok) throw httpError(Number(res.status) || 0, BLOG_RSS);
+  return res.text();
+}
+
 
 // ── Blog (RSS) ────────────────────────────────────────
 
@@ -353,10 +467,7 @@ async function fetchBlogPostBody(link) {
  * page pour les nouveaux articles seulement.
  */
 async function fetchBlog(oldById) {
-  const xml = await withRetries(
-    () => fetchText(BLOG_RSS, { accept: 'application/rss+xml, application/xml, text/xml, */*' }),
-    'blog rss',
-  );
+  const xml = await fetchBlogRss();
   const items = parseRssItems(xml, true);
   if (!items.length) throw new Error('Blog RSS returned no usable articles');
   console.log('Blog RSS items:', items.length);
@@ -434,7 +545,7 @@ async function fetchHelpMeta(center) {
   let pages = 0;
   while (page && pages < 10) {
     pages++;
-    const data = await fetchJson(page, { timeout: 20000 });
+    const data = await fetchZendeskJson(page, { timeout: 20000, label: `help meta ${center.key}` });
     for (const c of data.categories || []) categories.set(String(c.id), c.name || '');
     page = data.next_page || null;
     await sleep(100);
@@ -443,7 +554,7 @@ async function fetchHelpMeta(center) {
   pages = 0;
   while (page && pages < 15) {
     pages++;
-    const data = await fetchJson(page, { timeout: 20000 });
+    const data = await fetchZendeskJson(page, { timeout: 20000, label: `help sections ${center.key}` });
     for (const s of data.sections || []) {
       const cat = categories.get(String(s.category_id)) || '';
       sections.set(String(s.id), cat ? `${cat} · ${s.name || ''}` : (s.name || ''));
@@ -462,7 +573,7 @@ async function fetchHelpArticles(host, center, sectionsById) {
   let pages = 0;
   while (page && pages < 25) {
     pages++;
-    const data = await fetchJson(page, { timeout: 30000 });
+    const data = await fetchZendeskJson(page, { timeout: 30000, label: `help ${center.key}` });
     if (!Array.isArray(data.articles)) throw new Error('Zendesk response is missing articles');
     if (data.next_page !== null && (typeof data.next_page !== 'string' || !data.next_page.trim())) {
       throw new Error('Zendesk response has missing or invalid next_page');
@@ -504,7 +615,6 @@ async function fetchHelpCenter(center, sectionsById) {
     try {
       return await fetchHelpArticles(host, center, sectionsById);
     } catch (e) {
-      if (e.status === 429) throw e;
       lastErr = e;
       console.warn(`help ${center.key} via ${host}:`, String(e.message || e).slice(0, 100));
     }
@@ -732,10 +842,15 @@ function buildHelpComps(entry, action, center) {
 function buildHealthComps(statuses) {
   const lines = statuses.map(
     (s) =>
-      `**${s.label}** · ${s.retryAt ? `RATE LIMITED — retry <t:${Math.ceil(s.retryAt / 1000)}:R>` : s.ok ? 'OK' : 'FAILED — ' + truncate(s.error || 'unknown error', 90)}`,
+      `**${s.label}** · ${
+        s.ok
+          ? 'OK'
+          : (s.rateLimited ? 'FAILED (rate limited) — ' : 'FAILED — ') +
+            truncate(s.error || 'unknown error', 90)
+      }`,
   );
   const comps = [
-    textDisplay(statuses.some(s => !s.ok && !s.retryAt) ? '## Blog Tracker Error' : '## Blog Tracker · Rate limit'),
+    textDisplay('## Blog Tracker Error'),
     textDisplay(lines.join('\n')),
   ];
   const row = actionRow(RUN_URL ? [linkButton('Actions run', RUN_URL)] : []);
@@ -907,34 +1022,32 @@ async function main() {
     statuses.push({ label: 'Blog RSS', ok: true });
   } catch (e) {
     console.error('blog fail', e.message);
-    statuses.push({ label: 'Blog RSS', ok: false, error: e.message });
+    statuses.push({
+      label: 'Blog RSS',
+      ok: false,
+      error: e.message,
+      rateLimited: e.rateLimited === true || e.status === 429 || /HTTP 429/.test(String(e.message || '')),
+    });
   }
 
   // 2. Help centers
   const help = {};
-  const retryAt = {};
   await Promise.all(HELP_CENTERS.map(async (center) => {
     const prevList = previous.help[center.key] || [];
-    const until = previous.retryAt?.[center.key];
-    if (Number.isFinite(until) && until > Date.now()) {
-      retryAt[center.key] = until;
-      help[center.key] = prevList;
-      statuses.push({ label: center.label, ok: false, retryAt: until });
-      return;
-    }
     let list = prevList;
     try {
-      const sectionsById = await fetchHelpMeta(center).catch(e => {
-        if (e.status === 429) throw e;
-        return new Map();
-      });
+      const sectionsById = await fetchHelpMeta(center).catch(() => new Map());
       const fresh = await fetchHelpCenter(center, sectionsById);
       list = keepStaleHelp(fresh, prevList, center.key);
       statuses.push({ label: center.label, ok: true });
     } catch (e) {
       console.error('help fail', center.key, e.message);
-      if (e.status === 429) retryAt[center.key] = e.retryAt;
-      statuses.push({ label: center.label, ok: false, error: e.message, retryAt: retryAt[center.key] });
+      statuses.push({
+        label: center.label,
+        ok: false,
+        error: e.message,
+        rateLimited: e.rateLimited === true || e.status === 429,
+      });
     }
     help[center.key] = list;
   }));
@@ -1000,7 +1113,6 @@ async function main() {
       scrapedAt: new Date().toISOString(),
       blog: nextBlog,
       help: nextHelp,
-      retryAt,
       counts,
       lastErrorNotifiedAt,
     },
