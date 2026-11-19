@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-11-19T17:45:03.479Z",
+  "fetchedAt": "2026-11-19T17:51:42.388Z",
   "sources": {
     "discordApi": {
       "url": "https://discord.com/api/v9/experiments",
@@ -7,7 +7,7 @@
     },
     "fingerprintSampling": {
       "samples": 50,
-      "uniqueHashes": 4,
+      "uniqueHashes": 5,
       "matched": 1
     }
   },
@@ -317,6 +317,26 @@
       "fpEnrolled": 0,
       "fpTreatmentDist": {
         "0": 50
+      }
+    },
+    {
+      "hash": 1144304849,
+      "id": null,
+      "type": "user",
+      "title": "hash_1144304849",
+      "percentage": 0,
+      "status": "not_started",
+      "samples": 4,
+      "enrolled": 0,
+      "treatmentDistribution": {
+        "0": 4
+      },
+      "source": "fingerprint_sampling",
+      "note": "No local experiment ID match for this hash",
+      "fpSamples": 4,
+      "fpEnrolled": 0,
+      "fpTreatmentDist": {
+        "0": 4
       }
     },
     {
@@ -4130,6 +4150,16 @@
       "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
     },
     {
+      "id": "2026-11-voicemod-3p",
+      "hash": 1785884105,
+      "type": "user",
+      "title": "2026-11-voicemod-3p",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
       "id": "2026-11-waterwheels-discover",
       "hash": 2563831382,
       "type": "user",
@@ -4151,14 +4181,14 @@
     }
   ],
   "summary": {
-    "total": 389,
+    "total": 391,
     "guild": 42,
-    "user": 347,
-    "withPercentage": 8,
-    "withoutPercentage": 381,
+    "user": 349,
+    "withPercentage": 9,
+    "withoutPercentage": 382,
     "fullRollout": 5,
     "partial": 0,
-    "notStarted": 3,
-    "fpSampled": 4
+    "notStarted": 4,
+    "fpSampled": 5
   }
 }
