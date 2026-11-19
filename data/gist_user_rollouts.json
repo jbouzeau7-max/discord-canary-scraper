@@ -3,15 +3,15 @@
  "schemaVersion": 1,
  "semanticsVersion": 2,
  "notifyScopeVersion": 2,
- "runId": "20261119T193605_gist",
- "scrapedAt": "2026-11-19T19:36:05.689Z",
+ "runId": "20261119T200133_gist",
+ "scrapedAt": "2026-11-19T20:01:33.971Z",
  "source": {
   "gistId": "e3e99062983e6bd0feaef833f14fd931",
   "htmlUrl": "https://gist.github.com/agnonotdev/e3e99062983e6bd0feaef833f14fd931",
-  "rawUrl": "https://gist.githubusercontent.com/agnonotdev/e3e99062983e6bd0feaef833f14fd931/raw/d6b2e98dc6ea4f18cc4e875d666f065178202162/rollouts-tag.json",
-  "updatedAt": "2026-11-18T22:43:47Z",
-  "revision": "3281d75019bb5cb56f69d76a03dae5ae764903df",
-  "fetchedAt": "2026-11-19T19:36:05.689Z",
+  "rawUrl": "https://gist.githubusercontent.com/agnonotdev/e3e99062983e6bd0feaef833f14fd931/raw/234f15d264380c948790c0dc5b7050bf970331ef/rollouts-tag.json",
+  "updatedAt": "2026-11-19T20:00:48Z",
+  "revision": "5e36bbcca172784d9a87d2b393da39df906938d5",
+  "fetchedAt": "2026-11-19T20:01:33.971Z",
   "fallback": false,
   "rawFallback": false,
   "canonicalId": null
@@ -20,13 +20,18 @@
   "gistId": "192b2ce20539ce1021b5c8cb01b17ff0",
   "diverged": true,
   "divergingIds": [
+   "2026-11-soundboard-upsells-brand-refresh",
+   "2026-11-mobile-did-background-app-native",
    "2026-11-mobile-orb-redemption-thru-orders",
    "2026-11-payment-element-accordion-layout",
-   "2026-11-soundboard-upsells-brand-refresh",
    "2026-11-return-full-quest-status-in-decision",
    "2026-11-screen-share-dtx",
-   "2026-10-shop-twelve-days-promo",
+   "2026-10-shop-sku-nitro-upsell-refresh",
+   "2026-10-profile-nitro-upsell-refresh",
+   "2026-10-bounties-desktop-quest-bar",
+   "2026-10-android-nitro-fetch",
    "2026-10-clips-default-on-geo",
+   "2026-10-shop-twelve-days-promo",
    "2026-10-media-viewer-improvements",
    "2026-10-referral-refresh-notification",
    "2026-10-windows-playout-buffer-duration",
@@ -44,8 +49,6 @@
    "2026-10-collectibles-upgraded-search",
    "2026-10-media-viewer-video-perf-android",
    "2026-10-media-viewer-entrance-jank",
-   "2026-10-shop-sku-nitro-upsell-refresh",
-   "2026-10-profile-nitro-upsell-refresh",
    "2026-10-bulk-nitro-gifting-discounts",
    "2026-10-recurring-referral-reminder",
    "2026-10-user-profile-widget-suggestions",
@@ -58,6 +61,8 @@
    "2026-10-request-to-stream-non-games",
    "2026-10-android-stop-and-pause-video",
    "2026-10-android-fastimage-apng",
+   "2026-09-quest-home-bounties-feature-gate",
+   "2026-09-edit-profile-collectibles-ordering",
    "2026-09-mobile-request-to-stream",
    "2026-09-mobile-quest-home-sort-priority",
    "2026-09-voice-connect-feedback",
@@ -85,37 +90,38 @@
    "2026-05-dvp-for-attachments",
    "2026-05-mobile-request-review-no-tti",
    "2026-05-av1-bitrate-tuning",
-   "2026-02-game-server-tab-always-on"
+   "2026-02-game-server-tab-always-on",
+   "2025-04-native-markdown"
   ]
  },
  "stats": {
-  "total": 1058,
-  "user": 330,
-  "userData": 156,
+  "total": 1060,
+  "user": 332,
+  "userData": 161,
   "guild": 38,
   "unclassified": 690,
-  "noData": 264
+  "noData": 261
  },
  "acknowledged": {
   "2026-11-soundboard-upsells-brand-refresh": {
-   "key": "f19384d9db70dab8",
+   "key": "450cc77efa7c06a1",
    "hasData": true,
    "sig": "0:control|1:treatment",
    "byVariant": {
     "0": {
-     "pct": 25,
+     "pct": 50,
      "role": "control"
     },
     "1": {
-     "pct": 25,
+     "pct": 50,
      "role": "treatment"
     }
    },
    "treatment": {
-    "pct": 25
+    "pct": 50
    },
    "control": {
-    "pct": 25
+    "pct": 50
    },
    "notEligible": {
     "pct": 0
@@ -315,24 +321,24 @@
    "variantsCount": 1
   },
   "2026-10-shop-sku-nitro-upsell-refresh": {
-   "key": "f19384d9db70dab8",
+   "key": "450cc77efa7c06a1",
    "hasData": true,
    "sig": "0:control|1:treatment",
    "byVariant": {
     "0": {
-     "pct": 25,
+     "pct": 50,
      "role": "control"
     },
     "1": {
-     "pct": 25,
+     "pct": 50,
      "role": "treatment"
     }
    },
    "treatment": {
-    "pct": 25
+    "pct": 50
    },
    "control": {
-    "pct": 25
+    "pct": 50
    },
    "notEligible": {
     "pct": 0
@@ -439,24 +445,24 @@
    "variantsCount": 1
   },
   "2026-10-profile-nitro-upsell-refresh": {
-   "key": "f19384d9db70dab8",
+   "key": "450cc77efa7c06a1",
    "hasData": true,
    "sig": "0:control|1:treatment",
    "byVariant": {
     "0": {
-     "pct": 25,
+     "pct": 50,
      "role": "control"
     },
     "1": {
-     "pct": 25,
+     "pct": 50,
      "role": "treatment"
     }
    },
    "treatment": {
-    "pct": 25
+    "pct": 50
    },
    "control": {
-    "pct": 25
+    "pct": 50
    },
    "notEligible": {
     "pct": 0
@@ -1096,12 +1102,27 @@
    "variantsCount": 2
   },
   "2026-10-bounties-desktop-quest-bar": {
-   "key": "no_data",
-   "hasData": false,
-   "sig": "",
+   "key": "1e70f3a43ffcb582",
+   "hasData": true,
+   "sig": "1:treatment",
+   "byVariant": {
+    "1": {
+     "pct": 1,
+     "role": "treatment"
+    }
+   },
    "treatment": {
-    "pct": null
-   }
+    "pct": 1
+   },
+   "control": {
+    "pct": 0
+   },
+   "notEligible": {
+    "pct": 0
+   },
+   "projectedCoverage": null,
+   "projected": false,
+   "variantsCount": 1
   },
   "2026-10-badge-directory-updates": {
    "key": "95f46bfc73a52751",
@@ -1577,12 +1598,27 @@
    "variantsCount": 1
   },
   "2026-09-quest-home-bounties-feature-gate": {
-   "key": "no_data",
-   "hasData": false,
-   "sig": "",
+   "key": "1e70f3a43ffcb582",
+   "hasData": true,
+   "sig": "1:treatment",
+   "byVariant": {
+    "1": {
+     "pct": 1,
+     "role": "treatment"
+    }
+   },
    "treatment": {
-    "pct": null
-   }
+    "pct": 1
+   },
+   "control": {
+    "pct": 0
+   },
+   "notEligible": {
+    "pct": 0
+   },
+   "projectedCoverage": null,
+   "projected": false,
+   "variantsCount": 1
   },
   "2026-09-profile-widget-empty-state-suggestions": {
    "key": "16e432fd014af240",
@@ -1906,31 +1942,27 @@
    "variantsCount": 2
   },
   "2026-09-edit-profile-collectibles-ordering": {
-   "key": "930b20736eff5b69",
+   "key": "95f46bfc73a52751",
    "hasData": true,
-   "sig": "0:control|1:treatment",
+   "sig": "1:treatment",
    "byVariant": {
-    "0": {
-     "pct": 50,
-     "role": "control"
-    },
     "1": {
-     "pct": 50,
+     "pct": 100,
      "role": "treatment"
     }
    },
    "treatment": {
-    "pct": 50
+    "pct": 100
    },
    "control": {
-    "pct": 50
+    "pct": 0
    },
    "notEligible": {
     "pct": 0
    },
    "projectedCoverage": null,
    "projected": false,
-   "variantsCount": 2
+   "variantsCount": 1
   },
   "2026-09-desktop-voice-message-recording": {
    "key": "95f46bfc73a52751",
@@ -2305,24 +2337,24 @@
    }
   },
   "2026-08-mark-channel-unread": {
-   "key": "19a2e309986d6b83",
+   "key": "0fb7b5376255f51e",
    "hasData": true,
    "sig": "0:control|1:treatment",
    "byVariant": {
     "0": {
-     "pct": 1,
+     "pct": 10,
      "role": "control"
     },
     "1": {
-     "pct": 1,
+     "pct": 10,
      "role": "treatment"
     }
    },
    "treatment": {
-    "pct": 1
+    "pct": 10
    },
    "control": {
-    "pct": 1
+    "pct": 10
    },
    "notEligible": {
     "pct": 0
@@ -4352,12 +4384,31 @@
    }
   },
   "2025-04-native-markdown": {
-   "key": "no_data",
-   "hasData": false,
-   "sig": "",
+   "key": "8f704dda45e51bb8",
+   "hasData": true,
+   "sig": "1:treatment|2:treatment",
+   "byVariant": {
+    "1": {
+     "pct": 1,
+     "role": "treatment"
+    },
+    "2": {
+     "pct": 1,
+     "role": "treatment"
+    }
+   },
    "treatment": {
-    "pct": null
-   }
+    "pct": 2
+   },
+   "control": {
+    "pct": 0
+   },
+   "notEligible": {
+    "pct": 0
+   },
+   "projectedCoverage": null,
+   "projected": false,
+   "variantsCount": 2
   },
   "2025-04-desktop-refresh-fast-follows": {
    "key": "no_data",
@@ -21489,17 +21540,17 @@
    "variantsCount": 1
   },
   "2026-10-clips-default-on-geo": {
-   "key": "c52c1a195a61c67e",
+   "key": "95f46bfc73a52751",
    "hasData": true,
    "sig": "1:treatment",
    "byVariant": {
     "1": {
-     "pct": 30,
+     "pct": 100,
      "role": "treatment"
     }
    },
    "treatment": {
-    "pct": 30
+    "pct": 100
    },
    "control": {
     "pct": 0
@@ -21560,22 +21611,74 @@
    "projectedCoverage": null,
    "projected": false,
    "variantsCount": 1
+  },
+  "2026-11-mobile-did-background-app-native": {
+   "key": "19a2e309986d6b83",
+   "hasData": true,
+   "sig": "0:control|1:treatment",
+   "byVariant": {
+    "0": {
+     "pct": 1,
+     "role": "control"
+    },
+    "1": {
+     "pct": 1,
+     "role": "treatment"
+    }
+   },
+   "treatment": {
+    "pct": 1
+   },
+   "control": {
+    "pct": 1
+   },
+   "notEligible": {
+    "pct": 0
+   },
+   "projectedCoverage": null,
+   "projected": false,
+   "variantsCount": 2
+  },
+  "2026-10-android-nitro-fetch": {
+   "key": "0e2cdbf8930a790b",
+   "hasData": true,
+   "sig": "0:control|1:treatment|2:treatment",
+   "byVariant": {
+    "0": {
+     "pct": 5,
+     "role": "control"
+    },
+    "1": {
+     "pct": 5,
+     "role": "treatment"
+    },
+    "2": {
+     "pct": 5,
+     "role": "treatment"
+    }
+   },
+   "treatment": {
+    "pct": 10
+   },
+   "control": {
+    "pct": 5
+   },
+   "notEligible": {
+    "pct": 0
+   },
+   "projectedCoverage": null,
+   "projected": false,
+   "variantsCount": 3
   }
  },
  "lastRun": {
-  "changes": 0,
-  "delivered": 0,
+  "changes": 11,
+  "delivered": 11,
   "firstRun": false,
   "semanticsMigrated": 0,
   "scopeBaselined": 0
  },
  "history": [
-  {
-   "at": "2026-11-18T22:11:31.738Z",
-   "revision": "795c5d38db33c0e6f14fc4b75c4122b275f57997",
-   "changes": 0,
-   "delivered": 0
-  },
   {
    "at": "2026-11-18T22:40:39.864Z",
    "revision": "795c5d38db33c0e6f14fc4b75c4122b275f57997",
@@ -21869,6 +21972,12 @@
    "revision": "3281d75019bb5cb56f69d76a03dae5ae764903df",
    "changes": 0,
    "delivered": 0
+  },
+  {
+   "at": "2026-11-19T20:01:33.971Z",
+   "revision": "5e36bbcca172784d9a87d2b393da39df906938d5",
+   "changes": 11,
+   "delivered": 11
   }
  ]
 }

@@ -1,19 +1,19 @@
 {
- "generatedAt": "2026-11-19T09:52:17.555Z",
+ "generatedAt": "2026-11-19T20:01:33.978Z",
  "semantics": "couverture de l'espace de buckets (gist agnonotdev) — ni une proportion d'utilisateurs, ni une mesure d'accès réel ; multi-populations = couverture projetée non pondérée",
  "source": {
   "gistId": "e3e99062983e6bd0feaef833f14fd931",
   "htmlUrl": "https://gist.github.com/agnonotdev/e3e99062983e6bd0feaef833f14fd931",
-  "updatedAt": "2026-11-18T22:43:47Z",
-  "revision": "3281d75019bb5cb56f69d76a03dae5ae764903df"
+  "updatedAt": "2026-11-19T20:00:48Z",
+  "revision": "5e36bbcca172784d9a87d2b393da39df906938d5"
  },
  "stats": {
-  "total": 1058,
-  "user": 330,
-  "userData": 156,
+  "total": 1060,
+  "user": 332,
+  "userData": 161,
   "guild": 38,
   "unclassified": 690,
-  "noData": 264
+  "noData": 261
  },
  "experiments": [
   {
@@ -25,18 +25,18 @@
    "ambiguous": false,
    "projected": false,
    "flags": [],
-   "treatmentPct": 25,
+   "treatmentPct": 50,
    "projectedTreatmentPct": null,
-   "controlPct": 25,
+   "controlPct": 50,
    "notEligiblePct": 0,
-   "unassignedPct": 50,
+   "unassignedPct": 0,
    "byVariant": {
     "0": {
-     "pct": 25,
+     "pct": 50,
      "role": "control"
     },
     "1": {
-     "pct": 25,
+     "pct": 50,
      "role": "treatment"
     }
    }
@@ -126,6 +126,31 @@
    "byVariant": {
     "1": {
      "pct": 25,
+     "role": "treatment"
+    }
+   }
+  },
+  {
+   "id": "2026-11-mobile-did-background-app-native",
+   "title": "2026-11-mobile-did-background-app-native",
+   "type": "user",
+   "hasData": true,
+   "totalsAvailable": true,
+   "ambiguous": false,
+   "projected": false,
+   "flags": [],
+   "treatmentPct": 1,
+   "projectedTreatmentPct": null,
+   "controlPct": 1,
+   "notEligiblePct": 0,
+   "unassignedPct": 98,
+   "byVariant": {
+    "0": {
+     "pct": 1,
+     "role": "control"
+    },
+    "1": {
+     "pct": 1,
      "role": "treatment"
     }
    }
@@ -386,18 +411,18 @@
    "ambiguous": false,
    "projected": false,
    "flags": [],
-   "treatmentPct": 25,
+   "treatmentPct": 50,
    "projectedTreatmentPct": null,
-   "controlPct": 25,
+   "controlPct": 50,
    "notEligiblePct": 0,
-   "unassignedPct": 50,
+   "unassignedPct": 0,
    "byVariant": {
     "0": {
-     "pct": 25,
+     "pct": 50,
      "role": "control"
     },
     "1": {
-     "pct": 25,
+     "pct": 50,
      "role": "treatment"
     }
    }
@@ -576,18 +601,18 @@
    "ambiguous": false,
    "projected": false,
    "flags": [],
-   "treatmentPct": 25,
+   "treatmentPct": 50,
    "projectedTreatmentPct": null,
-   "controlPct": 25,
+   "controlPct": 50,
    "notEligiblePct": 0,
-   "unassignedPct": 50,
+   "unassignedPct": 0,
    "byVariant": {
     "0": {
-     "pct": 25,
+     "pct": 50,
      "role": "control"
     },
     "1": {
-     "pct": 25,
+     "pct": 50,
      "role": "treatment"
     }
    }
@@ -1496,14 +1521,14 @@
    "ambiguous": false,
    "projected": false,
    "flags": [],
-   "treatmentPct": 30,
+   "treatmentPct": 100,
    "projectedTreatmentPct": null,
    "controlPct": 0,
    "notEligiblePct": 0,
-   "unassignedPct": 70,
+   "unassignedPct": 0,
    "byVariant": {
     "1": {
-     "pct": 30,
+     "pct": 100,
      "role": "treatment"
     }
    }
@@ -1555,19 +1580,22 @@
    "id": "2026-10-bounties-desktop-quest-bar",
    "title": "2026-10-bounties-desktop-quest-bar",
    "type": "user",
-   "hasData": false,
-   "totalsAvailable": false,
+   "hasData": true,
+   "totalsAvailable": true,
    "ambiguous": false,
    "projected": false,
-   "flags": [
-    "no_data"
-   ],
-   "treatmentPct": null,
+   "flags": [],
+   "treatmentPct": 1,
    "projectedTreatmentPct": null,
-   "controlPct": null,
-   "notEligiblePct": null,
-   "unassignedPct": null,
-   "byVariant": {}
+   "controlPct": 0,
+   "notEligiblePct": 0,
+   "unassignedPct": 99,
+   "byVariant": {
+    "1": {
+     "pct": 1,
+     "role": "treatment"
+    }
+   }
   },
   {
    "id": "2026-10-badge-directory-updates",
@@ -1678,6 +1706,35 @@
     },
     "1": {
      "pct": 50,
+     "role": "treatment"
+    }
+   }
+  },
+  {
+   "id": "2026-10-android-nitro-fetch",
+   "title": "2026-10-android-nitro-fetch",
+   "type": "user",
+   "hasData": true,
+   "totalsAvailable": true,
+   "ambiguous": false,
+   "projected": false,
+   "flags": [],
+   "treatmentPct": 10,
+   "projectedTreatmentPct": null,
+   "controlPct": 5,
+   "notEligiblePct": 0,
+   "unassignedPct": 85,
+   "byVariant": {
+    "0": {
+     "pct": 5,
+     "role": "control"
+    },
+    "1": {
+     "pct": 5,
+     "role": "treatment"
+    },
+    "2": {
+     "pct": 5,
      "role": "treatment"
     }
    }
@@ -2250,19 +2307,22 @@
    "id": "2026-09-quest-home-bounties-feature-gate",
    "title": "2026-09-quest-home-bounties-feature-gate",
    "type": "user",
-   "hasData": false,
-   "totalsAvailable": false,
+   "hasData": true,
+   "totalsAvailable": true,
    "ambiguous": false,
    "projected": false,
-   "flags": [
-    "no_data"
-   ],
-   "treatmentPct": null,
+   "flags": [],
+   "treatmentPct": 1,
    "projectedTreatmentPct": null,
-   "controlPct": null,
-   "notEligiblePct": null,
-   "unassignedPct": null,
-   "byVariant": {}
+   "controlPct": 0,
+   "notEligiblePct": 0,
+   "unassignedPct": 99,
+   "byVariant": {
+    "1": {
+     "pct": 1,
+     "role": "treatment"
+    }
+   }
   },
   {
    "id": "2026-09-profile-widget-empty-state-suggestions",
@@ -2798,18 +2858,14 @@
    "ambiguous": false,
    "projected": false,
    "flags": [],
-   "treatmentPct": 50,
+   "treatmentPct": 100,
    "projectedTreatmentPct": null,
-   "controlPct": 50,
+   "controlPct": 0,
    "notEligiblePct": 0,
    "unassignedPct": 0,
    "byVariant": {
-    "0": {
-     "pct": 50,
-     "role": "control"
-    },
     "1": {
-     "pct": 50,
+     "pct": 100,
      "role": "treatment"
     }
    }
@@ -3281,18 +3337,18 @@
    "ambiguous": false,
    "projected": false,
    "flags": [],
-   "treatmentPct": 1,
+   "treatmentPct": 10,
    "projectedTreatmentPct": null,
-   "controlPct": 1,
+   "controlPct": 10,
    "notEligiblePct": 0,
-   "unassignedPct": 98,
+   "unassignedPct": 80,
    "byVariant": {
     "0": {
-     "pct": 1,
+     "pct": 10,
      "role": "control"
     },
     "1": {
-     "pct": 1,
+     "pct": 10,
      "role": "treatment"
     }
    }
@@ -6695,19 +6751,26 @@
    "id": "2025-04-native-markdown",
    "title": "2025-04-native-markdown",
    "type": "user",
-   "hasData": false,
-   "totalsAvailable": false,
+   "hasData": true,
+   "totalsAvailable": true,
    "ambiguous": false,
    "projected": false,
-   "flags": [
-    "no_data"
-   ],
-   "treatmentPct": null,
+   "flags": [],
+   "treatmentPct": 2,
    "projectedTreatmentPct": null,
-   "controlPct": null,
-   "notEligiblePct": null,
-   "unassignedPct": null,
-   "byVariant": {}
+   "controlPct": 0,
+   "notEligiblePct": 0,
+   "unassignedPct": 98,
+   "byVariant": {
+    "1": {
+     "pct": 1,
+     "role": "treatment"
+    },
+    "2": {
+     "pct": 1,
+     "role": "treatment"
+    }
+   }
   },
   {
    "id": "2025-04-desktop-refresh-fast-follows",
