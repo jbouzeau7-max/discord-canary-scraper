@@ -1,40 +1,42 @@
 {
   "format": 2,
-  "scrapedAt": "2026-11-18T11:00:28.231Z",
+  "scrapedAt": "2026-11-19T09:03:30.522Z",
   "sourceRepo": "https://github.com/Wumpus-Central/discord-mobile-datamining.git",
-  "sourceCommit": "6ddeaacd",
-  "sourceCommitFull": "6ddeaacd4c7087434c3ae7e6e15682efd54fb4a3",
-  "sourceMessage": "356.2 (356202) runtime",
-  "build": "356.2 (356202)",
-  "experimentCount": 338,
-  "stringCount": 9829,
+  "sourceCommit": "7adbe397",
+  "sourceCommitFull": "7adbe39700b5afa36a7a9280b96236f1e4d82070",
+  "sourceMessage": "356.3 (356203) runtime",
+  "build": "356.3 (356203)",
+  "experimentCount": 339,
+  "stringCount": 9854,
   "routeCount": 1095,
   "lastDiff": {
     "experiments": {
-      "added": 2,
-      "modified": 1,
-      "removed": 6,
+      "added": 3,
+      "modified": 0,
+      "removed": 2,
       "categoryChanged": 0
     },
     "strings": {
-      "added": 6,
-      "removed": 20
+      "added": 25,
+      "removed": 0
     },
     "routes": {
-      "added": 4,
+      "added": 0,
       "modified": 0,
-      "removed": 1
+      "removed": 0
     }
   },
   "notifyOk": true,
   "removedIds": [
     "2025-11-age-verification-expressive-everywhere",
+    "2026-01-ios-push-notif-json-fix",
     "2026-04-gifting-badge",
     "2026-05-server-theme-user",
     "2026-06-av1-encode-linux",
     "2026-07-clips-game-events-on-player",
     "2026-07-personal-widget",
     "2026-08-ios-objc-composed-image-cache",
+    "2026-09-profile-link-fetch",
     "2026-11-wishlist-countdown-mobile"
   ],
   "experiments": [
@@ -357,7 +359,7 @@
       "variations": {
         "0": {
           "enabled": false,
-          "sortType": "a"
+          "sortType": "Array"
         },
         "1": {
           "enabled": true,
@@ -701,7 +703,7 @@
       "system": "apex",
       "defaultConfig": {
         "timeoutMs": "HermesInternal",
-        "hidden": null
+        "hidden": "+60"
       },
       "variations": {
         "1": {},
@@ -908,22 +910,6 @@
         }
       },
       "file": "discord_app/modules/user_identifiers/native/IOSAppTransactionIdExperiment.tsx",
-      "source": "mobile_files"
-    },
-    {
-      "id": "2026-01-ios-push-notif-json-fix",
-      "kind": "user",
-      "type": "user",
-      "system": "apex",
-      "defaultConfig": {
-        "enabled": false
-      },
-      "variations": {
-        "1": {
-          "enabled": true
-        }
-      },
-      "file": "discord_app/modules/notifications/IOSPushNotificationRawPayloadFixExperiment.tsx",
       "source": "mobile_files"
     },
     {
@@ -1561,7 +1547,7 @@
       "type": "user",
       "system": "apex",
       "defaultConfig": {
-        "keybindOverride": "find"
+        "keybindOverride": "r"
       },
       "variations": {
         "1": {},
@@ -4192,22 +4178,6 @@
       "source": "mobile_files"
     },
     {
-      "id": "2026-09-profile-link-fetch",
-      "kind": "user",
-      "type": "user",
-      "system": "apex",
-      "defaultConfig": {
-        "enabled": false
-      },
-      "variations": {
-        "1": {
-          "enabled": true
-        }
-      },
-      "file": "discord_app/modules/user_profile/experiments/UserProfileLinkFetchExperiment.tsx",
-      "source": "mobile_files"
-    },
-    {
       "id": "2026-09-quest-home-bounties-feature-gate",
       "kind": "user",
       "type": "user",
@@ -5902,6 +5872,22 @@
       "source": "mobile_files"
     },
     {
+      "id": "2026-11-mobile-soundboard-sound-creation",
+      "kind": "guild",
+      "type": "guild",
+      "system": "apex",
+      "defaultConfig": {
+        "enabled": false
+      },
+      "variations": {
+        "1": {
+          "enabled": true
+        }
+      },
+      "file": "discord_app/modules/soundboard/experiments/SoundboardMobileCreationExperiment.tsx",
+      "source": "mobile_files"
+    },
+    {
       "id": "2026-11-nitro-mobile-refresh",
       "kind": "user",
       "type": "user",
@@ -5959,6 +5945,32 @@
       "source": "mobile_files"
     },
     {
+      "id": "2026-11-profile-edit-sheet-nitro-updates",
+      "kind": "user",
+      "type": "user",
+      "system": "apex",
+      "defaultConfig": {
+        "enabled": false,
+        "skipRoadblock": false
+      },
+      "variations": {
+        "0": {
+          "enabled": false,
+          "skipRoadblock": false
+        },
+        "1": {
+          "enabled": true,
+          "skipRoadblock": false
+        },
+        "2": {
+          "enabled": true,
+          "skipRoadblock": true
+        }
+      },
+      "file": "discord_app/modules/user_profile/experiments/ProfileEditSheetNitroUpdatesExperiment.tsx",
+      "source": "mobile_files"
+    },
+    {
       "id": "2026-11-profile-embed-rendering-mobile",
       "kind": "user",
       "type": "user",
@@ -6010,6 +6022,25 @@
         }
       },
       "file": "discord_app/modules/quests/experiments/QuestBarExpandRateV1Experiment.tsx",
+      "source": "mobile_files"
+    },
+    {
+      "id": "2026-11-quest-bar-start-quest-on-click",
+      "kind": "user",
+      "type": "user",
+      "system": "apex",
+      "defaultConfig": {
+        "enabled": false
+      },
+      "variations": {
+        "0": {
+          "enabled": false
+        },
+        "1": {
+          "enabled": true
+        }
+      },
+      "file": "discord_app/modules/quests/experiments/QuestBarStartQuestOnClickExperiment.tsx",
       "source": "mobile_files"
     },
     {
@@ -6189,6 +6220,7 @@
     "+B9e11": "Filter Options",
     "+BJTcB": "Too much?",
     "+BNMcF": "Noice!",
+    "+BTvw8": "Crop Start",
     "+ByEeM": "Choose your free reward",
     "+CbP2v": "Server Boost",
     "+Cvc+D": "For **{newValue, plural, one {a day} other {# days}}** of inactivity",
@@ -6403,6 +6435,7 @@
     "/TZX1J": "If you're looking for per-channel or per-server notifications, tap the desired server title and select Notification Settings.",
     "/UonHN": "Set a custom status",
     "/UyK0d": "Guinea",
+    "/VJ/Sp": "Record a Sound",
     "/VNqdD": "Default server settings",
     "/VQax8": "Chat",
     "/VzCKE": "Requires Subscription",
@@ -6465,6 +6498,7 @@
     "/tGlcj": "Your files are too powerful",
     "/tZh0A": "Bug Reporter",
     "/uELTj": "Category Settings",
+    "/uNYPJ": "Upload Sound",
     "/uOMKZ": "Developer may show ads while you use this application.",
     "/uQqJW": "What question do you want to ask?",
     "/uR9x1": "Transfer voice chat to your PlayStation!",
@@ -6958,6 +6992,7 @@
     "3BQmiC": "Related Emoji",
     "3BogKe": "End-to-end encrypted",
     "3CJfUa": "{gameName} Rewards",
+    "3CJlb1": "Sound Volume",
     "3CPsbo": "{skuName} is now available in your library. Go forth and play!",
     "3CX6Ev": "**{username}** has gifted you {skuName} for **{intervalCount, plural, one {# year} other {# years}}**!",
     "3D5eox": "WOAH THERE. WAY TOO SPICY",
@@ -7252,6 +7287,7 @@
     "58TAkl": "Nepal",
     "5911Lb": "Retry",
     "59CWHK": "Share Activity",
+    "59QgaD": "Select emoji",
     "59TVxL": "Event Frequency",
     "5AFxuK": "Exclusive to Nitro",
     "5AO43K": "Enter a rule name",
@@ -7526,6 +7562,7 @@
     "6vmnPC": "House & Home",
     "6vrePS": "{count, plural, one {# user} other {# users}}",
     "6vrfgt": "Disconnect",
+    "6w+Dyr": "This audio file could not be read. It may be corrupt or use an unsupported codec.",
     "6wOYUY": "Must have logged at least $[](metadataHook) films this year",
     "6wPmjo": "Developer may see your IP address while you use this application.",
     "6x5uWQ": "Activity Sharing",
@@ -7720,6 +7757,7 @@
     "8FZfNo": "{months, plural, one {Try # month for} other {Try # months for}} {price}",
     "8Fmo42": "In a specific DM",
     "8FpqOs": "This message will be sent to all servers following this channel. You can edit or delete this message later, and it will update correspondingly in each following server.",
+    "8Fu/S7": "Add Sound",
     "8GCOX6": "Must have a verified email on their Discord account.",
     "8GEdej": "failed to add user to the group",
     "8H5RmH": "My First Passkey",
@@ -8323,6 +8361,7 @@
     "C9Xe6+": "Ignore Invitation from {name}",
     "CA4GY/": "Vietnam",
     "CAgr1w": "Quest Actions",
+    "CCRKNz": "Preview",
     "CCzRiK": "Survival Horror",
     "CD/USA": "Gaming",
     "CDTD/K": "Add an Email",
@@ -9206,6 +9245,7 @@
     "HlAPoq": "Ready to start a call?",
     "HmFaFB": "Edit Main Profile",
     "HmPOrp": "No Reactions",
+    "HmsZGS": "Edit Sound",
     "HnzBCZ": "Disabled",
     "Howsng": "See what caught their eye. Hint hint.",
     "HphYKp": "Take a video selfie or scan your ID",
@@ -9291,6 +9331,7 @@
     "IHMsPn": "Language",
     "IHxEJU": "[Why am I seeing this?]({helpdeskArticle})",
     "IIanaY": "Changed the emoji from **{oldValue}** to **{newValue}**",
+    "IJXOt6": "Upload up to {maxSounds} custom sound reactions that anyone in this server can use. Nitro members will be able to access these sounds in any server on Discord.",
     "IJgkPX": "Try Soundboard on mobile!",
     "IK1Qvs": "Are you sure you want to leave? You won't be able to rejoin this group unless\n**{name}** adds you again.",
     "IKE48n": "New Member",
@@ -9371,6 +9412,7 @@
     "IqlCSq": "Friends of Friends",
     "IrNgN4": "This activity has a Quest!",
     "IsCKfh": "$[**{user}**](userHook) updated the emoji $[**{target}**](targetHook)",
+    "IsWCZP": "Animate your avatar with Nitro",
     "It18o2": "Disable usage of Launch Pad.",
     "ItpQxk": "Share Trial",
     "ItuabN": "Sign into Roblox",
@@ -9649,6 +9691,7 @@
     "KmVq/D": "The user to message",
     "Kma1jy": "fivem",
     "KoQe/G": "Allow members to change this server's name, switch regions, view all invites, add apps to this server and create and update AutoMod rules.",
+    "Koklr/": "That file type is not supported.",
     "KovTD8": "Strategy",
     "KpjsU9": "Connect your accounts to share your in-game status and activity. You're in control of what you share.",
     "KqEUsJ": "{mentionCount, plural, one {# mention} other {# mentions}}, {channelName} (media channel)",
@@ -9812,6 +9855,7 @@
     "M/Ld86": "Transfer voice chat to your Xbox!",
     "M/gBcA": "Are you building a Community?",
     "M0rDSO": "Unlock all icons with Nitro",
+    "M17qLj": "Failed to encode file.",
     "M1tw+4": "They're going for that minimalist aesthetic ✨ ask them for tips",
     "M2Hj9s": "Now previewing profile preset: {presetName}",
     "M2iEy3": "Allows members to view this channel by default.",
@@ -10087,6 +10131,7 @@
     "NnPbnH": "Croatia",
     "NoFvjZ": "Light Mode",
     "Np4yXU": "Let's go!",
+    "NpJGaM": "Sound Name",
     "NpUfej": "Now your Quest wins become mega wins with {bonusOrbMultiplier, number}x rewards when you subscribe to Nitro. Cancel anytime",
     "NpchGq": "Interests",
     "NqVyFk": "2FA enabled",
@@ -10165,6 +10210,7 @@
     "OEdU6X": "$[{username}](usernameHook) changed the group icon.",
     "OEgx/4": "Edit Wishlist",
     "OEtqpm": "Choose a FREE reward",
+    "OFNrmu": "Customize your banner with Nitro",
     "OGUjmt": "its current channel",
     "OGdz4x": "aesthetic",
     "OGiMXJ": "Channels",
@@ -10209,6 +10255,7 @@
     "OVlNGT": "your role color\n{numEmojis} premium emoji\n{numChannels} exclusive channels\n{numIntangibles} benefits",
     "OVvzY0": "You don't have this Server Tag on your own profile yet. Would you like to adopt it?",
     "OWIo8w": "Undecided",
+    "OWQNYr": "Soundboard",
     "OWZJdS": "You do not have permission to search the post history of **#{channelName}**.",
     "OWiWAp": "Suppress **@everyone** and **@here**",
     "OX4ybh": "Some settings aren't available until you $[verify your age group](hook)",
@@ -10358,6 +10405,7 @@
     "PPYvuv": "Launch App",
     "PQRuGc": "Celebrate with a GIF",
     "PQlCWk": "Starting in {minutes}m",
+    "PR/VbI": "Delete '{soundName}'",
     "PR/xUz": "Unblock",
     "PR5l07": "{count}+ Members",
     "PRBn9K": "Learn more about Highlights",
@@ -12100,6 +12148,7 @@
     "aTyGwD": "Lifestyle",
     "aUI70g": "Private Channel",
     "aURgY2": "Approved",
+    "aUT3+M": "{callState} — Tap to return to call",
     "aUXxzT": "Reminders",
     "aUZ/zD": "Create and delete roles",
     "aUuz7W": "Select a PS5",
@@ -12207,6 +12256,7 @@
     "bAVpRR": "Age-Restricted Server",
     "bAhz9l": "Urgent Message",
     "bBRdiB": "Try a random profile look with Nitro customizations",
+    "bBgBYo": "Crop End",
     "bBvAEH": "Default",
     "bCBpVg": "Kind of love it",
     "bCPN5y": "Find New Apps",
@@ -12257,6 +12307,7 @@
     "bYNuVx": "Post",
     "bZBLBs": "Custom Twitch Emoticons",
     "bZBN64": "Application",
+    "bZY171": "Save",
     "bbtoKm": "Customize your server by adding this app",
     "bbuXIn": "Manage Expressions",
     "bcuobK": "Allows members to mute other members in these voice channels for everyone.",
@@ -12609,6 +12660,7 @@
     "e/z3na": "Sign in with Xbox",
     "e0NQFU": "Zambia",
     "e0iISA": "Watch",
+    "e12/z4": "The provided file duration exceeds maximum of {limit, number} seconds.",
     "e1UiOa": "Upgrade to unlock access to this Avatar Decoration!",
     "e1heBD": "Options",
     "e1jq1z": "Kiribati",
@@ -13130,6 +13182,7 @@
     "hG1StD": "AutoMod",
     "hGBbF8": "WHAM",
     "hGWuxU": "This sticker is from a server that is either invite-only or unavailable. [Learn more]({openPremiumSettings}) about using custom stickers.",
+    "hHBkuG": "Stop",
     "hHGrWz": "You do not have permissions to use Activities in this channel.",
     "hHbsQj": "This channel is full",
     "hISCms": "Extreme forms of swearing or cursing",
@@ -13375,6 +13428,7 @@
     "in1rga": "Removed from Favorites",
     "inM1Yt": "You will no longer be able to access the features of {applicationName} on your Discord account.",
     "inyJqO": "Discoverable Server",
+    "ioD/9I": "Upload a Sound",
     "ioWOMP": "Status idea: {prompt}",
     "iouM3a": "Selected Message",
     "iovXMa": "Set the expire grace period to **{newValue, plural, one {a day} other {# days}}**",
@@ -14955,6 +15009,7 @@
     "tJPdhZ": "Filter messages from users, bots, or webhooks",
     "tJp+QV": "Learn from other monetizing servers",
     "tKCltd": "Nitro shared successfully",
+    "tLLYUw": "Banner",
     "tLQYs5": "Block messages with spam-like content from being posted.",
     "tLi4cR": "Tell us about your call experience.",
     "tM4PUv": "Sounds good!",
@@ -15079,6 +15134,7 @@
     "u54FxB": "View recent conversations",
     "u5QXpw": "Use {gameTitle} for {streamingDurationRequirement, number} minutes with your Discord client open to unlock {rewardNameWithArticle} for {duration}. Keep it with Nitro!",
     "u5xPPW": "Allow certain roles (optional)",
+    "u6+CmN": "Are you sure you want to delete **{soundName}**? This action cannot be undone.",
     "u6UjrL": "Make profiles sync with your Discord [theme]({onThemeClick}).",
     "u6cArh": "Set the Custom Invite Link to **{newValue}**",
     "u6dBsN": "Nitro + {num, plural, one {# Boost} other {# Boosts}}",
