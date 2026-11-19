@@ -1,8 +1,8 @@
 {
-  "runId": "2026-11-19T17-35-59-489Z_677886_n6q5ll",
-  "buildNumber": "677886",
-  "updatedAt": "2026-11-19T17:35:59.489Z",
-  "count": 386,
+  "runId": "2026-11-19T17-41-10-135Z_677894_a3fguz",
+  "buildNumber": "677894",
+  "updatedAt": "2026-11-19T17:41:10.135Z",
+  "count": 385,
   "experiments": [
     {
       "id": "2021-02_staff_qc_debugging",
@@ -8511,58 +8511,6 @@
         "source": "gist_user_rollouts"
       },
       "fingerprint": "7a498dc81dac18cfce10899e775e049a96ce5e34312fc46757670bcc4f113e48"
-    },
-    {
-      "id": "2026-07-call-of-duty-3pp-expired",
-      "kind": "user",
-      "type": "user",
-      "system": "apex",
-      "label": null,
-      "title": null,
-      "description": null,
-      "defaultConfig": {
-        "enabled": false
-      },
-      "variations": {
-        "0": {
-          "enabled": false
-        },
-        "1": {
-          "enabled": true
-        }
-      },
-      "treatments": null,
-      "variationSource": "variations",
-      "variationCount": 2,
-      "raw": {
-        "id": "2026-07-call-of-duty-3pp-expired",
-        "type": "user",
-        "kind": "user",
-        "label": null,
-        "system": "apex",
-        "defaultConfig": {
-          "enabled": false
-        },
-        "variations": {
-          "0": {
-            "enabled": false
-          },
-          "1": {
-            "enabled": true
-          }
-        },
-        "variationCount": 2,
-        "source": "discord"
-      },
-      "guildPercentage": {
-        "status": "unknown",
-        "value": null
-      },
-      "userPercentage": {
-        "status": "unknown",
-        "value": null
-      },
-      "fingerprint": "bb91f120b45c6615b750d848d8180a70e28fbf41b3b7a01e8c311abad4bcd99a"
     },
     {
       "id": "2026-07-clips-on-profile-setter",
