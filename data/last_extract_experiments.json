@@ -1,7 +1,7 @@
 {
-  "runId": "2026-11-19T22-19-07-951Z_678369_8xo9l0",
-  "buildNumber": "678369",
-  "updatedAt": "2026-11-19T22:19:07.951Z",
+  "runId": "2026-11-19T22-21-19-397Z_678373_2aymqi",
+  "buildNumber": "678373",
+  "updatedAt": "2026-11-19T22:21:19.397Z",
   "count": 387,
   "data": {
     "2021-02_staff_qc_debugging": {
@@ -5859,20 +5859,27 @@
       "type": "user",
       "kind": "user",
       "label": null,
-      "variationCount": 2,
+      "variationCount": 3,
       "variations": {
         "0": {
-          "enabled": false
+          "enabled": false,
+          "fetchOnShopButtonPrefetch": false
         },
         "1": {
-          "enabled": true
+          "enabled": true,
+          "fetchOnShopButtonPrefetch": true
+        },
+        "2": {
+          "enabled": true,
+          "fetchOnShopButtonPrefetch": false
         }
       },
       "defaultConfig": {
-        "enabled": false
+        "enabled": false,
+        "fetchOnShopButtonPrefetch": false
       },
       "system": "apex",
-      "fp": "a132e671ec769bff1c0098dc735f2baeb0913da871b7e467cc1f00da2edebd70"
+      "fp": "93ec881e9db9333069df4b107fa841c0ebe580997bae3a0f28697f00e4818e91"
     },
     "2026-10-collectibles-upgraded-search": {
       "id": "2026-10-collectibles-upgraded-search",

@@ -4110,14 +4110,21 @@
     "kind": "user",
     "name": "2026-10-collectibles-storefront-pricing-integration",
     "defaultConfig": {
-      "enabled": false
+      "enabled": false,
+      "fetchOnShopButtonPrefetch": false
     },
     "variations": {
       "0": {
-        "enabled": false
+        "enabled": false,
+        "fetchOnShopButtonPrefetch": false
       },
       "1": {
-        "enabled": true
+        "enabled": true,
+        "fetchOnShopButtonPrefetch": true
+      },
+      "2": {
+        "enabled": true,
+        "fetchOnShopButtonPrefetch": false
       }
     },
     "label": null

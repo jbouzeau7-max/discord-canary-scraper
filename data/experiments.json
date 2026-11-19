@@ -1,7 +1,7 @@
 {
-  "runId": "2026-11-19T22-19-07-951Z_678369_8xo9l0",
-  "buildNumber": "678369",
-  "scrapedAt": "2026-11-19T22:19:07.951Z",
+  "runId": "2026-11-19T22-21-19-397Z_678373_2aymqi",
+  "buildNumber": "678373",
+  "scrapedAt": "2026-11-19T22:21:19.397Z",
   "totals": {
     "all": 387,
     "legacy": 28,
@@ -6775,17 +6775,24 @@
       "label": null,
       "system": "apex",
       "defaultConfig": {
-        "enabled": false
+        "enabled": false,
+        "fetchOnShopButtonPrefetch": false
       },
       "variations": {
         "0": {
-          "enabled": false
+          "enabled": false,
+          "fetchOnShopButtonPrefetch": false
         },
         "1": {
-          "enabled": true
+          "enabled": true,
+          "fetchOnShopButtonPrefetch": true
+        },
+        "2": {
+          "enabled": true,
+          "fetchOnShopButtonPrefetch": false
         }
       },
-      "variationCount": 2,
+      "variationCount": 3,
       "source": "discord",
       "guildPercentage": {
         "status": "unknown",
@@ -6796,7 +6803,7 @@
         "value": 10,
         "source": "gist_user_rollouts"
       },
-      "fingerprint": "98bfa55f6697584a49ecb80633c9597df6a524f5219dc47b9954967c97e5d36a"
+      "fingerprint": "15ff8bdb01f98df81c8ead1e4d17209d0a24941fb5ca91f4501652f99e6ad2d9"
     },
     {
       "id": "2026-10-collectibles-upgraded-search",
