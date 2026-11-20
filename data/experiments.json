@@ -1,7 +1,7 @@
 {
-  "runId": "2026-11-20T17-40-29-351Z_678883_uth6uw",
-  "buildNumber": "678883",
-  "scrapedAt": "2026-11-20T17:40:29.352Z",
+  "runId": "2026-11-20T17-53-45-744Z_678886_jkfjkn",
+  "buildNumber": "678886",
+  "scrapedAt": "2026-11-20T17:53:45.744Z",
   "totals": {
     "all": 390,
     "legacy": 28,
@@ -8812,7 +8812,17 @@
         }
       },
       "variationCount": 2,
-      "source": "discord"
+      "source": "discord",
+      "guildPercentage": {
+        "status": "unknown",
+        "value": null
+      },
+      "userPercentage": {
+        "status": "provided",
+        "value": 100,
+        "source": "gist_user_rollouts"
+      },
+      "fingerprint": "a45f41cf7bc1a55bd4093601ae8cea55c3becb0c1997327a6422801c2c6ba953"
     },
     {
       "id": "2026-11-profile-embed-rendering-mobile",
@@ -9049,7 +9059,17 @@
         }
       },
       "variationCount": 2,
-      "source": "discord"
+      "source": "discord",
+      "guildPercentage": {
+        "status": "unknown",
+        "value": null
+      },
+      "userPercentage": {
+        "status": "provided",
+        "value": 10,
+        "source": "gist_user_rollouts"
+      },
+      "fingerprint": "11d75ae3b285c60e3812ea7dbf7f714e37d76f15334652d04bba363440263837"
     },
     {
       "id": "2026-11-soundboard-upsells-brand-refresh",
