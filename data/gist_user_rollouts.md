@@ -1,14 +1,14 @@
 # Rollouts user — couverture gist (v1)
 
-> Source : gist communautaire agnonotdev (copie réduite de rollouts.json, tag Assyst) · Généré le 2026-11-19 23:58 UTC
+> Source : gist communautaire agnonotdev (copie réduite de rollouts.json, tag Assyst) · Généré le 2026-11-20 01:55 UTC
 
 **Sémantique** : couvertures calculées exactement à partir des plages fournies par la source (0-10000), à 0,01 point près. Totaux par rôle = UNION des plages (un bucket appartient à un rôle s'il tombe dans l'union de ses plages). Quand la structure révèle plusieurs populations aplaties (drapeau `multi_population`) ou des rôles conflictuels/inconnus, l'agrégation est indéterminée (poids des populations absents du gist) : totaux principaux indisponibles, l'union est montrée en métrique secondaire étiquetée « projetée » (non pondérée). L'absence du drapeau ne prouve PAS une population unique — le gist n'en garde pas les frontières. Cohérent avec notre décodage wire apex (mêmes plages → mêmes nombres). Ce n'est ni une estimation statistique, ni la proportion de vrais utilisateurs éligibles, ni une mesure d'accès réel. Les expériences `guild` sont exclues (mesurées à part par le décodage wire apex).
 
-**Gist** : [e3e99062983e6bd0feaef833f14fd931](https://gist.github.com/agnonotdev/e3e99062983e6bd0feaef833f14fd931) · révision 5e36bbcc · MAJ 2026-11-19T20:00:48Z · 1060 expériences au catalogue (332 user dont 161 avec données, 38 guild, 690 type inconnu, 261 sans données)
+**Gist** : [e3e99062983e6bd0feaef833f14fd931](https://gist.github.com/agnonotdev/e3e99062983e6bd0feaef833f14fd931) · révision b0cb2e8d · MAJ 2026-11-20T01:04:44Z · 1063 expériences au catalogue (334 user dont 162 avec données, 39 guild, 690 type inconnu, 262 sans données)
 
-⚠️ Miroir divergent (192b2ce20539ce1021b5c8cb01b17ff0) sur : 2026-11-soundboard-upsells-brand-refresh, 2026-11-mobile-did-background-app-native, 2026-11-mobile-orb-redemption-thru-orders, 2026-11-payment-element-accordion-layout, 2026-11-return-full-quest-status-in-decision, 2026-11-screen-share-dtx, 2026-10-shop-sku-nitro-upsell-refresh, 2026-10-profile-nitro-upsell-refresh, 2026-10-bounties-desktop-quest-bar, 2026-10-android-nitro-fetch…
+⚠️ Miroir divergent (192b2ce20539ce1021b5c8cb01b17ff0) sur : 2026-11-soundboard-upsells-brand-refresh, 2026-11-mobile-did-background-app-native, 2026-11-mobile-orb-redemption-thru-orders, 2026-11-payment-element-accordion-layout, 2026-11-return-full-quest-status-in-decision, 2026-11-screen-share-dtx, 2026-10-interest-picker, 2026-10-social-layer-storefront-mobile-multi-sku-embed, 2026-10-profile-read-state, 2026-10-macaron…
 
-## Expériences user avec données (161)
+## Expériences user avec données (162)
 
 | Expérience | Treatment | Control | Non éligible | Espace non décrit | Particularités |
 |---|---:|---:|---:|---:|---|
@@ -24,6 +24,7 @@
 | 2026-10-summary-reminder-notif-re-revival | **20,00 %** | 20,00 % | 0,00 % | 60,00 % | — |
 | 2026-10-soundboard-new-sounds-badge | **10,00 %** | 10,00 % | 0,00 % | 80,00 % | — |
 | 2026-10-soundboard-mute-indicator | **10,00 %** | 10,00 % | 0,00 % | 80,00 % | — |
+| 2026-10-social-layer-storefront-mobile-multi-sku-embed | **100,00 %** | 0,00 % | 0,00 % | 0,00 % | — |
 | 2026-10-slayer-storefront-single-sku-wide-header | **100,00 %** | 0,00 % | 0,00 % | 0,00 % | — |
 | 2026-10-shop-twelve-days-promo | **0,00 %** | 30,00 % | 0,00 % | 70,00 % | — |
 | 2026-10-shop-sku-nitro-upsell-refresh | **50,00 %** | 50,00 % | 0,00 % | 0,00 % | — |
@@ -31,7 +32,7 @@
 | 2026-10-remove-quests-from-discovery | **50,00 %** | 50,00 % | 0,00 % | 0,00 % | — |
 | 2026-10-referral-refresh-notification | **100,00 %** | 0,00 % | 0,00 % | 0,00 % | — |
 | 2026-10-recurring-referral-reminder | **66,66 %** | 33,33 % | 0,00 % | 0,01 % | — |
-| 2026-10-profile-read-state | **5,00 %** | 5,00 % | 0,00 % | 90,00 % | — |
+| 2026-10-profile-read-state | **50,00 %** | 50,00 % | 0,00 % | 0,00 % | — |
 | 2026-10-profile-nitro-upsell-refresh | **50,00 %** | 50,00 % | 0,00 % | 0,00 % | — |
 | 2026-10-profile-default-tab-with-content | **30,00 %** | 30,00 % | 0,00 % | 40,00 % | — |
 | 2026-10-pinot-member | **100,00 %** | 0,00 % | 0,00 % | 0,00 % | — |
@@ -45,8 +46,7 @@
 | 2026-10-maple-syrup-2 | **67,25 %** | 32,75 % | 0,00 % | 0,00 % | — |
 | 2026-10-maple-syrup-1 | **50,00 %** | 50,00 % | 0,00 % | 0,00 % | — |
 | 2026-10-macaron-non-sub-marketing | **90,50 %** | 9,50 % | 0,00 % | 0,00 % | — |
-| 2026-10-macaron | **100,00 %** | 0,00 % | 0,00 % | 0,00 % | — |
-| 2026-10-interest-picker | **0,00 %** | 4,00 % | 0,00 % | 96,00 % | — |
+| 2026-10-interest-picker | **15,00 %** | 5,00 % | 0,00 % | 80,00 % | — |
 | 2026-10-guilds-render-experiment | **10,00 %** | 10,00 % | 0,00 % | 80,00 % | — |
 | 2026-10-guild-tooltip-lazy-content | **50,00 %** | 50,00 % | 0,00 % | 0,00 % | — |
 | 2026-10-gdm-duration-timer | **8,50 %** | 3,50 % | 0,00 % | 88,00 % | — |
@@ -115,6 +115,7 @@
 | 2026-08-user-bio-max-length | **100,00 %** | 0,00 % | 0,00 % | 0,00 % | — |
 | 2026-08-tiny-bronco | **100,00 %** | 0,00 % | 0,00 % | 0,00 % | — |
 | 2026-08-split-payments | **100,00 %** | 0,00 % | 0,00 % | 0,00 % | — |
+| 2026-08-social-layer-storefront-mobile-embed | **5,00 %** | 5,00 % | 0,00 % | 90,00 % | — |
 | 2026-08-show-expressive-modal-subtitle-alt | **100,00 %** | 0,00 % | 0,00 % | 0,00 % | — |
 | 2026-08-rive-web-perf | **50,00 %** | 50,00 % | 0,00 % | 0,00 % | — |
 | 2026-08-profile-embed-share-button | **100,00 %** | 0,00 % | 0,00 % | 0,00 % | — |
@@ -467,6 +468,9 @@
 - Variant 0 (control) : 10,00 % · plages 0 – 100 , 200 – 1100
 - Variant 1 (treatment) : 10,00 % · plages 100 – 200 , 1100 – 2000
 
+### 2026-10-social-layer-storefront-mobile-multi-sku-embed
+- Variant 1 (treatment) : 100,00 % · plages 0 – 10000
+
 ### 2026-10-slayer-storefront-single-sku-wide-header
 - Variant 1 (treatment) : 100,00 % · plages 0 – 10000
 
@@ -495,8 +499,8 @@
 - Variant 2 (treatment) : 33,33 % · plages 1334 – 2001 , 4001 – 5001 , 8333 – 9999
 
 ### 2026-10-profile-read-state
-- Variant 0 (control) : 5,00 % · plages 0 – 500
-- Variant 1 (treatment) : 5,00 % · plages 500 – 1000
+- Variant 0 (control) : 50,00 % · plages 0 – 500 , 1000 – 5500
+- Variant 1 (treatment) : 50,00 % · plages 500 – 1000 , 5500 – 10000
 
 ### 2026-10-profile-nitro-upsell-refresh
 - Variant 0 (control) : 50,00 % · plages 0 – 500 , 1000 – 1500 , 2000 – 3500 , 5000 – 7500
@@ -549,11 +553,11 @@
 - Variant 0 (control) : 9,50 % · plages 0 – 50 , 500 – 600 , 1500 – 1650 , 3000 – 3200 , 5000 – 5250 , 7500 – 7700
 - Variant 1 (treatment) : 90,50 % · plages 50 – 500 , 600 – 1500 , 1650 – 3000 , 3200 – 5000 , 5250 – 7500 , 7700 – 10000
 
-### 2026-10-macaron
-- Variant 2 (treatment) : 100,00 % · plages 0 – 10000
-
 ### 2026-10-interest-picker
-- Variant 0 (control) : 4,00 % · plages 0 – 400
+- Variant 0 (control) : 5,00 % · plages 0 – 100 , 400 – 800
+- Variant 1 (treatment) : 5,00 % · plages 100 – 200 , 800 – 1200
+- Variant 2 (treatment) : 5,00 % · plages 200 – 300 , 1200 – 1600
+- Variant 3 (treatment) : 5,00 % · plages 300 – 400 , 1600 – 2000
 
 ### 2026-10-guilds-render-experiment
 - Variant 0 (control) : 10,00 % · plages 0 – 100 , 200 – 600 , 1000 – 1500
@@ -796,6 +800,10 @@
 
 ### 2026-08-split-payments
 - Variant 1 (treatment) : 100,00 % · plages 0 – 10000
+
+### 2026-08-social-layer-storefront-mobile-embed
+- Variant 0 (control) : 5,00 % · plages 0 – 500
+- Variant 1 (treatment) : 5,00 % · plages 5000 – 5500
 
 ### 2026-08-show-expressive-modal-subtitle-alt
 - Variant 1 (treatment) : 100,00 % · plages 0 – 10000

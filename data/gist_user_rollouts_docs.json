@@ -1,19 +1,19 @@
 {
- "generatedAt": "2026-11-19T20:01:33.978Z",
+ "generatedAt": "2026-11-20T01:55:11.635Z",
  "semantics": "couverture de l'espace de buckets (gist agnonotdev) — ni une proportion d'utilisateurs, ni une mesure d'accès réel ; multi-populations = couverture projetée non pondérée",
  "source": {
   "gistId": "e3e99062983e6bd0feaef833f14fd931",
   "htmlUrl": "https://gist.github.com/agnonotdev/e3e99062983e6bd0feaef833f14fd931",
-  "updatedAt": "2026-11-19T20:00:48Z",
-  "revision": "5e36bbcca172784d9a87d2b393da39df906938d5"
+  "updatedAt": "2026-11-20T01:04:44Z",
+  "revision": "b0cb2e8d460bfd96b55ee9e850a10bb334603e64"
  },
  "stats": {
-  "total": 1060,
-  "user": 332,
-  "userData": 161,
-  "guild": 38,
+  "total": 1063,
+  "user": 334,
+  "userData": 162,
+  "guild": 39,
   "unclassified": 690,
-  "noData": 261
+  "noData": 262
  },
  "experiments": [
   {
@@ -361,6 +361,27 @@
    }
   },
   {
+   "id": "2026-10-social-layer-storefront-mobile-multi-sku-embed",
+   "title": "2026-10-social-layer-storefront-mobile-multi-sku-embed",
+   "type": "user",
+   "hasData": true,
+   "totalsAvailable": true,
+   "ambiguous": false,
+   "projected": false,
+   "flags": [],
+   "treatmentPct": 100,
+   "projectedTreatmentPct": null,
+   "controlPct": 0,
+   "notEligiblePct": 0,
+   "unassignedPct": 0,
+   "byVariant": {
+    "1": {
+     "pct": 100,
+     "role": "treatment"
+    }
+   }
+  },
+  {
    "id": "2026-10-slayer-storefront-single-sku-wide-header",
    "title": "2026-10-slayer-storefront-single-sku-wide-header",
    "type": "user",
@@ -576,18 +597,18 @@
    "ambiguous": false,
    "projected": false,
    "flags": [],
-   "treatmentPct": 5,
+   "treatmentPct": 50,
    "projectedTreatmentPct": null,
-   "controlPct": 5,
+   "controlPct": 50,
    "notEligiblePct": 0,
-   "unassignedPct": 90,
+   "unassignedPct": 0,
    "byVariant": {
     "0": {
-     "pct": 5,
+     "pct": 50,
      "role": "control"
     },
     "1": {
-     "pct": 5,
+     "pct": 50,
      "role": "treatment"
     }
    }
@@ -917,22 +938,19 @@
    "id": "2026-10-macaron",
    "title": "2026-10-macaron",
    "type": "user",
-   "hasData": true,
-   "totalsAvailable": true,
+   "hasData": false,
+   "totalsAvailable": false,
    "ambiguous": false,
    "projected": false,
-   "flags": [],
-   "treatmentPct": 100,
+   "flags": [
+    "no_data"
+   ],
+   "treatmentPct": null,
    "projectedTreatmentPct": null,
-   "controlPct": 0,
-   "notEligiblePct": 0,
-   "unassignedPct": 0,
-   "byVariant": {
-    "2": {
-     "pct": 100,
-     "role": "treatment"
-    }
-   }
+   "controlPct": null,
+   "notEligiblePct": null,
+   "unassignedPct": null,
+   "byVariant": {}
   },
   {
    "id": "2026-10-interest-picker",
@@ -943,15 +961,27 @@
    "ambiguous": false,
    "projected": false,
    "flags": [],
-   "treatmentPct": 0,
+   "treatmentPct": 15,
    "projectedTreatmentPct": null,
-   "controlPct": 4,
+   "controlPct": 5,
    "notEligiblePct": 0,
-   "unassignedPct": 96,
+   "unassignedPct": 80,
    "byVariant": {
     "0": {
-     "pct": 4,
+     "pct": 5,
      "role": "control"
+    },
+    "1": {
+     "pct": 5,
+     "role": "treatment"
+    },
+    "2": {
+     "pct": 5,
+     "role": "treatment"
+    },
+    "3": {
+     "pct": 5,
+     "role": "treatment"
     }
    }
   },
@@ -3197,6 +3227,31 @@
    "byVariant": {
     "1": {
      "pct": 100,
+     "role": "treatment"
+    }
+   }
+  },
+  {
+   "id": "2026-08-social-layer-storefront-mobile-embed",
+   "title": "2026-08-social-layer-storefront-mobile-embed",
+   "type": "user",
+   "hasData": true,
+   "totalsAvailable": true,
+   "ambiguous": false,
+   "projected": false,
+   "flags": [],
+   "treatmentPct": 5,
+   "projectedTreatmentPct": null,
+   "controlPct": 5,
+   "notEligiblePct": 0,
+   "unassignedPct": 90,
+   "byVariant": {
+    "0": {
+     "pct": 5,
+     "role": "control"
+    },
+    "1": {
+     "pct": 5,
      "role": "treatment"
     }
    }
