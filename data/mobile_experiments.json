@@ -1,23 +1,23 @@
 {
   "format": 2,
-  "scrapedAt": "2026-11-19T09:03:30.522Z",
+  "scrapedAt": "2026-11-20T08:30:10.363Z",
   "sourceRepo": "https://github.com/Wumpus-Central/discord-mobile-datamining.git",
-  "sourceCommit": "7adbe397",
-  "sourceCommitFull": "7adbe39700b5afa36a7a9280b96236f1e4d82070",
-  "sourceMessage": "356.3 (356203) runtime",
-  "build": "356.3 (356203)",
-  "experimentCount": 339,
-  "stringCount": 9854,
+  "sourceCommit": "82685fbc",
+  "sourceCommitFull": "82685fbc82b2aefda118da6d5fe62798f0ee7435",
+  "sourceMessage": "356.4 (356204) runtime",
+  "build": "356.4 (356204)",
+  "experimentCount": 344,
+  "stringCount": 9862,
   "routeCount": 1095,
   "lastDiff": {
     "experiments": {
-      "added": 3,
-      "modified": 0,
-      "removed": 2,
+      "added": 6,
+      "modified": 2,
+      "removed": 1,
       "categoryChanged": 0
     },
     "strings": {
-      "added": 25,
+      "added": 8,
       "removed": 0
     },
     "routes": {
@@ -30,6 +30,7 @@
   "removedIds": [
     "2025-11-age-verification-expressive-everywhere",
     "2026-01-ios-push-notif-json-fix",
+    "2026-02-private-channel-hiding",
     "2026-04-gifting-badge",
     "2026-05-server-theme-user",
     "2026-06-av1-encode-linux",
@@ -359,7 +360,7 @@
       "variations": {
         "0": {
           "enabled": false,
-          "sortType": "Array"
+          "sortType": "a"
         },
         "1": {
           "enabled": true,
@@ -703,7 +704,7 @@
       "system": "apex",
       "defaultConfig": {
         "timeoutMs": "HermesInternal",
-        "hidden": "+60"
+        "hidden": null
       },
       "variations": {
         "1": {},
@@ -1223,26 +1224,6 @@
         }
       },
       "file": "discord_app/modules/premium/experiments/PremiumOfferReminderExperiment.tsx",
-      "source": "mobile_files"
-    },
-    {
-      "id": "2026-02-private-channel-hiding",
-      "kind": "user",
-      "type": "user",
-      "system": "apex",
-      "defaultConfig": {
-        "enableObfuscation": false,
-        "enableIntegrityCheck": false
-      },
-      "variations": {
-        "1": {},
-        "2": {},
-        "3": {
-          "enableObfuscation": false,
-          "enableIntegrityCheck": false
-        }
-      },
-      "file": "discord_app/modules/gateway/PrivateChannelHidingExperiment.tsx",
       "source": "mobile_files"
     },
     {
@@ -4706,14 +4687,21 @@
       "type": "user",
       "system": "apex",
       "defaultConfig": {
-        "enabled": false
+        "enabled": false,
+        "fetchOnShopButtonPrefetch": false
       },
       "variations": {
         "0": {
-          "enabled": false
+          "enabled": false,
+          "fetchOnShopButtonPrefetch": false
         },
         "1": {
-          "enabled": true
+          "enabled": true,
+          "fetchOnShopButtonPrefetch": true
+        },
+        "2": {
+          "enabled": true,
+          "fetchOnShopButtonPrefetch": false
         }
       },
       "file": "discord_app/modules/collectibles/experiments/CollectiblesStorefrontPricingIntegrationExperiment.tsx",
@@ -5759,6 +5747,25 @@
       "source": "mobile_files"
     },
     {
+      "id": "2026-11-build-a-bear-images",
+      "kind": "user",
+      "type": "user",
+      "system": "apex",
+      "defaultConfig": {
+        "canSaveCharacter": false
+      },
+      "variations": {
+        "0": {
+          "canSaveCharacter": false
+        },
+        "1": {
+          "canSaveCharacter": true
+        }
+      },
+      "file": "discord_app/modules/checkpoint/CheckpointExperiments.tsx",
+      "source": "mobile_files"
+    },
+    {
       "id": "2026-11-checkpoint-intro",
       "kind": "user",
       "type": "user",
@@ -5888,6 +5895,22 @@
       "source": "mobile_files"
     },
     {
+      "id": "2026-11-multiquest-client",
+      "kind": "user",
+      "type": "user",
+      "system": "apex",
+      "defaultConfig": {
+        "enabled": false
+      },
+      "variations": {
+        "1": {
+          "enabled": true
+        }
+      },
+      "file": "discord_app/modules/quests/experiments/QuestSeriesExperiment.tsx",
+      "source": "mobile_files"
+    },
+    {
       "id": "2026-11-nitro-mobile-refresh",
       "kind": "user",
       "type": "user",
@@ -5945,6 +5968,22 @@
       "source": "mobile_files"
     },
     {
+      "id": "2026-11-phoenix-app-access",
+      "kind": "user",
+      "type": "user",
+      "system": "apex",
+      "defaultConfig": {
+        "enabled": false
+      },
+      "variations": {
+        "1": {
+          "enabled": true
+        }
+      },
+      "file": "discord_app/modules/user_settings/phoenix_launch/native/PhoenixAppAccessExperiment.tsx",
+      "source": "mobile_files"
+    },
+    {
       "id": "2026-11-profile-edit-sheet-nitro-updates",
       "kind": "user",
       "type": "user",
@@ -5984,6 +6023,25 @@
         }
       },
       "file": "discord_app/modules/user_profile/experiments/UserProfileEmbedRenderingMobileExperiment.tsx",
+      "source": "mobile_files"
+    },
+    {
+      "id": "2026-11-quest-bar-android-video",
+      "kind": "user",
+      "type": "user",
+      "system": "apex",
+      "defaultConfig": {
+        "enabled": false
+      },
+      "variations": {
+        "0": {
+          "enabled": false
+        },
+        "1": {
+          "enabled": true
+        }
+      },
+      "file": "discord_app/modules/quests/experiments/QuestBarAndroidVideoExperiment.tsx",
       "source": "mobile_files"
     },
     {
@@ -6068,14 +6126,66 @@
         "2": {},
         "3": {},
         "4": {},
-        "5": {},
-        "6": {},
-        "7": {},
-        "8": {},
-        "9": {},
-        "10": {},
-        "11": {},
-        "12": {}
+        "5": {}
+      },
+      "file": "discord_app/modules/quests/experiments/index.tsx",
+      "source": "mobile_files"
+    },
+    {
+      "id": "2026-11-quest-home-tile-single-elements-pt-2",
+      "kind": "user",
+      "type": "user",
+      "system": "apex",
+      "defaultConfig": {
+        "newLayoutWithSearch": false,
+        "iconOnlyCTA": false,
+        "badge": {
+          "duration": false,
+          "new": false,
+          "countdown": false
+        },
+        "showGameLogo": true,
+        "showQuestTitle": true,
+        "compactReward": false,
+        "shorterHeight": false,
+        "gameIconReward": false,
+        "underlinedMultiplier": false
+      },
+      "variations": {
+        "1": {},
+        "2": {},
+        "3": {},
+        "4": {},
+        "5": {}
+      },
+      "file": "discord_app/modules/quests/experiments/index.tsx",
+      "source": "mobile_files"
+    },
+    {
+      "id": "2026-11-quest-home-tile-single-elements-pt-3",
+      "kind": "user",
+      "type": "user",
+      "system": "apex",
+      "defaultConfig": {
+        "newLayoutWithSearch": false,
+        "iconOnlyCTA": false,
+        "badge": {
+          "duration": false,
+          "new": false,
+          "countdown": false
+        },
+        "showGameLogo": true,
+        "showQuestTitle": true,
+        "compactReward": false,
+        "shorterHeight": false,
+        "gameIconReward": false,
+        "underlinedMultiplier": false
+      },
+      "variations": {
+        "1": {},
+        "2": {},
+        "3": {},
+        "4": {}
       },
       "file": "discord_app/modules/quests/experiments/index.tsx",
       "source": "mobile_files"
@@ -8561,6 +8671,7 @@
     "DWGBAh": "Choose how long you want to timeout a member if they break this rule. Members in timeout are temporarily not allowed to chat, react in text channels, or connect to voice or Stage channels.",
     "DXgdcD": "Share this link with friends and they'll automatically join your server.",
     "DXgoi2": "Select up to 3 friends, and send them a Nitro Trial straight from your direct messages. Choose wisely...",
+    "DXxeZL": "Restart the app to apply. The switch takes effect on the next hard launch.",
     "DYFPg2": "Your attachment(s) are too large. Maximum total size is {maxSizeMb} MB.",
     "DYMZ/p": "Friend Suggestions — {count}",
     "DYil93": "{name}, added {dateTime}",
@@ -9144,6 +9255,7 @@
     "H81Zyy": "Create Event",
     "H86QQU": "Added tag $[](newTagHook)",
     "H8Ri2Y": "Marked the channel as age-restricted",
+    "H8h6wu": "Phoenix",
     "H97H4S": "Is $[](platformQuantityHook)",
     "H99tIV": "Storage diagnostics uploaded.",
     "H9Jxp6": "Add up to {maxSlots} additional custom emoji that can only be used by subscribers. Animated emoji can be used by all subscribers even without Nitro. However, only subscribers with Nitro can use premium emoji outside of this server.",
@@ -9553,6 +9665,7 @@
     "JjjeZb": "We can’t find your friends right now. Maybe they are having a snack break. Try again later!",
     "JkyCIO": "Keep your quest going!",
     "Jm6e0x": "[{username}]({usernameOnClick}) joined the party.",
+    "JmRY4R": "Removed from category **{oldValue}**",
     "JmUENg": "Remove Channel Link",
     "Jmwzdx": "Select at least {count}",
     "JnUaVG": "$[**{user}**](userHook) deleted the emoji $[**{target}**](targetHook)",
@@ -10108,6 +10221,7 @@
     "NcPfDc": "Serbia",
     "NcZh6K": "Make sure your Steam profile is set to public before connecting.",
     "NdQ+lP": "Find a friend faster with a personal nickname. It will only be visible to you in your direct messages.",
+    "NeUd53": "Was in channel **{oldValue}**",
     "NfPn+e": "Ban Member",
     "NfZxrD": "Your message reached {count, plural, one {# reaction} other {# reactions}}:",
     "NffSH8": "Boost Cooldown: **{days, number}d {hours, number}h {minutes, number}m**",
@@ -11266,6 +11380,7 @@
     "UxvER+": "OpenCritic",
     "UyVVan": "In order to delete or disable your account you must first transfer ownership of all servers that you own.",
     "UyaxJy": "Enter 1 or more words or phrases",
+    "UzQe83": "Moved from category **{oldValue}** to **{newValue}**",
     "Uzdyho": "Blocked and Ignored Accounts Present",
     "V+B3FH": "Need help? Check out our [troubleshooting guide]({guideURL}).",
     "V+IE93": "Join Nitro to unlock access to this Nameplate!",
@@ -11686,6 +11801,7 @@
     "Xa1KEN": "Send messages with updates from the following widgets:",
     "Xb2REN": "Dismiss",
     "XbE/Ez": "An error occurred while restoring your subscription. Please try again!",
+    "XbS++5": "Added to category **{newValue}**",
     "XbwtSA": "Set system channel welcome stickers to **{newValue}**",
     "XcOMLu": "Save on your new look",
     "XcPHfw": "Finish",
@@ -14344,6 +14460,7 @@
     "ozoE2A": "Join Call",
     "p+XCta": "Neon Nights",
     "p/9PGp": "A new code is generated when **{username}** joins a call or either of you change devices. [Learn more about end-to-end encryption.]({helpArticle})",
+    "p/Rd4u": "In channel **{newValue}**",
     "p/YmkR": "Up to {count} participants",
     "p0I2Bk": "Switch up your theme color",
     "p0IwNA": "Set up permissions",
@@ -14436,6 +14553,7 @@
     "pZT2Zh": "Allows members to add new emoji reactions to a message in these channels. If this permission is disabled, members can still react using any existing reactions on a message.",
     "pa1ZVh": "**Denied** {count, plural, one {permission} other {permissions}}",
     "paC+US": "Disconnect {applicationName}",
+    "paDGCW": "Launch Phoenix on next start",
     "paDJBM": "Hm, didn’t work. Double check that the username is correct.",
     "pclUFJ": "Server Owner",
     "pdFFK+": "You've been disconnected...",
