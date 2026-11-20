@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-11-20T00:07:00.545Z",
+  "fetchedAt": "2026-11-20T03:29:48.554Z",
   "sources": {
     "discordApi": {
       "url": "https://discord.com/api/v9/experiments",
@@ -320,10 +320,10 @@
       }
     },
     {
-      "hash": 704914099,
+      "hash": 1144304849,
       "id": null,
       "type": "user",
-      "title": "hash_704914099",
+      "title": "hash_1144304849",
       "percentage": 0,
       "status": "not_started",
       "samples": 2,
@@ -340,23 +340,23 @@
       }
     },
     {
-      "hash": 1144304849,
+      "hash": 704914099,
       "id": null,
       "type": "user",
-      "title": "hash_1144304849",
+      "title": "hash_704914099",
       "percentage": 0,
       "status": "not_started",
-      "samples": 4,
+      "samples": 1,
       "enrolled": 0,
       "treatmentDistribution": {
-        "0": 4
+        "0": 1
       },
       "source": "fingerprint_sampling",
       "note": "No local experiment ID match for this hash",
-      "fpSamples": 4,
+      "fpSamples": 1,
       "fpEnrolled": 0,
       "fpTreatmentDist": {
-        "0": 4
+        "0": 1
       }
     },
     {
@@ -4060,6 +4060,26 @@
       "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
     },
     {
+      "id": "2026-11-quest-home-tile-single-elements-pt-2",
+      "hash": 3778376554,
+      "type": "user",
+      "title": "2026-11-quest-home-tile-single-elements-pt-2",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-11-quest-home-tile-single-elements-pt-3",
+      "hash": 2805430559,
+      "type": "user",
+      "title": "2026-11-quest-home-tile-single-elements-pt-3",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
       "id": "2026-11-return-full-quest-status-in-decision",
       "hash": 681027080,
       "type": "user",
@@ -4181,11 +4201,11 @@
     }
   ],
   "summary": {
-    "total": 391,
+    "total": 393,
     "guild": 42,
-    "user": 349,
+    "user": 351,
     "withPercentage": 9,
-    "withoutPercentage": 382,
+    "withoutPercentage": 384,
     "fullRollout": 5,
     "partial": 0,
     "notStarted": 4,
