@@ -1,8 +1,8 @@
 {
-  "runId": "2026-11-20T00-15-42-983Z_678612_6idcjq",
-  "buildNumber": "678612",
-  "updatedAt": "2026-11-20T00:15:42.983Z",
-  "count": 386,
+  "runId": "2026-11-20T00-19-13-527Z_678621_qjd78r",
+  "buildNumber": "678621",
+  "updatedAt": "2026-11-20T00:19:13.527Z",
+  "count": 388,
   "experiments": [
     {
       "id": "2021-02_staff_qc_debugging",
@@ -19783,41 +19783,11 @@
           "duration": false,
           "new": false,
           "countdown": true
-        },
-        "6": {
-          "newLayoutWithSearch": true,
-          "showGameLogo": false
-        },
-        "7": {
-          "newLayoutWithSearch": true,
-          "showQuestTitle": false
-        },
-        "8": {
-          "newLayoutWithSearch": true,
-          "compactReward": true
-        },
-        "9": {
-          "newLayoutWithSearch": true,
-          "shorterHeight": true
-        },
-        "10": {
-          "newLayoutWithSearch": true,
-          "gameIconReward": true
-        },
-        "11": {
-          "newLayoutWithSearch": true,
-          "duration": true,
-          "new": true,
-          "countdown": false
-        },
-        "12": {
-          "newLayoutWithSearch": true,
-          "underlinedMultiplier": true
         }
       },
       "treatments": null,
       "variationSource": "variations",
-      "variationCount": 13,
+      "variationCount": 6,
       "raw": {
         "id": "2026-11-quest-home-tile-single-elements",
         "type": "user",
@@ -19853,39 +19823,9 @@
             "duration": false,
             "new": false,
             "countdown": true
-          },
-          "6": {
-            "newLayoutWithSearch": true,
-            "showGameLogo": false
-          },
-          "7": {
-            "newLayoutWithSearch": true,
-            "showQuestTitle": false
-          },
-          "8": {
-            "newLayoutWithSearch": true,
-            "compactReward": true
-          },
-          "9": {
-            "newLayoutWithSearch": true,
-            "shorterHeight": true
-          },
-          "10": {
-            "newLayoutWithSearch": true,
-            "gameIconReward": true
-          },
-          "11": {
-            "newLayoutWithSearch": true,
-            "duration": true,
-            "new": true,
-            "countdown": false
-          },
-          "12": {
-            "newLayoutWithSearch": true,
-            "underlinedMultiplier": true
           }
         },
-        "variationCount": 13,
+        "variationCount": 6,
         "source": "discord"
       },
       "guildPercentage": {
@@ -19896,7 +19836,163 @@
         "status": "unknown",
         "value": null
       },
-      "fingerprint": "c5bf268a9007742f6d748a044e71d94dd59119d095e529ba330a2f8803d095e9"
+      "fingerprint": "45a454dde7b4a990ce62f16efc7c9caf92ea432a67ca1669def4eecbbb96a60d"
+    },
+    {
+      "id": "2026-11-quest-home-tile-single-elements-pt-2",
+      "kind": "user",
+      "type": "user",
+      "system": "apex",
+      "label": null,
+      "title": null,
+      "description": null,
+      "defaultConfig": null,
+      "variations": {
+        "0": {
+          "id": 0
+        },
+        "1": {
+          "newLayoutWithSearch": true
+        },
+        "2": {
+          "newLayoutWithSearch": true,
+          "showGameLogo": false
+        },
+        "3": {
+          "newLayoutWithSearch": true,
+          "showQuestTitle": false
+        },
+        "4": {
+          "newLayoutWithSearch": true,
+          "compactReward": true
+        },
+        "5": {
+          "newLayoutWithSearch": true,
+          "shorterHeight": true
+        }
+      },
+      "treatments": null,
+      "variationSource": "variations",
+      "variationCount": 6,
+      "raw": {
+        "id": "2026-11-quest-home-tile-single-elements-pt-2",
+        "type": "user",
+        "kind": "user",
+        "label": null,
+        "system": "apex",
+        "defaultConfig": null,
+        "variations": {
+          "0": {
+            "id": 0
+          },
+          "1": {
+            "newLayoutWithSearch": true
+          },
+          "2": {
+            "newLayoutWithSearch": true,
+            "showGameLogo": false
+          },
+          "3": {
+            "newLayoutWithSearch": true,
+            "showQuestTitle": false
+          },
+          "4": {
+            "newLayoutWithSearch": true,
+            "compactReward": true
+          },
+          "5": {
+            "newLayoutWithSearch": true,
+            "shorterHeight": true
+          }
+        },
+        "variationCount": 6,
+        "source": "discord"
+      },
+      "guildPercentage": {
+        "status": "unknown",
+        "value": null
+      },
+      "userPercentage": {
+        "status": "unknown",
+        "value": null
+      },
+      "fingerprint": "223aa2fd0440b0fda3cbec97c18b45afdf67562d5963708ea966175fda1831c2"
+    },
+    {
+      "id": "2026-11-quest-home-tile-single-elements-pt-3",
+      "kind": "user",
+      "type": "user",
+      "system": "apex",
+      "label": null,
+      "title": null,
+      "description": null,
+      "defaultConfig": null,
+      "variations": {
+        "0": {
+          "id": 0
+        },
+        "1": {
+          "newLayoutWithSearch": true
+        },
+        "2": {
+          "newLayoutWithSearch": true,
+          "gameIconReward": true
+        },
+        "3": {
+          "newLayoutWithSearch": true,
+          "duration": true,
+          "new": true,
+          "countdown": false
+        },
+        "4": {
+          "newLayoutWithSearch": true,
+          "underlinedMultiplier": true
+        }
+      },
+      "treatments": null,
+      "variationSource": "variations",
+      "variationCount": 5,
+      "raw": {
+        "id": "2026-11-quest-home-tile-single-elements-pt-3",
+        "type": "user",
+        "kind": "user",
+        "label": null,
+        "system": "apex",
+        "defaultConfig": null,
+        "variations": {
+          "0": {
+            "id": 0
+          },
+          "1": {
+            "newLayoutWithSearch": true
+          },
+          "2": {
+            "newLayoutWithSearch": true,
+            "gameIconReward": true
+          },
+          "3": {
+            "newLayoutWithSearch": true,
+            "duration": true,
+            "new": true,
+            "countdown": false
+          },
+          "4": {
+            "newLayoutWithSearch": true,
+            "underlinedMultiplier": true
+          }
+        },
+        "variationCount": 5,
+        "source": "discord"
+      },
+      "guildPercentage": {
+        "status": "unknown",
+        "value": null
+      },
+      "userPercentage": {
+        "status": "unknown",
+        "value": null
+      },
+      "fingerprint": "1b10c5f100567e16dceb55ae3367c77b9617c01e558e54e0b403cdf08f7e9132"
     },
     {
       "id": "2026-11-return-full-quest-status-in-decision",

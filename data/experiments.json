@@ -1,11 +1,11 @@
 {
-  "runId": "2026-11-20T00-15-42-983Z_678612_6idcjq",
-  "buildNumber": "678612",
-  "scrapedAt": "2026-11-20T00:15:42.983Z",
+  "runId": "2026-11-20T00-19-13-527Z_678621_qjd78r",
+  "buildNumber": "678621",
+  "scrapedAt": "2026-11-20T00:19:13.527Z",
   "totals": {
-    "all": 386,
+    "all": 388,
     "legacy": 28,
-    "apex": 358
+    "apex": 360
   },
   "experiments": [
     {
@@ -8816,39 +8816,75 @@
           "duration": false,
           "new": false,
           "countdown": true
+        }
+      },
+      "variationCount": 6,
+      "source": "discord"
+    },
+    {
+      "id": "2026-11-quest-home-tile-single-elements-pt-2",
+      "type": "user",
+      "kind": "user",
+      "label": null,
+      "system": "apex",
+      "defaultConfig": null,
+      "variations": {
+        "0": {
+          "id": 0
         },
-        "6": {
+        "1": {
+          "newLayoutWithSearch": true
+        },
+        "2": {
           "newLayoutWithSearch": true,
           "showGameLogo": false
         },
-        "7": {
+        "3": {
           "newLayoutWithSearch": true,
           "showQuestTitle": false
         },
-        "8": {
+        "4": {
           "newLayoutWithSearch": true,
           "compactReward": true
         },
-        "9": {
+        "5": {
           "newLayoutWithSearch": true,
           "shorterHeight": true
+        }
+      },
+      "variationCount": 6,
+      "source": "discord"
+    },
+    {
+      "id": "2026-11-quest-home-tile-single-elements-pt-3",
+      "type": "user",
+      "kind": "user",
+      "label": null,
+      "system": "apex",
+      "defaultConfig": null,
+      "variations": {
+        "0": {
+          "id": 0
         },
-        "10": {
+        "1": {
+          "newLayoutWithSearch": true
+        },
+        "2": {
           "newLayoutWithSearch": true,
           "gameIconReward": true
         },
-        "11": {
+        "3": {
           "newLayoutWithSearch": true,
           "duration": true,
           "new": true,
           "countdown": false
         },
-        "12": {
+        "4": {
           "newLayoutWithSearch": true,
           "underlinedMultiplier": true
         }
       },
-      "variationCount": 13,
+      "variationCount": 5,
       "source": "discord"
     },
     {

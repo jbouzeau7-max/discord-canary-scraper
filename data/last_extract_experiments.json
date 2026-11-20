@@ -1,8 +1,8 @@
 {
-  "runId": "2026-11-20T00-15-42-983Z_678612_6idcjq",
-  "buildNumber": "678612",
-  "updatedAt": "2026-11-20T00:15:42.983Z",
-  "count": 386,
+  "runId": "2026-11-20T00-19-13-527Z_678621_qjd78r",
+  "buildNumber": "678621",
+  "updatedAt": "2026-11-20T00:19:13.527Z",
+  "count": 388,
   "data": {
     "2021-02_staff_qc_debugging": {
       "id": "2021-02_staff_qc_debugging",
@@ -7582,7 +7582,7 @@
       "type": "user",
       "kind": "user",
       "label": null,
-      "variationCount": 13,
+      "variationCount": 6,
       "variations": {
         "0": {
           "id": 0
@@ -7611,41 +7611,77 @@
           "duration": false,
           "new": false,
           "countdown": true
+        }
+      },
+      "defaultConfig": null,
+      "system": "apex",
+      "fp": "45a454dde7b4a990ce62f16efc7c9caf92ea432a67ca1669def4eecbbb96a60d"
+    },
+    "2026-11-quest-home-tile-single-elements-pt-2": {
+      "id": "2026-11-quest-home-tile-single-elements-pt-2",
+      "type": "user",
+      "kind": "user",
+      "label": null,
+      "variationCount": 6,
+      "variations": {
+        "0": {
+          "id": 0
         },
-        "6": {
+        "1": {
+          "newLayoutWithSearch": true
+        },
+        "2": {
           "newLayoutWithSearch": true,
           "showGameLogo": false
         },
-        "7": {
+        "3": {
           "newLayoutWithSearch": true,
           "showQuestTitle": false
         },
-        "8": {
+        "4": {
           "newLayoutWithSearch": true,
           "compactReward": true
         },
-        "9": {
+        "5": {
           "newLayoutWithSearch": true,
           "shorterHeight": true
+        }
+      },
+      "defaultConfig": null,
+      "system": "apex",
+      "fp": "223aa2fd0440b0fda3cbec97c18b45afdf67562d5963708ea966175fda1831c2"
+    },
+    "2026-11-quest-home-tile-single-elements-pt-3": {
+      "id": "2026-11-quest-home-tile-single-elements-pt-3",
+      "type": "user",
+      "kind": "user",
+      "label": null,
+      "variationCount": 5,
+      "variations": {
+        "0": {
+          "id": 0
         },
-        "10": {
+        "1": {
+          "newLayoutWithSearch": true
+        },
+        "2": {
           "newLayoutWithSearch": true,
           "gameIconReward": true
         },
-        "11": {
+        "3": {
           "newLayoutWithSearch": true,
           "duration": true,
           "new": true,
           "countdown": false
         },
-        "12": {
+        "4": {
           "newLayoutWithSearch": true,
           "underlinedMultiplier": true
         }
       },
       "defaultConfig": null,
       "system": "apex",
-      "fp": "c5bf268a9007742f6d748a044e71d94dd59119d095e529ba330a2f8803d095e9"
+      "fp": "1b10c5f100567e16dceb55ae3367c77b9617c01e558e54e0b403cdf08f7e9132"
     },
     "2026-11-return-full-quest-status-in-decision": {
       "id": "2026-11-return-full-quest-status-in-decision",
