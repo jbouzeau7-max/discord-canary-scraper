@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-11-20T12:35:33.691Z",
+  "fetchedAt": "2026-11-20T12:42:10.628Z",
   "sources": {
     "discordApi": {
       "url": "https://discord.com/api/v9/experiments",
@@ -7,7 +7,7 @@
     },
     "fingerprintSampling": {
       "samples": 50,
-      "uniqueHashes": 4,
+      "uniqueHashes": 5,
       "matched": 1
     }
   },
@@ -300,23 +300,43 @@
       }
     },
     {
+      "hash": 4055210228,
+      "id": null,
+      "type": "user",
+      "title": "hash_4055210228",
+      "percentage": 0,
+      "status": "not_started",
+      "samples": 50,
+      "enrolled": 0,
+      "treatmentDistribution": {
+        "0": 50
+      },
+      "source": "fingerprint_sampling",
+      "note": "No local experiment ID match for this hash",
+      "fpSamples": 50,
+      "fpEnrolled": 0,
+      "fpTreatmentDist": {
+        "0": 50
+      }
+    },
+    {
       "hash": 1144304849,
       "id": null,
       "type": "user",
       "title": "hash_1144304849",
       "percentage": 0,
       "status": "not_started",
-      "samples": 3,
+      "samples": 4,
       "enrolled": 0,
       "treatmentDistribution": {
-        "0": 3
+        "0": 4
       },
       "source": "fingerprint_sampling",
       "note": "No local experiment ID match for this hash",
-      "fpSamples": 3,
+      "fpSamples": 4,
       "fpEnrolled": 0,
       "fpTreatmentDist": {
-        "0": 3
+        "0": 4
       }
     },
     {
@@ -326,17 +346,17 @@
       "title": "hash_704914099",
       "percentage": 0,
       "status": "not_started",
-      "samples": 3,
+      "samples": 6,
       "enrolled": 0,
       "treatmentDistribution": {
-        "0": 3
+        "0": 6
       },
       "source": "fingerprint_sampling",
       "note": "No local experiment ID match for this hash",
-      "fpSamples": 3,
+      "fpSamples": 6,
       "fpEnrolled": 0,
       "fpTreatmentDist": {
-        "0": 3
+        "0": 6
       }
     },
     {
@@ -4201,14 +4221,14 @@
     }
   ],
   "summary": {
-    "total": 394,
+    "total": 395,
     "guild": 42,
-    "user": 352,
-    "withPercentage": 8,
+    "user": 353,
+    "withPercentage": 9,
     "withoutPercentage": 386,
     "fullRollout": 5,
     "partial": 0,
-    "notStarted": 3,
-    "fpSampled": 4
+    "notStarted": 4,
+    "fpSampled": 5
   }
 }
