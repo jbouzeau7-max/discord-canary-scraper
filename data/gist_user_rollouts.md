@@ -1,19 +1,22 @@
 # Rollouts user — couverture gist (v1)
 
-> Source : gist communautaire agnonotdev (copie réduite de rollouts.json, tag Assyst) · Généré le 2026-11-20 17:39 UTC
+> Source : gist communautaire agnonotdev (copie réduite de rollouts.json, tag Assyst) · Généré le 2026-11-20 17:45 UTC
 
 **Sémantique** : couvertures calculées exactement à partir des plages fournies par la source (0-10000), à 0,01 point près. Totaux par rôle = UNION des plages (un bucket appartient à un rôle s'il tombe dans l'union de ses plages). Quand la structure révèle plusieurs populations aplaties (drapeau `multi_population`) ou des rôles conflictuels/inconnus, l'agrégation est indéterminée (poids des populations absents du gist) : totaux principaux indisponibles, l'union est montrée en métrique secondaire étiquetée « projetée » (non pondérée). L'absence du drapeau ne prouve PAS une population unique — le gist n'en garde pas les frontières. Cohérent avec notre décodage wire apex (mêmes plages → mêmes nombres). Ce n'est ni une estimation statistique, ni la proportion de vrais utilisateurs éligibles, ni une mesure d'accès réel. Les expériences `guild` sont exclues (mesurées à part par le décodage wire apex).
 
-**Gist** : [e3e99062983e6bd0feaef833f14fd931](https://gist.github.com/agnonotdev/e3e99062983e6bd0feaef833f14fd931) · révision b0cb2e8d · MAJ 2026-11-20T01:04:44Z · 1063 expériences au catalogue (334 user dont 162 avec données, 39 guild, 690 type inconnu, 262 sans données)
+**Gist** : [e3e99062983e6bd0feaef833f14fd931](https://gist.github.com/agnonotdev/e3e99062983e6bd0feaef833f14fd931) · révision 4ffd49f4 · MAJ 2026-11-20T17:44:54Z · 1066 expériences au catalogue (337 user dont 165 avec données, 39 guild, 690 type inconnu, 262 sans données)
 
-⚠️ Miroir divergent (192b2ce20539ce1021b5c8cb01b17ff0) sur : 2026-11-soundboard-upsells-brand-refresh, 2026-11-mobile-did-background-app-native, 2026-11-mobile-orb-redemption-thru-orders, 2026-11-payment-element-accordion-layout, 2026-11-return-full-quest-status-in-decision, 2026-11-screen-share-dtx, 2026-10-interest-picker, 2026-10-social-layer-storefront-mobile-multi-sku-embed, 2026-10-profile-read-state, 2026-10-macaron…
+⚠️ Miroir divergent (192b2ce20539ce1021b5c8cb01b17ff0) sur : 2026-11-premium-group-continuation-40, 2026-11-phoenix-app-access, 2026-11-shop-this-look-full-profile-button, 2026-11-soundboard-upsells-brand-refresh, 2026-11-mobile-did-background-app-native, 2026-11-mobile-orb-redemption-thru-orders, 2026-11-payment-element-accordion-layout, 2026-11-return-full-quest-status-in-decision, 2026-11-screen-share-dtx, 2026-10-guild-bulk-role-actions…
 
-## Expériences user avec données (162)
+## Expériences user avec données (165)
 
 | Expérience | Treatment | Control | Non éligible | Espace non décrit | Particularités |
 |---|---:|---:|---:|---:|---|
 | 2026-11-soundboard-upsells-brand-refresh | **50,00 %** | 50,00 % | 0,00 % | 0,00 % | — |
+| 2026-11-shop-this-look-full-profile-button | **10,00 %** | 10,00 % | 0,00 % | 80,00 % | — |
 | 2026-11-screen-share-dtx | **10,00 %** | 10,00 % | 0,00 % | 80,00 % | — |
+| 2026-11-premium-group-continuation-40 | **100,00 %** | 0,00 % | 0,00 % | 0,00 % | — |
+| 2026-11-phoenix-app-access | **0,00 %** | 100,00 % | 0,00 % | 0,00 % | — |
 | 2026-11-payment-element-accordion-layout | **10,00 %** | 10,00 % | 0,00 % | 80,00 % | — |
 | 2026-11-mobile-orb-redemption-thru-orders | **25,00 %** | 0,00 % | 0,00 % | 75,00 % | — |
 | 2026-11-mobile-did-background-app-native | **1,00 %** | 1,00 % | 0,00 % | 98,00 % | — |
@@ -422,9 +425,19 @@
 - Variant 0 (control) : 50,00 % · plages 0 – 500 , 1000 – 1500 , 2000 – 3500 , 5000 – 7500
 - Variant 1 (treatment) : 50,00 % · plages 500 – 1000 , 1500 – 2000 , 3500 – 5000 , 7500 – 10000
 
+### 2026-11-shop-this-look-full-profile-button
+- Variant 0 (control) : 10,00 % · plages 0 – 1000
+- Variant 1 (treatment) : 10,00 % · plages 1000 – 2000
+
 ### 2026-11-screen-share-dtx
 - Variant 0 (control) : 10,00 % · plages 0 – 1000
 - Variant 1 (treatment) : 10,00 % · plages 1000 – 2000
+
+### 2026-11-premium-group-continuation-40
+- Variant 1 (treatment) : 100,00 % · plages 0 – 10000
+
+### 2026-11-phoenix-app-access
+- Variant 0 (control) : 100,00 % · plages 0 – 10000
 
 ### 2026-11-payment-element-accordion-layout
 - Variant 0 (control) : 10,00 % · plages 0 – 1000
