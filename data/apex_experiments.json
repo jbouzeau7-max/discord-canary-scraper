@@ -5214,6 +5214,22 @@
   },
   {
     "kind": "user",
+    "name": "2026-11-build-a-bear-images",
+    "defaultConfig": {
+      "canSaveCharacter": false
+    },
+    "variations": {
+      "0": {
+        "canSaveCharacter": false
+      },
+      "1": {
+        "canSaveCharacter": true
+      }
+    },
+    "label": null
+  },
+  {
+    "kind": "user",
     "name": "2026-11-checkpoint-intro",
     "defaultConfig": {
       "enabled": false
@@ -5273,6 +5289,22 @@
       },
       "1": {
         "id": 1
+      }
+    },
+    "label": null
+  },
+  {
+    "kind": "user",
+    "name": "2026-11-cuj-survey-card",
+    "defaultConfig": {
+      "enabled": false
+    },
+    "variations": {
+      "0": {
+        "enabled": false
+      },
+      "1": {
+        "enabled": true
       }
     },
     "label": null

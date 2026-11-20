@@ -1,9 +1,9 @@
 {
-  "runId": "2026-11-20T00-19-13-527Z_678621_qjd78r",
-  "buildNumber": "678621",
-  "scrapedAt": "2026-11-20T00:19:13.527Z",
+  "runId": "2026-11-20T04-00-41-255Z_678776_metnmv",
+  "buildNumber": "678776",
+  "scrapedAt": "2026-11-20T04:00:41.255Z",
   "totals": {
-    "all": 388
+    "all": 390
   },
   "experiments": [
     {
@@ -4656,7 +4656,17 @@
         }
       },
       "variationCount": 2,
-      "source": "discord"
+      "source": "discord",
+      "guildPercentage": {
+        "status": "unknown",
+        "value": null
+      },
+      "userPercentage": {
+        "status": "provided",
+        "value": 5,
+        "source": "gist_user_rollouts"
+      },
+      "fingerprint": "43337707f57d20c2a1b55c5c79b8ebe00f69338d2015e48e782c2ba8d1411c5b"
     },
     {
       "id": "2026-08-split-payments",
@@ -7393,17 +7403,7 @@
         }
       },
       "variationCount": 3,
-      "source": "discord",
-      "guildPercentage": {
-        "status": "unknown",
-        "value": null
-      },
-      "userPercentage": {
-        "status": "provided",
-        "value": 100,
-        "source": "gist_user_rollouts"
-      },
-      "fingerprint": "ced11510fbe821f30685a02db9d5ae5d0bcaea70d11577b0891b14a4d22239af"
+      "source": "discord"
     },
     {
       "id": "2026-10-macaron-non-sub-marketing",
@@ -7809,10 +7809,10 @@
       },
       "userPercentage": {
         "status": "provided",
-        "value": 5,
+        "value": 50,
         "source": "gist_user_rollouts"
       },
-      "fingerprint": "c94379ed71e674e14ec70d51b5addad69c5f74a3fe3327a714c4b00ca18feaef"
+      "fingerprint": "b48be8cfb2c549f8a76c2f8761f8e0e4b3db1fb5eae8eab92ce30b4ddb1b4828"
     },
     {
       "id": "2026-10-remove-quests-from-discovery",
@@ -8091,7 +8091,17 @@
         }
       },
       "variationCount": 2,
-      "source": "discord"
+      "source": "discord",
+      "guildPercentage": {
+        "status": "unknown",
+        "value": null
+      },
+      "userPercentage": {
+        "status": "provided",
+        "value": 100,
+        "source": "gist_user_rollouts"
+      },
+      "fingerprint": "77dc491f2bc20e182d4c22160d514e81b34a9ff48ebbfc1da0ec32599c7b9d7d"
     },
     {
       "id": "2026-10-soundboard-new-sounds-badge",
@@ -8421,6 +8431,26 @@
       "source": "discord"
     },
     {
+      "id": "2026-11-build-a-bear-images",
+      "type": "user",
+      "kind": "user",
+      "label": null,
+      "system": "apex",
+      "defaultConfig": {
+        "canSaveCharacter": false
+      },
+      "variations": {
+        "0": {
+          "canSaveCharacter": false
+        },
+        "1": {
+          "canSaveCharacter": true
+        }
+      },
+      "variationCount": 2,
+      "source": "discord"
+    },
+    {
       "id": "2026-11-checkpoint-intro",
       "type": "user",
       "kind": "user",
@@ -8496,6 +8526,26 @@
         },
         "1": {
           "id": 1
+        }
+      },
+      "variationCount": 2,
+      "source": "discord"
+    },
+    {
+      "id": "2026-11-cuj-survey-card",
+      "type": "user",
+      "kind": "user",
+      "label": null,
+      "system": "apex",
+      "defaultConfig": {
+        "enabled": false
+      },
+      "variations": {
+        "0": {
+          "enabled": false
+        },
+        "1": {
+          "enabled": true
         }
       },
       "variationCount": 2,

@@ -1,8 +1,8 @@
 {
-  "runId": "2026-11-20T00-19-13-527Z_678621_qjd78r",
-  "buildNumber": "678621",
-  "updatedAt": "2026-11-20T00:19:13.527Z",
-  "count": 388,
+  "runId": "2026-11-20T04-00-41-255Z_678776_metnmv",
+  "buildNumber": "678776",
+  "updatedAt": "2026-11-20T04:00:41.255Z",
+  "count": 390,
   "data": {
     "2021-02_staff_qc_debugging": {
       "id": "2021-02_staff_qc_debugging",
@@ -7228,6 +7228,26 @@
       "system": "apex",
       "fp": "409ad870dfae41f9aab25580352e001e26aa62431c7aaf0c4f2be3383e05221f"
     },
+    "2026-11-build-a-bear-images": {
+      "id": "2026-11-build-a-bear-images",
+      "type": "user",
+      "kind": "user",
+      "label": null,
+      "variationCount": 2,
+      "variations": {
+        "0": {
+          "canSaveCharacter": false
+        },
+        "1": {
+          "canSaveCharacter": true
+        }
+      },
+      "defaultConfig": {
+        "canSaveCharacter": false
+      },
+      "system": "apex",
+      "fp": "04bd6a317bbd9f04361437202a456d69e873d1ab5cf05252544a4d65baf4bcc1"
+    },
     "2026-11-checkpoint-intro": {
       "id": "2026-11-checkpoint-intro",
       "type": "user",
@@ -7308,6 +7328,26 @@
       "defaultConfig": null,
       "system": "apex",
       "fp": "32d0ffd3078409c67f085b74363deda4e4aefb40609d66f46d53ae4cce464fc3"
+    },
+    "2026-11-cuj-survey-card": {
+      "id": "2026-11-cuj-survey-card",
+      "type": "user",
+      "kind": "user",
+      "label": null,
+      "variationCount": 2,
+      "variations": {
+        "0": {
+          "enabled": false
+        },
+        "1": {
+          "enabled": true
+        }
+      },
+      "defaultConfig": {
+        "enabled": false
+      },
+      "system": "apex",
+      "fp": "3e1216e91817221c2b655d0cd977ec92001924b4fbffb6552c6bec6c685fd213"
     },
     "2026-11-game-exit-promo-bloons": {
       "id": "2026-11-game-exit-promo-bloons",
