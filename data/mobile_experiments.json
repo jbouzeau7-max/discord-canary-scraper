@@ -1,24 +1,24 @@
 {
   "format": 2,
-  "scrapedAt": "2026-11-20T08:30:10.363Z",
+  "scrapedAt": "2026-11-21T12:04:36.629Z",
   "sourceRepo": "https://github.com/Wumpus-Central/discord-mobile-datamining.git",
-  "sourceCommit": "82685fbc",
-  "sourceCommitFull": "82685fbc82b2aefda118da6d5fe62798f0ee7435",
-  "sourceMessage": "356.4 (356204) runtime",
-  "build": "356.4 (356204)",
+  "sourceCommit": "2e332d49",
+  "sourceCommitFull": "2e332d4946125355e8227cdf0f900bb39eb5c045",
+  "sourceMessage": "356.6 (356206) runtime",
+  "build": "356.6 (356206)",
   "experimentCount": 344,
-  "stringCount": 9862,
+  "stringCount": 9861,
   "routeCount": 1095,
   "lastDiff": {
     "experiments": {
-      "added": 6,
-      "modified": 2,
+      "added": 1,
+      "modified": 0,
       "removed": 1,
       "categoryChanged": 0
     },
     "strings": {
-      "added": 8,
-      "removed": 0
+      "added": 0,
+      "removed": 1
     },
     "routes": {
       "added": 0,
@@ -38,6 +38,7 @@
     "2026-07-personal-widget",
     "2026-08-ios-objc-composed-image-cache",
     "2026-09-profile-link-fetch",
+    "2026-11-phoenix-app-access",
     "2026-11-wishlist-countdown-mobile"
   ],
   "experiments": [
@@ -5968,7 +5969,7 @@
       "source": "mobile_files"
     },
     {
-      "id": "2026-11-phoenix-app-access",
+      "id": "2026-11-phoenix-switch-entrypoint",
       "kind": "user",
       "type": "user",
       "system": "apex",
@@ -5980,7 +5981,7 @@
           "enabled": true
         }
       },
-      "file": "discord_app/modules/user_settings/phoenix_launch/native/PhoenixAppAccessExperiment.tsx",
+      "file": "discord_app/modules/user_settings/phoenix_launch/native/PhoenixSwitchEntrypointExperiment.tsx",
       "source": "mobile_files"
     },
     {
@@ -13036,7 +13037,6 @@
     "fZSejy": "+ Tags",
     "fZSi1D": "8-digit backup code",
     "fZgLpA": "View Audit Log",
-    "faHmO3": "This will remove this attachment from this message permanently.",
     "fbKwSs": "You can use emoji and special characters.",
     "fc+8uy": "Access the best sounds from Soundboard across any of your Discord servers. Available with {nitroTierName}.",
     "fcXlhe": "Joined Threads - {count}",
