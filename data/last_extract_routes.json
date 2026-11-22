@@ -1,8 +1,8 @@
 {
-  "runId": "2026-11-22T19-24-34-032Z_679054_k07qop",
-  "buildNumber": "679054",
+  "runId": "2026-11-22T20-35-39-978Z_679078_qx05hc",
+  "buildNumber": "679078",
   "extractVersion": 3,
-  "updatedAt": "2026-11-22T19:24:34.032Z",
+  "updatedAt": "2026-11-22T20:35:39.978Z",
   "count": 1122,
   "data": {
     "DEV_LANDING": "/build",
@@ -1010,7 +1010,7 @@
     "AVATAR_DECORATION_PRESETS": "/avatar-decoration-presets/:param.:param",
     "GUILD_MEMBER_BANNER": "/guilds/:param/users/:param/banners/:param.:param",
     "UPDATE_VOICE_STATE": "/guilds/:param/voice-states/:param",
-    "JSNLOG_URL": "/openvidu/elk/openvidu-browser-logs",
+    "PROFILE_READ_STATE": "/users/@me/profile-read-states/:param",
     "HOME": "/home/web_user",
     "APP": "/app",
     "ACTIVITY": "/activity",
@@ -1122,10 +1122,10 @@
     "POWERUP_STORE": "/channels/:param/boosts",
     "CONFERENCE_MODE_VOICE": "/conference-mode/voice/:param/:param",
     "QUEST_PREVIEW_TOOL_2": "/quest-home?tab=preview_tool&quest_id=:param",
+    "JSNLOG_URL": "/openvidu/elk/openvidu-browser-logs",
     "SUMMARIES": "/guilds/:param/discoverable-content/summaries",
     "SUMMARY": "/guilds/:param/discoverable-content/summaries/:param",
     "REMOVE_SUMMARY": "/guilds/:param/discoverable-content/summaries/:param/remove",
-    "DISCOVERABLE_CONTENT": "/guilds/:param/discoverable-content",
-    "PROFILE_READ_STATE": "/users/@me/profile-read-states/:param"
+    "DISCOVERABLE_CONTENT": "/guilds/:param/discoverable-content"
   }
 }
