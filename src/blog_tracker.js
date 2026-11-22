@@ -615,6 +615,7 @@ async function fetchHelpCenter(center, sectionsById) {
     try {
       return await fetchHelpArticles(host, center, sectionsById);
     } catch (e) {
+      if (e.status === 429) throw e;
       lastErr = e;
       console.warn(`help ${center.key} via ${host}:`, String(e.message || e).slice(0, 100));
     }
@@ -1032,16 +1033,30 @@ async function main() {
 
   // 2. Help centers
   const help = {};
+  const helpRetryAt = {};
   await Promise.all(HELP_CENTERS.map(async (center) => {
     const prevList = previous.help[center.key] || [];
+    const deadline = previous.helpRetryAt?.[center.key];
+    if (Number.isFinite(deadline) && deadline > Date.now()) {
+      helpRetryAt[center.key] = deadline;
+      help[center.key] = prevList;
+      statuses.push({ label: center.label, ok: false, rateLimited: true, error: 'Retry-After en cours' });
+      return;
+    }
     let list = prevList;
     try {
-      const sectionsById = await fetchHelpMeta(center).catch(() => new Map());
+      const sectionsById = await fetchHelpMeta(center).catch((e) => {
+        if (e.status === 429) throw e;
+        return new Map();
+      });
       const fresh = await fetchHelpCenter(center, sectionsById);
       list = keepStaleHelp(fresh, prevList, center.key);
       statuses.push({ label: center.label, ok: true });
     } catch (e) {
       console.error('help fail', center.key, e.message);
+      if (e.status === 429 && Number.isFinite(e.retryAfterMs) && e.retryAfterMs > 0) {
+        helpRetryAt[center.key] = Date.now() + e.retryAfterMs;
+      }
       statuses.push({
         label: center.label,
         ok: false,
@@ -1113,6 +1128,7 @@ async function main() {
       scrapedAt: new Date().toISOString(),
       blog: nextBlog,
       help: nextHelp,
+      helpRetryAt,
       counts,
       lastErrorNotifiedAt,
     },
