@@ -227,10 +227,15 @@ function parseRssItems(xml) {
   const blocks = [...String(xml || '').matchAll(/<(?:item|entry)[\s>][\s\S]*?<\/(?:item|entry)>/gi)].map((m) => m[0]);
   for (const block of blocks) {
     const title = stripHtml(decodeXml(pickTag(block, 'title') || ''));
-    let link = decodeXml(pickTag(block, 'link') || '');
+    let link = /^<entry[\s>]/i.test(block) ? '' : decodeXml(pickTag(block, 'link') || '');
     if (!link) {
-      const m = block.match(/<link[^>]*href=["']([^"']+)["']/i);
-      if (m) link = decodeXml(m[1]);
+      for (const [tag] of block.matchAll(/<link(?=[\s/>])[^>]*>/gi)) {
+        const attr = (name) => tag.match(new RegExp('\\s' + name + '\\s*=\\s*(["\'])(.*?)\\1', 'i'))?.[2];
+        if (!/^alternate$/i.test(attr('rel') || 'alternate')) continue;
+        if (!/^(text\/html|application\/xhtml\+xml)(?:;|$)/i.test(attr('type') || 'text/html')) continue;
+        const href = decodeXml(attr('href')).trim();
+        if (normalizeUrl(href)) { link = href; break; }
+      }
     }
     const dateRaw =
       pickTag(block, 'pubDate') || pickTag(block, 'published') || pickTag(block, 'updated') || null;
@@ -325,8 +330,15 @@ function cleanDesc(desc, title, sourceTag) {
   if (!d) return '';
   const nd = normalizeTitle(d);
   const nt = normalizeTitle(title);
-  if (!nd || nd === nt || nt.startsWith(nd) || nd.startsWith(nt)) return '';
-  if (sourceTag && nd === normalizeTitle(title + ' ' + sourceTag)) return '';
+  const folded = d.toLowerCase();
+  const headline = String(title || '').trim();
+  if (headline && folded.startsWith(headline.toLowerCase())) {
+    const tail = d.slice(headline.length);
+    if (!tail || /^\s*[:;,.!?–—-](?:\s|$)/u.test(tail)) {
+      d = tail.replace(/^[\s:;,.!?–—-]+/u, '');
+      if (!d || d.toLowerCase() === String(sourceTag || '').toLowerCase()) return '';
+    }
+  } else if (nd && nt && (nd === nt || nt.startsWith(nd + ' '))) return '';
   if (d.length > 280) {
     const cut = d.slice(0, 280);
     const end = Math.max(cut.lastIndexOf('. '), cut.lastIndexOf('! '), cut.lastIndexOf('? '));
@@ -346,6 +358,8 @@ function buildItem(raw, src, now) {
   const url = normalizeUrl(raw.link);
   const t = Date.parse(raw.dateRaw || '');
   if (!finalTitle || !url || !Number.isFinite(t)) return null;
+  // Garde une marge pour le titre, le résumé et les métadonnées de la carte.
+  if (url.replace(/[()]/g, '%28').length > 2048) return null;
   if (t - now > FUTURE_SLACK_MS) return null;
   const date = Math.min(t, now);
   if (now - date > MAX_AGE_HOURS * 3600 * 1000) return null;
@@ -360,6 +374,7 @@ function buildItem(raw, src, now) {
     cat: src.cat,
     sourceId: src.id,
     sourceName: src.name,
+    publisher: src.name === 'Google News' ? String(raw.sourceTag || '').slice(0, 80) : '',
     title: finalTitle,
     url,
     desc: cleanDesc(raw.desc, finalTitle, raw.sourceTag),
@@ -509,17 +524,17 @@ function buildComponents(it) {
   const cat = CATEGORY[it.cat];
   const title = it.title.length > 250 ? it.title.slice(0, 250) + '…' : it.title;
   const unix = Math.floor(it.date / 1000);
-  const head = (it.breaking ? '🔴 **URGENT** · ' : '') + '**' + escapeMd(it.sourceName) + '** · ' + cat.label;
+  const head = (it.breaking ? '🔴 **URGENT** · ' : '') + '**' + escapeMd(it.publisher || it.sourceName) + '** · ' + cat.label;
   const inner = [textDisplay(head), textDisplay('### [' + escapeMd(title) + '](' + String(it.url).replace(/\(/g, '%28').replace(/\)/g, '%29') + ')')];
   const gallery = it.image ? mediaGalleryFromUrls([it.image]) : null;
   if (gallery) inner.push(gallery);
   if (it.desc) inner.push(textDisplay(escapeMd(it.desc)));
   const more = it.alsoBy && it.alsoBy.length ? ' · aussi : ' + it.alsoBy.slice(0, 3).map(escapeMd).join(', ') : '';
-  inner.push(textDisplay('-# Actus · ' + cat.label + ' · <t:' + unix + ':R>' + more));
-  return [
-    container(inner, it.breaking ? 0xed4245 : cat.color),
-    { type: 1, components: [linkButton("Lire l'article", it.url)] },
-  ];
+  const via = it.publisher && it.publisher !== it.sourceName ? ' · via ' + escapeMd(it.sourceName) : '';
+  inner.push(textDisplay('-# Publié <t:' + unix + ':R>' + via + more));
+  const cards = [container(inner, it.breaking ? 0xed4245 : cat.color)];
+  if (it.url.length <= 512) cards.push({ type: 1, components: [linkButton("Lire l'article", it.url)] });
+  return cards;
 }
 
 async function postWebhook(it) {
