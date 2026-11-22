@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-11-22T19:58:41.153Z",
+  "scrapedAt": "2026-11-22T20:05:26.243Z",
   "channels": [
     {
       "platform": "ios",
@@ -14,7 +14,7 @@
       "source": "itunes_lookup",
       "storeUrl": "https://apps.apple.com/app/id985746746",
       "available": true,
-      "checkedAt": "2026-11-22T19:58:41.153Z"
+      "checkedAt": "2026-11-22T20:05:26.243Z"
     },
     {
       "platform": "ios",
@@ -23,20 +23,20 @@
       "available": false,
       "note": "OTA not ahead of App Store",
       "storeUrl": "https://testflight.apple.com/join/gdE4pRzI",
-      "checkedAt": "2026-11-22T19:58:41.153Z",
+      "checkedAt": "2026-11-22T20:05:26.243Z",
       "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/6a/2f/ba/6a2fba87-e0a7-ec69-6ca5-e77cad3e533e/AppIcon-0-0-1x_U007epad-0-1-0-85-220.png/512x512bb.jpg"
     },
     {
       "platform": "android",
       "channel": "stable",
       "version": "354.12",
-      "build": "35401200487218",
-      "commit": "7e495622d4ffcb9b61ea74caf8e2faf2683636d5",
-      "releaseName": "discord_android@354.12.487218-0+35401200487218",
-      "source": "discord_ota_manifest",
+      "build": null,
+      "commit": null,
+      "releaseName": null,
+      "source": "store",
       "storeUrl": "https://play.google.com/store/apps/details?id=com.discord",
       "available": true,
-      "checkedAt": "2026-11-22T19:58:41.153Z",
+      "checkedAt": "2026-11-22T20:05:26.243Z",
       "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/6a/2f/ba/6a2fba87-e0a7-ec69-6ca5-e77cad3e533e/AppIcon-0-0-1x_U007epad-0-1-0-85-220.png/512x512bb.jpg"
     },
     {
@@ -50,7 +50,7 @@
       "storeUrl": "https://play.google.com/store/apps/details?id=com.discord",
       "available": true,
       "note": "Track-labeled on apkmirror",
-      "checkedAt": "2026-11-22T19:58:41.153Z",
+      "checkedAt": "2026-11-22T20:05:26.243Z",
       "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/6a/2f/ba/6a2fba87-e0a7-ec69-6ca5-e77cad3e533e/AppIcon-0-0-1x_U007epad-0-1-0-85-220.png/512x512bb.jpg"
     },
     {
@@ -64,7 +64,7 @@
       "storeUrl": "https://play.google.com/store/apps/details?id=com.discord",
       "available": true,
       "note": "Track-labeled on datamining_commits",
-      "checkedAt": "2026-11-22T19:58:41.153Z",
+      "checkedAt": "2026-11-22T20:05:26.243Z",
       "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/6a/2f/ba/6a2fba87-e0a7-ec69-6ca5-e77cad3e533e/AppIcon-0-0-1x_U007epad-0-1-0-85-220.png/512x512bb.jpg"
     }
   ],
@@ -72,8 +72,8 @@
     "ios": [
       {
         "version": "354.0",
-        "build": "124119",
-        "commit": "3a75670d9aca70602aad26237d0dff149d94a215",
+        "build": "124408",
+        "commit": "0a9326ac2bc241ae0f3dec5e6f9556740d8a12c0",
         "releaseName": null
       },
       {
@@ -84,8 +84,8 @@
       },
       {
         "version": "352.1",
-        "build": "123113",
-        "commit": "13bbbe3d6dffc360a7037165486982e8a9559586",
+        "build": "124405",
+        "commit": "d6ed91c08ff3461a18508eda36f06f32c7ee42a5",
         "releaseName": null
       },
       {
@@ -180,6 +180,12 @@
       }
     ],
     "android": [
+      {
+        "version": "355.10",
+        "build": "35501000489290",
+        "commit": "c01f90b874fd09c440462c6fb8258de70f50e3e4",
+        "releaseName": "discord_android@355.10.489290-0+35501000489290"
+      },
       {
         "version": "354.12",
         "build": "35401200487218",
@@ -429,7 +435,7 @@
       "build": "35301100485321"
     }
   ],
-  "previousScrapedAt": "2026-11-22T19:52:03.427Z",
+  "previousScrapedAt": "2026-11-22T19:58:41.153Z",
   "notifiedFingerprints": [
     "android|stable|353.11|35301100485321",
     "android|alpha|355.5",
