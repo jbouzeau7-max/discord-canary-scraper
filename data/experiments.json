@@ -1,11 +1,11 @@
 {
-  "runId": "2026-11-23T23-17-01-282Z_679716_dk8aep",
-  "buildNumber": "679716",
-  "scrapedAt": "2026-11-23T23:17:01.282Z",
+  "runId": "2026-11-23T23-21-37-614Z_679718_7gdgi9",
+  "buildNumber": "679718",
+  "scrapedAt": "2026-11-23T23:21:37.614Z",
   "totals": {
-    "all": 394,
+    "all": 393,
     "legacy": 28,
-    "apex": 366
+    "apex": 365
   },
   "experiments": [
     {
@@ -372,23 +372,6 @@
         "source": "gist_user_rollouts"
       },
       "fingerprint": "3f624723302986decd36b2cdc80cf351febd3baeb8cb261b3295e2cb960cca49"
-    },
-    {
-      "id": "2025-05-search-results-feedback",
-      "type": "user",
-      "kind": "user",
-      "label": null,
-      "system": "apex",
-      "defaultConfig": {
-        "enabled": false
-      },
-      "variations": {
-        "1": {
-          "enabled": true
-        }
-      },
-      "variationCount": 1,
-      "source": "discord"
     },
     {
       "id": "2025-06_native_intents",
