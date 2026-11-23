@@ -1,17 +1,17 @@
 {
   "format": 2,
-  "scrapedAt": "2026-11-22T03:20:54.211Z",
+  "scrapedAt": "2026-11-23T07:42:45.198Z",
   "sourceRepo": "https://github.com/Wumpus-Central/discord-mobile-datamining.git",
-  "sourceCommit": "e529e88e",
-  "sourceCommitFull": "e529e88e24f712b9cb06a66f22c8429756f54fb2",
-  "sourceMessage": "356.7 (356207) runtime",
-  "build": "356.7 (356207)",
+  "sourceCommit": "8035394b",
+  "sourceCommitFull": "8035394bc3761c838d84ed7c278c53009cefd607",
+  "sourceMessage": "357.0 (357200) runtime",
+  "build": "357.0 (357200)",
   "experimentCount": 345,
   "stringCount": 9861,
   "routeCount": 1095,
   "lastDiff": {
     "experiments": {
-      "added": 1,
+      "added": 0,
       "modified": 0,
       "removed": 0,
       "categoryChanged": 0
@@ -1529,7 +1529,7 @@
       "type": "user",
       "system": "apex",
       "defaultConfig": {
-        "keybindOverride": "Array"
+        "keybindOverride": "r"
       },
       "variations": {
         "1": {},
