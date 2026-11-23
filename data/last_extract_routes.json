@@ -1,8 +1,8 @@
 {
-  "runId": "2026-11-23T21-29-16-177Z_679551_4mchk8",
-  "buildNumber": "679551",
+  "runId": "2026-11-23T21-31-19-639Z_679553_f5zhs5",
+  "buildNumber": "679553",
   "extractVersion": 3,
-  "updatedAt": "2026-11-23T21:29:16.177Z",
+  "updatedAt": "2026-11-23T21:31:19.639Z",
   "count": 1122,
   "data": {
     "DEV_LANDING": "/build",
@@ -1010,9 +1010,9 @@
     "AVATAR_DECORATION_PRESETS": "/avatar-decoration-presets/:param.:param",
     "GUILD_MEMBER_BANNER": "/guilds/:param/users/:param/banners/:param.:param",
     "UPDATE_VOICE_STATE": "/guilds/:param/voice-states/:param",
+    "JSNLOG_URL": "/openvidu/elk/openvidu-browser-logs",
     "HOME": "/home/web_user",
     "PROFILE_READ_STATE": "/users/@me/profile-read-states/:param",
-    "JSNLOG_URL": "/openvidu/elk/openvidu-browser-logs",
     "SUMMARIES": "/guilds/:param/discoverable-content/summaries",
     "SUMMARY": "/guilds/:param/discoverable-content/summaries/:param",
     "REMOVE_SUMMARY": "/guilds/:param/discoverable-content/summaries/:param/remove",

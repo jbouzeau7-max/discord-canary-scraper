@@ -1,8 +1,8 @@
 {
-  "runId": "2026-11-23T21-29-16-177Z_679551_4mchk8",
-  "buildNumber": "679551",
-  "updatedAt": "2026-11-23T21:29:16.177Z",
-  "count": 393,
+  "runId": "2026-11-23T21-31-19-639Z_679553_f5zhs5",
+  "buildNumber": "679553",
+  "updatedAt": "2026-11-23T21:31:19.639Z",
+  "count": 394,
   "data": {
     "2021-02_staff_qc_debugging": {
       "id": "2021-02_staff_qc_debugging",
@@ -7948,6 +7948,26 @@
       },
       "system": "apex",
       "fp": "a0df7d542e37b35c45d6e4a8fb9df616537cc7f722f86ca27f5a4173e2dc518d"
+    },
+    "2026-11-stream-drawing-guild": {
+      "id": "2026-11-stream-drawing-guild",
+      "type": "guild",
+      "kind": "guild",
+      "label": null,
+      "variationCount": 2,
+      "variations": {
+        "0": {
+          "enabled": false
+        },
+        "1": {
+          "enabled": true
+        }
+      },
+      "defaultConfig": {
+        "enabled": false
+      },
+      "system": "apex",
+      "fp": "75cbe86dfd874d0a6b208c11ce6de401d733029f52e5ac077bf793fee51958ac"
     },
     "2026-11-subscription-management-settings-brand-refresh": {
       "id": "2026-11-subscription-management-settings-brand-refresh",

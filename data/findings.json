@@ -1,9 +1,9 @@
 {
-  "runId": "2026-11-23T21-29-16-177Z_679551_4mchk8",
-  "buildNumber": "679551",
-  "scrapedAt": "2026-11-23T21:29:16.177Z",
+  "runId": "2026-11-23T21-31-19-639Z_679553_f5zhs5",
+  "buildNumber": "679553",
+  "scrapedAt": "2026-11-23T21:31:19.639Z",
   "totals": {
-    "all": 393
+    "all": 394
   },
   "experiments": [
     {
@@ -9195,6 +9195,26 @@
       "id": "2026-11-stream-drawing",
       "type": "user",
       "kind": "user",
+      "label": null,
+      "system": "apex",
+      "defaultConfig": {
+        "enabled": false
+      },
+      "variations": {
+        "0": {
+          "enabled": false
+        },
+        "1": {
+          "enabled": true
+        }
+      },
+      "variationCount": 2,
+      "source": "discord"
+    },
+    {
+      "id": "2026-11-stream-drawing-guild",
+      "type": "guild",
+      "kind": "guild",
       "label": null,
       "system": "apex",
       "defaultConfig": {
