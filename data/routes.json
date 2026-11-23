@@ -304,7 +304,6 @@
   "ACCOUNT_NOTIFICATION_SETTINGS": "/users/@me/notification-settings",
   "ACCOUNT_NOTIFICATION_DECLARATIVE_SETTINGS": "/users/@me/notification-settings/declarative",
   "VIDEO_FILTER_ASSETS": "/users/@me/video-filters/assets",
-  "SOUNDBOARD_DEFAULT_SOUNDS": "/soundboard-default-sounds",
   "APPLICATION_COMMAND_INDEX_USER": "/users/@me/application-command-index",
   "APPLICATION_DIRECTORY_CATEGORIES": "/application-directory-static/categories",
   "APPLICATION_DIRECTORY_SEARCH": "/application-directory/search",
@@ -1120,5 +1119,6 @@
   "GAME_ANNOUNCEMENTS_LATEST": "/games/announcements/latest",
   "BULK_GUILD_KICK": "/guilds/:param/bulk/kick",
   "BULK_GUILD_TIMEOUT": "/guilds/:param/bulk/timeout",
-  "QUEST_BAR_PREVIEW": "/quest-bar-preview"
+  "QUEST_BAR_PREVIEW": "/quest-bar-preview",
+  "SOUNDBOARD_SOUNDS_CATALOG": "/soundboard-sounds/catalog"
 }
