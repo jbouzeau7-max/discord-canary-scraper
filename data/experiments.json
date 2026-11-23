@@ -1,7 +1,7 @@
 {
-  "runId": "2026-11-23T18-44-02-908Z_679331_ygvv2r",
-  "buildNumber": "679331",
-  "scrapedAt": "2026-11-23T18:44:02.908Z",
+  "runId": "2026-11-23T18-46-14-932Z_679333_adsxav",
+  "buildNumber": "679333",
+  "scrapedAt": "2026-11-23T18:46:14.932Z",
   "totals": {
     "all": 392,
     "legacy": 28,
@@ -4648,10 +4648,10 @@
       },
       "userPercentage": {
         "status": "provided",
-        "value": 5,
+        "value": 15,
         "source": "gist_user_rollouts"
       },
-      "fingerprint": "43337707f57d20c2a1b55c5c79b8ebe00f69338d2015e48e782c2ba8d1411c5b"
+      "fingerprint": "debfbf12841a86beebacae41292f98fd278d55baa77e27ae6b3f4aeeeb056c09"
     },
     {
       "id": "2026-08-split-payments",
@@ -4899,7 +4899,17 @@
         }
       },
       "variationCount": 2,
-      "source": "discord"
+      "source": "discord",
+      "guildPercentage": {
+        "status": "unknown",
+        "value": null
+      },
+      "userPercentage": {
+        "status": "provided",
+        "value": 1,
+        "source": "gist_user_rollouts"
+      },
+      "fingerprint": "4f1dd16fa4d9704d827ef269fb22a2f41487180403b5cc63ff8a0f29b0450b52"
     },
     {
       "id": "2026-09-automod-application-rules",
@@ -5470,16 +5480,7 @@
         }
       },
       "variationCount": 2,
-      "source": "discord",
-      "guildPercentage": {
-        "status": "unknown",
-        "value": null
-      },
-      "userPercentage": {
-        "status": "unknown",
-        "value": null
-      },
-      "fingerprint": "eb5522255762b9afd9dab5d2aa602877a045475513088eb0e56d83abed1deec0"
+      "source": "discord"
     },
     {
       "id": "2026-09-mobile-quest-home-sort-priority",
@@ -6787,10 +6788,10 @@
       },
       "userPercentage": {
         "status": "provided",
-        "value": 10,
+        "value": 20,
         "source": "gist_user_rollouts"
       },
-      "fingerprint": "15ff8bdb01f98df81c8ead1e4d17209d0a24941fb5ca91f4501652f99e6ad2d9"
+      "fingerprint": "5a1b5cd5ee4d14d74881c3a489c409f3d5ea96407edf73c6a4145b3da75f7bc9"
     },
     {
       "id": "2026-10-collectibles-upgraded-search",
@@ -7990,17 +7991,7 @@
         }
       },
       "variationCount": 4,
-      "source": "discord",
-      "guildPercentage": {
-        "status": "unknown",
-        "value": null
-      },
-      "userPercentage": {
-        "status": "provided",
-        "value": 45.44,
-        "source": "gist_user_rollouts"
-      },
-      "fingerprint": "6e451f28aa764e87e4c526aa7d2a31f98ea72e188251af55700daf7766bfdd8e"
+      "source": "discord"
     },
     {
       "id": "2026-10-shop-marketing-fatigue",
