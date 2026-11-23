@@ -1,7 +1,7 @@
 {
-  "runId": "2026-11-23T20-28-59-491Z_679463_x1iwdu",
-  "buildNumber": "679463",
-  "scrapedAt": "2026-11-23T20:28:59.491Z",
+  "runId": "2026-11-23T20-37-21-765Z_679472_j0sb9w",
+  "buildNumber": "679472",
+  "scrapedAt": "2026-11-23T20:37:21.765Z",
   "totals": {
     "all": 392
   },
@@ -722,7 +722,17 @@
         }
       },
       "variationCount": 1,
-      "source": "discord"
+      "source": "discord",
+      "guildPercentage": {
+        "status": "unknown",
+        "value": null
+      },
+      "userPercentage": {
+        "status": "provided",
+        "value": 50,
+        "source": "gist_user_rollouts"
+      },
+      "fingerprint": "61e79f8bbb0effaced740721eaf3e35b49dd6cda02b197b355659570dac5a6dd"
     },
     {
       "id": "2025-10-force-sdr-emojis-stickers",
@@ -6786,10 +6796,10 @@
       },
       "userPercentage": {
         "status": "provided",
-        "value": 20,
+        "value": 100,
         "source": "gist_user_rollouts"
       },
-      "fingerprint": "5a1b5cd5ee4d14d74881c3a489c409f3d5ea96407edf73c6a4145b3da75f7bc9"
+      "fingerprint": "fd3e1ed33b379eaf675792c6f86bb4710b5dc8a73c22e86c242c07c457dee501"
     },
     {
       "id": "2026-10-collectibles-upgraded-search",
@@ -7791,10 +7801,10 @@
       },
       "userPercentage": {
         "status": "provided",
-        "value": 30,
+        "value": 100,
         "source": "gist_user_rollouts"
       },
-      "fingerprint": "be899ac351fb7a6bf27e40418e7fa4ebf5851c942aaaaf2a9beea924b7577201"
+      "fingerprint": "9f03b4b0d1286ca791b360e792060665a08d0e66de4050c4f899d4c53676b88c"
     },
     {
       "id": "2026-10-profile-nitro-upsell-refresh",
@@ -9193,7 +9203,17 @@
         }
       },
       "variationCount": 2,
-      "source": "discord"
+      "source": "discord",
+      "guildPercentage": {
+        "status": "unknown",
+        "value": null
+      },
+      "userPercentage": {
+        "status": "provided",
+        "value": 5,
+        "source": "gist_user_rollouts"
+      },
+      "fingerprint": "67d6e3b9e2bd8291d27bc43753364144710527d218b94f1cf1a38e79b62db991"
     },
     {
       "id": "2026-11-voicemod-3p",
