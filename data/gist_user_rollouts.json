@@ -3,15 +3,15 @@
  "schemaVersion": 1,
  "semanticsVersion": 2,
  "notifyScopeVersion": 2,
- "runId": "20261123T183712_gist",
- "scrapedAt": "2026-11-23T18:37:12.166Z",
+ "runId": "20261123T184247_gist",
+ "scrapedAt": "2026-11-23T18:42:47.199Z",
  "source": {
   "gistId": "e3e99062983e6bd0feaef833f14fd931",
   "htmlUrl": "https://gist.github.com/agnonotdev/e3e99062983e6bd0feaef833f14fd931",
   "rawUrl": "https://gist.githubusercontent.com/agnonotdev/e3e99062983e6bd0feaef833f14fd931/raw",
   "updatedAt": null,
   "revision": null,
-  "fetchedAt": "2026-11-23T18:37:12.166Z",
+  "fetchedAt": "2026-11-23T18:42:47.199Z",
   "fallback": false,
   "rawFallback": true,
   "canonicalId": null
@@ -20,6 +20,7 @@
   "gistId": "192b2ce20539ce1021b5c8cb01b17ff0",
   "diverged": true,
   "divergingIds": [
+   "2026-11-cti-new-presets",
    "2026-11-premium-group-continuation-40",
    "2026-11-phoenix-app-access",
    "2026-11-shop-this-look-full-profile-button",
@@ -29,6 +30,8 @@
    "2026-11-payment-element-accordion-layout",
    "2026-11-return-full-quest-status-in-decision",
    "2026-11-screen-share-dtx",
+   "2026-10-sfp-bloons-orb-split-tender",
+   "2026-10-collectibles-storefront-pricing-integration",
    "2026-10-guild-bulk-role-actions",
    "2026-10-interest-picker",
    "2026-10-social-layer-storefront-mobile-multi-sku-embed",
@@ -44,7 +47,6 @@
    "2026-10-referral-refresh-notification",
    "2026-10-windows-playout-buffer-duration",
    "2026-10-mobile-rtc-v2",
-   "2026-10-collectibles-storefront-pricing-integration",
    "2026-10-animated-shop-bundle-previews",
    "2026-10-pinot-channel-discoverable",
    "2026-10-guilds-render-experiment",
@@ -61,12 +63,13 @@
    "2026-10-embedded-app-storage-access",
    "2026-10-soundboard-new-sounds-badge",
    "2026-10-badge-directory-updates",
-   "2026-10-sfp-bloons-orb-split-tender",
    "2026-10-game-profiles-v3-communities-tab-mobile",
    "2026-10-summary-reminder-notif-re-revival",
    "2026-10-request-to-stream-non-games",
    "2026-10-android-stop-and-pause-video",
    "2026-10-android-fastimage-apng",
+   "2026-09-mobile-nitro-upsell-in-shop-pdp",
+   "2026-09-autoclips",
    "2026-09-invite-accept-age-group-errors",
    "2026-09-quest-home-bounties-feature-gate",
    "2026-09-edit-profile-collectibles-ordering",
@@ -103,12 +106,12 @@
   ]
  },
  "stats": {
-  "total": 1066,
-  "user": 337,
-  "userData": 165,
-  "guild": 39,
+  "total": 1069,
+  "user": 339,
+  "userData": 166,
+  "guild": 40,
   "unclassified": 690,
-  "noData": 262
+  "noData": 263
  },
  "acknowledged": {
   "2026-11-soundboard-upsells-brand-refresh": {
@@ -364,35 +367,12 @@
    }
   },
   "2026-10-sfp-bloons-orb-split-tender": {
-   "key": "30bb6a43b913d4f3",
-   "hasData": true,
-   "sig": "0:control|2:treatment|3:treatment",
-   "byVariant": {
-    "0": {
-     "pct": 22.56,
-     "role": "control"
-    },
-    "2": {
-     "pct": 23.09,
-     "role": "treatment"
-    },
-    "3": {
-     "pct": 22.35,
-     "role": "treatment"
-    }
-   },
+   "key": "no_data",
+   "hasData": false,
+   "sig": "",
    "treatment": {
-    "pct": 45.44
-   },
-   "control": {
-    "pct": 22.56
-   },
-   "notEligible": {
-    "pct": 0
-   },
-   "projectedCoverage": null,
-   "projected": false,
-   "variantsCount": 3
+    "pct": null
+   }
   },
   "2026-10-server-tag-upsell-on-profile": {
    "key": "no_data",
@@ -4974,29 +4954,6 @@
    "projectedCoverage": null,
    "projected": false,
    "variantsCount": 2
-  },
-  "2026-09-mobile-nlp-search-user-flag": {
-   "key": "95f46bfc73a52751",
-   "hasData": true,
-   "sig": "1:treatment",
-   "byVariant": {
-    "1": {
-     "pct": 100,
-     "role": "treatment"
-    }
-   },
-   "treatment": {
-    "pct": 100
-   },
-   "control": {
-    "pct": 0
-   },
-   "notEligible": {
-    "pct": 0
-   },
-   "projectedCoverage": null,
-   "projected": false,
-   "variantsCount": 1
   },
   "2026-09-mobile-nitro-orbs-delivered-modal": {
    "key": "95f46bfc73a52751",
@@ -21499,17 +21456,17 @@
    "variantsCount": 1
   },
   "2026-10-collectibles-storefront-pricing-integration": {
-   "key": "7969daec1f1ff520",
+   "key": "d2f8d8298e18e7ca",
    "hasData": true,
    "sig": "1:treatment",
    "byVariant": {
     "1": {
-     "pct": 10,
+     "pct": 20,
      "role": "treatment"
     }
    },
    "treatment": {
-    "pct": 10
+    "pct": 20
    },
    "control": {
     "pct": 0
@@ -21699,24 +21656,24 @@
    "variantsCount": 1
   },
   "2026-08-social-layer-storefront-mobile-embed": {
-   "key": "b3d3b0933acb18c3",
+   "key": "4b5dc00449026796",
    "hasData": true,
    "sig": "0:control|1:treatment",
    "byVariant": {
     "0": {
-     "pct": 5,
+     "pct": 15,
      "role": "control"
     },
     "1": {
-     "pct": 5,
+     "pct": 15,
      "role": "treatment"
     }
    },
    "treatment": {
-    "pct": 5
+    "pct": 15
    },
    "control": {
-    "pct": 5
+    "pct": 15
    },
    "notEligible": {
     "pct": 0
@@ -21797,22 +21754,89 @@
    "projectedCoverage": null,
    "projected": false,
    "variantsCount": 1
+  },
+  "2026-11-cti-new-presets": {
+   "key": "19a2e309986d6b83",
+   "hasData": true,
+   "sig": "0:control|1:treatment",
+   "byVariant": {
+    "0": {
+     "pct": 1,
+     "role": "control"
+    },
+    "1": {
+     "pct": 1,
+     "role": "treatment"
+    }
+   },
+   "treatment": {
+    "pct": 1
+   },
+   "control": {
+    "pct": 1
+   },
+   "notEligible": {
+    "pct": 0
+   },
+   "projectedCoverage": null,
+   "projected": false,
+   "variantsCount": 2
+  },
+  "2026-09-mobile-nitro-upsell-in-shop-pdp": {
+   "key": "16e432fd014af240",
+   "hasData": true,
+   "sig": "2:treatment",
+   "byVariant": {
+    "2": {
+     "pct": 100,
+     "role": "treatment"
+    }
+   },
+   "treatment": {
+    "pct": 100
+   },
+   "control": {
+    "pct": 0
+   },
+   "notEligible": {
+    "pct": 0
+   },
+   "projectedCoverage": null,
+   "projected": false,
+   "variantsCount": 1
+  },
+  "2026-09-autoclips": {
+   "key": "e9ae9408ad4b5e99",
+   "hasData": true,
+   "sig": "2:treatment",
+   "byVariant": {
+    "2": {
+     "pct": 1,
+     "role": "treatment"
+    }
+   },
+   "treatment": {
+    "pct": 1
+   },
+   "control": {
+    "pct": 0
+   },
+   "notEligible": {
+    "pct": 0
+   },
+   "projectedCoverage": null,
+   "projected": false,
+   "variantsCount": 1
   }
  },
  "lastRun": {
-  "changes": 0,
-  "delivered": 0,
+  "changes": 6,
+  "delivered": 6,
   "firstRun": false,
   "semanticsMigrated": 0,
   "scopeBaselined": 0
  },
  "history": [
-  {
-   "at": "2026-11-22T19:16:37.003Z",
-   "revision": "4ffd49f4375701730e6a890fca2be8764cdc1c7b",
-   "changes": 0,
-   "delivered": 0
-  },
   {
    "at": "2026-11-22T19:45:47.020Z",
    "revision": "4ffd49f4375701730e6a890fca2be8764cdc1c7b",
@@ -22106,6 +22130,12 @@
    "revision": null,
    "changes": 0,
    "delivered": 0
+  },
+  {
+   "at": "2026-11-23T18:42:47.199Z",
+   "revision": null,
+   "changes": 6,
+   "delivered": 6
   }
  ]
 }

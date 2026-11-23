@@ -1,14 +1,14 @@
 # Rollouts user — couverture gist (v1)
 
-> Source : gist communautaire agnonotdev (copie réduite de rollouts.json, tag Assyst) · Généré le 2026-11-23 18:37 UTC
+> Source : gist communautaire agnonotdev (copie réduite de rollouts.json, tag Assyst) · Généré le 2026-11-23 18:42 UTC
 
 **Sémantique** : couvertures calculées exactement à partir des plages fournies par la source (0-10000), à 0,01 point près. Totaux par rôle = UNION des plages (un bucket appartient à un rôle s'il tombe dans l'union de ses plages). Quand la structure révèle plusieurs populations aplaties (drapeau `multi_population`) ou des rôles conflictuels/inconnus, l'agrégation est indéterminée (poids des populations absents du gist) : totaux principaux indisponibles, l'union est montrée en métrique secondaire étiquetée « projetée » (non pondérée). L'absence du drapeau ne prouve PAS une population unique — le gist n'en garde pas les frontières. Cohérent avec notre décodage wire apex (mêmes plages → mêmes nombres). Ce n'est ni une estimation statistique, ni la proportion de vrais utilisateurs éligibles, ni une mesure d'accès réel. Les expériences `guild` sont exclues (mesurées à part par le décodage wire apex).
 
-**Gist** : [e3e99062983e6bd0feaef833f14fd931](https://gist.github.com/agnonotdev/e3e99062983e6bd0feaef833f14fd931) · révision ? · MAJ ? · 1066 expériences au catalogue (337 user dont 165 avec données, 39 guild, 690 type inconnu, 262 sans données)
+**Gist** : [e3e99062983e6bd0feaef833f14fd931](https://gist.github.com/agnonotdev/e3e99062983e6bd0feaef833f14fd931) · révision ? · MAJ ? · 1069 expériences au catalogue (339 user dont 166 avec données, 40 guild, 690 type inconnu, 263 sans données)
 
-⚠️ Miroir divergent (192b2ce20539ce1021b5c8cb01b17ff0) sur : 2026-11-premium-group-continuation-40, 2026-11-phoenix-app-access, 2026-11-shop-this-look-full-profile-button, 2026-11-soundboard-upsells-brand-refresh, 2026-11-mobile-did-background-app-native, 2026-11-mobile-orb-redemption-thru-orders, 2026-11-payment-element-accordion-layout, 2026-11-return-full-quest-status-in-decision, 2026-11-screen-share-dtx, 2026-10-guild-bulk-role-actions…
+⚠️ Miroir divergent (192b2ce20539ce1021b5c8cb01b17ff0) sur : 2026-11-cti-new-presets, 2026-11-premium-group-continuation-40, 2026-11-phoenix-app-access, 2026-11-shop-this-look-full-profile-button, 2026-11-soundboard-upsells-brand-refresh, 2026-11-mobile-did-background-app-native, 2026-11-mobile-orb-redemption-thru-orders, 2026-11-payment-element-accordion-layout, 2026-11-return-full-quest-status-in-decision, 2026-11-screen-share-dtx…
 
-## Expériences user avec données (165)
+## Expériences user avec données (166)
 
 | Expérience | Treatment | Control | Non éligible | Espace non décrit | Particularités |
 |---|---:|---:|---:|---:|---|
@@ -20,6 +20,7 @@
 | 2026-11-payment-element-accordion-layout | **10,00 %** | 10,00 % | 0,00 % | 80,00 % | — |
 | 2026-11-mobile-orb-redemption-thru-orders | **25,00 %** | 0,00 % | 0,00 % | 75,00 % | — |
 | 2026-11-mobile-did-background-app-native | **1,00 %** | 1,00 % | 0,00 % | 98,00 % | — |
+| 2026-11-cti-new-presets | **1,00 %** | 1,00 % | 0,00 % | 98,00 % | — |
 | 2026-10-windows-playout-buffer-duration | **0,00 %** | 1,00 % | 0,00 % | 99,00 % | — |
 | 2026-10-web-streaming-optimizations | **16,00 %** | 4,00 % | 0,00 % | 80,00 % | — |
 | 2026-10-user-profile-widget-suggestions | **64,50 %** | 33,50 % | 0,00 % | 2,00 % | — |
@@ -31,7 +32,6 @@
 | 2026-10-slayer-storefront-single-sku-wide-header | **100,00 %** | 0,00 % | 0,00 % | 0,00 % | — |
 | 2026-10-shop-twelve-days-promo | **0,00 %** | 30,00 % | 0,00 % | 70,00 % | — |
 | 2026-10-shop-sku-nitro-upsell-refresh | **50,00 %** | 50,00 % | 0,00 % | 0,00 % | — |
-| 2026-10-sfp-bloons-orb-split-tender | **45,44 %** | 22,56 % | 0,00 % | 32,00 % | — |
 | 2026-10-remove-quests-from-discovery | **50,00 %** | 50,00 % | 0,00 % | 0,00 % | — |
 | 2026-10-referral-refresh-notification | **100,00 %** | 0,00 % | 0,00 % | 0,00 % | — |
 | 2026-10-recurring-referral-reminder | **66,66 %** | 33,33 % | 0,00 % | 0,01 % | — |
@@ -64,7 +64,7 @@
 | 2026-10-desktop-general-perf | **50,00 %** | 50,00 % | 0,00 % | 0,00 % | — |
 | 2026-10-desktop-game-perf | **50,00 %** | 50,00 % | 0,00 % | 0,00 % | — |
 | 2026-10-collectibles-upgraded-search | **50,00 %** | 50,00 % | 0,00 % | 0,00 % | — |
-| 2026-10-collectibles-storefront-pricing-integration | **10,00 %** | 0,00 % | 0,00 % | 90,00 % | — |
+| 2026-10-collectibles-storefront-pricing-integration | **20,00 %** | 0,00 % | 0,00 % | 80,00 % | — |
 | 2026-10-collectibles-interactive-jumble-bar | **50,00 %** | 50,00 % | 0,00 % | 0,00 % | — |
 | 2026-10-code-blurple-marketing-holdout | **95,00 %** | 5,00 % | 0,00 % | 0,00 % | — |
 | 2026-10-code-blurple | **100,00 %** | 0,00 % | 0,00 % | 0,00 % | — |
@@ -102,7 +102,7 @@
 | 2026-09-new-orb-reward-visuals | **100,00 %** | 0,00 % | 0,00 % | 0,00 % | — |
 | 2026-09-multi-sku-embed-rendering | **100,00 %** | 0,00 % | 0,00 % | 0,00 % | — |
 | 2026-09-mobile-roadblock-offer-cta | **50,00 %** | 50,00 % | 0,00 % | 0,00 % | — |
-| 2026-09-mobile-nlp-search-user-flag | **100,00 %** | 0,00 % | 0,00 % | 0,00 % | — |
+| 2026-09-mobile-nitro-upsell-in-shop-pdp | **100,00 %** | 0,00 % | 0,00 % | 0,00 % | — |
 | 2026-09-mobile-nitro-orbs-delivered-modal | **100,00 %** | 0,00 % | 0,00 % | 0,00 % | — |
 | 2026-09-ios-anchored-chat-scroller | **11,50 %** | 11,50 % | 0,00 % | 77,00 % | — |
 | 2026-09-invite-accept-age-group-errors | **30,00 %** | 0,00 % | 0,00 % | 70,00 % | — |
@@ -114,11 +114,12 @@
 | 2026-09-desktop-voice-message-recording | **100,00 %** | 0,00 % | 0,00 % | 0,00 % | — |
 | 2026-09-default-emojis | **20,00 %** | 20,00 % | 0,00 % | 60,00 % | — |
 | 2026-09-clips-editor-image-track | **100,00 %** | 0,00 % | 0,00 % | 0,00 % | — |
+| 2026-09-autoclips | **1,00 %** | 0,00 % | 0,00 % | 99,00 % | — |
 | 2026-08-vq-remaining-time-truncation | **100,00 %** | 0,00 % | 0,00 % | 0,00 % | — |
 | 2026-08-user-bio-max-length | **100,00 %** | 0,00 % | 0,00 % | 0,00 % | — |
 | 2026-08-tiny-bronco | **100,00 %** | 0,00 % | 0,00 % | 0,00 % | — |
 | 2026-08-split-payments | **100,00 %** | 0,00 % | 0,00 % | 0,00 % | — |
-| 2026-08-social-layer-storefront-mobile-embed | **5,00 %** | 5,00 % | 0,00 % | 90,00 % | — |
+| 2026-08-social-layer-storefront-mobile-embed | **15,00 %** | 15,00 % | 0,00 % | 70,00 % | — |
 | 2026-08-show-expressive-modal-subtitle-alt | **100,00 %** | 0,00 % | 0,00 % | 0,00 % | — |
 | 2026-08-rive-web-perf | **50,00 %** | 50,00 % | 0,00 % | 0,00 % | — |
 | 2026-08-profile-embed-share-button | **100,00 %** | 0,00 % | 0,00 % | 0,00 % | — |
@@ -450,6 +451,10 @@
 - Variant 0 (control) : 1,00 % · plages 0 – 100
 - Variant 1 (treatment) : 1,00 % · plages 100 – 200
 
+### 2026-11-cti-new-presets
+- Variant 0 (control) : 1,00 % · plages 0 – 100
+- Variant 1 (treatment) : 1,00 % · plages 100 – 200
+
 ### 2026-10-windows-playout-buffer-duration
 - Variant 0 (control) : 1,00 % · plages 0 – 100
 
@@ -493,11 +498,6 @@
 ### 2026-10-shop-sku-nitro-upsell-refresh
 - Variant 0 (control) : 50,00 % · plages 0 – 500 , 1000 – 1500 , 2000 – 3500 , 5000 – 7500
 - Variant 1 (treatment) : 50,00 % · plages 500 – 1000 , 1500 – 2000 , 3500 – 5000 , 7500 – 10000
-
-### 2026-10-sfp-bloons-orb-split-tender
-- Variant 0 (control) : 22,56 % · plages 0 – 100 , 400 – 900 , 1875 – 2541 , 3860 – 4850
-- Variant 2 (treatment) : 23,09 % · plages 100 – 300 , 900 – 1400 , 2541 – 3200 , 4850 – 5800
-- Variant 3 (treatment) : 22,35 % · plages 300 – 400 , 1400 – 1875 , 3200 – 3860 , 5800 – 6800
 
 ### 2026-10-remove-quests-from-discovery
 - Variant 0 (control) : 50,00 % · plages 0 – 100 , 200 – 1600 , 3000 – 4000 , 5000 – 7500
@@ -630,7 +630,7 @@
 - Variant 1 (treatment) : 50,00 % · plages 1500 – 3000 , 4000 – 5000 , 7500 – 10000
 
 ### 2026-10-collectibles-storefront-pricing-integration
-- Variant 1 (treatment) : 10,00 % · plages 0 – 1000
+- Variant 1 (treatment) : 20,00 % · plages 0 – 2000
 
 ### 2026-10-collectibles-interactive-jumble-bar
 - Variant 0 (control) : 50,00 % · plages 0 – 1500 , 3000 – 4000 , 5000 – 7500
@@ -763,8 +763,8 @@
 - Variant 0 (control) : 50,00 % · plages 0 – 1000 , 2000 – 3500 , 5000 – 7500
 - Variant 1 (treatment) : 50,00 % · plages 1000 – 2000 , 3500 – 5000 , 7500 – 10000
 
-### 2026-09-mobile-nlp-search-user-flag
-- Variant 1 (treatment) : 100,00 % · plages 0 – 10000
+### 2026-09-mobile-nitro-upsell-in-shop-pdp
+- Variant 2 (treatment) : 100,00 % · plages 0 – 10000
 
 ### 2026-09-mobile-nitro-orbs-delivered-modal
 - Variant 1 (treatment) : 100,00 % · plages 0 – 10000
@@ -802,6 +802,9 @@
 ### 2026-09-clips-editor-image-track
 - Variant 1 (treatment) : 100,00 % · plages 0 – 10000
 
+### 2026-09-autoclips
+- Variant 2 (treatment) : 1,00 % · plages 0 – 100
+
 ### 2026-08-vq-remaining-time-truncation
 - Variant 1 (treatment) : 100,00 % · plages 0 – 10000
 
@@ -815,8 +818,8 @@
 - Variant 1 (treatment) : 100,00 % · plages 0 – 10000
 
 ### 2026-08-social-layer-storefront-mobile-embed
-- Variant 0 (control) : 5,00 % · plages 0 – 500
-- Variant 1 (treatment) : 5,00 % · plages 5000 – 5500
+- Variant 0 (control) : 15,00 % · plages 0 – 1500
+- Variant 1 (treatment) : 15,00 % · plages 5000 – 6500
 
 ### 2026-08-show-expressive-modal-subtitle-alt
 - Variant 1 (treatment) : 100,00 % · plages 0 – 10000

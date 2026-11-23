@@ -1,10 +1,10 @@
 {
  "schemaVersion": 1,
- "generatedAt": "2026-11-23T18:38:26.271Z",
+ "generatedAt": "2026-11-23T18:44:00.091Z",
  "semantics": "Couverture gist non vérifiée et observations API : deux métriques séparées, jamais une proportion réelle d’utilisateurs.",
  "sources": {
   "positions": {
-   "updatedAt": "2026-11-23T18:38:26.204Z",
+   "updatedAt": "2026-11-23T18:44:00.023Z",
    "scheduled": true
   },
   "gist": {
@@ -55,7 +55,7 @@
     },
     "verified": false,
     "updatedAt": null,
-    "fetchedAt": "2026-11-23T18:37:12.179Z",
+    "fetchedAt": "2026-11-23T18:42:47.206Z",
     "revision": null,
     "htmlUrl": "https://gist.github.com/agnonotdev/e3e99062983e6bd0feaef833f14fd931",
     "sourceRanges": null,
@@ -69,7 +69,7 @@
     "observedAt": "2026-11-09T15:26:39.250Z",
     "freshness": {
      "state": "stale",
-     "ageHours": 339.19639472222224
+     "ageHours": 339.2891225
     },
     "n": 6429,
     "k": 6429,
@@ -120,10 +120,10 @@
     "inPositions": 9989,
     "outPositions": 0,
     "runs": 1,
-    "points": 63300,
+    "points": 63450,
     "conflicts": 0,
     "revision": 0,
-    "updatedAt": "2026-11-23T18:38:26.204Z",
+    "updatedAt": "2026-11-23T18:44:00.023Z",
     "assumption": "contiguous_ranges",
     "agreement": null,
     "gistInBounds": true,
@@ -147,7 +147,7 @@
     "observedAt": "2026-11-09T15:26:39.250Z",
     "freshness": {
      "state": "stale",
-     "ageHours": 339.19639472222224
+     "ageHours": 339.2891225
     },
     "n": 6429,
     "k": null,
@@ -204,7 +204,7 @@
     "observedAt": "2026-11-09T15:26:39.250Z",
     "freshness": {
      "state": "stale",
-     "ageHours": 339.19639472222224
+     "ageHours": 339.2891225
     },
     "n": 6429,
     "k": null,
@@ -261,7 +261,7 @@
     "observedAt": "2026-11-09T15:26:39.250Z",
     "freshness": {
      "state": "stale",
-     "ageHours": 339.19639472222224
+     "ageHours": 339.2891225
     },
     "n": 6279,
     "k": null,
@@ -318,7 +318,7 @@
     "observedAt": "2026-11-09T15:26:39.250Z",
     "freshness": {
      "state": "stale",
-     "ageHours": 339.19639472222224
+     "ageHours": 339.2891225
     },
     "n": 6429,
     "k": null,

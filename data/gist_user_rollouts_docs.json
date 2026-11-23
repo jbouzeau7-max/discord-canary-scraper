@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-11-23T18:37:12.179Z",
+ "generatedAt": "2026-11-23T18:42:47.206Z",
  "semantics": "couverture de l'espace de buckets (gist agnonotdev) — ni une proportion d'utilisateurs, ni une mesure d'accès réel ; multi-populations = couverture projetée non pondérée",
  "source": {
   "gistId": "e3e99062983e6bd0feaef833f14fd931",
@@ -8,12 +8,12 @@
   "revision": null
  },
  "stats": {
-  "total": 1066,
-  "user": 337,
-  "userData": 165,
-  "guild": 39,
+  "total": 1069,
+  "user": 339,
+  "userData": 166,
+  "guild": 40,
   "unclassified": 690,
-  "noData": 262
+  "noData": 263
  },
  "experiments": [
   {
@@ -200,6 +200,31 @@
   {
    "id": "2026-11-mobile-did-background-app-native",
    "title": "2026-11-mobile-did-background-app-native",
+   "type": "user",
+   "hasData": true,
+   "totalsAvailable": true,
+   "ambiguous": false,
+   "projected": false,
+   "flags": [],
+   "treatmentPct": 1,
+   "projectedTreatmentPct": null,
+   "controlPct": 1,
+   "notEligiblePct": 0,
+   "unassignedPct": 98,
+   "byVariant": {
+    "0": {
+     "pct": 1,
+     "role": "control"
+    },
+    "1": {
+     "pct": 1,
+     "role": "treatment"
+    }
+   }
+  },
+  {
+   "id": "2026-11-cti-new-presets",
+   "title": "2026-11-cti-new-presets",
    "type": "user",
    "hasData": true,
    "totalsAvailable": true,
@@ -537,30 +562,19 @@
    "id": "2026-10-sfp-bloons-orb-split-tender",
    "title": "2026-10-sfp-bloons-orb-split-tender",
    "type": "user",
-   "hasData": true,
-   "totalsAvailable": true,
+   "hasData": false,
+   "totalsAvailable": false,
    "ambiguous": false,
    "projected": false,
-   "flags": [],
-   "treatmentPct": 45.44,
+   "flags": [
+    "no_data"
+   ],
+   "treatmentPct": null,
    "projectedTreatmentPct": null,
-   "controlPct": 22.56,
-   "notEligiblePct": 0,
-   "unassignedPct": 32,
-   "byVariant": {
-    "0": {
-     "pct": 22.56,
-     "role": "control"
-    },
-    "2": {
-     "pct": 23.09,
-     "role": "treatment"
-    },
-    "3": {
-     "pct": 22.35,
-     "role": "treatment"
-    }
-   }
+   "controlPct": null,
+   "notEligiblePct": null,
+   "unassignedPct": null,
+   "byVariant": {}
   },
   {
    "id": "2026-10-server-tag-upsell-on-profile",
@@ -1487,14 +1501,14 @@
    "ambiguous": false,
    "projected": false,
    "flags": [],
-   "treatmentPct": 10,
+   "treatmentPct": 20,
    "projectedTreatmentPct": null,
    "controlPct": 0,
    "notEligiblePct": 0,
-   "unassignedPct": 90,
+   "unassignedPct": 80,
    "byVariant": {
     "1": {
-     "pct": 10,
+     "pct": 20,
      "role": "treatment"
     }
    }
@@ -2663,8 +2677,8 @@
    "byVariant": {}
   },
   {
-   "id": "2026-09-mobile-nlp-search-user-flag",
-   "title": "2026-09-mobile-nlp-search-user-flag",
+   "id": "2026-09-mobile-nitro-upsell-in-shop-pdp",
+   "title": "2026-09-mobile-nitro-upsell-in-shop-pdp",
    "type": "user",
    "hasData": true,
    "totalsAvailable": true,
@@ -2677,7 +2691,7 @@
    "notEligiblePct": 0,
    "unassignedPct": 0,
    "byVariant": {
-    "1": {
+    "2": {
      "pct": 100,
      "role": "treatment"
     }
@@ -3107,6 +3121,27 @@
    "byVariant": {}
   },
   {
+   "id": "2026-09-autoclips",
+   "title": "2026-09-autoclips",
+   "type": "user",
+   "hasData": true,
+   "totalsAvailable": true,
+   "ambiguous": false,
+   "projected": false,
+   "flags": [],
+   "treatmentPct": 1,
+   "projectedTreatmentPct": null,
+   "controlPct": 0,
+   "notEligiblePct": 0,
+   "unassignedPct": 99,
+   "byVariant": {
+    "2": {
+     "pct": 1,
+     "role": "treatment"
+    }
+   }
+  },
+  {
    "id": "2026-09-agc2-mobile",
    "title": "2026-09-agc2-mobile",
    "type": "user",
@@ -3307,18 +3342,18 @@
    "ambiguous": false,
    "projected": false,
    "flags": [],
-   "treatmentPct": 5,
+   "treatmentPct": 15,
    "projectedTreatmentPct": null,
-   "controlPct": 5,
+   "controlPct": 15,
    "notEligiblePct": 0,
-   "unassignedPct": 90,
+   "unassignedPct": 70,
    "byVariant": {
     "0": {
-     "pct": 5,
+     "pct": 15,
      "role": "control"
     },
     "1": {
-     "pct": 5,
+     "pct": 15,
      "role": "treatment"
     }
    }
