@@ -3,15 +3,15 @@
  "schemaVersion": 1,
  "semanticsVersion": 2,
  "notifyScopeVersion": 2,
- "runId": "20261123T200443_gist",
- "scrapedAt": "2026-11-23T20:04:43.605Z",
+ "runId": "20261123T202543_gist",
+ "scrapedAt": "2026-11-23T20:25:43.714Z",
  "source": {
   "gistId": "e3e99062983e6bd0feaef833f14fd931",
   "htmlUrl": "https://gist.github.com/agnonotdev/e3e99062983e6bd0feaef833f14fd931",
-  "rawUrl": "https://gist.githubusercontent.com/agnonotdev/e3e99062983e6bd0feaef833f14fd931/raw/fc1e817f45112549874323085e928cf300b12184/rollouts-tag.json",
-  "updatedAt": "2026-11-23T18:42:31Z",
-  "revision": "4de178c0b4f8a4415dd074484c586df2f08c4aed",
-  "fetchedAt": "2026-11-23T20:04:43.605Z",
+  "rawUrl": "https://gist.githubusercontent.com/agnonotdev/e3e99062983e6bd0feaef833f14fd931/raw/931aa43a04acb5567f69921b2bb2c5b62b8c4a7b/rollouts-tag.json",
+  "updatedAt": "2026-11-23T20:25:14Z",
+  "revision": "5836cfb5e33aa74c87d8763313bc7cb4b4285f34",
+  "fetchedAt": "2026-11-23T20:25:43.714Z",
   "fallback": false,
   "rawFallback": false,
   "canonicalId": null
@@ -20,6 +20,7 @@
   "gistId": "192b2ce20539ce1021b5c8cb01b17ff0",
   "diverged": true,
   "divergingIds": [
+   "2026-11-three-month-nitro-gifting-no-copy-change",
    "2026-11-cti-new-presets",
    "2026-11-premium-group-continuation-40",
    "2026-11-phoenix-app-access",
@@ -30,8 +31,9 @@
    "2026-11-payment-element-accordion-layout",
    "2026-11-return-full-quest-status-in-decision",
    "2026-11-screen-share-dtx",
-   "2026-10-sfp-bloons-orb-split-tender",
+   "2026-10-profile-default-tab-with-content",
    "2026-10-collectibles-storefront-pricing-integration",
+   "2026-10-sfp-bloons-orb-split-tender",
    "2026-10-guild-bulk-role-actions",
    "2026-10-interest-picker",
    "2026-10-social-layer-storefront-mobile-multi-sku-embed",
@@ -90,6 +92,7 @@
    "2026-09-game-profiles-v3-communities-tab",
    "2026-09-voice-server-update-immediate-mobile",
    "2026-09-friends-sidebar",
+   "2026-08-badge-management",
    "2026-08-social-layer-storefront-mobile-embed",
    "2026-08-mark-channel-unread",
    "2026-08-find-coded-links-regex",
@@ -102,16 +105,17 @@
    "2026-05-mobile-request-review-no-tti",
    "2026-05-av1-bitrate-tuning",
    "2026-02-game-server-tab-always-on",
+   "2025-10-desktop-communication-notifications-emoji",
    "2025-04-native-markdown"
   ]
  },
  "stats": {
-  "total": 1069,
-  "user": 339,
-  "userData": 166,
+  "total": 1070,
+  "user": 340,
+  "userData": 168,
   "guild": 40,
   "unclassified": 690,
-  "noData": 263
+  "noData": 262
  },
  "acknowledged": {
   "2026-11-soundboard-upsells-brand-refresh": {
@@ -460,31 +464,27 @@
    "variantsCount": 2
   },
   "2026-10-profile-default-tab-with-content": {
-   "key": "b70149498bd33300",
+   "key": "95f46bfc73a52751",
    "hasData": true,
-   "sig": "0:control|1:treatment",
+   "sig": "1:treatment",
    "byVariant": {
-    "0": {
-     "pct": 30,
-     "role": "control"
-    },
     "1": {
-     "pct": 30,
+     "pct": 100,
      "role": "treatment"
     }
    },
    "treatment": {
-    "pct": 30
+    "pct": 100
    },
    "control": {
-    "pct": 30
+    "pct": 0
    },
    "notEligible": {
     "pct": 0
    },
    "projectedCoverage": null,
    "projected": false,
-   "variantsCount": 2
+   "variantsCount": 1
   },
   "2026-10-pinot-member": {
    "key": "95f46bfc73a52751",
@@ -2427,16 +2427,12 @@
    }
   },
   "2026-08-badge-management": {
-   "key": "1f7c50e41ac27fcb",
+   "key": "16e432fd014af240",
    "hasData": true,
-   "sig": "1:treatment|2:treatment",
+   "sig": "2:treatment",
    "byVariant": {
-    "1": {
-     "pct": 7.5,
-     "role": "treatment"
-    },
     "2": {
-     "pct": 92.5,
+     "pct": 100,
      "role": "treatment"
     }
    },
@@ -2451,7 +2447,7 @@
    },
    "projectedCoverage": null,
    "projected": false,
-   "variantsCount": 2
+   "variantsCount": 1
   },
   "2026-08-automontage": {
    "key": "no_data",
@@ -4227,12 +4223,31 @@
    }
   },
   "2025-10-desktop-communication-notifications-emoji": {
-   "key": "no_data",
-   "hasData": false,
-   "sig": "",
+   "key": "487a7c94d69f172b",
+   "hasData": true,
+   "sig": "0:control|1:treatment",
+   "byVariant": {
+    "0": {
+     "pct": 50,
+     "role": "control"
+    },
+    "1": {
+     "pct": 50,
+     "role": "treatment"
+    }
+   },
    "treatment": {
-    "pct": null
-   }
+    "pct": 50
+   },
+   "control": {
+    "pct": 50
+   },
+   "notEligible": {
+    "pct": 0
+   },
+   "projectedCoverage": null,
+   "projected": false,
+   "variantsCount": 2
   },
   "2025-10-collectibles-custom-cursors": {
    "key": "no_data",
@@ -21456,17 +21471,17 @@
    "variantsCount": 1
   },
   "2026-10-collectibles-storefront-pricing-integration": {
-   "key": "d2f8d8298e18e7ca",
+   "key": "95f46bfc73a52751",
    "hasData": true,
    "sig": "1:treatment",
    "byVariant": {
     "1": {
-     "pct": 20,
+     "pct": 100,
      "role": "treatment"
     }
    },
    "treatment": {
-    "pct": 20
+    "pct": 100
    },
    "control": {
     "pct": 0
@@ -21827,22 +21842,43 @@
    "projectedCoverage": null,
    "projected": false,
    "variantsCount": 1
+  },
+  "2026-11-three-month-nitro-gifting-no-copy-change": {
+   "key": "b3b9adcf2eca826f",
+   "hasData": true,
+   "sig": "0:control|1:treatment",
+   "byVariant": {
+    "0": {
+     "pct": 5,
+     "role": "control"
+    },
+    "1": {
+     "pct": 5,
+     "role": "treatment"
+    }
+   },
+   "treatment": {
+    "pct": 5
+   },
+   "control": {
+    "pct": 5
+   },
+   "notEligible": {
+    "pct": 0
+   },
+   "projectedCoverage": null,
+   "projected": false,
+   "variantsCount": 2
   }
  },
  "lastRun": {
-  "changes": 0,
-  "delivered": 0,
+  "changes": 5,
+  "delivered": 5,
   "firstRun": false,
   "semanticsMigrated": 0,
   "scopeBaselined": 0
  },
  "history": [
-  {
-   "at": "2026-11-22T21:13:32.600Z",
-   "revision": "4ffd49f4375701730e6a890fca2be8764cdc1c7b",
-   "changes": 0,
-   "delivered": 0
-  },
   {
    "at": "2026-11-22T21:42:39.689Z",
    "revision": "4ffd49f4375701730e6a890fca2be8764cdc1c7b",
@@ -22136,6 +22172,12 @@
    "revision": "4de178c0b4f8a4415dd074484c586df2f08c4aed",
    "changes": 0,
    "delivered": 0
+  },
+  {
+   "at": "2026-11-23T20:25:43.714Z",
+   "revision": "5836cfb5e33aa74c87d8763313bc7cb4b4285f34",
+   "changes": 5,
+   "delivered": 5
   }
  ]
 }

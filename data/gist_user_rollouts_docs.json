@@ -1,21 +1,46 @@
 {
- "generatedAt": "2026-11-23T19:06:23.087Z",
+ "generatedAt": "2026-11-23T20:25:43.720Z",
  "semantics": "couverture de l'espace de buckets (gist agnonotdev) — ni une proportion d'utilisateurs, ni une mesure d'accès réel ; multi-populations = couverture projetée non pondérée",
  "source": {
   "gistId": "e3e99062983e6bd0feaef833f14fd931",
   "htmlUrl": "https://gist.github.com/agnonotdev/e3e99062983e6bd0feaef833f14fd931",
-  "updatedAt": "2026-11-23T18:42:31Z",
-  "revision": "4de178c0b4f8a4415dd074484c586df2f08c4aed"
+  "updatedAt": "2026-11-23T20:25:14Z",
+  "revision": "5836cfb5e33aa74c87d8763313bc7cb4b4285f34"
  },
  "stats": {
-  "total": 1069,
-  "user": 339,
-  "userData": 166,
+  "total": 1070,
+  "user": 340,
+  "userData": 168,
   "guild": 40,
   "unclassified": 690,
-  "noData": 263
+  "noData": 262
  },
  "experiments": [
+  {
+   "id": "2026-11-three-month-nitro-gifting-no-copy-change",
+   "title": "2026-11-three-month-nitro-gifting-no-copy-change",
+   "type": "user",
+   "hasData": true,
+   "totalsAvailable": true,
+   "ambiguous": false,
+   "projected": false,
+   "flags": [],
+   "treatmentPct": 5,
+   "projectedTreatmentPct": null,
+   "controlPct": 5,
+   "notEligiblePct": 0,
+   "unassignedPct": 90,
+   "byVariant": {
+    "0": {
+     "pct": 5,
+     "role": "control"
+    },
+    "1": {
+     "pct": 5,
+     "role": "treatment"
+    }
+   }
+  },
   {
    "id": "2026-11-soundboard-upsells-brand-refresh",
    "title": "2026-11-soundboard-upsells-brand-refresh",
@@ -728,18 +753,14 @@
    "ambiguous": false,
    "projected": false,
    "flags": [],
-   "treatmentPct": 30,
+   "treatmentPct": 100,
    "projectedTreatmentPct": null,
-   "controlPct": 30,
+   "controlPct": 0,
    "notEligiblePct": 0,
-   "unassignedPct": 40,
+   "unassignedPct": 0,
    "byVariant": {
-    "0": {
-     "pct": 30,
-     "role": "control"
-    },
     "1": {
-     "pct": 30,
+     "pct": 100,
      "role": "treatment"
     }
    }
@@ -1501,14 +1522,14 @@
    "ambiguous": false,
    "projected": false,
    "flags": [],
-   "treatmentPct": 20,
+   "treatmentPct": 100,
    "projectedTreatmentPct": null,
    "controlPct": 0,
    "notEligiblePct": 0,
-   "unassignedPct": 80,
+   "unassignedPct": 0,
    "byVariant": {
     "1": {
-     "pct": 20,
+     "pct": 100,
      "role": "treatment"
     }
    }
@@ -3672,12 +3693,8 @@
    "notEligiblePct": 0,
    "unassignedPct": 0,
    "byVariant": {
-    "1": {
-     "pct": 7.5,
-     "role": "treatment"
-    },
     "2": {
-     "pct": 92.5,
+     "pct": 100,
      "role": "treatment"
     }
    }
@@ -6682,19 +6699,26 @@
    "id": "2025-10-desktop-communication-notifications-emoji",
    "title": "2025-10-desktop-communication-notifications-emoji",
    "type": "user",
-   "hasData": false,
-   "totalsAvailable": false,
+   "hasData": true,
+   "totalsAvailable": true,
    "ambiguous": false,
    "projected": false,
-   "flags": [
-    "no_data"
-   ],
-   "treatmentPct": null,
+   "flags": [],
+   "treatmentPct": 50,
    "projectedTreatmentPct": null,
-   "controlPct": null,
-   "notEligiblePct": null,
-   "unassignedPct": null,
-   "byVariant": {}
+   "controlPct": 50,
+   "notEligiblePct": 0,
+   "unassignedPct": 0,
+   "byVariant": {
+    "0": {
+     "pct": 50,
+     "role": "control"
+    },
+    "1": {
+     "pct": 50,
+     "role": "treatment"
+    }
+   }
   },
   {
    "id": "2025-10-collectibles-custom-cursors",
