@@ -1,8 +1,8 @@
 {
-  "runId": "2026-11-23T18-11-31-378Z_679292_zzgdg3",
-  "buildNumber": "679292",
-  "updatedAt": "2026-11-23T18:11:31.378Z",
-  "count": 390,
+  "runId": "2026-11-23T18-16-13-816Z_679295_yfyue8",
+  "buildNumber": "679295",
+  "updatedAt": "2026-11-23T18:16:13.816Z",
+  "count": 389,
   "experiments": [
     {
       "id": "2021-02_staff_qc_debugging",
@@ -9209,52 +9209,6 @@
         "source": "gist_user_rollouts"
       },
       "fingerprint": "570c0158ca844476450326182d724621ca099e53fb529ef0715beb3ce31cb3f5"
-    },
-    {
-      "id": "2026-07-reduce-leave-call-gpu",
-      "kind": "user",
-      "type": "user",
-      "system": "apex",
-      "label": null,
-      "title": null,
-      "description": null,
-      "defaultConfig": {
-        "useStaticGradient": false
-      },
-      "variations": {
-        "1": {
-          "useStaticGradient": true
-        }
-      },
-      "treatments": null,
-      "variationSource": "variations",
-      "variationCount": 1,
-      "raw": {
-        "id": "2026-07-reduce-leave-call-gpu",
-        "type": "user",
-        "kind": "user",
-        "label": null,
-        "system": "apex",
-        "defaultConfig": {
-          "useStaticGradient": false
-        },
-        "variations": {
-          "1": {
-            "useStaticGradient": true
-          }
-        },
-        "variationCount": 1,
-        "source": "discord"
-      },
-      "guildPercentage": {
-        "status": "unknown",
-        "value": null
-      },
-      "userPercentage": {
-        "status": "unknown",
-        "value": null
-      },
-      "fingerprint": "bbd49f70ae19df1e247c1105a3a663dca02adbf4c61a025ec3218a67c813faf5"
     },
     {
       "id": "2026-07-reject-with-error-kill-switch",

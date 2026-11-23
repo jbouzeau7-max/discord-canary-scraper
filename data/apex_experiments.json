@@ -2253,19 +2253,6 @@
   },
   {
     "kind": "user",
-    "name": "2026-07-reduce-leave-call-gpu",
-    "defaultConfig": {
-      "useStaticGradient": false
-    },
-    "variations": {
-      "1": {
-        "useStaticGradient": true
-      }
-    },
-    "label": null
-  },
-  {
-    "kind": "user",
     "name": "2026-07-reject-with-error-kill-switch",
     "defaultConfig": {
       "migrationKilled": false

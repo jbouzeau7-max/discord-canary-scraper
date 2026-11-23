@@ -1,8 +1,8 @@
 {
-  "runId": "2026-11-23T18-11-31-378Z_679292_zzgdg3",
-  "buildNumber": "679292",
-  "updatedAt": "2026-11-23T18:11:31.378Z",
-  "count": 390,
+  "runId": "2026-11-23T18-16-13-816Z_679295_yfyue8",
+  "buildNumber": "679295",
+  "updatedAt": "2026-11-23T18:16:13.816Z",
+  "count": 389,
   "data": {
     "2021-02_staff_qc_debugging": {
       "id": "2021-02_staff_qc_debugging",
@@ -3542,23 +3542,6 @@
       "defaultConfig": null,
       "system": "apex",
       "fp": "18df652c1bc01c028e479c9d1e8619d0496d6060839ee544e251d0411451fb58"
-    },
-    "2026-07-reduce-leave-call-gpu": {
-      "id": "2026-07-reduce-leave-call-gpu",
-      "type": "user",
-      "kind": "user",
-      "label": null,
-      "variationCount": 1,
-      "variations": {
-        "1": {
-          "useStaticGradient": true
-        }
-      },
-      "defaultConfig": {
-        "useStaticGradient": false
-      },
-      "system": "apex",
-      "fp": "bbd49f70ae19df1e247c1105a3a663dca02adbf4c61a025ec3218a67c813faf5"
     },
     "2026-07-reject-with-error-kill-switch": {
       "id": "2026-07-reject-with-error-kill-switch",

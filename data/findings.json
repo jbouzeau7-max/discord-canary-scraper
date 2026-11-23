@@ -1,9 +1,9 @@
 {
-  "runId": "2026-11-23T18-11-31-378Z_679292_zzgdg3",
-  "buildNumber": "679292",
-  "scrapedAt": "2026-11-23T18:11:31.378Z",
+  "runId": "2026-11-23T18-16-13-816Z_679295_yfyue8",
+  "buildNumber": "679295",
+  "scrapedAt": "2026-11-23T18:16:13.816Z",
   "totals": {
-    "all": 390
+    "all": 389
   },
   "experiments": [
     {
@@ -3944,23 +3944,6 @@
         "source": "gist_user_rollouts"
       },
       "fingerprint": "570c0158ca844476450326182d724621ca099e53fb529ef0715beb3ce31cb3f5"
-    },
-    {
-      "id": "2026-07-reduce-leave-call-gpu",
-      "type": "user",
-      "kind": "user",
-      "label": null,
-      "system": "apex",
-      "defaultConfig": {
-        "useStaticGradient": false
-      },
-      "variations": {
-        "1": {
-          "useStaticGradient": true
-        }
-      },
-      "variationCount": 1,
-      "source": "discord"
     },
     {
       "id": "2026-07-reject-with-error-kill-switch",
