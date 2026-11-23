@@ -5314,6 +5314,22 @@
   },
   {
     "kind": "user",
+    "name": "2026-11-game-stats-widget-skip-connect-modal",
+    "defaultConfig": {
+      "enabled": false
+    },
+    "variations": {
+      "0": {
+        "enabled": false
+      },
+      "1": {
+        "enabled": true
+      }
+    },
+    "label": null
+  },
+  {
+    "kind": "user",
     "name": "2026-11-holiday-ringtone",
     "defaultConfig": {
       "enabled": false

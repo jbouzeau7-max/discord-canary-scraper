@@ -1,8 +1,8 @@
 {
-  "runId": "2026-11-23T18-16-13-816Z_679295_yfyue8",
-  "buildNumber": "679295",
-  "updatedAt": "2026-11-23T18:16:13.816Z",
-  "count": 389,
+  "runId": "2026-11-23T18-18-45-865Z_679301_yelx01",
+  "buildNumber": "679301",
+  "updatedAt": "2026-11-23T18:18:45.865Z",
+  "count": 390,
   "data": {
     "2021-02_staff_qc_debugging": {
       "id": "2021-02_staff_qc_debugging",
@@ -7351,6 +7351,26 @@
       },
       "system": "apex",
       "fp": "d34b6d71f4534c5ff5fd4765796b9f9b063519db9163b3aff4ace15cee79ebf7"
+    },
+    "2026-11-game-stats-widget-skip-connect-modal": {
+      "id": "2026-11-game-stats-widget-skip-connect-modal",
+      "type": "user",
+      "kind": "user",
+      "label": null,
+      "variationCount": 2,
+      "variations": {
+        "0": {
+          "enabled": false
+        },
+        "1": {
+          "enabled": true
+        }
+      },
+      "defaultConfig": {
+        "enabled": false
+      },
+      "system": "apex",
+      "fp": "d6eb375d405a7ca3ebe23898a3e55f30182dcf41a1a2a20b600594ba74cb8d7a"
     },
     "2026-11-holiday-ringtone": {
       "id": "2026-11-holiday-ringtone",

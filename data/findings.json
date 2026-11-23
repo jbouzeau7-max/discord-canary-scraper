@@ -1,9 +1,9 @@
 {
-  "runId": "2026-11-23T18-16-13-816Z_679295_yfyue8",
-  "buildNumber": "679295",
-  "scrapedAt": "2026-11-23T18:16:13.816Z",
+  "runId": "2026-11-23T18-18-45-865Z_679301_yelx01",
+  "buildNumber": "679301",
+  "scrapedAt": "2026-11-23T18:18:45.865Z",
   "totals": {
-    "all": 389
+    "all": 390
   },
   "experiments": [
     {
@@ -8549,6 +8549,26 @@
         },
         "1": {
           "enabled": false
+        }
+      },
+      "variationCount": 2,
+      "source": "discord"
+    },
+    {
+      "id": "2026-11-game-stats-widget-skip-connect-modal",
+      "type": "user",
+      "kind": "user",
+      "label": null,
+      "system": "apex",
+      "defaultConfig": {
+        "enabled": false
+      },
+      "variations": {
+        "0": {
+          "enabled": false
+        },
+        "1": {
+          "enabled": true
         }
       },
       "variationCount": 2,
