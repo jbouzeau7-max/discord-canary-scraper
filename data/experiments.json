@@ -1,11 +1,11 @@
 {
-  "runId": "2026-11-23T18-33-14-547Z_679323_qb17fc",
-  "buildNumber": "679323",
-  "scrapedAt": "2026-11-23T18:33:14.548Z",
+  "runId": "2026-11-23T18-35-29-807Z_679324_w2vhzv",
+  "buildNumber": "679324",
+  "scrapedAt": "2026-11-23T18:35:29.807Z",
   "totals": {
-    "all": 390,
+    "all": 392,
     "legacy": 28,
-    "apex": 362
+    "apex": 364
   },
   "experiments": [
     {
@@ -5431,6 +5431,55 @@
       },
       "variationCount": 3,
       "source": "discord"
+    },
+    {
+      "id": "2026-09-mobile-nlp-search-guild-experiment",
+      "type": "guild",
+      "kind": "guild",
+      "label": null,
+      "system": "apex",
+      "defaultConfig": {
+        "enabled": false
+      },
+      "variations": {
+        "0": {
+          "enabled": false
+        },
+        "1": {
+          "enabled": true
+        }
+      },
+      "variationCount": 2,
+      "source": "discord"
+    },
+    {
+      "id": "2026-09-mobile-nlp-search-user-flag",
+      "type": "guild",
+      "kind": "guild",
+      "label": null,
+      "system": "apex",
+      "defaultConfig": {
+        "enabled": false
+      },
+      "variations": {
+        "0": {
+          "enabled": false
+        },
+        "1": {
+          "enabled": true
+        }
+      },
+      "variationCount": 2,
+      "source": "discord",
+      "guildPercentage": {
+        "status": "unknown",
+        "value": null
+      },
+      "userPercentage": {
+        "status": "unknown",
+        "value": null
+      },
+      "fingerprint": "eb5522255762b9afd9dab5d2aa602877a045475513088eb0e56d83abed1deec0"
     },
     {
       "id": "2026-09-mobile-quest-home-sort-priority",

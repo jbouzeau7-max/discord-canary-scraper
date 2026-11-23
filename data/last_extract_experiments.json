@@ -1,8 +1,8 @@
 {
-  "runId": "2026-11-23T18-33-14-547Z_679323_qb17fc",
-  "buildNumber": "679323",
-  "updatedAt": "2026-11-23T18:33:14.548Z",
-  "count": 390,
+  "runId": "2026-11-23T18-35-29-807Z_679324_w2vhzv",
+  "buildNumber": "679324",
+  "updatedAt": "2026-11-23T18:35:29.807Z",
+  "count": 392,
   "data": {
     "2021-02_staff_qc_debugging": {
       "id": "2021-02_staff_qc_debugging",
@@ -4777,6 +4777,46 @@
       },
       "system": "apex",
       "fp": "e61e4aacc46f26240161094e4ca47a7772bf24fe68ddcdc9a2bffec21fc23dcc"
+    },
+    "2026-09-mobile-nlp-search-guild-experiment": {
+      "id": "2026-09-mobile-nlp-search-guild-experiment",
+      "type": "guild",
+      "kind": "guild",
+      "label": null,
+      "variationCount": 2,
+      "variations": {
+        "0": {
+          "enabled": false
+        },
+        "1": {
+          "enabled": true
+        }
+      },
+      "defaultConfig": {
+        "enabled": false
+      },
+      "system": "apex",
+      "fp": "9cfc858ecb9cb7eeda323919e61b3779c55e8b1bd81bd52a2cbdb93a769beb7e"
+    },
+    "2026-09-mobile-nlp-search-user-flag": {
+      "id": "2026-09-mobile-nlp-search-user-flag",
+      "type": "guild",
+      "kind": "guild",
+      "label": null,
+      "variationCount": 2,
+      "variations": {
+        "0": {
+          "enabled": false
+        },
+        "1": {
+          "enabled": true
+        }
+      },
+      "defaultConfig": {
+        "enabled": false
+      },
+      "system": "apex",
+      "fp": "eb5522255762b9afd9dab5d2aa602877a045475513088eb0e56d83abed1deec0"
     },
     "2026-09-mobile-quest-home-sort-priority": {
       "id": "2026-09-mobile-quest-home-sort-priority",
