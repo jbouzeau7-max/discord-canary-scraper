@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-11-23T18:34:14.145Z",
+  "fetchedAt": "2026-11-23T18:40:46.465Z",
   "sources": {
     "discordApi": {
       "url": "https://discord.com/api/v9/experiments",
@@ -320,43 +320,43 @@
       }
     },
     {
-      "hash": 1144304849,
-      "id": null,
-      "type": "user",
-      "title": "hash_1144304849",
-      "percentage": 0,
-      "status": "not_started",
-      "samples": 3,
-      "enrolled": 0,
-      "treatmentDistribution": {
-        "0": 3
-      },
-      "source": "fingerprint_sampling",
-      "note": "No local experiment ID match for this hash",
-      "fpSamples": 3,
-      "fpEnrolled": 0,
-      "fpTreatmentDist": {
-        "0": 3
-      }
-    },
-    {
       "hash": 704914099,
       "id": null,
       "type": "user",
       "title": "hash_704914099",
       "percentage": 0,
       "status": "not_started",
-      "samples": 1,
+      "samples": 2,
       "enrolled": 0,
       "treatmentDistribution": {
-        "0": 1
+        "0": 2
       },
       "source": "fingerprint_sampling",
       "note": "No local experiment ID match for this hash",
-      "fpSamples": 1,
+      "fpSamples": 2,
       "fpEnrolled": 0,
       "fpTreatmentDist": {
-        "0": 1
+        "0": 2
+      }
+    },
+    {
+      "hash": 1144304849,
+      "id": null,
+      "type": "user",
+      "title": "hash_1144304849",
+      "percentage": 0,
+      "status": "not_started",
+      "samples": 2,
+      "enrolled": 0,
+      "treatmentDistribution": {
+        "0": 2
+      },
+      "source": "fingerprint_sampling",
+      "note": "No local experiment ID match for this hash",
+      "fpSamples": 2,
+      "fpEnrolled": 0,
+      "fpTreatmentDist": {
+        "0": 2
       }
     },
     {
@@ -2660,6 +2660,26 @@
       "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
     },
     {
+      "id": "2026-09-mobile-nlp-search-guild-experiment",
+      "hash": 3615834800,
+      "type": "guild",
+      "title": "2026-09-mobile-nlp-search-guild-experiment",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "No rollout data found in the Discord API."
+    },
+    {
+      "id": "2026-09-mobile-nlp-search-user-flag",
+      "hash": 3581122435,
+      "type": "guild",
+      "title": "2026-09-mobile-nlp-search-user-flag",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "No rollout data found in the Discord API."
+    },
+    {
       "id": "2026-09-mobile-quest-home-sort-priority",
       "hash": 520271088,
       "type": "user",
@@ -4221,11 +4241,11 @@
     }
   ],
   "summary": {
-    "total": 395,
-    "guild": 42,
+    "total": 397,
+    "guild": 44,
     "user": 353,
     "withPercentage": 9,
-    "withoutPercentage": 386,
+    "withoutPercentage": 388,
     "fullRollout": 5,
     "partial": 0,
     "notStarted": 4,
