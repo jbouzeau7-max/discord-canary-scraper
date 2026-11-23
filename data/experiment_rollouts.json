@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-11-23T18:14:17.176Z",
+  "fetchedAt": "2026-11-23T18:20:58.513Z",
   "sources": {
     "discordApi": {
       "url": "https://discord.com/api/v9/experiments",
@@ -326,17 +326,17 @@
       "title": "hash_704914099",
       "percentage": 0,
       "status": "not_started",
-      "samples": 4,
+      "samples": 3,
       "enrolled": 0,
       "treatmentDistribution": {
-        "0": 4
+        "0": 3
       },
       "source": "fingerprint_sampling",
       "note": "No local experiment ID match for this hash",
-      "fpSamples": 4,
+      "fpSamples": 3,
       "fpEnrolled": 0,
       "fpTreatmentDist": {
-        "0": 4
+        "0": 3
       }
     },
     {
@@ -2054,16 +2054,6 @@
       "hash": 2218267423,
       "type": "user",
       "title": "2026-07-quest-home-default-banner-removal",
-      "percentage": null,
-      "status": "no_rollout_data",
-      "source": "client_bundle",
-      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
-    },
-    {
-      "id": "2026-07-reduce-leave-call-gpu",
-      "hash": 3928868217,
-      "type": "user",
-      "title": "2026-07-reduce-leave-call-gpu",
       "percentage": null,
       "status": "no_rollout_data",
       "source": "client_bundle",
@@ -3934,6 +3924,16 @@
       "hash": 1382843298,
       "type": "user",
       "title": "2026-11-game-exit-promo-bloons",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-11-game-stats-widget-skip-connect-modal",
+      "hash": 2806995169,
+      "type": "user",
+      "title": "2026-11-game-stats-widget-skip-connect-modal",
       "percentage": null,
       "status": "no_rollout_data",
       "source": "client_bundle",
