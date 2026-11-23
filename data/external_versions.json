@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-23T07:42:23.286Z",
+  "updatedAt": "2026-11-23T19:40:58.498Z",
   "sources": {
     "dataminingCommits": {
       "url": "https://api.github.com/repos/Wumpus-Central/discord-mobile-datamining/commits?per_page=100",
@@ -10,6 +10,9 @@
       "lastAccessible": true,
       "via": "browser",
       "note": "page bloquée par Cloudflare pour un fetch HTTP : lecture via navigateur le 2026-11-17"
+    },
+    "iosOta": {
+      "lastAccessible": true
     }
   },
   "android": {
@@ -21,12 +24,19 @@
     },
     "alpha": {
       "version": "357.0",
-      "track": "alpha",
+      "source": "datamining_commits",
       "date": "2026-11-23T07:41:29Z",
-      "source": "datamining_commits"
+      "track": "alpha"
     }
   },
   "ios": {
-    "beta": null
+    "beta": {
+      "version": "355.0",
+      "build": "124431",
+      "commit": "34e53f6b497816bc77677725d9bd637cd442dec2",
+      "releaseName": null,
+      "source": "discord_ota_manifest",
+      "checkedAt": "2026-11-23T19:40:58.498Z"
+    }
   }
 }

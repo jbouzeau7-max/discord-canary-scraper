@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-11-23T19:34:09.386Z",
+  "scrapedAt": "2026-11-23T19:40:58.498Z",
   "channels": [
     {
       "platform": "ios",
@@ -14,29 +14,33 @@
       "source": "itunes_lookup",
       "storeUrl": "https://apps.apple.com/app/id985746746",
       "available": true,
-      "checkedAt": "2026-11-23T19:34:09.386Z"
+      "checkedAt": "2026-11-23T19:40:58.498Z"
     },
     {
       "platform": "ios",
       "channel": "beta",
-      "version": null,
-      "available": false,
-      "note": "OTA not ahead of App Store",
+      "version": "355.0",
+      "build": "124431",
+      "commit": "34e53f6b497816bc77677725d9bd637cd442dec2",
+      "releaseName": null,
+      "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/6a/2f/ba/6a2fba87-e0a7-ec69-6ca5-e77cad3e533e/AppIcon-0-0-1x_U007epad-0-1-0-85-220.png/512x512bb.jpg",
+      "source": "discord_ota_manifest",
       "storeUrl": "https://testflight.apple.com/join/gdE4pRzI",
-      "checkedAt": "2026-11-23T19:34:09.386Z",
-      "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/6a/2f/ba/6a2fba87-e0a7-ec69-6ca5-e77cad3e533e/AppIcon-0-0-1x_U007epad-0-1-0-85-220.png/512x512bb.jpg"
+      "available": true,
+      "note": "OTA ahead of App Store (TestFlight)",
+      "checkedAt": "2026-11-23T19:40:58.498Z"
     },
     {
       "platform": "android",
       "channel": "stable",
-      "version": "355.10",
-      "build": "35501000489290",
-      "commit": "c01f90b874fd09c440462c6fb8258de70f50e3e4",
-      "releaseName": "discord_android@355.10.489290-0+35501000489290",
-      "source": "discord_ota_manifest",
+      "version": "354.12",
+      "build": null,
+      "commit": null,
+      "releaseName": null,
+      "source": "store",
       "storeUrl": "https://play.google.com/store/apps/details?id=com.discord",
       "available": true,
-      "checkedAt": "2026-11-23T19:34:09.386Z",
+      "checkedAt": "2026-11-23T19:40:58.498Z",
       "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/6a/2f/ba/6a2fba87-e0a7-ec69-6ca5-e77cad3e533e/AppIcon-0-0-1x_U007epad-0-1-0-85-220.png/512x512bb.jpg"
     },
     {
@@ -50,7 +54,7 @@
       "storeUrl": "https://play.google.com/store/apps/details?id=com.discord",
       "available": true,
       "note": "Track-labeled on apkmirror",
-      "checkedAt": "2026-11-23T19:34:09.386Z",
+      "checkedAt": "2026-11-23T19:40:58.498Z",
       "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/6a/2f/ba/6a2fba87-e0a7-ec69-6ca5-e77cad3e533e/AppIcon-0-0-1x_U007epad-0-1-0-85-220.png/512x512bb.jpg"
     },
     {
@@ -64,12 +68,18 @@
       "storeUrl": "https://play.google.com/store/apps/details?id=com.discord",
       "available": true,
       "note": "Track-labeled on datamining_commits",
-      "checkedAt": "2026-11-23T19:34:09.386Z",
+      "checkedAt": "2026-11-23T19:40:58.498Z",
       "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/6a/2f/ba/6a2fba87-e0a7-ec69-6ca5-e77cad3e533e/AppIcon-0-0-1x_U007epad-0-1-0-85-220.png/512x512bb.jpg"
     }
   ],
   "otaIndex": {
     "ios": [
+      {
+        "version": "355.0",
+        "build": "124431",
+        "commit": "34e53f6b497816bc77677725d9bd637cd442dec2",
+        "releaseName": null
+      },
       {
         "version": "354.0",
         "build": "124441",
@@ -351,6 +361,13 @@
   },
   "history": [
     {
+      "at": "2026-11-23T19:40:58.498Z",
+      "key": "ios/beta",
+      "from": null,
+      "to": "355.0",
+      "build": "124431"
+    },
+    {
       "at": "2026-11-23T07:42:23.286Z",
       "key": "android/alpha",
       "from": "356.7",
@@ -449,7 +466,7 @@
       "build": "35301100485321"
     }
   ],
-  "previousScrapedAt": "2026-11-23T19:27:30.579Z",
+  "previousScrapedAt": "2026-11-23T19:34:09.386Z",
   "notifiedFingerprints": [
     "android|stable|353.11|35301100485321",
     "android|alpha|355.5",
@@ -463,13 +480,22 @@
     "android|alpha|356.4",
     "android|alpha|356.6",
     "android|alpha|356.7",
-    "android|stable|354.12",
-    "ios|stable|354.0",
     "android|stable|355.10",
+    "ios|stable|354.0",
+    "ios|beta|355.0",
+    "android|stable|354.12",
     "android|beta|355.6",
     "android|alpha|357.0"
   ],
-  "changes": [],
+  "changes": [
+    {
+      "type": "new",
+      "key": "ios/beta",
+      "from": null,
+      "to": "355.0",
+      "build": "124431"
+    }
+  ],
   "paused": false,
   "notifyOk": true
 }
