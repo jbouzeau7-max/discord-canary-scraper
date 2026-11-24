@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-11-24T18:03:59.886Z",
+  "fetchedAt": "2026-11-24T18:10:45.427Z",
   "sources": {
     "discordApi": {
       "url": "https://discord.com/api/v9/experiments",
@@ -326,17 +326,17 @@
       "title": "hash_704914099",
       "percentage": 0,
       "status": "not_started",
-      "samples": 2,
+      "samples": 3,
       "enrolled": 0,
       "treatmentDistribution": {
-        "0": 2
+        "0": 3
       },
       "source": "fingerprint_sampling",
       "note": "No local experiment ID match for this hash",
-      "fpSamples": 2,
+      "fpSamples": 3,
       "fpEnrolled": 0,
       "fpTreatmentDist": {
-        "0": 2
+        "0": 3
       }
     },
     {
@@ -3850,6 +3850,16 @@
       "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
     },
     {
+      "id": "2026-11-badge-social-comparison",
+      "hash": 1437566910,
+      "type": "user",
+      "title": "2026-11-badge-social-comparison",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
       "id": "2026-11-build-a-bear-images",
       "hash": 2312786268,
       "type": "user",
@@ -4231,11 +4241,11 @@
     }
   ],
   "summary": {
-    "total": 397,
+    "total": 398,
     "guild": 44,
-    "user": 353,
+    "user": 354,
     "withPercentage": 8,
-    "withoutPercentage": 389,
+    "withoutPercentage": 390,
     "fullRollout": 5,
     "partial": 0,
     "notStarted": 3,
