@@ -1,10 +1,10 @@
 # Rollouts user — couverture gist (v1)
 
-> Source : gist communautaire agnonotdev (copie réduite de rollouts.json, tag Assyst) · Généré le 2026-11-24 10:44 UTC
+> Source : gist communautaire agnonotdev (copie réduite de rollouts.json, tag Assyst) · Généré le 2026-11-24 11:14 UTC
 
 **Sémantique** : couvertures calculées exactement à partir des plages fournies par la source (0-10000), à 0,01 point près. Totaux par rôle = UNION des plages (un bucket appartient à un rôle s'il tombe dans l'union de ses plages). Quand la structure révèle plusieurs populations aplaties (drapeau `multi_population`) ou des rôles conflictuels/inconnus, l'agrégation est indéterminée (poids des populations absents du gist) : totaux principaux indisponibles, l'union est montrée en métrique secondaire étiquetée « projetée » (non pondérée). L'absence du drapeau ne prouve PAS une population unique — le gist n'en garde pas les frontières. Cohérent avec notre décodage wire apex (mêmes plages → mêmes nombres). Ce n'est ni une estimation statistique, ni la proportion de vrais utilisateurs éligibles, ni une mesure d'accès réel. Les expériences `guild` sont exclues (mesurées à part par le décodage wire apex).
 
-**Gist** : [e3e99062983e6bd0feaef833f14fd931](https://gist.github.com/agnonotdev/e3e99062983e6bd0feaef833f14fd931) · révision db5fbcb1 · MAJ 2026-11-24T02:20:03Z · 1071 expériences au catalogue (341 user dont 170 avec données, 40 guild, 690 type inconnu, 261 sans données)
+**Gist** : [e3e99062983e6bd0feaef833f14fd931](https://gist.github.com/agnonotdev/e3e99062983e6bd0feaef833f14fd931) · révision ? · MAJ ? · 1071 expériences au catalogue (341 user dont 170 avec données, 40 guild, 690 type inconnu, 261 sans données)
 
 ⚠️ Miroir divergent (192b2ce20539ce1021b5c8cb01b17ff0) sur : 2026-11-cti-new-presets, 2026-11-three-month-nitro-gifting-no-copy-change, 2026-11-game-stats-widget-skip-connect-modal, 2026-11-premium-group-continuation-40, 2026-11-phoenix-app-access, 2026-11-shop-this-look-full-profile-button, 2026-11-soundboard-upsells-brand-refresh, 2026-11-mobile-did-background-app-native, 2026-11-mobile-orb-redemption-thru-orders, 2026-11-payment-element-accordion-layout…
 
