@@ -1,8 +1,8 @@
 {
-  "runId": "2026-11-24T18-14-41-682Z_680142_7r13f6",
-  "buildNumber": "680142",
+  "runId": "2026-11-24T18-18-41-353Z_680150_zsxw4k",
+  "buildNumber": "680150",
   "extractVersion": 3,
-  "updatedAt": "2026-11-24T18:14:41.682Z",
+  "updatedAt": "2026-11-24T18:18:41.353Z",
   "count": 1122,
   "data": {
     "DEV_LANDING": "/build",
@@ -1010,8 +1010,6 @@
     "AVATAR_DECORATION_PRESETS": "/avatar-decoration-presets/:param.:param",
     "GUILD_MEMBER_BANNER": "/guilds/:param/users/:param/banners/:param.:param",
     "UPDATE_VOICE_STATE": "/guilds/:param/voice-states/:param",
-    "PROFILE_READ_STATE": "/users/@me/profile-read-states/:param",
-    "JSNLOG_URL": "/openvidu/elk/openvidu-browser-logs",
     "HOME": "/home/web_user",
     "APP": "/app",
     "ACTIVITY": "/activity",
@@ -1126,6 +1124,8 @@
     "SUMMARIES": "/guilds/:param/discoverable-content/summaries",
     "SUMMARY": "/guilds/:param/discoverable-content/summaries/:param",
     "REMOVE_SUMMARY": "/guilds/:param/discoverable-content/summaries/:param/remove",
-    "DISCOVERABLE_CONTENT": "/guilds/:param/discoverable-content"
+    "DISCOVERABLE_CONTENT": "/guilds/:param/discoverable-content",
+    "PROFILE_READ_STATE": "/users/@me/profile-read-states/:param",
+    "JSNLOG_URL": "/openvidu/elk/openvidu-browser-logs"
   }
 }
