@@ -5791,6 +5791,28 @@
   },
   {
     "kind": "user",
+    "name": "2026-11-shop-promotion-expiry-refetch",
+    "defaultConfig": null,
+    "variations": {
+      "0": {
+        "id": 0
+      },
+      "1": {
+        "enabled": true,
+        "maxJitterMs": 30
+      },
+      "2": {
+        "enabled": true,
+        "maxJitterMs": 45
+      },
+      "3": {
+        "enabled": true
+      }
+    },
+    "label": null
+  },
+  {
+    "kind": "user",
     "name": "2026-11-shop-this-look-full-profile-button",
     "defaultConfig": {
       "enabled": false

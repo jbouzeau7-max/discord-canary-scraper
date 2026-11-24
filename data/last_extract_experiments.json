@@ -1,8 +1,8 @@
 {
-  "runId": "2026-11-24T23-37-51-801Z_680593_d6ei1d",
-  "buildNumber": "680593",
-  "updatedAt": "2026-11-24T23:37:51.801Z",
-  "count": 395,
+  "runId": "2026-11-24T23-45-08-907Z_680599_fi0xj7",
+  "buildNumber": "680599",
+  "updatedAt": "2026-11-24T23:45:08.907Z",
+  "count": 396,
   "data": {
     "2021-02_staff_qc_debugging": {
       "id": "2021-02_staff_qc_debugging",
@@ -7909,6 +7909,32 @@
       },
       "system": "apex",
       "fp": "9ff43739fe1f7b82bf9aac1baf65275318ba41ec6fcb8afc1e4bd17d2414020e"
+    },
+    "2026-11-shop-promotion-expiry-refetch": {
+      "id": "2026-11-shop-promotion-expiry-refetch",
+      "type": "user",
+      "kind": "user",
+      "label": null,
+      "variationCount": 4,
+      "variations": {
+        "0": {
+          "id": 0
+        },
+        "1": {
+          "enabled": true,
+          "maxJitterMs": 30
+        },
+        "2": {
+          "enabled": true,
+          "maxJitterMs": 45
+        },
+        "3": {
+          "enabled": true
+        }
+      },
+      "defaultConfig": null,
+      "system": "apex",
+      "fp": "db0a70edcb86d0c35f52b4d35327c29d4be27c2000b97a059eec8558f12e87ef"
     },
     "2026-11-shop-this-look-full-profile-button": {
       "id": "2026-11-shop-this-look-full-profile-button",

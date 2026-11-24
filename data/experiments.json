@@ -1,11 +1,11 @@
 {
-  "runId": "2026-11-24T23-37-51-801Z_680593_d6ei1d",
-  "buildNumber": "680593",
-  "scrapedAt": "2026-11-24T23:37:51.801Z",
+  "runId": "2026-11-24T23-45-08-907Z_680599_fi0xj7",
+  "buildNumber": "680599",
+  "scrapedAt": "2026-11-24T23:45:08.907Z",
   "totals": {
-    "all": 395,
+    "all": 396,
     "legacy": 27,
-    "apex": 368
+    "apex": 369
   },
   "experiments": [
     {
@@ -9192,6 +9192,32 @@
         }
       },
       "variationCount": 2,
+      "source": "discord"
+    },
+    {
+      "id": "2026-11-shop-promotion-expiry-refetch",
+      "type": "user",
+      "kind": "user",
+      "label": null,
+      "system": "apex",
+      "defaultConfig": null,
+      "variations": {
+        "0": {
+          "id": 0
+        },
+        "1": {
+          "enabled": true,
+          "maxJitterMs": 30
+        },
+        "2": {
+          "enabled": true,
+          "maxJitterMs": 45
+        },
+        "3": {
+          "enabled": true
+        }
+      },
+      "variationCount": 4,
       "source": "discord"
     },
     {
