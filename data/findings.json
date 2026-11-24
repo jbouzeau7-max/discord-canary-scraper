@@ -1,9 +1,9 @@
 {
-  "runId": "2026-11-24T19-16-46-168Z_680213_9gffaf",
-  "buildNumber": "680213",
-  "scrapedAt": "2026-11-24T19:16:46.168Z",
+  "runId": "2026-11-24T19-25-46-259Z_680226_ds6skd",
+  "buildNumber": "680226",
+  "scrapedAt": "2026-11-24T19:25:46.259Z",
   "totals": {
-    "all": 395
+    "all": 394
   },
   "experiments": [
     {
@@ -5093,36 +5093,6 @@
         "source": "gist_user_rollouts"
       },
       "fingerprint": "084976ac52592332a0822d9d563fb1c0d53030b3cb27a836d32ab7f79ceffe26"
-    },
-    {
-      "id": "2026-09-edit-profile-collectibles-ordering",
-      "type": "user",
-      "kind": "user",
-      "label": null,
-      "system": "apex",
-      "defaultConfig": {
-        "enabled": false
-      },
-      "variations": {
-        "0": {
-          "enabled": false
-        },
-        "1": {
-          "enabled": true
-        }
-      },
-      "variationCount": 2,
-      "source": "discord",
-      "guildPercentage": {
-        "status": "unknown",
-        "value": null
-      },
-      "userPercentage": {
-        "status": "provided",
-        "value": 100,
-        "source": "gist_user_rollouts"
-      },
-      "fingerprint": "48aa034d267af16c10b76e95984f1fcba598d71ed72c64a2df1ac7fe7c08b14d"
     },
     {
       "id": "2026-09-friends-sidebar",
