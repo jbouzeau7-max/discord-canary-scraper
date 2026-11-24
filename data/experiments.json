@@ -1,7 +1,7 @@
 {
-  "runId": "2026-11-24T02-22-15-914Z_679890_46ee2g",
-  "buildNumber": "679890",
-  "scrapedAt": "2026-11-24T02:22:15.914Z",
+  "runId": "2026-11-24T02-31-00-728Z_679895_i83wte",
+  "buildNumber": "679895",
+  "scrapedAt": "2026-11-24T02:31:00.728Z",
   "totals": {
     "all": 393,
     "legacy": 28,
@@ -5772,7 +5772,17 @@
         }
       },
       "variationCount": 1,
-      "source": "discord"
+      "source": "discord",
+      "guildPercentage": {
+        "status": "unknown",
+        "value": null
+      },
+      "userPercentage": {
+        "status": "provided",
+        "value": 50,
+        "source": "gist_user_rollouts"
+      },
+      "fingerprint": "b38a8467d2aaa4f299c7c8cff06b2847bd14be1c7f7336bc90debd3e01ed46dc"
     },
     {
       "id": "2026-09-request-to-stream-go-live-modal",
@@ -6151,7 +6161,17 @@
         }
       },
       "variationCount": 1,
-      "source": "discord"
+      "source": "discord",
+      "guildPercentage": {
+        "status": "unknown",
+        "value": null
+      },
+      "userPercentage": {
+        "status": "provided",
+        "value": 30,
+        "source": "gist_user_rollouts"
+      },
+      "fingerprint": "077eafd111ce09b81843afdfa8b720362cfa50acfb37506d1efcff4509baa383"
     },
     {
       "id": "2026-09-video-background-profile-fetch",
@@ -8607,7 +8627,17 @@
         }
       },
       "variationCount": 2,
-      "source": "discord"
+      "source": "discord",
+      "guildPercentage": {
+        "status": "unknown",
+        "value": null
+      },
+      "userPercentage": {
+        "status": "provided",
+        "value": 10,
+        "source": "gist_user_rollouts"
+      },
+      "fingerprint": "cb540ee7db812cfe774229e24680b18f7a094fc7b8f2798237eafd32c6f3796a"
     },
     {
       "id": "2026-11-holiday-ringtone",
@@ -9259,10 +9289,10 @@
       },
       "userPercentage": {
         "status": "provided",
-        "value": 5,
+        "value": 20,
         "source": "gist_user_rollouts"
       },
-      "fingerprint": "67d6e3b9e2bd8291d27bc43753364144710527d218b94f1cf1a38e79b62db991"
+      "fingerprint": "d815980dc40376c8544efc62dd01d456edf40f8e62a148e44b597207ff7cd7b0"
     },
     {
       "id": "2026-11-voicemod-3p",
