@@ -1,7 +1,7 @@
 {
-  "runId": "2026-11-24T17-37-04-214Z_680084_uito4c",
-  "buildNumber": "680084",
-  "updatedAt": "2026-11-24T17:37:04.214Z",
+  "runId": "2026-11-24T17-43-25-354Z_680091_gm4l2s",
+  "buildNumber": "680091",
+  "updatedAt": "2026-11-24T17:43:25.354Z",
   "count": 393,
   "data": {
     "2021-02_staff_qc_debugging": {
@@ -2383,25 +2383,6 @@
       "system": "legacy",
       "fp": "8913e97a60f2154d1cf1807694a907fe4765c639345b7fa21f2f8371b49be85b"
     },
-    "2026-05_voice_channel_list_invite_embed": {
-      "id": "2026-05_voice_channel_list_invite_embed",
-      "type": "guild",
-      "kind": "guild",
-      "label": "Voice Channel List Invite Embed",
-      "variationCount": 1,
-      "variations": {
-        "1": {
-          "id": 1,
-          "label": "Enable channel-list-style voice invite embed",
-          "enabled": true
-        }
-      },
-      "defaultConfig": {
-        "enabled": false
-      },
-      "system": "legacy",
-      "fp": "f0acfc506429b9e338d42fc0f8c597b7bca000c6f1bc1918f53880c8cbe3f609"
-    },
     "2026-05-app-store-overlay-feature-gate": {
       "id": "2026-05-app-store-overlay-feature-gate",
       "type": "user",
@@ -3525,6 +3506,23 @@
       "defaultConfig": null,
       "system": "apex",
       "fp": "18df652c1bc01c028e479c9d1e8619d0496d6060839ee544e251d0411451fb58"
+    },
+    "2026-07-reduce-leave-call-gpu": {
+      "id": "2026-07-reduce-leave-call-gpu",
+      "type": "user",
+      "kind": "user",
+      "label": null,
+      "variationCount": 1,
+      "variations": {
+        "1": {
+          "useStaticGradient": true
+        }
+      },
+      "defaultConfig": {
+        "useStaticGradient": false
+      },
+      "system": "apex",
+      "fp": "bbd49f70ae19df1e247c1105a3a663dca02adbf4c61a025ec3218a67c813faf5"
     },
     "2026-07-reject-with-error-kill-switch": {
       "id": "2026-07-reject-with-error-kill-switch",

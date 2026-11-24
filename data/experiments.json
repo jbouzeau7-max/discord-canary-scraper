@@ -1,11 +1,11 @@
 {
-  "runId": "2026-11-24T17-37-04-214Z_680084_uito4c",
-  "buildNumber": "680084",
-  "scrapedAt": "2026-11-24T17:37:04.214Z",
+  "runId": "2026-11-24T17-43-25-354Z_680091_gm4l2s",
+  "buildNumber": "680091",
+  "scrapedAt": "2026-11-24T17:43:25.354Z",
   "totals": {
     "all": 393,
-    "legacy": 28,
-    "apex": 365
+    "legacy": 27,
+    "apex": 366
   },
   "experiments": [
     {
@@ -2678,25 +2678,6 @@
       "source": "discord"
     },
     {
-      "id": "2026-05_voice_channel_list_invite_embed",
-      "type": "guild",
-      "kind": "guild",
-      "label": "Voice Channel List Invite Embed",
-      "system": "legacy",
-      "defaultConfig": {
-        "enabled": false
-      },
-      "variations": {
-        "1": {
-          "id": 1,
-          "label": "Enable channel-list-style voice invite embed",
-          "enabled": true
-        }
-      },
-      "variationCount": 1,
-      "source": "discord"
-    },
-    {
       "id": "2026-05-app-store-overlay-feature-gate",
       "type": "user",
       "kind": "user",
@@ -3939,6 +3920,23 @@
         "source": "gist_user_rollouts"
       },
       "fingerprint": "570c0158ca844476450326182d724621ca099e53fb529ef0715beb3ce31cb3f5"
+    },
+    {
+      "id": "2026-07-reduce-leave-call-gpu",
+      "type": "user",
+      "kind": "user",
+      "label": null,
+      "system": "apex",
+      "defaultConfig": {
+        "useStaticGradient": false
+      },
+      "variations": {
+        "1": {
+          "useStaticGradient": true
+        }
+      },
+      "variationCount": 1,
+      "source": "discord"
     },
     {
       "id": "2026-07-reject-with-error-kill-switch",
@@ -10004,25 +10002,6 @@
         }
       },
       "variationCount": 3,
-      "source": "discord"
-    },
-    {
-      "id": "2026-05_voice_channel_list_invite_embed",
-      "type": "guild",
-      "kind": "guild",
-      "label": "Voice Channel List Invite Embed",
-      "system": "legacy",
-      "defaultConfig": {
-        "enabled": false
-      },
-      "variations": {
-        "1": {
-          "id": 1,
-          "label": "Enable channel-list-style voice invite embed",
-          "enabled": true
-        }
-      },
-      "variationCount": 1,
       "source": "discord"
     },
     {
