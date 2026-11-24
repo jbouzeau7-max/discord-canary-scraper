@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-11-24T21:51:39.299Z",
+  "fetchedAt": "2026-11-24T22:05:18.751Z",
   "sources": {
     "discordApi": {
       "url": "https://discord.com/api/v9/experiments",
@@ -4110,6 +4110,16 @@
       "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
     },
     {
+      "id": "2026-11-reaction-menu-redesign",
+      "hash": 2341719730,
+      "type": "user",
+      "title": "2026-11-reaction-menu-redesign",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
       "id": "2026-11-return-full-quest-status-in-decision",
       "hash": 681027080,
       "type": "user",
@@ -4241,11 +4251,11 @@
     }
   ],
   "summary": {
-    "total": 398,
+    "total": 399,
     "guild": 44,
-    "user": 354,
+    "user": 355,
     "withPercentage": 8,
-    "withoutPercentage": 390,
+    "withoutPercentage": 391,
     "fullRollout": 5,
     "partial": 0,
     "notStarted": 3,
