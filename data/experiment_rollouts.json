@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-11-24T17:36:49.443Z",
+  "fetchedAt": "2026-11-24T17:43:32.787Z",
   "sources": {
     "discordApi": {
       "url": "https://discord.com/api/v9/experiments",
@@ -326,17 +326,17 @@
       "title": "hash_704914099",
       "percentage": 0,
       "status": "not_started",
-      "samples": 3,
+      "samples": 1,
       "enrolled": 0,
       "treatmentDistribution": {
-        "0": 3
+        "0": 1
       },
       "source": "fingerprint_sampling",
       "note": "No local experiment ID match for this hash",
-      "fpSamples": 3,
+      "fpSamples": 1,
       "fpEnrolled": 0,
       "fpTreatmentDist": {
-        "0": 3
+        "0": 1
       }
     },
     {
@@ -1480,16 +1480,6 @@
       "note": "No rollout data found in the Discord API."
     },
     {
-      "id": "2026-05_voice_channel_list_invite_embed",
-      "hash": 2599801232,
-      "type": "guild",
-      "title": "Voice Channel List Invite Embed",
-      "percentage": null,
-      "status": "no_rollout_data",
-      "source": "client_bundle",
-      "note": "No rollout data found in the Discord API."
-    },
-    {
       "id": "2026-05-app-store-overlay-feature-gate",
       "hash": 1657947504,
       "type": "user",
@@ -2024,6 +2014,16 @@
       "hash": 2218267423,
       "type": "user",
       "title": "2026-07-quest-home-default-banner-removal",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
+      "id": "2026-07-reduce-leave-call-gpu",
+      "hash": 3928868217,
+      "type": "user",
+      "title": "2026-07-reduce-leave-call-gpu",
       "percentage": null,
       "status": "no_rollout_data",
       "source": "client_bundle",
@@ -4232,8 +4232,8 @@
   ],
   "summary": {
     "total": 397,
-    "guild": 45,
-    "user": 352,
+    "guild": 44,
+    "user": 353,
     "withPercentage": 8,
     "withoutPercentage": 389,
     "fullRollout": 5,
