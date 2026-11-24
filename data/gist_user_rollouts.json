@@ -3,15 +3,15 @@
  "schemaVersion": 1,
  "semanticsVersion": 2,
  "notifyScopeVersion": 2,
- "runId": "20261124T205803_gist",
- "scrapedAt": "2026-11-24T20:58:03.973Z",
+ "runId": "20261124T212714_gist",
+ "scrapedAt": "2026-11-24T21:27:14.560Z",
  "source": {
   "gistId": "e3e99062983e6bd0feaef833f14fd931",
   "htmlUrl": "https://gist.github.com/agnonotdev/e3e99062983e6bd0feaef833f14fd931",
-  "rawUrl": "https://gist.githubusercontent.com/agnonotdev/e3e99062983e6bd0feaef833f14fd931/raw/7d7e849a500b97397095dc6d83f7c94e519bb835/rollouts-tag.json",
-  "updatedAt": "2026-11-24T19:38:16Z",
-  "revision": "58e83af904e50f97c2880e2c703be496e6525fad",
-  "fetchedAt": "2026-11-24T20:58:03.973Z",
+  "rawUrl": "https://gist.githubusercontent.com/agnonotdev/e3e99062983e6bd0feaef833f14fd931/raw/92efe3ace0934ca3f475b826bd1aa892b41b2651/rollouts-tag.json",
+  "updatedAt": "2026-11-24T21:27:07Z",
+  "revision": "7f8b67cb97137d47658226eec815c86578372ddc",
+  "fetchedAt": "2026-11-24T21:27:14.560Z",
   "fallback": false,
   "rawFallback": false,
   "canonicalId": null
@@ -21938,7 +21938,7 @@
    "variantsCount": 2
   },
   "2026-11-norbs": {
-   "key": "3ef4d36b24b36746",
+   "key": "1e67ac5a7e461561",
    "hasData": true,
    "sig": "0:control|1:treatment",
    "byVariant": {
@@ -21947,12 +21947,12 @@
      "role": "control"
     },
     "1": {
-     "pct": 9.9,
+     "pct": 44.9,
      "role": "treatment"
     }
    },
    "treatment": {
-    "pct": 9.9
+    "pct": 44.9
    },
    "control": {
     "pct": 0.1
@@ -21966,19 +21966,13 @@
   }
  },
  "lastRun": {
-  "changes": 0,
-  "delivered": 0,
+  "changes": 1,
+  "delivered": 1,
   "firstRun": false,
   "semanticsMigrated": 0,
   "scopeBaselined": 0
  },
  "history": [
-  {
-   "at": "2026-11-24T00:27:13.510Z",
-   "revision": null,
-   "changes": 0,
-   "delivered": 0
-  },
   {
    "at": "2026-11-24T00:56:25.991Z",
    "revision": "5836cfb5e33aa74c87d8763313bc7cb4b4285f34",
@@ -22272,6 +22266,12 @@
    "revision": "58e83af904e50f97c2880e2c703be496e6525fad",
    "changes": 0,
    "delivered": 0
+  },
+  {
+   "at": "2026-11-24T21:27:14.560Z",
+   "revision": "7f8b67cb97137d47658226eec815c86578372ddc",
+   "changes": 1,
+   "delivered": 1
   }
  ]
 }
