@@ -1,8 +1,8 @@
 {
-  "runId": "2026-11-24T18-00-18-104Z_680112_ha73b4",
-  "buildNumber": "680112",
-  "updatedAt": "2026-11-24T18:00:18.104Z",
-  "count": 28,
+  "runId": "2026-11-24T18-02-36-127Z_680114_g764on",
+  "buildNumber": "680114",
+  "updatedAt": "2026-11-24T18:02:36.127Z",
+  "count": 29,
   "experiments": [
     {
       "id": "2026-06-av1-encode-linux",
@@ -199,6 +199,13 @@
       "label": "Voice Channel List Invite Embed",
       "removedAt": "2026-11-24T17:43:25.369Z",
       "lastBuild": "680091"
+    },
+    {
+      "id": "2026-11-badge-social-comparison",
+      "kind": "user",
+      "label": null,
+      "removedAt": "2026-11-24T18:02:36.150Z",
+      "lastBuild": "680114"
     }
   ]
 }
