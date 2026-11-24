@@ -1,8 +1,8 @@
 {
-  "runId": "2026-11-24T07-04-42-995Z_679957_t1c80f",
-  "buildNumber": "679957",
+  "runId": "2026-11-24T07-57-20-878Z_679961_69qoja",
+  "buildNumber": "679961",
   "extractVersion": 3,
-  "updatedAt": "2026-11-24T07:04:42.995Z",
+  "updatedAt": "2026-11-24T07:57:20.878Z",
   "count": 1122,
   "data": {
     "DEV_LANDING": "/build",
@@ -1011,7 +1011,6 @@
     "GUILD_MEMBER_BANNER": "/guilds/:param/users/:param/banners/:param.:param",
     "UPDATE_VOICE_STATE": "/guilds/:param/voice-states/:param",
     "HOME": "/home/web_user",
-    "PROFILE_READ_STATE": "/users/@me/profile-read-states/:param",
     "JSNLOG_URL": "/openvidu/elk/openvidu-browser-logs",
     "SUMMARIES": "/guilds/:param/discoverable-content/summaries",
     "SUMMARY": "/guilds/:param/discoverable-content/summaries/:param",
@@ -1126,6 +1125,7 @@
     "GAME_PROFILE": "/games/:param",
     "POWERUP_STORE": "/channels/:param/boosts",
     "CONFERENCE_MODE_VOICE": "/conference-mode/voice/:param/:param",
-    "QUEST_PREVIEW_TOOL_2": "/quest-home?tab=preview_tool&quest_id=:param"
+    "QUEST_PREVIEW_TOOL_2": "/quest-home?tab=preview_tool&quest_id=:param",
+    "PROFILE_READ_STATE": "/users/@me/profile-read-states/:param"
   }
 }
