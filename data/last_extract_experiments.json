@@ -1,8 +1,8 @@
 {
-  "runId": "2026-11-24T21-55-37-262Z_680454_10gmc8",
-  "buildNumber": "680454",
-  "updatedAt": "2026-11-24T21:55:37.262Z",
-  "count": 394,
+  "runId": "2026-11-24T22-00-19-550Z_680464_2bvlxq",
+  "buildNumber": "680464",
+  "updatedAt": "2026-11-24T22:00:19.550Z",
+  "count": 395,
   "data": {
     "2021-02_staff_qc_debugging": {
       "id": "2021-02_staff_qc_debugging",
@@ -7808,6 +7808,23 @@
       "defaultConfig": null,
       "system": "apex",
       "fp": "1b10c5f100567e16dceb55ae3367c77b9617c01e558e54e0b403cdf08f7e9132"
+    },
+    "2026-11-reaction-menu-redesign": {
+      "id": "2026-11-reaction-menu-redesign",
+      "type": "user",
+      "kind": "user",
+      "label": null,
+      "variationCount": 1,
+      "variations": {
+        "1": {
+          "enabled": true
+        }
+      },
+      "defaultConfig": {
+        "enabled": false
+      },
+      "system": "apex",
+      "fp": "ea2be152278b6b5f63b6c1752105c5025dab07ba6ae50306583dd769de933d70"
     },
     "2026-11-return-full-quest-status-in-decision": {
       "id": "2026-11-return-full-quest-status-in-decision",
