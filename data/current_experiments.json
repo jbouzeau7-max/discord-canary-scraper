@@ -1,7 +1,7 @@
 {
-  "runId": "2026-11-24T20-02-40-446Z_680282_ch5atp",
-  "buildNumber": "680282",
-  "updatedAt": "2026-11-24T20:02:40.446Z",
+  "runId": "2026-11-24T20-04-52-156Z_680283_j3vrr0",
+  "buildNumber": "680283",
+  "updatedAt": "2026-11-24T20:04:52.156Z",
   "count": 394,
   "experiments": [
     {
@@ -10645,10 +10645,10 @@
       },
       "userPercentage": {
         "status": "provided",
-        "value": 15,
+        "value": 25,
         "source": "gist_user_rollouts"
       },
-      "fingerprint": "debfbf12841a86beebacae41292f98fd278d55baa77e27ae6b3f4aeeeb056c09"
+      "fingerprint": "4b35a54c2cbef4c686fe11fbd95fd115e974654578914a1eb8fb0afa8668412a"
     },
     {
       "id": "2026-08-split-payments",
@@ -11186,10 +11186,10 @@
       },
       "userPercentage": {
         "status": "provided",
-        "value": 1,
+        "value": 9,
         "source": "gist_user_rollouts"
       },
-      "fingerprint": "4f1dd16fa4d9704d827ef269fb22a2f41487180403b5cc63ff8a0f29b0450b52"
+      "fingerprint": "955ab6885e29a035ef2193da5942d35603bea4511fc5b366fe82328277d8bc8d"
     },
     {
       "id": "2026-09-automod-application-rules",
@@ -13033,10 +13033,10 @@
       },
       "userPercentage": {
         "status": "provided",
-        "value": 50,
+        "value": 100,
         "source": "gist_user_rollouts"
       },
-      "fingerprint": "b38a8467d2aaa4f299c7c8cff06b2847bd14be1c7f7336bc90debd3e01ed46dc"
+      "fingerprint": "76224a21417bca5634a4fa41005f801c245d1c94c35ffdc850e9030293a8465b"
     },
     {
       "id": "2026-09-request-to-stream-go-live-modal",
@@ -13827,10 +13827,10 @@
       },
       "userPercentage": {
         "status": "provided",
-        "value": 30,
+        "value": 100,
         "source": "gist_user_rollouts"
       },
-      "fingerprint": "077eafd111ce09b81843afdfa8b720362cfa50acfb37506d1efcff4509baa383"
+      "fingerprint": "668e6d8b00a26f95f1460bcac4f29a7b2fbcd05b94fd9681547034a9f758ad61"
     },
     {
       "id": "2026-09-video-background-profile-fetch",
@@ -19656,10 +19656,11 @@
         "value": null
       },
       "userPercentage": {
-        "status": "unknown",
-        "value": null
+        "status": "provided",
+        "value": 9.9,
+        "source": "gist_user_rollouts"
       },
-      "fingerprint": "9fcf1e8d080f5599c3b6ea0798205cf9a5976dbb669e15f028d211088385fbf9"
+      "fingerprint": "1e8a7da9630925b0e7d9058005d35cb3948edbbd5ec496794b109987ed4529a2"
     },
     {
       "id": "2026-11-norbs-2",
@@ -19754,10 +19755,11 @@
         "value": null
       },
       "userPercentage": {
-        "status": "unknown",
-        "value": null
+        "status": "provided",
+        "value": 1,
+        "source": "gist_user_rollouts"
       },
-      "fingerprint": "ff31679a86a6fbc7de61cb2de7b7f534679fb83aadfe3aff7c75619989b4e8a4"
+      "fingerprint": "8e39ddf31fabb7937ef7ecbb648825e0a3d9790d0ba92517cce13432ae8b6f71"
     },
     {
       "id": "2026-11-pass-the-controller",
