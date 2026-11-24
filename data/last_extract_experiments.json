@@ -1,8 +1,8 @@
 {
-  "runId": "2026-11-24T17-58-05-025Z_680110_yja7kf",
-  "buildNumber": "680110",
-  "updatedAt": "2026-11-24T17:58:05.026Z",
-  "count": 393,
+  "runId": "2026-11-24T18-00-18-104Z_680112_ha73b4",
+  "buildNumber": "680112",
+  "updatedAt": "2026-11-24T18:00:18.104Z",
+  "count": 394,
   "data": {
     "2021-02_staff_qc_debugging": {
       "id": "2021-02_staff_qc_debugging",
@@ -7231,6 +7231,26 @@
       "defaultConfig": null,
       "system": "apex",
       "fp": "409ad870dfae41f9aab25580352e001e26aa62431c7aaf0c4f2be3383e05221f"
+    },
+    "2026-11-badge-social-comparison": {
+      "id": "2026-11-badge-social-comparison",
+      "type": "user",
+      "kind": "user",
+      "label": null,
+      "variationCount": 2,
+      "variations": {
+        "0": {
+          "enabled": false
+        },
+        "1": {
+          "enabled": true
+        }
+      },
+      "defaultConfig": {
+        "enabled": false
+      },
+      "system": "apex",
+      "fp": "ff92c97cd208e137de0ffbebca358bc73a9706935b0c8af406f5faddef30cb19"
     },
     "2026-11-build-a-bear-images": {
       "id": "2026-11-build-a-bear-images",

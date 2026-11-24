@@ -5233,6 +5233,22 @@
   },
   {
     "kind": "user",
+    "name": "2026-11-badge-social-comparison",
+    "defaultConfig": {
+      "enabled": false
+    },
+    "variations": {
+      "0": {
+        "enabled": false
+      },
+      "1": {
+        "enabled": true
+      }
+    },
+    "label": null
+  },
+  {
+    "kind": "user",
     "name": "2026-11-build-a-bear-images",
     "defaultConfig": {
       "canSaveCharacter": false

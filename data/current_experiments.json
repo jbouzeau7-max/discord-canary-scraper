@@ -1,8 +1,8 @@
 {
-  "runId": "2026-11-24T17-58-05-025Z_680110_yja7kf",
-  "buildNumber": "680110",
-  "updatedAt": "2026-11-24T17:58:05.026Z",
-  "count": 393,
+  "runId": "2026-11-24T18-00-18-104Z_680112_ha73b4",
+  "buildNumber": "680112",
+  "updatedAt": "2026-11-24T18:00:18.104Z",
+  "count": 394,
   "experiments": [
     {
       "id": "2021-02_staff_qc_debugging",
@@ -18842,6 +18842,58 @@
         "value": null
       },
       "fingerprint": "409ad870dfae41f9aab25580352e001e26aa62431c7aaf0c4f2be3383e05221f"
+    },
+    {
+      "id": "2026-11-badge-social-comparison",
+      "kind": "user",
+      "type": "user",
+      "system": "apex",
+      "label": null,
+      "title": null,
+      "description": null,
+      "defaultConfig": {
+        "enabled": false
+      },
+      "variations": {
+        "0": {
+          "enabled": false
+        },
+        "1": {
+          "enabled": true
+        }
+      },
+      "treatments": null,
+      "variationSource": "variations",
+      "variationCount": 2,
+      "raw": {
+        "id": "2026-11-badge-social-comparison",
+        "type": "user",
+        "kind": "user",
+        "label": null,
+        "system": "apex",
+        "defaultConfig": {
+          "enabled": false
+        },
+        "variations": {
+          "0": {
+            "enabled": false
+          },
+          "1": {
+            "enabled": true
+          }
+        },
+        "variationCount": 2,
+        "source": "discord"
+      },
+      "guildPercentage": {
+        "status": "unknown",
+        "value": null
+      },
+      "userPercentage": {
+        "status": "unknown",
+        "value": null
+      },
+      "fingerprint": "ff92c97cd208e137de0ffbebca358bc73a9706935b0c8af406f5faddef30cb19"
     },
     {
       "id": "2026-11-build-a-bear-images",

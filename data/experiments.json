@@ -1,11 +1,11 @@
 {
-  "runId": "2026-11-24T17-58-05-025Z_680110_yja7kf",
-  "buildNumber": "680110",
-  "scrapedAt": "2026-11-24T17:58:05.026Z",
+  "runId": "2026-11-24T18-00-18-104Z_680112_ha73b4",
+  "buildNumber": "680112",
+  "scrapedAt": "2026-11-24T18:00:18.104Z",
   "totals": {
-    "all": 393,
+    "all": 394,
     "legacy": 27,
-    "apex": 366
+    "apex": 367
   },
   "experiments": [
     {
@@ -8464,6 +8464,26 @@
         }
       },
       "variationCount": 6,
+      "source": "discord"
+    },
+    {
+      "id": "2026-11-badge-social-comparison",
+      "type": "user",
+      "kind": "user",
+      "label": null,
+      "system": "apex",
+      "defaultConfig": {
+        "enabled": false
+      },
+      "variations": {
+        "0": {
+          "enabled": false
+        },
+        "1": {
+          "enabled": true
+        }
+      },
+      "variationCount": 2,
       "source": "discord"
     },
     {
