@@ -1,19 +1,19 @@
 {
- "generatedAt": "2026-11-24T00:56:26.007Z",
+ "generatedAt": "2026-11-24T02:21:01.892Z",
  "semantics": "couverture de l'espace de buckets (gist agnonotdev) — ni une proportion d'utilisateurs, ni une mesure d'accès réel ; multi-populations = couverture projetée non pondérée",
  "source": {
   "gistId": "e3e99062983e6bd0feaef833f14fd931",
   "htmlUrl": "https://gist.github.com/agnonotdev/e3e99062983e6bd0feaef833f14fd931",
-  "updatedAt": "2026-11-23T20:25:14Z",
-  "revision": "5836cfb5e33aa74c87d8763313bc7cb4b4285f34"
+  "updatedAt": "2026-11-24T02:20:03Z",
+  "revision": "db5fbcb1f482ee5293c573bb8ba8f086952d2f90"
  },
  "stats": {
-  "total": 1070,
-  "user": 340,
-  "userData": 168,
+  "total": 1071,
+  "user": 341,
+  "userData": 170,
   "guild": 40,
   "unclassified": 690,
-  "noData": 262
+  "noData": 261
  },
  "experiments": [
   {
@@ -25,18 +25,18 @@
    "ambiguous": false,
    "projected": false,
    "flags": [],
-   "treatmentPct": 5,
+   "treatmentPct": 20,
    "projectedTreatmentPct": null,
-   "controlPct": 5,
+   "controlPct": 20,
    "notEligiblePct": 0,
-   "unassignedPct": 90,
+   "unassignedPct": 60,
    "byVariant": {
     "0": {
-     "pct": 5,
+     "pct": 20,
      "role": "control"
     },
     "1": {
-     "pct": 5,
+     "pct": 20,
      "role": "treatment"
     }
    }
@@ -248,6 +248,31 @@
    }
   },
   {
+   "id": "2026-11-game-stats-widget-skip-connect-modal",
+   "title": "2026-11-game-stats-widget-skip-connect-modal",
+   "type": "user",
+   "hasData": true,
+   "totalsAvailable": true,
+   "ambiguous": false,
+   "projected": false,
+   "flags": [],
+   "treatmentPct": 10,
+   "projectedTreatmentPct": null,
+   "controlPct": 10,
+   "notEligiblePct": 0,
+   "unassignedPct": 80,
+   "byVariant": {
+    "0": {
+     "pct": 10,
+     "role": "control"
+    },
+    "1": {
+     "pct": 10,
+     "role": "treatment"
+    }
+   }
+  },
+  {
    "id": "2026-11-cti-new-presets",
    "title": "2026-11-cti-new-presets",
    "type": "user",
@@ -256,18 +281,18 @@
    "ambiguous": false,
    "projected": false,
    "flags": [],
-   "treatmentPct": 1,
+   "treatmentPct": 20,
    "projectedTreatmentPct": null,
-   "controlPct": 1,
+   "controlPct": 20,
    "notEligiblePct": 0,
-   "unassignedPct": 98,
+   "unassignedPct": 60,
    "byVariant": {
     "0": {
-     "pct": 1,
+     "pct": 20,
      "role": "control"
     },
     "1": {
-     "pct": 1,
+     "pct": 20,
      "role": "treatment"
     }
    }
@@ -1826,18 +1851,14 @@
    "ambiguous": false,
    "projected": false,
    "flags": [],
-   "treatmentPct": 50,
+   "treatmentPct": 100,
    "projectedTreatmentPct": null,
-   "controlPct": 50,
+   "controlPct": 0,
    "notEligiblePct": 0,
    "unassignedPct": 0,
    "byVariant": {
-    "0": {
-     "pct": 50,
-     "role": "control"
-    },
     "1": {
-     "pct": 50,
+     "pct": 100,
      "role": "treatment"
     }
    }
@@ -1846,30 +1867,19 @@
    "id": "2026-10-android-nitro-fetch",
    "title": "2026-10-android-nitro-fetch",
    "type": "user",
-   "hasData": true,
-   "totalsAvailable": true,
+   "hasData": false,
+   "totalsAvailable": false,
    "ambiguous": false,
    "projected": false,
-   "flags": [],
-   "treatmentPct": 10,
+   "flags": [
+    "no_data"
+   ],
+   "treatmentPct": null,
    "projectedTreatmentPct": null,
-   "controlPct": 5,
-   "notEligiblePct": 0,
-   "unassignedPct": 85,
-   "byVariant": {
-    "0": {
-     "pct": 5,
-     "role": "control"
-    },
-    "1": {
-     "pct": 5,
-     "role": "treatment"
-    },
-    "2": {
-     "pct": 5,
-     "role": "treatment"
-    }
-   }
+   "controlPct": null,
+   "notEligiblePct": null,
+   "unassignedPct": null,
+   "byVariant": {}
   },
   {
    "id": "2026-10-android-mobile-onboarding-friction-negative-test",
@@ -2067,19 +2077,22 @@
    "id": "2026-09-update-email-settings-copy-subtext",
    "title": "2026-09-update-email-settings-copy-subtext",
    "type": "user",
-   "hasData": false,
-   "totalsAvailable": false,
+   "hasData": true,
+   "totalsAvailable": true,
    "ambiguous": false,
    "projected": false,
-   "flags": [
-    "no_data"
-   ],
-   "treatmentPct": null,
+   "flags": [],
+   "treatmentPct": 30,
    "projectedTreatmentPct": null,
-   "controlPct": null,
-   "notEligiblePct": null,
-   "unassignedPct": null,
-   "byVariant": {}
+   "controlPct": 0,
+   "notEligiblePct": 0,
+   "unassignedPct": 70,
+   "byVariant": {
+    "1": {
+     "pct": 30,
+     "role": "treatment"
+    }
+   }
   },
   {
    "id": "2026-09-try-display-name-style",
@@ -2382,19 +2395,22 @@
    "id": "2026-09-registration-email-opt-in-copy",
    "title": "2026-09-registration-email-opt-in-copy",
    "type": "user",
-   "hasData": false,
-   "totalsAvailable": false,
+   "hasData": true,
+   "totalsAvailable": true,
    "ambiguous": false,
    "projected": false,
-   "flags": [
-    "no_data"
-   ],
-   "treatmentPct": null,
+   "flags": [],
+   "treatmentPct": 50,
    "projectedTreatmentPct": null,
-   "controlPct": null,
-   "notEligiblePct": null,
-   "unassignedPct": null,
-   "byVariant": {}
+   "controlPct": 0,
+   "notEligiblePct": 0,
+   "unassignedPct": 50,
+   "byVariant": {
+    "1": {
+     "pct": 50,
+     "role": "treatment"
+    }
+   }
   },
   {
    "id": "2026-09-referral-profile-contextual-menu-upsell",

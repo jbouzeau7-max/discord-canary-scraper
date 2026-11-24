@@ -3,15 +3,15 @@
  "schemaVersion": 1,
  "semanticsVersion": 2,
  "notifyScopeVersion": 2,
- "runId": "20261124T015446_gist",
- "scrapedAt": "2026-11-24T01:54:46.346Z",
+ "runId": "20261124T022101_gist",
+ "scrapedAt": "2026-11-24T02:21:01.878Z",
  "source": {
   "gistId": "e3e99062983e6bd0feaef833f14fd931",
   "htmlUrl": "https://gist.github.com/agnonotdev/e3e99062983e6bd0feaef833f14fd931",
-  "rawUrl": "https://gist.githubusercontent.com/agnonotdev/e3e99062983e6bd0feaef833f14fd931/raw/931aa43a04acb5567f69921b2bb2c5b62b8c4a7b/rollouts-tag.json",
-  "updatedAt": "2026-11-23T20:25:14Z",
-  "revision": "5836cfb5e33aa74c87d8763313bc7cb4b4285f34",
-  "fetchedAt": "2026-11-24T01:54:46.346Z",
+  "rawUrl": "https://gist.githubusercontent.com/agnonotdev/e3e99062983e6bd0feaef833f14fd931/raw/e598ed61a34cbba1d29351ac940ac4943f57554b/rollouts-tag.json",
+  "updatedAt": "2026-11-24T02:20:03Z",
+  "revision": "db5fbcb1f482ee5293c573bb8ba8f086952d2f90",
+  "fetchedAt": "2026-11-24T02:21:01.878Z",
   "fallback": false,
   "rawFallback": false,
   "canonicalId": null
@@ -20,8 +20,9 @@
   "gistId": "192b2ce20539ce1021b5c8cb01b17ff0",
   "diverged": true,
   "divergingIds": [
-   "2026-11-three-month-nitro-gifting-no-copy-change",
    "2026-11-cti-new-presets",
+   "2026-11-three-month-nitro-gifting-no-copy-change",
+   "2026-11-game-stats-widget-skip-connect-modal",
    "2026-11-premium-group-continuation-40",
    "2026-11-phoenix-app-access",
    "2026-11-shop-this-look-full-profile-button",
@@ -31,6 +32,8 @@
    "2026-11-payment-element-accordion-layout",
    "2026-11-return-full-quest-status-in-decision",
    "2026-11-screen-share-dtx",
+   "2026-10-android-seamless-pip",
+   "2026-10-android-nitro-fetch",
    "2026-10-profile-default-tab-with-content",
    "2026-10-collectibles-storefront-pricing-integration",
    "2026-10-sfp-bloons-orb-split-tender",
@@ -42,7 +45,6 @@
    "2026-10-shop-sku-nitro-upsell-refresh",
    "2026-10-profile-nitro-upsell-refresh",
    "2026-10-bounties-desktop-quest-bar",
-   "2026-10-android-nitro-fetch",
    "2026-10-clips-default-on-geo",
    "2026-10-shop-twelve-days-promo",
    "2026-10-media-viewer-improvements",
@@ -70,6 +72,8 @@
    "2026-10-request-to-stream-non-games",
    "2026-10-android-stop-and-pause-video",
    "2026-10-android-fastimage-apng",
+   "2026-09-update-email-settings-copy-subtext",
+   "2026-09-registration-email-opt-in-copy",
    "2026-09-mobile-nitro-upsell-in-shop-pdp",
    "2026-09-autoclips",
    "2026-09-invite-accept-age-group-errors",
@@ -110,12 +114,12 @@
   ]
  },
  "stats": {
-  "total": 1070,
-  "user": 340,
-  "userData": 168,
+  "total": 1071,
+  "user": 341,
+  "userData": 170,
   "guild": 40,
   "unclassified": 690,
-  "noData": 262
+  "noData": 261
  },
  "acknowledged": {
   "2026-11-soundboard-upsells-brand-refresh": {
@@ -1283,12 +1287,27 @@
    }
   },
   "2026-09-update-email-settings-copy-subtext": {
-   "key": "no_data",
-   "hasData": false,
-   "sig": "",
+   "key": "c52c1a195a61c67e",
+   "hasData": true,
+   "sig": "1:treatment",
+   "byVariant": {
+    "1": {
+     "pct": 30,
+     "role": "treatment"
+    }
+   },
    "treatment": {
-    "pct": null
-   }
+    "pct": 30
+   },
+   "control": {
+    "pct": 0
+   },
+   "notEligible": {
+    "pct": 0
+   },
+   "projectedCoverage": null,
+   "projected": false,
+   "variantsCount": 1
   },
   "2026-09-try-display-name-style": {
    "key": "12b1a347539b10ee",
@@ -1532,12 +1551,27 @@
    "variantsCount": 2
   },
   "2026-09-registration-email-opt-in-copy": {
-   "key": "no_data",
-   "hasData": false,
-   "sig": "",
+   "key": "6dc35c17c61f3cb7",
+   "hasData": true,
+   "sig": "1:treatment",
+   "byVariant": {
+    "1": {
+     "pct": 50,
+     "role": "treatment"
+    }
+   },
    "treatment": {
-    "pct": null
-   }
+    "pct": 50
+   },
+   "control": {
+    "pct": 0
+   },
+   "notEligible": {
+    "pct": 0
+   },
+   "projectedCoverage": null,
+   "projected": false,
+   "variantsCount": 1
   },
   "2026-09-referral-profile-contextual-menu-upsell": {
    "key": "no_data",
@@ -4828,31 +4862,27 @@
    "variantsCount": 1
   },
   "2026-10-android-seamless-pip": {
-   "key": "a624203af7186263",
+   "key": "95f46bfc73a52751",
    "hasData": true,
-   "sig": "0:control|1:treatment",
+   "sig": "1:treatment",
    "byVariant": {
-    "0": {
-     "pct": 50,
-     "role": "control"
-    },
     "1": {
-     "pct": 50,
+     "pct": 100,
      "role": "treatment"
     }
    },
    "treatment": {
-    "pct": 50
+    "pct": 100
    },
    "control": {
-    "pct": 50
+    "pct": 0
    },
    "notEligible": {
     "pct": 0
    },
    "projectedCoverage": null,
    "projected": false,
-   "variantsCount": 2
+   "variantsCount": 1
   },
   "2026-10-android-mobile-onboarding-friction-negative-test": {
    "key": "dbb456fc20cc308d",
@@ -21617,35 +21647,12 @@
    "variantsCount": 2
   },
   "2026-10-android-nitro-fetch": {
-   "key": "0e2cdbf8930a790b",
-   "hasData": true,
-   "sig": "0:control|1:treatment|2:treatment",
-   "byVariant": {
-    "0": {
-     "pct": 5,
-     "role": "control"
-    },
-    "1": {
-     "pct": 5,
-     "role": "treatment"
-    },
-    "2": {
-     "pct": 5,
-     "role": "treatment"
-    }
-   },
+   "key": "no_data",
+   "hasData": false,
+   "sig": "",
    "treatment": {
-    "pct": 10
-   },
-   "control": {
-    "pct": 5
-   },
-   "notEligible": {
-    "pct": 0
-   },
-   "projectedCoverage": null,
-   "projected": false,
-   "variantsCount": 3
+    "pct": null
+   }
   },
   "2026-10-social-layer-storefront-mobile-multi-sku-embed": {
    "key": "95f46bfc73a52751",
@@ -21771,24 +21778,24 @@
    "variantsCount": 1
   },
   "2026-11-cti-new-presets": {
-   "key": "19a2e309986d6b83",
+   "key": "4ad95d8fb3c708d0",
    "hasData": true,
    "sig": "0:control|1:treatment",
    "byVariant": {
     "0": {
-     "pct": 1,
+     "pct": 20,
      "role": "control"
     },
     "1": {
-     "pct": 1,
+     "pct": 20,
      "role": "treatment"
     }
    },
    "treatment": {
-    "pct": 1
+    "pct": 20
    },
    "control": {
-    "pct": 1
+    "pct": 20
    },
    "notEligible": {
     "pct": 0
@@ -21844,24 +21851,51 @@
    "variantsCount": 1
   },
   "2026-11-three-month-nitro-gifting-no-copy-change": {
-   "key": "b3b9adcf2eca826f",
+   "key": "e174eadb12ccc2d1",
    "hasData": true,
    "sig": "0:control|1:treatment",
    "byVariant": {
     "0": {
-     "pct": 5,
+     "pct": 20,
      "role": "control"
     },
     "1": {
-     "pct": 5,
+     "pct": 20,
      "role": "treatment"
     }
    },
    "treatment": {
-    "pct": 5
+    "pct": 20
    },
    "control": {
-    "pct": 5
+    "pct": 20
+   },
+   "notEligible": {
+    "pct": 0
+   },
+   "projectedCoverage": null,
+   "projected": false,
+   "variantsCount": 2
+  },
+  "2026-11-game-stats-widget-skip-connect-modal": {
+   "key": "dc6996c724bb242e",
+   "hasData": true,
+   "sig": "0:control|1:treatment",
+   "byVariant": {
+    "0": {
+     "pct": 10,
+     "role": "control"
+    },
+    "1": {
+     "pct": 10,
+     "role": "treatment"
+    }
+   },
+   "treatment": {
+    "pct": 10
+   },
+   "control": {
+    "pct": 10
    },
    "notEligible": {
     "pct": 0
@@ -21879,48 +21913,6 @@
   "scopeBaselined": 0
  },
  "history": [
-  {
-   "at": "2026-11-23T03:32:43.238Z",
-   "revision": "4ffd49f4375701730e6a890fca2be8764cdc1c7b",
-   "changes": 0,
-   "delivered": 0
-  },
-  {
-   "at": "2026-11-23T04:01:52.641Z",
-   "revision": "4ffd49f4375701730e6a890fca2be8764cdc1c7b",
-   "changes": 0,
-   "delivered": 0
-  },
-  {
-   "at": "2026-11-23T04:31:02.608Z",
-   "revision": "4ffd49f4375701730e6a890fca2be8764cdc1c7b",
-   "changes": 0,
-   "delivered": 0
-  },
-  {
-   "at": "2026-11-23T05:00:13.549Z",
-   "revision": "4ffd49f4375701730e6a890fca2be8764cdc1c7b",
-   "changes": 0,
-   "delivered": 0
-  },
-  {
-   "at": "2026-11-23T05:29:23.541Z",
-   "revision": "4ffd49f4375701730e6a890fca2be8764cdc1c7b",
-   "changes": 0,
-   "delivered": 0
-  },
-  {
-   "at": "2026-11-23T05:58:31.800Z",
-   "revision": "4ffd49f4375701730e6a890fca2be8764cdc1c7b",
-   "changes": 0,
-   "delivered": 0
-  },
-  {
-   "at": "2026-11-23T06:27:41.329Z",
-   "revision": "4ffd49f4375701730e6a890fca2be8764cdc1c7b",
-   "changes": 0,
-   "delivered": 0
-  },
   {
    "at": "2026-11-23T06:56:51.227Z",
    "revision": "4ffd49f4375701730e6a890fca2be8764cdc1c7b",
@@ -22176,6 +22168,48 @@
   {
    "at": "2026-11-24T01:54:46.346Z",
    "revision": "5836cfb5e33aa74c87d8763313bc7cb4b4285f34",
+   "changes": 0,
+   "delivered": 0
+  },
+  {
+   "at": "2026-11-24T02:20:24.210Z",
+   "revision": "db5fbcb1f482ee5293c573bb8ba8f086952d2f90",
+   "changes": 7,
+   "delivered": 7
+  },
+  {
+   "at": "2026-11-24T02:20:32.105Z",
+   "revision": "db5fbcb1f482ee5293c573bb8ba8f086952d2f90",
+   "changes": 0,
+   "delivered": 0
+  },
+  {
+   "at": "2026-11-24T02:20:36.757Z",
+   "revision": "db5fbcb1f482ee5293c573bb8ba8f086952d2f90",
+   "changes": 0,
+   "delivered": 0
+  },
+  {
+   "at": "2026-11-24T02:20:46.737Z",
+   "revision": "db5fbcb1f482ee5293c573bb8ba8f086952d2f90",
+   "changes": 0,
+   "delivered": 0
+  },
+  {
+   "at": "2026-11-24T02:20:51.807Z",
+   "revision": "db5fbcb1f482ee5293c573bb8ba8f086952d2f90",
+   "changes": 0,
+   "delivered": 0
+  },
+  {
+   "at": "2026-11-24T02:20:56.809Z",
+   "revision": "db5fbcb1f482ee5293c573bb8ba8f086952d2f90",
+   "changes": 0,
+   "delivered": 0
+  },
+  {
+   "at": "2026-11-24T02:21:01.878Z",
+   "revision": "db5fbcb1f482ee5293c573bb8ba8f086952d2f90",
    "changes": 0,
    "delivered": 0
   }

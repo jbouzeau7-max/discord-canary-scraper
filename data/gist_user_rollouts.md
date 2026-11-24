@@ -1,18 +1,18 @@
 # Rollouts user — couverture gist (v1)
 
-> Source : gist communautaire agnonotdev (copie réduite de rollouts.json, tag Assyst) · Généré le 2026-11-24 01:54 UTC
+> Source : gist communautaire agnonotdev (copie réduite de rollouts.json, tag Assyst) · Généré le 2026-11-24 02:21 UTC
 
 **Sémantique** : couvertures calculées exactement à partir des plages fournies par la source (0-10000), à 0,01 point près. Totaux par rôle = UNION des plages (un bucket appartient à un rôle s'il tombe dans l'union de ses plages). Quand la structure révèle plusieurs populations aplaties (drapeau `multi_population`) ou des rôles conflictuels/inconnus, l'agrégation est indéterminée (poids des populations absents du gist) : totaux principaux indisponibles, l'union est montrée en métrique secondaire étiquetée « projetée » (non pondérée). L'absence du drapeau ne prouve PAS une population unique — le gist n'en garde pas les frontières. Cohérent avec notre décodage wire apex (mêmes plages → mêmes nombres). Ce n'est ni une estimation statistique, ni la proportion de vrais utilisateurs éligibles, ni une mesure d'accès réel. Les expériences `guild` sont exclues (mesurées à part par le décodage wire apex).
 
-**Gist** : [e3e99062983e6bd0feaef833f14fd931](https://gist.github.com/agnonotdev/e3e99062983e6bd0feaef833f14fd931) · révision 5836cfb5 · MAJ 2026-11-23T20:25:14Z · 1070 expériences au catalogue (340 user dont 168 avec données, 40 guild, 690 type inconnu, 262 sans données)
+**Gist** : [e3e99062983e6bd0feaef833f14fd931](https://gist.github.com/agnonotdev/e3e99062983e6bd0feaef833f14fd931) · révision db5fbcb1 · MAJ 2026-11-24T02:20:03Z · 1071 expériences au catalogue (341 user dont 170 avec données, 40 guild, 690 type inconnu, 261 sans données)
 
-⚠️ Miroir divergent (192b2ce20539ce1021b5c8cb01b17ff0) sur : 2026-11-three-month-nitro-gifting-no-copy-change, 2026-11-cti-new-presets, 2026-11-premium-group-continuation-40, 2026-11-phoenix-app-access, 2026-11-shop-this-look-full-profile-button, 2026-11-soundboard-upsells-brand-refresh, 2026-11-mobile-did-background-app-native, 2026-11-mobile-orb-redemption-thru-orders, 2026-11-payment-element-accordion-layout, 2026-11-return-full-quest-status-in-decision…
+⚠️ Miroir divergent (192b2ce20539ce1021b5c8cb01b17ff0) sur : 2026-11-cti-new-presets, 2026-11-three-month-nitro-gifting-no-copy-change, 2026-11-game-stats-widget-skip-connect-modal, 2026-11-premium-group-continuation-40, 2026-11-phoenix-app-access, 2026-11-shop-this-look-full-profile-button, 2026-11-soundboard-upsells-brand-refresh, 2026-11-mobile-did-background-app-native, 2026-11-mobile-orb-redemption-thru-orders, 2026-11-payment-element-accordion-layout…
 
-## Expériences user avec données (168)
+## Expériences user avec données (170)
 
 | Expérience | Treatment | Control | Non éligible | Espace non décrit | Particularités |
 |---|---:|---:|---:|---:|---|
-| 2026-11-three-month-nitro-gifting-no-copy-change | **5,00 %** | 5,00 % | 0,00 % | 90,00 % | — |
+| 2026-11-three-month-nitro-gifting-no-copy-change | **20,00 %** | 20,00 % | 0,00 % | 60,00 % | — |
 | 2026-11-soundboard-upsells-brand-refresh | **50,00 %** | 50,00 % | 0,00 % | 0,00 % | — |
 | 2026-11-shop-this-look-full-profile-button | **10,00 %** | 10,00 % | 0,00 % | 80,00 % | — |
 | 2026-11-screen-share-dtx | **10,00 %** | 10,00 % | 0,00 % | 80,00 % | — |
@@ -21,7 +21,8 @@
 | 2026-11-payment-element-accordion-layout | **10,00 %** | 10,00 % | 0,00 % | 80,00 % | — |
 | 2026-11-mobile-orb-redemption-thru-orders | **25,00 %** | 0,00 % | 0,00 % | 75,00 % | — |
 | 2026-11-mobile-did-background-app-native | **1,00 %** | 1,00 % | 0,00 % | 98,00 % | — |
-| 2026-11-cti-new-presets | **1,00 %** | 1,00 % | 0,00 % | 98,00 % | — |
+| 2026-11-game-stats-widget-skip-connect-modal | **10,00 %** | 10,00 % | 0,00 % | 80,00 % | — |
+| 2026-11-cti-new-presets | **20,00 %** | 20,00 % | 0,00 % | 60,00 % | — |
 | 2026-10-windows-playout-buffer-duration | **0,00 %** | 1,00 % | 0,00 % | 99,00 % | — |
 | 2026-10-web-streaming-optimizations | **16,00 %** | 4,00 % | 0,00 % | 80,00 % | — |
 | 2026-10-user-profile-widget-suggestions | **64,50 %** | 33,50 % | 0,00 % | 2,00 % | — |
@@ -77,14 +78,14 @@
 | 2026-10-avx512-entropy-histogram | **15,00 %** | 15,00 % | 0,00 % | 70,00 % | — |
 | 2026-10-animated-shop-bundle-previews | **100,00 %** | 0,00 % | 0,00 % | 0,00 % | — |
 | 2026-10-android-stop-and-pause-video | **100,00 %** | 0,00 % | 0,00 % | 0,00 % | — |
-| 2026-10-android-seamless-pip | **50,00 %** | 50,00 % | 0,00 % | 0,00 % | — |
-| 2026-10-android-nitro-fetch | **10,00 %** | 5,00 % | 0,00 % | 85,00 % | — |
+| 2026-10-android-seamless-pip | **100,00 %** | 0,00 % | 0,00 % | 0,00 % | — |
 | 2026-10-android-mobile-onboarding-friction-negative-test | **10,00 %** | 10,00 % | 0,00 % | 80,00 % | — |
 | 2026-09-youtube-3p-nagbar | **100,00 %** | 0,00 % | 0,00 % | 0,00 % | — |
 | 2026-09-youtube-3p | **100,00 %** | 0,00 % | 0,00 % | 0,00 % | — |
 | 2026-09-web-sticker-picker-upsell-restyle | **100,00 %** | 0,00 % | 0,00 % | 0,00 % | — |
 | 2026-09-voice-server-update-immediate-mobile | **50,00 %** | 50,00 % | 0,00 % | 0,00 % | — |
 | 2026-09-voice-connect-feedback | **25,00 %** | 25,00 % | 0,00 % | 50,00 % | — |
+| 2026-09-update-email-settings-copy-subtext | **30,00 %** | 0,00 % | 0,00 % | 70,00 % | — |
 | 2026-09-try-display-name-style | **26,66 %** | 13,33 % | 0,00 % | 60,01 % | — |
 | 2026-09-soundboard-quick-action | **95,00 %** | 0,00 % | 0,00 % | 5,00 % | — |
 | 2026-09-single-cpu-copy | **100,00 %** | 0,00 % | 0,00 % | 0,00 % | — |
@@ -92,6 +93,7 @@
 | download_discord_app | **75,00 %** | 25,00 % | 0,00 % | 0,00 % | — |
 | 2026-09-safety-warning-age-text | **100,00 %** | 0,00 % | 0,00 % | 0,00 % | — |
 | 2026-09-request-to-stream-go-live-modal | **50,00 %** | 50,00 % | 0,00 % | 0,00 % | — |
+| 2026-09-registration-email-opt-in-copy | **50,00 %** | 0,00 % | 0,00 % | 50,00 % | — |
 | 2026-09-quest-mobile-bar-secondary-cta | **100,00 %** | 0,00 % | 0,00 % | 0,00 % | — |
 | 2026-09-quest-home-bounties-feature-gate | **1,00 %** | 0,00 % | 0,00 % | 99,00 % | — |
 | 2026-09-profile-widget-empty-state-suggestions | **100,00 %** | 0,00 % | 0,00 % | 0,00 % | — |
@@ -425,8 +427,8 @@
 ## Détail par variante (user)
 
 ### 2026-11-three-month-nitro-gifting-no-copy-change
-- Variant 0 (control) : 5,00 % · plages 0 – 500
-- Variant 1 (treatment) : 5,00 % · plages 500 – 1000
+- Variant 0 (control) : 20,00 % · plages 0 – 500 , 1000 – 2500
+- Variant 1 (treatment) : 20,00 % · plages 500 – 1000 , 2500 – 4000
 
 ### 2026-11-soundboard-upsells-brand-refresh
 - Variant 0 (control) : 50,00 % · plages 0 – 500 , 1000 – 1500 , 2000 – 3500 , 5000 – 7500
@@ -457,9 +459,13 @@
 - Variant 0 (control) : 1,00 % · plages 0 – 100
 - Variant 1 (treatment) : 1,00 % · plages 100 – 200
 
+### 2026-11-game-stats-widget-skip-connect-modal
+- Variant 0 (control) : 10,00 % · plages 0 – 1000
+- Variant 1 (treatment) : 10,00 % · plages 1000 – 2000
+
 ### 2026-11-cti-new-presets
-- Variant 0 (control) : 1,00 % · plages 0 – 100
-- Variant 1 (treatment) : 1,00 % · plages 100 – 200
+- Variant 0 (control) : 20,00 % · plages 0 – 100 , 200 – 600 , 1000 – 2000 , 3000 – 3500
+- Variant 1 (treatment) : 20,00 % · plages 100 – 200 , 600 – 1000 , 2000 – 3000 , 3500 – 4000
 
 ### 2026-10-windows-playout-buffer-duration
 - Variant 0 (control) : 1,00 % · plages 0 – 100
@@ -675,13 +681,7 @@
 - Variant 1 (treatment) : 100,00 % · plages 0 – 10000
 
 ### 2026-10-android-seamless-pip
-- Variant 0 (control) : 50,00 % · plages 0 – 5000
-- Variant 1 (treatment) : 50,00 % · plages 5000 – 10000
-
-### 2026-10-android-nitro-fetch
-- Variant 0 (control) : 5,00 % · plages 0 – 100 , 300 – 500 , 900 – 1100
-- Variant 1 (treatment) : 5,00 % · plages 100 – 200 , 500 – 700 , 1100 – 1300
-- Variant 2 (treatment) : 5,00 % · plages 200 – 300 , 700 – 900 , 1300 – 1500
+- Variant 1 (treatment) : 100,00 % · plages 0 – 10000
 
 ### 2026-10-android-mobile-onboarding-friction-negative-test
 - Variant 0 (control) : 10,00 % · plages 0 – 100 , 200 – 600 , 1000 – 1500
@@ -703,6 +703,9 @@
 ### 2026-09-voice-connect-feedback
 - Variant 0 (control) : 25,00 % · plages 0 – 1500 , 3000 – 4000
 - Variant 2 (treatment) : 25,00 % · plages 1500 – 3000 , 4000 – 5000
+
+### 2026-09-update-email-settings-copy-subtext
+- Variant 1 (treatment) : 30,00 % · plages 0 – 3000
 
 ### 2026-09-try-display-name-style
 - Variant 0 (control) : 13,33 % · plages 0 – 100 , 300 – 1200 , 3000 – 3333
@@ -730,6 +733,9 @@
 ### 2026-09-request-to-stream-go-live-modal
 - Variant 0 (control) : 50,00 % · plages 0 – 100 , 200 – 1100 , 2000 – 3500 , 5000 – 7500
 - Variant 1 (treatment) : 50,00 % · plages 100 – 200 , 1100 – 2000 , 3500 – 5000 , 7500 – 10000
+
+### 2026-09-registration-email-opt-in-copy
+- Variant 1 (treatment) : 50,00 % · plages 0 – 5000
 
 ### 2026-09-quest-mobile-bar-secondary-cta
 - Variant 1 (treatment) : 100,00 % · plages 0 – 10000
