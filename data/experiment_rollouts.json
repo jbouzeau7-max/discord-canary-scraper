@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-11-24T23:25:41.715Z",
+  "fetchedAt": "2026-11-24T23:51:50.659Z",
   "sources": {
     "discordApi": {
       "url": "https://discord.com/api/v9/experiments",
@@ -7,7 +7,7 @@
     },
     "fingerprintSampling": {
       "samples": 50,
-      "uniqueHashes": 4,
+      "uniqueHashes": 3,
       "matched": 1
     }
   },
@@ -317,26 +317,6 @@
       "fpEnrolled": 0,
       "fpTreatmentDist": {
         "0": 50
-      }
-    },
-    {
-      "hash": 704914099,
-      "id": null,
-      "type": "user",
-      "title": "hash_704914099",
-      "percentage": 0,
-      "status": "not_started",
-      "samples": 3,
-      "enrolled": 0,
-      "treatmentDistribution": {
-        "0": 3
-      },
-      "source": "fingerprint_sampling",
-      "note": "No local experiment ID match for this hash",
-      "fpSamples": 3,
-      "fpEnrolled": 0,
-      "fpTreatmentDist": {
-        "0": 3
       }
     },
     {
@@ -4150,6 +4130,16 @@
       "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
     },
     {
+      "id": "2026-11-shop-promotion-expiry-refetch",
+      "hash": 447484546,
+      "type": "user",
+      "title": "2026-11-shop-promotion-expiry-refetch",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
       "id": "2026-11-shop-this-look-full-profile-button",
       "hash": 203334276,
       "type": "user",
@@ -4254,11 +4244,11 @@
     "total": 399,
     "guild": 44,
     "user": 355,
-    "withPercentage": 8,
-    "withoutPercentage": 391,
+    "withPercentage": 7,
+    "withoutPercentage": 392,
     "fullRollout": 5,
     "partial": 0,
-    "notStarted": 3,
-    "fpSampled": 4
+    "notStarted": 2,
+    "fpSampled": 3
   }
 }
