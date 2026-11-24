@@ -3,23 +3,25 @@
  "schemaVersion": 1,
  "semanticsVersion": 2,
  "notifyScopeVersion": 2,
- "runId": "20261124T193824_gist",
- "scrapedAt": "2026-11-24T19:38:24.224Z",
+ "runId": "20261124T195944_gist",
+ "scrapedAt": "2026-11-24T19:59:44.188Z",
  "source": {
   "gistId": "e3e99062983e6bd0feaef833f14fd931",
   "htmlUrl": "https://gist.github.com/agnonotdev/e3e99062983e6bd0feaef833f14fd931",
-  "rawUrl": "https://gist.githubusercontent.com/agnonotdev/e3e99062983e6bd0feaef833f14fd931/raw",
-  "updatedAt": null,
-  "revision": null,
-  "fetchedAt": "2026-11-24T19:38:24.224Z",
+  "rawUrl": "https://gist.githubusercontent.com/agnonotdev/e3e99062983e6bd0feaef833f14fd931/raw/7d7e849a500b97397095dc6d83f7c94e519bb835/rollouts-tag.json",
+  "updatedAt": "2026-11-24T19:38:16Z",
+  "revision": "58e83af904e50f97c2880e2c703be496e6525fad",
+  "fetchedAt": "2026-11-24T19:59:44.188Z",
   "fallback": false,
-  "rawFallback": true,
+  "rawFallback": false,
   "canonicalId": null
  },
  "mirror": {
   "gistId": "192b2ce20539ce1021b5c8cb01b17ff0",
   "diverged": true,
   "divergingIds": [
+   "2026-11-norbs",
+   "2026-11-notify-friends-on-custom-status-update",
    "2026-11-cti-new-presets",
    "2026-11-three-month-nitro-gifting-no-copy-change",
    "2026-11-game-stats-widget-skip-connect-modal",
@@ -72,10 +74,10 @@
    "2026-10-request-to-stream-non-games",
    "2026-10-android-stop-and-pause-video",
    "2026-10-android-fastimage-apng",
+   "2026-09-autoclips",
    "2026-09-update-email-settings-copy-subtext",
    "2026-09-registration-email-opt-in-copy",
    "2026-09-mobile-nitro-upsell-in-shop-pdp",
-   "2026-09-autoclips",
    "2026-09-invite-accept-age-group-errors",
    "2026-09-quest-home-bounties-feature-gate",
    "2026-09-edit-profile-collectibles-ordering",
@@ -96,8 +98,8 @@
    "2026-09-game-profiles-v3-communities-tab",
    "2026-09-voice-server-update-immediate-mobile",
    "2026-09-friends-sidebar",
-   "2026-08-badge-management",
    "2026-08-social-layer-storefront-mobile-embed",
+   "2026-08-badge-management",
    "2026-08-mark-channel-unread",
    "2026-08-find-coded-links-regex",
    "2026-08-split-payments",
@@ -114,9 +116,9 @@
   ]
  },
  "stats": {
-  "total": 1071,
-  "user": 341,
-  "userData": 170,
+  "total": 1073,
+  "user": 343,
+  "userData": 172,
   "guild": 40,
   "unclassified": 690,
   "noData": 261
@@ -1287,17 +1289,17 @@
    }
   },
   "2026-09-update-email-settings-copy-subtext": {
-   "key": "c52c1a195a61c67e",
+   "key": "95f46bfc73a52751",
    "hasData": true,
    "sig": "1:treatment",
    "byVariant": {
     "1": {
-     "pct": 30,
+     "pct": 100,
      "role": "treatment"
     }
    },
    "treatment": {
-    "pct": 30
+    "pct": 100
    },
    "control": {
     "pct": 0
@@ -1551,17 +1553,17 @@
    "variantsCount": 2
   },
   "2026-09-registration-email-opt-in-copy": {
-   "key": "6dc35c17c61f3cb7",
+   "key": "95f46bfc73a52751",
    "hasData": true,
    "sig": "1:treatment",
    "byVariant": {
     "1": {
-     "pct": 50,
+     "pct": 100,
      "role": "treatment"
     }
    },
    "treatment": {
-    "pct": 50
+    "pct": 100
    },
    "control": {
     "pct": 0
@@ -21678,24 +21680,24 @@
    "variantsCount": 1
   },
   "2026-08-social-layer-storefront-mobile-embed": {
-   "key": "4b5dc00449026796",
+   "key": "1e64c23242f31d06",
    "hasData": true,
    "sig": "0:control|1:treatment",
    "byVariant": {
     "0": {
-     "pct": 15,
+     "pct": 24.5,
      "role": "control"
     },
     "1": {
-     "pct": 15,
+     "pct": 25,
      "role": "treatment"
     }
    },
    "treatment": {
-    "pct": 15
+    "pct": 25
    },
    "control": {
-    "pct": 15
+    "pct": 24.5
    },
    "notEligible": {
     "pct": 0
@@ -21828,27 +21830,31 @@
    "variantsCount": 1
   },
   "2026-09-autoclips": {
-   "key": "e9ae9408ad4b5e99",
+   "key": "280fa2d4392e524d",
    "hasData": true,
-   "sig": "2:treatment",
+   "sig": "0:control|2:treatment",
    "byVariant": {
-    "2": {
+    "0": {
      "pct": 1,
+     "role": "control"
+    },
+    "2": {
+     "pct": 9,
      "role": "treatment"
     }
    },
    "treatment": {
-    "pct": 1
+    "pct": 9
    },
    "control": {
-    "pct": 0
+    "pct": 1
    },
    "notEligible": {
     "pct": 0
    },
    "projectedCoverage": null,
    "projected": false,
-   "variantsCount": 1
+   "variantsCount": 2
   },
   "2026-11-three-month-nitro-gifting-no-copy-change": {
    "key": "e174eadb12ccc2d1",
@@ -21903,22 +21909,70 @@
    "projectedCoverage": null,
    "projected": false,
    "variantsCount": 2
+  },
+  "2026-11-notify-friends-on-custom-status-update": {
+   "key": "19a2e309986d6b83",
+   "hasData": true,
+   "sig": "0:control|1:treatment",
+   "byVariant": {
+    "0": {
+     "pct": 1,
+     "role": "control"
+    },
+    "1": {
+     "pct": 1,
+     "role": "treatment"
+    }
+   },
+   "treatment": {
+    "pct": 1
+   },
+   "control": {
+    "pct": 1
+   },
+   "notEligible": {
+    "pct": 0
+   },
+   "projectedCoverage": null,
+   "projected": false,
+   "variantsCount": 2
+  },
+  "2026-11-norbs": {
+   "key": "3ef4d36b24b36746",
+   "hasData": true,
+   "sig": "0:control|1:treatment",
+   "byVariant": {
+    "0": {
+     "pct": 0.1,
+     "role": "control"
+    },
+    "1": {
+     "pct": 9.9,
+     "role": "treatment"
+    }
+   },
+   "treatment": {
+    "pct": 9.9
+   },
+   "control": {
+    "pct": 0.1
+   },
+   "notEligible": {
+    "pct": 0
+   },
+   "projectedCoverage": null,
+   "projected": false,
+   "variantsCount": 2
   }
  },
  "lastRun": {
-  "changes": 0,
-  "delivered": 0,
+  "changes": 6,
+  "delivered": 6,
   "firstRun": false,
   "semanticsMigrated": 0,
   "scopeBaselined": 0
  },
  "history": [
-  {
-   "at": "2026-11-23T22:59:41.838Z",
-   "revision": "5836cfb5e33aa74c87d8763313bc7cb4b4285f34",
-   "changes": 0,
-   "delivered": 0
-  },
   {
    "at": "2026-11-23T23:28:50.144Z",
    "revision": "5836cfb5e33aa74c87d8763313bc7cb4b4285f34",
@@ -22212,6 +22266,12 @@
    "revision": null,
    "changes": 0,
    "delivered": 0
+  },
+  {
+   "at": "2026-11-24T19:59:44.188Z",
+   "revision": "58e83af904e50f97c2880e2c703be496e6525fad",
+   "changes": 6,
+   "delivered": 6
   }
  ]
 }

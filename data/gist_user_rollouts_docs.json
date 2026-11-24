@@ -1,16 +1,16 @@
 {
- "generatedAt": "2026-11-24T19:30:19.588Z",
+ "generatedAt": "2026-11-24T19:59:44.194Z",
  "semantics": "couverture de l'espace de buckets (gist agnonotdev) — ni une proportion d'utilisateurs, ni une mesure d'accès réel ; multi-populations = couverture projetée non pondérée",
  "source": {
   "gistId": "e3e99062983e6bd0feaef833f14fd931",
   "htmlUrl": "https://gist.github.com/agnonotdev/e3e99062983e6bd0feaef833f14fd931",
-  "updatedAt": null,
-  "revision": null
+  "updatedAt": "2026-11-24T19:38:16Z",
+  "revision": "58e83af904e50f97c2880e2c703be496e6525fad"
  },
  "stats": {
-  "total": 1071,
-  "user": 341,
-  "userData": 170,
+  "total": 1073,
+  "user": 343,
+  "userData": 172,
   "guild": 40,
   "unclassified": 690,
   "noData": 261
@@ -197,6 +197,56 @@
     },
     "1": {
      "pct": 10,
+     "role": "treatment"
+    }
+   }
+  },
+  {
+   "id": "2026-11-notify-friends-on-custom-status-update",
+   "title": "2026-11-notify-friends-on-custom-status-update",
+   "type": "user",
+   "hasData": true,
+   "totalsAvailable": true,
+   "ambiguous": false,
+   "projected": false,
+   "flags": [],
+   "treatmentPct": 1,
+   "projectedTreatmentPct": null,
+   "controlPct": 1,
+   "notEligiblePct": 0,
+   "unassignedPct": 98,
+   "byVariant": {
+    "0": {
+     "pct": 1,
+     "role": "control"
+    },
+    "1": {
+     "pct": 1,
+     "role": "treatment"
+    }
+   }
+  },
+  {
+   "id": "2026-11-norbs",
+   "title": "2026-11-norbs",
+   "type": "user",
+   "hasData": true,
+   "totalsAvailable": true,
+   "ambiguous": false,
+   "projected": false,
+   "flags": [],
+   "treatmentPct": 9.9,
+   "projectedTreatmentPct": null,
+   "controlPct": 0.1,
+   "notEligiblePct": 0,
+   "unassignedPct": 90,
+   "byVariant": {
+    "0": {
+     "pct": 0.1,
+     "role": "control"
+    },
+    "1": {
+     "pct": 9.9,
      "role": "treatment"
     }
    }
@@ -2082,14 +2132,14 @@
    "ambiguous": false,
    "projected": false,
    "flags": [],
-   "treatmentPct": 30,
+   "treatmentPct": 100,
    "projectedTreatmentPct": null,
    "controlPct": 0,
    "notEligiblePct": 0,
-   "unassignedPct": 70,
+   "unassignedPct": 0,
    "byVariant": {
     "1": {
-     "pct": 30,
+     "pct": 100,
      "role": "treatment"
     }
    }
@@ -2400,14 +2450,14 @@
    "ambiguous": false,
    "projected": false,
    "flags": [],
-   "treatmentPct": 50,
+   "treatmentPct": 100,
    "projectedTreatmentPct": null,
    "controlPct": 0,
    "notEligiblePct": 0,
-   "unassignedPct": 50,
+   "unassignedPct": 0,
    "byVariant": {
     "1": {
-     "pct": 50,
+     "pct": 100,
      "role": "treatment"
     }
    }
@@ -3166,14 +3216,18 @@
    "ambiguous": false,
    "projected": false,
    "flags": [],
-   "treatmentPct": 1,
+   "treatmentPct": 9,
    "projectedTreatmentPct": null,
-   "controlPct": 0,
+   "controlPct": 1,
    "notEligiblePct": 0,
-   "unassignedPct": 99,
+   "unassignedPct": 90,
    "byVariant": {
-    "2": {
+    "0": {
      "pct": 1,
+     "role": "control"
+    },
+    "2": {
+     "pct": 9,
      "role": "treatment"
     }
    }
@@ -3379,18 +3433,18 @@
    "ambiguous": false,
    "projected": false,
    "flags": [],
-   "treatmentPct": 15,
+   "treatmentPct": 25,
    "projectedTreatmentPct": null,
-   "controlPct": 15,
+   "controlPct": 24.5,
    "notEligiblePct": 0,
-   "unassignedPct": 70,
+   "unassignedPct": 50.5,
    "byVariant": {
     "0": {
-     "pct": 15,
+     "pct": 24.5,
      "role": "control"
     },
     "1": {
-     "pct": 15,
+     "pct": 25,
      "role": "treatment"
     }
    }
