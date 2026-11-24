@@ -1,8 +1,8 @@
 {
-  "runId": "2026-11-24T19-02-05-821Z_680199_sm97dr",
-  "buildNumber": "680199",
-  "updatedAt": "2026-11-24T19:02:05.821Z",
-  "count": 394,
+  "runId": "2026-11-24T19-12-14-460Z_680209_a1g92c",
+  "buildNumber": "680209",
+  "updatedAt": "2026-11-24T19:12:14.460Z",
+  "count": 395,
   "data": {
     "2021-02_staff_qc_debugging": {
       "id": "2021-02_staff_qc_debugging",
@@ -7509,6 +7509,24 @@
       },
       "system": "apex",
       "fp": "b0bf190314fc3b8673c7f8f84d9e3a8a39c77dca4f162238bbd7dc7216e38462"
+    },
+    "2026-11-nitro-trials-brand-refresh": {
+      "id": "2026-11-nitro-trials-brand-refresh",
+      "type": "user",
+      "kind": "user",
+      "label": null,
+      "variationCount": 2,
+      "variations": {
+        "0": {
+          "id": 0
+        },
+        "1": {
+          "id": 1
+        }
+      },
+      "defaultConfig": null,
+      "system": "apex",
+      "fp": "a3977bb86fa46ea6069e711a1958127d8b415edea35cc3e43045e68c1e70f359"
     },
     "2026-11-nitro-upload-badge": {
       "id": "2026-11-nitro-upload-badge",

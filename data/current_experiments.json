@@ -1,8 +1,8 @@
 {
-  "runId": "2026-11-24T19-02-05-821Z_680199_sm97dr",
-  "buildNumber": "680199",
-  "updatedAt": "2026-11-24T19:02:05.821Z",
-  "count": 394,
+  "runId": "2026-11-24T19-12-14-460Z_680209_a1g92c",
+  "buildNumber": "680209",
+  "updatedAt": "2026-11-24T19:12:14.460Z",
+  "count": 395,
   "experiments": [
     {
       "id": "2021-02_staff_qc_debugging",
@@ -19567,6 +19567,54 @@
         "value": null
       },
       "fingerprint": "b0bf190314fc3b8673c7f8f84d9e3a8a39c77dca4f162238bbd7dc7216e38462"
+    },
+    {
+      "id": "2026-11-nitro-trials-brand-refresh",
+      "kind": "user",
+      "type": "user",
+      "system": "apex",
+      "label": null,
+      "title": null,
+      "description": null,
+      "defaultConfig": null,
+      "variations": {
+        "0": {
+          "id": 0
+        },
+        "1": {
+          "id": 1
+        }
+      },
+      "treatments": null,
+      "variationSource": "variations",
+      "variationCount": 2,
+      "raw": {
+        "id": "2026-11-nitro-trials-brand-refresh",
+        "type": "user",
+        "kind": "user",
+        "label": null,
+        "system": "apex",
+        "defaultConfig": null,
+        "variations": {
+          "0": {
+            "id": 0
+          },
+          "1": {
+            "id": 1
+          }
+        },
+        "variationCount": 2,
+        "source": "discord"
+      },
+      "guildPercentage": {
+        "status": "unknown",
+        "value": null
+      },
+      "userPercentage": {
+        "status": "unknown",
+        "value": null
+      },
+      "fingerprint": "a3977bb86fa46ea6069e711a1958127d8b415edea35cc3e43045e68c1e70f359"
     },
     {
       "id": "2026-11-nitro-upload-badge",

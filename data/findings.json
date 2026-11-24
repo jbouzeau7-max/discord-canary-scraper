@@ -1,9 +1,9 @@
 {
-  "runId": "2026-11-24T19-02-05-821Z_680199_sm97dr",
-  "buildNumber": "680199",
-  "scrapedAt": "2026-11-24T19:02:05.821Z",
+  "runId": "2026-11-24T19-12-14-460Z_680209_a1g92c",
+  "buildNumber": "680209",
+  "scrapedAt": "2026-11-24T19:12:14.460Z",
   "totals": {
-    "all": 394
+    "all": 395
   },
   "experiments": [
     {
@@ -8750,6 +8750,24 @@
         }
       },
       "variationCount": 1,
+      "source": "discord"
+    },
+    {
+      "id": "2026-11-nitro-trials-brand-refresh",
+      "type": "user",
+      "kind": "user",
+      "label": null,
+      "system": "apex",
+      "defaultConfig": null,
+      "variations": {
+        "0": {
+          "id": 0
+        },
+        "1": {
+          "id": 1
+        }
+      },
+      "variationCount": 2,
       "source": "discord"
     },
     {
