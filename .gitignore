@@ -1,39 +1,5 @@
-node_modules/
-npm-shrinkwrap.json
-yarn.lock
-
-# working download cache (re-fetched each run)
-assets/
-assets.pool/
-
-# full chunk dumps are huge — published via GitHub Releases instead
-builds/*/files/
-
-# local zip artifacts
-canary-*-chunks.zip
-*.zip
-
-# env / secrets
-.env
-.env.*
-*.pem
-
-# OS / editor
-.DS_Store
-.idea/
-.vscode/
-
 # générations de données temporaires (publish_data.js)
 data/.generations/
+# staging de saveState() : ne doit jamais être versionné (reprise après crash)
+data/.state_staging/
 *.tmp-*
-
-# mobile datamine working directory
-.mobile_datamine/
-
-# coverage reports
-coverage/
-.nyc_output/
-
-# Python bytecode
-__pycache__/
-*.pyc
