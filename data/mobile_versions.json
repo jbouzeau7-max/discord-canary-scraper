@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-11-25T05:27:55.178Z",
+  "scrapedAt": "2026-11-25T11:53:55.971Z",
   "channels": [
     {
       "platform": "ios",
@@ -14,7 +14,7 @@
       "source": "itunes_lookup",
       "storeUrl": "https://apps.apple.com/app/id985746746",
       "available": true,
-      "checkedAt": "2026-11-25T05:27:55.178Z"
+      "checkedAt": "2026-11-25T11:53:55.971Z"
     },
     {
       "platform": "ios",
@@ -42,7 +42,7 @@
       "source": "store",
       "storeUrl": "https://play.google.com/store/apps/details?id=com.discord",
       "available": true,
-      "checkedAt": "2026-11-25T05:27:55.178Z",
+      "checkedAt": "2026-11-25T11:53:55.971Z",
       "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/51/1a/5c/511a5c6c-5bce-fa96-9bcd-5a7ebdda0b71/AppIcon-0-0-1x_U007epad-0-1-0-85-220.png/512x512bb.jpg"
     },
     {
@@ -56,13 +56,13 @@
       "storeUrl": "https://play.google.com/store/apps/details?id=com.discord",
       "available": true,
       "note": "Track-labeled on apkmirror",
-      "checkedAt": "2026-11-25T05:27:55.178Z",
+      "checkedAt": "2026-11-25T11:53:55.971Z",
       "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/51/1a/5c/511a5c6c-5bce-fa96-9bcd-5a7ebdda0b71/AppIcon-0-0-1x_U007epad-0-1-0-85-220.png/512x512bb.jpg"
     },
     {
       "platform": "android",
       "channel": "alpha",
-      "version": "357.1",
+      "version": "357.3",
       "build": null,
       "commit": null,
       "releaseName": null,
@@ -70,7 +70,7 @@
       "storeUrl": "https://play.google.com/store/apps/details?id=com.discord",
       "available": true,
       "note": "Track-labeled on datamining_commits",
-      "checkedAt": "2026-11-25T05:27:55.178Z",
+      "checkedAt": "2026-11-25T11:53:55.971Z",
       "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/51/1a/5c/511a5c6c-5bce-fa96-9bcd-5a7ebdda0b71/AppIcon-0-0-1x_U007epad-0-1-0-85-220.png/512x512bb.jpg"
     }
   ],
@@ -297,6 +297,7 @@
     "androidTrackVersions": {
       "beta": [],
       "alpha": [
+        "357.3",
         "357.1",
         "357.0",
         "356.7",
@@ -344,13 +345,19 @@
         "350.4",
         "350.3",
         "350.2",
-        "350.1",
-        "350.0"
+        "350.1"
       ]
     },
     "discordMinVersion": "388"
   },
   "history": [
+    {
+      "at": "2026-11-25T11:53:55.971Z",
+      "key": "android/alpha",
+      "from": "357.1",
+      "to": "357.3",
+      "build": null
+    },
     {
       "at": "2026-11-24T22:44:51.607Z",
       "key": "android/alpha",
@@ -471,7 +478,7 @@
       "build": "35301100485321"
     }
   ],
-  "previousScrapedAt": "2026-11-24T23:58:22.507Z",
+  "previousScrapedAt": "2026-11-25T05:27:55.178Z",
   "notifiedFingerprints": [
     "android|stable|353.11|35301100485321",
     "android|alpha|355.5",
@@ -488,13 +495,22 @@
     "ios|stable|354.0",
     "android|alpha|357.0",
     "android|stable|355.10",
+    "android|alpha|357.1",
     "ios|stable|355.0",
     "ios|beta|355.0",
     "android|stable|354.12",
     "android|beta|355.6",
-    "android|alpha|357.1"
+    "android|alpha|357.3"
   ],
-  "changes": [],
+  "changes": [
+    {
+      "type": "updated",
+      "key": "android/alpha",
+      "from": "357.1",
+      "to": "357.3",
+      "build": null
+    }
+  ],
   "paused": false,
   "notifyOk": true
 }
