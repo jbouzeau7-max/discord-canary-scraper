@@ -101,6 +101,40 @@ async function loadState(dataDir) {
 }
 
 /**
+ * Purge les générations de staging abandonnées (crash/annulation entre l'étape
+ * d'écriture et la promotion). Avant, seul le staging du run courant était
+ * supprimé : `data/.state_staging/<runId>/` s'accumulait indéfiniment et les
+ * fichiers JSON non suivis finissaient visibles dans `git status`.
+ * @returns {Promise<string[]>} noms des dossiers supprimés
+ */
+async function pruneStaleStaging(stagingRoot, opts = {}) {
+  const maxAgeMs = Number.isFinite(Number(opts.maxAgeMs)) ? Number(opts.maxAgeMs) : 6 * 3600 * 1000;
+  const keep = opts.keep != null ? String(opts.keep) : null;
+  const now = Number.isFinite(Number(opts.now)) ? Number(opts.now) : Date.now();
+  const removed = [];
+  let entries;
+  try {
+    entries = await fs.readdir(stagingRoot);
+  } catch {
+    return removed;
+  }
+  for (const name of entries) {
+    if (keep != null && name === keep) continue;
+    const dir = path.join(stagingRoot, name);
+    try {
+      const st = await fs.stat(dir);
+      if (!st.isDirectory()) continue;
+      // Un staging très récent peut appartenir à un autre process en cours.
+      if (now - Number(st.mtimeMs || 0) < maxAgeMs) continue;
+      await fs.remove(dir);
+      removed.push(name);
+    } catch {}
+  }
+  if (removed.length) console.warn('state staging: générations abandonnées purgées', removed.slice(0, 5));
+  return removed;
+}
+
+/**
  * Write a coherent generation of state files:
  *  1) write all JSON into .state_staging/<runId>/
  *  2) atomic-move each into dataDir
@@ -212,6 +246,9 @@ async function saveState(dataDir, state) {
     await fs.remove(staging);
   } catch {}
 
+  // Reprise : purge des générations abandonnées par un run interrompu.
+  await pruneStaleStaging(stagingRoot, { keep: runId });
+
   console.log('State saved', { runId, buildNumber, schemaVersion: SCHEMA_VERSION });
   return { runId, buildNumber };
 }
@@ -230,5 +267,6 @@ module.exports = {
   saveState,
   normalizeExperiments,
   makeRunId,
+  pruneStaleStaging,
   SCHEMA_VERSION,
 };
