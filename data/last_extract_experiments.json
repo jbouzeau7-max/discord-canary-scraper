@@ -1,7 +1,7 @@
 {
-  "runId": "2026-11-25T00-02-30-120Z_680625_wtn6kn",
-  "buildNumber": "680625",
-  "updatedAt": "2026-11-25T00:02:30.120Z",
+  "runId": "2026-11-25T02-20-59-549Z_680770_8n307r",
+  "buildNumber": "680770",
+  "updatedAt": "2026-11-25T02:20:59.549Z",
   "count": 396,
   "data": {
     "2021-02_staff_qc_debugging": {
@@ -3300,7 +3300,7 @@
       "type": "user",
       "kind": "user",
       "label": null,
-      "variationCount": 2,
+      "variationCount": 3,
       "variations": {
         "1": {
           "enabled": true,
@@ -3309,6 +3309,10 @@
         "2": {
           "enabled": true,
           "newTabExperience": "friends"
+        },
+        "3": {
+          "enabled": true,
+          "newTabExperience": "quickswitcher"
         }
       },
       "defaultConfig": {
@@ -3316,7 +3320,7 @@
         "newTabExperience": "popout"
       },
       "system": "apex",
-      "fp": "c52e19a9193400c8a2aedba8434efa23c78e347b46da2ae0b76b55712cfeb48d"
+      "fp": "6a79eb3cd715334e4a7a8af6da74c1e78b1d23de43f1c63c0c550e68a8d3909e"
     },
     "2026-07-expressive-modal-v2": {
       "id": "2026-07-expressive-modal-v2",

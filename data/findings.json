@@ -1,7 +1,7 @@
 {
-  "runId": "2026-11-25T00-02-30-120Z_680625_wtn6kn",
-  "buildNumber": "680625",
-  "scrapedAt": "2026-11-25T00:02:30.120Z",
+  "runId": "2026-11-25T02-20-59-549Z_680770_8n307r",
+  "buildNumber": "680770",
+  "scrapedAt": "2026-11-25T02:20:59.549Z",
   "totals": {
     "all": 396
   },
@@ -3675,9 +3675,13 @@
         "2": {
           "enabled": true,
           "newTabExperience": "friends"
+        },
+        "3": {
+          "enabled": true,
+          "newTabExperience": "quickswitcher"
         }
       },
-      "variationCount": 2,
+      "variationCount": 3,
       "source": "discord"
     },
     {
