@@ -77,11 +77,12 @@ async function readLocal() {
 /** Décision pure : faut-il lancer un scrape ? */
 function shouldScrape(local, remote) {
   if (!remote) return false;
-  if (remote.versionHash && local.versionHash && remote.versionHash !== local.versionHash) return true;
-  if (remote.buildNumber && local.buildNumber && remote.buildNumber !== local.buildNumber) {
-    // build plus ancien servi par un edge en retard : ignoré (index.js a aussi sa garde)
-    return Number(remote.buildNumber) > Number(local.buildNumber);
+  if (remote.buildNumber && local.buildNumber) {
+    const delta = Number(remote.buildNumber) - Number(local.buildNumber);
+    if (delta < 0) return false; // Un ancien edge a généralement aussi un autre hash.
+    if (delta > 0) return true;
   }
+  if (remote.versionHash && local.versionHash && remote.versionHash !== local.versionHash) return true;
   if (!local.versionHash && !local.buildNumber) return true;
   return false;
 }
