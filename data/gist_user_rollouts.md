@@ -1,10 +1,10 @@
 # Rollouts user — couverture gist (v1)
 
-> Source : gist communautaire agnonotdev (copie réduite de rollouts.json, tag Assyst) · Généré le 2026-11-25 17:39 UTC
+> Source : gist communautaire agnonotdev (copie réduite de rollouts.json, tag Assyst) · Généré le 2026-11-25 17:46 UTC
 
 **Sémantique** : couvertures calculées exactement à partir des plages fournies par la source (0-10000), à 0,01 point près. Totaux par rôle = UNION des plages (un bucket appartient à un rôle s'il tombe dans l'union de ses plages). Quand la structure révèle plusieurs populations aplaties (drapeau `multi_population`) ou des rôles conflictuels/inconnus, l'agrégation est indéterminée (poids des populations absents du gist) : totaux principaux indisponibles, l'union est montrée en métrique secondaire étiquetée « projetée » (non pondérée). L'absence du drapeau ne prouve PAS une population unique — le gist n'en garde pas les frontières. Cohérent avec notre décodage wire apex (mêmes plages → mêmes nombres). Ce n'est ni une estimation statistique, ni la proportion de vrais utilisateurs éligibles, ni une mesure d'accès réel. Les expériences `guild` sont exclues (mesurées à part par le décodage wire apex).
 
-**Gist** : [e3e99062983e6bd0feaef833f14fd931](https://gist.github.com/agnonotdev/e3e99062983e6bd0feaef833f14fd931) · révision 436cadcb · MAJ 2026-11-25T14:08:29Z · 1073 expériences au catalogue (343 user dont 171 avec données, 40 guild, 690 type inconnu, 262 sans données)
+**Gist** : [e3e99062983e6bd0feaef833f14fd931](https://gist.github.com/agnonotdev/e3e99062983e6bd0feaef833f14fd931) · révision 6adb5313 · MAJ 2026-11-25T17:45:24Z · 1073 expériences au catalogue (343 user dont 171 avec données, 40 guild, 690 type inconnu, 262 sans données)
 
 ⚠️ Miroir divergent (192b2ce20539ce1021b5c8cb01b17ff0) sur : 2026-11-shop-this-look-full-profile-button, 2026-11-norbs, 2026-11-notify-friends-on-custom-status-update, 2026-11-cti-new-presets, 2026-11-three-month-nitro-gifting-no-copy-change, 2026-11-game-stats-widget-skip-connect-modal, 2026-11-premium-group-continuation-40, 2026-11-phoenix-app-access, 2026-11-soundboard-upsells-brand-refresh, 2026-11-mobile-did-background-app-native…
 
@@ -14,13 +14,13 @@
 |---|---:|---:|---:|---:|---|
 | 2026-11-three-month-nitro-gifting-no-copy-change | **20,00 %** | 20,00 % | 0,00 % | 60,00 % | — |
 | 2026-11-soundboard-upsells-brand-refresh | **50,00 %** | 50,00 % | 0,00 % | 0,00 % | — |
-| 2026-11-shop-this-look-full-profile-button | **25,00 %** | 25,00 % | 0,00 % | 50,00 % | — |
+| 2026-11-shop-this-look-full-profile-button | **50,00 %** | 50,00 % | 0,00 % | 0,00 % | — |
 | 2026-11-screen-share-dtx | **10,00 %** | 10,00 % | 0,00 % | 80,00 % | — |
 | 2026-11-premium-group-continuation-40 | **100,00 %** | 0,00 % | 0,00 % | 0,00 % | — |
 | 2026-11-phoenix-app-access | **0,00 %** | 100,00 % | 0,00 % | 0,00 % | — |
 | 2026-11-payment-element-accordion-layout | **10,00 %** | 10,00 % | 0,00 % | 80,00 % | — |
 | 2026-11-notify-friends-on-custom-status-update | **1,00 %** | 1,00 % | 0,00 % | 98,00 % | — |
-| 2026-11-norbs | **44,90 %** | 0,10 % | 0,00 % | 55,00 % | — |
+| 2026-11-norbs | **69,90 %** | 0,10 % | 0,00 % | 30,00 % | — |
 | 2026-11-mobile-orb-redemption-thru-orders | **25,00 %** | 0,00 % | 0,00 % | 75,00 % | — |
 | 2026-11-mobile-did-background-app-native | **1,00 %** | 1,00 % | 0,00 % | 98,00 % | — |
 | 2026-11-game-stats-widget-skip-connect-modal | **10,00 %** | 10,00 % | 0,00 % | 80,00 % | — |
@@ -436,8 +436,8 @@
 - Variant 1 (treatment) : 50,00 % · plages 500 – 1000 , 1500 – 2000 , 3500 – 5000 , 7500 – 10000
 
 ### 2026-11-shop-this-look-full-profile-button
-- Variant 0 (control) : 25,00 % · plages 0 – 1000 , 2000 – 3500
-- Variant 1 (treatment) : 25,00 % · plages 1000 – 2000 , 3500 – 5000
+- Variant 0 (control) : 50,00 % · plages 0 – 1000 , 2000 – 3500 , 5000 – 7500
+- Variant 1 (treatment) : 50,00 % · plages 1000 – 2000 , 3500 – 5000 , 7500 – 10000
 
 ### 2026-11-screen-share-dtx
 - Variant 0 (control) : 10,00 % · plages 0 – 1000
@@ -459,7 +459,7 @@
 
 ### 2026-11-norbs
 - Variant 0 (control) : 0,10 % · plages 500 – 510
-- Variant 1 (treatment) : 44,90 % · plages 510 – 5000
+- Variant 1 (treatment) : 69,90 % · plages 510 – 7500
 
 ### 2026-11-mobile-orb-redemption-thru-orders
 - Variant 1 (treatment) : 25,00 % · plages 0 – 2500
