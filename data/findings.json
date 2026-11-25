@@ -1,9 +1,9 @@
 {
-  "runId": "2026-11-25T02-25-24-269Z_680776_6o83rz",
-  "buildNumber": "680776",
-  "scrapedAt": "2026-11-25T02:25:24.269Z",
+  "runId": "2026-11-25T11-29-08-535Z_680900_zok2d7",
+  "buildNumber": "680900",
+  "scrapedAt": "2026-11-25T11:29:08.535Z",
   "totals": {
-    "all": 396
+    "all": 395
   },
   "experiments": [
     {
@@ -7759,27 +7759,6 @@
       },
       "variationCount": 2,
       "source": "discord"
-    },
-    {
-      "id": "2026-10-profile-default-tab-with-content",
-      "type": "user",
-      "kind": "user",
-      "label": null,
-      "system": "apex",
-      "defaultConfig": null,
-      "variations": null,
-      "variationCount": 0,
-      "source": "discord",
-      "guildPercentage": {
-        "status": "unknown",
-        "value": null
-      },
-      "userPercentage": {
-        "status": "provided",
-        "value": 100,
-        "source": "gist_user_rollouts"
-      },
-      "fingerprint": "9f03b4b0d1286ca791b360e792060665a08d0e66de4050c4f899d4c53676b88c"
     },
     {
       "id": "2026-10-profile-nitro-upsell-refresh",
