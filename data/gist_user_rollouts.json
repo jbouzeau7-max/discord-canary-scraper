@@ -3,15 +3,15 @@
  "schemaVersion": 1,
  "semanticsVersion": 2,
  "notifyScopeVersion": 2,
- "runId": "20261125T213224_gist",
- "scrapedAt": "2026-11-25T21:32:24.545Z",
+ "runId": "20261125T213954_gist",
+ "scrapedAt": "2026-11-25T21:39:54.579Z",
  "source": {
   "gistId": "e3e99062983e6bd0feaef833f14fd931",
   "htmlUrl": "https://gist.github.com/agnonotdev/e3e99062983e6bd0feaef833f14fd931",
-  "rawUrl": "https://gist.githubusercontent.com/agnonotdev/e3e99062983e6bd0feaef833f14fd931/raw/4fc810d6e197e08dd225948541fd00e9bc61ea70/rollouts-tag.json",
-  "updatedAt": "2026-11-25T21:04:06Z",
-  "revision": "38d905df957cfc512616c9e3dd938f82220e3fd4",
-  "fetchedAt": "2026-11-25T21:32:24.546Z",
+  "rawUrl": "https://gist.githubusercontent.com/agnonotdev/e3e99062983e6bd0feaef833f14fd931/raw/1f8ab0be2b503342ed87573f408e437a434b02d6/rollouts-tag.json",
+  "updatedAt": "2026-11-25T21:39:27Z",
+  "revision": "5cf27d270a4c6b2b5fdd6cd92e591818a3f9737d",
+  "fetchedAt": "2026-11-25T21:39:54.579Z",
   "fallback": false,
   "rawFallback": false,
   "canonicalId": null
@@ -21350,32 +21350,32 @@
    "variantsCount": 1
   },
   "2026-10-interest-picker": {
-   "key": "6c186c834ac65f38",
+   "key": "9cbe38268bfb8423",
    "hasData": true,
    "sig": "0:control|1:treatment|2:treatment|3:treatment",
    "byVariant": {
     "0": {
-     "pct": 12.5,
+     "pct": 15,
      "role": "control"
     },
     "1": {
-     "pct": 12.5,
+     "pct": 15,
      "role": "treatment"
     },
     "2": {
-     "pct": 12.5,
+     "pct": 15,
      "role": "treatment"
     },
     "3": {
-     "pct": 12.5,
+     "pct": 15,
      "role": "treatment"
     }
    },
    "treatment": {
-    "pct": 37.5
+    "pct": 45
    },
    "control": {
-    "pct": 12.5
+    "pct": 15
    },
    "notEligible": {
     "pct": 0
@@ -21948,19 +21948,13 @@
   }
  },
  "lastRun": {
-  "changes": 0,
-  "delivered": 0,
+  "changes": 1,
+  "delivered": 1,
   "firstRun": false,
   "semanticsMigrated": 0,
   "scopeBaselined": 0
  },
  "history": [
-  {
-   "at": "2026-11-24T16:06:08.725Z",
-   "revision": "db5fbcb1f482ee5293c573bb8ba8f086952d2f90",
-   "changes": 0,
-   "delivered": 0
-  },
   {
    "at": "2026-11-24T16:35:17.551Z",
    "revision": "db5fbcb1f482ee5293c573bb8ba8f086952d2f90",
@@ -22254,6 +22248,12 @@
    "revision": "38d905df957cfc512616c9e3dd938f82220e3fd4",
    "changes": 0,
    "delivered": 0
+  },
+  {
+   "at": "2026-11-25T21:39:54.579Z",
+   "revision": "5cf27d270a4c6b2b5fdd6cd92e591818a3f9737d",
+   "changes": 1,
+   "delivered": 1
   }
  ]
 }
