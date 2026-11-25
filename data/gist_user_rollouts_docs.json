@@ -1,19 +1,19 @@
 {
- "generatedAt": "2026-11-24T23:53:08.827Z",
+ "generatedAt": "2026-11-25T14:08:59.436Z",
  "semantics": "couverture de l'espace de buckets (gist agnonotdev) — ni une proportion d'utilisateurs, ni une mesure d'accès réel ; multi-populations = couverture projetée non pondérée",
  "source": {
   "gistId": "e3e99062983e6bd0feaef833f14fd931",
   "htmlUrl": "https://gist.github.com/agnonotdev/e3e99062983e6bd0feaef833f14fd931",
-  "updatedAt": "2026-11-24T21:27:07Z",
-  "revision": "7f8b67cb97137d47658226eec815c86578372ddc"
+  "updatedAt": "2026-11-25T14:08:29Z",
+  "revision": "436cadcb5ee6f018df3d43dfee3726b49751d4fe"
  },
  "stats": {
   "total": 1073,
   "user": 343,
-  "userData": 172,
+  "userData": 171,
   "guild": 40,
   "unclassified": 690,
-  "noData": 261
+  "noData": 262
  },
  "experiments": [
   {
@@ -75,18 +75,18 @@
    "ambiguous": false,
    "projected": false,
    "flags": [],
-   "treatmentPct": 10,
+   "treatmentPct": 25,
    "projectedTreatmentPct": null,
-   "controlPct": 10,
+   "controlPct": 25,
    "notEligiblePct": 0,
-   "unassignedPct": 80,
+   "unassignedPct": 50,
    "byVariant": {
     "0": {
-     "pct": 10,
+     "pct": 25,
      "role": "control"
     },
     "1": {
-     "pct": 10,
+     "pct": 25,
      "role": "treatment"
     }
    }
@@ -1289,18 +1289,18 @@
    "ambiguous": false,
    "projected": false,
    "flags": [],
-   "treatmentPct": 10,
+   "treatmentPct": 50,
    "projectedTreatmentPct": null,
-   "controlPct": 10,
+   "controlPct": 50,
    "notEligiblePct": 0,
-   "unassignedPct": 80,
+   "unassignedPct": 0,
    "byVariant": {
     "0": {
-     "pct": 10,
+     "pct": 50,
      "role": "control"
     },
     "1": {
-     "pct": 10,
+     "pct": 50,
      "role": "treatment"
     }
    }
@@ -1388,26 +1388,19 @@
    "id": "2026-10-express-checkout",
    "title": "2026-10-express-checkout",
    "type": "user",
-   "hasData": true,
-   "totalsAvailable": true,
+   "hasData": false,
+   "totalsAvailable": false,
    "ambiguous": false,
    "projected": false,
-   "flags": [],
-   "treatmentPct": 50,
+   "flags": [
+    "no_data"
+   ],
+   "treatmentPct": null,
    "projectedTreatmentPct": null,
-   "controlPct": 50,
-   "notEligiblePct": 0,
-   "unassignedPct": 0,
-   "byVariant": {
-    "0": {
-     "pct": 50,
-     "role": "control"
-    },
-    "1": {
-     "pct": 50,
-     "role": "treatment"
-    }
-   }
+   "controlPct": null,
+   "notEligiblePct": null,
+   "unassignedPct": null,
+   "byVariant": {}
   },
   {
    "id": "2026-10-embedded-app-storage-access",
@@ -2711,18 +2704,18 @@
    "ambiguous": false,
    "projected": false,
    "flags": [],
-   "treatmentPct": 50,
+   "treatmentPct": 48,
    "projectedTreatmentPct": null,
    "controlPct": 50,
    "notEligiblePct": 0,
-   "unassignedPct": 0,
+   "unassignedPct": 2,
    "byVariant": {
     "0": {
      "pct": 50,
      "role": "control"
     },
     "1": {
-     "pct": 50,
+     "pct": 48,
      "role": "treatment"
     }
    }
@@ -5052,18 +5045,18 @@
    "ambiguous": false,
    "projected": false,
    "flags": [],
-   "treatmentPct": 37.5,
+   "treatmentPct": 47.5,
    "projectedTreatmentPct": null,
-   "controlPct": 37.5,
+   "controlPct": 47.5,
    "notEligiblePct": 0,
-   "unassignedPct": 25,
+   "unassignedPct": 5,
    "byVariant": {
     "0": {
-     "pct": 37.5,
+     "pct": 47.5,
      "role": "control"
     },
     "1": {
-     "pct": 37.5,
+     "pct": 47.5,
      "role": "treatment"
     }
    }
