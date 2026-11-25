@@ -1,24 +1,27 @@
 'use strict';
 
-// Le déclencheur a vu un build plus récent que celui servi au runner (edges CDN
-// désynchronisés) : on re-fetch brièvement au lieu de laisser index.js faire un
-// FAST SKIP → sinon le nouveau build n'était traité qu'au cron suivant.
+// Des edges CDN peuvent renvoyer des builds dans le désordre. Garder le plus
+// récent observé et ne jamais lancer une nouvelle sonde après l'échéance.
 async function awaitExpectedBuild(build, expected, opts = {}) {
-  const want = parseInt(String(expected || ''), 10);
-  if (!Number.isFinite(want)) return build;
+  const number = (v) => /^\d+$/.test(String(v)) && Number.isSafeInteger(Number(v)) ? Number(v) : 0;
+  const want = number(expected);
+  if (!want) return build;
   const fetcher = opts.fetchBuild || require('./canary').fetchBuild;
-  const deadline = Date.now() + (opts.maxWaitMs != null ? opts.maxWaitMs : 25000);
-  const delay = opts.delayMs != null ? opts.delayMs : 1500;
+  const deadline = Date.now() + (opts.maxWaitMs ?? 25000);
+  const delay = Math.max(1, opts.delayMs ?? 1500);
   let cur = build;
-  while ((parseInt(String(cur && cur.buildNumber), 10) || 0) < want && Date.now() < deadline) {
-    if (cur) console.log('EXPECTED_BUILD lag', { got: cur.buildNumber, want });
-    if (cur) await new Promise((r) => setTimeout(r, delay));
+  let pause = Boolean(cur);
+  while (number(cur?.buildNumber) < want && Date.now() < deadline) {
+    if (pause) {
+      await new Promise((r) => setTimeout(r, Math.min(delay, deadline - Date.now())));
+      if (Date.now() >= deadline) break;
+    }
+    pause = true;
     try {
       const next = await fetcher();
-      if (next && next.buildNumber) cur = next;
+      if (number(next?.buildNumber) > number(cur?.buildNumber)) cur = next;
     } catch (e) {
       console.warn('EXPECTED_BUILD refetch', e.message);
-      if (!cur) await new Promise((r) => setTimeout(r, delay));
     }
   }
   return cur;
