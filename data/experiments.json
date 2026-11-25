@@ -1,10 +1,10 @@
 {
-  "runId": "2026-11-25T18-08-31-239Z_681092_yl9utw",
-  "buildNumber": "681092",
-  "scrapedAt": "2026-11-25T18:08:31.239Z",
+  "runId": "2026-11-25T18-10-34-275Z_681103_dtr49u",
+  "buildNumber": "681103",
+  "scrapedAt": "2026-11-25T18:10:34.276Z",
   "totals": {
-    "all": 396,
-    "legacy": 27,
+    "all": 395,
+    "legacy": 26,
     "apex": 369
   },
   "experiments": [
@@ -2254,25 +2254,6 @@
         "1": {
           "id": 1,
           "label": "Treatment",
-          "enabled": true
-        }
-      },
-      "variationCount": 1,
-      "source": "discord"
-    },
-    {
-      "id": "2026-04_voice_user_duration",
-      "type": "guild",
-      "kind": "guild",
-      "label": "Voice User Duration",
-      "system": "legacy",
-      "defaultConfig": {
-        "enabled": false
-      },
-      "variations": {
-        "1": {
-          "id": 1,
-          "label": "Allow guild members to see each others duration in the channel list",
           "enabled": true
         }
       },
@@ -10011,25 +9992,6 @@
         "1": {
           "id": 1,
           "label": "Treatment",
-          "enabled": true
-        }
-      },
-      "variationCount": 1,
-      "source": "discord"
-    },
-    {
-      "id": "2026-04_voice_user_duration",
-      "type": "guild",
-      "kind": "guild",
-      "label": "Voice User Duration",
-      "system": "legacy",
-      "defaultConfig": {
-        "enabled": false
-      },
-      "variations": {
-        "1": {
-          "id": 1,
-          "label": "Allow guild members to see each others duration in the channel list",
           "enabled": true
         }
       },
