@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-11-25T21:47:48.983Z",
+  "fetchedAt": "2026-11-25T22:00:59.005Z",
   "sources": {
     "discordApi": {
       "url": "https://discord.com/api/v9/experiments",
@@ -3960,6 +3960,16 @@
       "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
     },
     {
+      "id": "2026-11-mana-global-banner",
+      "hash": 2408741419,
+      "type": "user",
+      "title": "2026-11-mana-global-banner",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
       "id": "2026-11-multiquest-client",
       "hash": 784181051,
       "type": "user",
@@ -4261,11 +4271,11 @@
     }
   ],
   "summary": {
-    "total": 398,
+    "total": 399,
     "guild": 43,
-    "user": 355,
+    "user": 356,
     "withPercentage": 8,
-    "withoutPercentage": 390,
+    "withoutPercentage": 391,
     "fullRollout": 5,
     "partial": 0,
     "notStarted": 2,
