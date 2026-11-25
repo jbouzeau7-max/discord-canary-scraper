@@ -1,8 +1,8 @@
 {
-  "runId": "2026-11-25T21-50-51-300Z_681419_24xy5r",
-  "buildNumber": "681419",
-  "updatedAt": "2026-11-25T21:50:51.300Z",
-  "count": 394,
+  "runId": "2026-11-25T21-58-50-891Z_681425_itb26q",
+  "buildNumber": "681425",
+  "updatedAt": "2026-11-25T21:58:50.891Z",
+  "count": 395,
   "data": {
     "2021-02_staff_qc_debugging": {
       "id": "2021-02_staff_qc_debugging",
@@ -7426,6 +7426,26 @@
       },
       "system": "apex",
       "fp": "11257e3c9b566b112178a493b5533892ee5e267f385215b55f355a3191134422"
+    },
+    "2026-11-mana-global-banner": {
+      "id": "2026-11-mana-global-banner",
+      "type": "user",
+      "kind": "user",
+      "label": null,
+      "variationCount": 2,
+      "variations": {
+        "0": {
+          "enabled": false
+        },
+        "1": {
+          "enabled": true
+        }
+      },
+      "defaultConfig": {
+        "enabled": false
+      },
+      "system": "apex",
+      "fp": "1dd1c89ddccbd64b3d7281f135d412cde2fb8a6e0a01c5b26c43d5f68bbe4994"
     },
     "2026-11-multiquest-client": {
       "id": "2026-11-multiquest-client",
