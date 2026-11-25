@@ -1,16 +1,16 @@
 {
-  "buildNumber": "681107",
-  "versionHash": "e947e1178f11a4f2bc41bbf881073364ffb263c1",
-  "publishedAt": "2026-11-25T18:17:00.984Z",
+  "buildNumber": "681109",
+  "versionHash": "d759079907caa3a0742dc60eac2e8b0de9d45351",
+  "publishedAt": "2026-11-25T18:19:12.410Z",
   "chunkCount": 6889,
   "cssCount": 0,
-  "totalBytes": 173337047,
+  "totalBytes": 173337485,
   "chunks": [
     {
       "name": "-1.js",
-      "original": "web.481b703656eae0e1.js",
-      "size": 12944349,
-      "sha256": "24d2e97664938f27",
+      "original": "web.9e9aed0fc45c74c1.js",
+      "size": 12944711,
+      "sha256": "c6d6d0b7e400a19c",
       "kind": "chunk",
       "chunkId": "-1"
     },
@@ -4535,6 +4535,14 @@
       "chunkId": "3cc24440a38b6457"
     },
     {
+      "name": "3cd6e2f4730fd64b.js",
+      "original": "3cd6e2f4730fd64b.js",
+      "size": 2353,
+      "sha256": "26fa056a39ea326d",
+      "kind": "chunk",
+      "chunkId": "3cd6e2f4730fd64b"
+    },
+    {
       "name": "3cd0931ab754b278.js",
       "original": "3cd0931ab754b278.js",
       "size": 1668,
@@ -5063,14 +5071,6 @@
       "chunkId": "3f09be1920007493"
     },
     {
-      "name": "3f9f6c339b608ef4.js",
-      "original": "3f9f6c339b608ef4.js",
-      "size": 30248,
-      "sha256": "0296aacc6d0920c5",
-      "kind": "chunk",
-      "chunkId": "3f9f6c339b608ef4"
-    },
-    {
       "name": "3f41b20932908c30.js",
       "original": "3f41b20932908c30.js",
       "size": 6676,
@@ -5205,14 +5205,6 @@
       "sha256": "19961cf29f96c681",
       "kind": "chunk",
       "chunkId": "03fa1256216a9fe7"
-    },
-    {
-      "name": "3fbe2519d7fc51df.js",
-      "original": "3fbe2519d7fc51df.js",
-      "size": 10311,
-      "sha256": "0cab62e5a853cc2a",
-      "kind": "chunk",
-      "chunkId": "3fbe2519d7fc51df"
     },
     {
       "name": "3fc0770300bc66f7.js",
@@ -10573,6 +10565,14 @@
       "sha256": "b1f57ebf14ee2515",
       "kind": "chunk",
       "chunkId": "8b6bfba359cc749b"
+    },
+    {
+      "name": "8b6dc5e3da3655e5.js",
+      "original": "8b6dc5e3da3655e5.js",
+      "size": 170071,
+      "sha256": "ad65dc8949719edf",
+      "kind": "chunk",
+      "chunkId": "8b6dc5e3da3655e5"
     },
     {
       "name": "8b6e8456c3281ae6.js",
@@ -16255,6 +16255,14 @@
       "chunkId": "50e3eeeeb94f8f15"
     },
     {
+      "name": "50e4f4fe8f072c02.js",
+      "original": "50e4f4fe8f072c02.js",
+      "size": 1048,
+      "sha256": "29c5583e1a384287",
+      "kind": "chunk",
+      "chunkId": "50e4f4fe8f072c02"
+    },
+    {
       "name": "50ed54e1f7f4cc3a.js",
       "original": "50ed54e1f7f4cc3a.js",
       "size": 2564,
@@ -16997,14 +17005,6 @@
       "sha256": "262289ffac27ebd6",
       "kind": "chunk",
       "chunkId": "60ab9f949eb45f62"
-    },
-    {
-      "name": "060abbdb033cf274.js",
-      "original": "060abbdb033cf274.js",
-      "size": 995,
-      "sha256": "493288875524b83e",
-      "kind": "chunk",
-      "chunkId": "060abbdb033cf274"
     },
     {
       "name": "60bfe22a8bfd9363.js",
@@ -18287,6 +18287,14 @@
       "chunkId": "77a0a6e004ade3b9"
     },
     {
+      "name": "77a4b809a91ba220.js",
+      "original": "77a4b809a91ba220.js",
+      "size": 5758,
+      "sha256": "348223e289c95b85",
+      "kind": "chunk",
+      "chunkId": "77a4b809a91ba220"
+    },
+    {
       "name": "77aaaa1dc1caa8c9.js",
       "original": "77aaaa1dc1caa8c9.js",
       "size": 9129,
@@ -18997,14 +19005,6 @@
       "sha256": "f5a1cd332612da69",
       "kind": "chunk",
       "chunkId": "85d1b1d32f30fe16"
-    },
-    {
-      "name": "85d4c4cb4cbb0a13.js",
-      "original": "85d4c4cb4cbb0a13.js",
-      "size": 170071,
-      "sha256": "385fb90226cd40ce",
-      "kind": "chunk",
-      "chunkId": "85d4c4cb4cbb0a13"
     },
     {
       "name": "85ea646ce36f329d.js",
@@ -22821,6 +22821,14 @@
       "sha256": "3280970cf0c23846",
       "kind": "chunk",
       "chunkId": "593b40c0b560c1ec"
+    },
+    {
+      "name": "593f7333a61f0a0c.js",
+      "original": "593f7333a61f0a0c.js",
+      "size": 30248,
+      "sha256": "ca7d4f75d74cf717",
+      "kind": "chunk",
+      "chunkId": "593f7333a61f0a0c"
     },
     {
       "name": "593f779795b3e89e.js",
@@ -45991,14 +45999,6 @@
       "chunkId": "d7fe3aa21b614bc7"
     },
     {
-      "name": "d8ad92326f89d52c.js",
-      "original": "d8ad92326f89d52c.js",
-      "size": 5735,
-      "sha256": "1237461ab4c8ce95",
-      "kind": "chunk",
-      "chunkId": "d8ad92326f89d52c"
-    },
-    {
       "name": "d8b6ebd71ac62b5f.js",
       "original": "d8b6ebd71ac62b5f.js",
       "size": 7282,
@@ -48791,14 +48791,6 @@
       "chunkId": "e0f32cc1c4549c49"
     },
     {
-      "name": "e0fe9f8526c0a48e.js",
-      "original": "e0fe9f8526c0a48e.js",
-      "size": 11453,
-      "sha256": "c885e44d56240be7",
-      "kind": "chunk",
-      "chunkId": "e0fe9f8526c0a48e"
-    },
-    {
       "name": "e1ac2101c80019c5.js",
       "original": "e1ac2101c80019c5.js",
       "size": 19034,
@@ -49869,14 +49861,6 @@
       "sha256": "b65441d2dccfffb5",
       "kind": "chunk",
       "chunkId": "e81ff08ac4c1cbe8"
-    },
-    {
-      "name": "e84c2231a090f77d.js",
-      "original": "e84c2231a090f77d.js",
-      "size": 2353,
-      "sha256": "00cbfd5f609ae6d6",
-      "kind": "chunk",
-      "chunkId": "e84c2231a090f77d"
     },
     {
       "name": "e84f4f7f577605a4.js",
@@ -54032,9 +54016,9 @@
     },
     {
       "name": "fast-connect.js",
-      "original": "fast-connect.6c7fea4d948c592f.js",
+      "original": "fast-connect.9dd8d2016ef3a2df.js",
       "size": 33851,
-      "sha256": "27059f6c46fc9953",
+      "sha256": "5945c34861b9fc44",
       "kind": "chunk",
       "chunkId": "fast-connect"
     },
@@ -54559,6 +54543,14 @@
       "chunkId": "fd47341f15a9e029"
     },
     {
+      "name": "fd75491e6918e4ef.js",
+      "original": "fd75491e6918e4ef.js",
+      "size": 11453,
+      "sha256": "1f4dd65bb583a218",
+      "kind": "chunk",
+      "chunkId": "fd75491e6918e4ef"
+    },
+    {
       "name": "fd919628e2e90045.js",
       "original": "fd919628e2e90045.js",
       "size": 287,
@@ -54701,6 +54693,14 @@
       "sha256": "6e2edb8be198c67f",
       "kind": "chunk",
       "chunkId": "fe9f1b45f6be7e10"
+    },
+    {
+      "name": "fe048a11cf0eb40b.js",
+      "original": "fe048a11cf0eb40b.js",
+      "size": 10311,
+      "sha256": "f4caff2c500ac5a6",
+      "kind": "chunk",
+      "chunkId": "fe048a11cf0eb40b"
     },
     {
       "name": "fe48ca426966e087.js",
@@ -55104,9 +55104,9 @@
     },
     {
       "name": "sentry.js",
-      "original": "sentry.d7c457b680478989.js",
+      "original": "sentry.b3cdf2c6d05db6d8.js",
       "size": 4209,
-      "sha256": "a65d8d670a33c053",
+      "sha256": "7eb440f813927842",
       "kind": "chunk",
       "chunkId": "sentry"
     },
