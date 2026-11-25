@@ -1,11 +1,11 @@
 {
-  "runId": "2026-11-25T11-29-08-535Z_680900_zok2d7",
-  "buildNumber": "680900",
-  "scrapedAt": "2026-11-25T11:29:08.535Z",
+  "runId": "2026-11-25T11-46-23-883Z_680911_enqj76",
+  "buildNumber": "680911",
+  "scrapedAt": "2026-11-25T11:46:23.883Z",
   "totals": {
-    "all": 395,
+    "all": 396,
     "legacy": 27,
-    "apex": 368
+    "apex": 369
   },
   "experiments": [
     {
@@ -9345,6 +9345,23 @@
         "source": "gist_user_rollouts"
       },
       "fingerprint": "d815980dc40376c8544efc62dd01d456edf40f8e62a148e44b597207ff7cd7b0"
+    },
+    {
+      "id": "2026-11-voice-activity-status-group",
+      "type": "user",
+      "kind": "user",
+      "label": null,
+      "system": "apex",
+      "defaultConfig": {
+        "enabled": false
+      },
+      "variations": {
+        "1": {
+          "enabled": true
+        }
+      },
+      "variationCount": 1,
+      "source": "discord"
     },
     {
       "id": "2026-11-voicemod-3p",

@@ -1,8 +1,8 @@
 {
-  "runId": "2026-11-25T11-29-08-535Z_680900_zok2d7",
-  "buildNumber": "680900",
-  "updatedAt": "2026-11-25T11:29:08.535Z",
-  "count": 395,
+  "runId": "2026-11-25T11-46-23-883Z_680911_enqj76",
+  "buildNumber": "680911",
+  "updatedAt": "2026-11-25T11:46:23.883Z",
+  "count": 396,
   "data": {
     "2021-02_staff_qc_debugging": {
       "id": "2021-02_staff_qc_debugging",
@@ -8041,6 +8041,23 @@
       "defaultConfig": null,
       "system": "apex",
       "fp": "c348dea05d3d8ef9a28bdbb1a480b78852540c45a6595e2da6b5541fddc2bff8"
+    },
+    "2026-11-voice-activity-status-group": {
+      "id": "2026-11-voice-activity-status-group",
+      "type": "user",
+      "kind": "user",
+      "label": null,
+      "variationCount": 1,
+      "variations": {
+        "1": {
+          "enabled": true
+        }
+      },
+      "defaultConfig": {
+        "enabled": false
+      },
+      "system": "apex",
+      "fp": "257783d35b1642a158fa14809ec7a3396adf06757c59f0007bd91a022dcf019a"
     },
     "2026-11-voicemod-3p": {
       "id": "2026-11-voicemod-3p",
