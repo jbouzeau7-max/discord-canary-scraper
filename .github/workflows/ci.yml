@@ -8,6 +8,7 @@ on:
       - 'test/**'
       - 'docs/**/*.js'
       - 'scripts/**'
+      - 'cogs/**'
       - 'package.json'
       - 'package-lock.json'
       - 'eslint.config.js'
@@ -83,3 +84,5 @@ jobs:
           if ls cogs/*.py >/dev/null 2>&1; then
             python -m py_compile cogs/*.py
           fi
+      - name: Python regression tests
+        run: python -m unittest discover -s test -p 'test_*.py'
