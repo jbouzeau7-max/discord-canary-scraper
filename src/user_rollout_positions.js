@@ -19,7 +19,7 @@ const crypto = require('crypto');
 const fetch = require('node-fetch');
 const { writeJsonAtomic } = require('./lib/atomic');
 const { murmur3 } = require('./lib/murmur3');
-const { extractRetryAfterMs } = require('./lib/http');
+const { extractRetryAfterMs, MAX_RESPONSE_BODY_BYTES } = require('./lib/http');
 const P = require('./lib/position_bounds');
 
 const DATA = path.join(__dirname, '..', 'data');
@@ -109,7 +109,7 @@ async function sample(count, deps) {
   while (validResponses < count && Date.now() < deadline && fail < 15) {
     let wait = delay;
     try {
-      const r = await fetchImpl(URL_EXPERIMENTS, { headers: { 'User-Agent': UA, 'X-Request-Id': crypto.randomUUID() }, timeout: Math.max(1, Math.min(15000, deadline - Date.now())) });
+      const r = await fetchImpl(URL_EXPERIMENTS, { headers: { 'User-Agent': UA, 'X-Request-Id': crypto.randomUUID() }, size: MAX_RESPONSE_BODY_BYTES, timeout: Math.max(1, Math.min(15000, deadline - Date.now())) });
       if (r.status === 429) {
         fail++;
         let body;
