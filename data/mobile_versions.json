@@ -1,5 +1,5 @@
 {
-  "scrapedAt": "2026-11-25T14:07:46.253Z",
+  "scrapedAt": "2026-11-25T14:14:41.016Z",
   "channels": [
     {
       "platform": "ios",
@@ -14,7 +14,7 @@
       "source": "itunes_lookup",
       "storeUrl": "https://apps.apple.com/app/id985746746",
       "available": true,
-      "checkedAt": "2026-11-25T14:07:46.253Z"
+      "checkedAt": "2026-11-25T14:14:41.016Z"
     },
     {
       "platform": "ios",
@@ -35,14 +35,14 @@
     {
       "platform": "android",
       "channel": "stable",
-      "version": "354.12",
-      "build": null,
-      "commit": null,
-      "releaseName": null,
-      "source": "store",
+      "version": "355.10",
+      "build": "35501000490174",
+      "commit": "6d7f462217eee05f53176c0c1fd348c321fc0e3f",
+      "releaseName": "discord_android@355.10.490174-0+35501000490174",
+      "source": "discord_ota_manifest",
       "storeUrl": "https://play.google.com/store/apps/details?id=com.discord",
       "available": true,
-      "checkedAt": "2026-11-25T14:07:46.253Z",
+      "checkedAt": "2026-11-25T14:14:41.016Z",
       "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/51/1a/5c/511a5c6c-5bce-fa96-9bcd-5a7ebdda0b71/AppIcon-0-0-1x_U007epad-0-1-0-85-220.png/512x512bb.jpg"
     },
     {
@@ -56,7 +56,7 @@
       "storeUrl": "https://play.google.com/store/apps/details?id=com.discord",
       "available": true,
       "note": "Track-labeled on apkmirror",
-      "checkedAt": "2026-11-25T14:07:46.253Z",
+      "checkedAt": "2026-11-25T14:14:41.016Z",
       "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/51/1a/5c/511a5c6c-5bce-fa96-9bcd-5a7ebdda0b71/AppIcon-0-0-1x_U007epad-0-1-0-85-220.png/512x512bb.jpg"
     },
     {
@@ -70,7 +70,7 @@
       "storeUrl": "https://play.google.com/store/apps/details?id=com.discord",
       "available": true,
       "note": "Track-labeled on datamining_commits",
-      "checkedAt": "2026-11-25T14:07:46.253Z",
+      "checkedAt": "2026-11-25T14:14:41.016Z",
       "artwork": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/51/1a/5c/511a5c6c-5bce-fa96-9bcd-5a7ebdda0b71/AppIcon-0-0-1x_U007epad-0-1-0-85-220.png/512x512bb.jpg"
     }
   ],
@@ -478,7 +478,7 @@
       "build": "35301100485321"
     }
   ],
-  "previousScrapedAt": "2026-11-25T14:00:57.593Z",
+  "previousScrapedAt": "2026-11-25T14:07:46.253Z",
   "notifiedFingerprints": [
     "android|stable|353.11|35301100485321",
     "android|alpha|355.5",
@@ -495,10 +495,10 @@
     "ios|stable|354.0",
     "android|alpha|357.0",
     "android|alpha|357.1",
-    "android|stable|355.10",
+    "android|stable|354.12",
     "ios|stable|355.0",
     "ios|beta|355.0",
-    "android|stable|354.12",
+    "android|stable|355.10",
     "android|beta|355.6",
     "android|alpha|357.3"
   ],
