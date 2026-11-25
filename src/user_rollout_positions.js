@@ -19,6 +19,7 @@ const crypto = require('crypto');
 const fetch = require('node-fetch');
 const { writeJsonAtomic } = require('./lib/atomic');
 const { murmur3 } = require('./lib/murmur3');
+const { extractRetryAfterMs } = require('./lib/http');
 const P = require('./lib/position_bounds');
 
 const DATA = path.join(__dirname, '..', 'data');
@@ -100,18 +101,30 @@ async function sample(count, deps) {
   const fetchImpl = deps.fetch || fetch;
   const delay = deps.delayMs ?? num(process.env.POSITIONS_DELAY_MS, 350);
   const maxMs = deps.maxMs ?? num(process.env.POSITIONS_MAX_MS, 90000);
-  const t0 = Date.now();
+  const deadline = Date.now() + maxMs;
   const out = [];
+  const seen = new Set();
   let fail = 0;
-  while (out.length < count && Date.now() - t0 < maxMs && fail < 15) {
+  let validResponses = 0;
+  while (validResponses < count && Date.now() < deadline && fail < 15) {
+    let wait = delay;
     try {
-      const r = await fetchImpl(URL_EXPERIMENTS, { headers: { 'User-Agent': UA, 'X-Request-Id': crypto.randomUUID() }, timeout: 15000 });
-      if (r.status === 429) { fail++; await new Promise((s) => setTimeout(s, 3000)); continue; }
-      if (!r.ok) { fail++; continue; }
-      const s = parseSample(await r.json());
-      if (s) out.push(s); else fail++;
+      const r = await fetchImpl(URL_EXPERIMENTS, { headers: { 'User-Agent': UA, 'X-Request-Id': crypto.randomUUID() }, timeout: Math.max(1, Math.min(15000, deadline - Date.now())) });
+      if (r.status === 429) {
+        fail++;
+        let body;
+        try { body = await r.json(); } catch { /* Retry-After peut aussi être dans les en-têtes. */ }
+        wait = Math.max(delay, extractRetryAfterMs(r, body) || 3000);
+      } else {
+        const s = r.ok ? parseSample(await r.json()) : null;
+        if (s) {
+          validResponses++;
+          if (!seen.has(s.id)) { seen.add(s.id); out.push(s); }
+        } else fail++;
+      }
     } catch { fail++; }
-    if (delay) await new Promise((s) => setTimeout(s, delay));
+    if (validResponses >= count || fail >= 15 || wait >= deadline - Date.now()) break;
+    if (wait > 0) await new Promise((s) => setTimeout(s, wait));
   }
   return { samples: out, fail };
 }
