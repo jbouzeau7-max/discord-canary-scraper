@@ -1,29 +1,29 @@
 {
   "format": 2,
-  "scrapedAt": "2026-11-24T22:45:11.730Z",
+  "scrapedAt": "2026-11-25T11:54:16.782Z",
   "sourceRepo": "https://github.com/Wumpus-Central/discord-mobile-datamining.git",
-  "sourceCommit": "7a2a90b7",
-  "sourceCommitFull": "7a2a90b7a9b83f4a092e9701b1286d35841f6a65",
-  "sourceMessage": "357.1 (357201) runtime",
-  "build": "357.1 (357201)",
-  "experimentCount": 346,
-  "stringCount": 9869,
+  "sourceCommit": "367ce4d5",
+  "sourceCommitFull": "367ce4d56f4a45239290301253ea3385fc0750a6",
+  "sourceMessage": "357.3 (357203) runtime",
+  "build": "357.3 (357203)",
+  "experimentCount": 345,
+  "stringCount": 9872,
   "routeCount": 1095,
   "lastDiff": {
     "experiments": {
-      "added": 7,
-      "modified": 1,
-      "removed": 6,
+      "added": 0,
+      "modified": 2,
+      "removed": 1,
       "categoryChanged": 0
     },
     "strings": {
-      "added": 15,
-      "removed": 7
+      "added": 7,
+      "removed": 4
     },
     "routes": {
-      "added": 1,
+      "added": 0,
       "modified": 0,
-      "removed": 1
+      "removed": 0
     }
   },
   "notifyOk": true,
@@ -42,6 +42,7 @@
     "2026-08-find-coded-links-regex",
     "2026-08-ios-objc-composed-image-cache",
     "2026-09-edit-profile-collectibles-ordering",
+    "2026-09-mobile-nitro-upsell-in-shop-feed",
     "2026-09-mobile-nitro-upsell-in-shop-pdp",
     "2026-09-profile-link-fetch",
     "2026-11-phoenix-app-access",
@@ -688,7 +689,7 @@
       "system": "apex",
       "defaultConfig": {
         "timeoutMs": "HermesInternal",
-        "hidden": null
+        "hidden": "HermesInternal"
       },
       "variations": {
         "1": {},
@@ -1512,7 +1513,7 @@
       "type": "user",
       "system": "apex",
       "defaultConfig": {
-        "keybindOverride": "Array"
+        "keybindOverride": "top"
       },
       "variations": {
         "1": {},
@@ -2832,9 +2833,10 @@
       },
       "variations": {
         "1": {},
-        "2": {
+        "2": {},
+        "3": {
           "enabled": true,
-          "newTabExperience": "friends"
+          "newTabExperience": "quickswitcher"
         }
       },
       "file": "discord_app/modules/tabs/TabsExperiment.tsx",
@@ -3872,14 +3874,6 @@
         "1": {}
       },
       "file": "discord_app/modules/premium/premium_marketing/native/PremiumOrbsDeliveredModalExperiment.tsx",
-      "source": "mobile_files"
-    },
-    {
-      "id": "2026-09-mobile-nitro-upsell-in-shop-feed",
-      "kind": "user",
-      "type": "user",
-      "system": "apex",
-      "file": "discord_app/modules/collectibles/native/MobileNitroUpsellInShopFeedExperiment.tsx",
       "source": "mobile_files"
     },
     {
@@ -5012,9 +5006,6 @@
           "enabled": false
         },
         "1": {
-          "enabled": false
-        },
-        "2": {
           "enabled": true
         }
       },
@@ -5964,7 +5955,7 @@
         "1": {},
         "2": {
           "enabled": true,
-          "requiresNitro": false
+          "requiresNitro": true
         }
       },
       "file": "discord_app/modules/user_settings/phoenix_launch/native/PhoenixSwitchEntrypointExperiment.tsx",
@@ -7007,7 +6998,6 @@
     "1zVbEG": "You've reached the limit for bookmarks ({max, number} total). To add more, please delete a few messages.",
     "1zioRF": "Update your profile on Discord with your application activity",
     "1zmw/H": "What happened?",
-    "2+/rrF": "Get discounts on profile items, plus custom emoji, HD streaming, and more with Nitro.",
     "2+Vu4Q": "Sandbox",
     "2+opCy": "You're connected!",
     "20gQr6": "Photo & Video",
@@ -8248,6 +8238,7 @@
     "A1PR1d": "Japan",
     "A35LyL": "Block specific language in your member's usernames.",
     "A4BfLn": "Nitro Plans",
+    "A4Mnst": "An internal server error has occurred.",
     "A4PJ1o": "Tap to change poll duration",
     "A4UTjH": "Boosting a server activates a 7-day cooldown. You may not use this Boost on another server until this cooldown is finished. [Learn more about Server Boosting.]({helpdeskArticle})",
     "A53l87": "Members are automatically kicked when they disconnect unless a role is assigned.",
@@ -9040,6 +9031,7 @@
     "FF6/+B": "Receive emails with helpful advice on how to use Discord and information on lesser known features.",
     "FFFAGt": "Server Description",
     "FFj5Dt": "Your \"Username\" violates this server's guidelines. You'll have to change it before you can start chatting.",
+    "FGE8ya": "Are you sure you want to remove **{applicationName}**?",
     "FGjMZS": "Hide After Inactivity",
     "FHBa/1": "Custom Color",
     "FHVR/+": "Username Copied",
@@ -9240,7 +9232,6 @@
     "GXqvC1": "We automatically check for launched games, but no one’s perfect. Hit the refresh button to check if you’ve launched {gameTitle}.",
     "GXs41w": "Top Sounds in {guildName}",
     "GYpoAq": "Mature Sexual Media",
-    "GZWBoL": "Save up to 20% in the Shop",
     "GZa4J0": "This app is not available.",
     "GZoV1O": "Visit our help center to learn more about using and discovering apps on Discord.",
     "GaAQXP": "Reviews",
@@ -11615,7 +11606,6 @@
     "VquUff": "Couldn’t load this app",
     "Vr+7eO": "Interview in Progress",
     "VrWSNn": "Choose double tap emoji",
-    "Vs0dLi": "Profile Preview",
     "VsE5yG": "This emoji cannot be used.",
     "VsY8ZW": "See All Badges",
     "Vsxqmz": "Get the game",
@@ -11753,7 +11743,6 @@
     "WikgZ1": "Update Username",
     "Wj3LW4": "Build Override",
     "WjNAAA": "You do not have access to launch the requested activity",
-    "WjOclf": "Save up to 20% off on everything in the Shop, plus get exclusive items. Only with Nitro.",
     "WjcnZD": "Heart badge",
     "WjkIKU": "webhook",
     "Wk4pAJ": "(Removed) {roleNames}",
@@ -12416,6 +12405,7 @@
     "ar0WW+": "{count, plural, one {# like} other {# likes}}",
     "ar4qYO": "Changed the channel to **{newValue}**",
     "asInft": "Show Role Mentions",
+    "asPo8x": "Additional Actions",
     "atP0yX": "The app's behavior",
     "atbXuX": "{userCount, select, 1 {[{username}]({usernameOnClick})} 2 {[{username}]({usernameOnClick}) and [{username2}]({username2OnClick})} 3 {[{username}]({usernameOnClick}), [{username2}]({username2OnClick}), and [{username3}]({username3OnClick})} other {[{username}]({usernameOnClick}), [{username2}]({username2OnClick}), and {otherCount} others}} {userCount, plural, one {was} other {were}} hanging out for {duration}.",
     "auckXz": "This is a **{stickerPackName}** sticker.",
@@ -12956,6 +12946,7 @@
     "eafsh4": "Swipe up to continue earning Orbs",
     "ebAnWE": "Folder",
     "ebD4Qp": "Changed the name from **{oldValue}** to **{newValue}**",
+    "ebGf4m": "Remove App",
     "ebOU2b": "Premium emoji",
     "ebTK11": "$[**{user}**](userHook) updated the scheduled event $[**{target}**](targetHook)",
     "ecdUKD": "Take a video selfie or scan your ID. These are not stored after the verification is completed",
@@ -14627,6 +14618,7 @@
     "pT6hue": "Tap to view voice controls",
     "pTJ5J/": "What a cold, emotionless world.",
     "pTiyNB": "{username} sent an image",
+    "pUBKht": "Bots and Apps",
     "pUR+3g": "Dismiss suggestions",
     "pV214H": "Number of sides on the die",
     "pV8xeR": "Register",
@@ -14892,6 +14884,7 @@
     "rJfW6S": "This user's nickname could not be changed on this server.",
     "rKHvlX": "You now have $[balance](balanceHook) Orbs. Keep on earning Orbs to claim some awesome prizes!",
     "rL1kLX": "Your session has expired. Log in again to continue.",
+    "rL9d/1": "Remove {applicationName}",
     "rLSGeh": "Use Activities",
     "rLqNad": "ends in {days, plural, one {# day} other {# days}}",
     "rMH+rt": "Only allow moderators to apply tag",
@@ -15878,6 +15871,7 @@
     "xQ4VmK": "Hack and Slash",
     "xQSdPv": "Location",
     "xQXnkK": "**(#{channelName})**",
+    "xRCMqx": "You do not have permissions to remove this integration.",
     "xRHk7f": "Enter the code displayed on your TV to link your device with your Discord account.",
     "xRjJBe": "Add to wishlist: {productName}",
     "xRjU1V": "LVL 1",
