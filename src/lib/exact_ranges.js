@@ -47,7 +47,7 @@ function snapBoundary(lo, hi) {
 function inferExactRanges(points, scale = DEFAULT_SCALE, opts = {}) {
   opts = opts && typeof opts === 'object' ? opts : {};
   const maxRuns = opts.maxRuns ?? 16;
-  const pts = (Array.isArray(points) ? points : [])
+  const observed = (Array.isArray(points) ? points : [])
     .filter(
       (p) =>
         p &&
@@ -60,14 +60,15 @@ function inferExactRanges(points, scale = DEFAULT_SCALE, opts = {}) {
     )
     .map((p) => ({ pos: p.pos, label: Number(p.label) }))
     .sort((a, b) => a.pos - b.pos);
-  if (pts.length < 20) return null;
-
-  // Points à la même position avec des labels différents = contradiction
-  // directe du modèle (filtre de population) → on la compte.
+  // Une collision de hash n'apporte pas une nouvelle preuve spatiale.
+  const pts = [];
   let conflicts = 0;
-  for (let i = 1; i < pts.length; i++) {
-    if (pts[i].pos === pts[i - 1].pos && pts[i].label !== pts[i - 1].label) conflicts++;
+  for (const p of observed) {
+    const last = pts[pts.length - 1];
+    if (!last || p.pos !== last.pos) pts.push(p);
+    else if (last.label !== p.label) conflicts++;
   }
+  if (pts.length < 20) return null;
 
   const runs = [];
   for (const p of pts) {
@@ -84,6 +85,7 @@ function inferExactRanges(points, scale = DEFAULT_SCALE, opts = {}) {
   const ranges = {};
   const unc = {};
   let start = 0;
+  let startUnc = 0;
   for (let i = 0; i < runs.length; i++) {
     const r = runs[i];
     let end;
@@ -92,13 +94,15 @@ function inferExactRanges(points, scale = DEFAULT_SCALE, opts = {}) {
     else {
       const next = runs[i + 1];
       end = snapBoundary(r.hi, next.lo);
-      endUnc = Math.max(0, next.lo - r.hi - 1) / 2;
+      // Le snap n'est pas nécessairement au milieu de l'intervalle admissible.
+      endUnc = Math.max(end - (r.hi + 1), next.lo - end);
     }
-    const startUnc = i === 0 ? 0 : Math.max(0, r.lo - runs[i - 1].hi - 1) / 2;
+
     const key = String(r.label);
     (ranges[key] = ranges[key] || []).push([start, end]);
     unc[key] = (unc[key] || 0) + startUnc + endUnc;
     start = end;
+    startUnc = endUnc;
   }
 
   const pct = {};
@@ -118,7 +122,7 @@ function inferExactRanges(points, scale = DEFAULT_SCALE, opts = {}) {
     if (runs[i].count === 1 && runs[i - 1].label === runs[i + 1].label) isolated++;
   }
   const ok = conflicts === 0 && isolated === 0 && runs.length <= maxRuns;
-  return { ok, runs: runs.length, conflicts, isolated, ranges, pct, uncertainty, points: pts.length };
+  return { ok, runs: runs.length, conflicts, isolated, ranges, pct, uncertainty, points: observed.length, distinctPositions: pts.length };
 }
 
 module.exports = { SNAP_STEPS, snapBoundary, inferExactRanges };
