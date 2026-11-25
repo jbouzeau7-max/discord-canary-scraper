@@ -31,22 +31,29 @@ function round2(n) {
 
 /**
  * % guild depuis une entrée apex : somme des buckets de traitement (> 0).
+ *
+ * Un bucket ne peut être déployé qu'une fois : plusieurs variantes qui
+ * partagent le même bucket (ou une entrée dupliquée après fusion de runs)
+ * ne s'additionnent pas. Avant, `[{bucket:1,pct:30},{bucket:1,pct:30}]`
+ * donnait 60 % — un % supérieur au déploiement réel, masqué par le plafond
+ * à 100. On ne garde donc que le pct maximal par bucket.
  * @returns {number|null} null si aucun traitement mesurable
  */
 function guildPctFromApex(entry) {
   if (!entry || typeof entry !== 'object') return null;
   const treatments = Array.isArray(entry.treatments) ? entry.treatments : [];
-  let sum = 0;
-  let seen = 0;
+  const perBucket = new Map();
   for (const t of treatments) {
     if (!t || typeof t !== 'object') continue;
     const bucket = num(t.bucket);
     const pct = num(t.pct);
     if (bucket == null || bucket <= 0 || pct == null) continue;
-    sum += pct;
-    seen++;
+    const prev = perBucket.get(bucket);
+    if (prev == null || pct > prev) perBucket.set(bucket, pct);
   }
-  if (!seen) return null;
+  if (!perBucket.size) return null;
+  let sum = 0;
+  for (const pct of perBucket.values()) sum += pct;
   return round2(Math.max(0, Math.min(100, sum)));
 }
 
