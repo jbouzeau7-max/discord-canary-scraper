@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-11-25T13:54:09.619Z",
+  "fetchedAt": "2026-11-25T14:01:02.880Z",
   "sources": {
     "discordApi": {
       "url": "https://discord.com/api/v9/experiments",
@@ -266,6 +266,11 @@
       "title": "hash_3013881204",
       "percentage": 100,
       "status": "full_rollout",
+      "ci95": [
+        92.59,
+        100
+      ],
+      "confidence": "high",
       "samples": 50,
       "enrolled": 50,
       "treatmentDistribution": {
@@ -286,6 +291,11 @@
       "title": "Safety Experience IAR User Reporting",
       "percentage": 100,
       "status": "full_rollout",
+      "ci95": [
+        92.59,
+        100
+      ],
+      "confidence": "high",
       "samples": 50,
       "enrolled": 50,
       "treatmentDistribution": {
@@ -306,6 +316,11 @@
       "title": "hash_4055210228",
       "percentage": 0,
       "status": "not_started",
+      "ci95": [
+        0,
+        7.41
+      ],
+      "confidence": "high",
       "samples": 50,
       "enrolled": 0,
       "treatmentDistribution": {
@@ -325,18 +340,23 @@
       "type": "user",
       "title": "hash_704914099",
       "percentage": 0,
-      "status": "not_started",
-      "samples": 5,
+      "status": "insufficient_data",
+      "ci95": [
+        0,
+        50
+      ],
+      "confidence": "low",
+      "samples": 4,
       "enrolled": 0,
       "treatmentDistribution": {
-        "0": 5
+        "0": 4
       },
       "source": "fingerprint_sampling",
       "note": "No local experiment ID match for this hash",
-      "fpSamples": 5,
+      "fpSamples": 4,
       "fpEnrolled": 0,
       "fpTreatmentDist": {
-        "0": 5
+        "0": 4
       }
     },
     {
@@ -4268,7 +4288,8 @@
     "withoutPercentage": 392,
     "fullRollout": 5,
     "partial": 0,
-    "notStarted": 3,
+    "notStarted": 2,
+    "insufficientData": 1,
     "fpSampled": 4
   }
 }
