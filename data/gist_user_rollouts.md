@@ -1,10 +1,10 @@
 # Rollouts user — couverture gist (v1)
 
-> Source : gist communautaire agnonotdev (copie réduite de rollouts.json, tag Assyst) · Généré le 2026-11-25 21:03 UTC
+> Source : gist communautaire agnonotdev (copie réduite de rollouts.json, tag Assyst) · Généré le 2026-11-25 21:04 UTC
 
 **Sémantique** : couvertures calculées exactement à partir des plages fournies par la source (0-10000), à 0,01 point près. Totaux par rôle = UNION des plages (un bucket appartient à un rôle s'il tombe dans l'union de ses plages). Quand la structure révèle plusieurs populations aplaties (drapeau `multi_population`) ou des rôles conflictuels/inconnus, l'agrégation est indéterminée (poids des populations absents du gist) : totaux principaux indisponibles, l'union est montrée en métrique secondaire étiquetée « projetée » (non pondérée). L'absence du drapeau ne prouve PAS une population unique — le gist n'en garde pas les frontières. Cohérent avec notre décodage wire apex (mêmes plages → mêmes nombres). Ce n'est ni une estimation statistique, ni la proportion de vrais utilisateurs éligibles, ni une mesure d'accès réel. Les expériences `guild` sont exclues (mesurées à part par le décodage wire apex).
 
-**Gist** : [e3e99062983e6bd0feaef833f14fd931](https://gist.github.com/agnonotdev/e3e99062983e6bd0feaef833f14fd931) · révision 6adb5313 · MAJ 2026-11-25T17:45:24Z · 1073 expériences au catalogue (343 user dont 171 avec données, 40 guild, 690 type inconnu, 262 sans données)
+**Gist** : [e3e99062983e6bd0feaef833f14fd931](https://gist.github.com/agnonotdev/e3e99062983e6bd0feaef833f14fd931) · révision 38d905df · MAJ 2026-11-25T21:04:06Z · 1073 expériences au catalogue (343 user dont 171 avec données, 40 guild, 690 type inconnu, 262 sans données)
 
 ⚠️ Miroir divergent (192b2ce20539ce1021b5c8cb01b17ff0) sur : 2026-11-shop-this-look-full-profile-button, 2026-11-norbs, 2026-11-notify-friends-on-custom-status-update, 2026-11-cti-new-presets, 2026-11-three-month-nitro-gifting-no-copy-change, 2026-11-game-stats-widget-skip-connect-modal, 2026-11-premium-group-continuation-40, 2026-11-phoenix-app-access, 2026-11-soundboard-upsells-brand-refresh, 2026-11-mobile-did-background-app-native…
 
@@ -53,7 +53,7 @@
 | 2026-10-maple-syrup-2 | **67,25 %** | 32,75 % | 0,00 % | 0,00 % | — |
 | 2026-10-maple-syrup-1 | **50,00 %** | 50,00 % | 0,00 % | 0,00 % | — |
 | 2026-10-macaron-non-sub-marketing | **90,50 %** | 9,50 % | 0,00 % | 0,00 % | — |
-| 2026-10-interest-picker | **15,00 %** | 5,00 % | 0,00 % | 80,00 % | — |
+| 2026-10-interest-picker | **37,50 %** | 12,50 % | 0,00 % | 50,00 % | — |
 | 2026-10-guilds-render-experiment | **10,00 %** | 10,00 % | 0,00 % | 80,00 % | — |
 | 2026-10-guild-tooltip-lazy-content | **50,00 %** | 50,00 % | 0,00 % | 0,00 % | — |
 | 2026-10-gdm-duration-timer | **8,50 %** | 3,50 % | 0,00 % | 88,00 % | — |
@@ -587,10 +587,10 @@
 - Variant 1 (treatment) : 90,50 % · plages 50 – 500 , 600 – 1500 , 1650 – 3000 , 3200 – 5000 , 5250 – 7500 , 7700 – 10000
 
 ### 2026-10-interest-picker
-- Variant 0 (control) : 5,00 % · plages 0 – 100 , 400 – 800
-- Variant 1 (treatment) : 5,00 % · plages 100 – 200 , 800 – 1200
-- Variant 2 (treatment) : 5,00 % · plages 200 – 300 , 1200 – 1600
-- Variant 3 (treatment) : 5,00 % · plages 300 – 400 , 1600 – 2000
+- Variant 0 (control) : 12,50 % · plages 0 – 100 , 400 – 800 , 2000 – 2750
+- Variant 1 (treatment) : 12,50 % · plages 100 – 200 , 800 – 1200 , 2750 – 3500
+- Variant 2 (treatment) : 12,50 % · plages 200 – 300 , 1200 – 1600 , 3500 – 4250
+- Variant 3 (treatment) : 12,50 % · plages 300 – 400 , 1600 – 2000 , 4250 – 5000
 
 ### 2026-10-guilds-render-experiment
 - Variant 0 (control) : 10,00 % · plages 0 – 100 , 200 – 600 , 1000 – 1500

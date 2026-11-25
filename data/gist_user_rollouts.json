@@ -3,15 +3,15 @@
  "schemaVersion": 1,
  "semanticsVersion": 2,
  "notifyScopeVersion": 2,
- "runId": "20261125T210315_gist",
- "scrapedAt": "2026-11-25T21:03:15.831Z",
+ "runId": "20261125T210429_gist",
+ "scrapedAt": "2026-11-25T21:04:29.808Z",
  "source": {
   "gistId": "e3e99062983e6bd0feaef833f14fd931",
   "htmlUrl": "https://gist.github.com/agnonotdev/e3e99062983e6bd0feaef833f14fd931",
-  "rawUrl": "https://gist.githubusercontent.com/agnonotdev/e3e99062983e6bd0feaef833f14fd931/raw/8b0b7d25d4709e463d1ac6ca720825d2b3580db4/rollouts-tag.json",
-  "updatedAt": "2026-11-25T17:45:24Z",
-  "revision": "6adb5313fe8f4cf34c22e5394ff3861f58fc3014",
-  "fetchedAt": "2026-11-25T21:03:15.831Z",
+  "rawUrl": "https://gist.githubusercontent.com/agnonotdev/e3e99062983e6bd0feaef833f14fd931/raw/4fc810d6e197e08dd225948541fd00e9bc61ea70/rollouts-tag.json",
+  "updatedAt": "2026-11-25T21:04:06Z",
+  "revision": "38d905df957cfc512616c9e3dd938f82220e3fd4",
+  "fetchedAt": "2026-11-25T21:04:29.808Z",
   "fallback": false,
   "rawFallback": false,
   "canonicalId": null
@@ -34,6 +34,7 @@
    "2026-11-payment-element-accordion-layout",
    "2026-11-return-full-quest-status-in-decision",
    "2026-11-screen-share-dtx",
+   "2026-10-interest-picker",
    "2026-10-express-checkout",
    "2026-10-game-profiles-server-preview",
    "2026-10-android-seamless-pip",
@@ -42,7 +43,6 @@
    "2026-10-collectibles-storefront-pricing-integration",
    "2026-10-sfp-bloons-orb-split-tender",
    "2026-10-guild-bulk-role-actions",
-   "2026-10-interest-picker",
    "2026-10-social-layer-storefront-mobile-multi-sku-embed",
    "2026-10-profile-read-state",
    "2026-10-macaron",
@@ -21350,32 +21350,32 @@
    "variantsCount": 1
   },
   "2026-10-interest-picker": {
-   "key": "5bcf845d99dec731",
+   "key": "6c186c834ac65f38",
    "hasData": true,
    "sig": "0:control|1:treatment|2:treatment|3:treatment",
    "byVariant": {
     "0": {
-     "pct": 5,
+     "pct": 12.5,
      "role": "control"
     },
     "1": {
-     "pct": 5,
+     "pct": 12.5,
      "role": "treatment"
     },
     "2": {
-     "pct": 5,
+     "pct": 12.5,
      "role": "treatment"
     },
     "3": {
-     "pct": 5,
+     "pct": 12.5,
      "role": "treatment"
     }
    },
    "treatment": {
-    "pct": 15
+    "pct": 37.5
    },
    "control": {
-    "pct": 5
+    "pct": 12.5
    },
    "notEligible": {
     "pct": 0
@@ -21948,19 +21948,13 @@
   }
  },
  "lastRun": {
-  "changes": 0,
-  "delivered": 0,
+  "changes": 1,
+  "delivered": 1,
   "firstRun": false,
   "semanticsMigrated": 0,
   "scopeBaselined": 0
  },
  "history": [
-  {
-   "at": "2026-11-24T13:11:06.763Z",
-   "revision": "db5fbcb1f482ee5293c573bb8ba8f086952d2f90",
-   "changes": 0,
-   "delivered": 0
-  },
   {
    "at": "2026-11-24T13:40:17.028Z",
    "revision": "db5fbcb1f482ee5293c573bb8ba8f086952d2f90",
@@ -22254,6 +22248,12 @@
    "revision": "6adb5313fe8f4cf34c22e5394ff3861f58fc3014",
    "changes": 0,
    "delivered": 0
+  },
+  {
+   "at": "2026-11-25T21:04:29.808Z",
+   "revision": "38d905df957cfc512616c9e3dd938f82220e3fd4",
+   "changes": 1,
+   "delivered": 1
   }
  ]
 }
