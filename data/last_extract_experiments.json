@@ -1,8 +1,8 @@
 {
-  "runId": "2026-11-25T19-40-19-383Z_681221_s86u5z",
-  "buildNumber": "681221",
-  "updatedAt": "2026-11-25T19:40:19.383Z",
-  "count": 395,
+  "runId": "2026-11-25T19-51-01-313Z_681248_3x3r6e",
+  "buildNumber": "681248",
+  "updatedAt": "2026-11-25T19:51:01.313Z",
+  "count": 394,
   "data": {
     "2021-02_staff_qc_debugging": {
       "id": "2021-02_staff_qc_debugging",
@@ -6669,26 +6669,6 @@
       "defaultConfig": null,
       "system": "apex",
       "fp": "a5dc7c12d7d4bca42b02afb773e33e4652a9ace5e19e47a7181ec9a4799db478"
-    },
-    "2026-10-remove-quests-from-discovery": {
-      "id": "2026-10-remove-quests-from-discovery",
-      "type": "user",
-      "kind": "user",
-      "label": null,
-      "variationCount": 2,
-      "variations": {
-        "0": {
-          "enabled": false
-        },
-        "1": {
-          "enabled": true
-        }
-      },
-      "defaultConfig": {
-        "enabled": false
-      },
-      "system": "apex",
-      "fp": "15d829a40b8a0b0dc5b144002e287e3563208787a9003cc5f1c81bdc11bc2eff"
     },
     "2026-10-request-to-stream-non-games": {
       "id": "2026-10-request-to-stream-non-games",

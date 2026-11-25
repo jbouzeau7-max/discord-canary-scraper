@@ -1,9 +1,9 @@
 {
-  "runId": "2026-11-25T19-40-19-383Z_681221_s86u5z",
-  "buildNumber": "681221",
-  "scrapedAt": "2026-11-25T19:40:19.383Z",
+  "runId": "2026-11-25T19-51-01-313Z_681248_3x3r6e",
+  "buildNumber": "681248",
+  "scrapedAt": "2026-11-25T19:51:01.313Z",
   "totals": {
-    "all": 395
+    "all": 394
   },
   "experiments": [
     {
@@ -7781,36 +7781,6 @@
         "source": "gist_user_rollouts"
       },
       "fingerprint": "b48be8cfb2c549f8a76c2f8761f8e0e4b3db1fb5eae8eab92ce30b4ddb1b4828"
-    },
-    {
-      "id": "2026-10-remove-quests-from-discovery",
-      "type": "user",
-      "kind": "user",
-      "label": null,
-      "system": "apex",
-      "defaultConfig": {
-        "enabled": false
-      },
-      "variations": {
-        "0": {
-          "enabled": false
-        },
-        "1": {
-          "enabled": true
-        }
-      },
-      "variationCount": 2,
-      "source": "discord",
-      "guildPercentage": {
-        "status": "unknown",
-        "value": null
-      },
-      "userPercentage": {
-        "status": "provided",
-        "value": 50,
-        "source": "gist_user_rollouts"
-      },
-      "fingerprint": "c8cdc07032dda81cb160922820990897f0d24652a6e0d336e5cfdf389d0e6c36"
     },
     {
       "id": "2026-10-request-to-stream-non-games",
