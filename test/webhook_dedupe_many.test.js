@@ -74,6 +74,21 @@ test('claimMany : sent expiré (> 24 h) redevient réclamable', async () => {
   assert.equal((await dedupe.claimMany(['ancient'])).get('ancient'), 'claimed');
 });
 
+for (const mode of ['single', 'batch']) {
+  test(`un échec tardif (${mode}) ne rouvre pas une livraison confirmée`, async () => {
+    reset();
+    const key = 'reclaimed';
+    // La première tentative est toujours en vol quand la réservation expire.
+    await fs.writeJson(FILE, { fps: { [key]: { status: 'pending', ts: Date.now() - dedupe.CLAIM_STALE_MS - 1 } } });
+    assert.equal(await dedupe.claimState(key), 'claimed');
+    await dedupe.markPosted(key); // la seconde tentative a livré le message
+    if (mode === 'single') await dedupe.markFailed(key, 'late timeout');
+    else await dedupe.markFailedMany([{ key, error: 'late timeout' }, { key: 'other', error: '500' }]);
+    assert.equal(await dedupe.claimState(key), 'sent');
+    if (mode === 'batch') assert.equal((await fs.readJson(FILE)).fps.other.status, 'failed');
+  });
+}
+
 test('claimMany : liste vide / clés vides', async () => {
   reset();
   assert.equal((await dedupe.claimMany([])).size, 0);

@@ -331,19 +331,7 @@ async function markPosted(fp) {
 }
 
 async function markFailed(fp, error) {
-  try {
-    await withDedupeLock(async () => {
-      const d = await load();
-      d.fps[fp] = {
-        ts: Date.now(),
-        status: 'failed',
-        error: String(error || '').slice(0, 500),
-      };
-      await save(d);
-    });
-  } catch (e) {
-    console.warn('markFailed fail', e.message);
-  }
+  return markFailedMany([{ key: fp, error }]);
 }
 
 /** Marque N clés en échec en une seule écriture. entries = [{key,error}]. */
@@ -354,14 +342,19 @@ async function markFailedMany(entries) {
     await withDedupeLock(async () => {
       const d = await load();
       const ts = Date.now();
+      let dirty = false;
       for (const { key, error } of list) {
+        const current = d.fps[key];
+        // Un échec tardif d'une autre tentative ne peut annuler une livraison confirmée.
+        if (entryStatus(current) === 'sent' && ts - entryTs(current) < WINDOW_MS) continue;
         d.fps[String(key)] = {
           ts,
           status: 'failed',
           error: String(error || '').slice(0, 500),
         };
+        dirty = true;
       }
-      await save(d);
+      if (dirty) await save(d);
     });
   } catch (e) {
     console.warn('markFailedMany fail', e.message);
