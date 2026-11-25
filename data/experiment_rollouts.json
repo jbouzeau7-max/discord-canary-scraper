@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-11-25T18:07:21.758Z",
+  "fetchedAt": "2026-11-25T18:13:53.950Z",
   "sources": {
     "discordApi": {
       "url": "https://discord.com/api/v9/experiments",
@@ -343,20 +343,20 @@
       "status": "insufficient_data",
       "ci95": [
         0,
-        50
+        80
       ],
       "confidence": "low",
-      "samples": 4,
+      "samples": 1,
       "enrolled": 0,
       "treatmentDistribution": {
-        "0": 4
+        "0": 1
       },
       "source": "fingerprint_sampling",
       "note": "No local experiment ID match for this hash",
-      "fpSamples": 4,
+      "fpSamples": 1,
       "fpEnrolled": 0,
       "fpTreatmentDist": {
-        "0": 4
+        "0": 1
       }
     },
     {
@@ -1294,16 +1294,6 @@
       "hash": 1350319550,
       "type": "guild",
       "title": "Voice Call Trigger Point Experiment",
-      "percentage": null,
-      "status": "no_rollout_data",
-      "source": "client_bundle",
-      "note": "No rollout data found in the Discord API."
-    },
-    {
-      "id": "2026-04_voice_user_duration",
-      "hash": 4294382796,
-      "type": "guild",
-      "title": "Voice User Duration",
       "percentage": null,
       "status": "no_rollout_data",
       "source": "client_bundle",
@@ -4281,11 +4271,11 @@
     }
   ],
   "summary": {
-    "total": 400,
-    "guild": 44,
+    "total": 399,
+    "guild": 43,
     "user": 356,
     "withPercentage": 8,
-    "withoutPercentage": 392,
+    "withoutPercentage": 391,
     "fullRollout": 5,
     "partial": 0,
     "notStarted": 2,
