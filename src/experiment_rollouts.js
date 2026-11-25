@@ -22,6 +22,7 @@ const { murmur3 } = require('./lib/murmur3');
 const {
   mergeIntervalsHalfOpen,
   rangesPercentExclusive,
+  wilsonPctInterval,
   DEFAULT_SCALE,
 } = require('./lib/rollout_math');
 const { DEFAULT_UA, sleep, envNumber } = require('./lib/utils');
@@ -37,6 +38,12 @@ const SCALE = DEFAULT_SCALE; // 10000
 const FP_SAMPLES = envNumber('EXP_FP_SAMPLES', 50, { min: 0, max: 500, int: true });
 const FP_CONCURRENCY = 1; // Must be 1 — Discord rate-limits fingerprint generation
 const FP_DELAY_MS = envNumber('EXP_FP_DELAY_MS', 5000, { min: 0, max: 10000, int: true });
+// Nombre minimal d'empreintes distinctes pour qu'un 0 %/100 % observé soit
+// autre chose qu'un artefact d'échantillonnage (1 tirage ne prouve rien).
+const FP_MIN_SAMPLES = envNumber('EXP_FP_MIN_SAMPLES', 12, { min: 2, max: 500, int: true });
+// Marge (points de %) tolérée entre la borne de Wilson et 0 / 100 pour
+// annoncer « pas commencé » / « rollout complet ».
+const FP_EDGE_MARGIN_PCT = envNumber('EXP_FP_EDGE_MARGIN_PCT', 10, { min: 0, max: 100 });
 
 // ── HTTP helpers ──────────────────────────────────────
 
@@ -287,6 +294,40 @@ async function getExperimentsWithFp(fp) {
 }
 
 /**
+ * Classe un pourcentage estimé par échantillonnage d'empreintes.
+ *
+ * Avant : `pct <= 0 → not_started`, `pct >= 100 → full_rollout` sur la seule
+ * valeur ponctuelle. Avec 1 tirage non enrollé, la sortie publiée annonçait
+ * « not_started 0 % » (faux : 1 échantillon ne distingue pas 0 % de 20 %), et
+ * 50/50 était présenté comme un 100 % exact. Ici la décision passe par un
+ * intervalle de Wilson : un état tranché n'est publié que si l'IC le permet,
+ * sinon `insufficient_data`. Le pourcentage ponctuel reste publié tel quel.
+ *
+ * @param {number} enrolled tirages avec treatment > 0
+ * @param {number} samples tirages exploitables
+ * @returns {{percentage:number|null,status:string,confidence:string,ci95:[number,number]|null}}
+ */
+function classifySampledPercentage(enrolled, samples, opts = {}) {
+  const n = Math.max(0, Math.floor(Number(samples) || 0));
+  const k = Math.min(n, Math.max(0, Math.floor(Number(enrolled) || 0)));
+  const minSamples = opts.minSamples != null ? opts.minSamples : FP_MIN_SAMPLES;
+  const margin = opts.edgeMarginPct != null ? opts.edgeMarginPct : FP_EDGE_MARGIN_PCT;
+  if (!n) {
+    return { percentage: null, status: 'unknown', confidence: 'low', ci95: null };
+  }
+  const percentage = Math.round((k / n) * 10000) / 100;
+  const ci = wilsonPctInterval(k, n, 2);
+  const ci95 = [ci.lo, ci.hi];
+  const confidence = n >= 30 ? 'high' : n >= minSamples ? 'medium' : 'low';
+  let status;
+  if (n < minSamples) status = 'insufficient_data';
+  else if (k === 0) status = ci.hi <= margin ? 'not_started' : 'insufficient_data';
+  else if (k === n) status = ci.lo >= 100 - margin ? 'full_rollout' : 'insufficient_data';
+  else status = 'partial';
+  return { percentage, status, confidence, ci95 };
+}
+
+/**
  * Sample user experiment rollouts using anonymous fingerprints.
  *
  * The Discord API /experiments endpoint returns 3-4 user assignments per
@@ -356,18 +397,12 @@ async function sampleFingerprintRollouts(hashToId) {
   // Calculate estimated percentages
   const results = [];
   for (const [hash, s] of stats) {
-    const pct = s.samples > 0 ? Math.round((s.enrolled / s.samples) * 10000) / 100 : null;
+    const cls = classifySampledPercentage(s.enrolled, s.samples);
+    const pct = cls.percentage;
     const idInfo = hashToId.get(hash);
     const treatmentDist = {};
     for (const [t, c] of s.treatments) {
       treatmentDist[t] = c;
-    }
-
-    let status = 'unknown';
-    if (pct != null) {
-      if (pct <= 0) status = 'not_started';
-      else if (pct >= 100) status = 'full_rollout';
-      else status = 'partial';
     }
 
     results.push({
@@ -376,7 +411,10 @@ async function sampleFingerprintRollouts(hashToId) {
       type: idInfo ? idInfo.type : 'user',
       title: idInfo ? idInfo.title : `hash_${hash}`,
       percentage: pct,
-      status,
+      status: cls.status,
+      // Fiabilité explicite : IC 95 % de Wilson sur k/n et niveau de confiance.
+      ci95: cls.ci95,
+      confidence: cls.confidence,
       samples: s.samples,
       enrolled: s.enrolled,
       treatmentDistribution: treatmentDist,
@@ -546,6 +584,8 @@ async function main() {
       if (existing.percentage == null && fp.percentage != null) {
         existing.percentage = fp.percentage;
         existing.status = fp.status;
+        existing.ci95 = fp.ci95;
+        existing.confidence = fp.confidence;
         existing.source = 'fingerprint_sampling';
       }
     } else {
@@ -594,6 +634,9 @@ async function main() {
     fullRollout: allExperiments.filter((e) => e.status === 'full_rollout').length,
     partial: allExperiments.filter((e) => e.status === 'partial').length,
     notStarted: allExperiments.filter((e) => e.status === 'not_started').length,
+    // Échantillonnage trop faible pour trancher : ne compte ni comme
+    // « pas commencé » ni comme « complet ».
+    insufficientData: allExperiments.filter((e) => e.status === 'insufficient_data').length,
     fpSampled: allExperiments.filter((e) => e.fpSamples != null || e.source === 'fingerprint_sampling').length,
   };
 
@@ -602,7 +645,7 @@ async function main() {
   console.log(`Total: ${results.summary.total}`);
   console.log(`Guild: ${results.summary.guild} | User: ${results.summary.user}`);
   console.log(`With percentage: ${results.summary.withPercentage} | Without: ${results.summary.withoutPercentage}`);
-  console.log(`Full rollout: ${results.summary.fullRollout} | Partial: ${results.summary.partial} | Not started: ${results.summary.notStarted}`);
+  console.log(`Full rollout: ${results.summary.fullRollout} | Partial: ${results.summary.partial} | Not started: ${results.summary.notStarted} | Insufficient data: ${results.summary.insufficientData}`);
 
   // Print specific experiments the user asked about
   const interesting = ['silp-direct-to-discoverable', 'soundboard-quick-action'];
@@ -633,6 +676,7 @@ module.exports = {
   main,
   parseGuildExperiment,
   describeFilters,
+  classifySampledPercentage,
   getFingerprint,
   getExperimentsWithFp,
   sampleFingerprintRollouts,
