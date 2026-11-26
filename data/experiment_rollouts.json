@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-11-26T12:55:22.302Z",
+  "fetchedAt": "2026-11-26T13:01:57.258Z",
   "sources": {
     "discordApi": {
       "url": "https://discord.com/api/v9/experiments",
@@ -343,20 +343,20 @@
       "status": "insufficient_data",
       "ci95": [
         0,
-        57.14
+        80
       ],
       "confidence": "low",
-      "samples": 3,
+      "samples": 1,
       "enrolled": 0,
       "treatmentDistribution": {
-        "0": 3
+        "0": 1
       },
       "source": "fingerprint_sampling",
       "note": "No local experiment ID match for this hash",
-      "fpSamples": 3,
+      "fpSamples": 1,
       "fpEnrolled": 0,
       "fpTreatmentDist": {
-        "0": 3
+        "0": 1
       }
     },
     {
@@ -3090,6 +3090,16 @@
       "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
     },
     {
+      "id": "2026-10-clips-drag-and-drop",
+      "hash": 3240769382,
+      "type": "user",
+      "title": "2026-10-clips-drag-and-drop",
+      "percentage": null,
+      "status": "no_rollout_data",
+      "source": "client_bundle",
+      "note": "User experiment — rollout percentage not publicly available. Use user_rollouts.js with tokens for estimation."
+    },
+    {
       "id": "2026-10-cod-relink",
       "hash": 3509277331,
       "type": "user",
@@ -4271,11 +4281,11 @@
     }
   ],
   "summary": {
-    "total": 399,
+    "total": 400,
     "guild": 43,
-    "user": 356,
+    "user": 357,
     "withPercentage": 8,
-    "withoutPercentage": 391,
+    "withoutPercentage": 392,
     "fullRollout": 5,
     "partial": 0,
     "notStarted": 2,
