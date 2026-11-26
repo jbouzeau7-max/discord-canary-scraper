@@ -3957,6 +3957,19 @@
   },
   {
     "kind": "user",
+    "name": "2026-10-clips-drag-and-drop",
+    "defaultConfig": {
+      "enabled": false
+    },
+    "variations": {
+      "1": {
+        "enabled": true
+      }
+    },
+    "label": null
+  },
+  {
+    "kind": "user",
     "name": "2026-10-cod-relink",
     "defaultConfig": {
       "enabled": false

@@ -1,9 +1,9 @@
 {
-  "runId": "2026-11-26T12-22-32-149Z_681659_jam0ow",
-  "buildNumber": "681659",
-  "scrapedAt": "2026-11-26T12:22:32.150Z",
+  "runId": "2026-11-26T12-56-44-698Z_681662_l0mxb2",
+  "buildNumber": "681662",
+  "scrapedAt": "2026-11-26T12:56:44.698Z",
   "totals": {
-    "all": 395
+    "all": 396
   },
   "experiments": [
     {
@@ -6530,6 +6530,23 @@
         "source": "gist_user_rollouts"
       },
       "fingerprint": "c25a69fad9871a16332b32d48451db75927bba6fc12a72c104c7c3dfc1d27f6b"
+    },
+    {
+      "id": "2026-10-clips-drag-and-drop",
+      "type": "user",
+      "kind": "user",
+      "label": null,
+      "system": "apex",
+      "defaultConfig": {
+        "enabled": false
+      },
+      "variations": {
+        "1": {
+          "enabled": true
+        }
+      },
+      "variationCount": 1,
+      "source": "discord"
     },
     {
       "id": "2026-10-cod-relink",
