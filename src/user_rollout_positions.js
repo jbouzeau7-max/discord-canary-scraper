@@ -157,14 +157,18 @@ async function knownNames() {
 
 async function main(deps = {}) {
   const file = deps.out || path.join(DATA, 'user_rollout_positions.json');
-  const prevFile = await readJson(file, {});
-  const prev =
-    prevFile &&
-    prevFile.experiments &&
-    typeof prevFile.experiments === 'object' &&
-    !Array.isArray(prevFile.experiments)
-      ? prevFile.experiments
-      : {};
+  // Un premier run sans observations peut ne contenir que lastRun. Ne pas
+  // confondre un fichier absent avec une erreur de lecture de l'historique.
+  let prevFile;
+  try { prevFile = await fs.readJson(file); } catch (err) {
+    if (err.code !== 'ENOENT') throw err;
+    prevFile = {};
+  }
+  if (!prevFile || typeof prevFile !== 'object' || Array.isArray(prevFile) ||
+      ('experiments' in prevFile && (!prevFile.experiments || typeof prevFile.experiments !== 'object' || Array.isArray(prevFile.experiments)))) {
+    throw new Error('Historique de positions invalide : fichier conservé.');
+  }
+  const prev = prevFile.experiments || {};
   const comparison = deps.comparison !== undefined ? deps.comparison : await readJson(path.join(DATA, 'user_rollout_comparison.json'), {});
   const known = deps.knownNames || await knownNames();
   const count = deps.samples ?? num(process.env.POSITIONS_SAMPLES, 150);
