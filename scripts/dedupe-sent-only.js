@@ -12,6 +12,9 @@ function sentOnly(d) {
   const out = {};
   for (const [k, v] of Object.entries((d && d.fps) || {})) {
     const st = v && typeof v === 'object' ? v.status || 'sent' : 'sent';
+    const ts = v && typeof v === 'object' ? v.ts : v;
+    if (typeof ts !== 'number' && typeof ts !== 'string') continue;
+    if (!Number.isFinite(Number(ts)) || Number(ts) <= 0) continue;
     if (st === 'sent' || st === 'done') out[k] = v;
   }
   return { ...(d || {}), fps: out };
