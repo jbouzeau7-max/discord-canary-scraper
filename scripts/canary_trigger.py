@@ -45,6 +45,11 @@ def tick() -> str:
     last = read_state(STATE)
     if last == bn:
         return f"build={bn} inchangé"
+    # Deux caches CDN peuvent servir successivement un build neuf puis un ancien.
+    if last and last.isascii() and last.isdecimal() and bn.isascii() and bn.isdecimal():
+        previous, current = last.lstrip('0'), bn.lstrip('0')
+        if (len(current), current) <= (len(previous), previous):
+            return f"build={bn} déjà dépassé (dernier={last})"
     # nouveau build
     ok, msg = dispatch_github_actions(TOKEN, REPO, EVENT, client_payload={"build": str(bn)})
     if ok:
