@@ -16,6 +16,7 @@ const { processDismissibleContent } = require('./lib/dismissible_content');
 const { archiveBuildChunks, writeZipHint } = require('./lib/archive_chunks');
 const { publishFlatChunks } = require('./lib/flat_chunks');
 const { writeJsonAtomic } = require('./lib/atomic');
+const { trimRecent } = require('./lib/utils');
 const experimentState = require('./lib/experiment_state');
 const { publishDataGeneration } = require('./lib/publish_data');
 const ALREADY_NOTIFIED = require('./lib/already_notified');
@@ -43,6 +44,30 @@ const STR_RT_EXTRACT_VERSION = 3; // v3 : balises $link/$b conservées, routes $
 const MIN_STRINGS_FOR_DIFF = 200;
 const MIN_ROUTES_FOR_DIFF = 50;
 const MIN_EXP_FOR_DIFF = 80;
+// Plafonds de la mémoire « déjà annoncé » strings/routes. La purge garde les
+// clés les plus RÉCEMMENT vues (trimRecent) : l'ancien `sort()` évincait les
+// clés par ordre alphabétique — toujours les mêmes (chiffres, puis « A… »),
+// quel que soit leur âge, et la mémoire de déduplication devenait biaisée.
+const KNOWN_STR_MAX_KEYS = 50000;
+const KNOWN_RT_MAX_KEYS = 10000;
+
+/**
+ * Plafonne une liste d'ids « déjà annoncés » en gardant les plus récents.
+ * Le tri final ne sert qu'à produire des fichiers stables dans git : il est
+ * appliqué APRÈS la sélection, jamais avant.
+ * @param {Iterable<string>} ids
+ * @param {number} max
+ * @returns {string[]}
+ */
+function capKnownIds(ids, max) {
+  const list = [];
+  for (const id of ids || []) {
+    if (id == null) continue;
+    const s = String(id).trim();
+    if (s) list.push(s);
+  }
+  return trimRecent(list, max).sort();
+}
 
 async function loadKnownIds(file, fromAlready) {
   const set = new Set();
@@ -100,6 +125,7 @@ function expFingerprint(e) {
 }
 
 function expSnapshot(e) {
+  const normalized = experimentState.normalizeExperiment(e) || e || {};
   return {
     id: e.id,
     type: e.type || e.kind || 'user',
@@ -110,8 +136,22 @@ function expSnapshot(e) {
     variations: e.variations || null,
     defaultConfig: e.defaultConfig || null,
     system: e.system || null,
+    // Les pourcentages font partie de l'empreinte (createExperimentFingerprint)
+    // et des comparaisons « modifiée » de isMeaningfulModification : les omettre
+    // rendait la référence incohérente avec elle-même après rechargement
+    // (empreinte stockée calculée avec % ≠ empreinte recalculée sans %).
+    guildPercentage: expSnapshotPercentage(normalized.guildPercentage),
+    userPercentage: expSnapshotPercentage(normalized.userPercentage),
     fp: expFingerprint(e),
   };
+}
+
+/** Forme compacte et stable d'un pourcentage pour la référence last_extract. */
+function expSnapshotPercentage(p) {
+  if (!p || typeof p !== 'object' || p.status === 'unknown' || p.value == null) return null;
+  const value = Number(p.value);
+  if (!Number.isFinite(value) || value < 0 || value > 100) return null;
+  return { status: p.status, value, source: p.source || null };
 }
 
 function buildGap(prevBuild, remoteBuild) {
@@ -865,11 +905,9 @@ async function main() {
   const knownExpIds = [...knownExp]
     .filter((id) => id && !String(id).startsWith('hash:'))
     .sort();
-  const knownStrIds = [...knownStr].filter(Boolean).sort();
-  const knownRtIds = [...knownRt].filter(Boolean).sort();
+  const knownStrIds = capKnownIds(knownStr, KNOWN_STR_MAX_KEYS);
+  const knownRtIds = capKnownIds(knownRt, KNOWN_RT_MAX_KEYS);
   // knownExp is append-only — never truncate
-  if (knownStrIds.length > 50000) knownStrIds.splice(0, knownStrIds.length - 50000);
-  if (knownRtIds.length > 10000) knownRtIds.splice(0, knownRtIds.length - 10000);
 
   // Les trackers (apex guild / gist user) calculent les deux pourcentages ;
   // on les rattache ici aux expériences publiées (sinon 100 % unknown).
@@ -1219,5 +1257,9 @@ module.exports = {
   loadKnownIds,
   markBuild,
   wasBuildAnnounced,
+  capKnownIds,
+  expSnapshotPercentage,
+  KNOWN_STR_MAX_KEYS,
+  KNOWN_RT_MAX_KEYS,
   MIN_EXP_FOR_DIFF,
 };
