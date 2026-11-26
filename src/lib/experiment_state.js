@@ -164,9 +164,32 @@ function normalizeExperiment(raw) {
     // Preserve unknown fields for datamine / future normalizers
     raw: { ...raw },
   };
-  const withPct = attachPercentages(base);
+  const withPct = attachPercentages(base, snapshotOverrides(raw));
   withPct.fingerprint = createExperimentFingerprint(withPct);
   return withPct;
+}
+
+/**
+ * Pourcentages explicitement stockés (référence last_extract / état publié).
+ * `attachPercentages(base)` les recalculait depuis les variations et les
+ * perdait : la référence rechargée ne ressemblait plus à ce qui avait été
+ * enregistré (empreinte et comparaison « modifiée » faussées).
+ * Seule une valeur concrète (status provided/calculated) est reprise.
+ */
+function snapshotOverrides(raw) {
+  const pick = (p) => {
+    if (!p || typeof p !== 'object') return null;
+    if (p.status === 'unknown' || p.value == null) return null;
+    const value = Number(p.value);
+    if (!Number.isFinite(value) || value < 0 || value > 100) return null;
+    return { value, source: p.source || 'snapshot' };
+  };
+  const out = {};
+  const g = pick(raw && raw.guildPercentage);
+  const u = pick(raw && raw.userPercentage);
+  if (g) out.guild = g;
+  if (u) out.user = u;
+  return out;
 }
 
 /**
