@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-11-27T09:36:57.667Z",
+  "fetchedAt": "2026-11-27T09:50:10.683Z",
   "sources": {
     "discordApi": {
       "url": "https://discord.com/api/v9/experiments",
@@ -343,20 +343,20 @@
       "status": "insufficient_data",
       "ci95": [
         0,
-        66.67
+        40
       ],
       "confidence": "low",
-      "samples": 2,
+      "samples": 6,
       "enrolled": 0,
       "treatmentDistribution": {
-        "0": 2
+        "0": 6
       },
       "source": "fingerprint_sampling",
       "note": "No local experiment ID match for this hash",
-      "fpSamples": 2,
+      "fpSamples": 6,
       "fpEnrolled": 0,
       "fpTreatmentDist": {
-        "0": 2
+        "0": 6
       }
     },
     {
